@@ -1,0 +1,114 @@
+﻿AppType=JavaFX
+Build1=Default,b4j.example
+File1=fonts.zip
+File2=icons8-add-row-40.png
+File3=icons8-compose-40.png
+File4=icons8-edit-40.png
+File5=icons8-pencil-40.png
+File6=icons8-save-as-100.png
+File7=icons8-save-close-40.png
+File8=webix.min.css
+File9=webix.min.js
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+Library1=jcore
+Library2=jfx
+Library3=banano
+Library4=bananopostprocessor
+Module1=WixForm
+Module10=WixDataTable
+Module11=WixList
+Module12=WixRow
+Module13=WixColumn
+Module14=WixHeader
+Module15=WixTextArea
+Module16=WixCheckBox
+Module17=WixToggle
+Module18=WixRadio
+Module19=WixCombo
+Module2=pgForms1
+Module20=WixRichSelect
+Module21=WixCounter
+Module22=WixSegmented
+Module23=WixTextBox
+Module24=WixPassword
+Module25=pgDataTable
+Module26=WixColorPicker
+Module27=WixDateTimePicker
+Module28=WixLabel
+Module29=WixSection
+Module3=pgForms
+Module30=WixSuggest
+Module31=WixIcon
+Module32=WixTemplate
+Module33=WixLayout
+Module34=WixResizer
+Module35=pgLayout
+Module4=pgIndex
+Module5=WixButton
+Module6=WixButtonTypes
+Module7=WixPage
+Module8=WixElement
+Module9=WixToolBar
+NumberOfFiles=9
+NumberOfLibraries=4
+NumberOfModules=35
+Version=7.51
+@EndOfDesignText@
+#Region Project Attributes 
+#End Region
+#IgnoreWarnings:15
+Sub Process_Globals
+	Public BANano As BANano 'ignore
+	Public AppName As String = "Webix"
+	Private Publish As String
+	Private BP As BANanoPostProcessor
+End Sub
+
+Sub AppStart (Form1 As Form, Args() As String)
+	Publish = "C:\xampp\htdocs"
+	Dim version As String = DateTime.now
+	Dim appFile As String = $"app${version}.js"$
+	BANano.Initialize("BANano", AppName,1)
+	BANano.HTML_NAME = "index.html"
+	BANano.UseServiceWorker = False
+	BANano.Header.Title = AppName
+	BANano.JAVASCRIPT_NAME = appFile
+	BANano.Header.AddCSSFile("webix.min.css")
+	BANano.Header.AddJavascriptFile("webix.min.js")
+	'BANano.TranspilerOptions.MergeAllCSSFiles = True
+	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True
+	'BANano.TranspilerOptions.RemoveDeadCode = True
+	'BANano.TranspilerOptions.UseServiceWorker = False 
+	'BANano.BuildAsB4XLib("1.00") 
+	BANano.Build(Publish)
+	'post processor
+	BP.Initialize
+	BP.PublishPath = Publish
+	BP.ShortName = AppName
+	BP.AssetsPath = BANano.ASSETS_FOLDER
+	BP.ScriptsPath = BANano.SCRIPTS_FOLDER
+	BP.StylesPath = BANano.STYLES_FOLDER
+	BP.ScriptFile = BANano.JAVASCRIPT_NAME
+	BP.UnzipFonts
+	BP.Open(True)
+	ExitApplication
+End Sub
+
+'Return true to allow the default exceptions handler to handle the uncaught exception.
+Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
+	Return True
+End Sub
+
+Sub BANano_Ready()
+	pgLayout.init
+	'pgIndex.Init
+End Sub
