@@ -34,10 +34,11 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public String  _additem(anywheresoftware.b4a.objects.collections.Map _itm) throws Exception{
  //BA.debugLineNum = 88;BA.debugLine="Sub AddItem(itm As Map)";
  //BA.debugLineNum = 89;BA.debugLine="Form.AddItem(itm)";
-_form._additem /*String*/ (_itm);
+_form._additem /*b4j.example.wixelement*/ (_itm);
  //BA.debugLineNum = 90;BA.debugLine="End Sub";
 return "";
 }

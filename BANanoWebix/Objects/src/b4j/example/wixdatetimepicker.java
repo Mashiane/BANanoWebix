@@ -33,6 +33,7 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 18;BA.debugLine="Sub AddToForm(frm As WixForm)";
  //BA.debugLineNum = 19;BA.debugLine="frm.AddItem(Item)";
@@ -75,7 +76,7 @@ return null;
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
  //BA.debugLineNum = 28;BA.debugLine="Sub Item As Map";
  //BA.debugLineNum = 29;BA.debugLine="DateTimePicker.SetOnContent(\"format\", Format)";
-_datetimepicker._setoncontent /*String*/ ("format",_format);
+_datetimepicker._setoncontent /*b4j.example.wixelement*/ ("format",_format);
  //BA.debugLineNum = 30;BA.debugLine="DateTimePicker.SetAttr(\"timepicker\",TimePicker)";
 _datetimepicker._setattr /*b4j.example.wixelement*/ ("timepicker",(Object)(_timepicker));
  //BA.debugLineNum = 31;BA.debugLine="Return DateTimePicker.item";

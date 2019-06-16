@@ -33,6 +33,7 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 19;BA.debugLine="Sub AddToForm(frm As WixForm)";
  //BA.debugLineNum = 20;BA.debugLine="frm.AddItem(Item)";
@@ -79,7 +80,7 @@ return null;
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
  //BA.debugLineNum = 41;BA.debugLine="Sub Item As Map";
  //BA.debugLineNum = 42;BA.debugLine="Icon.SetOnContent(\"icon\", IconName)";
-_icon._setoncontent /*String*/ ("icon",_iconname);
+_icon._setoncontent /*b4j.example.wixelement*/ ("icon",_iconname);
  //BA.debugLineNum = 43;BA.debugLine="If onClick <> Null Then";
 if (_onclick!= null) { 
  //BA.debugLineNum = 44;BA.debugLine="Icon.SetAttr(\"click\", onClick)";

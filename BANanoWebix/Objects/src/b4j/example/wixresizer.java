@@ -31,10 +31,11 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public String  _addtocolumns(b4j.example.wixelement _parent) throws Exception{
  //BA.debugLineNum = 30;BA.debugLine="Sub AddToColumns(parent As WixElement)";
  //BA.debugLineNum = 31;BA.debugLine="parent.AddColumns(Item)";
-_parent._addcolumns /*String*/ (_item());
+_parent._addcolumns /*b4j.example.wixelement*/ (_item());
  //BA.debugLineNum = 32;BA.debugLine="End Sub";
 return "";
 }

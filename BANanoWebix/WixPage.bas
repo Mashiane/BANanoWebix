@@ -12,6 +12,7 @@ Sub Class_Globals
 	Public Page As WixElement
 	Public ID As String
 	Public EnumButtonTypes As WixButtonTypes
+	Public EnumLayoutTypes As WixLayoutTypes
 End Sub
 
 'initialize the page
@@ -24,13 +25,15 @@ Public Sub Initialize(pgID As String) As WixPage
 	'empty the body
 	BANano.GetElement("#body").empty
 	'init other stuff
-	EnumButtonTypes.Initialize 
+	EnumButtonTypes.Initialize
+	EnumLayoutTypes.Initialize  
 	Return Me
 End Sub
 
 'add an item to the rows of the page
 Sub AddRows(itm As Map) As WixPage
 	Page.AddRows(itm)
+	Return Me
 End Sub	
 
 'Set View
@@ -106,4 +109,40 @@ End Sub
 'add a row to the page
 Sub AddRow(r As WixRow)
 	Page.AddRow(R)
+End Sub
+
+'make clean layout
+Sub SetClean As WixPage
+	SetType("clean")
+	Return Me
+End Sub
+
+'make line layout
+Sub SetLine As WixPage
+	SetType("line")
+	Return Me
+End Sub
+
+'make wide layout
+Sub SetWide As WixPage
+	SetType("wide")
+	Return Me
+End Sub
+
+'make space layout
+Sub SetSpace As WixPage
+	SetType("space")
+	Return Me
+End Sub
+
+'make a head layout
+Sub SetHead As WixPage
+	SetType("head")
+	Return Me
+End Sub
+
+'make form layout
+Sub SetForm As WixPage
+	SetType("form")
+	Return Me
 End Sub

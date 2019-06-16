@@ -31,10 +31,11 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.wixtoolbar  _additem(anywheresoftware.b4a.objects.collections.Map _itm) throws Exception{
  //BA.debugLineNum = 20;BA.debugLine="Sub AddItem(itm As Map) As WixToolBar";
  //BA.debugLineNum = 21;BA.debugLine="ToolBar.AddItem(itm)";
-_toolbar._additem /*String*/ (_itm);
+_toolbar._additem /*b4j.example.wixelement*/ (_itm);
  //BA.debugLineNum = 22;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoolbar)(this);
  //BA.debugLineNum = 23;BA.debugLine="End Sub";
@@ -43,7 +44,7 @@ return null;
 public b4j.example.wixtoolbar  _addspacer() throws Exception{
  //BA.debugLineNum = 26;BA.debugLine="Sub AddSpacer As WixToolBar";
  //BA.debugLineNum = 27;BA.debugLine="ToolBar.AddItem(CreateMap())";
-_toolbar._additem /*String*/ (__c.createMap(new Object[] {}));
+_toolbar._additem /*b4j.example.wixelement*/ (__c.createMap(new Object[] {}));
  //BA.debugLineNum = 28;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoolbar)(this);
  //BA.debugLineNum = 29;BA.debugLine="End Sub";

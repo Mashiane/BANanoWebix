@@ -29,6 +29,7 @@ public static b4j.example.pgforms1 _pgforms1 = null;
 public static b4j.example.pgforms _pgforms = null;
 public static b4j.example.pgindex _pgindex = null;
 public static b4j.example.pglayout _pglayout = null;
+public static b4j.example.pglayouts _pglayouts = null;
 public static String  _backtomain() throws Exception{
  //BA.debugLineNum = 43;BA.debugLine="Sub backtomain()";
  //BA.debugLineNum = 44;BA.debugLine="pgIndex.Init";

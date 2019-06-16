@@ -28,6 +28,8 @@ Sub Class_Globals
 	Public View As String
 	Public Gravity As Int
 	Public CSS As String
+	Public Header As String
+	Public Body As String
 End Sub
 
 'initialize the element
@@ -56,8 +58,82 @@ Public Sub Initialize(sID As String) As WixElement
 	Label.Align = ""
 	Label.Position = ""
 	CSS = ""
+	Header = ""
+	Body = ""
 	HTMLAttributes.Initialize 
 	Return Me
+End Sub
+
+'set min width
+Sub SetMinWidth(w As Int) As WixElement
+	Element.put("minwidth",w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixElement
+	Element.Put("minHeight", h)
+	Return Me
+End Sub
+
+'set max width
+Sub SetMaxWidth(w As Int) As WixElement
+	Element.Put("maxWidth", w)
+	Return Me
+End Sub
+
+'set max height
+Sub SetMaxHeight(h As Int) As WixElement
+	Element.Put("maxHeight", h)
+	Return Me
+End Sub
+
+'set margins
+Sub SetMargin(margin As String) As WixElement
+	Element.Put("margin", margin)
+	Return Me
+End Sub
+
+'set padding
+Sub SetPadding(padding As String) As WixElement
+	Element.Put("padding", padding)
+	Return Me
+End Sub
+
+'set paddingX 
+Sub SetPaddingX(x As String) As WixElement
+	Element.Put("paddingX", x)
+	Return Me
+End Sub
+
+'set paddingY
+Sub SetPaddingY(y As String) As WixElement
+	Element.Put("paddingY",y)
+	Return Me
+End Sub
+
+'set property
+Sub SetProperty(p As String, v As Object) As WixElement
+	Element.Put(p,v)
+	Return Me
+End Sub
+
+'set data
+Sub SetData(d As List) As WixElement
+	Element.Put("data", d)
+	Return Me
+End Sub
+
+'set header
+Sub SetHeader(h As String) As WixElement
+	Header = h
+	Return Me
+End Sub
+
+'set body
+Sub SetBody(b As String) As WixElement
+	Body = b
+	Return Me	
 End Sub
 
 'set gravity
@@ -112,6 +188,8 @@ End Sub
 Sub Item As Map
 	SetOnCondition(Height,"height",Height)
 	SetOnCondition(Width, "width", Width)
+	SetOnContent("body", Body)
+	SetOnContent("header", Header)
 	SetOnContent("container", Container)
 	SetOnContent("type", TypeOf)
 	SetOnContent("view", View)
@@ -175,18 +253,27 @@ Sub SetTemplate(t As String) As WixElement
 End Sub
 
 'add item to a column
-Sub AddColumns(itm As Map)
+Sub AddColumns(itm As Map) As WixElement
 	Columns.Add(itm)
+	Return Me
+End Sub
+
+'add item to elements
+Sub AddElements(itm As Map) As WixElement
+	Elements.Add(itm)
+	Return Me
 End Sub
 
 'add item to a row
-Sub AddRows(itm As Map)
+Sub AddRows(itm As Map) As WixElement
 	Rows.Add(itm)
+	Return Me
 End Sub
 
 'add on elements
-Sub AddItem(itm As Map)
+Sub AddItem(itm As Map) As WixElement
 	Elements.Add(itm)
+	Return Me
 End Sub
 
 'add a row
@@ -200,8 +287,15 @@ Sub AddToRows(prt As WixElement)
 End Sub
 
 'add to columns of parent
-Sub AddToColumns(prt As WixElement)
+Sub AddToColumns(prt As WixElement) As WixElement
 	prt.AddColumns(Item)
+	Return Me
+End Sub
+
+'add to elements of parent
+Sub AddToElements(prt As WixElement) As WixElement
+	prt.AddElements(Item)
+	Return Me
 End Sub
 
 'add a column
@@ -210,13 +304,15 @@ Sub AddColumn(wxEL As WixColumn)
 End Sub
 
 'update property when not blank
-Sub SetOnContent(Prop As String, PropValue As String)
-	If PropValue = "" Then Return
+Sub SetOnContent(Prop As String, PropValue As String) As WixElement
+	If PropValue = "" Then Return Me
 	Element.put(Prop,PropValue)
+	Return Me
 End Sub
 
 'update property when size > 0
-Sub SetOnCondition(Condition As Int, Prop As String, PropValue As Object)
-	If Condition <= 0 Then Return
+Sub SetOnCondition(Condition As Int, Prop As String, PropValue As Object) As WixElement
+	If Condition <= 0 Then Return Me
 	Element.put(Prop,PropValue)
+	Return Me
 End Sub

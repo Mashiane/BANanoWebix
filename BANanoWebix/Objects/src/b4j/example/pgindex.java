@@ -30,6 +30,7 @@ public static b4j.example.pgforms1 _pgforms1 = null;
 public static b4j.example.pgforms _pgforms = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pglayout _pglayout = null;
+public static b4j.example.pglayouts _pglayouts = null;
 public static String  _clear_form() throws Exception{
  //BA.debugLineNum = 158;BA.debugLine="Sub clear_form";
  //BA.debugLineNum = 160;BA.debugLine="myForm.Clear";

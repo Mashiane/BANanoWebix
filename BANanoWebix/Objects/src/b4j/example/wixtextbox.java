@@ -32,6 +32,7 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 39;BA.debugLine="Sub AddToForm(frm As WixForm)";
  //BA.debugLineNum = 40;BA.debugLine="frm.AddItem(Item)";
@@ -72,7 +73,7 @@ return null;
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
  //BA.debugLineNum = 68;BA.debugLine="Sub Item As Map";
  //BA.debugLineNum = 69;BA.debugLine="TextBox.SetOnContent(\"suggest\",Suggest)";
-_textbox._setoncontent /*String*/ ("suggest",_suggest);
+_textbox._setoncontent /*b4j.example.wixelement*/ ("suggest",_suggest);
  //BA.debugLineNum = 70;BA.debugLine="Return TextBox.Item";
 if (true) return _textbox._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
  //BA.debugLineNum = 71;BA.debugLine="End Sub";

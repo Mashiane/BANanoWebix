@@ -35,6 +35,7 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.wixcombo  _addoption(String _optid,String _optvalue) throws Exception{
  //BA.debugLineNum = 73;BA.debugLine="Sub AddOption(optID As String, optValue As String)";
  //BA.debugLineNum = 74;BA.debugLine="Options.Add(CreateMap(\"id\":optID,\"value\":optValue";

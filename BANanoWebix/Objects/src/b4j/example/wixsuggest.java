@@ -33,6 +33,7 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.wixsuggest  _addsuggestion(String _sid,String _svalue) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _sug = null;
  //BA.debugLineNum = 36;BA.debugLine="Sub AddSuggestion(sID As String, sValue As String)";

@@ -35,6 +35,7 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 21;BA.debugLine="Sub AddToForm(frm As WixForm)";
  //BA.debugLineNum = 22;BA.debugLine="frm.AddItem(Item)";
@@ -157,9 +158,9 @@ return null;
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
  //BA.debugLineNum = 43;BA.debugLine="Sub Item As Map";
  //BA.debugLineNum = 44;BA.debugLine="Button.SetOnContent(\"icon\", Icon)";
-_button._setoncontent /*String*/ ("icon",_icon);
+_button._setoncontent /*b4j.example.wixelement*/ ("icon",_icon);
  //BA.debugLineNum = 45;BA.debugLine="Button.SetOnContent(\"image\", ImageURL)";
-_button._setoncontent /*String*/ ("image",_imageurl);
+_button._setoncontent /*b4j.example.wixelement*/ ("image",_imageurl);
  //BA.debugLineNum = 46;BA.debugLine="Button.TypeOf = ButtonType";
 _button._typeof /*String*/  = _buttontype;
  //BA.debugLineNum = 47;BA.debugLine="If onClick <> Null Then";

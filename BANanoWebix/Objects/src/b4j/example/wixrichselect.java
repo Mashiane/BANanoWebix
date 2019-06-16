@@ -33,6 +33,7 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.wixrichselect  _addoption(String _sid,String _svalue) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _sug = null;
  //BA.debugLineNum = 49;BA.debugLine="Sub AddOption(sID As String, sValue As String) As";
@@ -96,7 +97,7 @@ return null;
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
  //BA.debugLineNum = 30;BA.debugLine="Sub Item As Map";
  //BA.debugLineNum = 31;BA.debugLine="RS.SetOnContent(\"text\",Text)";
-_rs._setoncontent /*String*/ ("text",BA.ObjectToString(_text));
+_rs._setoncontent /*b4j.example.wixelement*/ ("text",BA.ObjectToString(_text));
  //BA.debugLineNum = 32;BA.debugLine="RS.SetAttr(\"options\", Options)";
 _rs._setattr /*b4j.example.wixelement*/ ("options",(Object)(_options.getObject()));
  //BA.debugLineNum = 33;BA.debugLine="Return RS.item";

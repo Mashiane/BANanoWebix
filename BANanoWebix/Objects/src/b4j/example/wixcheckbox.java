@@ -32,6 +32,7 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 18;BA.debugLine="Sub AddToForm(frm As WixForm)";
  //BA.debugLineNum = 19;BA.debugLine="frm.AddItem(Item)";
@@ -76,7 +77,7 @@ public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
  //BA.debugLineNum = 29;BA.debugLine="If LabelOnRight Then";
 if (_labelonright) { 
  //BA.debugLineNum = 30;BA.debugLine="CheckBox.SetOnContent(\"labelRight\", CheckBox.Lab";
-_checkbox._setoncontent /*String*/ ("labelRight",_checkbox._label /*b4j.example.wixelement._labeltype*/ .Text /*String*/ );
+_checkbox._setoncontent /*b4j.example.wixelement*/ ("labelRight",_checkbox._label /*b4j.example.wixelement._labeltype*/ .Text /*String*/ );
  //BA.debugLineNum = 31;BA.debugLine="CheckBox.Label.Text = \"\"";
 _checkbox._label /*b4j.example.wixelement._labeltype*/ .Text /*String*/  = "";
  };

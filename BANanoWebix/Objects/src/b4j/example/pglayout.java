@@ -28,6 +28,7 @@ public static b4j.example.pgforms1 _pgforms1 = null;
 public static b4j.example.pgforms _pgforms = null;
 public static b4j.example.pgindex _pgindex = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
+public static b4j.example.pglayouts _pglayouts = null;
 public static String  _init() throws Exception{
 com.ab.banano.BANanoEvent _e = null;
 b4j.example.wixelement _r1 = null;
@@ -60,19 +61,19 @@ _r3._initialize /*b4j.example.wixelement*/ (ba,"R3")._setgravity /*b4j.example.w
  //BA.debugLineNum = 29;BA.debugLine="Dim R3C1 As WixElement";
 _r3c1 = new b4j.example.wixelement();
  //BA.debugLineNum = 30;BA.debugLine="R3C1.Initialize(\"R3C1\").SetCSS(\"col1\").SetTemplat";
-_r3c1._initialize /*b4j.example.wixelement*/ (ba,"R3C1")._setcss /*b4j.example.wixelement*/ ("col1")._settemplate /*b4j.example.wixelement*/ ("R3C1: Webix")._addtocolumns /*String*/ (_r3);
+_r3c1._initialize /*b4j.example.wixelement*/ (ba,"R3C1")._setcss /*b4j.example.wixelement*/ ("col1")._settemplate /*b4j.example.wixelement*/ ("R3C1: Webix")._addtocolumns /*b4j.example.wixelement*/ (_r3);
  //BA.debugLineNum = 32;BA.debugLine="R3.AddResizerToColumns";
 _r3._addresizertocolumns /*b4j.example.wixelement*/ ();
  //BA.debugLineNum = 34;BA.debugLine="Dim R3C2 As WixElement";
 _r3c2 = new b4j.example.wixelement();
  //BA.debugLineNum = 35;BA.debugLine="R3C2.Initialize(\"R3C2\").SetCSS(\"col2\").SetTemplat";
-_r3c2._initialize /*b4j.example.wixelement*/ (ba,"R3C2")._setcss /*b4j.example.wixelement*/ ("col2")._settemplate /*b4j.example.wixelement*/ ("R3C2: Is")._addtocolumns /*String*/ (_r3);
+_r3c2._initialize /*b4j.example.wixelement*/ (ba,"R3C2")._setcss /*b4j.example.wixelement*/ ("col2")._settemplate /*b4j.example.wixelement*/ ("R3C2: Is")._addtocolumns /*b4j.example.wixelement*/ (_r3);
  //BA.debugLineNum = 37;BA.debugLine="R3.AddResizerToColumns";
 _r3._addresizertocolumns /*b4j.example.wixelement*/ ();
  //BA.debugLineNum = 39;BA.debugLine="Dim R3C3 As WixElement";
 _r3c3 = new b4j.example.wixelement();
  //BA.debugLineNum = 40;BA.debugLine="R3C3.Initialize(\"R3C3\").SetCSS(\"col3\").SetTemplat";
-_r3c3._initialize /*b4j.example.wixelement*/ (ba,"R3C3")._setcss /*b4j.example.wixelement*/ ("col3")._settemplate /*b4j.example.wixelement*/ ("R3C3: Cool")._addtocolumns /*String*/ (_r3);
+_r3c3._initialize /*b4j.example.wixelement*/ (ba,"R3C3")._setcss /*b4j.example.wixelement*/ ("col3")._settemplate /*b4j.example.wixelement*/ ("R3C3: Cool")._addtocolumns /*b4j.example.wixelement*/ (_r3);
  //BA.debugLineNum = 42;BA.debugLine="R3.AddToRows(pg.Page)";
 _r3._addtorows /*String*/ (_pg._page /*b4j.example.wixelement*/ );
  //BA.debugLineNum = 44;BA.debugLine="Dim R4 As WixElement";
@@ -86,7 +87,7 @@ _r5._initialize /*b4j.example.wixelement*/ (ba,"R5")._setheight /*b4j.example.wi
  //BA.debugLineNum = 50;BA.debugLine="Dim R5C1 As WixElement";
 _r5c1 = new b4j.example.wixelement();
  //BA.debugLineNum = 51;BA.debugLine="R5C1.Initialize(\"R5C1\").SetTemplate(\"Fare thee we";
-_r5c1._initialize /*b4j.example.wixelement*/ (ba,"R5C1")._settemplate /*b4j.example.wixelement*/ ("Fare thee well!")._addtocolumns /*String*/ (_r5);
+_r5c1._initialize /*b4j.example.wixelement*/ (ba,"R5C1")._settemplate /*b4j.example.wixelement*/ ("Fare thee well!")._addtocolumns /*b4j.example.wixelement*/ (_r5);
  //BA.debugLineNum = 53;BA.debugLine="Dim r5c2 As WixElement";
 _r5c2 = new b4j.example.wixelement();
  //BA.debugLineNum = 54;BA.debugLine="r5c2.Initialize(\"R5C2\").SetView(\"button\").SetWidt";
@@ -94,7 +95,7 @@ _r5c2._initialize /*b4j.example.wixelement*/ (ba,"R5C2")._setview /*b4j.example.
  //BA.debugLineNum = 55;BA.debugLine="r5c2.SetClick(BANano.CallBack(Me,\"r5c2_click\",e))";
 _r5c2._setclick /*b4j.example.wixelement*/ ((com.ab.banano.BANanoObject)(_banano.CallBack(pglayout.getObject(),"r5c2_click",(anywheresoftware.b4a.objects.collections.List) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.objects.collections.List(), (java.util.List)(_e)))));
  //BA.debugLineNum = 56;BA.debugLine="r5c2.AddToColumns(r5)";
-_r5c2._addtocolumns /*String*/ (_r5);
+_r5c2._addtocolumns /*b4j.example.wixelement*/ (_r5);
  //BA.debugLineNum = 58;BA.debugLine="r5.AddToRows(pg.Page)";
 _r5._addtorows /*String*/ (_pg._page /*b4j.example.wixelement*/ );
  //BA.debugLineNum = 60;BA.debugLine="pg.ui";

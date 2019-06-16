@@ -31,10 +31,11 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public String  _additem(anywheresoftware.b4a.objects.collections.Map _wxel) throws Exception{
  //BA.debugLineNum = 19;BA.debugLine="Sub AddItem(wxEL As Map)";
  //BA.debugLineNum = 20;BA.debugLine="Column.AddColumns(wxEL)";
-_column._addcolumns /*String*/ (_wxel);
+_column._addcolumns /*b4j.example.wixelement*/ (_wxel);
  //BA.debugLineNum = 21;BA.debugLine="End Sub";
 return "";
 }
@@ -48,7 +49,7 @@ return "";
 public String  _addtorow(b4j.example.wixrow _r) throws Exception{
  //BA.debugLineNum = 35;BA.debugLine="Sub AddToRow(r As WixRow)";
  //BA.debugLineNum = 36;BA.debugLine="r.Row.AddColumns(Item)";
-_r._row /*b4j.example.wixelement*/ ._addcolumns /*String*/ (_item());
+_r._row /*b4j.example.wixelement*/ ._addcolumns /*b4j.example.wixelement*/ (_item());
  //BA.debugLineNum = 37;BA.debugLine="End Sub";
 return "";
 }

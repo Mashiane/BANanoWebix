@@ -31,6 +31,7 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 33;BA.debugLine="Sub AddToForm(frm As WixForm)";
  //BA.debugLineNum = 34;BA.debugLine="frm.AddItem(Item)";
@@ -48,7 +49,7 @@ return "";
 public String  _addtorows(b4j.example.wixelement _parent) throws Exception{
  //BA.debugLineNum = 21;BA.debugLine="Sub AddToRows(parent As WixElement)";
  //BA.debugLineNum = 22;BA.debugLine="parent.AddRows(Item)";
-_parent._addrows /*String*/ (_item());
+_parent._addrows /*b4j.example.wixelement*/ (_item());
  //BA.debugLineNum = 23;BA.debugLine="End Sub";
 return "";
 }

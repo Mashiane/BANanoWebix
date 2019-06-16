@@ -35,6 +35,7 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pglayouts _pglayouts = null;
 public String  _add(anywheresoftware.b4a.objects.collections.Map _record) throws Exception{
  //BA.debugLineNum = 72;BA.debugLine="Sub Add(record As Map)";
  //BA.debugLineNum = 73;BA.debugLine="Dollar.Selector(ID).RunMethod(\"add\",Array(record)";
