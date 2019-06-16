@@ -1,15 +1,17 @@
 ﻿AppType=JavaFX
 Build1=Default,b4j.example
-File1=fonts.zip
-File2=icons8-add-row-40.png
-File3=icons8-compose-40.png
-File4=icons8-edit-40.png
-File5=icons8-pencil-40.png
-File6=icons8-save-as-100.png
-File7=icons8-save-close-40.png
-File8=webix.min.css
-File9=webix.min.js
+File1=all.min.css
+File10=webix.min.js
+File2=fonts.zip
+File3=icons8-add-row-40.png
+File4=icons8-compose-40.png
+File5=icons8-edit-40.png
+File6=icons8-pencil-40.png
+File7=icons8-save-as-100.png
+File8=icons8-save-close-40.png
+File9=webix.min.css
 FileGroup1=Default Group
+FileGroup10=Default Group
 FileGroup2=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
@@ -58,7 +60,7 @@ Module6=WixButtonTypes
 Module7=WixPage
 Module8=WixElement
 Module9=WixToolBar
-NumberOfFiles=9
+NumberOfFiles=10
 NumberOfLibraries=4
 NumberOfModules=35
 Version=7.51
@@ -82,6 +84,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.UseServiceWorker = False
 	BANano.Header.Title = AppName
 	BANano.JAVASCRIPT_NAME = appFile
+	BANano.Header.addcssfile("all.min.css")
 	BANano.Header.AddCSSFile("webix.min.css")
 	BANano.Header.AddJavascriptFile("webix.min.js")
 	'BANano.TranspilerOptions.MergeAllCSSFiles = True

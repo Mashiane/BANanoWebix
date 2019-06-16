@@ -51,10 +51,10 @@ public static b4j.example.pgindex _pgindex = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pglayout _pglayout = null;
 public static boolean  _application_error(anywheresoftware.b4a.objects.B4AException _error,String _stacktrace) throws Exception{
- //BA.debugLineNum = 42;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
- //BA.debugLineNum = 43;BA.debugLine="Return True";
+ //BA.debugLineNum = 43;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
+ //BA.debugLineNum = 44;BA.debugLine="Return True";
 if (true) return anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 44;BA.debugLine="End Sub";
+ //BA.debugLineNum = 45;BA.debugLine="End Sub";
 return false;
 }
 public static String  _appstart(anywheresoftware.b4j.objects.Form _form1,String[] _args) throws Exception{
@@ -77,40 +77,42 @@ _banano.setUseServiceWorker(anywheresoftware.b4a.keywords.Common.False);
 _banano.Header.Title = _appname;
  //BA.debugLineNum = 19;BA.debugLine="BANano.JAVASCRIPT_NAME = appFile";
 _banano.JAVASCRIPT_NAME = _appfile;
- //BA.debugLineNum = 20;BA.debugLine="BANano.Header.AddCSSFile(\"webix.min.css\")";
+ //BA.debugLineNum = 20;BA.debugLine="BANano.Header.addcssfile(\"all.min.css\")";
+_banano.Header.AddCSSFile("all.min.css");
+ //BA.debugLineNum = 21;BA.debugLine="BANano.Header.AddCSSFile(\"webix.min.css\")";
 _banano.Header.AddCSSFile("webix.min.css");
- //BA.debugLineNum = 21;BA.debugLine="BANano.Header.AddJavascriptFile(\"webix.min.js\")";
+ //BA.debugLineNum = 22;BA.debugLine="BANano.Header.AddJavascriptFile(\"webix.min.js\")";
 _banano.Header.AddJavascriptFile("webix.min.js");
- //BA.debugLineNum = 27;BA.debugLine="BANano.Build(Publish)";
+ //BA.debugLineNum = 28;BA.debugLine="BANano.Build(Publish)";
 _banano.Build(_publish);
- //BA.debugLineNum = 29;BA.debugLine="BP.Initialize";
+ //BA.debugLineNum = 30;BA.debugLine="BP.Initialize";
 _bp._initialize(ba);
- //BA.debugLineNum = 30;BA.debugLine="BP.PublishPath = Publish";
+ //BA.debugLineNum = 31;BA.debugLine="BP.PublishPath = Publish";
 _bp._publishpath = _publish;
- //BA.debugLineNum = 31;BA.debugLine="BP.ShortName = AppName";
+ //BA.debugLineNum = 32;BA.debugLine="BP.ShortName = AppName";
 _bp._shortname = _appname;
- //BA.debugLineNum = 32;BA.debugLine="BP.AssetsPath = BANano.ASSETS_FOLDER";
+ //BA.debugLineNum = 33;BA.debugLine="BP.AssetsPath = BANano.ASSETS_FOLDER";
 _bp._assetspath = _banano.ASSETS_FOLDER;
- //BA.debugLineNum = 33;BA.debugLine="BP.ScriptsPath = BANano.SCRIPTS_FOLDER";
+ //BA.debugLineNum = 34;BA.debugLine="BP.ScriptsPath = BANano.SCRIPTS_FOLDER";
 _bp._scriptspath = _banano.SCRIPTS_FOLDER;
- //BA.debugLineNum = 34;BA.debugLine="BP.StylesPath = BANano.STYLES_FOLDER";
+ //BA.debugLineNum = 35;BA.debugLine="BP.StylesPath = BANano.STYLES_FOLDER";
 _bp._stylespath = _banano.STYLES_FOLDER;
- //BA.debugLineNum = 35;BA.debugLine="BP.ScriptFile = BANano.JAVASCRIPT_NAME";
+ //BA.debugLineNum = 36;BA.debugLine="BP.ScriptFile = BANano.JAVASCRIPT_NAME";
 _bp._scriptfile = _banano.JAVASCRIPT_NAME;
- //BA.debugLineNum = 36;BA.debugLine="BP.UnzipFonts";
+ //BA.debugLineNum = 37;BA.debugLine="BP.UnzipFonts";
 _bp._unzipfonts();
- //BA.debugLineNum = 37;BA.debugLine="BP.Open(True)";
+ //BA.debugLineNum = 38;BA.debugLine="BP.Open(True)";
 _bp._open(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 38;BA.debugLine="ExitApplication";
+ //BA.debugLineNum = 39;BA.debugLine="ExitApplication";
 anywheresoftware.b4a.keywords.Common.ExitApplication();
- //BA.debugLineNum = 39;BA.debugLine="End Sub";
+ //BA.debugLineNum = 40;BA.debugLine="End Sub";
 return "";
 }
 public static String  _banano_ready() throws Exception{
- //BA.debugLineNum = 46;BA.debugLine="Sub BANano_Ready()";
- //BA.debugLineNum = 47;BA.debugLine="pgLayout.init";
+ //BA.debugLineNum = 47;BA.debugLine="Sub BANano_Ready()";
+ //BA.debugLineNum = 48;BA.debugLine="pgLayout.init";
 _pglayout._init /*String*/ ();
- //BA.debugLineNum = 49;BA.debugLine="End Sub";
+ //BA.debugLineNum = 50;BA.debugLine="End Sub";
 return "";
 }
 
