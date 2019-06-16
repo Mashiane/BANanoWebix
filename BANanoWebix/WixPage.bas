@@ -30,24 +30,6 @@ Public Sub Initialize(pgID As String) As WixPage
 	Return Me
 End Sub
 
-'add an item to the rows of the page
-Sub AddRows(itm As Map) As WixPage
-	Page.AddRows(itm)
-	Return Me
-End Sub	
-
-'Set View
-Sub SetView(v As String) As WixPage
-	Page.SetView(v)
-	Return Me
-End Sub
-
-'set type
-Sub SetType(t As String) As WixPage
-	Page.SetType(t)
-	Return Me
-End Sub
-
 'set the item value
 Sub SetValue(itm As String, value As String)
 	itm = itm.ToLowerCase
@@ -104,45 +86,4 @@ Sub ToastError(Text As String)
 	msg.put("type","error")
 	msg.put("text", Text)
 	webix.RunMethod("message", Array(msg))
-End Sub
-
-'add a row to the page
-Sub AddRow(r As WixRow)
-	Page.AddRow(R)
-End Sub
-
-'make clean layout
-Sub SetClean As WixPage
-	SetType("clean")
-	Return Me
-End Sub
-
-'make line layout
-Sub SetLine As WixPage
-	SetType("line")
-	Return Me
-End Sub
-
-'make wide layout
-Sub SetWide As WixPage
-	SetType("wide")
-	Return Me
-End Sub
-
-'make space layout
-Sub SetSpace As WixPage
-	SetType("space")
-	Return Me
-End Sub
-
-'make a head layout
-Sub SetHead As WixPage
-	SetType("head")
-	Return Me
-End Sub
-
-'make form layout
-Sub SetForm As WixPage
-	SetType("form")
-	Return Me
 End Sub

@@ -27,12 +27,14 @@ public String _id = "";
 public b4j.example.wixelement _menu = null;
 public anywheresoftware.b4a.objects.collections.List _data = null;
 public b4j.example.main _main = null;
+public b4j.example.pglayouts1 _pglayouts1 = null;
+public b4j.example.pglayouts2 _pglayouts2 = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.wixmenu  _addmenuitem(String _mid,String _mvalue,String _mhref) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _mitem = null;
  //BA.debugLineNum = 17;BA.debugLine="Sub AddMenuItem(mID As String, mValue As String, m";

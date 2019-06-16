@@ -30,12 +30,14 @@ public int _ycount = 0;
 public com.ab.banano.BANanoObject _onchange = null;
 public com.ab.banano.BANanoObject _dollar = null;
 public b4j.example.main _main = null;
+public b4j.example.pglayouts1 _pglayouts1 = null;
+public b4j.example.pglayouts2 _pglayouts2 = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.wixcombo  _addoption(String _optid,String _optvalue) throws Exception{
  //BA.debugLineNum = 73;BA.debugLine="Sub AddOption(optID As String, optValue As String)";
  //BA.debugLineNum = 74;BA.debugLine="Options.Add(CreateMap(\"id\":optID,\"value\":optValue";

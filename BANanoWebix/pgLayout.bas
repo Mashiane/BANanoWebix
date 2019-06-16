@@ -20,7 +20,9 @@ End Sub
 Public Sub Init()
 	Dim e As BANanoEvent
 	'initialize the page, we want it to be a layout and the type should be wide
-	pg.Initialize("mylay").SetView("layout").SetType("wide")
+	pg.Initialize("mylay")
+	pg.Page.SetView("layout")
+	pg.Page.SetType("wide")
 	
 	'row 1, make it a header with Hello content and add it to the rows collection of the page
 	Dim R1 As WixElement

@@ -28,12 +28,14 @@ public b4j.example.wixelement _radio = null;
 public anywheresoftware.b4a.objects.collections.List _options = null;
 public boolean _vertical = false;
 public b4j.example.main _main = null;
+public b4j.example.pglayouts1 _pglayouts1 = null;
+public b4j.example.pglayouts2 _pglayouts2 = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.wixradio  _addoption(String _sid,String _svalue) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _sug = null;
  //BA.debugLineNum = 43;BA.debugLine="Sub AddOption(sID As String, sValue As String) As";

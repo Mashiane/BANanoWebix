@@ -13,7 +13,8 @@ Sub Process_Globals
 End Sub
 
 Sub Init()
-	pg.Initialize("mashy").SetType("line")
+	pg.Initialize("mashy")
+	pg.Page.SetType("line")
 	'*** define row 1
 	'add toolbar
 	Dim R1 As WixRow
@@ -21,7 +22,9 @@ Sub Init()
 	'R1.Template = R1.ID
 	
 	Dim hdr As WixHeader
-	hdr.Initialize("hdr").SetTemplate("My First Webix App").AddToRow(R1)
+	hdr.Initialize("hdr")
+	hdr.Header.SetTemplate("My First Webix App")
+	hdr.Header.AddToRow(R1)
 	
 	Dim tblBar As WixToolBar
 	tblBar.Initialize("tblBar")

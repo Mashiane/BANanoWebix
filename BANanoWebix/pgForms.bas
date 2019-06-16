@@ -18,7 +18,8 @@ Sub Init()
 	R1.Initialize("R1")
 	'
 	Dim hdr As WixHeader
-	hdr.Initialize("hdr").SetTemplate("Webix Forms: 1")
+	hdr.Initialize("hdr")
+	hdr.Header.SetTemplate("Webix Forms: 1")
 	R1.AddItem(hdr.Item)
 	'
 	Dim btnB As WixButton

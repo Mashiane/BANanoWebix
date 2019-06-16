@@ -18,7 +18,8 @@ Public Sub Init()
 	Dim R1 As WixRow
 	R1.Initialize("R1")
 	Dim hdr As WixHeader
-	hdr.Initialize("hdr").SetTemplate("Webix DataTable")
+	hdr.Initialize("hdr")
+	hdr.Header.SetTemplate("Webix DataTable")
 	R1.AddItem(hdr.Item)
 	
 	Dim btnB As WixButton

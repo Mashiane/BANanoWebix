@@ -19,7 +19,8 @@ Sub Init()
 	R1.Initialize("R1")
 	'
 	Dim hdr As WixHeader
-	hdr.Initialize("hdr").SetTemplate("Webix Form 2")
+	hdr.Initialize("hdr")
+	hdr.header.SetTemplate("Webix Form 2")
 	R1.AddItem(hdr.Item)
 	'
 	Dim tblBar As WixToolBar

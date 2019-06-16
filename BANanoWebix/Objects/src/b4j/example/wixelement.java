@@ -47,12 +47,14 @@ public String _css = "";
 public String _header = "";
 public String _body = "";
 public b4j.example.main _main = null;
+public b4j.example.pglayouts1 _pglayouts1 = null;
+public b4j.example.pglayouts2 _pglayouts2 = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pglayouts _pglayouts = null;
 public static class _labeltype{
 public boolean IsInitialized;
 public String Text;
@@ -71,10 +73,10 @@ Align = "";
 			return BA.TypeToString(this, false);
 		}}
 public String  _addcolumn(b4j.example.wixcolumn _wxel) throws Exception{
- //BA.debugLineNum = 296;BA.debugLine="Sub AddColumn(wxEL As WixColumn)";
- //BA.debugLineNum = 297;BA.debugLine="AddColumns(wxEL.Item)";
+ //BA.debugLineNum = 310;BA.debugLine="Sub AddColumn(wxEL As WixColumn)";
+ //BA.debugLineNum = 311;BA.debugLine="AddColumns(wxEL.Item)";
 _addcolumns(_wxel._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 298;BA.debugLine="End Sub";
+ //BA.debugLineNum = 312;BA.debugLine="End Sub";
 return "";
 }
 public b4j.example.wixelement  _addcolumns(anywheresoftware.b4a.objects.collections.Map _itm) throws Exception{
@@ -85,6 +87,18 @@ _columns.Add((Object)(_itm.getObject()));
 if (true) return (b4j.example.wixelement)(this);
  //BA.debugLineNum = 253;BA.debugLine="End Sub";
 return null;
+}
+public String  _addcolumnsspacer() throws Exception{
+b4j.example.wixelement _s = null;
+ //BA.debugLineNum = 291;BA.debugLine="Sub AddColumnsSpacer()";
+ //BA.debugLineNum = 292;BA.debugLine="Dim s As WixElement";
+_s = new b4j.example.wixelement();
+ //BA.debugLineNum = 293;BA.debugLine="s.Initialize(\"\").SetView(\"spacer\")";
+_s._initialize /*b4j.example.wixelement*/ (ba,"")._setview /*b4j.example.wixelement*/ ("spacer");
+ //BA.debugLineNum = 294;BA.debugLine="AddColumns(s.item)";
+_addcolumns(_s._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
+ //BA.debugLineNum = 295;BA.debugLine="End Sub";
+return "";
 }
 public b4j.example.wixelement  _addelements(anywheresoftware.b4a.objects.collections.Map _itm) throws Exception{
  //BA.debugLineNum = 256;BA.debugLine="Sub AddElements(itm As Map) As WixElement";
@@ -134,23 +148,42 @@ if (true) return (b4j.example.wixelement)(this);
  //BA.debugLineNum = 265;BA.debugLine="End Sub";
 return null;
 }
+public String  _addrowsspacer() throws Exception{
+b4j.example.wixelement _s = null;
+ //BA.debugLineNum = 284;BA.debugLine="Sub AddRowsSpacer()";
+ //BA.debugLineNum = 285;BA.debugLine="Dim s As WixElement";
+_s = new b4j.example.wixelement();
+ //BA.debugLineNum = 286;BA.debugLine="s.Initialize(\"\").SetView(\"spacer\")";
+_s._initialize /*b4j.example.wixelement*/ (ba,"")._setview /*b4j.example.wixelement*/ ("spacer");
+ //BA.debugLineNum = 287;BA.debugLine="AddRows(s.item)";
+_addrows(_s._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
+ //BA.debugLineNum = 288;BA.debugLine="End Sub";
+return "";
+}
 public b4j.example.wixelement  _addtocolumns(b4j.example.wixelement _prt) throws Exception{
- //BA.debugLineNum = 284;BA.debugLine="Sub AddToColumns(prt As WixElement) As WixElement";
- //BA.debugLineNum = 285;BA.debugLine="prt.AddColumns(Item)";
+ //BA.debugLineNum = 298;BA.debugLine="Sub AddToColumns(prt As WixElement) As WixElement";
+ //BA.debugLineNum = 299;BA.debugLine="prt.AddColumns(Item)";
 _prt._addcolumns /*b4j.example.wixelement*/ (_item());
- //BA.debugLineNum = 286;BA.debugLine="Return Me";
+ //BA.debugLineNum = 300;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixelement)(this);
- //BA.debugLineNum = 287;BA.debugLine="End Sub";
+ //BA.debugLineNum = 301;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixelement  _addtoelements(b4j.example.wixelement _prt) throws Exception{
- //BA.debugLineNum = 290;BA.debugLine="Sub AddToElements(prt As WixElement) As WixElement";
- //BA.debugLineNum = 291;BA.debugLine="prt.AddElements(Item)";
+ //BA.debugLineNum = 304;BA.debugLine="Sub AddToElements(prt As WixElement) As WixElement";
+ //BA.debugLineNum = 305;BA.debugLine="prt.AddElements(Item)";
 _prt._addelements /*b4j.example.wixelement*/ (_item());
- //BA.debugLineNum = 292;BA.debugLine="Return Me";
+ //BA.debugLineNum = 306;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixelement)(this);
- //BA.debugLineNum = 293;BA.debugLine="End Sub";
+ //BA.debugLineNum = 307;BA.debugLine="End Sub";
 return null;
+}
+public String  _addtorow(b4j.example.wixrow _r) throws Exception{
+ //BA.debugLineNum = 372;BA.debugLine="Sub AddToRow(r As WixRow)";
+ //BA.debugLineNum = 373;BA.debugLine="r.AddItem(Item)";
+_r._additem /*b4j.example.wixrow*/ (_item());
+ //BA.debugLineNum = 374;BA.debugLine="End Sub";
+return "";
 }
 public String  _addtorows(b4j.example.wixelement _prt) throws Exception{
  //BA.debugLineNum = 279;BA.debugLine="Sub AddToRows(prt As WixElement)";
@@ -376,6 +409,15 @@ if (true) return (b4j.example.wixelement)(this);
  //BA.debugLineNum = 233;BA.debugLine="End Sub";
 return null;
 }
+public b4j.example.wixelement  _setcollapsed(boolean _c) throws Exception{
+ //BA.debugLineNum = 377;BA.debugLine="Sub SetCollapsed(c As Boolean) As WixElement";
+ //BA.debugLineNum = 378;BA.debugLine="SetProperty(\"collapsed\", c)";
+_setproperty("collapsed",(Object)(_c));
+ //BA.debugLineNum = 379;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixelement)(this);
+ //BA.debugLineNum = 380;BA.debugLine="End Sub";
+return null;
+}
 public b4j.example.wixelement  _setcss(String _cs) throws Exception{
  //BA.debugLineNum = 164;BA.debugLine="Sub SetCSS(cs As String) As WixElement";
  //BA.debugLineNum = 165;BA.debugLine="CSS = cs";
@@ -494,27 +536,27 @@ if (true) return (b4j.example.wixelement)(this);
 return null;
 }
 public b4j.example.wixelement  _setoncondition(int _condition,String _prop,Object _propvalue) throws Exception{
- //BA.debugLineNum = 308;BA.debugLine="Sub SetOnCondition(Condition As Int, Prop As Strin";
- //BA.debugLineNum = 309;BA.debugLine="If Condition <= 0 Then Return Me";
+ //BA.debugLineNum = 322;BA.debugLine="Sub SetOnCondition(Condition As Int, Prop As Strin";
+ //BA.debugLineNum = 323;BA.debugLine="If Condition <= 0 Then Return Me";
 if (_condition<=0) { 
 if (true) return (b4j.example.wixelement)(this);};
- //BA.debugLineNum = 310;BA.debugLine="Element.put(Prop,PropValue)";
+ //BA.debugLineNum = 324;BA.debugLine="Element.put(Prop,PropValue)";
 _element.Put((Object)(_prop),_propvalue);
- //BA.debugLineNum = 311;BA.debugLine="Return Me";
+ //BA.debugLineNum = 325;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixelement)(this);
- //BA.debugLineNum = 312;BA.debugLine="End Sub";
+ //BA.debugLineNum = 326;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixelement  _setoncontent(String _prop,String _propvalue) throws Exception{
- //BA.debugLineNum = 301;BA.debugLine="Sub SetOnContent(Prop As String, PropValue As Stri";
- //BA.debugLineNum = 302;BA.debugLine="If PropValue = \"\" Then Return Me";
+ //BA.debugLineNum = 315;BA.debugLine="Sub SetOnContent(Prop As String, PropValue As Stri";
+ //BA.debugLineNum = 316;BA.debugLine="If PropValue = \"\" Then Return Me";
 if ((_propvalue).equals("")) { 
 if (true) return (b4j.example.wixelement)(this);};
- //BA.debugLineNum = 303;BA.debugLine="Element.put(Prop,PropValue)";
+ //BA.debugLineNum = 317;BA.debugLine="Element.put(Prop,PropValue)";
 _element.Put((Object)(_prop),(Object)(_propvalue));
- //BA.debugLineNum = 304;BA.debugLine="Return Me";
+ //BA.debugLineNum = 318;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixelement)(this);
- //BA.debugLineNum = 305;BA.debugLine="End Sub";
+ //BA.debugLineNum = 319;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixelement  _setpadding(String _padding) throws Exception{
@@ -571,6 +613,60 @@ if (true) return (b4j.example.wixelement)(this);
  //BA.debugLineNum = 149;BA.debugLine="End Sub";
 return null;
 }
+public b4j.example.wixelement  _settypeclean() throws Exception{
+ //BA.debugLineNum = 329;BA.debugLine="Sub SetTypeClean As WixElement";
+ //BA.debugLineNum = 330;BA.debugLine="SetType(\"clean\")";
+_settype("clean");
+ //BA.debugLineNum = 331;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixelement)(this);
+ //BA.debugLineNum = 332;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixelement  _settypeform() throws Exception{
+ //BA.debugLineNum = 359;BA.debugLine="Sub SetTypeForm As WixElement";
+ //BA.debugLineNum = 360;BA.debugLine="SetType(\"form\")";
+_settype("form");
+ //BA.debugLineNum = 361;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixelement)(this);
+ //BA.debugLineNum = 362;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixelement  _settypehead() throws Exception{
+ //BA.debugLineNum = 353;BA.debugLine="Sub SetTypeHead As WixElement";
+ //BA.debugLineNum = 354;BA.debugLine="SetType(\"head\")";
+_settype("head");
+ //BA.debugLineNum = 355;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixelement)(this);
+ //BA.debugLineNum = 356;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixelement  _settypeline() throws Exception{
+ //BA.debugLineNum = 335;BA.debugLine="Sub SetTypeLine As WixElement";
+ //BA.debugLineNum = 336;BA.debugLine="SetType(\"line\")";
+_settype("line");
+ //BA.debugLineNum = 337;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixelement)(this);
+ //BA.debugLineNum = 338;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixelement  _settypespace() throws Exception{
+ //BA.debugLineNum = 347;BA.debugLine="Sub SetTypeSpace As WixElement";
+ //BA.debugLineNum = 348;BA.debugLine="SetType(\"space\")";
+_settype("space");
+ //BA.debugLineNum = 349;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixelement)(this);
+ //BA.debugLineNum = 350;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixelement  _settypewide() throws Exception{
+ //BA.debugLineNum = 341;BA.debugLine="Sub SetTypeWide As WixElement";
+ //BA.debugLineNum = 342;BA.debugLine="SetType(\"wide\")";
+_settype("wide");
+ //BA.debugLineNum = 343;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixelement)(this);
+ //BA.debugLineNum = 344;BA.debugLine="End Sub";
+return null;
+}
 public b4j.example.wixelement  _setview(String _v) throws Exception{
  //BA.debugLineNum = 140;BA.debugLine="Sub SetView(v As String) As WixElement";
  //BA.debugLineNum = 141;BA.debugLine="View = v";
@@ -578,6 +674,15 @@ _view = _v;
  //BA.debugLineNum = 142;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixelement)(this);
  //BA.debugLineNum = 143;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixelement  _setviewheaderlayout() throws Exception{
+ //BA.debugLineNum = 366;BA.debugLine="Sub SetViewHeaderLayout As WixElement";
+ //BA.debugLineNum = 367;BA.debugLine="SetView(\"headerlayout\")";
+_setview("headerlayout");
+ //BA.debugLineNum = 368;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixelement)(this);
+ //BA.debugLineNum = 369;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixelement  _setwidth(int _w) throws Exception{

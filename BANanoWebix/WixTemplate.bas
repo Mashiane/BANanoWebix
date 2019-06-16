@@ -22,30 +22,3 @@ End Sub
 Sub Item As Map
 	Return Template.item
 End Sub
-
-'add to rows of parent
-Sub AddToRows(parent As WixElement)
-	parent.AddRows(Item)
-End Sub
-
-'set the template
-Sub SetTemplate(t As String) As WixTemplate
-	Template.Template = t
-	Return Me
-End Sub
-
-
-'add to form
-Sub AddToForm(frm As WixForm)
-	frm.AddItem(Item)
-End Sub
-
-'add to toolbar
-Sub AddToToolbar(tblB As WixToolBar)
-	tblB.AddItem(Item)
-End Sub
-
-'add to row
-Sub AddToRow(r As WixRow)
-	r.AddItem(Item)
-End Sub

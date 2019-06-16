@@ -286,6 +286,20 @@ Sub AddToRows(prt As WixElement)
 	prt.AddRows(Item)
 End Sub
 
+'add a spacer to the rows
+Sub AddRowsSpacer()
+	Dim s As WixElement
+	s.Initialize("").SetView("spacer")
+	AddRows(s.item)
+End Sub
+
+'add a spacer to the columns
+Sub AddColumnsSpacer()
+	Dim s As WixElement
+	s.Initialize("").SetView("spacer") 
+	AddColumns(s.item)
+End Sub
+
 'add to columns of parent
 Sub AddToColumns(prt As WixElement) As WixElement
 	prt.AddColumns(Item)
@@ -314,5 +328,59 @@ End Sub
 Sub SetOnCondition(Condition As Int, Prop As String, PropValue As Object) As WixElement
 	If Condition <= 0 Then Return Me
 	Element.put(Prop,PropValue)
+	Return Me
+End Sub
+
+'make clean layout
+Sub SetTypeClean As WixElement
+	SetType("clean")
+	Return Me
+End Sub
+
+'make line layout
+Sub SetTypeLine As WixElement
+	SetType("line")
+	Return Me
+End Sub
+
+'make wide layout
+Sub SetTypeWide As WixElement
+	SetType("wide")
+	Return Me
+End Sub
+
+'make space layout
+Sub SetTypeSpace As WixElement
+	SetType("space")
+	Return Me
+End Sub
+
+'make a head layout
+Sub SetTypeHead As WixElement
+	SetType("head")
+	Return Me
+End Sub
+
+'make form layout
+Sub SetTypeForm As WixElement
+	SetType("form")
+	Return Me
+End Sub
+
+
+'set header layout
+Sub SetViewHeaderLayout As WixElement
+	SetView("headerlayout")
+	Return Me
+End Sub
+
+'add to row
+Sub AddToRow(r As WixRow)
+	r.AddItem(Item)
+End Sub
+
+'set collapsed
+Sub SetCollapsed(c As Boolean) As WixElement
+	SetProperty("collapsed", c)
 	Return Me
 End Sub

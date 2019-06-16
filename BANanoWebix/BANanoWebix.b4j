@@ -25,48 +25,51 @@ Library1=jcore
 Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
-Module1=WixCombo
-Module10=WixElement
-Module11=WixToolBar
-Module12=WixDataTable
-Module13=WixList
-Module14=WixRow
-Module15=WixColumn
-Module16=WixHeader
-Module17=WixTextArea
-Module18=WixCheckBox
-Module19=WixToggle
-Module2=WixLayout
-Module20=WixRadio
-Module21=WixRichSelect
-Module22=WixCounter
-Module23=WixSegmented
-Module24=WixTextBox
-Module25=WixPassword
-Module26=pgDataTable
-Module27=WixColorPicker
-Module28=WixDateTimePicker
-Module29=WixLabel
-Module3=WixForm
-Module30=WixSection
-Module31=WixSuggest
-Module32=WixIcon
-Module33=WixTemplate
-Module34=WixResizer
-Module35=pgLayout
-Module36=WixMenu
-Module37=WixDataCollection
-Module38=WixLayoutTypes
-Module39=pgLayouts
-Module4=pgForms1
-Module5=pgForms
-Module6=pgIndex
-Module7=WixButton
-Module8=WixButtonTypes
-Module9=WixPage
+Module1=pgLayouts1
+Module10=pgForms1
+Module11=pgForms
+Module12=pgIndex
+Module13=WixButton
+Module14=WixButtonTypes
+Module15=WixPage
+Module16=WixToolBar
+Module17=WixDataTable
+Module18=WixList
+Module19=WixRow
+Module2=WixAccordion
+Module20=WixColumn
+Module21=WixHeader
+Module22=WixTextArea
+Module23=WixCheckBox
+Module24=WixToggle
+Module25=WixRadio
+Module26=WixRichSelect
+Module27=WixCounter
+Module28=WixSegmented
+Module29=WixTextBox
+Module3=pgLayouts2
+Module30=WixPassword
+Module31=pgDataTable
+Module32=WixColorPicker
+Module33=WixDateTimePicker
+Module34=WixLabel
+Module35=WixSection
+Module36=WixSuggest
+Module37=WixIcon
+Module38=WixTemplate
+Module39=WixResizer
+Module4=WixElement
+Module40=pgLayout
+Module41=WixMenu
+Module42=WixDataCollection
+Module5=WixLayoutTypes
+Module6=pgLayouts
+Module7=WixCombo
+Module8=WixLayout
+Module9=WixForm
 NumberOfFiles=10
 NumberOfLibraries=4
-NumberOfModules=39
+NumberOfModules=42
 Version=7.51
 @EndOfDesignText@
 #Region Project Attributes 
@@ -116,7 +119,13 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready()
+	'uncomment this line ONLY for LESSON 1
 	'pgLayout.init
-	pgLayouts.init
+	'uncomment this line ONLY for LESSON 2
+	'pgLayouts.init
+	'uncomment this line ONLY for LESSON 3.1
+	pgLayouts1.init 
+	'uncomment this line ONLY for LESSON 3.2
+	'pgLayouts2.Init
 	'pgIndex.Init
 End Sub

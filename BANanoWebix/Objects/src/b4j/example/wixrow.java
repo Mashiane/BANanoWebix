@@ -26,12 +26,14 @@ public class wixrow extends B4AClass.ImplB4AClass implements BA.SubDelegator{
 public b4j.example.wixelement _row = null;
 public String _id = "";
 public b4j.example.main _main = null;
+public b4j.example.pglayouts1 _pglayouts1 = null;
+public b4j.example.pglayouts2 _pglayouts2 = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.wixrow  _addcolumn(b4j.example.wixcolumn _wxel) throws Exception{
  //BA.debugLineNum = 26;BA.debugLine="Sub AddColumn(wxEL As WixColumn) As WixRow";
  //BA.debugLineNum = 27;BA.debugLine="Row.AddColumns(wxEL.Item)";

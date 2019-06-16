@@ -28,12 +28,14 @@ public b4j.example.wixelement _icon = null;
 public com.ab.banano.BANanoObject _onclick = null;
 public String _iconname = "";
 public b4j.example.main _main = null;
+public b4j.example.pglayouts1 _pglayouts1 = null;
+public b4j.example.pglayouts2 _pglayouts2 = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pglayouts _pglayouts = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 19;BA.debugLine="Sub AddToForm(frm As WixForm)";
  //BA.debugLineNum = 20;BA.debugLine="frm.AddItem(Item)";

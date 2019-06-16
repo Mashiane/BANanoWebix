@@ -29,12 +29,14 @@ public com.ab.banano.BANanoObject _dollar = null;
 public b4j.example.wixpage _page = null;
 public anywheresoftware.b4a.objects.collections.Map _elementsconfig = null;
 public b4j.example.main _main = null;
+public b4j.example.pglayouts1 _pglayouts1 = null;
+public b4j.example.pglayouts2 _pglayouts2 = null;
+public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pglayouts _pglayouts = null;
 public String  _additem(anywheresoftware.b4a.objects.collections.Map _itm) throws Exception{
  //BA.debugLineNum = 88;BA.debugLine="Sub AddItem(itm As Map)";
  //BA.debugLineNum = 89;BA.debugLine="Form.AddItem(itm)";
