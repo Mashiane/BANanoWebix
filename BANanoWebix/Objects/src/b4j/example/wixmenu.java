@@ -100,15 +100,6 @@ if (true) return _menu._item /*anywheresoftware.b4a.objects.collections.Map*/ ()
  //BA.debugLineNum = 39;BA.debugLine="End Sub";
 return null;
 }
-public b4j.example.wixmenu  _setdata(anywheresoftware.b4a.objects.collections.List _d) throws Exception{
- //BA.debugLineNum = 54;BA.debugLine="Sub SetData(d As List) As WixMenu";
- //BA.debugLineNum = 55;BA.debugLine="Menu.setData(d)";
-_menu._setdata /*b4j.example.wixelement*/ (_d);
- //BA.debugLineNum = 56;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixmenu)(this);
- //BA.debugLineNum = 57;BA.debugLine="End Sub";
-return null;
-}
 public b4j.example.wixmenu  _setselect(boolean _b) throws Exception{
  //BA.debugLineNum = 42;BA.debugLine="Sub SetSelect(b As Boolean) As WixMenu";
  //BA.debugLineNum = 43;BA.debugLine="Menu.SetProperty(\"select\", b)";
@@ -116,15 +107,6 @@ _menu._setproperty /*b4j.example.wixelement*/ ("select",(Object)(_b));
  //BA.debugLineNum = 44;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixmenu)(this);
  //BA.debugLineNum = 45;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixmenu  _settemplate(String _l) throws Exception{
- //BA.debugLineNum = 48;BA.debugLine="Sub SetTemplate(l As String) As WixMenu";
- //BA.debugLineNum = 49;BA.debugLine="Menu.SetTemplate(l)";
-_menu._settemplate /*b4j.example.wixelement*/ (_l);
- //BA.debugLineNum = 50;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixmenu)(this);
- //BA.debugLineNum = 51;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

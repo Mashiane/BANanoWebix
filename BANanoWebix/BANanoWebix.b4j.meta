@@ -127,6 +127,6 @@ ModuleClosedNodes6=
 ModuleClosedNodes7=
 ModuleClosedNodes8=
 ModuleClosedNodes9=
-NavigationStack=WixAccordion,AddItem,49,6,WixAccordion,Item,33,0,WixAccordion,SetHorizontal,26,0,pgLayouts1,Init,17,0,WixAccordion,Class_Globals,7,4,WixElement,SetTypeForm,360,0,Main,AppStart,36,0,Main,BANano_Ready,56,1,Main,Application_Error,43,0,pgLayouts2,Init,25,3
+NavigationStack=WixHeader,Item,18,0,WixLayoutTypes,Class_Globals,0,0,WixMenu,AddToForm,28,0,WixMenu,SetSelect,43,0,WixMenu,AddMenuItem,25,0,WixMenu,Initialize,12,0,WixPage,SetValue,30,0,WixSection,SetTemplate,21,0,WixSection,Item,18,0,WixSection,SetLabel,36,0,WixToolBar,AddSpacer,26,0
 SelectedBuild=0
 VisibleModules=

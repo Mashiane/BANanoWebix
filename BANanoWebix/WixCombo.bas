@@ -29,10 +29,6 @@ End Sub
 Sub AttachOnChangeEvent()
 	Dollar.Selector(ID).RunMethod("attachEvent",Array("onChange",onChange))
 End Sub
-'
-'$$("comboId").attachEvent("onChange", function(newv, oldv){
-'    webix.message("Value changed from: "+oldv+" to: "+newv);
-'});
 
 'set on change event
 Sub SetOnChange(s As BANanoObject) As WixCombo

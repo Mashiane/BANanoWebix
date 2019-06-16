@@ -50,14 +50,3 @@ Sub SetSelect(b As Boolean) As WixMenu
 	Return Me
 End Sub
 
-'set template
-Sub SetTemplate(l As String) As WixMenu
-	Menu.SetTemplate(l)
-	Return Me
-End Sub
-
-'set data
-Sub SetData(d As List) As WixMenu
-	Menu.setData(d)
-	Return Me
-End Sub
