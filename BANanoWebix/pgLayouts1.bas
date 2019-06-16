@@ -16,7 +16,6 @@ Sub Init()
 	acc.Initialize("")
 	acc.SetHorizontal(False)
 		
-	'pg.Page.SetViewHeaderLayout
 	acc.AddItem("","Column 1","Hellow from column 1",200,False)
 	acc.AddItem("","Column 2","Hellow from column 2",300,True)
 	acc.AddItem("","Column 3","Hellow from column 3",0,True)

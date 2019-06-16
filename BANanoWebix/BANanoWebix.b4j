@@ -124,8 +124,8 @@ Sub BANano_Ready()
 	'uncomment this line ONLY for LESSON 2
 	'pgLayouts.init
 	'uncomment this line ONLY for LESSON 3.1
-	pgLayouts1.init 
+	'pgLayouts1.init 
 	'uncomment this line ONLY for LESSON 3.2
-	'pgLayouts2.Init
+	pgLayouts2.Init
 	'pgIndex.Init
 End Sub

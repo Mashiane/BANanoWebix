@@ -113,8 +113,8 @@ return "";
 }
 public static String  _banano_ready() throws Exception{
  //BA.debugLineNum = 47;BA.debugLine="Sub BANano_Ready()";
- //BA.debugLineNum = 53;BA.debugLine="pgLayouts1.init";
-_pglayouts1._init /*String*/ ();
+ //BA.debugLineNum = 55;BA.debugLine="pgLayouts2.Init";
+_pglayouts2._init /*String*/ ();
  //BA.debugLineNum = 57;BA.debugLine="End Sub";
 return "";
 }
