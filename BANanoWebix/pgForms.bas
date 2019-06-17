@@ -65,9 +65,9 @@ Sub Init()
 	myForm.Form.AddItem(cb1.item)
 	
 	'toggle
-	Dim tgl As WixToggle
-	tgl.Initialize("tgl").SetLabel("Toggle").SetOnLabel("I'm pressed!").SetOffLabel("Press Me!")
-	myForm.Form.AddItem(tgl.Item)
+	'Dim tgl As WixToggle
+	'tgl.Initialize("tgl").SetLabel("Toggle").SetOnLabel("I'm pressed!").SetOffLabel("Press Me!")
+	'myForm.Form.AddItem(tgl.Item)
 	'radio
 	Dim ro As WixRadio
 	ro.Initialize("ro").SetLabel("Radio").SetOptions(fruit).SetValue(2).SetVertical(False)

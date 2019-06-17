@@ -10,7 +10,6 @@ Sub Class_Globals
 	Public ID As String
 	Private Dollar As BANanoObject
 	Private Page As WixPage
-	Private elementsConfig As Map
 End Sub
 
 'initialize the form
@@ -19,31 +18,6 @@ Public Sub Initialize(pg As WixPage, fID As String) As WixForm
 	ID = fID.tolowercase
 	Form.Initialize(fID).SetView("form")
 	Dollar = Page.dollar
-	elementsConfig.Initialize 
-	Return Me
-End Sub
-
-'set default label align
-Sub SetDefaultLabelAlign(a As String) As WixForm
-	elementsConfig.Put("labelAlign", a)
-	Return Me
-End Sub
-
-'set default label position
-Sub SetDefaultLabelPosition(p As String) As WixForm
-	elementsConfig.Put("labelPosition", p)
-	Return Me
-End Sub
-
-'set default align
-Sub SetDefaultAlign(a As String) As WixForm
-	elementsConfig.Put("align", a)
-	Return Me
-End Sub
-
-'set default width
-Sub SetDefaultWidth(w As Int) As WixForm
-	elementsConfig.Put("width", w)	
 	Return Me
 End Sub
 
@@ -65,7 +39,6 @@ End Sub
 
 'return the item
 Sub Item As Map
-	Form.SetAttr("elementsConfig", elementsConfig)
 	Return Form.item
 End Sub
 

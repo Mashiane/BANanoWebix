@@ -15,6 +15,8 @@ Sub Class_Globals
 	Private Icon As String
 	Private onIcon As String
 	Private offIcon As String
+	Public Parent As WixElement
+
 End Sub
 
 'initialize the element
@@ -28,8 +30,28 @@ Public Sub Initialize(iID As String) As WixToggle
 	ImageURL = ""
 	offIcon = ""
 	onIcon = ""
+	Parent = Null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixButton
+	Parent = p
+	Return Me
+End Sub
+
+'set batch
+Sub SetBatch(b As Int) As WixButton
+	Toggle.SetBatch(b)
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
+
 
 'add to form
 Sub AddToForm(frm As WixForm)
@@ -129,4 +151,59 @@ Sub Item As Map
 	Toggle.SetOnContent("offIcon", offIcon)
 	Toggle.SetOnContent("onIcon", onIcon)
 	Return Toggle.item
+End Sub
+
+
+'set type icon button
+Sub SetTypeIconButton(i As String) As WixButton
+	ButtonType = "iconButton"
+	Return Me
+End Sub
+
+'set image button
+Sub SetTypeImageButton(r As String) As WixButton
+	ButtonType =  "imageButton"
+	Return Me
+End Sub
+
+'button type image	
+Sub SetTypeImage(r As String) As WixButton
+	ButtonType = "image"
+	Return Me
+End Sub
+
+'button type icon
+Sub SetTypeIcon(r As String) As WixButton
+	ButtonType = "icon"
+	Return Me
+End Sub
+
+'button type iconbuttontop
+Sub SetTypeIconButtonTop(r As String) As WixButton
+	ButtonType = "iconButtonTop"
+	Return Me
+End Sub
+
+'is danger
+Sub SetTypeDanger(r As String) As WixButton
+	ButtonType = "danger"
+	Return Me
+End Sub
+
+'is form
+Sub SetTypeForm(r As String) As WixButton
+	ButtonType = "form"
+	Return Me
+End Sub
+
+'is prev
+Sub SetTypePrev(r As String) As WixButton
+	ButtonType = "prev"
+	Return Me
+End Sub
+
+'is next
+Sub SetTypeNext(r As String) As WixButton
+	ButtonType = "next"
+	Return Me
 End Sub

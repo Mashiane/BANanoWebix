@@ -24,7 +24,7 @@ Sub Item As Map
 End Sub
 
 'add an item
-Sub AddItem(iid As String, header As String, template As String, attributes As Map)
+Sub AddTab(iid As String, header As String, template As String, attributes As Map)
 	Dim i As WixElement
 	i.Initialize(iid)
 	i.SetHeader(header)

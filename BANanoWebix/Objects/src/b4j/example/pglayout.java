@@ -24,13 +24,14 @@ static {
 public static b4j.example.wixpage _pg = null;
 public static com.ab.banano.BANano _banano = null;
 public static b4j.example.main _main = null;
+public static b4j.example.pgforms1 _pgforms1 = null;
+public static b4j.example.pgforms _pgforms = null;
+public static b4j.example.pgtoolbar _pgtoolbar = null;
+public static b4j.example.pgindex _pgindex = null;
 public static b4j.example.pgmultiview _pgmultiview = null;
 public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
-public static b4j.example.pgforms1 _pgforms1 = null;
-public static b4j.example.pgforms _pgforms = null;
-public static b4j.example.pgindex _pgindex = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
 public static String  _init() throws Exception{
 com.ab.banano.BANanoEvent _e = null;

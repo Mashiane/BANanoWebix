@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public Icon As WixElement
 	Private onClick As BANanoObject
 	Private IconName As String
+	Public Parent As WixElement
 End Sub
 
 'Initializes the button
@@ -18,8 +19,21 @@ Public Sub Initialize(bID As String) As WixIcon
 	Icon.Initialize(ID).SetView("icon")
 	onClick = Null
 	IconName = ""
+	Parent = Null
 	Return Me
 End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixIcon
+	Parent = p
+	Return Me
+End Sub
+
 
 'add to form
 Sub AddToForm(frm As WixForm)
@@ -50,13 +64,6 @@ Sub Item As Map
 		Icon.SetAttr("click", onClick)
 	End If
 	Return Icon.item
-End Sub
-
-'set label
-Sub SetLabel(lbl As String) As WixIcon
-	Icon.Label.Text = lbl
-	Icon.value = lbl
-	Return Me
 End Sub
 
 'set height

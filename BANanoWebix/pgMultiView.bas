@@ -5,6 +5,7 @@ Type=StaticCode
 Version=7.51
 @EndOfDesignText@
 'Static code module
+#IgnoreWarnings:12
 Sub Process_Globals
 	Private pg As WixPage
 End Sub
@@ -12,21 +13,7 @@ End Sub
 Sub Init
 	pg.Initialize("")
 	pg.Page.setType("clean")
-'	Dim tblBar As WixToolBar
-'	tblBar.Initialize("")
-'	tblBar.ToolBar.SetHeight(50)
-'	'
-'	Dim btnNew As WixButton
-'	btnNew.Initialize("btnNew").SetLabel("New").SetWidth(90).SetTypeIconButton("").SetIcon("file").AddToToolbar(tblBar)
-'	'
-'	Dim btnOpen As WixButton
-'	btnOpen.Initialize("btnOpen").SetLabel("Open").SetWidth(90).SetTypeIconButton("").SetIcon("folder-open").AddToToolbar(tblBar)
-'	'
-'	Dim btnClose As WixButton
-'	btnClose.Initialize("btnClose").SetLabel("Close").SetWidth(90).SetTypeIconButton("").SetIcon("window-close").AddToToolbar(tblBar)
-'	'
-'	pg.Page.AddRows(tblBar.Item)
-'	'
+	
 	Dim c As WixCarousel
 	c.Initialize("")
 	'create slides
@@ -70,8 +57,9 @@ Sub Init
 	'
 	Dim tb As WixTabView
 	tb.Initialize("")
-	tb.AddItem("","Entry","Some form controls here",CreateMap("css":"entry"))
-	tb.AddItem("","Results","Some results of data entry here",CreateMap("css":"results"))
+	tb.TabView.SetAnimate(True)
+	tb.AddTab("","Entry","Some form controls here",CreateMap("css":"entry"))
+	tb.AddTab("","Results","Some results of data entry here",CreateMap("css":"results"))
 	pg.Page.AddRows(tb.Item)
 	
 	'

@@ -5,9 +5,15 @@ Type=Class
 Version=7.5
 @EndOfDesignText@
 #IgnoreWarnings:12
+'icons: http://www.entypo.com/
 Sub Class_Globals
 	Public ID As String
 	Public ToolBar As WixElement
+End Sub
+
+'add to page
+Sub AddToPage(pg As WixPage)
+	ToolBar.AddToRows(pg.Page)
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
@@ -28,14 +34,37 @@ Sub AddButton(btn As WixButton) As WixToolBar
 	Return Me
 End Sub
 
+'add a button and define it
+Sub CreateButton(sid As String) As WixButton
+	Dim btn As WixButton
+	btn.Initialize(sid)
+	btn.parent = ToolBar
+	Return btn
+End Sub
+
+'add an icon and define it
+Sub CreateIcon(sid As String) As WixIcon
+	Dim btn As WixIcon
+	btn.Initialize(sid).SetParent(ToolBar)
+	Return btn
+End Sub
+
+
+'add a toggle button and define it
+Sub CreateToggle(sid As String) As WixButton
+	Dim btn As WixButton
+	btn.Initialize(sid).SetToggle("").SetParent(ToolBar)
+	Return btn
+End Sub
+
 'add a spacer
 Sub AddSpacer As WixToolBar
 	ToolBar.AddColumnsSpacer
 	Return Me 
 End Sub
 
-'add a toggle
-Sub AddToggle(btn As WixToggle) As WixToolBar
-	ToolBar.AddColumns(btn.item)
+'add icon
+Sub AddIcon(icn As WixIcon) As WixToolBar
+	ToolBar.AddColumns(icn.Item)
 	Return Me
 End Sub

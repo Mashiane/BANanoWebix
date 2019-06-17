@@ -30,13 +30,14 @@ public anywheresoftware.b4a.objects.collections.List _data = null;
 public com.ab.banano.BANanoObject _dollar = null;
 public com.ab.banano.BANanoObject _onafterselect = null;
 public b4j.example.main _main = null;
+public b4j.example.pgforms1 _pgforms1 = null;
+public b4j.example.pgforms _pgforms = null;
+public b4j.example.pgtoolbar _pgtoolbar = null;
+public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
-public b4j.example.pgforms1 _pgforms1 = null;
-public b4j.example.pgforms _pgforms = null;
-public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public String  _add(anywheresoftware.b4a.objects.collections.Map _record) throws Exception{

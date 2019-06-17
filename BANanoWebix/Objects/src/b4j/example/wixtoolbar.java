@@ -26,68 +26,114 @@ public class wixtoolbar extends B4AClass.ImplB4AClass implements BA.SubDelegator
 public String _id = "";
 public b4j.example.wixelement _toolbar = null;
 public b4j.example.main _main = null;
+public b4j.example.pgforms1 _pgforms1 = null;
+public b4j.example.pgforms _pgforms = null;
+public b4j.example.pgtoolbar _pgtoolbar = null;
+public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
-public b4j.example.pgforms1 _pgforms1 = null;
-public b4j.example.pgforms _pgforms = null;
-public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public b4j.example.wixtoolbar  _addbutton(b4j.example.wixbutton _btn) throws Exception{
- //BA.debugLineNum = 20;BA.debugLine="Sub AddButton(btn As WixButton) As WixToolBar";
- //BA.debugLineNum = 21;BA.debugLine="ToolBar.AddColumns(btn.item)";
+ //BA.debugLineNum = 26;BA.debugLine="Sub AddButton(btn As WixButton) As WixToolBar";
+ //BA.debugLineNum = 27;BA.debugLine="ToolBar.AddColumns(btn.item)";
 _toolbar._addcolumns /*b4j.example.wixelement*/ (_btn._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 22;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixtoolbar)(this);
- //BA.debugLineNum = 23;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixtoolbar  _addspacer() throws Exception{
- //BA.debugLineNum = 26;BA.debugLine="Sub AddSpacer As WixToolBar";
- //BA.debugLineNum = 27;BA.debugLine="ToolBar.AddColumnsSpacer";
-_toolbar._addcolumnsspacer /*String*/ ();
  //BA.debugLineNum = 28;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoolbar)(this);
  //BA.debugLineNum = 29;BA.debugLine="End Sub";
 return null;
 }
-public b4j.example.wixtoolbar  _addtoggle(b4j.example.wixtoggle _btn) throws Exception{
- //BA.debugLineNum = 32;BA.debugLine="Sub AddToggle(btn As WixToggle) As WixToolBar";
- //BA.debugLineNum = 33;BA.debugLine="ToolBar.AddColumns(btn.item)";
-_toolbar._addcolumns /*b4j.example.wixelement*/ (_btn._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 34;BA.debugLine="Return Me";
+public b4j.example.wixtoolbar  _addicon(b4j.example.wixicon _icn) throws Exception{
+ //BA.debugLineNum = 61;BA.debugLine="Sub AddIcon(icn As WixIcon) As WixToolBar";
+ //BA.debugLineNum = 62;BA.debugLine="ToolBar.AddColumns(icn.Item)";
+_toolbar._addcolumns /*b4j.example.wixelement*/ (_icn._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
+ //BA.debugLineNum = 63;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoolbar)(this);
- //BA.debugLineNum = 35;BA.debugLine="End Sub";
+ //BA.debugLineNum = 64;BA.debugLine="End Sub";
 return null;
 }
-public String  _class_globals() throws Exception{
- //BA.debugLineNum = 2;BA.debugLine="Sub Class_Globals";
- //BA.debugLineNum = 3;BA.debugLine="Public ID As String";
-_id = "";
- //BA.debugLineNum = 4;BA.debugLine="Public ToolBar As WixElement";
-_toolbar = new b4j.example.wixelement();
- //BA.debugLineNum = 5;BA.debugLine="End Sub";
+public b4j.example.wixtoolbar  _addspacer() throws Exception{
+ //BA.debugLineNum = 55;BA.debugLine="Sub AddSpacer As WixToolBar";
+ //BA.debugLineNum = 56;BA.debugLine="ToolBar.AddColumnsSpacer";
+_toolbar._addcolumnsspacer /*String*/ ();
+ //BA.debugLineNum = 57;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixtoolbar)(this);
+ //BA.debugLineNum = 58;BA.debugLine="End Sub";
+return null;
+}
+public String  _addtopage(b4j.example.wixpage _pg) throws Exception{
+ //BA.debugLineNum = 9;BA.debugLine="Sub AddToPage(pg As WixPage)";
+ //BA.debugLineNum = 10;BA.debugLine="ToolBar.AddToRows(pg.Page)";
+_toolbar._addtorows /*String*/ (_pg._page /*b4j.example.wixelement*/ );
+ //BA.debugLineNum = 11;BA.debugLine="End Sub";
 return "";
+}
+public String  _class_globals() throws Exception{
+ //BA.debugLineNum = 3;BA.debugLine="Sub Class_Globals";
+ //BA.debugLineNum = 4;BA.debugLine="Public ID As String";
+_id = "";
+ //BA.debugLineNum = 5;BA.debugLine="Public ToolBar As WixElement";
+_toolbar = new b4j.example.wixelement();
+ //BA.debugLineNum = 6;BA.debugLine="End Sub";
+return "";
+}
+public b4j.example.wixbutton  _createbutton(String _sid) throws Exception{
+b4j.example.wixbutton _btn = null;
+ //BA.debugLineNum = 32;BA.debugLine="Sub CreateButton(sid As String) As WixButton";
+ //BA.debugLineNum = 33;BA.debugLine="Dim btn As WixButton";
+_btn = new b4j.example.wixbutton();
+ //BA.debugLineNum = 34;BA.debugLine="btn.Initialize(sid)";
+_btn._initialize /*b4j.example.wixbutton*/ (ba,_sid);
+ //BA.debugLineNum = 35;BA.debugLine="btn.parent = ToolBar";
+_btn._parent /*b4j.example.wixelement*/  = _toolbar;
+ //BA.debugLineNum = 36;BA.debugLine="Return btn";
+if (true) return _btn;
+ //BA.debugLineNum = 37;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixicon  _createicon(String _sid) throws Exception{
+b4j.example.wixicon _btn = null;
+ //BA.debugLineNum = 40;BA.debugLine="Sub CreateIcon(sid As String) As WixIcon";
+ //BA.debugLineNum = 41;BA.debugLine="Dim btn As WixIcon";
+_btn = new b4j.example.wixicon();
+ //BA.debugLineNum = 42;BA.debugLine="btn.Initialize(sid).SetParent(ToolBar)";
+_btn._initialize /*b4j.example.wixicon*/ (ba,_sid)._setparent /*b4j.example.wixicon*/ (_toolbar);
+ //BA.debugLineNum = 43;BA.debugLine="Return btn";
+if (true) return _btn;
+ //BA.debugLineNum = 44;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixbutton  _createtoggle(String _sid) throws Exception{
+b4j.example.wixbutton _btn = null;
+ //BA.debugLineNum = 48;BA.debugLine="Sub CreateToggle(sid As String) As WixButton";
+ //BA.debugLineNum = 49;BA.debugLine="Dim btn As WixButton";
+_btn = new b4j.example.wixbutton();
+ //BA.debugLineNum = 50;BA.debugLine="btn.Initialize(sid).SetToggle(\"\").SetParent(ToolB";
+_btn._initialize /*b4j.example.wixbutton*/ (ba,_sid)._settoggle /*b4j.example.wixbutton*/ ("")._setparent /*b4j.example.wixbutton*/ (_toolbar);
+ //BA.debugLineNum = 51;BA.debugLine="Return btn";
+if (true) return _btn;
+ //BA.debugLineNum = 52;BA.debugLine="End Sub";
+return null;
 }
 public b4j.example.wixtoolbar  _initialize(anywheresoftware.b4a.BA _ba,String _sid) throws Exception{
 innerInitialize(_ba);
- //BA.debugLineNum = 8;BA.debugLine="Public Sub Initialize(sID As String) As WixToolBar";
- //BA.debugLineNum = 9;BA.debugLine="ID = sID.tolowercase";
+ //BA.debugLineNum = 14;BA.debugLine="Public Sub Initialize(sID As String) As WixToolBar";
+ //BA.debugLineNum = 15;BA.debugLine="ID = sID.tolowercase";
 _id = _sid.toLowerCase();
- //BA.debugLineNum = 10;BA.debugLine="ToolBar.Initialize(ID).SetView(\"toolbar\")";
+ //BA.debugLineNum = 16;BA.debugLine="ToolBar.Initialize(ID).SetView(\"toolbar\")";
 _toolbar._initialize /*b4j.example.wixelement*/ (ba,_id)._setview /*b4j.example.wixelement*/ ("toolbar");
- //BA.debugLineNum = 11;BA.debugLine="Return Me";
+ //BA.debugLineNum = 17;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoolbar)(this);
- //BA.debugLineNum = 12;BA.debugLine="End Sub";
+ //BA.debugLineNum = 18;BA.debugLine="End Sub";
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 15;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 16;BA.debugLine="Return ToolBar.item";
+ //BA.debugLineNum = 21;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 22;BA.debugLine="Return ToolBar.item";
 if (true) return _toolbar._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 17;BA.debugLine="End Sub";
+ //BA.debugLineNum = 23;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

@@ -31,13 +31,14 @@ public String _id = "";
 public b4j.example.wixbuttontypes _enumbuttontypes = null;
 public b4j.example.wixlayouttypes _enumlayouttypes = null;
 public b4j.example.main _main = null;
+public b4j.example.pgforms1 _pgforms1 = null;
+public b4j.example.pgforms _pgforms = null;
+public b4j.example.pgtoolbar _pgtoolbar = null;
+public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
-public b4j.example.pgforms1 _pgforms1 = null;
-public b4j.example.pgforms _pgforms = null;
-public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public String  _class_globals() throws Exception{
@@ -57,6 +58,23 @@ _enumbuttontypes = new b4j.example.wixbuttontypes();
  //BA.debugLineNum = 9;BA.debugLine="Public EnumLayoutTypes As WixLayoutTypes";
 _enumlayouttypes = new b4j.example.wixlayouttypes();
  //BA.debugLineNum = 10;BA.debugLine="End Sub";
+return "";
+}
+public String  _confirm(com.ab.banano.BANanoObject _callback,String _stitle,String _stext) throws Exception{
+anywheresoftware.b4a.objects.collections.Map _opt = null;
+ //BA.debugLineNum = 86;BA.debugLine="Sub Confirm(CallBack As BANanoObject, stitle As St";
+ //BA.debugLineNum = 87;BA.debugLine="Dim opt As Map = CreateMap()";
+_opt = new anywheresoftware.b4a.objects.collections.Map();
+_opt = __c.createMap(new Object[] {});
+ //BA.debugLineNum = 88;BA.debugLine="opt.Put(\"title\", stitle)";
+_opt.Put((Object)("title"),(Object)(_stitle));
+ //BA.debugLineNum = 89;BA.debugLine="opt.Put(\"text\", stext)";
+_opt.Put((Object)("text"),(Object)(_stext));
+ //BA.debugLineNum = 90;BA.debugLine="opt.Put(\"callback\", CallBack)";
+_opt.Put((Object)("callback"),(Object)(_callback));
+ //BA.debugLineNum = 91;BA.debugLine="webix.RunMethod(\"confirm\", opt)";
+_webix.RunMethod("confirm",(Object)(_opt.getObject()));
+ //BA.debugLineNum = 92;BA.debugLine="End Sub";
 return "";
 }
 public String  _getvalue(String _itm) throws Exception{

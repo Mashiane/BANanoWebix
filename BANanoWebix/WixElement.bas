@@ -32,6 +32,7 @@ Sub Class_Globals
 	Public Body As String
 	Private Styles As Map
 	Private Cells As List
+	Private elementsConfig As Map
 End Sub
 
 'initialize the element
@@ -40,6 +41,7 @@ Public Sub Initialize(sID As String) As WixElement
 	Template = ""
 	Width = 0
 	Cells.Initialize 
+	elementsConfig.Initialize 
 	Height = 0
 	Styles.Initialize 
 	Element = CreateMap("id":ID)
@@ -64,7 +66,61 @@ Public Sub Initialize(sID As String) As WixElement
 	CSS = ""
 	Header = ""
 	Body = ""
-	HTMLAttributes.Initialize 
+	HTMLAttributes.Initialize
+	Return Me
+End Sub
+
+'set default view
+Sub SetDefaultView(a As String) As WixElement
+	elementsConfig.Put("view", a)
+	Return Me
+End Sub
+
+'set default type
+Sub SetDefaultType(a As String) As WixElement
+	elementsConfig.Put("type", a)
+	Return Me
+End Sub
+
+'set default label align
+Sub SetDefaultLabelAlign(a As String) As WixElement
+	elementsConfig.Put("labelAlign", a)
+	Return Me
+End Sub
+
+'set default label position
+Sub SetDefaultLabelPosition(p As String) As WixElement
+	elementsConfig.Put("labelPosition", p)
+	Return Me
+End Sub
+
+'set default align
+Sub SetDefaultAlign(a As String) As WixElement
+	elementsConfig.Put("align", a)
+	Return Me
+End Sub
+
+'set default width
+Sub SetDefaultWidth(w As Int) As WixElement
+	elementsConfig.Put("width", w)
+	Return Me
+End Sub
+
+'set visible batch
+Sub SetVisibleBatch(b As Int) As WixElement
+	SetProperty("visibleBatch", b)
+	Return Me
+End Sub
+
+'set batch
+Sub SetBatch(b As Int) As WixElement
+	SetProperty("batch",b)
+	Return Me
+End Sub
+
+'set animate
+Sub SetAnimate(b As Boolean) As WixElement
+	SetProperty("animate",b)
 	Return Me
 End Sub
 
@@ -230,6 +286,7 @@ Sub Item As Map
 	SetOnCondition(Cells.Size, "cells", Cells)
 	SetOnCondition(inputWidth,"inputWidth",inputWidth)
 	SetOnCondition(HTMLAttributes.Size, "attributes", HTMLAttributes)
+	SetOnCondition(elementsConfig.Size, "elementsConfig", elementsConfig)
 	SetOnCondition(Styles.Size, "css", Styles)
 	Return Element
 End Sub
@@ -293,7 +350,7 @@ Sub AddRowsCells(mCells As List) As WixElement
 End Sub
 
 
-'add rows cells
+'add column cells
 Sub AddColumnsCells(mCells As List) As WixElement
 	Dim opt As Map = CreateMap()
 	opt.Put("cells", mCells)
@@ -346,6 +403,24 @@ End Sub
 'add to columns of parent
 Sub AddToColumns(prt As WixElement) As WixElement
 	prt.AddColumns(Item)
+	Return Me
+End Sub
+
+'set align right
+Sub SetAlignRight() As WixElement
+	Align = "right"
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter() As WixElement
+	Align = "center"
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft() As WixElement
+	Align = "left"
 	Return Me
 End Sub
 
@@ -425,5 +500,35 @@ End Sub
 'set collapsed
 Sub SetCollapsed(c As Boolean) As WixElement
 	SetProperty("collapsed", c)
+	Return Me
+End Sub
+
+'set type icon button
+Sub SetDefaultTypeIconButton() As WixElement
+	TypeOf = "iconButton"
+	Return Me
+End Sub
+
+'set image button
+Sub SetDefaultTypeImageButton(r As String) As WixElement  'ignore
+	TypeOf =  "imageButton"
+	Return Me
+End Sub
+
+'button type image	
+Sub SetDefaultTypeImage(r As String) As WixElement  'ignore
+	TypeOf = "image"
+	Return Me
+End Sub
+
+'button type icon
+Sub SetDefaultTypeIcon(r As String) As WixElement  'ignore
+	TypeOf = "icon"
+	Return Me
+End Sub
+
+'button type iconbuttontop
+Sub SetDefaultTypeIconButtonTop(r As String) As WixElement  'ignore
+	TypeOf = "iconButtonTop"
 	Return Me
 End Sub

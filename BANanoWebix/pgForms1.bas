@@ -30,18 +30,6 @@ Sub Init()
 	btnBack.Initialize("btnBack").SetLabel("Back").SetWidth(100).SetClick(BANano.CallBack(Me,"backtomain",Null))
 	tblBar.AddButton(btnBack)
 	'
-	Dim btnImage As WixButton
-	btnImage.Initialize("btnImage").SetLabel("Image").SetTypeImage("").SetWidth(150).SetHeight(40).SetImage("./assets/icons8-save-as-100.png")
-	tblBar.AddButton(btnImage)
-	'
-	Dim btnImage1 As WixButton
-	btnImage1.Initialize("btnImageButton").SetLabel("ImageButton").SetTypeImageButton("").SetImage("./assets/icons8-compose-40.png").SetWidth(40).SetHeight(40)
-	tblBar.AddButton(btnImage1)
-	'
-	Dim btnIcon As WixButton
-	btnIcon.Initialize("btnIcon").SetTypeIcon("").SetIcon("wxi-file").SetWidth(200).SetLabel("File Name")
-	tblBar.AddButton(btnIcon)
-	'
 	Dim btnIBT As WixButton
 	btnIBT.Initialize("btnIBT").SetWidth(100).SetHeight(80).SetIcon("wxi-download").SetTypeIconButtonTop("").SetLabel("Hide")
 	btnIBT.SetClick( BANano.CallBack(Me, "hideit",Null)  ).AddToToolbar(tblBar)
@@ -50,21 +38,6 @@ Sub Init()
 	btnShow.Initialize("btnShow").SetWidth(100).SetHeight(80).SetIcon("wxi-download").SetTypeIconButtonTop("").SetLabel("Show")
 	btnShow.SetClick( BANano.CallBack(Me, "showit",Null)  ).AddToToolbar(tblBar)
 	'
-	tblBar.AddSpacer
-	'
-	Dim imgt1 As WixToggle
-	imgt1.Initialize("imgt1").SetTypeImageButton("").SetImage("./assets/icons8-add-row-40.png").SetLabel("Add Row").SetWidth(150)
-	tblBar.AddToggle(imgt1)
-	
-	Dim imgt2 As WixToggle
-	imgt2.Initialize("imgt2").SetTypeImage("").SetImage("./assets/icons8-save-close-40.png").SetLabel("Save").SetHeight(50).SetWidth(150).AddToToolbar(tblBar)
-	
-	Dim imgt3 As WixToggle
-	imgt3.Initialize("imgt3").SetTypeIcon("").SetOffIcon("wxi-close").SetOnIcon("wxi-check").SetLabel("Music").SetHeight(60).SetWidth(150).AddToToolbar(tblBar)
-	
-	Dim imgt4 As WixToggle
-	imgt4.Initialize("imgt4").SetTypeIconButtonTop("").SetIcon("wxi-sync").SetLabel("Wi-Fi").SetHeight(60).SetWidth(100).AddToToolbar(tblBar)
-		
 	R1.AddItem(tblBar.Item)
 	'
 	Dim fruit As List

@@ -26,20 +26,21 @@ public class wixtabview extends B4AClass.ImplB4AClass implements BA.SubDelegator
 public String _id = "";
 public b4j.example.wixelement _tabview = null;
 public b4j.example.main _main = null;
+public b4j.example.pgforms1 _pgforms1 = null;
+public b4j.example.pgforms _pgforms = null;
+public b4j.example.pgtoolbar _pgtoolbar = null;
+public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
-public b4j.example.pgforms1 _pgforms1 = null;
-public b4j.example.pgforms _pgforms = null;
-public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
-public String  _additem(String _iid,String _header,String _template,anywheresoftware.b4a.objects.collections.Map _attributes) throws Exception{
+public String  _addtab(String _iid,String _header,String _template,anywheresoftware.b4a.objects.collections.Map _attributes) throws Exception{
 b4j.example.wixelement _i = null;
 String _astr = "";
 String _vstr = "";
- //BA.debugLineNum = 21;BA.debugLine="Sub AddItem(iid As String, header As String, templ";
+ //BA.debugLineNum = 21;BA.debugLine="Sub AddTab(iid As String, header As String, templa";
  //BA.debugLineNum = 22;BA.debugLine="Dim i As WixElement";
 _i = new b4j.example.wixelement();
  //BA.debugLineNum = 23;BA.debugLine="i.Initialize(iid)";

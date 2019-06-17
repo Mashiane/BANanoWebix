@@ -45,13 +45,14 @@ public static com.ab.banano.BANano _banano = null;
 public static String _appname = "";
 public static String _publish = "";
 public static b4j.example.bananopostprocessor _bp = null;
+public static b4j.example.pgforms1 _pgforms1 = null;
+public static b4j.example.pgforms _pgforms = null;
+public static b4j.example.pgtoolbar _pgtoolbar = null;
+public static b4j.example.pgindex _pgindex = null;
 public static b4j.example.pgmultiview _pgmultiview = null;
 public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
-public static b4j.example.pgforms1 _pgforms1 = null;
-public static b4j.example.pgforms _pgforms = null;
-public static b4j.example.pgindex _pgindex = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pglayout _pglayout = null;
 public static boolean  _application_error(anywheresoftware.b4a.objects.B4AException _error,String _stacktrace) throws Exception{
@@ -114,9 +115,9 @@ return "";
 }
 public static String  _banano_ready() throws Exception{
  //BA.debugLineNum = 47;BA.debugLine="Sub BANano_Ready()";
- //BA.debugLineNum = 57;BA.debugLine="pgMultiView.init";
-_pgmultiview._init /*String*/ ();
- //BA.debugLineNum = 59;BA.debugLine="End Sub";
+ //BA.debugLineNum = 59;BA.debugLine="pgToolBar.Init";
+_pgtoolbar._init /*String*/ ();
+ //BA.debugLineNum = 61;BA.debugLine="End Sub";
 return "";
 }
 
@@ -127,13 +128,14 @@ public static void initializeProcessGlobals() {
 	    main.processGlobalsRun = true;
 		try {
 		        main._process_globals();
+pgforms1._process_globals();
+pgforms._process_globals();
+pgtoolbar._process_globals();
+pgindex._process_globals();
 pgmultiview._process_globals();
 pglayouts1._process_globals();
 pglayouts2._process_globals();
 pglayouts._process_globals();
-pgforms1._process_globals();
-pgforms._process_globals();
-pgindex._process_globals();
 pgdatatable._process_globals();
 pglayout._process_globals();
 		

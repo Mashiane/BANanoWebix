@@ -87,3 +87,12 @@ Sub ToastError(Text As String)
 	msg.put("text", Text)
 	webix.RunMethod("message", Array(msg))
 End Sub
+
+'confirm dialog
+Sub Confirm(CallBack As BANanoObject, stitle As String, stext As String)
+	Dim opt As Map = CreateMap()
+	opt.Put("title", stitle)
+	opt.Put("text", stext)
+	opt.Put("callback", CallBack)
+	webix.RunMethod("confirm", opt)
+End Sub
