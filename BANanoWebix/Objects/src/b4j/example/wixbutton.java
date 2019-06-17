@@ -30,6 +30,7 @@ public String _buttontype = "";
 public String _imageurl = "";
 public String _icon = "";
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -47,8 +48,8 @@ return "";
 }
 public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
  //BA.debugLineNum = 26;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 27;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
+ //BA.debugLineNum = 27;BA.debugLine="tblB.ToolBar.AddColumns(Item)";
+_tblb._toolbar /*b4j.example.wixelement*/ ._addcolumns /*b4j.example.wixelement*/ (_item());
  //BA.debugLineNum = 28;BA.debugLine="End Sub";
 return "";
 }
@@ -85,78 +86,6 @@ if (true) return (b4j.example.wixbutton)(this);
  //BA.debugLineNum = 18;BA.debugLine="End Sub";
 return null;
 }
-public b4j.example.wixbutton  _isdanger(String _r) throws Exception{
- //BA.debugLineNum = 97;BA.debugLine="Sub IsDanger(r As String) As WixButton";
- //BA.debugLineNum = 98;BA.debugLine="ButtonType = \"danger\"";
-_buttontype = "danger";
- //BA.debugLineNum = 99;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixbutton)(this);
- //BA.debugLineNum = 100;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixbutton  _isform(String _r) throws Exception{
- //BA.debugLineNum = 103;BA.debugLine="Sub IsForm(r As String) As WixButton";
- //BA.debugLineNum = 104;BA.debugLine="ButtonType = \"form\"";
-_buttontype = "form";
- //BA.debugLineNum = 105;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixbutton)(this);
- //BA.debugLineNum = 106;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixbutton  _isicon(String _r) throws Exception{
- //BA.debugLineNum = 85;BA.debugLine="Sub IsIcon(r As String) As WixButton";
- //BA.debugLineNum = 86;BA.debugLine="ButtonType = \"icon\"";
-_buttontype = "icon";
- //BA.debugLineNum = 87;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixbutton)(this);
- //BA.debugLineNum = 88;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixbutton  _isiconbuttontop(String _r) throws Exception{
- //BA.debugLineNum = 91;BA.debugLine="Sub IsIconButtonTop(r As String) As WixButton";
- //BA.debugLineNum = 92;BA.debugLine="ButtonType = \"iconButtonTop\"";
-_buttontype = "iconButtonTop";
- //BA.debugLineNum = 93;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixbutton)(this);
- //BA.debugLineNum = 94;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixbutton  _isimage(String _r) throws Exception{
- //BA.debugLineNum = 79;BA.debugLine="Sub IsImage(r As String) As WixButton";
- //BA.debugLineNum = 80;BA.debugLine="ButtonType = \"image\"";
-_buttontype = "image";
- //BA.debugLineNum = 81;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixbutton)(this);
- //BA.debugLineNum = 82;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixbutton  _isimagebutton(String _r) throws Exception{
- //BA.debugLineNum = 73;BA.debugLine="Sub IsImageButton(r As String) As WixButton";
- //BA.debugLineNum = 74;BA.debugLine="ButtonType =  \"imageButton\"";
-_buttontype = "imageButton";
- //BA.debugLineNum = 75;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixbutton)(this);
- //BA.debugLineNum = 76;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixbutton  _isnext(String _r) throws Exception{
- //BA.debugLineNum = 115;BA.debugLine="Sub IsNext(r As String) As WixButton";
- //BA.debugLineNum = 116;BA.debugLine="ButtonType = \"next\"";
-_buttontype = "next";
- //BA.debugLineNum = 117;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixbutton)(this);
- //BA.debugLineNum = 118;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixbutton  _isprev(String _r) throws Exception{
- //BA.debugLineNum = 109;BA.debugLine="Sub IsPrev(r As String) As WixButton";
- //BA.debugLineNum = 110;BA.debugLine="ButtonType = \"prev\"";
-_buttontype = "prev";
- //BA.debugLineNum = 111;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixbutton)(this);
- //BA.debugLineNum = 112;BA.debugLine="End Sub";
-return null;
-}
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
  //BA.debugLineNum = 43;BA.debugLine="Sub Item As Map";
  //BA.debugLineNum = 44;BA.debugLine="Button.SetOnContent(\"icon\", Icon)";
@@ -185,12 +114,12 @@ if (true) return (b4j.example.wixbutton)(this);
 return null;
 }
 public b4j.example.wixbutton  _setheight(int _h) throws Exception{
- //BA.debugLineNum = 121;BA.debugLine="Sub SetHeight(h As Int) As WixButton";
- //BA.debugLineNum = 122;BA.debugLine="Button.Height = h";
+ //BA.debugLineNum = 127;BA.debugLine="Sub SetHeight(h As Int) As WixButton";
+ //BA.debugLineNum = 128;BA.debugLine="Button.Height = h";
 _button._height /*int*/  = _h;
- //BA.debugLineNum = 123;BA.debugLine="Return Me";
+ //BA.debugLineNum = 129;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixbutton)(this);
- //BA.debugLineNum = 124;BA.debugLine="End Sub";
+ //BA.debugLineNum = 130;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixbutton  _seticon(String _icn) throws Exception{
@@ -222,6 +151,87 @@ if (true) return (b4j.example.wixbutton)(this);
  //BA.debugLineNum = 70;BA.debugLine="End Sub";
 return null;
 }
+public b4j.example.wixbutton  _settypedanger(String _r) throws Exception{
+ //BA.debugLineNum = 103;BA.debugLine="Sub SetTypeDanger(r As String) As WixButton";
+ //BA.debugLineNum = 104;BA.debugLine="ButtonType = \"danger\"";
+_buttontype = "danger";
+ //BA.debugLineNum = 105;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixbutton)(this);
+ //BA.debugLineNum = 106;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixbutton  _settypeform(String _r) throws Exception{
+ //BA.debugLineNum = 109;BA.debugLine="Sub SetTypeForm(r As String) As WixButton";
+ //BA.debugLineNum = 110;BA.debugLine="ButtonType = \"form\"";
+_buttontype = "form";
+ //BA.debugLineNum = 111;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixbutton)(this);
+ //BA.debugLineNum = 112;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixbutton  _settypeicon(String _r) throws Exception{
+ //BA.debugLineNum = 91;BA.debugLine="Sub SetTypeIcon(r As String) As WixButton";
+ //BA.debugLineNum = 92;BA.debugLine="ButtonType = \"icon\"";
+_buttontype = "icon";
+ //BA.debugLineNum = 93;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixbutton)(this);
+ //BA.debugLineNum = 94;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixbutton  _settypeiconbutton(String _i) throws Exception{
+ //BA.debugLineNum = 73;BA.debugLine="Sub SetTypeIconButton(i As String) As WixButton";
+ //BA.debugLineNum = 74;BA.debugLine="ButtonType = \"iconButton\"";
+_buttontype = "iconButton";
+ //BA.debugLineNum = 75;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixbutton)(this);
+ //BA.debugLineNum = 76;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixbutton  _settypeiconbuttontop(String _r) throws Exception{
+ //BA.debugLineNum = 97;BA.debugLine="Sub SetTypeIconButtonTop(r As String) As WixButton";
+ //BA.debugLineNum = 98;BA.debugLine="ButtonType = \"iconButtonTop\"";
+_buttontype = "iconButtonTop";
+ //BA.debugLineNum = 99;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixbutton)(this);
+ //BA.debugLineNum = 100;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixbutton  _settypeimage(String _r) throws Exception{
+ //BA.debugLineNum = 85;BA.debugLine="Sub SetTypeImage(r As String) As WixButton";
+ //BA.debugLineNum = 86;BA.debugLine="ButtonType = \"image\"";
+_buttontype = "image";
+ //BA.debugLineNum = 87;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixbutton)(this);
+ //BA.debugLineNum = 88;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixbutton  _settypeimagebutton(String _r) throws Exception{
+ //BA.debugLineNum = 79;BA.debugLine="Sub SetTypeImageButton(r As String) As WixButton";
+ //BA.debugLineNum = 80;BA.debugLine="ButtonType =  \"imageButton\"";
+_buttontype = "imageButton";
+ //BA.debugLineNum = 81;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixbutton)(this);
+ //BA.debugLineNum = 82;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixbutton  _settypenext(String _r) throws Exception{
+ //BA.debugLineNum = 121;BA.debugLine="Sub SetTypeNext(r As String) As WixButton";
+ //BA.debugLineNum = 122;BA.debugLine="ButtonType = \"next\"";
+_buttontype = "next";
+ //BA.debugLineNum = 123;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixbutton)(this);
+ //BA.debugLineNum = 124;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixbutton  _settypeprev(String _r) throws Exception{
+ //BA.debugLineNum = 115;BA.debugLine="Sub SetTypePrev(r As String) As WixButton";
+ //BA.debugLineNum = 116;BA.debugLine="ButtonType = \"prev\"";
+_buttontype = "prev";
+ //BA.debugLineNum = 117;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixbutton)(this);
+ //BA.debugLineNum = 118;BA.debugLine="End Sub";
+return null;
+}
 public b4j.example.wixbutton  _setvalue(String _v) throws Exception{
  //BA.debugLineNum = 31;BA.debugLine="Sub SetValue(v As String) As WixButton";
  //BA.debugLineNum = 32;BA.debugLine="Button.Value = v";
@@ -232,12 +242,12 @@ if (true) return (b4j.example.wixbutton)(this);
 return null;
 }
 public b4j.example.wixbutton  _setwidth(int _w) throws Exception{
- //BA.debugLineNum = 127;BA.debugLine="Sub SetWidth(w As Int) As WixButton";
- //BA.debugLineNum = 128;BA.debugLine="Button.Width = w";
+ //BA.debugLineNum = 133;BA.debugLine="Sub SetWidth(w As Int) As WixButton";
+ //BA.debugLineNum = 134;BA.debugLine="Button.Width = w";
 _button._width /*int*/  = _w;
- //BA.debugLineNum = 129;BA.debugLine="Return Me";
+ //BA.debugLineNum = 135;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixbutton)(this);
- //BA.debugLineNum = 130;BA.debugLine="End Sub";
+ //BA.debugLineNum = 136;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

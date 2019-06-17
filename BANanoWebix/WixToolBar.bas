@@ -22,29 +22,20 @@ Sub Item As Map
 	Return ToolBar.item
 End Sub
 
-'add an element
-Sub AddItem(itm As Map) As WixToolBar
-	ToolBar.AddItem(itm)
+'add a button
+Sub AddButton(btn As WixButton) As WixToolBar
+	ToolBar.AddColumns(btn.item)
 	Return Me
 End Sub
 
 'add a spacer
 Sub AddSpacer As WixToolBar
-	ToolBar.AddItem(CreateMap())
+	ToolBar.AddColumnsSpacer
+	Return Me 
+End Sub
+
+'add a toggle
+Sub AddToggle(btn As WixToggle) As WixToolBar
+	ToolBar.AddColumns(btn.item)
 	Return Me
-End Sub
-
-'add to form
-Sub AddToForm(frm As WixForm)
-	frm.AddItem(Item)
-End Sub
-
-'add to toolbar
-Sub AddToToolbar(tblB As WixToolBar)
-	tblB.AddItem(Item)
-End Sub
-
-'add to row
-Sub AddToRow(r As WixRow)
-	r.AddItem(Item) 
 End Sub

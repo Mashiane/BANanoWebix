@@ -23,6 +23,7 @@ static {
  public static anywheresoftware.b4a.keywords.Common __c = null;
 public static b4j.example.wixpage _pg = null;
 public static b4j.example.main _main = null;
+public static b4j.example.pgmultiview _pgmultiview = null;
 public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts _pglayouts = null;
 public static b4j.example.pgforms1 _pgforms1 = null;

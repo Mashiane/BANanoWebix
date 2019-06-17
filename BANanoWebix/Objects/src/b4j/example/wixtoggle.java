@@ -33,6 +33,7 @@ public String _icon = "";
 public String _onicon = "";
 public String _officon = "";
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -42,17 +43,17 @@ public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
- //BA.debugLineNum = 30;BA.debugLine="Sub AddToForm(frm As WixForm)";
- //BA.debugLineNum = 31;BA.debugLine="frm.AddItem(Item)";
+ //BA.debugLineNum = 29;BA.debugLine="Sub AddToForm(frm As WixForm)";
+ //BA.debugLineNum = 30;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
- //BA.debugLineNum = 32;BA.debugLine="End Sub";
+ //BA.debugLineNum = 31;BA.debugLine="End Sub";
 return "";
 }
 public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 36;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 37;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
- //BA.debugLineNum = 38;BA.debugLine="End Sub";
+ //BA.debugLineNum = 34;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
+ //BA.debugLineNum = 35;BA.debugLine="tblB.ToolBar.AddColumns(Item)";
+_tblb._toolbar /*b4j.example.wixelement*/ ._addcolumns /*b4j.example.wixelement*/ (_item());
+ //BA.debugLineNum = 36;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -104,142 +105,142 @@ if (true) return (b4j.example.wixtoggle)(this);
  //BA.debugLineNum = 26;BA.debugLine="End Sub";
 return null;
 }
-public b4j.example.wixtoggle  _isicon(String _r) throws Exception{
- //BA.debugLineNum = 95;BA.debugLine="Sub IsIcon(r As String) As WixToggle";
- //BA.debugLineNum = 96;BA.debugLine="ButtonType = \"icon\"";
-_buttontype = "icon";
- //BA.debugLineNum = 97;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 98;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixtoggle  _isiconbuttontop(String _r) throws Exception{
- //BA.debugLineNum = 101;BA.debugLine="Sub IsIconButtonTop(r As String) As WixToggle";
- //BA.debugLineNum = 102;BA.debugLine="ButtonType = \"iconButtonTop\"";
-_buttontype = "iconButtonTop";
- //BA.debugLineNum = 103;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 104;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixtoggle  _isimage(String _r) throws Exception{
- //BA.debugLineNum = 89;BA.debugLine="Sub IsImage(r As String) As WixToggle";
- //BA.debugLineNum = 90;BA.debugLine="ButtonType = \"image\"";
-_buttontype = "image";
- //BA.debugLineNum = 91;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 92;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixtoggle  _isimagebutton(String _r) throws Exception{
- //BA.debugLineNum = 83;BA.debugLine="Sub IsImageButton(r As String) As WixToggle";
- //BA.debugLineNum = 84;BA.debugLine="ButtonType =  \"imageButton\"";
-_buttontype = "imageButton";
- //BA.debugLineNum = 85;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 86;BA.debugLine="End Sub";
-return null;
-}
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 119;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 120;BA.debugLine="Toggle.SetOnContent(\"icon\", Icon)";
+ //BA.debugLineNum = 117;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 118;BA.debugLine="Toggle.SetOnContent(\"icon\", Icon)";
 _toggle._setoncontent /*b4j.example.wixelement*/ ("icon",_icon);
- //BA.debugLineNum = 121;BA.debugLine="Toggle.SetOnContent(\"image\", ImageURL)";
+ //BA.debugLineNum = 119;BA.debugLine="Toggle.SetOnContent(\"image\", ImageURL)";
 _toggle._setoncontent /*b4j.example.wixelement*/ ("image",_imageurl);
- //BA.debugLineNum = 122;BA.debugLine="Toggle.TypeOf = ButtonType";
+ //BA.debugLineNum = 120;BA.debugLine="Toggle.TypeOf = ButtonType";
 _toggle._typeof /*String*/  = _buttontype;
- //BA.debugLineNum = 123;BA.debugLine="Toggle.SetOnContent(\"onLabel\", OnLabel)";
+ //BA.debugLineNum = 121;BA.debugLine="Toggle.SetOnContent(\"onLabel\", OnLabel)";
 _toggle._setoncontent /*b4j.example.wixelement*/ ("onLabel",_onlabel);
- //BA.debugLineNum = 124;BA.debugLine="Toggle.SetOnContent(\"offLabel\", OffLabel)";
+ //BA.debugLineNum = 122;BA.debugLine="Toggle.SetOnContent(\"offLabel\", OffLabel)";
 _toggle._setoncontent /*b4j.example.wixelement*/ ("offLabel",_offlabel);
- //BA.debugLineNum = 125;BA.debugLine="Toggle.SetOnContent(\"offIcon\", offIcon)";
+ //BA.debugLineNum = 123;BA.debugLine="Toggle.SetOnContent(\"offIcon\", offIcon)";
 _toggle._setoncontent /*b4j.example.wixelement*/ ("offIcon",_officon);
- //BA.debugLineNum = 126;BA.debugLine="Toggle.SetOnContent(\"onIcon\", onIcon)";
+ //BA.debugLineNum = 124;BA.debugLine="Toggle.SetOnContent(\"onIcon\", onIcon)";
 _toggle._setoncontent /*b4j.example.wixelement*/ ("onIcon",_onicon);
- //BA.debugLineNum = 127;BA.debugLine="Return Toggle.item";
+ //BA.debugLineNum = 125;BA.debugLine="Return Toggle.item";
 if (true) return _toggle._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 128;BA.debugLine="End Sub";
+ //BA.debugLineNum = 126;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixtoggle  _setheight(int _h) throws Exception{
- //BA.debugLineNum = 107;BA.debugLine="Sub SetHeight(h As Int) As WixToggle";
- //BA.debugLineNum = 108;BA.debugLine="Toggle.Height = h";
+ //BA.debugLineNum = 105;BA.debugLine="Sub SetHeight(h As Int) As WixToggle";
+ //BA.debugLineNum = 106;BA.debugLine="Toggle.Height = h";
 _toggle._height /*int*/  = _h;
- //BA.debugLineNum = 109;BA.debugLine="Return Me";
+ //BA.debugLineNum = 107;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 110;BA.debugLine="End Sub";
+ //BA.debugLineNum = 108;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixtoggle  _seticon(String _icn) throws Exception{
- //BA.debugLineNum = 59;BA.debugLine="Sub SetIcon(icn As String) As WixToggle";
- //BA.debugLineNum = 60;BA.debugLine="Icon = icn";
+ //BA.debugLineNum = 57;BA.debugLine="Sub SetIcon(icn As String) As WixToggle";
+ //BA.debugLineNum = 58;BA.debugLine="Icon = icn";
 _icon = _icn;
- //BA.debugLineNum = 61;BA.debugLine="Return Me";
+ //BA.debugLineNum = 59;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 62;BA.debugLine="End Sub";
+ //BA.debugLineNum = 60;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixtoggle  _setimage(String _img) throws Exception{
- //BA.debugLineNum = 53;BA.debugLine="Sub SetImage(img As String) As WixToggle";
- //BA.debugLineNum = 54;BA.debugLine="ImageURL = img";
+ //BA.debugLineNum = 51;BA.debugLine="Sub SetImage(img As String) As WixToggle";
+ //BA.debugLineNum = 52;BA.debugLine="ImageURL = img";
 _imageurl = _img;
- //BA.debugLineNum = 55;BA.debugLine="Return Me";
+ //BA.debugLineNum = 53;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 56;BA.debugLine="End Sub";
+ //BA.debugLineNum = 54;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixtoggle  _setlabel(String _lbl) throws Exception{
- //BA.debugLineNum = 77;BA.debugLine="Sub SetLabel(lbl As String) As WixToggle";
- //BA.debugLineNum = 78;BA.debugLine="Toggle.Label.Text = lbl";
+ //BA.debugLineNum = 75;BA.debugLine="Sub SetLabel(lbl As String) As WixToggle";
+ //BA.debugLineNum = 76;BA.debugLine="Toggle.Label.Text = lbl";
 _toggle._label /*b4j.example.wixelement._labeltype*/ .Text /*String*/  = _lbl;
- //BA.debugLineNum = 79;BA.debugLine="Return Me";
+ //BA.debugLineNum = 77;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 80;BA.debugLine="End Sub";
+ //BA.debugLineNum = 78;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixtoggle  _setofficon(String _icn) throws Exception{
- //BA.debugLineNum = 71;BA.debugLine="Sub SetOffIcon(icn As String) As WixToggle";
- //BA.debugLineNum = 72;BA.debugLine="offIcon = icn";
+ //BA.debugLineNum = 69;BA.debugLine="Sub SetOffIcon(icn As String) As WixToggle";
+ //BA.debugLineNum = 70;BA.debugLine="offIcon = icn";
 _officon = _icn;
- //BA.debugLineNum = 73;BA.debugLine="Return Me";
+ //BA.debugLineNum = 71;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 74;BA.debugLine="End Sub";
+ //BA.debugLineNum = 72;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixtoggle  _setofflabel(String _l) throws Exception{
- //BA.debugLineNum = 41;BA.debugLine="Sub SetOffLabel(l As String) As WixToggle";
- //BA.debugLineNum = 42;BA.debugLine="OffLabel = l";
+ //BA.debugLineNum = 39;BA.debugLine="Sub SetOffLabel(l As String) As WixToggle";
+ //BA.debugLineNum = 40;BA.debugLine="OffLabel = l";
 _offlabel = _l;
- //BA.debugLineNum = 43;BA.debugLine="Return Me";
+ //BA.debugLineNum = 41;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 44;BA.debugLine="End Sub";
+ //BA.debugLineNum = 42;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixtoggle  _setonicon(String _icn) throws Exception{
- //BA.debugLineNum = 65;BA.debugLine="Sub SetOnIcon(icn As String) As WixToggle";
- //BA.debugLineNum = 66;BA.debugLine="onIcon = icn";
+ //BA.debugLineNum = 63;BA.debugLine="Sub SetOnIcon(icn As String) As WixToggle";
+ //BA.debugLineNum = 64;BA.debugLine="onIcon = icn";
 _onicon = _icn;
- //BA.debugLineNum = 67;BA.debugLine="Return Me";
+ //BA.debugLineNum = 65;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 68;BA.debugLine="End Sub";
+ //BA.debugLineNum = 66;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixtoggle  _setonlabel(String _l) throws Exception{
- //BA.debugLineNum = 47;BA.debugLine="Sub SetOnLabel(l As String) As WixToggle";
- //BA.debugLineNum = 48;BA.debugLine="OnLabel = l";
+ //BA.debugLineNum = 45;BA.debugLine="Sub SetOnLabel(l As String) As WixToggle";
+ //BA.debugLineNum = 46;BA.debugLine="OnLabel = l";
 _onlabel = _l;
- //BA.debugLineNum = 49;BA.debugLine="Return Me";
+ //BA.debugLineNum = 47;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 50;BA.debugLine="End Sub";
+ //BA.debugLineNum = 48;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixtoggle  _settypeicon(String _r) throws Exception{
+ //BA.debugLineNum = 93;BA.debugLine="Sub SetTypeIcon(r As String) As WixToggle";
+ //BA.debugLineNum = 94;BA.debugLine="ButtonType = \"icon\"";
+_buttontype = "icon";
+ //BA.debugLineNum = 95;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixtoggle)(this);
+ //BA.debugLineNum = 96;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixtoggle  _settypeiconbuttontop(String _r) throws Exception{
+ //BA.debugLineNum = 99;BA.debugLine="Sub SetTypeIconButtonTop(r As String) As WixToggle";
+ //BA.debugLineNum = 100;BA.debugLine="ButtonType = \"iconButtonTop\"";
+_buttontype = "iconButtonTop";
+ //BA.debugLineNum = 101;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixtoggle)(this);
+ //BA.debugLineNum = 102;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixtoggle  _settypeimage(String _r) throws Exception{
+ //BA.debugLineNum = 87;BA.debugLine="Sub SetTypeImage(r As String) As WixToggle";
+ //BA.debugLineNum = 88;BA.debugLine="ButtonType = \"image\"";
+_buttontype = "image";
+ //BA.debugLineNum = 89;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixtoggle)(this);
+ //BA.debugLineNum = 90;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixtoggle  _settypeimagebutton(String _r) throws Exception{
+ //BA.debugLineNum = 81;BA.debugLine="Sub SetTypeImageButton(r As String) As WixToggle";
+ //BA.debugLineNum = 82;BA.debugLine="ButtonType =  \"imageButton\"";
+_buttontype = "imageButton";
+ //BA.debugLineNum = 83;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixtoggle)(this);
+ //BA.debugLineNum = 84;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixtoggle  _setwidth(int _w) throws Exception{
- //BA.debugLineNum = 113;BA.debugLine="Sub SetWidth(w As Int) As WixToggle";
- //BA.debugLineNum = 114;BA.debugLine="Toggle.Width = w";
+ //BA.debugLineNum = 111;BA.debugLine="Sub SetWidth(w As Int) As WixToggle";
+ //BA.debugLineNum = 112;BA.debugLine="Toggle.Width = w";
 _toggle._width /*int*/  = _w;
- //BA.debugLineNum = 115;BA.debugLine="Return Me";
+ //BA.debugLineNum = 113;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoggle)(this);
- //BA.debugLineNum = 116;BA.debugLine="End Sub";
+ //BA.debugLineNum = 114;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

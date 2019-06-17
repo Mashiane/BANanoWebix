@@ -28,6 +28,7 @@ public b4j.example.wixelement _datatable = null;
 public anywheresoftware.b4a.objects.collections.List _data = null;
 public boolean _autoconfig = false;
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -41,13 +42,6 @@ public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 39;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
  //BA.debugLineNum = 40;BA.debugLine="End Sub";
-return "";
-}
-public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 43;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 44;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
- //BA.debugLineNum = 45;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{

@@ -30,7 +30,7 @@ End Sub
 
 'add to toolbar
 Sub AddToToolbar(tblB As WixToolBar)
-	tblB.AddItem(Item)
+	tblB.ToolBar.AddColumns(Item)
 End Sub
 
 'set value
@@ -75,50 +75,56 @@ Sub SetLabel(lbl As String) As WixButton
 	Return Me
 End Sub
 
+'set type icon button
+Sub SetTypeIconButton(i As String) As WixButton
+	ButtonType = "iconButton"
+	Return Me
+End Sub
+
 'set image button
-Sub IsImageButton(r As String) As WixButton
+Sub SetTypeImageButton(r As String) As WixButton
 	ButtonType =  "imageButton"
 	Return Me
 End Sub
 
 'button type image	
-Sub IsImage(r As String) As WixButton
+Sub SetTypeImage(r As String) As WixButton
 	ButtonType = "image"
 	Return Me
 End Sub
 
 'button type icon
-Sub IsIcon(r As String) As WixButton
+Sub SetTypeIcon(r As String) As WixButton
 	ButtonType = "icon"
 	Return Me
 End Sub
 
 'button type iconbuttontop
-Sub IsIconButtonTop(r As String) As WixButton
+Sub SetTypeIconButtonTop(r As String) As WixButton
 	ButtonType = "iconButtonTop"
 	Return Me
 End Sub
 
 'is danger
-Sub IsDanger(r As String) As WixButton
+Sub SetTypeDanger(r As String) As WixButton
 	ButtonType = "danger"
 	Return Me
 End Sub
 
 'is form
-Sub IsForm(r As String) As WixButton
+Sub SetTypeForm(r As String) As WixButton
 	ButtonType = "form"
 	Return Me
 End Sub
 
 'is prev
-Sub IsPrev(r As String) As WixButton
+Sub SetTypePrev(r As String) As WixButton
 	ButtonType = "prev"
 	Return Me
 End Sub
 
 'is next
-Sub IsNext(r As String) As WixButton
+Sub SetTypeNext(r As String) As WixButton
 	ButtonType = "next"
 	Return Me
 End Sub

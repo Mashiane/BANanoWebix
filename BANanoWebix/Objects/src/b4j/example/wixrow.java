@@ -26,6 +26,7 @@ public class wixrow extends B4AClass.ImplB4AClass implements BA.SubDelegator{
 public b4j.example.wixelement _row = null;
 public String _id = "";
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -60,16 +61,9 @@ _frm._additem /*String*/ (_item());
 return "";
 }
 public String  _addtopage(b4j.example.wixpage _p) throws Exception{
- //BA.debugLineNum = 43;BA.debugLine="Sub AddToPage(p As WixPage)";
- //BA.debugLineNum = 44;BA.debugLine="p.Page.AddRows(Item)";
+ //BA.debugLineNum = 38;BA.debugLine="Sub AddToPage(p As WixPage)";
+ //BA.debugLineNum = 39;BA.debugLine="p.Page.AddRows(Item)";
 _p._page /*b4j.example.wixelement*/ ._addrows /*b4j.example.wixelement*/ (_item());
- //BA.debugLineNum = 45;BA.debugLine="End Sub";
-return "";
-}
-public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 38;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 39;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
  //BA.debugLineNum = 40;BA.debugLine="End Sub";
 return "";
 }

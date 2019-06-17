@@ -27,6 +27,7 @@ public String _id = "";
 public b4j.example.wixelement _menu = null;
 public anywheresoftware.b4a.objects.collections.List _data = null;
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -61,13 +62,6 @@ _frm._additem /*String*/ (_item());
  //BA.debugLineNum = 29;BA.debugLine="End Sub";
 return "";
 }
-public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 32;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 33;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
- //BA.debugLineNum = 34;BA.debugLine="End Sub";
-return "";
-}
 public String  _class_globals() throws Exception{
  //BA.debugLineNum = 2;BA.debugLine="Sub Class_Globals";
  //BA.debugLineNum = 3;BA.debugLine="Public ID As String";
@@ -94,19 +88,19 @@ if (true) return (b4j.example.wixmenu)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 37;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 38;BA.debugLine="Return Menu.item";
+ //BA.debugLineNum = 33;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 34;BA.debugLine="Return Menu.item";
 if (true) return _menu._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 39;BA.debugLine="End Sub";
+ //BA.debugLineNum = 35;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixmenu  _setselect(boolean _b) throws Exception{
- //BA.debugLineNum = 42;BA.debugLine="Sub SetSelect(b As Boolean) As WixMenu";
- //BA.debugLineNum = 43;BA.debugLine="Menu.SetProperty(\"select\", b)";
+ //BA.debugLineNum = 38;BA.debugLine="Sub SetSelect(b As Boolean) As WixMenu";
+ //BA.debugLineNum = 39;BA.debugLine="Menu.SetProperty(\"select\", b)";
 _menu._setproperty /*b4j.example.wixelement*/ ("select",(Object)(_b));
- //BA.debugLineNum = 44;BA.debugLine="Return Me";
+ //BA.debugLineNum = 40;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixmenu)(this);
- //BA.debugLineNum = 45;BA.debugLine="End Sub";
+ //BA.debugLineNum = 41;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

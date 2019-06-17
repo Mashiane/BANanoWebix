@@ -28,6 +28,7 @@ public b4j.example.wixelement _datetimepicker = null;
 public boolean _timepicker = false;
 public String _format = "";
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -41,13 +42,6 @@ public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 19;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
  //BA.debugLineNum = 20;BA.debugLine="End Sub";
-return "";
-}
-public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 23;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 24;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
- //BA.debugLineNum = 25;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -76,86 +70,86 @@ if (true) return (b4j.example.wixdatetimepicker)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 28;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 29;BA.debugLine="DateTimePicker.SetOnContent(\"format\", Format)";
+ //BA.debugLineNum = 24;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 25;BA.debugLine="DateTimePicker.SetOnContent(\"format\", Format)";
 _datetimepicker._setoncontent /*b4j.example.wixelement*/ ("format",_format);
- //BA.debugLineNum = 30;BA.debugLine="DateTimePicker.SetAttr(\"timepicker\",TimePicker)";
+ //BA.debugLineNum = 26;BA.debugLine="DateTimePicker.SetAttr(\"timepicker\",TimePicker)";
 _datetimepicker._setattr /*b4j.example.wixelement*/ ("timepicker",(Object)(_timepicker));
- //BA.debugLineNum = 31;BA.debugLine="Return DateTimePicker.item";
+ //BA.debugLineNum = 27;BA.debugLine="Return DateTimePicker.item";
 if (true) return _datetimepicker._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 32;BA.debugLine="End Sub";
+ //BA.debugLineNum = 28;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatetimepicker  _setformat(String _f) throws Exception{
- //BA.debugLineNum = 47;BA.debugLine="Sub SetFormat(f As String) As WixDateTimePicker";
- //BA.debugLineNum = 48;BA.debugLine="Format = f";
+ //BA.debugLineNum = 43;BA.debugLine="Sub SetFormat(f As String) As WixDateTimePicker";
+ //BA.debugLineNum = 44;BA.debugLine="Format = f";
 _format = _f;
- //BA.debugLineNum = 49;BA.debugLine="Return Me";
+ //BA.debugLineNum = 45;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatetimepicker)(this);
- //BA.debugLineNum = 50;BA.debugLine="End Sub";
+ //BA.debugLineNum = 46;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatetimepicker  _setlabel(String _l) throws Exception{
- //BA.debugLineNum = 41;BA.debugLine="Sub SetLabel(l As String) As WixDateTimePicker";
- //BA.debugLineNum = 42;BA.debugLine="DateTimePicker.Label.Text = l";
+ //BA.debugLineNum = 37;BA.debugLine="Sub SetLabel(l As String) As WixDateTimePicker";
+ //BA.debugLineNum = 38;BA.debugLine="DateTimePicker.Label.Text = l";
 _datetimepicker._label /*b4j.example.wixelement._labeltype*/ .Text /*String*/  = _l;
- //BA.debugLineNum = 43;BA.debugLine="Return Me";
+ //BA.debugLineNum = 39;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatetimepicker)(this);
- //BA.debugLineNum = 44;BA.debugLine="End Sub";
+ //BA.debugLineNum = 40;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatetimepicker  _setlabelalign(String _a) throws Exception{
- //BA.debugLineNum = 66;BA.debugLine="Sub SetLabelAlign(a As String) As WixDateTimePicke";
- //BA.debugLineNum = 67;BA.debugLine="DateTimePicker.Label.Align = a";
+ //BA.debugLineNum = 62;BA.debugLine="Sub SetLabelAlign(a As String) As WixDateTimePicke";
+ //BA.debugLineNum = 63;BA.debugLine="DateTimePicker.Label.Align = a";
 _datetimepicker._label /*b4j.example.wixelement._labeltype*/ .Align /*String*/  = _a;
- //BA.debugLineNum = 68;BA.debugLine="Return Me";
+ //BA.debugLineNum = 64;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatetimepicker)(this);
- //BA.debugLineNum = 69;BA.debugLine="End Sub";
+ //BA.debugLineNum = 65;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatetimepicker  _setlabelposition(String _p) throws Exception{
- //BA.debugLineNum = 72;BA.debugLine="Sub SetLabelPosition(p As String) As WixDateTimePi";
- //BA.debugLineNum = 73;BA.debugLine="DateTimePicker.Label.Position = p";
+ //BA.debugLineNum = 68;BA.debugLine="Sub SetLabelPosition(p As String) As WixDateTimePi";
+ //BA.debugLineNum = 69;BA.debugLine="DateTimePicker.Label.Position = p";
 _datetimepicker._label /*b4j.example.wixelement._labeltype*/ .Position /*String*/  = _p;
- //BA.debugLineNum = 74;BA.debugLine="Return Me";
+ //BA.debugLineNum = 70;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatetimepicker)(this);
- //BA.debugLineNum = 75;BA.debugLine="End Sub";
+ //BA.debugLineNum = 71;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatetimepicker  _setlabelwidth(int _w) throws Exception{
- //BA.debugLineNum = 78;BA.debugLine="Sub SetLabelWidth(w As Int) As WixDateTimePicker";
- //BA.debugLineNum = 79;BA.debugLine="DateTimePicker.Label.Width = w";
+ //BA.debugLineNum = 74;BA.debugLine="Sub SetLabelWidth(w As Int) As WixDateTimePicker";
+ //BA.debugLineNum = 75;BA.debugLine="DateTimePicker.Label.Width = w";
 _datetimepicker._label /*b4j.example.wixelement._labeltype*/ .Width /*int*/  = _w;
- //BA.debugLineNum = 80;BA.debugLine="Return Me";
+ //BA.debugLineNum = 76;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatetimepicker)(this);
- //BA.debugLineNum = 81;BA.debugLine="End Sub";
+ //BA.debugLineNum = 77;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatetimepicker  _settimepicker(boolean _t) throws Exception{
- //BA.debugLineNum = 53;BA.debugLine="Sub SetTimePicker(t As Boolean) As WixDateTimePick";
- //BA.debugLineNum = 54;BA.debugLine="TimePicker = t";
+ //BA.debugLineNum = 49;BA.debugLine="Sub SetTimePicker(t As Boolean) As WixDateTimePick";
+ //BA.debugLineNum = 50;BA.debugLine="TimePicker = t";
 _timepicker = _t;
- //BA.debugLineNum = 55;BA.debugLine="Return Me";
+ //BA.debugLineNum = 51;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatetimepicker)(this);
- //BA.debugLineNum = 56;BA.debugLine="End Sub";
+ //BA.debugLineNum = 52;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatetimepicker  _setvalue(String _v) throws Exception{
- //BA.debugLineNum = 35;BA.debugLine="Sub SetValue(v As String) As WixDateTimePicker";
- //BA.debugLineNum = 36;BA.debugLine="DateTimePicker.Value = v";
+ //BA.debugLineNum = 31;BA.debugLine="Sub SetValue(v As String) As WixDateTimePicker";
+ //BA.debugLineNum = 32;BA.debugLine="DateTimePicker.Value = v";
 _datetimepicker._value /*Object*/  = (Object)(_v);
- //BA.debugLineNum = 37;BA.debugLine="Return Me";
+ //BA.debugLineNum = 33;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatetimepicker)(this);
- //BA.debugLineNum = 38;BA.debugLine="End Sub";
+ //BA.debugLineNum = 34;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatetimepicker  _setwidth(int _w) throws Exception{
- //BA.debugLineNum = 59;BA.debugLine="Sub SetWidth(w As Int) As WixDateTimePicker";
- //BA.debugLineNum = 60;BA.debugLine="DateTimePicker.Width = w";
+ //BA.debugLineNum = 55;BA.debugLine="Sub SetWidth(w As Int) As WixDateTimePicker";
+ //BA.debugLineNum = 56;BA.debugLine="DateTimePicker.Width = w";
 _datetimepicker._width /*int*/  = _w;
- //BA.debugLineNum = 61;BA.debugLine="Return Me";
+ //BA.debugLineNum = 57;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatetimepicker)(this);
- //BA.debugLineNum = 62;BA.debugLine="End Sub";
+ //BA.debugLineNum = 58;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

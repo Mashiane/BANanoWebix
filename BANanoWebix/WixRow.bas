@@ -40,11 +40,6 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
-'add to toolbar
-Sub AddToToolbar(tblB As WixToolBar)
-	tblB.AddItem(Item)
-End Sub
-
 'add to page
 Sub AddToPage(p As WixPage)
 	p.Page.AddRows(Item)

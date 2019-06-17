@@ -45,6 +45,7 @@ public static com.ab.banano.BANano _banano = null;
 public static String _appname = "";
 public static String _publish = "";
 public static b4j.example.bananopostprocessor _bp = null;
+public static b4j.example.pgmultiview _pgmultiview = null;
 public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
@@ -113,9 +114,9 @@ return "";
 }
 public static String  _banano_ready() throws Exception{
  //BA.debugLineNum = 47;BA.debugLine="Sub BANano_Ready()";
- //BA.debugLineNum = 55;BA.debugLine="pgLayouts2.Init";
-_pglayouts2._init /*String*/ ();
- //BA.debugLineNum = 57;BA.debugLine="End Sub";
+ //BA.debugLineNum = 57;BA.debugLine="pgMultiView.init";
+_pgmultiview._init /*String*/ ();
+ //BA.debugLineNum = 59;BA.debugLine="End Sub";
 return "";
 }
 
@@ -126,6 +127,7 @@ public static void initializeProcessGlobals() {
 	    main.processGlobalsRun = true;
 		try {
 		        main._process_globals();
+pgmultiview._process_globals();
 pglayouts1._process_globals();
 pglayouts2._process_globals();
 pglayouts._process_globals();

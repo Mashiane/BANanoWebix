@@ -30,10 +30,10 @@ Sub Init()
 	tblBar.Initialize("tblBar")
 	'
 	Dim btnSave As WixButton
-	btnSave.Initialize("btnSave").SetLabel("Save").IsForm("").SetWidth(70).SetClick(BANano.CallBack(Me,"save_row",Null)).AddToToolbar(tblBar) 
+	btnSave.Initialize("btnSave").SetLabel("Save").SetTypeForm("").SetWidth(70).SetClick(BANano.CallBack(Me,"save_row",Null)).AddToToolbar(tblBar) 
 	'
 	Dim btnDelete As WixButton
-	btnDelete.Initialize("btnDelete").IsDanger("").SetLabel("Delete").SetWidth(70).SetClick(BANano.CallBack(Me,"delete_row",Null)).AddToToolbar(tblBar)
+	btnDelete.Initialize("btnDelete").SetTypeDanger("").SetLabel("Delete").SetWidth(70).SetClick(BANano.CallBack(Me,"delete_row",Null)).AddToToolbar(tblBar)
 	'
 	Dim btnClear As WixButton
 	btnClear.Initialize("btnClear").SetLabel("Clear").SetWidth(100).SetClick(BANano.CallBack(Me,"clear_form",Null)).AddToToolbar(tblBar)
@@ -61,7 +61,7 @@ Sub Init()
 '	Dim bNext As WixButton
 '	bNext.Initialize("btnNext").IsNext("").AddToToolbar(tblBar) 
 	'
-	tblBar.AddToRow(R1)
+	tblBar.Toolbar.AddToRow(R1)
 	'add rows to the page
 	R1.AddToPage(pg)
 	

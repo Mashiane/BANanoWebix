@@ -26,6 +26,7 @@ public class wixresizer extends B4AClass.ImplB4AClass implements BA.SubDelegator
 public String _id = "";
 public b4j.example.wixelement _resizer = null;
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -35,10 +36,10 @@ public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public String  _addtocolumns(b4j.example.wixelement _parent) throws Exception{
- //BA.debugLineNum = 30;BA.debugLine="Sub AddToColumns(parent As WixElement)";
- //BA.debugLineNum = 31;BA.debugLine="parent.AddColumns(Item)";
+ //BA.debugLineNum = 25;BA.debugLine="Sub AddToColumns(parent As WixElement)";
+ //BA.debugLineNum = 26;BA.debugLine="parent.AddColumns(Item)";
 _parent._addcolumns /*b4j.example.wixelement*/ (_item());
- //BA.debugLineNum = 32;BA.debugLine="End Sub";
+ //BA.debugLineNum = 27;BA.debugLine="End Sub";
 return "";
 }
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
@@ -46,13 +47,6 @@ public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 16;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
  //BA.debugLineNum = 17;BA.debugLine="End Sub";
-return "";
-}
-public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 20;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 21;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
- //BA.debugLineNum = 22;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -77,10 +71,10 @@ if (true) return (b4j.example.wixresizer)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 25;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 26;BA.debugLine="Return Resizer.item";
+ //BA.debugLineNum = 20;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 21;BA.debugLine="Return Resizer.item";
 if (true) return _resizer._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 27;BA.debugLine="End Sub";
+ //BA.debugLineNum = 22;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

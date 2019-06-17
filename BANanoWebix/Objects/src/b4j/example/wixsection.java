@@ -26,6 +26,7 @@ public class wixsection extends B4AClass.ImplB4AClass implements BA.SubDelegator
 public String _id = "";
 public b4j.example.wixelement _section = null;
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -43,8 +44,8 @@ return "";
 }
 public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
  //BA.debugLineNum = 45;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 46;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
+ //BA.debugLineNum = 46;BA.debugLine="tblB.Toolbar.AddItem(Item)";
+_tblb._toolbar /*b4j.example.wixelement*/ ._additem /*b4j.example.wixelement*/ (_item());
  //BA.debugLineNum = 47;BA.debugLine="End Sub";
 return "";
 }

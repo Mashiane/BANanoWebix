@@ -34,11 +34,6 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
-'add to toolbar
-Sub AddToToolbar(tblB As WixToolBar)
-	tblB.AddItem(Item)
-End Sub
-
 'set options
 Sub SetOptions(opt As List) As WixRadio
 	Options = opt

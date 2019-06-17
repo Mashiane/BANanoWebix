@@ -30,6 +30,8 @@ Sub Class_Globals
 	Public CSS As String
 	Public Header As String
 	Public Body As String
+	Private Styles As Map
+	Private Cells As List
 End Sub
 
 'initialize the element
@@ -37,7 +39,9 @@ Public Sub Initialize(sID As String) As WixElement
 	ID = sID.ToLowerCase
 	Template = ""
 	Width = 0
+	Cells.Initialize 
 	Height = 0
+	Styles.Initialize 
 	Element = CreateMap("id":ID)
 	Value = ""
 	Name = ID
@@ -61,6 +65,12 @@ Public Sub Initialize(sID As String) As WixElement
 	Header = ""
 	Body = ""
 	HTMLAttributes.Initialize 
+	Return Me
+End Sub
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixElement
+	Styles.Put(prop,val)
 	Return Me
 End Sub
 
@@ -148,6 +158,12 @@ Sub SetView(v As String) As WixElement
 	Return Me
 End Sub
 
+'setvalue
+Sub SetValue(v As String) As WixElement
+	Value = v
+	Return Me
+End Sub
+
 'set type
 Sub SetType(t As String) As WixElement
 	TypeOf = t
@@ -186,6 +202,10 @@ End Sub
 
 'return the object
 Sub Item As Map
+	For Each attr As String In Attributes.Keys
+		Dim strVal As Object = Attributes.Get(attr)
+		Element.Put(attr,strVal)
+	Next
 	SetOnCondition(Height,"height",Height)
 	SetOnCondition(Width, "width", Width)
 	SetOnContent("body", Body)
@@ -207,17 +227,17 @@ Sub Item As Map
 	SetOnCondition(Columns.Size,"cols", Columns)
 	SetOnCondition(Rows.Size, "rows", Rows)
 	SetOnCondition(Elements.Size, "elements", Elements)
+	SetOnCondition(Cells.Size, "cells", Cells)
 	SetOnCondition(inputWidth,"inputWidth",inputWidth)
-	For Each attr As String In Attributes.Keys
-		Dim strVal As Object = Attributes.Get(attr)
-		Element.Put(attr,strVal)
-	Next
-	'do we have HTMLAttributes
-	Dim hSize As Int = HTMLAttributes.Size - 1
-	If hSize <> -1 Then
-		Element.Put("attributes", HTMLAttributes)
-	End If
+	SetOnCondition(HTMLAttributes.Size, "attributes", HTMLAttributes)
+	SetOnCondition(Styles.Size, "css", Styles)
 	Return Element
+End Sub
+
+'set multi view
+Sub SetMultiView(b As Boolean) As WixElement
+	SetProperty("multiview", b)
+	Return Me
 End Sub
 
 'set icon
@@ -255,6 +275,29 @@ End Sub
 'add item to a column
 Sub AddColumns(itm As Map) As WixElement
 	Columns.Add(itm)
+	Return Me
+End Sub
+
+'add item to cells
+Sub AddCells(itm As Map) As WixElement
+	Cells.Add(itm)
+	Return Me
+End Sub
+
+'add rows cells
+Sub AddRowsCells(mCells As List) As WixElement
+	Dim opt As Map = CreateMap()
+	opt.Put("cells", mCells)
+	AddRows(opt)
+	Return Me
+End Sub
+
+
+'add rows cells
+Sub AddColumnsCells(mCells As List) As WixElement
+	Dim opt As Map = CreateMap()
+	opt.Put("cells", mCells)
+	AddColumns(opt)
 	Return Me
 End Sub
 

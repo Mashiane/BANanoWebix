@@ -28,11 +28,6 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
-'add to toolbar
-Sub AddToToolbar(tblB As WixToolBar)
-	tblB.AddItem(Item)
-End Sub
-
 'set value
 Sub SetValue(v As String) As WixColorPicker
 	ColorPicker.Value = v

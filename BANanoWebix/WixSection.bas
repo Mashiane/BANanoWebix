@@ -49,5 +49,5 @@ End Sub
 
 'add to toolbar
 Sub AddToToolbar(tblB As WixToolBar)
-	tblB.AddItem(Item)
+	tblB.Toolbar.AddItem(Item)
 End Sub

@@ -28,6 +28,7 @@ public b4j.example.wixelement _icon = null;
 public com.ab.banano.BANanoObject _onclick = null;
 public String _iconname = "";
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -45,8 +46,8 @@ return "";
 }
 public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
  //BA.debugLineNum = 24;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 25;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
+ //BA.debugLineNum = 25;BA.debugLine="tblB.Toolbar.AddColumns(Item)";
+_tblb._toolbar /*b4j.example.wixelement*/ ._addcolumns /*b4j.example.wixelement*/ (_item());
  //BA.debugLineNum = 26;BA.debugLine="End Sub";
 return "";
 }

@@ -26,6 +26,7 @@ public class wixtoolbar extends B4AClass.ImplB4AClass implements BA.SubDelegator
 public String _id = "";
 public b4j.example.wixelement _toolbar = null;
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -34,10 +35,10 @@ public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.wixtoolbar  _additem(anywheresoftware.b4a.objects.collections.Map _itm) throws Exception{
- //BA.debugLineNum = 20;BA.debugLine="Sub AddItem(itm As Map) As WixToolBar";
- //BA.debugLineNum = 21;BA.debugLine="ToolBar.AddItem(itm)";
-_toolbar._additem /*b4j.example.wixelement*/ (_itm);
+public b4j.example.wixtoolbar  _addbutton(b4j.example.wixbutton _btn) throws Exception{
+ //BA.debugLineNum = 20;BA.debugLine="Sub AddButton(btn As WixButton) As WixToolBar";
+ //BA.debugLineNum = 21;BA.debugLine="ToolBar.AddColumns(btn.item)";
+_toolbar._addcolumns /*b4j.example.wixelement*/ (_btn._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
  //BA.debugLineNum = 22;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoolbar)(this);
  //BA.debugLineNum = 23;BA.debugLine="End Sub";
@@ -45,33 +46,21 @@ return null;
 }
 public b4j.example.wixtoolbar  _addspacer() throws Exception{
  //BA.debugLineNum = 26;BA.debugLine="Sub AddSpacer As WixToolBar";
- //BA.debugLineNum = 27;BA.debugLine="ToolBar.AddItem(CreateMap())";
-_toolbar._additem /*b4j.example.wixelement*/ (__c.createMap(new Object[] {}));
+ //BA.debugLineNum = 27;BA.debugLine="ToolBar.AddColumnsSpacer";
+_toolbar._addcolumnsspacer /*String*/ ();
  //BA.debugLineNum = 28;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixtoolbar)(this);
  //BA.debugLineNum = 29;BA.debugLine="End Sub";
 return null;
 }
-public String  _addtoform(b4j.example.wixform _frm) throws Exception{
- //BA.debugLineNum = 32;BA.debugLine="Sub AddToForm(frm As WixForm)";
- //BA.debugLineNum = 33;BA.debugLine="frm.AddItem(Item)";
-_frm._additem /*String*/ (_item());
- //BA.debugLineNum = 34;BA.debugLine="End Sub";
-return "";
-}
-public String  _addtorow(b4j.example.wixrow _r) throws Exception{
- //BA.debugLineNum = 42;BA.debugLine="Sub AddToRow(r As WixRow)";
- //BA.debugLineNum = 43;BA.debugLine="r.AddItem(Item)";
-_r._additem /*b4j.example.wixrow*/ (_item());
- //BA.debugLineNum = 44;BA.debugLine="End Sub";
-return "";
-}
-public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 37;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 38;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
- //BA.debugLineNum = 39;BA.debugLine="End Sub";
-return "";
+public b4j.example.wixtoolbar  _addtoggle(b4j.example.wixtoggle _btn) throws Exception{
+ //BA.debugLineNum = 32;BA.debugLine="Sub AddToggle(btn As WixToggle) As WixToolBar";
+ //BA.debugLineNum = 33;BA.debugLine="ToolBar.AddColumns(btn.item)";
+_toolbar._addcolumns /*b4j.example.wixelement*/ (_btn._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
+ //BA.debugLineNum = 34;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixtoolbar)(this);
+ //BA.debugLineNum = 35;BA.debugLine="End Sub";
+return null;
 }
 public String  _class_globals() throws Exception{
  //BA.debugLineNum = 2;BA.debugLine="Sub Class_Globals";

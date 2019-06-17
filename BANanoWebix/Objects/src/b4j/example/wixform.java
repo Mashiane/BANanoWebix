@@ -29,6 +29,7 @@ public com.ab.banano.BANanoObject _dollar = null;
 public b4j.example.wixpage _page = null;
 public anywheresoftware.b4a.objects.collections.Map _elementsconfig = null;
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -38,10 +39,10 @@ public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public String  _additem(anywheresoftware.b4a.objects.collections.Map _itm) throws Exception{
- //BA.debugLineNum = 88;BA.debugLine="Sub AddItem(itm As Map)";
- //BA.debugLineNum = 89;BA.debugLine="Form.AddItem(itm)";
+ //BA.debugLineNum = 83;BA.debugLine="Sub AddItem(itm As Map)";
+ //BA.debugLineNum = 84;BA.debugLine="Form.AddItem(itm)";
 _form._additem /*b4j.example.wixelement*/ (_itm);
- //BA.debugLineNum = 90;BA.debugLine="End Sub";
+ //BA.debugLineNum = 85;BA.debugLine="End Sub";
 return "";
 }
 public String  _addtocolumn(b4j.example.wixcolumn _c) throws Exception{
@@ -56,13 +57,6 @@ public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 51;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
  //BA.debugLineNum = 52;BA.debugLine="End Sub";
-return "";
-}
-public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 55;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 56;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
- //BA.debugLineNum = 57;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -81,21 +75,21 @@ _elementsconfig = new anywheresoftware.b4a.objects.collections.Map();
 return "";
 }
 public String  _clear() throws Exception{
- //BA.debugLineNum = 78;BA.debugLine="Sub Clear";
- //BA.debugLineNum = 79;BA.debugLine="Dollar.Selector(ID).RunMethod(\"clear\",Null)";
+ //BA.debugLineNum = 73;BA.debugLine="Sub Clear";
+ //BA.debugLineNum = 74;BA.debugLine="Dollar.Selector(ID).RunMethod(\"clear\",Null)";
 _dollar.Selector((Object)(_id)).RunMethod("clear",__c.Null);
- //BA.debugLineNum = 80;BA.debugLine="End Sub";
+ //BA.debugLineNum = 75;BA.debugLine="End Sub";
 return "";
 }
 public anywheresoftware.b4a.objects.collections.Map  _getvalues() throws Exception{
 anywheresoftware.b4a.objects.collections.Map _values = null;
- //BA.debugLineNum = 72;BA.debugLine="Sub GetValues() As Map";
- //BA.debugLineNum = 73;BA.debugLine="Dim values As Map = Dollar.Selector(ID).RunMethod";
+ //BA.debugLineNum = 67;BA.debugLine="Sub GetValues() As Map";
+ //BA.debugLineNum = 68;BA.debugLine="Dim values As Map = Dollar.Selector(ID).RunMethod";
 _values = new anywheresoftware.b4a.objects.collections.Map();
 _values.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(_dollar.Selector((Object)(_id)).RunMethod("getValues",__c.Null).Result()));
- //BA.debugLineNum = 74;BA.debugLine="Return values";
+ //BA.debugLineNum = 69;BA.debugLine="Return values";
 if (true) return _values;
- //BA.debugLineNum = 75;BA.debugLine="End Sub";
+ //BA.debugLineNum = 70;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixform  _initialize(anywheresoftware.b4a.BA _ba,b4j.example.wixpage _pg,String _fid) throws Exception{
@@ -117,12 +111,12 @@ if (true) return (b4j.example.wixform)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 66;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 67;BA.debugLine="Form.SetAttr(\"elementsConfig\", elementsConfig)";
+ //BA.debugLineNum = 61;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 62;BA.debugLine="Form.SetAttr(\"elementsConfig\", elementsConfig)";
 _form._setattr /*b4j.example.wixelement*/ ("elementsConfig",(Object)(_elementsconfig.getObject()));
- //BA.debugLineNum = 68;BA.debugLine="Return Form.item";
+ //BA.debugLineNum = 63;BA.debugLine="Return Form.item";
 if (true) return _form._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 69;BA.debugLine="End Sub";
+ //BA.debugLineNum = 64;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixform  _setdefaultalign(String _a) throws Exception{
@@ -162,19 +156,19 @@ if (true) return (b4j.example.wixform)(this);
 return null;
 }
 public String  _setvalues(anywheresoftware.b4a.objects.collections.Map _values) throws Exception{
- //BA.debugLineNum = 83;BA.debugLine="Sub SetValues(values As Map)";
- //BA.debugLineNum = 84;BA.debugLine="Dollar.Selector(ID).RunMethod(\"setValues\",Array(v";
+ //BA.debugLineNum = 78;BA.debugLine="Sub SetValues(values As Map)";
+ //BA.debugLineNum = 79;BA.debugLine="Dollar.Selector(ID).RunMethod(\"setValues\",Array(v";
 _dollar.Selector((Object)(_id)).RunMethod("setValues",(Object)(new Object[]{(Object)(_values.getObject())}));
- //BA.debugLineNum = 85;BA.debugLine="End Sub";
+ //BA.debugLineNum = 80;BA.debugLine="End Sub";
 return "";
 }
 public b4j.example.wixform  _setwidth(int _w) throws Exception{
- //BA.debugLineNum = 60;BA.debugLine="Sub SetWidth(w As Int) As WixForm";
- //BA.debugLineNum = 61;BA.debugLine="Form.Width = w";
+ //BA.debugLineNum = 55;BA.debugLine="Sub SetWidth(w As Int) As WixForm";
+ //BA.debugLineNum = 56;BA.debugLine="Form.Width = w";
 _form._width /*int*/  = _w;
- //BA.debugLineNum = 62;BA.debugLine="Return Me";
+ //BA.debugLineNum = 57;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixform)(this);
- //BA.debugLineNum = 63;BA.debugLine="End Sub";
+ //BA.debugLineNum = 58;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

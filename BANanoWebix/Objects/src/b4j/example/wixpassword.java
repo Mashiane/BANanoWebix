@@ -26,6 +26,7 @@ public class wixpassword extends B4AClass.ImplB4AClass implements BA.SubDelegato
 public String _id = "";
 public b4j.example.wixtextbox _password = null;
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -39,13 +40,6 @@ public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 22;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
  //BA.debugLineNum = 23;BA.debugLine="End Sub";
-return "";
-}
-public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 26;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 27;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
- //BA.debugLineNum = 28;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -77,84 +71,84 @@ if (true) return _password._item /*anywheresoftware.b4a.objects.collections.Map*
 return null;
 }
 public b4j.example.wixpassword  _setalign(String _a) throws Exception{
- //BA.debugLineNum = 62;BA.debugLine="Sub SetAlign(a As String) As WixPassword";
- //BA.debugLineNum = 63;BA.debugLine="Password.SetAlign(a)";
+ //BA.debugLineNum = 57;BA.debugLine="Sub SetAlign(a As String) As WixPassword";
+ //BA.debugLineNum = 58;BA.debugLine="Password.SetAlign(a)";
 _password._setalign /*b4j.example.wixtextbox*/ (_a);
- //BA.debugLineNum = 64;BA.debugLine="Return Me";
+ //BA.debugLineNum = 59;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixpassword)(this);
- //BA.debugLineNum = 65;BA.debugLine="End Sub";
+ //BA.debugLineNum = 60;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixpassword  _setheight(int _h) throws Exception{
- //BA.debugLineNum = 56;BA.debugLine="Sub SetHeight(h As Int) As WixPassword";
- //BA.debugLineNum = 57;BA.debugLine="Password.SetHeight(h)";
+ //BA.debugLineNum = 51;BA.debugLine="Sub SetHeight(h As Int) As WixPassword";
+ //BA.debugLineNum = 52;BA.debugLine="Password.SetHeight(h)";
 _password._setheight /*b4j.example.wixtextbox*/ (_h);
- //BA.debugLineNum = 58;BA.debugLine="Return Me";
+ //BA.debugLineNum = 53;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixpassword)(this);
- //BA.debugLineNum = 59;BA.debugLine="End Sub";
+ //BA.debugLineNum = 54;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixpassword  _setlabel(String _lbl) throws Exception{
- //BA.debugLineNum = 44;BA.debugLine="Sub SetLabel(lbl As String) As WixPassword";
- //BA.debugLineNum = 45;BA.debugLine="Password.SetLabel(lbl)";
+ //BA.debugLineNum = 39;BA.debugLine="Sub SetLabel(lbl As String) As WixPassword";
+ //BA.debugLineNum = 40;BA.debugLine="Password.SetLabel(lbl)";
 _password._setlabel /*b4j.example.wixtextbox*/ (_lbl);
- //BA.debugLineNum = 46;BA.debugLine="Return Me";
+ //BA.debugLineNum = 41;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixpassword)(this);
- //BA.debugLineNum = 47;BA.debugLine="End Sub";
+ //BA.debugLineNum = 42;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixpassword  _setlabelalign(String _a) throws Exception{
- //BA.debugLineNum = 69;BA.debugLine="Sub SetLabelAlign(a As String) As WixPassword";
- //BA.debugLineNum = 70;BA.debugLine="Password.SetLabelAlign(a)";
+ //BA.debugLineNum = 64;BA.debugLine="Sub SetLabelAlign(a As String) As WixPassword";
+ //BA.debugLineNum = 65;BA.debugLine="Password.SetLabelAlign(a)";
 _password._setlabelalign /*b4j.example.wixtextbox*/ (_a);
- //BA.debugLineNum = 71;BA.debugLine="Return Me";
+ //BA.debugLineNum = 66;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixpassword)(this);
- //BA.debugLineNum = 72;BA.debugLine="End Sub";
+ //BA.debugLineNum = 67;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixpassword  _setlabelposition(String _p) throws Exception{
- //BA.debugLineNum = 75;BA.debugLine="Sub SetLabelPosition(p As String) As WixPassword";
- //BA.debugLineNum = 76;BA.debugLine="Password.SetLabelPosition(p)";
+ //BA.debugLineNum = 70;BA.debugLine="Sub SetLabelPosition(p As String) As WixPassword";
+ //BA.debugLineNum = 71;BA.debugLine="Password.SetLabelPosition(p)";
 _password._setlabelposition /*b4j.example.wixtextbox*/ (_p);
- //BA.debugLineNum = 77;BA.debugLine="Return Me";
+ //BA.debugLineNum = 72;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixpassword)(this);
- //BA.debugLineNum = 78;BA.debugLine="End Sub";
+ //BA.debugLineNum = 73;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixpassword  _setlabelwidth(int _w) throws Exception{
- //BA.debugLineNum = 81;BA.debugLine="Sub SetLabelWidth(w As Int) As WixPassword";
- //BA.debugLineNum = 82;BA.debugLine="Password.SetLabelWidth(w)";
+ //BA.debugLineNum = 76;BA.debugLine="Sub SetLabelWidth(w As Int) As WixPassword";
+ //BA.debugLineNum = 77;BA.debugLine="Password.SetLabelWidth(w)";
 _password._setlabelwidth /*b4j.example.wixtextbox*/ (_w);
- //BA.debugLineNum = 83;BA.debugLine="Return Me";
+ //BA.debugLineNum = 78;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixpassword)(this);
- //BA.debugLineNum = 84;BA.debugLine="End Sub";
+ //BA.debugLineNum = 79;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixpassword  _setmaxlength(int _ml) throws Exception{
- //BA.debugLineNum = 32;BA.debugLine="Sub SetMaxLength(ml As Int) As WixPassword";
- //BA.debugLineNum = 33;BA.debugLine="Password.SetMaxLength(ml)";
+ //BA.debugLineNum = 27;BA.debugLine="Sub SetMaxLength(ml As Int) As WixPassword";
+ //BA.debugLineNum = 28;BA.debugLine="Password.SetMaxLength(ml)";
 _password._setmaxlength /*b4j.example.wixtextbox*/ (_ml);
- //BA.debugLineNum = 34;BA.debugLine="Return Me";
+ //BA.debugLineNum = 29;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixpassword)(this);
- //BA.debugLineNum = 35;BA.debugLine="End Sub";
+ //BA.debugLineNum = 30;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixpassword  _setplaceholder(String _ph) throws Exception{
- //BA.debugLineNum = 38;BA.debugLine="Sub SetPlaceHolder(ph As String) As WixPassword";
- //BA.debugLineNum = 39;BA.debugLine="Password.SetPlaceHolder(ph)";
+ //BA.debugLineNum = 33;BA.debugLine="Sub SetPlaceHolder(ph As String) As WixPassword";
+ //BA.debugLineNum = 34;BA.debugLine="Password.SetPlaceHolder(ph)";
 _password._setplaceholder /*b4j.example.wixtextbox*/ (_ph);
- //BA.debugLineNum = 40;BA.debugLine="Return Me";
+ //BA.debugLineNum = 35;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixpassword)(this);
- //BA.debugLineNum = 41;BA.debugLine="End Sub";
+ //BA.debugLineNum = 36;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixpassword  _setwidth(int _w) throws Exception{
- //BA.debugLineNum = 50;BA.debugLine="Sub SetWidth(w As Int) As WixPassword";
- //BA.debugLineNum = 51;BA.debugLine="Password.SetWidth(w)";
+ //BA.debugLineNum = 45;BA.debugLine="Sub SetWidth(w As Int) As WixPassword";
+ //BA.debugLineNum = 46;BA.debugLine="Password.SetWidth(w)";
 _password._setwidth /*b4j.example.wixtextbox*/ (_w);
- //BA.debugLineNum = 52;BA.debugLine="Return Me";
+ //BA.debugLineNum = 47;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixpassword)(this);
- //BA.debugLineNum = 53;BA.debugLine="End Sub";
+ //BA.debugLineNum = 48;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

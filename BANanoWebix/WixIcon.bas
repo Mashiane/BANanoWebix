@@ -28,7 +28,7 @@ End Sub
 
 'add to toolbar
 Sub AddToToolbar(tblB As WixToolBar)
-	tblB.AddItem(Item)
+	tblB.Toolbar.AddColumns(Item)
 End Sub
 
 'set icon

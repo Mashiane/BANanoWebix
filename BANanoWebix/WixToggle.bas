@@ -31,16 +31,14 @@ Public Sub Initialize(iID As String) As WixToggle
 	Return Me
 End Sub
 
-
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
-
 'add to toolbar
 Sub AddToToolbar(tblB As WixToolBar)
-	tblB.AddItem(Item)
+	tblB.ToolBar.AddColumns(Item)
 End Sub
 
 'set off label
@@ -86,25 +84,25 @@ Sub SetLabel(lbl As String) As WixToggle
 End Sub
 
 'set image button
-Sub IsImageButton(r As String) As WixToggle
+Sub SetTypeImageButton(r As String) As WixToggle
 	ButtonType =  "imageButton"
 	Return Me
 End Sub
 
 'button type image	
-Sub IsImage(r As String) As WixToggle
+Sub SetTypeImage(r As String) As WixToggle
 	ButtonType = "image"
 	Return Me
 End Sub
 
 'button type icon
-Sub IsIcon(r As String) As WixToggle
+Sub SetTypeIcon(r As String) As WixToggle
 	ButtonType = "icon"
 	Return Me
 End Sub
 
 'button type icon button top
-Sub IsIconButtonTop(r As String) As WixToggle
+Sub SetTypeIconButtonTop(r As String) As WixToggle
 	ButtonType = "iconButtonTop"
 	Return Me
 End Sub

@@ -30,6 +30,7 @@ public int _ycount = 0;
 public com.ab.banano.BANanoObject _onchange = null;
 public com.ab.banano.BANanoObject _dollar = null;
 public b4j.example.main _main = null;
+public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
@@ -39,12 +40,12 @@ public b4j.example.pgindex _pgindex = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public b4j.example.wixcombo  _addoption(String _optid,String _optvalue) throws Exception{
- //BA.debugLineNum = 69;BA.debugLine="Sub AddOption(optID As String, optValue As String)";
- //BA.debugLineNum = 70;BA.debugLine="Options.Add(CreateMap(\"id\":optID,\"value\":optValue";
+ //BA.debugLineNum = 64;BA.debugLine="Sub AddOption(optID As String, optValue As String)";
+ //BA.debugLineNum = 65;BA.debugLine="Options.Add(CreateMap(\"id\":optID,\"value\":optValue";
 _options.Add((Object)(__c.createMap(new Object[] {(Object)("id"),(Object)(_optid),(Object)("value"),(Object)(_optvalue)}).getObject()));
- //BA.debugLineNum = 71;BA.debugLine="Return Me";
+ //BA.debugLineNum = 66;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixcombo)(this);
- //BA.debugLineNum = 72;BA.debugLine="End Sub";
+ //BA.debugLineNum = 67;BA.debugLine="End Sub";
 return null;
 }
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
@@ -52,13 +53,6 @@ public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 35;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
  //BA.debugLineNum = 36;BA.debugLine="End Sub";
-return "";
-}
-public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 39;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 40;BA.debugLine="tblB.AddItem(Item)";
-_tblb._additem /*b4j.example.wixtoolbar*/ (_item());
- //BA.debugLineNum = 41;BA.debugLine="End Sub";
 return "";
 }
 public String  _attachonchangeevent() throws Exception{
@@ -87,14 +81,14 @@ return "";
 }
 public String  _getselected() throws Exception{
 String _res = "";
- //BA.debugLineNum = 117;BA.debugLine="Sub GetSelected() As String";
- //BA.debugLineNum = 118;BA.debugLine="Dim res As String";
+ //BA.debugLineNum = 112;BA.debugLine="Sub GetSelected() As String";
+ //BA.debugLineNum = 113;BA.debugLine="Dim res As String";
 _res = "";
- //BA.debugLineNum = 119;BA.debugLine="res = Dollar.Selector(ID).RunMethod(\"getValue\",Nu";
+ //BA.debugLineNum = 114;BA.debugLine="res = Dollar.Selector(ID).RunMethod(\"getValue\",Nu";
 _res = BA.ObjectToString(_dollar.Selector((Object)(_id)).RunMethod("getValue",__c.Null).Result());
- //BA.debugLineNum = 120;BA.debugLine="Return res";
+ //BA.debugLineNum = 115;BA.debugLine="Return res";
 if (true) return _res;
- //BA.debugLineNum = 121;BA.debugLine="End Sub";
+ //BA.debugLineNum = 116;BA.debugLine="End Sub";
 return "";
 }
 public b4j.example.wixcombo  _initialize(anywheresoftware.b4a.BA _ba,b4j.example.wixpage _pg,String _iid) throws Exception{
@@ -119,63 +113,63 @@ return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
 anywheresoftware.b4a.objects.collections.Map _opt = null;
- //BA.debugLineNum = 56;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 57;BA.debugLine="Dim opt As Map = CreateMap()";
+ //BA.debugLineNum = 51;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 52;BA.debugLine="Dim opt As Map = CreateMap()";
 _opt = new anywheresoftware.b4a.objects.collections.Map();
 _opt = __c.createMap(new Object[] {});
- //BA.debugLineNum = 58;BA.debugLine="If Combo.Template <> \"\" Then";
+ //BA.debugLineNum = 53;BA.debugLine="If Combo.Template <> \"\" Then";
 if ((_combo._template /*String*/ ).equals("") == false) { 
- //BA.debugLineNum = 59;BA.debugLine="opt.Put(\"template\", Combo.Template)";
+ //BA.debugLineNum = 54;BA.debugLine="opt.Put(\"template\", Combo.Template)";
 _opt.Put((Object)("template"),(Object)(_combo._template /*String*/ ));
- //BA.debugLineNum = 60;BA.debugLine="Combo.Template = \"\"";
+ //BA.debugLineNum = 55;BA.debugLine="Combo.Template = \"\"";
 _combo._template /*String*/  = "";
  };
- //BA.debugLineNum = 62;BA.debugLine="opt.Put(\"data\", Options)";
+ //BA.debugLineNum = 57;BA.debugLine="opt.Put(\"data\", Options)";
 _opt.Put((Object)("data"),(Object)(_options.getObject()));
- //BA.debugLineNum = 63;BA.debugLine="If yCount <> 0 Then opt.Put(\"yCount\",yCount)";
+ //BA.debugLineNum = 58;BA.debugLine="If yCount <> 0 Then opt.Put(\"yCount\",yCount)";
 if (_ycount!=0) { 
 _opt.Put((Object)("yCount"),(Object)(_ycount));};
- //BA.debugLineNum = 64;BA.debugLine="Combo.SetAttr(\"options\", opt)";
+ //BA.debugLineNum = 59;BA.debugLine="Combo.SetAttr(\"options\", opt)";
 _combo._setattr /*b4j.example.wixelement*/ ("options",(Object)(_opt.getObject()));
- //BA.debugLineNum = 65;BA.debugLine="Return Combo.item";
+ //BA.debugLineNum = 60;BA.debugLine="Return Combo.item";
 if (true) return _combo._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 66;BA.debugLine="End Sub";
+ //BA.debugLineNum = 61;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixcombo  _setlabel(String _l) throws Exception{
- //BA.debugLineNum = 87;BA.debugLine="Sub SetLabel(l As String) As WixCombo";
- //BA.debugLineNum = 88;BA.debugLine="Combo.Label.Text = l";
+ //BA.debugLineNum = 82;BA.debugLine="Sub SetLabel(l As String) As WixCombo";
+ //BA.debugLineNum = 83;BA.debugLine="Combo.Label.Text = l";
 _combo._label /*b4j.example.wixelement._labeltype*/ .Text /*String*/  = _l;
- //BA.debugLineNum = 89;BA.debugLine="Return Me";
+ //BA.debugLineNum = 84;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixcombo)(this);
- //BA.debugLineNum = 90;BA.debugLine="End Sub";
+ //BA.debugLineNum = 85;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixcombo  _setlabelalign(String _a) throws Exception{
- //BA.debugLineNum = 94;BA.debugLine="Sub SetLabelAlign(a As String) As WixCombo";
- //BA.debugLineNum = 95;BA.debugLine="Combo.Label.Align = a";
+ //BA.debugLineNum = 89;BA.debugLine="Sub SetLabelAlign(a As String) As WixCombo";
+ //BA.debugLineNum = 90;BA.debugLine="Combo.Label.Align = a";
 _combo._label /*b4j.example.wixelement._labeltype*/ .Align /*String*/  = _a;
- //BA.debugLineNum = 96;BA.debugLine="Return Me";
+ //BA.debugLineNum = 91;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixcombo)(this);
- //BA.debugLineNum = 97;BA.debugLine="End Sub";
+ //BA.debugLineNum = 92;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixcombo  _setlabelposition(String _p) throws Exception{
- //BA.debugLineNum = 100;BA.debugLine="Sub SetLabelPosition(p As String) As WixCombo";
- //BA.debugLineNum = 101;BA.debugLine="Combo.Label.Position = p";
+ //BA.debugLineNum = 95;BA.debugLine="Sub SetLabelPosition(p As String) As WixCombo";
+ //BA.debugLineNum = 96;BA.debugLine="Combo.Label.Position = p";
 _combo._label /*b4j.example.wixelement._labeltype*/ .Position /*String*/  = _p;
- //BA.debugLineNum = 102;BA.debugLine="Return Me";
+ //BA.debugLineNum = 97;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixcombo)(this);
- //BA.debugLineNum = 103;BA.debugLine="End Sub";
+ //BA.debugLineNum = 98;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixcombo  _setlabelwidth(int _w) throws Exception{
- //BA.debugLineNum = 106;BA.debugLine="Sub SetLabelWidth(w As Int) As WixCombo";
- //BA.debugLineNum = 107;BA.debugLine="Combo.Label.Width = w";
+ //BA.debugLineNum = 101;BA.debugLine="Sub SetLabelWidth(w As Int) As WixCombo";
+ //BA.debugLineNum = 102;BA.debugLine="Combo.Label.Width = w";
 _combo._label /*b4j.example.wixelement._labeltype*/ .Width /*int*/  = _w;
- //BA.debugLineNum = 108;BA.debugLine="Return Me";
+ //BA.debugLineNum = 103;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixcombo)(this);
- //BA.debugLineNum = 109;BA.debugLine="End Sub";
+ //BA.debugLineNum = 104;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixcombo  _setonchange(com.ab.banano.BANanoObject _s) throws Exception{
@@ -188,46 +182,46 @@ if (true) return (b4j.example.wixcombo)(this);
 return null;
 }
 public b4j.example.wixcombo  _setoptions(anywheresoftware.b4a.objects.collections.List _o) throws Exception{
- //BA.debugLineNum = 44;BA.debugLine="Sub SetOptions(o As List) As WixCombo";
- //BA.debugLineNum = 45;BA.debugLine="Options = o";
+ //BA.debugLineNum = 39;BA.debugLine="Sub SetOptions(o As List) As WixCombo";
+ //BA.debugLineNum = 40;BA.debugLine="Options = o";
 _options = _o;
- //BA.debugLineNum = 46;BA.debugLine="Return Me";
+ //BA.debugLineNum = 41;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixcombo)(this);
- //BA.debugLineNum = 47;BA.debugLine="End Sub";
+ //BA.debugLineNum = 42;BA.debugLine="End Sub";
 return null;
 }
 public String  _setselected(String _value) throws Exception{
- //BA.debugLineNum = 112;BA.debugLine="Sub SetSelected(value As String)";
- //BA.debugLineNum = 113;BA.debugLine="Dollar.Selector(ID).RunMethod(\"setValue\",Array(va";
+ //BA.debugLineNum = 107;BA.debugLine="Sub SetSelected(value As String)";
+ //BA.debugLineNum = 108;BA.debugLine="Dollar.Selector(ID).RunMethod(\"setValue\",Array(va";
 _dollar.Selector((Object)(_id)).RunMethod("setValue",(Object)(new Object[]{(Object)(_value)}));
- //BA.debugLineNum = 114;BA.debugLine="End Sub";
+ //BA.debugLineNum = 109;BA.debugLine="End Sub";
 return "";
 }
 public b4j.example.wixcombo  _settemplate(String _t) throws Exception{
- //BA.debugLineNum = 50;BA.debugLine="Sub SetTemplate(t As String) As WixCombo";
- //BA.debugLineNum = 51;BA.debugLine="Combo.Template = t";
+ //BA.debugLineNum = 45;BA.debugLine="Sub SetTemplate(t As String) As WixCombo";
+ //BA.debugLineNum = 46;BA.debugLine="Combo.Template = t";
 _combo._template /*String*/  = _t;
- //BA.debugLineNum = 52;BA.debugLine="Return Me";
+ //BA.debugLineNum = 47;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixcombo)(this);
- //BA.debugLineNum = 53;BA.debugLine="End Sub";
+ //BA.debugLineNum = 48;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixcombo  _setvalue(String _v) throws Exception{
- //BA.debugLineNum = 81;BA.debugLine="Sub SetValue(v As String) As WixCombo";
- //BA.debugLineNum = 82;BA.debugLine="Combo.Value = v";
+ //BA.debugLineNum = 76;BA.debugLine="Sub SetValue(v As String) As WixCombo";
+ //BA.debugLineNum = 77;BA.debugLine="Combo.Value = v";
 _combo._value /*Object*/  = (Object)(_v);
- //BA.debugLineNum = 83;BA.debugLine="Return Me";
+ //BA.debugLineNum = 78;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixcombo)(this);
- //BA.debugLineNum = 84;BA.debugLine="End Sub";
+ //BA.debugLineNum = 79;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixcombo  _setycount(int _y) throws Exception{
- //BA.debugLineNum = 75;BA.debugLine="Sub SetYCount(y As Int) As WixCombo";
- //BA.debugLineNum = 76;BA.debugLine="yCount = y";
+ //BA.debugLineNum = 70;BA.debugLine="Sub SetYCount(y As Int) As WixCombo";
+ //BA.debugLineNum = 71;BA.debugLine="yCount = y";
 _ycount = _y;
- //BA.debugLineNum = 77;BA.debugLine="Return Me";
+ //BA.debugLineNum = 72;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixcombo)(this);
- //BA.debugLineNum = 78;BA.debugLine="End Sub";
+ //BA.debugLineNum = 73;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {
