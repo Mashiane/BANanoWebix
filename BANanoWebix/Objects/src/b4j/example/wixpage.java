@@ -145,6 +145,70 @@ _dollar.Selector((Object)(_itmid)).RunMethod("enable",(Object)(""));
  //BA.debugLineNum = 95;BA.debugLine="End Sub";
 return "";
 }
+public String  _export2csv(String _eid) throws Exception{
+com.ab.banano.BANanoObject _itm = null;
+anywheresoftware.b4a.objects.collections.Map _opt = null;
+ //BA.debugLineNum = 250;BA.debugLine="Sub Export2CSV(eID As String)";
+ //BA.debugLineNum = 251;BA.debugLine="eID = eID.ToLowerCase";
+_eid = _eid.toLowerCase();
+ //BA.debugLineNum = 253;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
+_itm = _dollar.Selector((Object)(_eid));
+ //BA.debugLineNum = 255;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
+_opt = new anywheresoftware.b4a.objects.collections.Map();
+_opt = __c.createMap(new Object[] {(Object)("filename"),(Object)(_eid+".png")});
+ //BA.debugLineNum = 257;BA.debugLine="webix.RunMethod(\"toCSV\", Array(itm, opt))";
+_webix.RunMethod("toCSV",(Object)(new Object[]{(Object)(_itm),(Object)(_opt.getObject())}));
+ //BA.debugLineNum = 258;BA.debugLine="End Sub";
+return "";
+}
+public String  _export2excel(String _eid) throws Exception{
+com.ab.banano.BANanoObject _itm = null;
+anywheresoftware.b4a.objects.collections.Map _opt = null;
+ //BA.debugLineNum = 228;BA.debugLine="Sub Export2Excel(eID As String)";
+ //BA.debugLineNum = 229;BA.debugLine="eID = eID.ToLowerCase";
+_eid = _eid.toLowerCase();
+ //BA.debugLineNum = 231;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
+_itm = _dollar.Selector((Object)(_eid));
+ //BA.debugLineNum = 233;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
+_opt = new anywheresoftware.b4a.objects.collections.Map();
+_opt = __c.createMap(new Object[] {(Object)("filename"),(Object)(_eid+".png")});
+ //BA.debugLineNum = 235;BA.debugLine="webix.RunMethod(\"toExcel\", Array(itm, opt))";
+_webix.RunMethod("toExcel",(Object)(new Object[]{(Object)(_itm),(Object)(_opt.getObject())}));
+ //BA.debugLineNum = 236;BA.debugLine="End Sub";
+return "";
+}
+public String  _export2pdf(String _eid) throws Exception{
+com.ab.banano.BANanoObject _itm = null;
+anywheresoftware.b4a.objects.collections.Map _opt = null;
+ //BA.debugLineNum = 239;BA.debugLine="Sub Export2PDF(eID As String)";
+ //BA.debugLineNum = 240;BA.debugLine="eID = eID.ToLowerCase";
+_eid = _eid.toLowerCase();
+ //BA.debugLineNum = 242;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
+_itm = _dollar.Selector((Object)(_eid));
+ //BA.debugLineNum = 244;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
+_opt = new anywheresoftware.b4a.objects.collections.Map();
+_opt = __c.createMap(new Object[] {(Object)("filename"),(Object)(_eid+".png")});
+ //BA.debugLineNum = 246;BA.debugLine="webix.RunMethod(\"toPDF\", Array(itm, opt))";
+_webix.RunMethod("toPDF",(Object)(new Object[]{(Object)(_itm),(Object)(_opt.getObject())}));
+ //BA.debugLineNum = 247;BA.debugLine="End Sub";
+return "";
+}
+public String  _export2png(String _eid) throws Exception{
+com.ab.banano.BANanoObject _itm = null;
+anywheresoftware.b4a.objects.collections.Map _opt = null;
+ //BA.debugLineNum = 217;BA.debugLine="Sub Export2PNG(eID As String)";
+ //BA.debugLineNum = 218;BA.debugLine="eID = eID.ToLowerCase";
+_eid = _eid.toLowerCase();
+ //BA.debugLineNum = 220;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
+_itm = _dollar.Selector((Object)(_eid));
+ //BA.debugLineNum = 222;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
+_opt = new anywheresoftware.b4a.objects.collections.Map();
+_opt = __c.createMap(new Object[] {(Object)("filename"),(Object)(_eid+".png")});
+ //BA.debugLineNum = 224;BA.debugLine="webix.RunMethod(\"toPNG\", Array(itm, opt))";
+_webix.RunMethod("toPNG",(Object)(new Object[]{(Object)(_itm),(Object)(_opt.getObject())}));
+ //BA.debugLineNum = 225;BA.debugLine="End Sub";
+return "";
+}
 public anywheresoftware.b4a.objects.collections.Map  _getcleanvalues(String _frmid) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _rec = null;
  //BA.debugLineNum = 191;BA.debugLine="Sub GetCleanValues(frmID As String) As Map";

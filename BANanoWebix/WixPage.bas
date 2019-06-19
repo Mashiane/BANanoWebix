@@ -218,3 +218,47 @@ Sub Parse(eID As String, data As List)
 	eID = eID.tolowercase
 	Dollar.Selector(eID).RunMethod("parse",Array(data))
 End Sub
+
+'export element to png
+Sub Export2PNG(eID As String)
+	eID = eID.ToLowerCase
+	'select the item
+	Dim itm As BANanoObject = Dollar.Selector(eID)
+	'set options
+	Dim opt As Map = CreateMap("filename": eID & ".png")
+	'execute the stuff
+	webix.RunMethod("toPNG", Array(itm, opt))
+End Sub
+
+'export element to excel
+Sub Export2Excel(eID As String)
+	eID = eID.ToLowerCase
+	'select the item
+	Dim itm As BANanoObject = Dollar.Selector(eID)
+	'set options
+	Dim opt As Map = CreateMap("filename": eID & ".png")
+	'execute the stuff
+	webix.RunMethod("toExcel", Array(itm, opt))
+End Sub
+
+'export element to pdf
+Sub Export2PDF(eID As String)
+	eID = eID.ToLowerCase
+	'select the item
+	Dim itm As BANanoObject = Dollar.Selector(eID)
+	'set options
+	Dim opt As Map = CreateMap("filename": eID & ".png")
+	'execute the stuff
+	webix.RunMethod("toPDF", Array(itm, opt))
+End Sub
+
+'export element to csv
+Sub Export2CSV(eID As String)
+	eID = eID.ToLowerCase
+	'select the item
+	Dim itm As BANanoObject = Dollar.Selector(eID)
+	'set options
+	Dim opt As Map = CreateMap("filename": eID & ".png")
+	'execute the stuff
+	webix.RunMethod("toCSV", Array(itm, opt))
+End Sub

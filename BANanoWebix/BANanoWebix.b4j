@@ -147,8 +147,8 @@ Sub BANano_Ready()
 	'uncomment this line ONLY for LESSON 5
 	'pgToolBar.Init
 	'uncomment this line ONLY for LESSON 6
-	pgDataEntry.init 
-	'uncomment this line ONLY for LESSON 7
-	'pgCharts.Init 
+	'pgDataEntry.init 
+	'uncomment this line ONLY for LESSON 7 - part 1
+	pgCharts.Init 
 	'pgIndex.Init
 End Sub
