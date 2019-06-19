@@ -26,6 +26,8 @@ public class wixheader extends B4AClass.ImplB4AClass implements BA.SubDelegator{
 public String _id = "";
 public b4j.example.wixelement _header = null;
 public b4j.example.main _main = null;
+public b4j.example.pgcharts _pgcharts = null;
+public b4j.example.pgdataentry _pgdataentry = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgtoolbar _pgtoolbar = null;
@@ -47,23 +49,32 @@ return "";
 }
 public b4j.example.wixheader  _initialize(anywheresoftware.b4a.BA _ba,String _sid) throws Exception{
 innerInitialize(_ba);
- //BA.debugLineNum = 8;BA.debugLine="Public Sub Initialize(sID As String) As WixHeader";
- //BA.debugLineNum = 9;BA.debugLine="ID = sID.tolowercase";
+ //BA.debugLineNum = 15;BA.debugLine="Public Sub Initialize(sID As String) As WixHeader";
+ //BA.debugLineNum = 16;BA.debugLine="ID = sID.tolowercase";
 _id = _sid.toLowerCase();
- //BA.debugLineNum = 10;BA.debugLine="Header.Initialize(ID).SetView(\"template\")";
+ //BA.debugLineNum = 17;BA.debugLine="Header.Initialize(ID).SetView(\"template\")";
 _header._initialize /*b4j.example.wixelement*/ (ba,_id)._setview /*b4j.example.wixelement*/ ("template");
- //BA.debugLineNum = 11;BA.debugLine="Header.TypeOf = \"header\"";
+ //BA.debugLineNum = 18;BA.debugLine="Header.TypeOf = \"header\"";
 _header._typeof /*String*/  = "header";
- //BA.debugLineNum = 12;BA.debugLine="Return Me";
+ //BA.debugLineNum = 19;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixheader)(this);
- //BA.debugLineNum = 13;BA.debugLine="End Sub";
+ //BA.debugLineNum = 20;BA.debugLine="End Sub";
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 16;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 17;BA.debugLine="Return Header.item";
+ //BA.debugLineNum = 23;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 24;BA.debugLine="Return Header.item";
 if (true) return _header._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 18;BA.debugLine="End Sub";
+ //BA.debugLineNum = 25;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixheader  _settooltip(String _tt) throws Exception{
+ //BA.debugLineNum = 9;BA.debugLine="Sub SetTooltip(tt As String) As WixHeader";
+ //BA.debugLineNum = 10;BA.debugLine="Header.SetTooltip(tt)";
+_header._settooltip /*b4j.example.wixelement*/ (_tt);
+ //BA.debugLineNum = 11;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixheader)(this);
+ //BA.debugLineNum = 12;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

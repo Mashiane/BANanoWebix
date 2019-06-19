@@ -26,6 +26,8 @@ public class wixportlet extends B4AClass.ImplB4AClass implements BA.SubDelegator
 public String _id = "";
 public b4j.example.wixelement _portlet = null;
 public b4j.example.main _main = null;
+public b4j.example.pgcharts _pgcharts = null;
+public b4j.example.pgdataentry _pgdataentry = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgtoolbar _pgtoolbar = null;
@@ -60,25 +62,34 @@ if (true) return (b4j.example.wixportlet)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 16;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 17;BA.debugLine="Return Portlet.item";
+ //BA.debugLineNum = 23;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 24;BA.debugLine="Return Portlet.item";
 if (true) return _portlet._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 18;BA.debugLine="End Sub";
+ //BA.debugLineNum = 25;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixportlet  _setbody(String _b) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _tmp = null;
- //BA.debugLineNum = 21;BA.debugLine="Sub SetBody(b As String) As WixPortlet";
- //BA.debugLineNum = 22;BA.debugLine="Dim tmp As Map = CreateMap()";
+ //BA.debugLineNum = 28;BA.debugLine="Sub SetBody(b As String) As WixPortlet";
+ //BA.debugLineNum = 29;BA.debugLine="Dim tmp As Map = CreateMap()";
 _tmp = new anywheresoftware.b4a.objects.collections.Map();
 _tmp = __c.createMap(new Object[] {});
- //BA.debugLineNum = 23;BA.debugLine="tmp.Put(\"template\", b)";
+ //BA.debugLineNum = 30;BA.debugLine="tmp.Put(\"template\", b)";
 _tmp.Put((Object)("template"),(Object)(_b));
- //BA.debugLineNum = 24;BA.debugLine="Portlet.SetProperty(\"body\",tmp)";
+ //BA.debugLineNum = 31;BA.debugLine="Portlet.SetProperty(\"body\",tmp)";
 _portlet._setproperty /*b4j.example.wixelement*/ ("body",(Object)(_tmp.getObject()));
- //BA.debugLineNum = 25;BA.debugLine="Return Me";
+ //BA.debugLineNum = 32;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixportlet)(this);
- //BA.debugLineNum = 26;BA.debugLine="End Sub";
+ //BA.debugLineNum = 33;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixportlet  _settooltip(String _tt) throws Exception{
+ //BA.debugLineNum = 17;BA.debugLine="Sub SetTooltip(tt As String) As WixPortlet";
+ //BA.debugLineNum = 18;BA.debugLine="Portlet.SetTooltip(tt)";
+_portlet._settooltip /*b4j.example.wixelement*/ (_tt);
+ //BA.debugLineNum = 19;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixportlet)(this);
+ //BA.debugLineNum = 20;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

@@ -35,20 +35,20 @@ Sub Init()
 	fruit.Add(CreateMap("id":5, "value": "Grapes"))
 
 	'add form
-	myForm.Initialize(pg, "mashform").SetWidth(500)
+	myForm.Initialize("mashform").SetWidth(500)
 	'
 	'combo
 	Dim cbo As WixCombo
-	Dim n, o As String
-	cbo.Initialize(pg,"cbo").SetLabel("Combo").SetValue(3).SetOptions(fruit).SetTemplate("Fresh #value#").SetYCount(2).SetLabelAlign("right")
-	cbo.SetOnChange(BANano.CallBack(Me,"cbo_change",Array(n,o))).AddToForm(myForm)
+	cbo.Initialize("cbo").SetLabel("Combo").SetValue(3).SetOptions(fruit).SetTemplate("Fresh #value#").SetYCount(2).SetLabelAlign("right")
+	myForm.Form.AddItem(cbo.Item)
+	
 	'
 	Dim txtBox As WixTextBox
 	txtBox.Initialize("txtBox").SetLabel("Text Box").SetPlaceHolder("Text Box").SetLabelPosition("top")
 	myForm.Form.AddItem(txtBox.Item)
 	'
-	Dim pwd As WixPassword
-	pwd.Initialize("pwd").SetLabel("Password").SetPlaceHolder("Password").SetMaxLength(10)
+	Dim pwd As WixTextBox
+	pwd.Initialize("pwd").SetTypePassword("").SetLabel("Password").SetPlaceHolder("Password").SetMaxLength(10)
 	myForm.Form.AddItem(pwd.Item)
 		
 	'text area
@@ -95,7 +95,10 @@ Sub Init()
 	
 	pg.UI
 	'attach combo event
-	cbo.AttachOnChangeEvent
+	Dim n, o As String
+	Dim cbe As BANanoObject = BANano.CallBack(Me,"cbo_change",Array(n,o))
+	pg.AttachOnChangeEvent("cbo", cbe)
+	
 End Sub
 
 Sub cbo_change(newV As String, oldV As String)

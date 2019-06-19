@@ -8,17 +8,39 @@ Version=7.5
 Sub Class_Globals
 	Public Form As WixElement
 	Public ID As String
-	Private Dollar As BANanoObject
-	Private Page As WixPage
+	Private Elements As List
+	Private Columns As List
 End Sub
 
 'initialize the form
-Public Sub Initialize(pg As WixPage, fID As String) As WixForm
-	Page = pg
+Public Sub Initialize(fID As String) As WixForm
 	ID = fID.tolowercase
 	Form.Initialize(fID).SetView("form")
-	Dollar = Page.dollar
+	Elements.Initialize
+	Columns.Initialize  
 	Return Me
+End Sub
+
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixForm
+	Form.SetTooltip(tt)
+	Return Me
+End Sub
+
+'add a spacer To the Columns
+Sub AddColumnsSpacer()
+	Columns.Add(CreateMap())
+End Sub
+
+'add a column
+Sub AddColumn(c As WixColumn)
+	Columns.Add(c.Item)
+End Sub
+
+'add an item to the columns
+Sub AddColumns(i As Map)
+	Columns.Add(i)
 End Sub
 
 'add to column
@@ -37,26 +59,20 @@ Sub SetWidth(w As Int) As WixForm
 	Return Me
 End Sub
 
+'set height
+Sub SetHeight(h As Int) As WixForm
+	Form.Height = h
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
+	Dim cols As Map = CreateMap()
+	cols.Put("cols", Columns)
+	Elements.Add(cols)
+	Form.SetProperty("elements", Elements)
 	Return Form.item
 End Sub
-
-'get the form contents
-Sub GetValues() As Map
-	Dim values As Map = Dollar.Selector(ID).RunMethod("getValues",Null).result
-	Return values
-End Sub
-
-'clear the form
-Sub Clear
-	Dollar.Selector(ID).RunMethod("clear",Null)
-End Sub
-
-'set values
-Sub SetValues(values As Map)
-	Dollar.Selector(ID).RunMethod("setValues",Array(values))
-End Sub	
 
 'add an element to the form
 Sub AddItem(itm As Map)

@@ -18,6 +18,14 @@ Public Sub Initialize(sid As String) As WixMultiView
 	Return Me
 End Sub
 
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixMultiView
+	MultiView.SetTooltip(tt)
+	Return Me
+End Sub
+
+
 'return the item
 Sub Item As Map
 	Return MultiView.item

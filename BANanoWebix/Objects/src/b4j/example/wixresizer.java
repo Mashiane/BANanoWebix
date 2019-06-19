@@ -26,6 +26,8 @@ public class wixresizer extends B4AClass.ImplB4AClass implements BA.SubDelegator
 public String _id = "";
 public b4j.example.wixelement _resizer = null;
 public b4j.example.main _main = null;
+public b4j.example.pgcharts _pgcharts = null;
+public b4j.example.pgdataentry _pgdataentry = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgtoolbar _pgtoolbar = null;

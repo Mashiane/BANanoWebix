@@ -10,29 +10,14 @@ Sub Class_Globals
 	Public Combo As WixElement
 	Private Options As List
 	Private yCount As Int
-	Private onChange As BANanoObject
-	Private Dollar As BANanoObject
 End Sub
 
 'initialize the input box
-Public Sub Initialize(pg As WixPage, iID As String) As WixCombo
-	Dollar = pg.dollar
+Public Sub Initialize(iID As String) As WixCombo
 	ID = iID.tolowercase
 	Combo.Initialize(iID).SetView("combo")
 	Options.Initialize
 	yCount = 0
-	onChange = Null
-	Return Me
-End Sub
-
-'attach events after page is created
-Sub AttachOnChangeEvent()
-	Dollar.Selector(ID).RunMethod("attachEvent",Array("onChange",onChange))
-End Sub
-
-'set on change event
-Sub SetOnChange(s As BANanoObject) As WixCombo
-	onChange = s
 	Return Me
 End Sub
 
@@ -41,10 +26,22 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
+'set tooltip
+Sub SetTooltip(tt As String) As WixCombo
+	Combo.SetTooltip(tt)
+	Return Me
+End Sub
+
 'set options
 Sub SetOptions(o As List) As WixCombo
 	Options = o
 	Return Me	
+End Sub
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixCombo
+	Combo.SetStyle(prop,val)
+	Return Me
 End Sub
 
 'set template
@@ -90,6 +87,11 @@ Sub SetLabel(l As String) As WixCombo
 	Return Me
 End Sub
 
+'set required
+Sub SetRequired(b As Boolean) As WixCombo
+	Combo.SetRequired(b)
+	Return Me
+End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixCombo
@@ -109,15 +111,21 @@ Sub SetLabelWidth(w As Int) As WixCombo
 	Return Me
 End Sub
 
-'set the item option life
-Sub SetSelected(value As String)
-	Dollar.Selector(ID).RunMethod("setValue",Array(value))
+
+'set align right
+Sub SetAlignRight(r As String) As WixCombo 'ignore
+	Combo.setAlignright("")
+	Return Me
 End Sub
 
-'get an item value
-Sub GetSelected() As String
-	Dim res As String
-	res = Dollar.Selector(ID).RunMethod("getValue",Null).result
-	Return res
+'set align center
+Sub SetAlignCenter(r As String) As WixCombo 'ignore
+	Combo.setAligncenter("")
+	Return Me
 End Sub
 
+'set align left
+Sub SetAlignLeft(r As String) As WixCombo 'ignore
+	Combo.SetAlignleft("")
+	Return Me
+End Sub

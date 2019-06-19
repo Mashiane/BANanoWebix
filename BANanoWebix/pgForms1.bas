@@ -63,14 +63,15 @@ Sub Init()
 	suggest.UI
 	
 	'add form
-	myForm.Initialize(pg, "mashform1").SetWidth(500)
+	myForm.Initialize("mashform1").SetWidth(500)
 	'
 	Dim btnB As WixButton
 	btnB.Initialize("btnB").SetLabel("Back").SetClick(BANano.CallBack(Me,"backtomain",Null))
 	myForm.AddItem(btnB.Item)
 	'	
 	Dim sect As WixSection
-	sect.Initialize("sect").SetTemplate("This is my section")
+	sect.Initialize("sect")
+	sect.Section.SetTemplate("This is my section")
 	myForm.AddItem(sect.Item)
 	'
 	Dim lbl As WixLabel

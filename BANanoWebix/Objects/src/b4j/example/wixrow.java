@@ -26,6 +26,8 @@ public class wixrow extends B4AClass.ImplB4AClass implements BA.SubDelegator{
 public b4j.example.wixelement _row = null;
 public String _id = "";
 public b4j.example.main _main = null;
+public b4j.example.pgcharts _pgcharts = null;
+public b4j.example.pgdataentry _pgdataentry = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgtoolbar _pgtoolbar = null;
@@ -37,35 +39,53 @@ public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public b4j.example.wixrow  _addcolumn(b4j.example.wixcolumn _wxel) throws Exception{
- //BA.debugLineNum = 26;BA.debugLine="Sub AddColumn(wxEL As WixColumn) As WixRow";
- //BA.debugLineNum = 27;BA.debugLine="Row.AddColumns(wxEL.Item)";
+ //BA.debugLineNum = 44;BA.debugLine="Sub AddColumn(wxEL As WixColumn) As WixRow";
+ //BA.debugLineNum = 45;BA.debugLine="Row.AddColumns(wxEL.Item)";
 _row._addcolumns /*b4j.example.wixelement*/ (_wxel._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 28;BA.debugLine="Return Me";
+ //BA.debugLineNum = 46;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixrow)(this);
- //BA.debugLineNum = 29;BA.debugLine="End Sub";
+ //BA.debugLineNum = 47;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixrow  _addcolumns(anywheresoftware.b4a.objects.collections.Map _i) throws Exception{
+ //BA.debugLineNum = 15;BA.debugLine="Sub AddColumns(i As Map) As WixRow";
+ //BA.debugLineNum = 16;BA.debugLine="Row.AddColumns(i)";
+_row._addcolumns /*b4j.example.wixelement*/ (_i);
+ //BA.debugLineNum = 17;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixrow)(this);
+ //BA.debugLineNum = 18;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixrow  _additem(anywheresoftware.b4a.objects.collections.Map _wxel) throws Exception{
- //BA.debugLineNum = 20;BA.debugLine="Sub AddItem(wxEL As Map) As WixRow";
- //BA.debugLineNum = 21;BA.debugLine="Row.AddRows(wxEL)";
+ //BA.debugLineNum = 38;BA.debugLine="Sub AddItem(wxEL As Map) As WixRow";
+ //BA.debugLineNum = 39;BA.debugLine="Row.AddRows(wxEL)";
 _row._addrows /*b4j.example.wixelement*/ (_wxel);
- //BA.debugLineNum = 22;BA.debugLine="Return Me";
+ //BA.debugLineNum = 40;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixrow)(this);
- //BA.debugLineNum = 23;BA.debugLine="End Sub";
+ //BA.debugLineNum = 41;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixrow  _addrows(anywheresoftware.b4a.objects.collections.Map _i) throws Exception{
+ //BA.debugLineNum = 21;BA.debugLine="Sub AddRows(i As Map) As WixRow";
+ //BA.debugLineNum = 22;BA.debugLine="Row.AddRows(i)";
+_row._addrows /*b4j.example.wixelement*/ (_i);
+ //BA.debugLineNum = 23;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixrow)(this);
+ //BA.debugLineNum = 24;BA.debugLine="End Sub";
 return null;
 }
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
- //BA.debugLineNum = 33;BA.debugLine="Sub AddToForm(frm As WixForm)";
- //BA.debugLineNum = 34;BA.debugLine="frm.AddItem(Item)";
+ //BA.debugLineNum = 50;BA.debugLine="Sub AddToForm(frm As WixForm)";
+ //BA.debugLineNum = 51;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
- //BA.debugLineNum = 35;BA.debugLine="End Sub";
+ //BA.debugLineNum = 52;BA.debugLine="End Sub";
 return "";
 }
 public String  _addtopage(b4j.example.wixpage _p) throws Exception{
- //BA.debugLineNum = 38;BA.debugLine="Sub AddToPage(p As WixPage)";
- //BA.debugLineNum = 39;BA.debugLine="p.Page.AddRows(Item)";
+ //BA.debugLineNum = 55;BA.debugLine="Sub AddToPage(p As WixPage)";
+ //BA.debugLineNum = 56;BA.debugLine="p.Page.AddRows(Item)";
 _p._page /*b4j.example.wixelement*/ ._addrows /*b4j.example.wixelement*/ (_item());
- //BA.debugLineNum = 40;BA.debugLine="End Sub";
+ //BA.debugLineNum = 57;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -90,10 +110,37 @@ if (true) return (b4j.example.wixrow)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 15;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 16;BA.debugLine="Return Row.item";
+ //BA.debugLineNum = 33;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 34;BA.debugLine="Return Row.item";
 if (true) return _row._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 17;BA.debugLine="End Sub";
+ //BA.debugLineNum = 35;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixrow  _setheight(int _h) throws Exception{
+ //BA.debugLineNum = 60;BA.debugLine="Sub SetHeight(h As Int) As WixRow";
+ //BA.debugLineNum = 61;BA.debugLine="Row.SetHeight(h)";
+_row._setheight /*b4j.example.wixelement*/ (_h);
+ //BA.debugLineNum = 62;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixrow)(this);
+ //BA.debugLineNum = 63;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixrow  _settooltip(String _tt) throws Exception{
+ //BA.debugLineNum = 27;BA.debugLine="Sub SetTooltip(tt As String) As WixRow";
+ //BA.debugLineNum = 28;BA.debugLine="Row.SetTooltip(tt)";
+_row._settooltip /*b4j.example.wixelement*/ (_tt);
+ //BA.debugLineNum = 29;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixrow)(this);
+ //BA.debugLineNum = 30;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixrow  _setwidth(int _w) throws Exception{
+ //BA.debugLineNum = 66;BA.debugLine="Sub SetWidth(w As Int) As WixRow";
+ //BA.debugLineNum = 67;BA.debugLine="Row.setwidth(w)";
+_row._setwidth /*b4j.example.wixelement*/ (_w);
+ //BA.debugLineNum = 68;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixrow)(this);
+ //BA.debugLineNum = 69;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

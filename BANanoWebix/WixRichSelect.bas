@@ -7,7 +7,7 @@ Version=7.51
 #IgnoreWarnings:12
 Sub Class_Globals
 	Public ID As String
-	Public RS As WixElement
+	Public RichSelect As WixElement
 	Private Text As Object
 	Private Options As List
 End Sub
@@ -15,9 +15,22 @@ End Sub
 'initialize the input box
 Public Sub Initialize(iID As String) As WixRichSelect
 	ID = iID.tolowercase
-	RS.Initialize(iID).SetView("richselect")
+	RichSelect.Initialize(iID).SetView("richselect")
 	Options.Initialize
 	Text = ""
+	Return Me
+End Sub
+
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixRichSelect
+	RichSelect.SetTooltip(tt)
+	Return Me
+End Sub
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixRichSelect
+	RichSelect.SetStyle(prop,val)
 	Return Me
 End Sub
 
@@ -29,9 +42,9 @@ End Sub
 
 'return the item
 Sub Item As Map
-	RS.SetOnContent("text",Text)
-	RS.SetAttr("options", Options)
-	Return RS.item
+	RichSelect.SetOnContent("text",Text)
+	RichSelect.SetAttr("options", Options)
+	Return RichSelect.item
 End Sub
 
 'set text
@@ -57,31 +70,50 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixRichSelect
-	RS.Value = v
+	RichSelect.Value = v
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixRichSelect
-	RS.Label.Text = l
+	RichSelect.Label.Text = l
 	Return Me
 End Sub
 
 
 'set label align
 Sub SetLabelAlign(a As String) As WixRichSelect
-	RS.Label.Align = a
+	RichSelect.Label.Align = a
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixRichSelect
-	RS.Label.Position = p
+	RichSelect.Label.Position = p
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixRichSelect
-	RS.Label.Width = w
+	RichSelect.Label.Width = w
+	Return Me
+End Sub
+
+
+'set align right
+Sub SetAlignRight(r As String) As WixRichSelect 'ignore
+	RichSelect.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixRichSelect 'ignore
+	RichSelect.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixRichSelect 'ignore
+	RichSelect.SetAlignleft("")
 	Return Me
 End Sub

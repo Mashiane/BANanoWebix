@@ -24,6 +24,18 @@ Sub SetValue(v As String) As WixTextArea
 End Sub
 
 
+'set tooltip
+Sub SetTooltip(tt As String) As WixTextArea
+	TextArea.SetTooltip(tt)
+	Return Me
+End Sub
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixTextArea
+	TextArea.SetStyle(prop,val)
+	Return Me
+End Sub
+
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
@@ -89,3 +101,21 @@ Sub SetLabelWidth(w As Int) As WixTextArea
 	Return Me
 End Sub
 
+
+'set align right
+Sub SetAlignRight(r As String) As WixTextArea 'ignore
+	TextArea.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixTextArea 'ignore
+	TextArea.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixTextArea 'ignore
+	TextArea.SetAlignleft("")
+	Return Me
+End Sub

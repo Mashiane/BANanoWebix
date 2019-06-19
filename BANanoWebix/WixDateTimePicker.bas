@@ -19,10 +19,27 @@ Public Sub Initialize(bID As String) As WixDateTimePicker
 	Return Me
 End Sub
 
+'editable
+Sub SetEditable(b As Boolean) As WixDateTimePicker
+	DateTimePicker.SetProperty("editable", b)
+	Return Me
+End Sub
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixDateTimePicker
+	DateTimePicker.SetTooltip(tt)
+	Return Me
+End Sub
 
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
+End Sub
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixDateTimePicker
+	DateTimePicker.SetStyle(prop,val)
+	Return Me
 End Sub
 
 
@@ -79,5 +96,24 @@ End Sub
 'set label width
 Sub SetLabelWidth(w As Int) As WixDateTimePicker
 	DateTimePicker.Label.Width = w
+	Return Me
+End Sub
+
+
+'set align right
+Sub SetAlignRight(r As String) As WixDateTimePicker 'ignore
+	DateTimePicker.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixDateTimePicker 'ignore
+	DateTimePicker.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixDateTimePicker 'ignore
+	DateTimePicker.SetAlignleft("")
 	Return Me
 End Sub

@@ -21,6 +21,13 @@ Public Sub Initialize(iID As String) As WixRadio
 	Return Me
 End Sub
 
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixRadio
+	Radio.SetTooltip(tt)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Radio.SetAttr("options", Options)
@@ -28,6 +35,11 @@ Sub Item As Map
 	Return Radio.item
 End Sub
 
+'set style
+Sub SetStyle(prop As String, val As String) As WixRadio
+	Radio.SetStyle(prop,val)
+	Return Me
+End Sub
 
 'add to form
 Sub AddToForm(frm As WixForm)
@@ -83,5 +95,24 @@ End Sub
 'set label width
 Sub SetLabelWidth(w As Int) As WixRadio
 	Radio.Label.Width = w
+	Return Me
+End Sub
+
+
+'set align right
+Sub SetAlignRight(r As String) As WixRadio 'ignore
+	Radio.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixRadio 'ignore
+	Radio.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixRadio 'ignore
+	Radio.SetAlignleft("")
 	Return Me
 End Sub

@@ -18,9 +18,35 @@ Public Sub Initialize(tID As String) As WixTextBox
 	Return Me
 End Sub
 
+'set as password
+Sub SetTypePassword(r As String) As WixTextBox  'ignore
+	TextBox.SetType("password")
+	Return Me
+End Sub
+
+'set as email
+Sub SetTypeEmail(r As String) As WixTextBox  'ignore
+	TextBox.SetType("email")
+	Return Me
+End Sub
+
 'set hidden
 Sub SetHidden(b As Boolean) As WixTextBox
 	TextBox.SetAttr("hidden",b)
+	Return Me
+End Sub
+
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixTextBox
+	TextBox.SetTooltip(tt)
+	Return Me
+End Sub
+
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixTextBox
+	TextBox.SetStyle(prop,val)
 	Return Me
 End Sub
 
@@ -126,4 +152,21 @@ Sub SetLabelWidth(w As Int) As WixTextBox
 End Sub
 
 
+'set align right
+Sub SetAlignRight(r As String) As WixTextBox 'ignore
+	TextBox.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixTextBox 'ignore
+	TextBox.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixTextBox 'ignore
+	TextBox.SetAlignleft("")
+	Return Me
+End Sub
 

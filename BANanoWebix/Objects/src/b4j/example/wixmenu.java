@@ -27,6 +27,8 @@ public String _id = "";
 public b4j.example.wixelement _menu = null;
 public anywheresoftware.b4a.objects.collections.List _data = null;
 public b4j.example.main _main = null;
+public b4j.example.pgcharts _pgcharts = null;
+public b4j.example.pgdataentry _pgdataentry = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgtoolbar _pgtoolbar = null;
@@ -39,28 +41,28 @@ public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public b4j.example.wixmenu  _addmenuitem(String _mid,String _mvalue,String _mhref) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _mitem = null;
- //BA.debugLineNum = 17;BA.debugLine="Sub AddMenuItem(mID As String, mValue As String, m";
- //BA.debugLineNum = 18;BA.debugLine="Dim mitem As Map = CreateMap()";
+ //BA.debugLineNum = 25;BA.debugLine="Sub AddMenuItem(mID As String, mValue As String, m";
+ //BA.debugLineNum = 26;BA.debugLine="Dim mitem As Map = CreateMap()";
 _mitem = new anywheresoftware.b4a.objects.collections.Map();
 _mitem = __c.createMap(new Object[] {});
- //BA.debugLineNum = 19;BA.debugLine="mitem.Put(\"id\", mID)";
+ //BA.debugLineNum = 27;BA.debugLine="mitem.Put(\"id\", mID)";
 _mitem.Put((Object)("id"),(Object)(_mid));
- //BA.debugLineNum = 20;BA.debugLine="mitem.Put(\"value\", mValue)";
+ //BA.debugLineNum = 28;BA.debugLine="mitem.Put(\"value\", mValue)";
 _mitem.Put((Object)("value"),(Object)(_mvalue));
- //BA.debugLineNum = 21;BA.debugLine="mitem.Put(\"href\", mhref)";
+ //BA.debugLineNum = 29;BA.debugLine="mitem.Put(\"href\", mhref)";
 _mitem.Put((Object)("href"),(Object)(_mhref));
- //BA.debugLineNum = 22;BA.debugLine="Data.Add(mitem)";
+ //BA.debugLineNum = 30;BA.debugLine="Data.Add(mitem)";
 _data.Add((Object)(_mitem.getObject()));
- //BA.debugLineNum = 23;BA.debugLine="Return Me";
+ //BA.debugLineNum = 31;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixmenu)(this);
- //BA.debugLineNum = 24;BA.debugLine="End Sub";
+ //BA.debugLineNum = 32;BA.debugLine="End Sub";
 return null;
 }
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
- //BA.debugLineNum = 27;BA.debugLine="Sub AddToForm(frm As WixForm)";
- //BA.debugLineNum = 28;BA.debugLine="frm.AddItem(Item)";
+ //BA.debugLineNum = 35;BA.debugLine="Sub AddToForm(frm As WixForm)";
+ //BA.debugLineNum = 36;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
- //BA.debugLineNum = 29;BA.debugLine="End Sub";
+ //BA.debugLineNum = 37;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -89,19 +91,28 @@ if (true) return (b4j.example.wixmenu)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 33;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 34;BA.debugLine="Return Menu.item";
+ //BA.debugLineNum = 41;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 42;BA.debugLine="Return Menu.item";
 if (true) return _menu._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 35;BA.debugLine="End Sub";
+ //BA.debugLineNum = 43;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixmenu  _setselect(boolean _b) throws Exception{
- //BA.debugLineNum = 38;BA.debugLine="Sub SetSelect(b As Boolean) As WixMenu";
- //BA.debugLineNum = 39;BA.debugLine="Menu.SetProperty(\"select\", b)";
+ //BA.debugLineNum = 46;BA.debugLine="Sub SetSelect(b As Boolean) As WixMenu";
+ //BA.debugLineNum = 47;BA.debugLine="Menu.SetProperty(\"select\", b)";
 _menu._setproperty /*b4j.example.wixelement*/ ("select",(Object)(_b));
- //BA.debugLineNum = 40;BA.debugLine="Return Me";
+ //BA.debugLineNum = 48;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixmenu)(this);
- //BA.debugLineNum = 41;BA.debugLine="End Sub";
+ //BA.debugLineNum = 49;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixmenu  _settooltip(String _tt) throws Exception{
+ //BA.debugLineNum = 18;BA.debugLine="Sub SetTooltip(tt As String) As WixMenu";
+ //BA.debugLineNum = 19;BA.debugLine="Menu.SetTooltip(tt)";
+_menu._settooltip /*b4j.example.wixelement*/ (_tt);
+ //BA.debugLineNum = 20;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixmenu)(this);
+ //BA.debugLineNum = 21;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

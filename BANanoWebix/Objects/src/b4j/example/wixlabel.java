@@ -26,6 +26,8 @@ public class wixlabel extends B4AClass.ImplB4AClass implements BA.SubDelegator{
 public String _id = "";
 public b4j.example.wixelement _label = null;
 public b4j.example.main _main = null;
+public b4j.example.pgcharts _pgcharts = null;
+public b4j.example.pgdataentry _pgdataentry = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgtoolbar _pgtoolbar = null;
@@ -37,10 +39,10 @@ public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
- //BA.debugLineNum = 27;BA.debugLine="Sub AddToForm(frm As WixForm)";
- //BA.debugLineNum = 28;BA.debugLine="frm.AddItem(Item)";
+ //BA.debugLineNum = 40;BA.debugLine="Sub AddToForm(frm As WixForm)";
+ //BA.debugLineNum = 41;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
- //BA.debugLineNum = 29;BA.debugLine="End Sub";
+ //BA.debugLineNum = 42;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -71,13 +73,58 @@ if (true) return _label._item /*anywheresoftware.b4a.objects.collections.Map*/ (
  //BA.debugLineNum = 17;BA.debugLine="End Sub";
 return null;
 }
-public b4j.example.wixlabel  _setlabel(String _l) throws Exception{
- //BA.debugLineNum = 20;BA.debugLine="Sub SetLabel(l As String) As WixLabel";
- //BA.debugLineNum = 21;BA.debugLine="Label.Label.Text = l";
-_label._label /*b4j.example.wixelement._labeltype*/ .Text /*String*/  = _l;
- //BA.debugLineNum = 22;BA.debugLine="Return Me";
+public b4j.example.wixlabel  _setaligncenter(String _r) throws Exception{
+ //BA.debugLineNum = 52;BA.debugLine="Sub SetAlignCenter(r As String) As WixLabel 'ignor";
+ //BA.debugLineNum = 53;BA.debugLine="Label.setAligncenter(\"\")";
+_label._setaligncenter /*b4j.example.wixelement*/ ("");
+ //BA.debugLineNum = 54;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixlabel)(this);
- //BA.debugLineNum = 23;BA.debugLine="End Sub";
+ //BA.debugLineNum = 55;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixlabel  _setalignleft(String _r) throws Exception{
+ //BA.debugLineNum = 58;BA.debugLine="Sub SetAlignLeft(r As String) As WixLabel 'ignore";
+ //BA.debugLineNum = 59;BA.debugLine="Label.SetAlignleft(\"\")";
+_label._setalignleft /*b4j.example.wixelement*/ ("");
+ //BA.debugLineNum = 60;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixlabel)(this);
+ //BA.debugLineNum = 61;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixlabel  _setalignright(String _r) throws Exception{
+ //BA.debugLineNum = 46;BA.debugLine="Sub SetAlignRight(r As String) As WixLabel 'ignore";
+ //BA.debugLineNum = 47;BA.debugLine="Label.setAlignright(\"\")";
+_label._setalignright /*b4j.example.wixelement*/ ("");
+ //BA.debugLineNum = 48;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixlabel)(this);
+ //BA.debugLineNum = 49;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixlabel  _setlabel(String _l) throws Exception{
+ //BA.debugLineNum = 33;BA.debugLine="Sub SetLabel(l As String) As WixLabel";
+ //BA.debugLineNum = 34;BA.debugLine="Label.Label.Text = l";
+_label._label /*b4j.example.wixelement._labeltype*/ .Text /*String*/  = _l;
+ //BA.debugLineNum = 35;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixlabel)(this);
+ //BA.debugLineNum = 36;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixlabel  _setstyle(String _prop,String _val) throws Exception{
+ //BA.debugLineNum = 27;BA.debugLine="Sub SetStyle(prop As String, val As String) As Wix";
+ //BA.debugLineNum = 28;BA.debugLine="Label.SetStyle(prop,val)";
+_label._setstyle /*b4j.example.wixelement*/ (_prop,_val);
+ //BA.debugLineNum = 29;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixlabel)(this);
+ //BA.debugLineNum = 30;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixlabel  _settooltip(String _tt) throws Exception{
+ //BA.debugLineNum = 21;BA.debugLine="Sub SetTooltip(tt As String) As WixLabel";
+ //BA.debugLineNum = 22;BA.debugLine="Label.SetTooltip(tt)";
+_label._settooltip /*b4j.example.wixelement*/ (_tt);
+ //BA.debugLineNum = 23;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixlabel)(this);
+ //BA.debugLineNum = 24;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

@@ -19,6 +19,14 @@ Public Sub Initialize(iID As String) As WixMenu
 	Return Me
 End Sub
 
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixMenu
+	Menu.SetTooltip(tt)
+	Return Me
+End Sub
+
+
 'add menu item
 Sub AddMenuItem(mID As String, mValue As String, mhref As String) As WixMenu
 	Dim mitem As Map = CreateMap()

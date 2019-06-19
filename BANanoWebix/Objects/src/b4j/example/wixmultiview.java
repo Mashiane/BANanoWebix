@@ -26,6 +26,8 @@ public class wixmultiview extends B4AClass.ImplB4AClass implements BA.SubDelegat
 public String _id = "";
 public b4j.example.wixelement _multiview = null;
 public b4j.example.main _main = null;
+public b4j.example.pgcharts _pgcharts = null;
+public b4j.example.pgdataentry _pgdataentry = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgtoolbar _pgtoolbar = null;
@@ -60,10 +62,19 @@ if (true) return (b4j.example.wixmultiview)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 16;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 17;BA.debugLine="Return MultiView.item";
+ //BA.debugLineNum = 24;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 25;BA.debugLine="Return MultiView.item";
 if (true) return _multiview._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 18;BA.debugLine="End Sub";
+ //BA.debugLineNum = 26;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixmultiview  _settooltip(String _tt) throws Exception{
+ //BA.debugLineNum = 17;BA.debugLine="Sub SetTooltip(tt As String) As WixMultiView";
+ //BA.debugLineNum = 18;BA.debugLine="MultiView.SetTooltip(tt)";
+_multiview._settooltip /*b4j.example.wixelement*/ (_tt);
+ //BA.debugLineNum = 19;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixmultiview)(this);
+ //BA.debugLineNum = 20;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

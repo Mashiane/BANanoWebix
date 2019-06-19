@@ -29,10 +29,22 @@ Sub Class_Globals
 	Public Gravity As Int
 	Public CSS As String
 	Public Header As String
-	Public Body As String
+	Public Body As Object
 	Private Styles As Map
 	Private Cells As List
 	Private elementsConfig As Map
+End Sub
+
+'set label height
+Sub SetLabelHeight(h As Int) As WixElement
+	SetProperty("labelHeight", h)
+	Return Me
+End Sub
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixElement
+	SetProperty("tooltip", tt)
+	Return Me
 End Sub
 
 'initialize the element
@@ -70,6 +82,12 @@ Public Sub Initialize(sID As String) As WixElement
 	Return Me
 End Sub
 
+'set required
+Sub SetRequired(b As Boolean) As WixElement
+	SetProperty("required", b)
+	Return Me
+End Sub
+
 'set default view
 Sub SetDefaultView(a As String) As WixElement
 	elementsConfig.Put("view", a)
@@ -87,6 +105,13 @@ Sub SetDefaultLabelAlign(a As String) As WixElement
 	elementsConfig.Put("labelAlign", a)
 	Return Me
 End Sub
+
+'set default label width
+Sub SetDefaultLabelWidth(a As Int) As WixElement
+	elementsConfig.Put("labelWidth", a)
+	Return Me
+End Sub
+
 
 'set default label position
 Sub SetDefaultLabelPosition(p As String) As WixElement
@@ -160,6 +185,12 @@ Sub SetMargin(margin As String) As WixElement
 	Return Me
 End Sub
 
+'SetInputWidth
+Sub SetInputWidth(w As Int) As WixElement
+	SetProperty("inputWidth", w)
+	Return Me
+End Sub
+
 'set padding
 Sub SetPadding(padding As String) As WixElement
 	Element.Put("padding", padding)
@@ -197,7 +228,7 @@ Sub SetHeader(h As String) As WixElement
 End Sub
 
 'set body
-Sub SetBody(b As String) As WixElement
+Sub SetBody(b As Object) As WixElement
 	Body = b
 	Return Me	
 End Sub
@@ -407,19 +438,19 @@ Sub AddToColumns(prt As WixElement) As WixElement
 End Sub
 
 'set align right
-Sub SetAlignRight() As WixElement
+Sub SetAlignRight(r As String) As WixElement 'ignore
 	Align = "right"
 	Return Me
 End Sub
 
 'set align center
-Sub SetAlignCenter() As WixElement
-	Align = "center"
+Sub SetAlignCenter(r As String) As WixElement 'ignore
+	Align = "center" 
 	Return Me
 End Sub
 
 'set align left
-Sub SetAlignLeft() As WixElement
+Sub SetAlignLeft(r As String) As WixElement 'ignore
 	Align = "left"
 	Return Me
 End Sub

@@ -21,6 +21,19 @@ Public Sub Initialize(iID As String) As WixSegmented
 	Return Me
 End Sub
 
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixSegmented
+	Segmented.SetTooltip(tt)
+	Return Me
+End Sub
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixSegmented
+	Segmented.SetStyle(prop,val)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Segmented.SetAttr("options", Options)
@@ -30,6 +43,18 @@ End Sub
 'set options
 Sub SetOptions(o As List) As WixSegmented
 	Options = o
+	Return Me
+End Sub
+
+'set the label
+Sub SetLabel(l As String) As WixSegmented
+	Segmented.SetLabel(l)
+	Return Me
+End Sub
+
+'set the value
+Sub SetValue(v As String) As WixSegmented
+	Segmented.SetValue(v)
 	Return Me
 End Sub
 
@@ -53,3 +78,21 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
+
+'set align right
+Sub SetAlignRight(r As String) As WixSegmented 'ignore
+	Segmented.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixSegmented 'ignore
+	Segmented.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixSegmented 'ignore
+	Segmented.SetAlignleft("")
+	Return Me
+End Sub

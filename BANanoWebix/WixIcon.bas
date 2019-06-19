@@ -28,12 +28,32 @@ Sub Pop
 	Parent.AddColumns(Item)
 End Sub
 
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixIcon
+	Icon.SetTooltip(tt)
+	Return Me
+End Sub
+
+
+'set popup id
+Sub SetPopUp(popupID As String) As WixIcon
+	popupID = popupID.ToLowerCase
+	Icon.SetProperty("popup", popupID)
+	Return Me
+End Sub
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixIcon
+	Icon.SetStyle(prop,val)
+	Return Me
+End Sub
+
 'set the parent
 Sub SetParent(p As WixElement) As WixIcon
 	Parent = p
 	Return Me
 End Sub
-
 
 'add to form
 Sub AddToForm(frm As WixForm)
@@ -75,5 +95,24 @@ End Sub
 'set width
 Sub SetWidth(w As Int) As WixIcon
 	Icon.Width = w
+	Return Me
+End Sub
+
+
+'set align right
+Sub SetAlignRight(r As String) As WixIcon 'ignore
+	Icon.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixIcon 'ignore
+	Icon.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixIcon 'ignore
+	Icon.SetAlignleft("")
 	Return Me
 End Sub

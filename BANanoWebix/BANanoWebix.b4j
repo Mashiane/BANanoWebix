@@ -25,56 +25,65 @@ Library1=jcore
 Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
-Module1=pgForms1
-Module10=WixPortlet
-Module11=WixElement
-Module12=WixMultiView
-Module13=WixTabView
-Module14=pgLayouts1
-Module15=WixAccordion
-Module16=pgLayouts2
-Module17=WixLayoutTypes
-Module18=pgLayouts
-Module19=WixCombo
-Module2=WixToolBar
-Module20=WixLayout
-Module21=WixForm
-Module22=WixButtonTypes
-Module23=WixDataTable
-Module24=WixList
-Module25=WixRow
-Module26=WixColumn
-Module27=WixHeader
-Module28=WixTextArea
-Module29=WixCheckBox
-Module3=WixButton
-Module30=WixRadio
-Module31=WixRichSelect
-Module32=WixCounter
-Module33=WixSegmented
-Module34=WixTextBox
-Module35=WixPassword
-Module36=pgDataTable
-Module37=WixColorPicker
-Module38=WixDateTimePicker
-Module39=WixLabel
-Module4=WixIcon
-Module40=WixSection
-Module41=WixSuggest
-Module42=WixTemplate
-Module43=WixResizer
-Module44=pgLayout
-Module45=WixMenu
-Module46=WixDataCollection
-Module47=WixCarousel
-Module5=pgForms
-Module6=pgToolBar
-Module7=pgIndex
-Module8=WixPage
-Module9=pgMultiView
+Module1=pgCharts
+Module10=pgIndex
+Module11=WixPage
+Module12=pgMultiView
+Module13=WixPortlet
+Module14=WixElement
+Module15=WixMultiView
+Module16=WixTabView
+Module17=pgLayouts1
+Module18=WixAccordion
+Module19=pgLayouts2
+Module2=WixChart
+Module20=WixLayoutTypes
+Module21=pgLayouts
+Module22=WixCombo
+Module23=WixLayout
+Module24=WixForm
+Module25=WixButtonTypes
+Module26=WixDataTable
+Module27=WixList
+Module28=WixRow
+Module29=WixColumn
+Module3=pgDataEntry
+Module30=WixHeader
+Module31=WixTextArea
+Module32=WixCheckBox
+Module33=WixRadio
+Module34=WixRichSelect
+Module35=WixCounter
+Module36=WixSegmented
+Module37=WixTextBox
+Module38=pgDataTable
+Module39=WixColorPicker
+Module4=pgForms1
+Module40=WixDateTimePicker
+Module41=WixLabel
+Module42=WixSection
+Module43=WixSuggest
+Module44=WixResizer
+Module45=pgLayout
+Module46=WixMenu
+Module47=WixDataCollection
+Module48=WixCarousel
+Module49=WixSelect
+Module5=WixToolBar
+Module50=WixRangeSlider
+Module51=WixSearch
+Module52=WixSlider
+Module53=WixRichText
+Module54=WixDBLList
+Module55=WixFieldSet
+Module56=WixFormInput
+Module6=WixButton
+Module7=WixIcon
+Module8=pgForms
+Module9=pgToolBar
 NumberOfFiles=10
 NumberOfLibraries=4
-NumberOfModules=47
+NumberOfModules=56
 Version=7.51
 @EndOfDesignText@
 #Region Project Attributes 
@@ -101,8 +110,9 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.Header.AddJavascriptFile("webix.min.js")
 	'BANano.TranspilerOptions.MergeAllCSSFiles = True
 	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True
+	'BANano.TranspilerOptions.ShowWarningDeadCode = True
 	'BANano.TranspilerOptions.RemoveDeadCode = True
-	'BANano.TranspilerOptions.UseServiceWorker = False 
+	'BANano.TranspilerOptions.UseServiceWorker = True 
 	'BANano.BuildAsB4XLib("1.00") 
 	BANano.Build(Publish)
 	'post processor
@@ -135,6 +145,10 @@ Sub BANano_Ready()
 	'uncomment this line ONLY for LESSON 4
 	'pgMultiView.init 
 	'uncomment this line ONLY for LESSON 5
-	pgToolBar.Init 
+	'pgToolBar.Init
+	'uncomment this line ONLY for LESSON 6
+	pgDataEntry.init 
+	'uncomment this line ONLY for LESSON 7
+	'pgCharts.Init 
 	'pgIndex.Init
 End Sub

@@ -22,11 +22,23 @@ Sub Item As Map
 	Return ColorPicker.item
 End Sub
 
+'set tooltip
+Sub SetTooltip(tt As String) As WixColorPicker
+	ColorPicker.SetTooltip(tt)
+	Return Me
+End Sub
 
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixColorPicker
+	ColorPicker.SetStyle(prop,val)
+	Return Me
+End Sub
+
 
 'set value
 Sub SetValue(v As String) As WixColorPicker
@@ -61,5 +73,24 @@ End Sub
 'set label width
 Sub SetLabelWidth(w As Int) As WixColorPicker
 	ColorPicker.Label.Width = w
+	Return Me
+End Sub
+
+
+'set align right
+Sub SetAlignRight(r As String) As WixColorPicker 'ignore
+	ColorPicker.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixColorPicker 'ignore
+	ColorPicker.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixColorPicker 'ignore
+	ColorPicker.SetAlignleft("")
 	Return Me
 End Sub

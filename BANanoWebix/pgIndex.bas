@@ -73,7 +73,7 @@ Sub Init()
 	'R2C1.Template = R2C1.ID
 	
 	'add form
-	myForm.Initialize(pg, "myform").SetWidth(500)
+	myForm.Initialize("myform").SetWidth(500)
 	'
 	Dim title As WixTextBox
 	title.Initialize("title").SetLabel("Title").AddToForm(myForm)
@@ -101,7 +101,7 @@ Sub Init()
 	
 			
 	Dim recID As String
-	myList.Initialize(pg, "myList").SetTemplate("#title# - #year#").SetEnableSelect(True).SetHeight(400).SetData(filmset).SetOnAfterSelect(BANano.CallBack(Me,"record_selected",Array(recID))).AddToColumn(R2C2)
+	myList.Initialize("myList").SetTemplate("#title# - #year#").SetEnableSelect(True).SetHeight(400).SetData(filmset).AddToColumn(R2C2)
 	'
 	R2C2.AddToRow(R2)
 	'
@@ -109,7 +109,7 @@ Sub Init()
 	'
 	pg.UI
 	'attach the select event
-	myList.AttachAfterSelectEvent
+	pg.AttachAfterSelectEvent("myList", BANano.CallBack(Me,"record_selected",Array(recID)))
 
 End Sub
 
@@ -131,40 +131,40 @@ End Sub
 'a row is selected from the list
 Sub record_selected(id As String)
 	'get the record from the list
-	Dim record As Map = myList.GetItem(id)
+	Dim record As Map = pg.GetItem("myList", id)
 	'assign record to the form
-	myForm.SetValues(record)
+	pg.SetValues("myform", record)
 	pg.Message(BANano.ToJson(record))
 End Sub
 
 'the toolbar save button is clicked
 Sub save_row(e As BANanoEvent)
 	'get values from the form
-	Dim values As Map = myForm.GetValues
+	Dim values As Map = pg.GetValues("myform")
 	'read the id for the record
 	Dim recID As String = values.GetDefault("id","")
 	If recID = "" Then
 		'add to the list
-		myList.Add(values)
+		pg.Add("myList", values)
 	Else
 		'update the list
-		myList.Update(recID,values)
+		pg.Update("myList", recID, values)
 	End If
 End Sub
 
 'the toolbar delete button is clicked
 Sub delete_row(e As BANanoEvent)
 	'get the selected iten
-	Dim recID As String = myList.GetSelectedID
+	Dim recID As String = pg.GetSelectedID("myList")
 	If recID = "" Then Return
 	'remove item from list
-	myList.Remove(recID)
+	pg.Remove("myList",recID)
 	'clear the form
-	myForm.Clear
+	pg.Clear("myform")
 End Sub
 
 'the toolbar clear button is clicked
 Sub clear_form
 	'clear the form contents
-	myForm.Clear
+	pg.Clear("myform")
 End Sub

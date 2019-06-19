@@ -26,6 +26,8 @@ public class wixsection extends B4AClass.ImplB4AClass implements BA.SubDelegator
 public String _id = "";
 public b4j.example.wixelement _section = null;
 public b4j.example.main _main = null;
+public b4j.example.pgcharts _pgcharts = null;
+public b4j.example.pgdataentry _pgdataentry = null;
 public b4j.example.pgforms1 _pgforms1 = null;
 public b4j.example.pgforms _pgforms = null;
 public b4j.example.pgtoolbar _pgtoolbar = null;
@@ -37,17 +39,17 @@ public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
- //BA.debugLineNum = 40;BA.debugLine="Sub AddToForm(frm As WixForm)";
- //BA.debugLineNum = 41;BA.debugLine="frm.AddItem(Item)";
+ //BA.debugLineNum = 28;BA.debugLine="Sub AddToForm(frm As WixForm)";
+ //BA.debugLineNum = 29;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
- //BA.debugLineNum = 42;BA.debugLine="End Sub";
+ //BA.debugLineNum = 30;BA.debugLine="End Sub";
 return "";
 }
 public String  _addtotoolbar(b4j.example.wixtoolbar _tblb) throws Exception{
- //BA.debugLineNum = 45;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
- //BA.debugLineNum = 46;BA.debugLine="tblB.Toolbar.AddItem(Item)";
+ //BA.debugLineNum = 33;BA.debugLine="Sub AddToToolbar(tblB As WixToolBar)";
+ //BA.debugLineNum = 34;BA.debugLine="tblB.Toolbar.AddItem(Item)";
 _tblb._toolbar /*b4j.example.wixelement*/ ._additem /*b4j.example.wixelement*/ (_item());
- //BA.debugLineNum = 47;BA.debugLine="End Sub";
+ //BA.debugLineNum = 35;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -74,37 +76,19 @@ if (true) return (b4j.example.wixsection)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 16;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 17;BA.debugLine="Return Section.item";
+ //BA.debugLineNum = 23;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 24;BA.debugLine="Return Section.item";
 if (true) return _section._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 18;BA.debugLine="End Sub";
+ //BA.debugLineNum = 25;BA.debugLine="End Sub";
 return null;
 }
-public b4j.example.wixsection  _setlabel(String _l) throws Exception{
- //BA.debugLineNum = 33;BA.debugLine="Sub SetLabel(l As String) As WixSection";
- //BA.debugLineNum = 34;BA.debugLine="Section.Label.Text = l";
-_section._label /*b4j.example.wixelement._labeltype*/ .Text /*String*/  = _l;
- //BA.debugLineNum = 35;BA.debugLine="Return Me";
+public b4j.example.wixsection  _settooltip(String _tt) throws Exception{
+ //BA.debugLineNum = 17;BA.debugLine="Sub SetTooltip(tt As String) As WixSection";
+ //BA.debugLineNum = 18;BA.debugLine="Section.SetTooltip(tt)";
+_section._settooltip /*b4j.example.wixelement*/ (_tt);
+ //BA.debugLineNum = 19;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixsection)(this);
- //BA.debugLineNum = 36;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixsection  _settemplate(String _t) throws Exception{
- //BA.debugLineNum = 21;BA.debugLine="Sub SetTemplate(t As String) As WixSection";
- //BA.debugLineNum = 22;BA.debugLine="Section.Template = t";
-_section._template /*String*/  = _t;
- //BA.debugLineNum = 23;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixsection)(this);
- //BA.debugLineNum = 24;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixsection  _setvalue(String _v) throws Exception{
- //BA.debugLineNum = 27;BA.debugLine="Sub SetValue(v As String) As WixSection";
- //BA.debugLineNum = 28;BA.debugLine="Section.Value = v";
-_section._value /*Object*/  = (Object)(_v);
- //BA.debugLineNum = 29;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixsection)(this);
- //BA.debugLineNum = 30;BA.debugLine="End Sub";
+ //BA.debugLineNum = 20;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

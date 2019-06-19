@@ -23,6 +23,13 @@ Public Sub Initialize(sID As String) As WixToolBar
 	Return Me
 End Sub
 
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixToolBar
+	ToolBar.SetTooltip(tt)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Return ToolBar.item

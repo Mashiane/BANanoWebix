@@ -17,6 +17,24 @@ Public Sub Initialize(rID As String) As WixRow
 	Return Me 
 End Sub
 
+'add to columns
+Sub AddColumns(i As Map) As WixRow
+	Row.AddColumns(i)
+	Return Me
+End Sub
+
+'add to rows
+Sub AddRows(i As Map) As WixRow
+	Row.AddRows(i)
+	Return Me
+End Sub
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixRow
+	Row.SetTooltip(tt)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Return Row.item
@@ -34,7 +52,6 @@ Sub AddColumn(wxEL As WixColumn) As WixRow
 	Return Me
 End Sub
 
-
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
@@ -43,4 +60,16 @@ End Sub
 'add to page
 Sub AddToPage(p As WixPage)
 	p.Page.AddRows(Item)
+End Sub
+
+'set height
+Sub SetHeight(h As Int) As WixRow
+	Row.SetHeight(h)
+	Return Me
+End Sub
+
+'set width
+Sub SetWidth(w As Int) As WixRow
+	Row.setwidth(w)
+	Return Me
 End Sub

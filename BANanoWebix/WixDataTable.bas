@@ -8,7 +8,6 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public DataTable As WixElement
-	Private Data As List
 	Private AutoConfig As Boolean
 End Sub
 
@@ -20,17 +19,28 @@ Public Sub Initialize(tID As String) As WixDataTable
 	Return Me
 End Sub
 
+'add header
+Sub AddHeader(sid As String, sheader As String, iFillSpace As Int) As WixDataTable
+	Dim col As Map = CreateMap()
+	col.Put("id", sid)
+	col.Put("header", sheader)
+	If iFillSpace > 0 Then 
+		col.Put("fillspace", iFillSpace)
+	End If
+	DataTable.AddColumns(col)
+	Return Me
+End Sub
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixDataTable
+	DataTable.SetTooltip(tt)
+	Return Me
+End Sub
+
 'return the data table context
 Sub Item As Map
 	DataTable.SetAttr("autoConfig", AutoConfig)
-	DataTable.SetAttr("data", Data)
 	Return DataTable.item
-End Sub
-
-'set Data
-Sub SetData(d As List) As WixDataTable
-	Data = d
-	Return Me
 End Sub
 
 'set autoConfig
@@ -39,8 +49,25 @@ Sub SetAutoConfig(a As Boolean) As WixDataTable
 	Return Me
 End Sub
 
+'set height
+Sub SetHeight(h As Int) As WixDataTable
+	DataTable.SetHeight(h)
+	Return Me
+End Sub
+
+'set width
+Sub SetWidth(h As Int) As WixDataTable
+	DataTable.SetWidth(h)
+	Return Me
+End Sub
 
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
+End Sub
+
+'set Data
+Sub SetData(data As List) As WixDataTable
+	DataTable.SetData(data)
+	Return Me
 End Sub

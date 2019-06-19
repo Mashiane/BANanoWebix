@@ -19,6 +19,11 @@ Public Sub Initialize(iID As String) As WixCheckBox
 	Return Me
 End Sub
 
+'set tooltip
+Sub SetTooltip(tt As String) As WixCheckBox
+	CheckBox.SetProperty("tooltip", tt)
+	Return Me
+End Sub
 
 'add to form
 Sub AddToForm(frm As WixForm)
@@ -32,6 +37,12 @@ Sub Item As Map
 		CheckBox.Label.Text = ""
 	End If
 	Return CheckBox.item
+End Sub
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixCheckBox
+	CheckBox.SetStyle(prop,val)
+	Return Me
 End Sub
 
 'set value
@@ -68,5 +79,24 @@ End Sub
 'set label width
 Sub SetLabelWidth(w As Int) As WixCheckBox
 	CheckBox.Label.Width = w
+	Return Me
+End Sub
+
+
+'set align right
+Sub SetAlignRight(r As String) As WixCheckBox 'ignore
+	CheckBox.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixCheckBox 'ignore
+	CheckBox.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixCheckBox 'ignore
+	CheckBox.SetAlignleft("")
 	Return Me
 End Sub

@@ -17,17 +17,34 @@ Public Sub Initialize(tID As String) As WixPassword
 	Return Me
 End Sub
 
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixPassword
+	Password.SetTooltip(tt)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Return Password.Item
 End Sub
 
+'set style
+Sub SetStyle(prop As String, val As String) As WixPassword
+	Password.SetStyle(prop,val)
+	Return Me
+End Sub
+
+'set password
+Sub SetValue(v As String) As WixPassword
+	Password.SetValue(v)
+	Return Me
+End Sub
 
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
-
 
 'set the html attribute
 Sub SetMaxLength(ml As Int) As WixPassword
@@ -84,3 +101,21 @@ Sub SetLabelWidth(w As Int) As WixPassword
 	Return Me
 End Sub
 
+
+'set align right
+Sub SetAlignRight(r As String) As WixPassword  'ignore
+	Password.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixPassword 'ignore
+	Password.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixPassword 'ignore
+	Password.SetAlignleft("")
+	Return Me
+End Sub

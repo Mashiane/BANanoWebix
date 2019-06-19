@@ -18,6 +18,13 @@ Public Sub Initialize(sid As String) As WixTabView
 	Return Me
 End Sub
 
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixTabView
+	TabView.SetTooltip(tt)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Return TabView.item

@@ -35,6 +35,25 @@ Public Sub Initialize(bID As String) As WixButton
 	Return Me
 End Sub
 
+'sub SetInputWidth
+Sub SetInputWidth(w As Int) As WixButton
+	Button.SetInputWidth(w)
+	Return Me
+End Sub
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixButton
+	Button.SetProperty("tooltip", tt)
+	Return Me
+End Sub
+
+'set style
+Sub SetStyle(prop As String, val As String) As WixButton
+	Button.SetStyle(prop,val)
+	Return Me
+End Sub
+
+
 'set off label
 Sub SetOffLabel(l As String) As WixButton
 	OffLabel = l
@@ -202,5 +221,24 @@ End Sub
 'set width
 Sub SetWidth(w As Int) As WixButton
 	Button.Width = w
+	Return Me
+End Sub
+
+
+'set align right
+Sub SetAlignRight(r As String) As WixButton 'ignore
+	Button.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixButton 'ignore
+	Button.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixButton 'ignore
+	Button.SetAlignleft("")
 	Return Me
 End Sub
