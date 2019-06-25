@@ -23,6 +23,7 @@ static {
  public static anywheresoftware.b4a.keywords.Common __c = null;
 public static b4j.example.wixpage _pg = null;
 public static b4j.example.main _main = null;
+public static b4j.example.pgdataview _pgdataview = null;
 public static b4j.example.pgdatatable1 _pgdatatable1 = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pgdataentry _pgdataentry = null;
@@ -35,12 +36,14 @@ public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
 public static b4j.example.pglayout _pglayout = null;
-public static b4j.example.pgdataview _pgdataview = null;
 public static b4j.example.pglist _pglist = null;
 public static b4j.example.pgunitlist _pgunitlist = null;
 public static b4j.example.pgpropertysheet _pgpropertysheet = null;
 public static b4j.example.pgtree _pgtree = null;
 public static b4j.example.pgtreetable _pgtreetable = null;
+public static b4j.example.pgmenu _pgmenu = null;
+public static b4j.example.pgsidebar _pgsidebar = null;
+public static b4j.example.pgcomments _pgcomments = null;
 public static String  _init() throws Exception{
 anywheresoftware.b4a.objects.collections.List _chartdata = null;
 b4j.example.wixrow _r1 = null;

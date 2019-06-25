@@ -14,7 +14,33 @@ Sub Class_Globals
 	Public EnumButtonTypes As WixButtonTypes
 	Public EnumLayoutTypes As WixLayoutTypes
 	Private hints As Map
+	Private uniteFld As String
+	Private ulName As String
+	Private BANano As BANano  'ignore
 End Sub
+
+
+'set uniteby should be an existing field
+Sub SetUniteBy(ulID As String, fldName As String)
+	ulID = ulID.tolowercase
+	fldName = fldName.tolowercase
+	uniteFld = fldName
+	ulName = ulID
+	'define unite by
+	Dim obj As Map
+	Dim cb As BANanoObject = BANano.CallBack(Me, "uniteby", Array(obj))
+	Dim opt As Map = CreateMap()
+	opt.Put("uniteBy", cb)
+	Define(ulName, opt)
+	Refresh(ulName)
+End Sub
+
+private Sub uniteby(obj As Map) As String
+	Dim stitle As String = obj.Get(uniteFld)
+	Dim ub As String = stitle.SubString2(0,1)
+	Return ub
+End Sub
+
 
 'initialize the page
 Public Sub Initialize(pgID As String) As WixPage
@@ -38,6 +64,28 @@ Sub Define(eID As String, properties As Map)
 	Dollar.Selector(eID).RunMethod("define",Array(properties))
 End Sub
 
+'add a node to a tree
+Sub AddNode(treeID As String, node As Map)
+	treeID = treeID.ToLowerCase
+	Dollar.Selector(treeID).RunMethod("add", Array(node,1))
+End Sub
+
+'add a node to a tree
+Sub AddChildNode(treeID As String, parentID As String, node As Map)
+	treeID = treeID.ToLowerCase
+	parentID = parentID.tolowercase
+	Dollar.Selector(treeID).RunMethod("add", Array(node,1,parentID))
+End Sub
+
+'select a node to a tree
+Sub SelectItem(treeID As String, nodeID As String)
+	treeID = treeID.ToLowerCase
+	nodeID = nodeID.tolowercase
+	Dollar.Selector(treeID).RunMethod("select", Array(nodeID))
+End Sub
+
+
+
 'set a hint for input element
 Sub SetHint(eID As String, sHint As String)
 	eID = eID.tolowercase
@@ -45,9 +93,46 @@ Sub SetHint(eID As String, sHint As String)
 End Sub
 
 'attach events after page is created
-Sub AttachOnChangeEvent(eID As String, onChange As BANanoObject)
+Sub OnChange(eID As String, cb As BANanoObject)
 	eID = eID.tolowercase
-	Dollar.Selector(eID).RunMethod("attachEvent",Array("onChange",onChange))
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onChange",cb))
+End Sub
+
+'attach events after page is created
+Sub OnEnter(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onEnter",cb))
+End Sub
+
+'attach events after page is created
+Sub OnLiveEdit(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onLiveEdit",cb))
+End Sub
+
+'attach events after page is created
+Sub OnTimedKeyPress(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onTimedKeyPress",cb))
+End Sub
+
+'attach event onAfterTabClick for segment button
+Sub OnAfterTabClick(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onAfterTabClick",cb))
+End Sub
+
+'attach events after page is created
+Sub OnCheck(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onCheck",cb))
+End Sub
+
+
+'attach events after page is created
+Sub OnSelectChange(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onSelectChange",cb))
 End Sub
 
 
@@ -224,12 +309,6 @@ Sub OnAfterUnSelect(eID As String, cb As BANanoObject)
 	Dollar.Selector(eID).RunMethod("attachEvent",Array("onAfterUnSelect",cb))
 End Sub
 
-'on after unselect event
-Sub OnSelectChange(eID As String, cb As BANanoObject)
-	eID = eID.tolowercase
-	Dollar.Selector(eID).RunMethod("attachEvent",Array("onSelectChange",cb))
-End Sub
-
 'serialize all data
 Sub Serialize(eID As String, bAll As Boolean) As List
 	eID = eID.ToLowerCase
@@ -337,6 +416,19 @@ Sub Save(frmID As String)
 	Dollar.Selector(frmID).RunMethod("save",Null)
 End Sub
 
+'toggle
+Sub Toggle(sbID As String)
+	sbID = sbID.tolowercase
+	Dollar.Selector(sbID).RunMethod("toggle",Null)
+End Sub
+
+'set full screen
+Sub WindowFullScreen(wID As String)
+	wID = wID.ToLowerCase
+	Define(wID, CreateMap("fullscreen":True,"top":0,"left":0))
+	Resize(wID)
+End Sub
+
 'export element to png
 Sub Export2PNG(eID As String)
 	eID = eID.ToLowerCase
@@ -379,4 +471,43 @@ Sub Export2CSV(eID As String)
 	Dim opt As Map = CreateMap("filename": eID & ".png")
 	'execute the stuff
 	webix.RunMethod("toCSV", Array(itm, opt))
+End Sub
+
+'set popup
+Sub ShowPopUp(sTemplate As String, height As Int, width As Int, position As String)
+	Dim p As WixPopUp
+	p.Initialize("popupi").SetHeight(height).SetWidth(width).SetPosition(position).SetTemplate(sTemplate)
+	Dim pp As BANanoObject = webix.RunMethod("ui",p.item)
+	pp.RunMethod("show", Null) 
+End Sub
+
+'return ui element from map
+Sub UX(m As Map) As BANanoObject
+	Dim res As BANanoObject = webix.RunMethod("ui", m)
+	Return res
+End Sub
+
+
+'show an element
+Sub Show(itm As BANanoObject)
+	itm.RunMethod("show", Null)
+End Sub
+
+
+'show an element
+Sub Hide(itm As BANanoObject)
+	itm.RunMethod("hide", Null)
+End Sub
+
+
+'Close an element
+Sub Close(itm As BANanoObject)
+	itm.RunMethod("close", Null)
+End Sub
+
+
+'is visible
+Sub IsVisible(itm As BANanoObject) As Boolean
+	Dim res As Boolean = itm.RunMethod("isVisible", Null).result
+	Return res
 End Sub

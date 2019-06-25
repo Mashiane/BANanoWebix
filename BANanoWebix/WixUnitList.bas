@@ -8,17 +8,32 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public UnitList As WixElement
+	Private typeOf As Map
 End Sub
 
 'Initializes the unit list
 Public Sub Initialize(eID As String) As WixUnitList
 	ID = eID.tolowercase
 	UnitList.Initialize(ID).SetView("unitlist")
+	typeOf = CreateMap()
+	Return Me
+End Sub
+
+'set item height
+Sub SetItemHeight(h As Object) As WixUnitList
+	typeOf.Put("height", h)
+	Return Me
+End Sub
+
+'set item width
+Sub SetItemWidth(w As Object) As WixUnitList
+	typeOf.Put("width", w)
 	Return Me
 End Sub
 
 'return the item
 Sub Item As Map
+	UnitList.SetAttr("type", typeOf)
 	Return UnitList.item
 End Sub
 
@@ -65,15 +80,3 @@ Sub SetWidth(h As Int) As WixUnitList
 	Return Me
 End Sub
 
-'set uniteby should be an existing field
-Sub SetUniteBy(fldName As String) As WixUnitList
-	fldName = fldName.tolowercase
-	Dim sb As StringBuilder
-	sb.Initialize
-	sb.Append("function(inObj) {")
-	sb.Append($"return inObj.${fldName}.substr(0,1);"$)
-	sb.Append("}")
-	'
-	UnitList.SetAttr("uniteBy", sb.ToString)
-	Return Me
-End Sub

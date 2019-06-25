@@ -45,6 +45,7 @@ public static com.ab.banano.BANano _banano = null;
 public static String _appname = "";
 public static String _publish = "";
 public static b4j.example.bananopostprocessor _bp = null;
+public static b4j.example.pgdataview _pgdataview = null;
 public static b4j.example.pgdatatable1 _pgdatatable1 = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pgcharts _pgcharts = null;
@@ -58,17 +59,19 @@ public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
 public static b4j.example.pglayout _pglayout = null;
-public static b4j.example.pgdataview _pgdataview = null;
 public static b4j.example.pglist _pglist = null;
 public static b4j.example.pgunitlist _pgunitlist = null;
 public static b4j.example.pgpropertysheet _pgpropertysheet = null;
 public static b4j.example.pgtree _pgtree = null;
 public static b4j.example.pgtreetable _pgtreetable = null;
+public static b4j.example.pgmenu _pgmenu = null;
+public static b4j.example.pgsidebar _pgsidebar = null;
+public static b4j.example.pgcomments _pgcomments = null;
 public static boolean  _application_error(anywheresoftware.b4a.objects.B4AException _error,String _stacktrace) throws Exception{
- //BA.debugLineNum = 44;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
- //BA.debugLineNum = 45;BA.debugLine="Return True";
+ //BA.debugLineNum = 46;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
+ //BA.debugLineNum = 47;BA.debugLine="Return True";
 if (true) return anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 46;BA.debugLine="End Sub";
+ //BA.debugLineNum = 48;BA.debugLine="End Sub";
 return false;
 }
 public static String  _appstart(anywheresoftware.b4j.objects.Form _form1,String[] _args) throws Exception{
@@ -93,40 +96,44 @@ _banano.Header.Title = _appname;
 _banano.JAVASCRIPT_NAME = _appfile;
  //BA.debugLineNum = 20;BA.debugLine="BANano.Header.addcssfile(\"all.min.css\")";
 _banano.Header.AddCSSFile("all.min.css");
- //BA.debugLineNum = 21;BA.debugLine="BANano.Header.AddCSSFile(\"webix.min.css\")";
+ //BA.debugLineNum = 21;BA.debugLine="BANano.Header.AddCSSFile(\"https://cdn.materialdes";
+_banano.Header.AddCSSFile("https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css");
+ //BA.debugLineNum = 22;BA.debugLine="BANano.Header.AddCSSFile(\"webix.min.css\")";
 _banano.Header.AddCSSFile("webix.min.css");
- //BA.debugLineNum = 22;BA.debugLine="BANano.Header.AddJavascriptFile(\"webix.min.js\")";
+ //BA.debugLineNum = 23;BA.debugLine="BANano.Header.AddJavascriptFile(\"webix.min.js\")";
 _banano.Header.AddJavascriptFile("webix.min.js");
- //BA.debugLineNum = 29;BA.debugLine="BANano.Build(Publish)";
+ //BA.debugLineNum = 24;BA.debugLine="BANano.Header.AddJavascriptFile(\"data.js\")";
+_banano.Header.AddJavascriptFile("data.js");
+ //BA.debugLineNum = 31;BA.debugLine="BANano.Build(Publish)";
 _banano.Build(_publish);
- //BA.debugLineNum = 31;BA.debugLine="BP.Initialize";
+ //BA.debugLineNum = 33;BA.debugLine="BP.Initialize";
 _bp._initialize(ba);
- //BA.debugLineNum = 32;BA.debugLine="BP.PublishPath = Publish";
+ //BA.debugLineNum = 34;BA.debugLine="BP.PublishPath = Publish";
 _bp._publishpath = _publish;
- //BA.debugLineNum = 33;BA.debugLine="BP.ShortName = AppName";
+ //BA.debugLineNum = 35;BA.debugLine="BP.ShortName = AppName";
 _bp._shortname = _appname;
- //BA.debugLineNum = 34;BA.debugLine="BP.AssetsPath = BANano.ASSETS_FOLDER";
+ //BA.debugLineNum = 36;BA.debugLine="BP.AssetsPath = BANano.ASSETS_FOLDER";
 _bp._assetspath = _banano.ASSETS_FOLDER;
- //BA.debugLineNum = 35;BA.debugLine="BP.ScriptsPath = BANano.SCRIPTS_FOLDER";
+ //BA.debugLineNum = 37;BA.debugLine="BP.ScriptsPath = BANano.SCRIPTS_FOLDER";
 _bp._scriptspath = _banano.SCRIPTS_FOLDER;
- //BA.debugLineNum = 36;BA.debugLine="BP.StylesPath = BANano.STYLES_FOLDER";
+ //BA.debugLineNum = 38;BA.debugLine="BP.StylesPath = BANano.STYLES_FOLDER";
 _bp._stylespath = _banano.STYLES_FOLDER;
- //BA.debugLineNum = 37;BA.debugLine="BP.ScriptFile = BANano.JAVASCRIPT_NAME";
+ //BA.debugLineNum = 39;BA.debugLine="BP.ScriptFile = BANano.JAVASCRIPT_NAME";
 _bp._scriptfile = _banano.JAVASCRIPT_NAME;
- //BA.debugLineNum = 38;BA.debugLine="BP.UnzipFonts";
+ //BA.debugLineNum = 40;BA.debugLine="BP.UnzipFonts";
 _bp._unzipfonts();
- //BA.debugLineNum = 39;BA.debugLine="BP.Open(True)";
+ //BA.debugLineNum = 41;BA.debugLine="BP.Open(True)";
 _bp._open(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 40;BA.debugLine="ExitApplication";
+ //BA.debugLineNum = 42;BA.debugLine="ExitApplication";
 anywheresoftware.b4a.keywords.Common.ExitApplication();
- //BA.debugLineNum = 41;BA.debugLine="End Sub";
+ //BA.debugLineNum = 43;BA.debugLine="End Sub";
 return "";
 }
 public static String  _banano_ready() throws Exception{
- //BA.debugLineNum = 48;BA.debugLine="Sub BANano_Ready()";
- //BA.debugLineNum = 67;BA.debugLine="pgDataTable1.Init   ' LESSON 8.2";
-_pgdatatable1._init /*String*/ ();
- //BA.debugLineNum = 75;BA.debugLine="End Sub";
+ //BA.debugLineNum = 50;BA.debugLine="Sub BANano_Ready()";
+ //BA.debugLineNum = 78;BA.debugLine="pgComments.Init	      'LESSON 17";
+_pgcomments._init /*String*/ ();
+ //BA.debugLineNum = 80;BA.debugLine="End Sub";
 return "";
 }
 
@@ -137,6 +144,7 @@ public static void initializeProcessGlobals() {
 	    main.processGlobalsRun = true;
 		try {
 		        main._process_globals();
+pgdataview._process_globals();
 pgdatatable1._process_globals();
 pgdatatable._process_globals();
 pgcharts._process_globals();
@@ -150,12 +158,14 @@ pglayouts1._process_globals();
 pglayouts2._process_globals();
 pglayouts._process_globals();
 pglayout._process_globals();
-pgdataview._process_globals();
 pglist._process_globals();
 pgunitlist._process_globals();
 pgpropertysheet._process_globals();
 pgtree._process_globals();
 pgtreetable._process_globals();
+pgmenu._process_globals();
+pgsidebar._process_globals();
+pgcomments._process_globals();
 		
         } catch (Exception e) {
 			throw new RuntimeException(e);

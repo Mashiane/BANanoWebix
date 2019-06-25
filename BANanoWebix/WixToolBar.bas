@@ -23,6 +23,17 @@ Public Sub Initialize(sID As String) As WixToolBar
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(p As String) As WixToolBar
+	ToolBar.SetAttr("padding", p)
+	Return Me
+End Sub
+
+'set margin
+Sub SetMargin(m As Int) As WixToolBar
+	ToolBar.SetAttr("margin", m)
+	Return Me
+End Sub
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixToolBar
@@ -56,6 +67,12 @@ Sub CreateIcon(sid As String) As WixIcon
 	Return btn
 End Sub
 
+'add a label
+Sub CreateLabel(sid As String) As WixLabel
+	Dim lbl As WixLabel
+	lbl.Initialize(sid).setparent(ToolBar)
+	Return lbl
+End Sub
 
 'add a toggle button and define it
 Sub CreateToggle(sid As String) As WixButton

@@ -26,6 +26,7 @@ public class wixlist extends B4AClass.ImplB4AClass implements BA.SubDelegator{
 public b4j.example.wixelement _list = null;
 public String _id = "";
 public b4j.example.main _main = null;
+public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pgdatatable1 _pgdatatable1 = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pgcharts _pgcharts = null;
@@ -39,12 +40,14 @@ public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pglist _pglist = null;
 public b4j.example.pgunitlist _pgunitlist = null;
 public b4j.example.pgpropertysheet _pgpropertysheet = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgtreetable _pgtreetable = null;
+public b4j.example.pgmenu _pgmenu = null;
+public b4j.example.pgsidebar _pgsidebar = null;
+public b4j.example.pgcomments _pgcomments = null;
 public String  _addtocolumn(b4j.example.wixcolumn _c) throws Exception{
  //BA.debugLineNum = 22;BA.debugLine="Sub AddToColumn(c As WixColumn)";
  //BA.debugLineNum = 23;BA.debugLine="c.AddItem(Item)";

@@ -27,6 +27,7 @@ public String _id = "";
 public b4j.example.wixelement _accordion = null;
 public boolean _horizontal = false;
 public b4j.example.main _main = null;
+public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pgdatatable1 _pgdatatable1 = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pgcharts _pgcharts = null;
@@ -40,40 +41,42 @@ public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pglist _pglist = null;
 public b4j.example.pgunitlist _pgunitlist = null;
 public b4j.example.pgpropertysheet _pgpropertysheet = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgtreetable _pgtreetable = null;
+public b4j.example.pgmenu _pgmenu = null;
+public b4j.example.pgsidebar _pgsidebar = null;
+public b4j.example.pgcomments _pgcomments = null;
 public b4j.example.wixelement  _additem(String _iid,String _header,String _body,int _width,boolean _bcollapsed) throws Exception{
 b4j.example.wixelement _h = null;
- //BA.debugLineNum = 35;BA.debugLine="Sub AddItem(iID As String, header As String, body";
- //BA.debugLineNum = 36;BA.debugLine="iID = iID.tolowercase";
+ //BA.debugLineNum = 41;BA.debugLine="Sub AddItem(iID As String, header As String, body";
+ //BA.debugLineNum = 42;BA.debugLine="iID = iID.tolowercase";
 _iid = _iid.toLowerCase();
- //BA.debugLineNum = 37;BA.debugLine="Dim h As WixElement";
+ //BA.debugLineNum = 43;BA.debugLine="Dim h As WixElement";
 _h = new b4j.example.wixelement();
- //BA.debugLineNum = 38;BA.debugLine="h.Initialize(iID)";
+ //BA.debugLineNum = 44;BA.debugLine="h.Initialize(iID)";
 _h._initialize /*b4j.example.wixelement*/ (ba,_iid);
- //BA.debugLineNum = 39;BA.debugLine="h.SetHeader(header)";
+ //BA.debugLineNum = 45;BA.debugLine="h.SetHeader(header)";
 _h._setheader /*b4j.example.wixelement*/ (_header);
- //BA.debugLineNum = 40;BA.debugLine="h.SetBody(body)";
+ //BA.debugLineNum = 46;BA.debugLine="h.SetBody(body)";
 _h._setbody /*b4j.example.wixelement*/ ((Object)(_body));
- //BA.debugLineNum = 41;BA.debugLine="h.SetWidth(width)";
+ //BA.debugLineNum = 47;BA.debugLine="h.SetWidth(width)";
 _h._setwidth /*b4j.example.wixelement*/ (_width);
- //BA.debugLineNum = 42;BA.debugLine="h.SetCollapsed(bCollapsed)";
+ //BA.debugLineNum = 48;BA.debugLine="h.SetCollapsed(bCollapsed)";
 _h._setcollapsed /*b4j.example.wixelement*/ (_bcollapsed);
- //BA.debugLineNum = 43;BA.debugLine="If Horizontal = True Then";
+ //BA.debugLineNum = 49;BA.debugLine="If Horizontal = True Then";
 if (_horizontal==__c.True) { 
- //BA.debugLineNum = 44;BA.debugLine="Accordion.AddRows(h.Item)";
+ //BA.debugLineNum = 50;BA.debugLine="Accordion.AddRows(h.Item)";
 _accordion._addrows /*b4j.example.wixelement*/ (_h._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
  }else {
- //BA.debugLineNum = 46;BA.debugLine="Accordion.AddColumns(h.Item)";
+ //BA.debugLineNum = 52;BA.debugLine="Accordion.AddColumns(h.Item)";
 _accordion._addcolumns /*b4j.example.wixelement*/ (_h._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
  };
- //BA.debugLineNum = 48;BA.debugLine="Return h";
+ //BA.debugLineNum = 54;BA.debugLine="Return h";
 if (true) return _h;
- //BA.debugLineNum = 49;BA.debugLine="End Sub";
+ //BA.debugLineNum = 55;BA.debugLine="End Sub";
 return null;
 }
 public String  _class_globals() throws Exception{
@@ -104,10 +107,10 @@ if (true) return (b4j.example.wixaccordion)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 30;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 31;BA.debugLine="Return Accordion.item";
+ //BA.debugLineNum = 36;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 37;BA.debugLine="Return Accordion.item";
 if (true) return _accordion._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 32;BA.debugLine="End Sub";
+ //BA.debugLineNum = 38;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixaccordion  _setcollapsed(boolean _b) throws Exception{
@@ -126,6 +129,15 @@ _horizontal = _b;
  //BA.debugLineNum = 26;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixaccordion)(this);
  //BA.debugLineNum = 27;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixaccordion  _setmulti(boolean _b) throws Exception{
+ //BA.debugLineNum = 30;BA.debugLine="Sub SetMulti(b As Boolean) As WixAccordion";
+ //BA.debugLineNum = 31;BA.debugLine="Accordion.SetAttr(\"multi\", b)";
+_accordion._setattr /*b4j.example.wixelement*/ ("multi",(Object)(_b));
+ //BA.debugLineNum = 32;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixaccordion)(this);
+ //BA.debugLineNum = 33;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

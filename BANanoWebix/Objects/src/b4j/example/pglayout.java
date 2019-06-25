@@ -24,6 +24,7 @@ static {
 public static b4j.example.wixpage _pg = null;
 public static com.ab.banano.BANano _banano = null;
 public static b4j.example.main _main = null;
+public static b4j.example.pgdataview _pgdataview = null;
 public static b4j.example.pgdatatable1 _pgdatatable1 = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pgcharts _pgcharts = null;
@@ -36,12 +37,14 @@ public static b4j.example.pgmultiview _pgmultiview = null;
 public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
-public static b4j.example.pgdataview _pgdataview = null;
 public static b4j.example.pglist _pglist = null;
 public static b4j.example.pgunitlist _pgunitlist = null;
 public static b4j.example.pgpropertysheet _pgpropertysheet = null;
 public static b4j.example.pgtree _pgtree = null;
 public static b4j.example.pgtreetable _pgtreetable = null;
+public static b4j.example.pgmenu _pgmenu = null;
+public static b4j.example.pgsidebar _pgsidebar = null;
+public static b4j.example.pgcomments _pgcomments = null;
 public static String  _init() throws Exception{
 com.ab.banano.BANanoEvent _e = null;
 b4j.example.wixelement _r1 = null;

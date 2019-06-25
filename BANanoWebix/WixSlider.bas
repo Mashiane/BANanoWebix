@@ -21,6 +21,7 @@ Public Sub Initialize(iID As String) As WixSlider
 	Maximum = 100
 	Slider.Value = 10
 	Stepper = 1
+	Slider.SetAttr("title", "#value#")
 	Return Me
 End Sub
 
@@ -29,6 +30,17 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
+'set move title
+Sub SetMoveTitle(b As Boolean) As WixSlider
+	Slider.SetAttr("moveTitle", b)
+	Return Me
+End Sub
+
+'set sertical
+Sub SetVertical(b As Boolean) As WixSlider
+	Slider.SetAttr("vertical", b)
+	Return Me
+End Sub
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixSlider

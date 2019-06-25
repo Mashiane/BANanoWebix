@@ -8,6 +8,8 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public TabView As WixElement
+	Private mv As WixElement
+	Private tb As WixElement
 End Sub
 
 'Initializes the accordion
@@ -15,9 +17,22 @@ Public Sub Initialize(sid As String) As WixTabView
 	ID = sid.tolowercase
 	TabView.Initialize(ID)
 	TabView.SetView("tabview")
+	mv.Initialize(ID & "mv")
+	tb.Initialize(ID & "tb") 
 	Return Me
 End Sub
 
+'set multiview animated
+Sub SetMultiViewAnimate(b As Boolean) As WixTabView
+	mv.SetAnimate(b)
+	Return Me
+End Sub
+
+'set tabbar close
+Sub SetTabBarClose(b As Boolean) As WixTabView
+	tb.SetAttr("close", b)
+	Return Me
+End Sub
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixTabView
@@ -27,6 +42,8 @@ End Sub
 
 'return the item
 Sub Item As Map
+	TabView.SetAttr("tabbar", tb.Item)
+	TabView.SetAttr("multiview", mv.Item)
 	Return TabView.item
 End Sub
 

@@ -25,6 +25,7 @@ public static b4j.example.wixpage _pg = null;
 public static b4j.example.wixform _myform = null;
 public static com.ab.banano.BANano _banano = null;
 public static b4j.example.main _main = null;
+public static b4j.example.pgdataview _pgdataview = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pgcharts _pgcharts = null;
 public static b4j.example.pgdataentry _pgdataentry = null;
@@ -37,12 +38,14 @@ public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
 public static b4j.example.pglayout _pglayout = null;
-public static b4j.example.pgdataview _pgdataview = null;
 public static b4j.example.pglist _pglist = null;
 public static b4j.example.pgunitlist _pgunitlist = null;
 public static b4j.example.pgpropertysheet _pgpropertysheet = null;
 public static b4j.example.pgtree _pgtree = null;
 public static b4j.example.pgtreetable _pgtreetable = null;
+public static b4j.example.pgmenu _pgmenu = null;
+public static b4j.example.pgsidebar _pgsidebar = null;
+public static b4j.example.pgcomments _pgcomments = null;
 public static String  _init() throws Exception{
 b4j.example.wixrow _r1 = null;
 anywheresoftware.b4a.objects.collections.List _filmset = null;
@@ -88,37 +91,35 @@ _dt1._setstyle /*b4j.example.wixdatatable*/ ("margin","10px")._setborderless /*b
 _c1 = new b4j.example.wixdatacolumn();
  //BA.debugLineNum = 30;BA.debugLine="Dim t As String = MarkerColor";
 _t = _markercolor();
- //BA.debugLineNum = 31;BA.debugLine="Log(t)";
-anywheresoftware.b4a.keywords.Common.Log(_t);
- //BA.debugLineNum = 32;BA.debugLine="c1.Initialize(dt1, \"marker\").SetHeader(\" \").SetWi";
+ //BA.debugLineNum = 31;BA.debugLine="c1.Initialize(dt1, \"marker\").SetHeader(\" \").SetWi";
 _c1._initialize /*b4j.example.wixdatacolumn*/ (ba,_dt1,"marker")._setheader /*b4j.example.wixdatacolumn*/ (" ")._setwidth /*b4j.example.wixdatacolumn*/ ((int) (38))._settemplate /*b4j.example.wixdatacolumn*/ ((Object)(_t))._seteditor /*b4j.example.wixdatacolumn*/ ("color")._pop /*String*/ ();
- //BA.debugLineNum = 34;BA.debugLine="Dim c2 As WixDataColumn";
+ //BA.debugLineNum = 33;BA.debugLine="Dim c2 As WixDataColumn";
 _c2 = new b4j.example.wixdatacolumn();
- //BA.debugLineNum = 35;BA.debugLine="c2.Initialize(dt1, \"title\").Setheader(\"Show title";
+ //BA.debugLineNum = 34;BA.debugLine="c2.Initialize(dt1, \"title\").Setheader(\"Show title";
 _c2._initialize /*b4j.example.wixdatacolumn*/ (ba,_dt1,"title")._setheader /*b4j.example.wixdatacolumn*/ ("Show title")._setwidth /*b4j.example.wixdatacolumn*/ ((int) (140))._setsort /*b4j.example.wixdatacolumn*/ ("string")._pop /*String*/ ();
- //BA.debugLineNum = 37;BA.debugLine="Dim c3 As WixDataColumn";
+ //BA.debugLineNum = 36;BA.debugLine="Dim c3 As WixDataColumn";
 _c3 = new b4j.example.wixdatacolumn();
- //BA.debugLineNum = 38;BA.debugLine="c3.Initialize(dt1, \"network\").SetHeader(\"Network\"";
+ //BA.debugLineNum = 37;BA.debugLine="c3.Initialize(dt1, \"network\").SetHeader(\"Network\"";
 _c3._initialize /*b4j.example.wixdatacolumn*/ (ba,_dt1,"network")._setheader /*b4j.example.wixdatacolumn*/ ("Network")._setwidth /*b4j.example.wixdatacolumn*/ ((int) (100))._seteditor /*b4j.example.wixdatacolumn*/ ("text")._pop /*String*/ ();
- //BA.debugLineNum = 40;BA.debugLine="Dim c4 As WixDataColumn";
+ //BA.debugLineNum = 39;BA.debugLine="Dim c4 As WixDataColumn";
 _c4 = new b4j.example.wixdatacolumn();
- //BA.debugLineNum = 41;BA.debugLine="c4.Initialize(dt1, \"seasons\").SetHeader(\"Seasons\"";
+ //BA.debugLineNum = 40;BA.debugLine="c4.Initialize(dt1, \"seasons\").SetHeader(\"Seasons\"";
 _c4._initialize /*b4j.example.wixdatacolumn*/ (ba,_dt1,"seasons")._setheader /*b4j.example.wixdatacolumn*/ ("Seasons")._setfillspace /*b4j.example.wixdatacolumn*/ (anywheresoftware.b4a.keywords.Common.True)._pop /*String*/ ();
- //BA.debugLineNum = 43;BA.debugLine="dt1.AddEditTrash";
+ //BA.debugLineNum = 42;BA.debugLine="dt1.AddEditTrash";
 _dt1._addedittrash /*String*/ ();
- //BA.debugLineNum = 45;BA.debugLine="dt1.SetData(filmset)";
+ //BA.debugLineNum = 44;BA.debugLine="dt1.SetData(filmset)";
 _dt1._setdata /*b4j.example.wixdatatable*/ (_filmset);
- //BA.debugLineNum = 47;BA.debugLine="R1.AddItem(dt1.Item)";
+ //BA.debugLineNum = 46;BA.debugLine="R1.AddItem(dt1.Item)";
 _r1._additem /*b4j.example.wixrow*/ (_dt1._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 49;BA.debugLine="pg.Page.AddRow(R1)";
+ //BA.debugLineNum = 48;BA.debugLine="pg.Page.AddRow(R1)";
 _pg._page /*b4j.example.wixelement*/ ._addrow /*String*/ (_r1);
- //BA.debugLineNum = 51;BA.debugLine="pg.UI";
+ //BA.debugLineNum = 50;BA.debugLine="pg.UI";
 _pg._ui /*String*/ ();
- //BA.debugLineNum = 53;BA.debugLine="Dim row As Map";
+ //BA.debugLineNum = 52;BA.debugLine="Dim row As Map";
 _row = new anywheresoftware.b4a.objects.collections.Map();
- //BA.debugLineNum = 54;BA.debugLine="pg.OnItemClick(\"dt1\", BANano.CallBack(Me, \"itemCl";
+ //BA.debugLineNum = 53;BA.debugLine="pg.OnItemClick(\"dt1\", BANano.CallBack(Me, \"itemCl";
 _pg._onitemclick /*String*/ ("dt1",(com.ab.banano.BANanoObject)(_banano.CallBack(pgdatatable1.getObject(),"itemClick",anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(_row.getObject())}))));
- //BA.debugLineNum = 55;BA.debugLine="End Sub";
+ //BA.debugLineNum = 54;BA.debugLine="End Sub";
 return "";
 }
 public static String  _itemclick(anywheresoftware.b4a.objects.collections.Map _row) throws Exception{
@@ -126,56 +127,56 @@ String _rowid = "";
 String _cid = "";
 anywheresoftware.b4a.objects.collections.Map _record = null;
 boolean _resp = false;
- //BA.debugLineNum = 57;BA.debugLine="Sub itemClick(row As Map)";
- //BA.debugLineNum = 59;BA.debugLine="Dim rowid As String = row.Get(\"row\")";
+ //BA.debugLineNum = 56;BA.debugLine="Sub itemClick(row As Map)";
+ //BA.debugLineNum = 58;BA.debugLine="Dim rowid As String = row.Get(\"row\")";
 _rowid = BA.ObjectToString(_row.Get((Object)("row")));
- //BA.debugLineNum = 60;BA.debugLine="rowid = pg.CStr(rowid)";
+ //BA.debugLineNum = 59;BA.debugLine="rowid = pg.CStr(rowid)";
 _rowid = _pg._cstr /*String*/ ((Object)(_rowid));
- //BA.debugLineNum = 62;BA.debugLine="Dim cID As String = row.Get(\"column\")";
+ //BA.debugLineNum = 61;BA.debugLine="Dim cID As String = row.Get(\"column\")";
 _cid = BA.ObjectToString(_row.Get((Object)("column")));
- //BA.debugLineNum = 64;BA.debugLine="Dim record As Map = pg.GetItem(\"dt1\", rowid)";
+ //BA.debugLineNum = 63;BA.debugLine="Dim record As Map = pg.GetItem(\"dt1\", rowid)";
 _record = new anywheresoftware.b4a.objects.collections.Map();
 _record = _pg._getitem /*anywheresoftware.b4a.objects.collections.Map*/ ("dt1",_rowid);
- //BA.debugLineNum = 65;BA.debugLine="Select Case cID";
+ //BA.debugLineNum = 64;BA.debugLine="Select Case cID";
 switch (BA.switchObjectToInt(_cid,"edit","delete")) {
 case 0: {
- //BA.debugLineNum = 68;BA.debugLine="pg.Message(BANano.ToJson(record))";
+ //BA.debugLineNum = 67;BA.debugLine="pg.Message(BANano.ToJson(record))";
 _pg._message /*String*/ (BA.ObjectToString(_banano.ToJson((Object)(_record.getObject()))));
  break; }
 case 1: {
- //BA.debugLineNum = 71;BA.debugLine="Dim resp As Boolean = BANano.Window.Confirm(\"Are";
+ //BA.debugLineNum = 70;BA.debugLine="Dim resp As Boolean = BANano.Window.Confirm(\"Are";
 _resp = _banano.Window().Confirm("Are you sure you want to delete this record?");
- //BA.debugLineNum = 72;BA.debugLine="If resp Then";
+ //BA.debugLineNum = 71;BA.debugLine="If resp Then";
 if (_resp) { 
- //BA.debugLineNum = 73;BA.debugLine="pg.Remove(\"dt1\", rowid)";
+ //BA.debugLineNum = 72;BA.debugLine="pg.Remove(\"dt1\", rowid)";
 _pg._remove /*String*/ ("dt1",_rowid);
  };
  break; }
 }
 ;
- //BA.debugLineNum = 77;BA.debugLine="End Sub";
+ //BA.debugLineNum = 76;BA.debugLine="End Sub";
 return "";
 }
 public static String  _markercolor() throws Exception{
 b4j.example.uoenowhtml _sout = null;
- //BA.debugLineNum = 80;BA.debugLine="Sub MarkerColor As String";
- //BA.debugLineNum = 81;BA.debugLine="Dim sout As UOENowHTML";
+ //BA.debugLineNum = 79;BA.debugLine="Sub MarkerColor As String";
+ //BA.debugLineNum = 80;BA.debugLine="Dim sout As UOENowHTML";
 _sout = new b4j.example.uoenowhtml();
- //BA.debugLineNum = 82;BA.debugLine="sout.Initialize(\"\",\"span\")";
+ //BA.debugLineNum = 81;BA.debugLine="sout.Initialize(\"\",\"span\")";
 _sout._initialize /*b4j.example.uoenowhtml*/ (ba,"","span");
- //BA.debugLineNum = 83;BA.debugLine="sout.IsImportant = False";
+ //BA.debugLineNum = 82;BA.debugLine="sout.IsImportant = False";
 _sout._isimportant /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 84;BA.debugLine="sout.AddStyle(\"background-color\", \"#marker#\")";
+ //BA.debugLineNum = 83;BA.debugLine="sout.AddStyle(\"background-color\", \"#marker#\")";
 _sout._addstyle /*String*/ ("background-color","#marker#");
- //BA.debugLineNum = 85;BA.debugLine="sout.AddStyle(\"border-radius\", \"20px\")";
+ //BA.debugLineNum = 84;BA.debugLine="sout.AddStyle(\"border-radius\", \"20px\")";
 _sout._addstyle /*String*/ ("border-radius","20px");
- //BA.debugLineNum = 86;BA.debugLine="sout.AddStyle(\"padding-right\", \"10px\")";
+ //BA.debugLineNum = 85;BA.debugLine="sout.AddStyle(\"padding-right\", \"10px\")";
 _sout._addstyle /*String*/ ("padding-right","10px");
- //BA.debugLineNum = 87;BA.debugLine="sout.AddContent(\"&nbsp&nbsp\")";
+ //BA.debugLineNum = 86;BA.debugLine="sout.AddContent(\"&nbsp&nbsp\")";
 _sout._addcontent /*b4j.example.uoenowhtml*/ ("&nbsp&nbsp");
- //BA.debugLineNum = 88;BA.debugLine="Return sout.html";
+ //BA.debugLineNum = 87;BA.debugLine="Return sout.html";
 if (true) return _sout._html /*String*/ ();
- //BA.debugLineNum = 89;BA.debugLine="End Sub";
+ //BA.debugLineNum = 88;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{

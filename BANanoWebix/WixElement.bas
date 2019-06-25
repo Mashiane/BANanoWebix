@@ -35,6 +35,13 @@ Sub Class_Globals
 End Sub
 
 
+'set scroll
+Sub SetScroll(c As Boolean) As WixElement
+	SetAttr("scroll", c)
+	Return Me
+End Sub
+
+
 'set parent container for element
 Sub SetContainer(c As String) As WixElement
 	SetAttr("container", c)

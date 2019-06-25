@@ -10,7 +10,7 @@ Sub Process_Globals
 	Private pg As WixPage
 	Public myForm As WixForm
 	Public BANano As BANano
-	Private pgr As WixPager
+	
 End Sub
 
 
@@ -26,6 +26,7 @@ Public Sub Init()
 	'
 	R2.AddColumnsSpacer(10)
 	' 
+	Private pgr As WixPager
 	pgr.Initialize("moviepager").SetAnimate(True).SetSize(10)
 	R2.AddColumnsItem(pgr.Item)
 	'
@@ -50,7 +51,7 @@ Public Sub Init()
 	'
 	Dim fList As WixList
 	fList.Initialize("fList").SetWidth(500).SetHeight(360).SetBorderLess(False)
-	fList.SetTemplate("#rank#. #title# (#year#)").SetSelect(True).SetMultiSelect(True)
+	fList.SetTemplate("#rank#. #title# (#year#)").SetSelect(True)
 	fList.SetScroll(False).SetPager("moviepager").SetData(big_film_set)
 	'
 	R3.AddColumnsItem(fList.item)

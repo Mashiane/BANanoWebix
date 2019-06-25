@@ -27,7 +27,9 @@ public String _id = "";
 public b4j.example.wixelement _dataview = null;
 public com.ab.banano.BANanoObject _onclick = null;
 public com.ab.banano.BANanoObject _ondblclick = null;
+public anywheresoftware.b4a.objects.collections.Map _typeof = null;
 public b4j.example.main _main = null;
+public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pgdatatable1 _pgdatatable1 = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pgcharts _pgcharts = null;
@@ -41,17 +43,19 @@ public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pglist _pglist = null;
 public b4j.example.pgunitlist _pgunitlist = null;
 public b4j.example.pgpropertysheet _pgpropertysheet = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgtreetable _pgtreetable = null;
+public b4j.example.pgmenu _pgmenu = null;
+public b4j.example.pgsidebar _pgsidebar = null;
+public b4j.example.pgcomments _pgcomments = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
- //BA.debugLineNum = 106;BA.debugLine="Sub AddToForm(frm As WixForm)";
- //BA.debugLineNum = 107;BA.debugLine="frm.AddItem(Item)";
+ //BA.debugLineNum = 134;BA.debugLine="Sub AddToForm(frm As WixForm)";
+ //BA.debugLineNum = 135;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
- //BA.debugLineNum = 108;BA.debugLine="End Sub";
+ //BA.debugLineNum = 136;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -64,157 +68,201 @@ _dataview = new b4j.example.wixelement();
 _onclick = new com.ab.banano.BANanoObject();
  //BA.debugLineNum = 6;BA.debugLine="Private onDblClick As BANanoObject";
 _ondblclick = new com.ab.banano.BANanoObject();
- //BA.debugLineNum = 7;BA.debugLine="End Sub";
+ //BA.debugLineNum = 7;BA.debugLine="Private typeOf As Map";
+_typeof = new anywheresoftware.b4a.objects.collections.Map();
+ //BA.debugLineNum = 8;BA.debugLine="End Sub";
 return "";
 }
 public b4j.example.wixdataview  _initialize(anywheresoftware.b4a.BA _ba,String _tid) throws Exception{
 innerInitialize(_ba);
- //BA.debugLineNum = 10;BA.debugLine="Public Sub Initialize(tID As String) As WixDataVie";
- //BA.debugLineNum = 11;BA.debugLine="ID = tID.ToLowerCase";
+ //BA.debugLineNum = 11;BA.debugLine="Public Sub Initialize(tID As String) As WixDataVie";
+ //BA.debugLineNum = 12;BA.debugLine="ID = tID.ToLowerCase";
 _id = _tid.toLowerCase();
- //BA.debugLineNum = 12;BA.debugLine="DataView.Initialize(ID).SetView(\"dataview\")";
+ //BA.debugLineNum = 13;BA.debugLine="DataView.Initialize(ID).SetView(\"dataview\")";
 _dataview._initialize /*b4j.example.wixelement*/ (ba,_id)._setview /*b4j.example.wixelement*/ ("dataview");
- //BA.debugLineNum = 13;BA.debugLine="onClick = Null";
+ //BA.debugLineNum = 14;BA.debugLine="onClick = Null";
 _onclick = (com.ab.banano.BANanoObject)(__c.Null);
- //BA.debugLineNum = 14;BA.debugLine="onDblClick = Null";
+ //BA.debugLineNum = 15;BA.debugLine="onDblClick = Null";
 _ondblclick = (com.ab.banano.BANanoObject)(__c.Null);
- //BA.debugLineNum = 15;BA.debugLine="Return Me";
+ //BA.debugLineNum = 16;BA.debugLine="typeOf = CreateMap()";
+_typeof = __c.createMap(new Object[] {});
+ //BA.debugLineNum = 17;BA.debugLine="SetMultiSelect(False)";
+_setmultiselect(__c.False);
+ //BA.debugLineNum = 18;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 16;BA.debugLine="End Sub";
+ //BA.debugLineNum = 19;BA.debugLine="End Sub";
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 83;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 84;BA.debugLine="If onClick <> Null Then";
+ //BA.debugLineNum = 110;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 111;BA.debugLine="DataView.SetAttr(\"type\", typeOf)";
+_dataview._setattr /*b4j.example.wixelement*/ ("type",(Object)(_typeof.getObject()));
+ //BA.debugLineNum = 112;BA.debugLine="If onClick <> Null Then";
 if (_onclick!= null) { 
- //BA.debugLineNum = 85;BA.debugLine="DataView.SetAttr(\"click\", onClick)";
+ //BA.debugLineNum = 113;BA.debugLine="DataView.SetAttr(\"click\", onClick)";
 _dataview._setattr /*b4j.example.wixelement*/ ("click",(Object)(_onclick));
  };
- //BA.debugLineNum = 87;BA.debugLine="If onDblClick <> Null Then";
+ //BA.debugLineNum = 115;BA.debugLine="If onDblClick <> Null Then";
 if (_ondblclick!= null) { 
- //BA.debugLineNum = 88;BA.debugLine="DataView.SetAttr(\"dblclick\", onDblClick)";
+ //BA.debugLineNum = 116;BA.debugLine="DataView.SetAttr(\"dblclick\", onDblClick)";
 _dataview._setattr /*b4j.example.wixelement*/ ("dblclick",(Object)(_ondblclick));
  };
- //BA.debugLineNum = 90;BA.debugLine="Return DataView.item";
+ //BA.debugLineNum = 118;BA.debugLine="Return DataView.item";
 if (true) return _dataview._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 91;BA.debugLine="End Sub";
+ //BA.debugLineNum = 119;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setborderless(boolean _b) throws Exception{
- //BA.debugLineNum = 64;BA.debugLine="Sub SetBorderLess(b As Boolean) As WixDataView";
- //BA.debugLineNum = 65;BA.debugLine="DataView.SetAttr(\"borderless\", b)";
+ //BA.debugLineNum = 91;BA.debugLine="Sub SetBorderLess(b As Boolean) As WixDataView";
+ //BA.debugLineNum = 92;BA.debugLine="DataView.SetAttr(\"borderless\", b)";
 _dataview._setattr /*b4j.example.wixelement*/ ("borderless",(Object)(_b));
- //BA.debugLineNum = 66;BA.debugLine="Return Me";
+ //BA.debugLineNum = 93;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 67;BA.debugLine="End Sub";
+ //BA.debugLineNum = 94;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setclick(com.ab.banano.BANanoObject _e) throws Exception{
- //BA.debugLineNum = 19;BA.debugLine="Sub SetClick(e As BANanoObject) As WixDataView";
- //BA.debugLineNum = 20;BA.debugLine="onClick = e";
+ //BA.debugLineNum = 48;BA.debugLine="Sub SetClick(e As BANanoObject) As WixDataView";
+ //BA.debugLineNum = 49;BA.debugLine="onClick = e";
 _onclick = _e;
- //BA.debugLineNum = 21;BA.debugLine="Return Me";
+ //BA.debugLineNum = 50;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 22;BA.debugLine="End Sub";
+ //BA.debugLineNum = 51;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setdata(anywheresoftware.b4a.objects.collections.List _data) throws Exception{
- //BA.debugLineNum = 111;BA.debugLine="Sub SetData(data As List) As WixDataView";
- //BA.debugLineNum = 112;BA.debugLine="DataView.SetData(data)";
+ //BA.debugLineNum = 139;BA.debugLine="Sub SetData(data As List) As WixDataView";
+ //BA.debugLineNum = 140;BA.debugLine="DataView.SetData(data)";
 _dataview._setdata /*b4j.example.wixelement*/ (_data);
- //BA.debugLineNum = 113;BA.debugLine="Return Me";
+ //BA.debugLineNum = 141;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 114;BA.debugLine="End Sub";
+ //BA.debugLineNum = 142;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setdblclick(com.ab.banano.BANanoObject _e) throws Exception{
- //BA.debugLineNum = 26;BA.debugLine="Sub SetDblClick(e As BANanoObject) As WixDataView";
- //BA.debugLineNum = 27;BA.debugLine="onDblClick = e";
+ //BA.debugLineNum = 54;BA.debugLine="Sub SetDblClick(e As BANanoObject) As WixDataView";
+ //BA.debugLineNum = 55;BA.debugLine="onDblClick = e";
 _ondblclick = _e;
- //BA.debugLineNum = 28;BA.debugLine="Return Me";
+ //BA.debugLineNum = 56;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 29;BA.debugLine="End Sub";
+ //BA.debugLineNum = 57;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setheight(int _h) throws Exception{
- //BA.debugLineNum = 94;BA.debugLine="Sub SetHeight(h As Int) As WixDataView";
- //BA.debugLineNum = 95;BA.debugLine="DataView.SetHeight(h)";
+ //BA.debugLineNum = 122;BA.debugLine="Sub SetHeight(h As Int) As WixDataView";
+ //BA.debugLineNum = 123;BA.debugLine="DataView.SetHeight(h)";
 _dataview._setheight /*b4j.example.wixelement*/ (_h);
- //BA.debugLineNum = 96;BA.debugLine="Return Me";
+ //BA.debugLineNum = 124;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 97;BA.debugLine="End Sub";
+ //BA.debugLineNum = 125;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixdataview  _setitemheight(int _h) throws Exception{
+ //BA.debugLineNum = 28;BA.debugLine="Sub SetItemHeight(h As Int) As WixDataView";
+ //BA.debugLineNum = 29;BA.debugLine="typeOf.Put(\"height\", h)";
+_typeof.Put((Object)("height"),(Object)(_h));
+ //BA.debugLineNum = 30;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixdataview)(this);
+ //BA.debugLineNum = 31;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixdataview  _setitemwidth(int _h) throws Exception{
+ //BA.debugLineNum = 34;BA.debugLine="Sub SetItemWidth(h As Int) As WixDataView";
+ //BA.debugLineNum = 35;BA.debugLine="typeOf.Put(\"width\", h)";
+_typeof.Put((Object)("width"),(Object)(_h));
+ //BA.debugLineNum = 36;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixdataview)(this);
+ //BA.debugLineNum = 37;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setmultiselect(boolean _m) throws Exception{
- //BA.debugLineNum = 38;BA.debugLine="Sub SetMultiSelect(m As Boolean) As WixDataView";
- //BA.debugLineNum = 39;BA.debugLine="DataView.SetAttr(\"multiselect\", m)";
-_dataview._setattr /*b4j.example.wixelement*/ ("multiselect",(Object)(_m));
- //BA.debugLineNum = 40;BA.debugLine="Return Me";
+ //BA.debugLineNum = 66;BA.debugLine="Sub SetMultiSelect(m As Boolean) As WixDataView  '";
+ //BA.debugLineNum = 68;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 41;BA.debugLine="End Sub";
+ //BA.debugLineNum = 69;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixdataview  _setpager(String _p) throws Exception{
+ //BA.debugLineNum = 41;BA.debugLine="Sub SetPager(p As String) As WixDataView";
+ //BA.debugLineNum = 42;BA.debugLine="p = p.tolowercase";
+_p = _p.toLowerCase();
+ //BA.debugLineNum = 43;BA.debugLine="DataView.SetAttr(\"pager\", p)";
+_dataview._setattr /*b4j.example.wixelement*/ ("pager",(Object)(_p));
+ //BA.debugLineNum = 44;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixdataview)(this);
+ //BA.debugLineNum = 45;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixdataview  _setrank(Object _r) throws Exception{
+ //BA.debugLineNum = 22;BA.debugLine="Sub SetRank(r As Object) As WixDataView";
+ //BA.debugLineNum = 23;BA.debugLine="DataView.SetAttr(\"rank\", r)";
+_dataview._setattr /*b4j.example.wixelement*/ ("rank",_r);
+ //BA.debugLineNum = 24;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixdataview)(this);
+ //BA.debugLineNum = 25;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setselect(boolean _b) throws Exception{
- //BA.debugLineNum = 45;BA.debugLine="Sub SetSelect(b As Boolean) As WixDataView";
- //BA.debugLineNum = 46;BA.debugLine="DataView.SetAttr(\"select\", b)";
+ //BA.debugLineNum = 73;BA.debugLine="Sub SetSelect(b As Boolean) As WixDataView   'igno";
+ //BA.debugLineNum = 74;BA.debugLine="DataView.SetAttr(\"select\", b)";
 _dataview._setattr /*b4j.example.wixelement*/ ("select",(Object)(_b));
- //BA.debugLineNum = 47;BA.debugLine="Return Me";
+ //BA.debugLineNum = 75;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 48;BA.debugLine="End Sub";
+ //BA.debugLineNum = 76;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setstyle(String _prop,String _val) throws Exception{
- //BA.debugLineNum = 71;BA.debugLine="Sub SetStyle(prop As String, val As String) As Wix";
- //BA.debugLineNum = 72;BA.debugLine="DataView.SetStyle(prop,val)";
+ //BA.debugLineNum = 98;BA.debugLine="Sub SetStyle(prop As String, val As String) As Wix";
+ //BA.debugLineNum = 99;BA.debugLine="DataView.SetStyle(prop,val)";
 _dataview._setstyle /*b4j.example.wixelement*/ (_prop,_val);
- //BA.debugLineNum = 73;BA.debugLine="Return Me";
+ //BA.debugLineNum = 100;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 74;BA.debugLine="End Sub";
+ //BA.debugLineNum = 101;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _settemplate(String _t) throws Exception{
- //BA.debugLineNum = 32;BA.debugLine="Sub SetTemplate(t As String) As WixDataView";
- //BA.debugLineNum = 33;BA.debugLine="DataView.SetTemplate(t)";
+ //BA.debugLineNum = 60;BA.debugLine="Sub SetTemplate(t As String) As WixDataView";
+ //BA.debugLineNum = 61;BA.debugLine="DataView.SetTemplate(t)";
 _dataview._settemplate /*b4j.example.wixelement*/ ((Object)(_t));
- //BA.debugLineNum = 34;BA.debugLine="Return Me";
+ //BA.debugLineNum = 62;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 35;BA.debugLine="End Sub";
+ //BA.debugLineNum = 63;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _settooltip(String _tt) throws Exception{
- //BA.debugLineNum = 77;BA.debugLine="Sub SetTooltip(tt As String) As WixDataView";
- //BA.debugLineNum = 78;BA.debugLine="DataView.SetTooltip(tt)";
+ //BA.debugLineNum = 104;BA.debugLine="Sub SetTooltip(tt As String) As WixDataView";
+ //BA.debugLineNum = 105;BA.debugLine="DataView.SetTooltip(tt)";
 _dataview._settooltip /*b4j.example.wixelement*/ (_tt);
- //BA.debugLineNum = 79;BA.debugLine="Return Me";
+ //BA.debugLineNum = 106;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 80;BA.debugLine="End Sub";
+ //BA.debugLineNum = 107;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setwidth(int _h) throws Exception{
- //BA.debugLineNum = 100;BA.debugLine="Sub SetWidth(h As Int) As WixDataView";
- //BA.debugLineNum = 101;BA.debugLine="DataView.SetWidth(h)";
+ //BA.debugLineNum = 128;BA.debugLine="Sub SetWidth(h As Int) As WixDataView";
+ //BA.debugLineNum = 129;BA.debugLine="DataView.SetWidth(h)";
 _dataview._setwidth /*b4j.example.wixelement*/ (_h);
- //BA.debugLineNum = 102;BA.debugLine="Return Me";
+ //BA.debugLineNum = 130;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 103;BA.debugLine="End Sub";
+ //BA.debugLineNum = 131;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setxcount(int _x) throws Exception{
- //BA.debugLineNum = 58;BA.debugLine="Sub SetXCount(x As Int) As WixDataView";
- //BA.debugLineNum = 59;BA.debugLine="DataView.SetAttr(\"xCount\", x)";
+ //BA.debugLineNum = 85;BA.debugLine="Sub SetXCount(x As Int) As WixDataView";
+ //BA.debugLineNum = 86;BA.debugLine="DataView.SetAttr(\"xCount\", x)";
 _dataview._setattr /*b4j.example.wixelement*/ ("xCount",(Object)(_x));
- //BA.debugLineNum = 60;BA.debugLine="Return Me";
+ //BA.debugLineNum = 87;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 61;BA.debugLine="End Sub";
+ //BA.debugLineNum = 88;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdataview  _setycount(int _x) throws Exception{
- //BA.debugLineNum = 51;BA.debugLine="Sub SetYCount(x As Int) As WixDataView";
- //BA.debugLineNum = 52;BA.debugLine="DataView.SetAttr(\"yCount\", x)";
+ //BA.debugLineNum = 79;BA.debugLine="Sub SetYCount(x As Int) As WixDataView";
+ //BA.debugLineNum = 80;BA.debugLine="DataView.SetAttr(\"yCount\", x)";
 _dataview._setattr /*b4j.example.wixelement*/ ("yCount",(Object)(_x));
- //BA.debugLineNum = 53;BA.debugLine="Return Me";
+ //BA.debugLineNum = 81;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdataview)(this);
- //BA.debugLineNum = 54;BA.debugLine="End Sub";
+ //BA.debugLineNum = 82;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

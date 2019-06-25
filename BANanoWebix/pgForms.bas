@@ -97,7 +97,7 @@ Sub Init()
 	'attach combo event
 	Dim n, o As String
 	Dim cbe As BANanoObject = BANano.CallBack(Me,"cbo_change",Array(n,o))
-	pg.AttachOnChangeEvent("cbo", cbe)
+	pg.OnChange("cbo", cbe)
 	
 End Sub
 

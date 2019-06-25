@@ -15,15 +15,30 @@ Sub Init
 	pg.Initialize("forms").SetHeader("Lesson 11: Unit List")
 	'
 	Dim ul As WixUnitList
-	ul.Initialize("ulx").Setwidth(300).Setheight(280).SetTemplate("#title#").SetBorderLess(False)
-	ul.SetStyle("margin", "10px").SetUniteBy("title")
+	ul.Initialize("ulx")
+	ul.Setheight(500)
+	ul.SetTemplate("#title#<br>#year#")
+	ul.SetBorderLess(False)
+	ul.SetStyle("margin", "10px")
+	ul.SetItemHeight(80)
 	'
 	Dim dummy As UOENowData
 	dummy.Initialize 
-	Dim data As List = dummy.GetRecordsWithStructure(CreateMap("id": "id", "title": "name") ,10)
+	Dim data As List = dummy.GetRecordsWithStructure(CreateMap("id": "id", "title": "name", "year": "year") ,10)
 	ul.SetData(data)
 	'
 	pg.Page.AddRows(ul.Item)
 	'
-	pg.ui	
+	pg.ui
+	'
+	Dim eID As String
+	pg.OnItemClick("ulx", BANano.CallBack(Me, "item_select", Array(eID)))
+	' do this after ux
+	pg.SetUniteBy("ulx", "title")
+End Sub
+
+Sub item_select(eID As String)
+	eID = pg.CStr(eID)
+	Dim m As Map = pg.GetItem("ulx", eID)
+	pg.Message(BANano.ToJson(m))
 End Sub

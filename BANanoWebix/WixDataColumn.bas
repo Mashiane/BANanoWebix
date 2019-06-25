@@ -44,7 +44,8 @@ End Sub
 
 'add to treetable
 Sub Pop1
-	tr.treetable.AddColumns(Item)
+	Dim columns As List = tr.columns
+	columns.add(Item)
 End Sub 
 
 'set options

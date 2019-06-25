@@ -16,26 +16,38 @@ Sub Init
 	'
 	Dim prop As WixTreeTable
 	prop.Initialize("treetable").Setborderless(True)
-	prop.SetStyle("margin", "10px").SetWidth(550).SetHeight(300)
+	prop.SetStyle("margin", "10px")
+	prop.SetSelect(prop.DT_SELECT_ROW)
+	prop.SetAutoWidth(True).SetEditable(True)
 	'
 	Dim c1 As WixDataColumn
-	c1.Initialize1(prop, "id").SetHeader("").Setwidth(50).SetSort("string").pop1
-	'
+	c1.Initialize1(prop, "id").SetHeader(" ").Setwidth(50).SetSort("string").pop1
+	' 
 	Dim c2 As WixDataColumn
-	c2.Initialize1(prop, "value").Setheader("Candy Bars").Setwidth(300).SetTemplate("{common.treetable()} #value#").Setsort("string").Pop1
+	c2.Initialize1(prop, "value").Setheader("Candy Bars").SetTemplate("{common.treetable()} #value#").Setwidth(300).Setsort("string").Pop1
 	'
 	Dim c3 As WixDataColumn
-	c3.Initialize1(prop, "nutsOrNot").Setheader("Nuts?").Setwidth(180).SetSort("string").Pop1
+	c3.Initialize1(prop, "nutsornot").Setheader("Nuts?").Setwidth(180).SetSort("string").Pop1
 	'	
 	Dim data As List
 	data.Initialize
 	'
 	Dim dummy As UOENowData
 	dummy.Initialize 
-	data = dummy.GetRecordsWithStructure(CreateMap("id": "id", "value":"name", "open": dummy.DT_YES_NO, "nutsOrNot": "name"), 10)
+	data = dummy.GetRecordsWithStructure(CreateMap("id": "id", "value":"name", "open": dummy.DT_YES_NO, "nutsornot": "name"), 10)
 	prop.SetData(data)
 	
 	pg.Page.AddRows(prop.Item)
 	'
 	pg.ui
+	Dim recid As String
+	pg.OnItemClick("treetable", BANano.CallBack(Me, "tree_itemclick", Array(recid)))
+
+End Sub
+
+
+Sub tree_itemclick(recid As String)
+	recid = pg.CStr(recid)
+	'
+	pg.Message(recid)
 End Sub

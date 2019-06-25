@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public DataView As WixElement
 	Private onClick As BANanoObject
 	Private onDblClick As BANanoObject
+	Private typeOf As Map
 End Sub
 
 'Initializes the data table
@@ -18,6 +19,34 @@ Public Sub Initialize(tID As String) As WixDataView
 	DataView.Initialize(ID).SetView("dataview")
 	onClick = Null
 	onDblClick = Null
+	typeOf = CreateMap()
+	SetMultiSelect(False)
+	Return Me
+End Sub
+
+'set rank
+Sub SetRank(r As Object) As WixDataView
+	DataView.SetAttr("rank", r)
+	Return Me
+End Sub
+
+'set item height
+Sub SetItemHeight(h As Int) As WixDataView
+	typeOf.Put("height", h)
+	Return Me
+End Sub
+
+'set item width
+Sub SetItemWidth(h As Int) As WixDataView
+	typeOf.Put("width", h)
+	Return Me
+End Sub
+
+
+'set SetPager
+Sub SetPager(p As String) As WixDataView
+	p = p.tolowercase
+	DataView.SetAttr("pager", p)
 	Return Me
 End Sub
 
@@ -26,7 +55,6 @@ Sub SetClick(e As BANanoObject) As WixDataView
 	onClick = e
 	Return Me
 End Sub
-
 
 'set ondblclick event
 Sub SetDblClick(e As BANanoObject) As WixDataView
@@ -41,26 +69,25 @@ Sub SetTemplate(t As String) As WixDataView
 End Sub
 
 'set multi select
-Sub SetMultiSelect(m As Boolean) As WixDataView
-	DataView.SetAttr("multiselect", m)
+Sub SetMultiSelect(m As Boolean) As WixDataView  'ignore
+	'DataView.SetAttr("select", "multiselect")
 	Return Me
 End Sub
 
 
 'set select
-Sub SetSelect(b As Boolean) As WixDataView
+Sub SetSelect(b As Boolean) As WixDataView   'ignore
 	DataView.SetAttr("select", b)
 	Return Me
 End Sub
 
-'set yCount
+'set yCount number of items in a column
 Sub SetYCount(x As Int) As WixDataView
 	DataView.SetAttr("yCount", x)
 	Return Me
 End Sub
 
-
-'set xCount
+'set xCount i.e number of items in a row
 Sub SetXCount(x As Int) As WixDataView
 	DataView.SetAttr("xCount", x)
 	Return Me
@@ -87,6 +114,7 @@ End Sub
 
 'return the data table context
 Sub Item As Map
+	DataView.SetAttr("type", typeOf)
 	If onClick <> Null Then
 		DataView.SetAttr("click", onClick)
 	End If

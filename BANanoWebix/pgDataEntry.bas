@@ -75,6 +75,10 @@ Sub Init
 	Dim e8 As WixIcon
 	e8.Initialize("").SetAlignCenter("").SetIcon("wxi-file")
 	C1.AddRows(e8.Item)
+	
+	Dim st As WixSwitch
+	st.Initialize("st").SetLabel("Switch")
+	C1.AddRows(st.Item) 
 	'
 	Dim e20 As WixDBLList
 	e20.Initialize("").SetHeight(200).SetValue("1,3").SetStyle("margin-top", "10px!important").SetData(dataObj)
@@ -118,7 +122,7 @@ Sub Init
 	C3.AddRows(e17.Item) 
 	'
 	Dim e18 As WixSlider
-	e18.Initialize("").SetLabel("Slider")
+	e18.Initialize("").SetLabel("Slider").SetMoveTitle(True)
 	C3.AddRows(e18.Item)
 	'
 	Dim e19 As WixRichText

@@ -19,54 +19,66 @@ Public Sub Initialize(eID As String) As WixProperty
 	Return Me
 End Sub
 
-private Sub El(label As String, typeOf As String, options As List) As Map
+private Sub El(eid As String, label As String, typeOf As String, value As Object, options As List) As Map
+	eid = eid.tolowercase
 	Dim opt As Map = CreateMap()
+	opt.Put("id", eid)
 	opt.Put("label", label)
 	opt.Put("type", typeOf)
+	opt.Put("value", value)
 	If options <> Null Then
 		opt.Put("options", options)
 	End If
 	Return opt
 End Sub
 
-'add color
-Sub AddColor(label As String)
-	elements.Add(El(label, "color", Null))
-End Sub
-
-Sub AddTextBox(label As String)
-	elements.Add(El(label, "text", Null))
-End Sub
-
-Sub AddLabel(label As String)
-	elements.Add(El(label, "label", Null))
-End Sub
-
-Sub AddPassword(label As String)
-	elements.Add(El(label, "password", Null))
-End Sub
-
-Sub AddSelect(label As String, options As List)
-	elements.Add(El(label, "select", options))
-End Sub
-
-Sub AddCombo(label As String, options As List)
-	elements.Add(El(label, "combo", Null))
-End Sub
-
-Sub AddRichSelect(label As String, options As List)
-	elements.Add(El(label, "richselect", options))
-End Sub
-
-Sub AddCheckBox(label As String)
-	elements.Add(El(label, "checkbox", Null))
-End Sub
-
-
 'set name width
 Sub SetNameWidth(w As Int) As WixProperty
 	Property.SetAttr("nameWidth", w)
 	Return Me
+End Sub
+
+'set complex data
+Sub SetComplexData(b As Boolean) As WixProperty
+	Property.SetAttr("complexData", b)
+	Return Me
+End Sub
+
+'add color
+Sub AddColor(eid As String, label As String, value As String)
+	elements.Add(El(eid,label, "color", value, Null))
+End Sub
+
+Sub AddTextBox(eid As String, label As String, value As String)
+	elements.Add(El(eid, label, "text", value, Null))
+End Sub
+
+Sub AddLabel(label As String)
+	elements.Add(El("", label, "label", "", Null))
+End Sub
+
+Sub AddPassword(eid As String, label As String, value As String)
+	elements.Add(El(eid, label, "password", value,  Null))
+End Sub
+
+Sub AddDate(eid As String, label As String, value As String)
+	elements.Add(El(eid, label, "date", value,  Null))
+End Sub
+
+Sub AddSelect(eid As String, label As String, value As String, options As List)
+	elements.Add(El(eid, label, "select", value, options))
+End Sub
+
+Sub AddCombo(eid As String, label As String, value As String, options As List)
+	elements.Add(El(eid, label, "combo", value, options))
+End Sub
+
+Sub AddRichSelect(eid As String, label As String, value As String, options As List)
+	elements.Add(El(eid, label, "richselect", value, options))
+End Sub
+
+Sub AddCheckBox(eid As String, label As String, value As String)
+	elements.Add(El(eid, label, "checkbox", value, Null))
 End Sub
 
 'return the item

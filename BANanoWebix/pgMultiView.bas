@@ -15,7 +15,7 @@ Sub Init
 	pg.Page.setType("clean")
 	
 	Dim c As WixCarousel
-	c.Initialize("")
+	c.Initialize("").SetNavigationTypeSide("")
 	'create slides
 	Dim sld1 As WixElement
 	sld1.Initialize("")
@@ -57,9 +57,11 @@ Sub Init
 	'
 	Dim tb As WixTabView
 	tb.Initialize("")
-	tb.TabView.SetAnimate(True)
+	tb.SetMultiViewAnimate(True)
+	tb.SetTabBarClose(True)
 	tb.AddTab("","Entry","Some form controls here",CreateMap("css":"entry"))
 	tb.AddTab("","Results","Some results of data entry here",CreateMap("css":"results"))
+	tb.AddTab("", "<span class='webix_icon fa-film'></span>List", "", CreateMap())
 	pg.Page.AddRows(tb.Item)
 	
 	'

@@ -77,6 +77,13 @@ Sub SetClick(e As BANanoObject) As WixIcon
 	Return Me
 End Sub
 
+'set badge
+Sub SetBadge(b As String) As WixIcon
+	Icon.SetAttr("badge", b)
+	Return Me
+End Sub
+
+
 'return the item to add
 Sub Item As Map
 	Icon.SetOnContent("icon", IconName)

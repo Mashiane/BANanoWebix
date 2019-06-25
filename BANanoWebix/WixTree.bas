@@ -8,18 +8,27 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Tree As WixElement
+	Private scheme As Map
 End Sub
 
 'Initializes the Tree sheet
 Public Sub Initialize(eID As String) As WixTree
 	ID = eID.tolowercase
 	Tree.Initialize(ID).SetView("tree")
+	scheme = CreateMap()
 	Return Me
 End Sub
 
 'return the item
 Sub Item As Map
+	Tree.SetAttr("scheme", scheme)
 	Return Tree.item
+End Sub
+
+'set group by
+Sub SetGroupBy(g As String) As WixTree
+	scheme.Put("$group", g)
+	Return Me
 End Sub
 
 'set borderless
@@ -31,6 +40,19 @@ End Sub
 'set selectable
 Sub SetSelect(b As Boolean) As WixTree
 	Tree.SetSelect(b)
+	Return Me
+End Sub
+
+'set multi select
+Sub SetMultiSelect(b As Boolean) As WixTree
+	Tree.SetAttr("select", "multiselect")
+	Return Me
+End Sub
+
+
+'set type line tree
+Sub SetTypeLineTree As WixTree
+	Tree.SetType("lineTree")
 	Return Me
 End Sub
 

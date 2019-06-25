@@ -8,34 +8,48 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public TreeTable As WixElement
+	Public Columns As List
+	'selection
+	Public DT_SELECT_ROW As String = "row"
+	Public DT_SELECT_CELL As String = "cell"
+	Public DT_SELECT_COLUMN As String = "column"
 End Sub
 
 'Initializes the TreeTableTable sheet
 Public Sub Initialize(eID As String) As WixTreeTable
 	ID = eID.tolowercase
 	TreeTable.Initialize(ID).SetView("treetable")
+	Columns.Initialize 
+	Return Me
+End Sub
+
+'set editable
+Sub SetEditable(b As Boolean) As WixTreeTable
+	TreeTable.SetAttr("editable", b)
+	Return Me
+End Sub
+
+
+'set select enables selection of items
+Sub SetSelect(s As Object) As WixTreeTable
+	TreeTable.SetAttr("select", s)
 	Return Me
 End Sub
 
 'add column
 Sub AddColumn(c As WixDataColumn)
-	TreeTable.AddColumns(c.Item)
+	Columns.Add(c.Item)
 End Sub
 
 'return the item
 Sub Item As Map
+	TreeTable.SetAttr("columns", Columns)
 	Return TreeTable.item
 End Sub
 
 'set borderless
 Sub SetBorderLess(b As Boolean) As WixTreeTable
 	TreeTable.SetBorderLess(b)
-	Return Me
-End Sub
-
-'set selectable
-Sub SetSelect(b As Boolean) As WixTreeTable
-	TreeTable.SetSelect(b)
 	Return Me
 End Sub
 
@@ -72,5 +86,18 @@ End Sub
 'set width
 Sub SetWidth(h As Int) As WixTreeTable
 	TreeTable.SetWidth(h)
+	Return Me
+End Sub
+
+
+'set auto width
+Sub SetAutoHeight(b As Boolean) As WixTreeTable
+	TreeTable.SetAttr("autoheight", b)
+	Return Me
+End Sub
+
+'set auto height
+Sub SetAutoWidth(b As Boolean) As WixTreeTable
+	TreeTable.SetAttr("autowidth", b)
 	Return Me
 End Sub

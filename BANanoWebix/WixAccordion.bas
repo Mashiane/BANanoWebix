@@ -32,6 +32,12 @@ Sub SetHorizontal(b As Boolean) As WixAccordion
 	Return Me	
 End Sub
 
+'set multi
+Sub SetMulti(b As Boolean) As WixAccordion
+	Accordion.SetAttr("multi", b)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Return Accordion.item

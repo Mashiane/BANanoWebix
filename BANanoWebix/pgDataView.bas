@@ -17,20 +17,6 @@ Public Sub Init()
 	
 	Dim R1 As WixRow
 	R1.Initialize("R1")
-		
-	'define data table
-	Dim dt As WixDataView
-	dt.Initialize("dv")
-	dt.SetxCount(4).Setwidth(640).SetHeight(250).SetBorderless(False)
-	dt.SetStyle("margin" , "10px").SetSelect(True).SetMultiselect(True)
-	'
-	Dim tmp As UOENowHTML
-	tmp.Initialize("tmp", "div")
-	tmp.AddStyle("background-color", "#ffeaea")
-	tmp.AddClass("webix_strong")
-	tmp.AddContent("#title#")
-	tmp.AddContentAfter(" Year: #year#{BR}System: #system#")
-	dt.SetTemplate(tmp.HTML)
 	'
 	Dim data As List
 	data.Initialize
@@ -41,24 +27,42 @@ Public Sub Init()
 	data.Add(CreateMap("title" : "Halo", "year" : 2001, "system" : "Xbox"))
 	data.Add(CreateMap("title" : "Crash Bandicoot", "year" : 1996, "system" : "Playstation"))
 	data.Add(CreateMap("title" : "Guitar Hero", "year" : 2005, "system" : "Playstation 2"))
+	'
+	'define data table
+	Dim dt As WixDataView
+	dt.Initialize("dv")
+	dt.SetxCount(4).Setwidth(640).SetHeight(250).SetBorderless(False).SetItemHeight(100)
+	dt.SetStyle("margin" , "10px").SetSelect(True).SetMultiSelect(False)
+	Dim tmp As UOENowHTML
+	tmp.Initialize("tmp", "div")
+	tmp.AddStyle("background-color", "#ffeaea")
+	tmp.AddClass("webix_strong")
+	tmp.AddContent("#title#")
+	tmp.AddContentAfter(" Year: #year#{BR}System: #system#")
+	dt.SetTemplate(tmp.HTML)
+	
 	dt.SetData(data)
-	Dim e As BANanoEvent
-	dt.SetClick(BANano.CallBack(Me,"dataview_click", Array(e)))
-	'dt.SetDblClick(BANano.CallBack(Me,"dataview_dblclick", Array(e)))
 	'
 	R1.AddItem(dt.Item)
 	'
 	pg.Page.AddRow(R1)
 	'
 	pg.UI
+	'
+	Dim recs As List
+	pg.OnSelectChange("tmp", BANano.CallBack(Me,"dataview_click", Array(recs)))
+	
 End Sub
 
-Sub dataview_click(e As BANanoEvent)
+Sub dataview_click(recs As List)
+	Dim recid As String = recs.Get(0)
+	recid = pg.CStr(recid)
 	'find selected
-	Dim selItem As Object = pg.GetSelected("dv")
-	Log(selItem)
+	Dim selItem As Map = pg.getitem("dv",recid)
+	pg.Message(BANano.ToJson(selItem))
 End Sub
 
 Sub dataview_dblclick(e As BANanoEvent)
-	Log(e)
+	'Dim selItem As Object = pg.GetSelected("dv")
+	'pg.Message(selItem)
 End Sub

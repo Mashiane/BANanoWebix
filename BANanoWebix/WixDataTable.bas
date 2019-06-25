@@ -34,6 +34,14 @@ Sub Class_Globals
 	Public Columns As List
 End Sub
 
+
+'set SetPager
+Sub SetPager(p As String) As WixDataTable
+	p = p.tolowercase
+	DataTable.SetAttr("pager", p)
+	Return Me
+End Sub
+
 'set scrollY
 Sub SetScrollY(b As Boolean) As WixDataTable
 	DataTable.SetAttr("scrollY", b)

@@ -8,12 +8,14 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Label As WixElement
+	Public Parent As WixElement
 End Sub
 
 'initialize the input box
 Public Sub Initialize(iID As String) As WixLabel
 	ID = iID.tolowercase
 	Label.Initialize(iID).SetView("label")
+	Parent = Null
 	Return Me
 End Sub
 
@@ -22,6 +24,17 @@ Sub Item As Map
 	Return Label.item
 End Sub
 
+
+'set the parent
+Sub SetParent(p As WixElement) As WixLabel
+	Parent = p
+	Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixLabel
@@ -41,6 +54,11 @@ Sub SetLabel(l As String) As WixLabel
 	Return Me
 End Sub
 
+'set align
+Sub SetAlign(a As String) As WixLabel
+	Label.SetAttr("align", a)
+	Return Me
+End Sub
 
 'add to form
 Sub AddToForm(frm As WixForm)

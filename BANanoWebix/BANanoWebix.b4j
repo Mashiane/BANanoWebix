@@ -1,18 +1,38 @@
 ﻿AppType=JavaFX
 Build1=Default,b4j.example
 File1=all.min.css
-File10=webix.min.js
-File2=fonts.zip
-File3=icons8-add-row-40.png
-File4=icons8-compose-40.png
-File5=icons8-edit-40.png
-File6=icons8-pencil-40.png
-File7=icons8-save-as-100.png
-File8=icons8-save-close-40.png
-File9=webix.min.css
+File10=icons8-save-as-100.png
+File11=icons8-save-close-40.png
+File12=james.jpg
+File13=marie.jpg
+File14=michael.jpg
+File15=mike.jpg
+File16=olivia.jpg
+File17=ryan.jpg
+File18=usher.jpg
+File19=webix.min.css
+File2=avatar.jpg
+File20=webix.min.js
+File3=data.js
+File4=emily.jpg
+File5=fonts.zip
+File6=icons8-add-row-40.png
+File7=icons8-compose-40.png
+File8=icons8-edit-40.png
+File9=icons8-pencil-40.png
 FileGroup1=Default Group
 FileGroup10=Default Group
+FileGroup11=Default Group
+FileGroup12=Default Group
+FileGroup13=Default Group
+FileGroup14=Default Group
+FileGroup15=Default Group
+FileGroup16=Default Group
+FileGroup17=Default Group
+FileGroup18=Default Group
+FileGroup19=Default Group
 FileGroup2=Default Group
+FileGroup20=Default Group
 FileGroup3=Default Group
 FileGroup4=Default Group
 FileGroup5=Default Group
@@ -25,63 +45,63 @@ Library1=jcore
 Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
-Module1=WixPage
-Module10=WixToolBar
-Module11=WixButton
-Module12=WixIcon
-Module13=pgForms
-Module14=pgToolBar
-Module15=pgIndex
-Module16=pgMultiView
-Module17=WixPortlet
-Module18=WixElement
-Module19=WixMultiView
-Module2=pgDataTable1
-Module20=WixTabView
-Module21=pgLayouts1
-Module22=WixAccordion
-Module23=pgLayouts2
-Module24=WixLayoutTypes
-Module25=pgLayouts
-Module26=WixCombo
-Module27=WixLayout
-Module28=WixForm
-Module29=WixButtonTypes
-Module3=WixDataTable
-Module30=WixList
-Module31=WixRow
-Module32=WixColumn
-Module33=WixHeader
-Module34=WixTextArea
-Module35=WixCheckBox
-Module36=WixRadio
-Module37=WixRichSelect
-Module38=WixCounter
-Module39=WixSegmented
-Module4=WixDataColumn
-Module40=WixTextBox
-Module41=WixColorPicker
-Module42=WixDateTimePicker
-Module43=WixLabel
-Module44=WixSection
-Module45=WixSuggest
-Module46=WixResizer
-Module47=pgLayout
-Module48=WixMenu
-Module49=WixDataCollection
-Module5=pgDataTable
-Module50=WixCarousel
-Module51=WixSelect
-Module52=WixRangeSlider
-Module53=WixSearch
-Module54=WixSlider
-Module55=WixRichText
-Module56=WixDBLList
-Module57=WixFieldSet
-Module58=WixFormInput
-Module59=WixDataView
-Module6=pgCharts
-Module60=pgDataView
+Module1=pgDataView
+Module10=pgForms1
+Module11=WixToolBar
+Module12=WixButton
+Module13=WixIcon
+Module14=pgForms
+Module15=pgToolBar
+Module16=pgIndex
+Module17=pgMultiView
+Module18=WixPortlet
+Module19=WixElement
+Module2=WixPage
+Module20=WixMultiView
+Module21=WixTabView
+Module22=pgLayouts1
+Module23=WixAccordion
+Module24=pgLayouts2
+Module25=WixLayoutTypes
+Module26=pgLayouts
+Module27=WixCombo
+Module28=WixLayout
+Module29=WixForm
+Module3=pgDataTable1
+Module30=WixButtonTypes
+Module31=WixList
+Module32=WixRow
+Module33=WixColumn
+Module34=WixHeader
+Module35=WixTextArea
+Module36=WixCheckBox
+Module37=WixRadio
+Module38=WixRichSelect
+Module39=WixCounter
+Module4=WixDataTable
+Module40=WixSegmented
+Module41=WixTextBox
+Module42=WixColorPicker
+Module43=WixDateTimePicker
+Module44=WixLabel
+Module45=WixSection
+Module46=WixSuggest
+Module47=WixResizer
+Module48=pgLayout
+Module49=WixMenu
+Module5=WixDataColumn
+Module50=WixDataCollection
+Module51=WixCarousel
+Module52=WixSelect
+Module53=WixRangeSlider
+Module54=WixSearch
+Module55=WixSlider
+Module56=WixRichText
+Module57=WixDBLList
+Module58=WixFieldSet
+Module59=WixFormInput
+Module6=pgDataTable
+Module60=WixDataView
 Module61=UOENowHTML
 Module62=WixPager
 Module63=pgList
@@ -91,15 +111,25 @@ Module66=pgUnitList
 Module67=WixProperty
 Module68=pgPropertySheet
 Module69=WixTree
-Module7=WixChart
+Module7=pgCharts
 Module70=WixTreeTable
 Module71=pgTree
 Module72=pgTreeTable
-Module8=pgDataEntry
-Module9=pgForms1
-NumberOfFiles=10
+Module73=pgMenu
+Module74=WixPopUp
+Module75=WixSideMenu
+Module76=WixWindow
+Module77=WixIFrame
+Module78=WixSwitch
+Module79=WixSideBar
+Module8=WixChart
+Module80=pgSideBar
+Module81=WixComments
+Module82=pgComments
+Module9=pgDataEntry
+NumberOfFiles=20
 NumberOfLibraries=4
-NumberOfModules=72
+NumberOfModules=82
 Version=7.51
 @EndOfDesignText@
  #Region Project Attributes 
@@ -122,8 +152,10 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.Header.Title = AppName
 	BANano.JAVASCRIPT_NAME = appFile
 	BANano.Header.addcssfile("all.min.css")
+	BANano.Header.AddCSSFile("https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css")
 	BANano.Header.AddCSSFile("webix.min.css")
 	BANano.Header.AddJavascriptFile("webix.min.js")
+	BANano.Header.AddJavascriptFile("data.js")
 	'BANano.TranspilerOptions.MergeAllCSSFiles = True
 	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True
 	'BANano.TranspilerOptions.ShowWarningDeadCode = True
@@ -168,12 +200,15 @@ Sub BANano_Ready()
 	'pgCharts.Init
 	'uncomment this line ONLY for LESSON 8
 	'pgDataTable.Init   ' LESSON 8.1
-	pgDataTable1.Init   ' LESSON 8.2
+	'pgDataTable1.Init   ' LESSON 8.2
 	'pgDataView.Init    ' LESSON 9
 	'pgList.Init 	   'LESSON 10 
 	'pgUnitList.init    'LESSON 11
 	'pgPropertySheet.Init      'LESSON 12
 	'pgTree.Init               'LESSON 13
 	'pgTreeTable.Init          'LESSON 14
+	'pgMenu.Init			   'LESSON 15
+	'pgSideBar.init        'LESSON 16
+	pgComments.Init	      'LESSON 17
 	'pgIndex.Init
 End Sub

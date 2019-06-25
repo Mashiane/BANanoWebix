@@ -29,6 +29,7 @@ public com.ab.banano.BANanoObject _onclick = null;
 public String _iconname = "";
 public b4j.example.wixelement _parent = null;
 public b4j.example.main _main = null;
+public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pgdatatable1 _pgdatatable1 = null;
 public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pgcharts _pgcharts = null;
@@ -42,12 +43,14 @@ public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pglist _pglist = null;
 public b4j.example.pgunitlist _pgunitlist = null;
 public b4j.example.pgpropertysheet _pgpropertysheet = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgtreetable _pgtreetable = null;
+public b4j.example.pgmenu _pgmenu = null;
+public b4j.example.pgsidebar _pgsidebar = null;
+public b4j.example.pgcomments _pgcomments = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 53;BA.debugLine="Sub AddToForm(frm As WixForm)";
  //BA.debugLineNum = 54;BA.debugLine="frm.AddItem(Item)";
@@ -96,17 +99,17 @@ if (true) return (b4j.example.wixicon)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 75;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 76;BA.debugLine="Icon.SetOnContent(\"icon\", IconName)";
+ //BA.debugLineNum = 82;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 83;BA.debugLine="Icon.SetOnContent(\"icon\", IconName)";
 _icon._setoncontent /*b4j.example.wixelement*/ ("icon",_iconname);
- //BA.debugLineNum = 77;BA.debugLine="If onClick <> Null Then";
+ //BA.debugLineNum = 84;BA.debugLine="If onClick <> Null Then";
 if (_onclick!= null) { 
- //BA.debugLineNum = 78;BA.debugLine="Icon.SetAttr(\"click\", onClick)";
+ //BA.debugLineNum = 85;BA.debugLine="Icon.SetAttr(\"click\", onClick)";
 _icon._setattr /*b4j.example.wixelement*/ ("click",(Object)(_onclick));
  };
- //BA.debugLineNum = 80;BA.debugLine="Return Icon.item";
+ //BA.debugLineNum = 87;BA.debugLine="Return Icon.item";
 if (true) return _icon._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 81;BA.debugLine="End Sub";
+ //BA.debugLineNum = 88;BA.debugLine="End Sub";
 return null;
 }
 public String  _pop() throws Exception{
@@ -117,30 +120,39 @@ _parent._addcolumns /*b4j.example.wixelement*/ (_item());
 return "";
 }
 public b4j.example.wixicon  _setaligncenter(String _r) throws Exception{
- //BA.debugLineNum = 103;BA.debugLine="Sub SetAlignCenter(r As String) As WixIcon 'ignore";
- //BA.debugLineNum = 104;BA.debugLine="Icon.setAligncenter(\"\")";
+ //BA.debugLineNum = 110;BA.debugLine="Sub SetAlignCenter(r As String) As WixIcon 'ignore";
+ //BA.debugLineNum = 111;BA.debugLine="Icon.setAligncenter(\"\")";
 _icon._setaligncenter /*b4j.example.wixelement*/ ("");
- //BA.debugLineNum = 105;BA.debugLine="Return Me";
+ //BA.debugLineNum = 112;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixicon)(this);
- //BA.debugLineNum = 106;BA.debugLine="End Sub";
+ //BA.debugLineNum = 113;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixicon  _setalignleft(String _r) throws Exception{
- //BA.debugLineNum = 109;BA.debugLine="Sub SetAlignLeft(r As String) As WixIcon 'ignore";
- //BA.debugLineNum = 110;BA.debugLine="Icon.SetAlignleft(\"\")";
+ //BA.debugLineNum = 116;BA.debugLine="Sub SetAlignLeft(r As String) As WixIcon 'ignore";
+ //BA.debugLineNum = 117;BA.debugLine="Icon.SetAlignleft(\"\")";
 _icon._setalignleft /*b4j.example.wixelement*/ ("");
- //BA.debugLineNum = 111;BA.debugLine="Return Me";
+ //BA.debugLineNum = 118;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixicon)(this);
- //BA.debugLineNum = 112;BA.debugLine="End Sub";
+ //BA.debugLineNum = 119;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixicon  _setalignright(String _r) throws Exception{
- //BA.debugLineNum = 97;BA.debugLine="Sub SetAlignRight(r As String) As WixIcon 'ignore";
- //BA.debugLineNum = 98;BA.debugLine="Icon.setAlignright(\"\")";
+ //BA.debugLineNum = 104;BA.debugLine="Sub SetAlignRight(r As String) As WixIcon 'ignore";
+ //BA.debugLineNum = 105;BA.debugLine="Icon.setAlignright(\"\")";
 _icon._setalignright /*b4j.example.wixelement*/ ("");
- //BA.debugLineNum = 99;BA.debugLine="Return Me";
+ //BA.debugLineNum = 106;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixicon)(this);
- //BA.debugLineNum = 100;BA.debugLine="End Sub";
+ //BA.debugLineNum = 107;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixicon  _setbadge(String _b) throws Exception{
+ //BA.debugLineNum = 75;BA.debugLine="Sub SetBadge(b As String) As WixIcon";
+ //BA.debugLineNum = 76;BA.debugLine="Icon.SetAttr(\"badge\", b)";
+_icon._setattr /*b4j.example.wixelement*/ ("badge",(Object)(_b));
+ //BA.debugLineNum = 77;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixicon)(this);
+ //BA.debugLineNum = 78;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixicon  _setclick(com.ab.banano.BANanoObject _e) throws Exception{
@@ -153,12 +165,12 @@ if (true) return (b4j.example.wixicon)(this);
 return null;
 }
 public b4j.example.wixicon  _setheight(int _h) throws Exception{
- //BA.debugLineNum = 84;BA.debugLine="Sub SetHeight(h As Int) As WixIcon";
- //BA.debugLineNum = 85;BA.debugLine="Icon.Height = h";
+ //BA.debugLineNum = 91;BA.debugLine="Sub SetHeight(h As Int) As WixIcon";
+ //BA.debugLineNum = 92;BA.debugLine="Icon.Height = h";
 _icon._height /*int*/  = _h;
- //BA.debugLineNum = 86;BA.debugLine="Return Me";
+ //BA.debugLineNum = 93;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixicon)(this);
- //BA.debugLineNum = 87;BA.debugLine="End Sub";
+ //BA.debugLineNum = 94;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixicon  _seticon(String _i) throws Exception{
@@ -209,12 +221,12 @@ if (true) return (b4j.example.wixicon)(this);
 return null;
 }
 public b4j.example.wixicon  _setwidth(int _w) throws Exception{
- //BA.debugLineNum = 90;BA.debugLine="Sub SetWidth(w As Int) As WixIcon";
- //BA.debugLineNum = 91;BA.debugLine="Icon.Width = w";
+ //BA.debugLineNum = 97;BA.debugLine="Sub SetWidth(w As Int) As WixIcon";
+ //BA.debugLineNum = 98;BA.debugLine="Icon.Width = w";
 _icon._width /*int*/  = _w;
- //BA.debugLineNum = 92;BA.debugLine="Return Me";
+ //BA.debugLineNum = 99;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixicon)(this);
- //BA.debugLineNum = 93;BA.debugLine="End Sub";
+ //BA.debugLineNum = 100;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {
