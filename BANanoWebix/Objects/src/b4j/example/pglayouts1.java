@@ -23,6 +23,8 @@ static {
  public static anywheresoftware.b4a.keywords.Common __c = null;
 public static b4j.example.wixpage _pg = null;
 public static b4j.example.main _main = null;
+public static b4j.example.pgdatatable1 _pgdatatable1 = null;
+public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pgcharts _pgcharts = null;
 public static b4j.example.pgdataentry _pgdataentry = null;
 public static b4j.example.pgforms1 _pgforms1 = null;
@@ -32,8 +34,13 @@ public static b4j.example.pgindex _pgindex = null;
 public static b4j.example.pgmultiview _pgmultiview = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
-public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pglayout _pglayout = null;
+public static b4j.example.pgdataview _pgdataview = null;
+public static b4j.example.pglist _pglist = null;
+public static b4j.example.pgunitlist _pgunitlist = null;
+public static b4j.example.pgpropertysheet _pgpropertysheet = null;
+public static b4j.example.pgtree _pgtree = null;
+public static b4j.example.pgtreetable _pgtreetable = null;
 public static String  _init() throws Exception{
 b4j.example.wixaccordion _acc = null;
  //BA.debugLineNum = 7;BA.debugLine="Sub Init()";

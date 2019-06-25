@@ -32,6 +32,12 @@ Public Sub Initialize(pgID As String) As WixPage
 	Return Me
 End Sub
 
+'define to update properties
+Sub Define(eID As String, properties As Map)
+	eID = eID.ToLowerCase
+	Dollar.Selector(eID).RunMethod("define",Array(properties))
+End Sub
+
 'set a hint for input element
 Sub SetHint(eID As String, sHint As String)
 	eID = eID.tolowercase
@@ -42,6 +48,37 @@ End Sub
 Sub AttachOnChangeEvent(eID As String, onChange As BANanoObject)
 	eID = eID.tolowercase
 	Dollar.Selector(eID).RunMethod("attachEvent",Array("onChange",onChange))
+End Sub
+
+
+'Refresh
+Sub Refresh(eID As String)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("refresh",Null)
+End Sub
+
+'freeze row
+Sub FreezeRow(dtID As String, r As Int)
+	dtID = dtID.ToLowerCase
+	Dollar.Selector(dtID).RunMethod("freezeRow", Array(r))
+End Sub
+
+'moveBottom
+Sub MoveBottom(dtID As String, r As Int)
+	dtID = dtID.ToLowerCase
+	Dollar.Selector(dtID).RunMethod("moveBottom", Array(r))
+End Sub
+
+'moveTop
+Sub MoveTop(dtID As String, r As Int)
+	dtID = dtID.ToLowerCase
+	Dollar.Selector(dtID).RunMethod("moveTop", Array(r))
+End Sub
+
+'move
+Sub Move(dtID As String, r As Int)
+	dtID = dtID.ToLowerCase
+	Dollar.Selector(dtID).RunMethod("move", Array(r))
 End Sub
 
 'set header title of the page
@@ -150,11 +187,15 @@ Sub Add(listID As String, record As Map)
 	Dollar.Selector(listID).RunMethod("add",Array(record))
 End Sub
 
-'update an existing record
-Sub Update(listID As String, recordID As String, record As Map)
-	listID = listID.ToLowerCase
-	recordID = recordID.tolowercase
-	Dollar.Selector(listID).RunMethod("updateItem",Array(recordID,record))
+Sub CStr(o As Object) As String
+	Return "" & o
+End Sub
+
+'update item
+Sub UpdateItem(ownerID As String, recID As String, recData As Map)
+	ownerID = ownerID.ToLowerCase
+	recID = recID.tolowercase
+	Dollar.Selector(ownerID).RunMethod("updateItem",Array(recID, recData))
 End Sub
 
 'get an item
@@ -165,10 +206,35 @@ Sub GetItem(listID As String, recordID As String) As Map
 	Return values
 End Sub
 
-'attach events after page is created
-Sub AttachAfterSelectEvent(eID As String, onAfterSelect As BANanoObject)
+'on after select event
+Sub OnAfterSelect(eID As String, cb As BANanoObject)
 	eID = eID.tolowercase
-	Dollar.Selector(eID).RunMethod("attachEvent",Array("onAfterSelect",onAfterSelect))
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onAfterSelect",cb))
+End Sub
+
+Sub OnItemClick(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onItemClick",cb))
+End Sub
+
+
+'on after unselect event
+Sub OnAfterUnSelect(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onAfterUnSelect",cb))
+End Sub
+
+'on after unselect event
+Sub OnSelectChange(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onSelectChange",cb))
+End Sub
+
+'serialize all data
+Sub Serialize(eID As String, bAll As Boolean) As List
+	eID = eID.ToLowerCase
+	Dim res As List = Dollar.Selector(eID).RunMethod("serialize",Array(bAll)).result
+	Return res
 End Sub
 
 'remove an item from a list
@@ -183,6 +249,33 @@ Sub GetSelectedID(listID As String) As String
 	listID = listID.tolowercase
 	Dim recID As String = Dollar.Selector(listID).RunMethod("getSelectedId",Null).Result
 	Return recID
+End Sub
+
+'get the selected item
+Sub GetSelected(listID As String) As Object
+	listID = listID.tolowercase
+	Dim recID As String = Dollar.Selector(listID).RunMethod("getSelected",Null).Result
+	Return recID
+End Sub
+
+'get the selected item
+Sub GetSelectedItem(listID As String) As Map
+	listID = listID.tolowercase
+	Dim recID As Map = Dollar.Selector(listID).RunMethod("getSelectedItem",Null).Result
+	Return recID
+End Sub
+
+'get the selected item
+Sub Exists(listID As String, eID As String) As Object
+	listID = listID.tolowercase
+	Dim recID As String = Dollar.Selector(listID).RunMethod("exists",Array(eID)).Result
+	Return recID
+End Sub
+
+'show an item
+Sub ShowItem(listID As String, eID As String)
+	listID = listID.tolowercase
+	Dollar.Selector(listID).RunMethod("showItem",Array(eID))
 End Sub
 
 'get dirty values
@@ -207,16 +300,41 @@ Sub SetBottomText(eID As String, eText As String)
 	Dollar.Selector(eID).RunMethod("setBottomText",Array(eText))
 End Sub
 
+'adjust
+Sub Adjust(eID As String)
+	eID = eID.ToLowerCase
+	Dollar.Selector(eID).RunMethod("adjust",Null)
+End Sub
+
+'resize
+Sub Resize(eID As String)
+	eID = eID.ToLowerCase
+	Dollar.Selector(eID).RunMethod("resize",Null)
+End Sub
+
 'clear all
 Sub ClearAll(eID As String)
 	eID = eID.ToLowerCase
 	Dollar.Selector(eID).RunMethod("clearAll",Null)
 End Sub
 
-'parse data
-Sub Parse(eID As String, data As List)
+'parse data, typeOf 'json' (default), 'xml', 'csv', 'jsarray'
+Sub Parse(eID As String, data As List, typeOf As String)
 	eID = eID.tolowercase
-	Dollar.Selector(eID).RunMethod("parse",Array(data))
+	Dollar.Selector(eID).RunMethod("parse",Array(data, typeOf))
+End Sub
+
+'bind a form to a datatable
+Sub Bind(frmID As String, datTableID As String)
+	frmID = frmID.ToLowerCase
+	datTableID = datTableID.ToLowerCase
+	Dollar.Selector(frmID).RunMethod("bind",Array(datTableID))
+End Sub
+
+'save the form when a form is bound
+Sub Save(frmID As String)
+	frmID = frmID.tolowercase
+	Dollar.Selector(frmID).RunMethod("save",Null)
 End Sub
 
 'export element to png

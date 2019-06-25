@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public Combo As WixElement
 	Private Options As List
 	Private yCount As Int
+	Private opt As Map
 End Sub
 
 'initialize the input box
@@ -18,6 +19,7 @@ Public Sub Initialize(iID As String) As WixCombo
 	Combo.Initialize(iID).SetView("combo")
 	Options.Initialize
 	yCount = 0
+	opt = CreateMap()
 	Return Me
 End Sub
 
@@ -46,17 +48,12 @@ End Sub
 
 'set template
 Sub SetTemplate(t As String) As WixCombo
-	Combo.Template = t
+	opt.Put("template", t)
 	Return Me	
 End Sub
 
 'return the item
 Sub Item As Map
-	Dim opt As Map = CreateMap()
-	If Combo.Template <> "" Then 
-		opt.Put("template", Combo.Template)
-		Combo.Template = ""
-	End If
 	opt.Put("data", Options)
 	If yCount <> 0 Then opt.Put("yCount",yCount)
 	Combo.SetAttr("options", opt)

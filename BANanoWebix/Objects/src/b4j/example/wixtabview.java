@@ -26,6 +26,8 @@ public class wixtabview extends B4AClass.ImplB4AClass implements BA.SubDelegator
 public String _id = "";
 public b4j.example.wixelement _tabview = null;
 public b4j.example.main _main = null;
+public b4j.example.pgdatatable1 _pgdatatable1 = null;
+public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pgcharts _pgcharts = null;
 public b4j.example.pgdataentry _pgdataentry = null;
 public b4j.example.pgforms1 _pgforms1 = null;
@@ -36,8 +38,13 @@ public b4j.example.pgmultiview _pgmultiview = null;
 public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
-public b4j.example.pgdatatable _pgdatatable = null;
 public b4j.example.pglayout _pglayout = null;
+public b4j.example.pgdataview _pgdataview = null;
+public b4j.example.pglist _pglist = null;
+public b4j.example.pgunitlist _pgunitlist = null;
+public b4j.example.pgpropertysheet _pgpropertysheet = null;
+public b4j.example.pgtree _pgtree = null;
+public b4j.example.pgtreetable _pgtreetable = null;
 public String  _addtab(String _iid,String _header,String _template,anywheresoftware.b4a.objects.collections.Map _attributes) throws Exception{
 b4j.example.wixelement _i = null;
 String _astr = "";
@@ -50,7 +57,7 @@ _i._initialize /*b4j.example.wixelement*/ (ba,_iid);
  //BA.debugLineNum = 31;BA.debugLine="i.SetHeader(header)";
 _i._setheader /*b4j.example.wixelement*/ (_header);
  //BA.debugLineNum = 32;BA.debugLine="i.SetTemplate(template)";
-_i._settemplate /*b4j.example.wixelement*/ (_template);
+_i._settemplate /*b4j.example.wixelement*/ ((Object)(_template));
  //BA.debugLineNum = 33;BA.debugLine="If attributes <> Null Then";
 if (_attributes!= null) { 
  //BA.debugLineNum = 34;BA.debugLine="For Each astr As String In attributes.Keys";

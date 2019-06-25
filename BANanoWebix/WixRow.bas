@@ -17,10 +17,29 @@ Public Sub Initialize(rID As String) As WixRow
 	Return Me 
 End Sub
 
+'set type wide
+Sub SetTypeWide As WixRow
+	Row.SetAttr("type", "wide")
+	Return Me
+End Sub
+
 'add to columns
 Sub AddColumns(i As Map) As WixRow
 	Row.AddColumns(i)
 	Return Me
+End Sub
+
+'add to columns
+Sub AddColumnsItem(i As Map) As WixRow
+	AddColumns(i)
+	Return Me
+End Sub
+
+'add columns spacer
+Sub AddColumnsSpacer(width As Int) As WixRow  'ignore
+	Dim itm As Map = CreateMap()
+	If width > 0 Then itm.Put("width", width)
+	Row.AddColumns(itm)
 End Sub
 
 'add to rows

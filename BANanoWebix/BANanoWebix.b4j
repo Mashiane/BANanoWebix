@@ -25,68 +25,84 @@ Library1=jcore
 Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
-Module1=pgCharts
-Module10=pgIndex
-Module11=WixPage
-Module12=pgMultiView
-Module13=WixPortlet
-Module14=WixElement
-Module15=WixMultiView
-Module16=WixTabView
-Module17=pgLayouts1
-Module18=WixAccordion
-Module19=pgLayouts2
-Module2=WixChart
-Module20=WixLayoutTypes
-Module21=pgLayouts
-Module22=WixCombo
-Module23=WixLayout
-Module24=WixForm
-Module25=WixButtonTypes
-Module26=WixDataTable
-Module27=WixList
-Module28=WixRow
-Module29=WixColumn
-Module3=pgDataEntry
-Module30=WixHeader
-Module31=WixTextArea
-Module32=WixCheckBox
-Module33=WixRadio
-Module34=WixRichSelect
-Module35=WixCounter
-Module36=WixSegmented
-Module37=WixTextBox
-Module38=pgDataTable
-Module39=WixColorPicker
-Module4=pgForms1
-Module40=WixDateTimePicker
-Module41=WixLabel
-Module42=WixSection
-Module43=WixSuggest
-Module44=WixResizer
-Module45=pgLayout
-Module46=WixMenu
-Module47=WixDataCollection
-Module48=WixCarousel
-Module49=WixSelect
-Module5=WixToolBar
-Module50=WixRangeSlider
-Module51=WixSearch
-Module52=WixSlider
-Module53=WixRichText
-Module54=WixDBLList
-Module55=WixFieldSet
-Module56=WixFormInput
-Module6=WixButton
-Module7=WixIcon
-Module8=pgForms
-Module9=pgToolBar
+Module1=WixPage
+Module10=WixToolBar
+Module11=WixButton
+Module12=WixIcon
+Module13=pgForms
+Module14=pgToolBar
+Module15=pgIndex
+Module16=pgMultiView
+Module17=WixPortlet
+Module18=WixElement
+Module19=WixMultiView
+Module2=pgDataTable1
+Module20=WixTabView
+Module21=pgLayouts1
+Module22=WixAccordion
+Module23=pgLayouts2
+Module24=WixLayoutTypes
+Module25=pgLayouts
+Module26=WixCombo
+Module27=WixLayout
+Module28=WixForm
+Module29=WixButtonTypes
+Module3=WixDataTable
+Module30=WixList
+Module31=WixRow
+Module32=WixColumn
+Module33=WixHeader
+Module34=WixTextArea
+Module35=WixCheckBox
+Module36=WixRadio
+Module37=WixRichSelect
+Module38=WixCounter
+Module39=WixSegmented
+Module4=WixDataColumn
+Module40=WixTextBox
+Module41=WixColorPicker
+Module42=WixDateTimePicker
+Module43=WixLabel
+Module44=WixSection
+Module45=WixSuggest
+Module46=WixResizer
+Module47=pgLayout
+Module48=WixMenu
+Module49=WixDataCollection
+Module5=pgDataTable
+Module50=WixCarousel
+Module51=WixSelect
+Module52=WixRangeSlider
+Module53=WixSearch
+Module54=WixSlider
+Module55=WixRichText
+Module56=WixDBLList
+Module57=WixFieldSet
+Module58=WixFormInput
+Module59=WixDataView
+Module6=pgCharts
+Module60=pgDataView
+Module61=UOENowHTML
+Module62=WixPager
+Module63=pgList
+Module64=UOENowData
+Module65=WixUnitList
+Module66=pgUnitList
+Module67=WixProperty
+Module68=pgPropertySheet
+Module69=WixTree
+Module7=WixChart
+Module70=WixTreeTable
+Module71=pgTree
+Module72=pgTreeTable
+Module8=pgDataEntry
+Module9=pgForms1
 NumberOfFiles=10
 NumberOfLibraries=4
-NumberOfModules=56
+NumberOfModules=72
 Version=7.51
 @EndOfDesignText@
-#Region Project Attributes 
+ #Region Project Attributes 
 #End Region
 #IgnoreWarnings:15
 Sub Process_Globals
@@ -149,6 +165,15 @@ Sub BANano_Ready()
 	'uncomment this line ONLY for LESSON 6
 	'pgDataEntry.init 
 	'uncomment this line ONLY for LESSON 7 - part 1
-	pgCharts.Init 
+	'pgCharts.Init
+	'uncomment this line ONLY for LESSON 8
+	'pgDataTable.Init   ' LESSON 8.1
+	pgDataTable1.Init   ' LESSON 8.2
+	'pgDataView.Init    ' LESSON 9
+	'pgList.Init 	   'LESSON 10 
+	'pgUnitList.init    'LESSON 11
+	'pgPropertySheet.Init      'LESSON 12
+	'pgTree.Init               'LESSON 13
+	'pgTreeTable.Init          'LESSON 14
 	'pgIndex.Init
 End Sub

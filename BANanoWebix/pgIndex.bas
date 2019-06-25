@@ -101,7 +101,7 @@ Sub Init()
 	
 			
 	Dim recID As String
-	myList.Initialize("myList").SetTemplate("#title# - #year#").SetEnableSelect(True).SetHeight(400).SetData(filmset).AddToColumn(R2C2)
+	myList.Initialize("myList").SetTemplate("#title# - #year#").SetSelect(True).SetHeight(400).SetData(filmset).AddToColumn(R2C2)
 	'
 	R2C2.AddToRow(R2)
 	'
@@ -109,7 +109,7 @@ Sub Init()
 	'
 	pg.UI
 	'attach the select event
-	pg.AttachAfterSelectEvent("myList", BANano.CallBack(Me,"record_selected",Array(recID)))
+	pg.OnAfterSelect("myList", BANano.CallBack(Me,"record_selected",Array(recID)))
 
 End Sub
 
@@ -148,7 +148,7 @@ Sub save_row(e As BANanoEvent)
 		pg.Add("myList", values)
 	Else
 		'update the list
-		pg.Update("myList", recID, values)
+		pg.UpdateItem("myList", recID, values)
 	End If
 End Sub
 

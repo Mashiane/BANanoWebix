@@ -7,7 +7,6 @@ Version=7.5
 #IgnoreWarnings:12
 Sub Class_Globals
 	Public ID As String
-	Public Template As String
 	Public Columns As List
 	Public Width As Int
 	Public Height As Int
@@ -35,6 +34,25 @@ Sub Class_Globals
 	Private elementsConfig As Map
 End Sub
 
+
+'set parent container for element
+Sub SetContainer(c As String) As WixElement
+	SetAttr("container", c)
+	Return Me
+End Sub
+
+'set borderless
+Sub SetBorderLess(b As Boolean) As WixElement
+	SetProperty("borderless", b)
+	Return Me
+End Sub
+
+'set selectable
+Sub SetSelect(b As Boolean) As WixElement
+	SetProperty("select", b)
+	Return Me
+End Sub
+
 'set label height
 Sub SetLabelHeight(h As Int) As WixElement
 	SetProperty("labelHeight", h)
@@ -50,7 +68,6 @@ End Sub
 'initialize the element
 Public Sub Initialize(sID As String) As WixElement
 	ID = sID.ToLowerCase
-	Template = ""
 	Width = 0
 	Cells.Initialize 
 	elementsConfig.Initialize 
@@ -304,7 +321,6 @@ Sub Item As Map
 	SetOnContent("css", CSS)
 	SetOnContent("value", Value)
 	SetOnContent("align", Align)
-	SetOnContent("template", Template)
 	SetOnContent("label", Label.Text)
 	SetOnContent("placeholder", PlaceHolder)
 	SetOnContent("labelPosition", Label.Position)
@@ -355,8 +371,8 @@ Sub AddResizerToColumns As WixElement
 End Sub
 
 'set template
-Sub SetTemplate(t As String) As WixElement
-	Template = t
+Sub SetTemplate(t As Object) As WixElement
+	Element.Put("template", t)
 	Return Me
 End Sub
 

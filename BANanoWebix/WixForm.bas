@@ -21,6 +21,10 @@ Public Sub Initialize(fID As String) As WixForm
 	Return Me
 End Sub
 
+Sub SetScroll(b As Boolean) As WixForm
+	Form.SetProperty("scroll", b)
+	Return Me
+End Sub
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixForm

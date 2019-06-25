@@ -45,6 +45,8 @@ public static com.ab.banano.BANano _banano = null;
 public static String _appname = "";
 public static String _publish = "";
 public static b4j.example.bananopostprocessor _bp = null;
+public static b4j.example.pgdatatable1 _pgdatatable1 = null;
+public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pgcharts _pgcharts = null;
 public static b4j.example.pgdataentry _pgdataentry = null;
 public static b4j.example.pgforms1 _pgforms1 = null;
@@ -55,8 +57,13 @@ public static b4j.example.pgmultiview _pgmultiview = null;
 public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
-public static b4j.example.pgdatatable _pgdatatable = null;
 public static b4j.example.pglayout _pglayout = null;
+public static b4j.example.pgdataview _pgdataview = null;
+public static b4j.example.pglist _pglist = null;
+public static b4j.example.pgunitlist _pgunitlist = null;
+public static b4j.example.pgpropertysheet _pgpropertysheet = null;
+public static b4j.example.pgtree _pgtree = null;
+public static b4j.example.pgtreetable _pgtreetable = null;
 public static boolean  _application_error(anywheresoftware.b4a.objects.B4AException _error,String _stacktrace) throws Exception{
  //BA.debugLineNum = 44;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
  //BA.debugLineNum = 45;BA.debugLine="Return True";
@@ -117,9 +124,9 @@ return "";
 }
 public static String  _banano_ready() throws Exception{
  //BA.debugLineNum = 48;BA.debugLine="Sub BANano_Ready()";
- //BA.debugLineNum = 64;BA.debugLine="pgCharts.Init";
-_pgcharts._init /*String*/ ();
- //BA.debugLineNum = 66;BA.debugLine="End Sub";
+ //BA.debugLineNum = 67;BA.debugLine="pgDataTable1.Init   ' LESSON 8.2";
+_pgdatatable1._init /*String*/ ();
+ //BA.debugLineNum = 75;BA.debugLine="End Sub";
 return "";
 }
 
@@ -130,6 +137,8 @@ public static void initializeProcessGlobals() {
 	    main.processGlobalsRun = true;
 		try {
 		        main._process_globals();
+pgdatatable1._process_globals();
+pgdatatable._process_globals();
 pgcharts._process_globals();
 pgdataentry._process_globals();
 pgforms1._process_globals();
@@ -140,8 +149,13 @@ pgmultiview._process_globals();
 pglayouts1._process_globals();
 pglayouts2._process_globals();
 pglayouts._process_globals();
-pgdatatable._process_globals();
 pglayout._process_globals();
+pgdataview._process_globals();
+pglist._process_globals();
+pgunitlist._process_globals();
+pgpropertysheet._process_globals();
+pgtree._process_globals();
+pgtreetable._process_globals();
 		
         } catch (Exception e) {
 			throw new RuntimeException(e);
