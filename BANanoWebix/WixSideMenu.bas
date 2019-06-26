@@ -19,16 +19,22 @@ Public Sub Initialize(sid As String) As WixSideMenu
 	SideMenu.Initialize(sid).SetView("sidemenu")
 	body.Initialize(ID & "body").SetView("list").SetBorderLess(True).SetScroll(False).SetSelect(True)
 	data.Initialize 
-	typeOf.Initialize 
-	Return Me 
+	typeOf.Initialize
+	Return Me
 End Sub
 
-'add item
-Sub AddItem(eID As String, eLabel As String, eIcon As String)
-	eID = eID.tolowercase
-	Dim itm As WixElement
-	itm.Initialize(eID).SetValue(eLabel).SetIcon(eIcon)
-	data.Add(itm.Item)
+'add menu item
+Sub AddItem(meID As String, mValue As String, mhref As String, mIcon As String, badge As String, target As String) As WixSideMenu
+	meID = meID.tolowercase
+	Dim mitem As Map = CreateMap()
+	mitem.Put("id", meID)
+	mitem.Put("value", mValue)
+	mitem.Put("href", mhref)
+	mitem.Put("badge", badge)
+	mitem.Put("target", target)
+	mitem.Put("icon", mIcon)
+	data.Add(mitem)
+	Return Me
 End Sub
 
 'return menu
@@ -79,6 +85,12 @@ Sub SetWidth(w As Int) As WixSideMenu
 	Return Me
 End Sub
 
+
+'set select enables selection of items
+Sub SetSelect(s As Object) As WixSideMenu
+	SideMenu.SetAttr("select", s)
+	Return Me
+End Sub
 
 'set position right
 Sub SetPositionRight(c As String) As WixSideMenu  'ignore

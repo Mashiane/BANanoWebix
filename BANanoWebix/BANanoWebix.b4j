@@ -207,8 +207,8 @@ Sub BANano_Ready()
 	'pgPropertySheet.Init      'LESSON 12
 	'pgTree.Init               'LESSON 13
 	'pgTreeTable.Init          'LESSON 14
-	'pgMenu.Init			   'LESSON 15
+	pgMenu.Init			   'LESSON 15
 	'pgSideBar.init        'LESSON 16
-	pgComments.Init	      'LESSON 17
+	'pgComments.Init	      'LESSON 17
 	'pgIndex.Init
 End Sub

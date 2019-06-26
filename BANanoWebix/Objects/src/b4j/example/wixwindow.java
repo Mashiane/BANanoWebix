@@ -27,6 +27,7 @@ public String _id = "";
 public b4j.example.wixelement _window = null;
 public b4j.example.wixtoolbar _toolbar = null;
 public b4j.example.wixelement _body = null;
+public String _toolbarid = "";
 public b4j.example.main _main = null;
 public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pgdatatable1 _pgdatatable1 = null;
@@ -60,153 +61,157 @@ _window = new b4j.example.wixelement();
 _toolbar = new b4j.example.wixtoolbar();
  //BA.debugLineNum = 6;BA.debugLine="Private body As WixElement";
 _body = new b4j.example.wixelement();
- //BA.debugLineNum = 7;BA.debugLine="End Sub";
+ //BA.debugLineNum = 7;BA.debugLine="Public ToolBarID As String";
+_toolbarid = "";
+ //BA.debugLineNum = 8;BA.debugLine="End Sub";
 return "";
 }
 public b4j.example.wixwindow  _initialize(anywheresoftware.b4a.BA _ba,String _sid) throws Exception{
 innerInitialize(_ba);
- //BA.debugLineNum = 10;BA.debugLine="Public Sub Initialize(sid As String) As WixWindow";
- //BA.debugLineNum = 11;BA.debugLine="ID = sid.tolowercase";
+ //BA.debugLineNum = 11;BA.debugLine="Public Sub Initialize(sid As String) As WixWindow";
+ //BA.debugLineNum = 12;BA.debugLine="ID = sid.tolowercase";
 _id = _sid.toLowerCase();
- //BA.debugLineNum = 12;BA.debugLine="Window.Initialize(ID).SetView(\"window\")";
+ //BA.debugLineNum = 13;BA.debugLine="ToolBarID = ID & \"tblbar\"";
+_toolbarid = _id+"tblbar";
+ //BA.debugLineNum = 14;BA.debugLine="Window.Initialize(ID).SetView(\"window\")";
 _window._initialize /*b4j.example.wixelement*/ (ba,_id)._setview /*b4j.example.wixelement*/ ("window");
- //BA.debugLineNum = 13;BA.debugLine="ToolBar.Initialize(ID & \"tblBar\")";
-_toolbar._initialize /*b4j.example.wixtoolbar*/ (ba,_id+"tblBar");
- //BA.debugLineNum = 14;BA.debugLine="body.Initialize(ID & \"body\")";
+ //BA.debugLineNum = 15;BA.debugLine="ToolBar.Initialize(ToolBarID)";
+_toolbar._initialize /*b4j.example.wixtoolbar*/ (ba,_toolbarid);
+ //BA.debugLineNum = 16;BA.debugLine="body.Initialize(ID & \"body\")";
 _body._initialize /*b4j.example.wixelement*/ (ba,_id+"body");
- //BA.debugLineNum = 15;BA.debugLine="Return Me";
+ //BA.debugLineNum = 17;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 16;BA.debugLine="End Sub";
+ //BA.debugLineNum = 18;BA.debugLine="End Sub";
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 52;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 53;BA.debugLine="Window.SetAttr(\"body\", body.Item)";
+ //BA.debugLineNum = 54;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 55;BA.debugLine="Window.SetAttr(\"body\", body.Item)";
 _window._setattr /*b4j.example.wixelement*/ ("body",(Object)(_body._item /*anywheresoftware.b4a.objects.collections.Map*/ ().getObject()));
- //BA.debugLineNum = 54;BA.debugLine="Return Window.item";
+ //BA.debugLineNum = 56;BA.debugLine="Return Window.item";
 if (true) return _window._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 55;BA.debugLine="End Sub";
+ //BA.debugLineNum = 57;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _setclose(boolean _b) throws Exception{
- //BA.debugLineNum = 97;BA.debugLine="Sub SetClose(b As Boolean) As WixWindow";
- //BA.debugLineNum = 98;BA.debugLine="Window.SetAttr(\"close\", b)";
+ //BA.debugLineNum = 99;BA.debugLine="Sub SetClose(b As Boolean) As WixWindow";
+ //BA.debugLineNum = 100;BA.debugLine="Window.SetAttr(\"close\", b)";
 _window._setattr /*b4j.example.wixelement*/ ("close",(Object)(_b));
- //BA.debugLineNum = 99;BA.debugLine="Return Me";
+ //BA.debugLineNum = 101;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 100;BA.debugLine="End Sub";
+ //BA.debugLineNum = 102;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _setfullscreen(boolean _b) throws Exception{
- //BA.debugLineNum = 19;BA.debugLine="Sub SetFullScreen(b As Boolean) As WixWindow";
- //BA.debugLineNum = 20;BA.debugLine="Window.SetAttr(\"fullscreen\", b)";
+ //BA.debugLineNum = 21;BA.debugLine="Sub SetFullScreen(b As Boolean) As WixWindow";
+ //BA.debugLineNum = 22;BA.debugLine="Window.SetAttr(\"fullscreen\", b)";
 _window._setattr /*b4j.example.wixelement*/ ("fullscreen",(Object)(_b));
- //BA.debugLineNum = 21;BA.debugLine="Window.SetAttr(\"top\", 0)";
+ //BA.debugLineNum = 23;BA.debugLine="Window.SetAttr(\"top\", 0)";
 _window._setattr /*b4j.example.wixelement*/ ("top",(Object)(0));
- //BA.debugLineNum = 22;BA.debugLine="Window.SetAttr(\"left\", 0)";
+ //BA.debugLineNum = 24;BA.debugLine="Window.SetAttr(\"left\", 0)";
 _window._setattr /*b4j.example.wixelement*/ ("left",(Object)(0));
- //BA.debugLineNum = 23;BA.debugLine="Return Me";
+ //BA.debugLineNum = 25;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 24;BA.debugLine="End Sub";
+ //BA.debugLineNum = 26;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _sethead(String _hdr) throws Exception{
- //BA.debugLineNum = 40;BA.debugLine="Sub SetHead(hdr As String) As WixWindow";
- //BA.debugLineNum = 41;BA.debugLine="Window.SetAttr(\"head\", hdr)";
+ //BA.debugLineNum = 42;BA.debugLine="Sub SetHead(hdr As String) As WixWindow";
+ //BA.debugLineNum = 43;BA.debugLine="Window.SetAttr(\"head\", hdr)";
 _window._setattr /*b4j.example.wixelement*/ ("head",(Object)(_hdr));
- //BA.debugLineNum = 42;BA.debugLine="Return Me";
+ //BA.debugLineNum = 44;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 43;BA.debugLine="End Sub";
+ //BA.debugLineNum = 45;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _setheight(int _h) throws Exception{
- //BA.debugLineNum = 91;BA.debugLine="Sub SetHeight(h As Int) As WixWindow";
- //BA.debugLineNum = 92;BA.debugLine="Window.SetAttr(\"height\", h)";
+ //BA.debugLineNum = 93;BA.debugLine="Sub SetHeight(h As Int) As WixWindow";
+ //BA.debugLineNum = 94;BA.debugLine="Window.SetAttr(\"height\", h)";
 _window._setattr /*b4j.example.wixelement*/ ("height",(Object)(_h));
- //BA.debugLineNum = 93;BA.debugLine="Return Me";
+ //BA.debugLineNum = 95;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 94;BA.debugLine="End Sub";
+ //BA.debugLineNum = 96;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _setleft(int _t) throws Exception{
- //BA.debugLineNum = 85;BA.debugLine="Sub SetLeft(t As Int) As WixWindow";
- //BA.debugLineNum = 86;BA.debugLine="Window.SetAttr(\"left\", t)";
+ //BA.debugLineNum = 87;BA.debugLine="Sub SetLeft(t As Int) As WixWindow";
+ //BA.debugLineNum = 88;BA.debugLine="Window.SetAttr(\"left\", t)";
 _window._setattr /*b4j.example.wixelement*/ ("left",(Object)(_t));
- //BA.debugLineNum = 87;BA.debugLine="Return Me";
+ //BA.debugLineNum = 89;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 88;BA.debugLine="End Sub";
+ //BA.debugLineNum = 90;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _setmodal(boolean _b) throws Exception{
- //BA.debugLineNum = 34;BA.debugLine="Sub SetModal(b As Boolean) As WixWindow";
- //BA.debugLineNum = 35;BA.debugLine="Window.SetAttr(\"modal\", b)";
+ //BA.debugLineNum = 36;BA.debugLine="Sub SetModal(b As Boolean) As WixWindow";
+ //BA.debugLineNum = 37;BA.debugLine="Window.SetAttr(\"modal\", b)";
 _window._setattr /*b4j.example.wixelement*/ ("modal",(Object)(_b));
- //BA.debugLineNum = 36;BA.debugLine="Return Me";
+ //BA.debugLineNum = 38;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 37;BA.debugLine="End Sub";
+ //BA.debugLineNum = 39;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _setmove(boolean _t) throws Exception{
- //BA.debugLineNum = 71;BA.debugLine="Sub SetMove(t As Boolean) As WixWindow";
- //BA.debugLineNum = 72;BA.debugLine="Window.SetAttr(\"move\", t)";
+ //BA.debugLineNum = 73;BA.debugLine="Sub SetMove(t As Boolean) As WixWindow";
+ //BA.debugLineNum = 74;BA.debugLine="Window.SetAttr(\"move\", t)";
 _window._setattr /*b4j.example.wixelement*/ ("move",(Object)(_t));
- //BA.debugLineNum = 73;BA.debugLine="Return Me";
+ //BA.debugLineNum = 75;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 74;BA.debugLine="End Sub";
+ //BA.debugLineNum = 76;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _setpositioncenter(boolean _b) throws Exception{
- //BA.debugLineNum = 27;BA.debugLine="Sub SetPositionCenter(b As Boolean) As WixWindow";
- //BA.debugLineNum = 28;BA.debugLine="Window.SetAttr(\"position\", \"center\")";
+ //BA.debugLineNum = 29;BA.debugLine="Sub SetPositionCenter(b As Boolean) As WixWindow";
+ //BA.debugLineNum = 30;BA.debugLine="Window.SetAttr(\"position\", \"center\")";
 _window._setattr /*b4j.example.wixelement*/ ("position",(Object)("center"));
- //BA.debugLineNum = 29;BA.debugLine="Return Me";
+ //BA.debugLineNum = 31;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 30;BA.debugLine="End Sub";
+ //BA.debugLineNum = 32;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _setresize(boolean _t) throws Exception{
- //BA.debugLineNum = 65;BA.debugLine="Sub SetResize(t As Boolean) As WixWindow";
- //BA.debugLineNum = 66;BA.debugLine="Window.SetAttr(\"resize\", t)";
+ //BA.debugLineNum = 67;BA.debugLine="Sub SetResize(t As Boolean) As WixWindow";
+ //BA.debugLineNum = 68;BA.debugLine="Window.SetAttr(\"resize\", t)";
 _window._setattr /*b4j.example.wixelement*/ ("resize",(Object)(_t));
- //BA.debugLineNum = 67;BA.debugLine="Return Me";
+ //BA.debugLineNum = 69;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 68;BA.debugLine="End Sub";
+ //BA.debugLineNum = 70;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _settemplate(String _t) throws Exception{
- //BA.debugLineNum = 58;BA.debugLine="Sub SetTemplate(t As String) As WixWindow";
- //BA.debugLineNum = 59;BA.debugLine="body.SetTemplate(t)";
+ //BA.debugLineNum = 60;BA.debugLine="Sub SetTemplate(t As String) As WixWindow";
+ //BA.debugLineNum = 61;BA.debugLine="body.SetTemplate(t)";
 _body._settemplate /*b4j.example.wixelement*/ ((Object)(_t));
- //BA.debugLineNum = 60;BA.debugLine="Return Me";
+ //BA.debugLineNum = 62;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 61;BA.debugLine="End Sub";
+ //BA.debugLineNum = 63;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _settoolbar(boolean _b) throws Exception{
- //BA.debugLineNum = 46;BA.debugLine="Sub SetToolBar(b As Boolean) As WixWindow  'ignore";
- //BA.debugLineNum = 47;BA.debugLine="Window.SetAttr(\"head\", ToolBar.Item)";
+ //BA.debugLineNum = 48;BA.debugLine="Sub SetToolBar(b As Boolean) As WixWindow  'ignore";
+ //BA.debugLineNum = 49;BA.debugLine="Window.SetAttr(\"head\", ToolBar.Item)";
 _window._setattr /*b4j.example.wixelement*/ ("head",(Object)(_toolbar._item /*anywheresoftware.b4a.objects.collections.Map*/ ().getObject()));
- //BA.debugLineNum = 48;BA.debugLine="Return Me";
+ //BA.debugLineNum = 50;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 49;BA.debugLine="End Sub";
+ //BA.debugLineNum = 51;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _settop(int _t) throws Exception{
- //BA.debugLineNum = 78;BA.debugLine="Sub SetTop(t As Int) As WixWindow";
- //BA.debugLineNum = 79;BA.debugLine="Window.SetAttr(\"top\", t)";
+ //BA.debugLineNum = 80;BA.debugLine="Sub SetTop(t As Int) As WixWindow";
+ //BA.debugLineNum = 81;BA.debugLine="Window.SetAttr(\"top\", t)";
 _window._setattr /*b4j.example.wixelement*/ ("top",(Object)(_t));
- //BA.debugLineNum = 80;BA.debugLine="Return Me";
+ //BA.debugLineNum = 82;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 81;BA.debugLine="End Sub";
+ //BA.debugLineNum = 83;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixwindow  _setwidth(int _w) throws Exception{
- //BA.debugLineNum = 104;BA.debugLine="Sub SetWidth(w As Int) As WixWindow";
- //BA.debugLineNum = 105;BA.debugLine="Window.SetAttr(\"width\", w)";
+ //BA.debugLineNum = 106;BA.debugLine="Sub SetWidth(w As Int) As WixWindow";
+ //BA.debugLineNum = 107;BA.debugLine="Window.SetAttr(\"width\", w)";
 _window._setattr /*b4j.example.wixelement*/ ("width",(Object)(_w));
- //BA.debugLineNum = 106;BA.debugLine="Return Me";
+ //BA.debugLineNum = 108;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixwindow)(this);
- //BA.debugLineNum = 107;BA.debugLine="End Sub";
+ //BA.debugLineNum = 109;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

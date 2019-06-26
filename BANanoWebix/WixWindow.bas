@@ -10,13 +10,15 @@ Sub Class_Globals
 	Public Window As WixElement
 	Public ToolBar As WixToolBar
 	Private body As WixElement
+	Public ToolBarID As String
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
 Public Sub Initialize(sid As String) As WixWindow
 	ID = sid.tolowercase
+	ToolBarID = ID & "tblbar"
 	Window.Initialize(ID).SetView("window")
-	ToolBar.Initialize(ID & "tblBar") 
+	ToolBar.Initialize(ToolBarID) 
 	body.Initialize(ID & "body") 
 	Return Me
 End Sub

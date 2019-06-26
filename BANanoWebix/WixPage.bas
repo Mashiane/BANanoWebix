@@ -302,6 +302,16 @@ Sub OnItemClick(eID As String, cb As BANanoObject)
 	Dollar.Selector(eID).RunMethod("attachEvent",Array("onItemClick",cb))
 End Sub
 
+Sub OnClick(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onClick",cb))
+End Sub
+
+Sub OnMenuItemClick(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onMenuItemClick",cb))
+End Sub
+
 
 'on after unselect event
 Sub OnAfterUnSelect(eID As String, cb As BANanoObject)

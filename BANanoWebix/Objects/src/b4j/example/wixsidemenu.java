@@ -51,19 +51,32 @@ public b4j.example.pgtreetable _pgtreetable = null;
 public b4j.example.pgmenu _pgmenu = null;
 public b4j.example.pgsidebar _pgsidebar = null;
 public b4j.example.pgcomments _pgcomments = null;
-public String  _additem(String _eid,String _elabel,String _eicon) throws Exception{
-b4j.example.wixelement _itm = null;
- //BA.debugLineNum = 21;BA.debugLine="Sub AddItem(eID As String, eLabel As String, eIcon";
- //BA.debugLineNum = 22;BA.debugLine="eID = eID.tolowercase";
-_eid = _eid.toLowerCase();
- //BA.debugLineNum = 23;BA.debugLine="Dim itm As WixElement";
-_itm = new b4j.example.wixelement();
- //BA.debugLineNum = 24;BA.debugLine="itm.Initialize(eID).SetValue(eLabel).SetIcon(eIco";
-_itm._initialize /*b4j.example.wixelement*/ (ba,_eid)._setvalue /*b4j.example.wixelement*/ (_elabel)._seticon /*b4j.example.wixelement*/ (_eicon);
- //BA.debugLineNum = 25;BA.debugLine="data.Add(itm.Item)";
-_data.Add((Object)(_itm._item /*anywheresoftware.b4a.objects.collections.Map*/ ().getObject()));
- //BA.debugLineNum = 26;BA.debugLine="End Sub";
-return "";
+public b4j.example.wixsidemenu  _additem(String _meid,String _mvalue,String _mhref,String _micon,String _badge,String _target) throws Exception{
+anywheresoftware.b4a.objects.collections.Map _mitem = null;
+ //BA.debugLineNum = 21;BA.debugLine="Sub AddItem(meID As String, mValue As String, mhre";
+ //BA.debugLineNum = 22;BA.debugLine="meID = meID.tolowercase";
+_meid = _meid.toLowerCase();
+ //BA.debugLineNum = 23;BA.debugLine="Dim mitem As Map = CreateMap()";
+_mitem = new anywheresoftware.b4a.objects.collections.Map();
+_mitem = __c.createMap(new Object[] {});
+ //BA.debugLineNum = 24;BA.debugLine="mitem.Put(\"id\", meID)";
+_mitem.Put((Object)("id"),(Object)(_meid));
+ //BA.debugLineNum = 25;BA.debugLine="mitem.Put(\"value\", mValue)";
+_mitem.Put((Object)("value"),(Object)(_mvalue));
+ //BA.debugLineNum = 26;BA.debugLine="mitem.Put(\"href\", mhref)";
+_mitem.Put((Object)("href"),(Object)(_mhref));
+ //BA.debugLineNum = 27;BA.debugLine="mitem.Put(\"badge\", badge)";
+_mitem.Put((Object)("badge"),(Object)(_badge));
+ //BA.debugLineNum = 28;BA.debugLine="mitem.Put(\"target\", target)";
+_mitem.Put((Object)("target"),(Object)(_target));
+ //BA.debugLineNum = 29;BA.debugLine="mitem.Put(\"icon\", mIcon)";
+_mitem.Put((Object)("icon"),(Object)(_micon));
+ //BA.debugLineNum = 30;BA.debugLine="data.Add(mitem)";
+_data.Add((Object)(_mitem.getObject()));
+ //BA.debugLineNum = 31;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixsidemenu)(this);
+ //BA.debugLineNum = 32;BA.debugLine="End Sub";
+return null;
 }
 public String  _class_globals() throws Exception{
  //BA.debugLineNum = 2;BA.debugLine="Sub Class_Globals";
@@ -99,115 +112,124 @@ if (true) return (b4j.example.wixsidemenu)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 29;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 30;BA.debugLine="body.SetAttr(\"type\", typeOf)";
+ //BA.debugLineNum = 35;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 36;BA.debugLine="body.SetAttr(\"type\", typeOf)";
 _body._setattr /*b4j.example.wixelement*/ ("type",(Object)(_typeof.getObject()));
- //BA.debugLineNum = 31;BA.debugLine="body.SetData(data)";
+ //BA.debugLineNum = 37;BA.debugLine="body.SetData(data)";
 _body._setdata /*b4j.example.wixelement*/ (_data);
- //BA.debugLineNum = 32;BA.debugLine="SideMenu.SetAttr(\"body\", body.item)";
+ //BA.debugLineNum = 38;BA.debugLine="SideMenu.SetAttr(\"body\", body.item)";
 _sidemenu._setattr /*b4j.example.wixelement*/ ("body",(Object)(_body._item /*anywheresoftware.b4a.objects.collections.Map*/ ().getObject()));
- //BA.debugLineNum = 33;BA.debugLine="Return SideMenu.item";
+ //BA.debugLineNum = 39;BA.debugLine="Return SideMenu.item";
 if (true) return _sidemenu._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 34;BA.debugLine="End Sub";
+ //BA.debugLineNum = 40;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixsidemenu  _setheight(int _h) throws Exception{
- //BA.debugLineNum = 44;BA.debugLine="Sub SetHeight(h As Int) As WixSideMenu";
- //BA.debugLineNum = 45;BA.debugLine="SideMenu.SetAttr(\"height\", h)";
+ //BA.debugLineNum = 50;BA.debugLine="Sub SetHeight(h As Int) As WixSideMenu";
+ //BA.debugLineNum = 51;BA.debugLine="SideMenu.SetAttr(\"height\", h)";
 _sidemenu._setattr /*b4j.example.wixelement*/ ("height",(Object)(_h));
- //BA.debugLineNum = 46;BA.debugLine="Return Me";
+ //BA.debugLineNum = 52;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixsidemenu)(this);
- //BA.debugLineNum = 47;BA.debugLine="End Sub";
+ //BA.debugLineNum = 53;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixsidemenu  _setitemheight(int _h) throws Exception{
- //BA.debugLineNum = 51;BA.debugLine="Sub SetItemHeight(h As Int) As WixSideMenu";
- //BA.debugLineNum = 52;BA.debugLine="typeOf.Put(\"height\", h)";
+ //BA.debugLineNum = 57;BA.debugLine="Sub SetItemHeight(h As Int) As WixSideMenu";
+ //BA.debugLineNum = 58;BA.debugLine="typeOf.Put(\"height\", h)";
 _typeof.Put((Object)("height"),(Object)(_h));
- //BA.debugLineNum = 53;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixsidemenu)(this);
- //BA.debugLineNum = 54;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixsidemenu  _setitemwidth(int _w) throws Exception{
- //BA.debugLineNum = 57;BA.debugLine="Sub SetItemWidth(w As Int) As WixSideMenu";
- //BA.debugLineNum = 58;BA.debugLine="typeOf.Put(\"width\", w)";
-_typeof.Put((Object)("width"),(Object)(_w));
  //BA.debugLineNum = 59;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixsidemenu)(this);
  //BA.debugLineNum = 60;BA.debugLine="End Sub";
 return null;
 }
-public b4j.example.wixsidemenu  _setlayoutx(boolean _h) throws Exception{
- //BA.debugLineNum = 64;BA.debugLine="Sub SetLayoutX(h As Boolean) As WixSideMenu";
- //BA.debugLineNum = 65;BA.debugLine="body.SetAttr(\"layout\", \"x\")";
-_body._setattr /*b4j.example.wixelement*/ ("layout",(Object)("x"));
- //BA.debugLineNum = 66;BA.debugLine="Return Me";
+public b4j.example.wixsidemenu  _setitemwidth(int _w) throws Exception{
+ //BA.debugLineNum = 63;BA.debugLine="Sub SetItemWidth(w As Int) As WixSideMenu";
+ //BA.debugLineNum = 64;BA.debugLine="typeOf.Put(\"width\", w)";
+_typeof.Put((Object)("width"),(Object)(_w));
+ //BA.debugLineNum = 65;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixsidemenu)(this);
- //BA.debugLineNum = 67;BA.debugLine="End Sub";
+ //BA.debugLineNum = 66;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixsidemenu  _setlayoutx(boolean _h) throws Exception{
+ //BA.debugLineNum = 70;BA.debugLine="Sub SetLayoutX(h As Boolean) As WixSideMenu";
+ //BA.debugLineNum = 71;BA.debugLine="body.SetAttr(\"layout\", \"x\")";
+_body._setattr /*b4j.example.wixelement*/ ("layout",(Object)("x"));
+ //BA.debugLineNum = 72;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixsidemenu)(this);
+ //BA.debugLineNum = 73;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixsidemenu  _setposition(String _c) throws Exception{
- //BA.debugLineNum = 103;BA.debugLine="Sub SetPosition(c As String) As WixSideMenu";
- //BA.debugLineNum = 104;BA.debugLine="SideMenu.SetAttr(\"position\", c)";
+ //BA.debugLineNum = 115;BA.debugLine="Sub SetPosition(c As String) As WixSideMenu";
+ //BA.debugLineNum = 116;BA.debugLine="SideMenu.SetAttr(\"position\", c)";
 _sidemenu._setattr /*b4j.example.wixelement*/ ("position",(Object)(_c));
- //BA.debugLineNum = 105;BA.debugLine="Return Me";
+ //BA.debugLineNum = 117;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixsidemenu)(this);
- //BA.debugLineNum = 106;BA.debugLine="End Sub";
+ //BA.debugLineNum = 118;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixsidemenu  _setpositionbottom(String _c) throws Exception{
- //BA.debugLineNum = 96;BA.debugLine="Sub SetPositionBottom(c As String) As WixSideMenu";
- //BA.debugLineNum = 97;BA.debugLine="SideMenu.SetAttr(\"position\", \"bottom\")";
+ //BA.debugLineNum = 108;BA.debugLine="Sub SetPositionBottom(c As String) As WixSideMenu";
+ //BA.debugLineNum = 109;BA.debugLine="SideMenu.SetAttr(\"position\", \"bottom\")";
 _sidemenu._setattr /*b4j.example.wixelement*/ ("position",(Object)("bottom"));
+ //BA.debugLineNum = 110;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixsidemenu)(this);
+ //BA.debugLineNum = 111;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixsidemenu  _setpositionleft(String _c) throws Exception{
+ //BA.debugLineNum = 96;BA.debugLine="Sub SetPositionLeft(c As String) As WixSideMenu  '";
+ //BA.debugLineNum = 97;BA.debugLine="SideMenu.SetAttr(\"position\", \"left\")";
+_sidemenu._setattr /*b4j.example.wixelement*/ ("position",(Object)("left"));
  //BA.debugLineNum = 98;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixsidemenu)(this);
  //BA.debugLineNum = 99;BA.debugLine="End Sub";
 return null;
 }
-public b4j.example.wixsidemenu  _setpositionleft(String _c) throws Exception{
- //BA.debugLineNum = 84;BA.debugLine="Sub SetPositionLeft(c As String) As WixSideMenu  '";
- //BA.debugLineNum = 85;BA.debugLine="SideMenu.SetAttr(\"position\", \"left\")";
-_sidemenu._setattr /*b4j.example.wixelement*/ ("position",(Object)("left"));
- //BA.debugLineNum = 86;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixsidemenu)(this);
- //BA.debugLineNum = 87;BA.debugLine="End Sub";
-return null;
-}
 public b4j.example.wixsidemenu  _setpositionright(String _c) throws Exception{
- //BA.debugLineNum = 78;BA.debugLine="Sub SetPositionRight(c As String) As WixSideMenu";
- //BA.debugLineNum = 79;BA.debugLine="SideMenu.SetAttr(\"position\", \"right\")";
+ //BA.debugLineNum = 90;BA.debugLine="Sub SetPositionRight(c As String) As WixSideMenu";
+ //BA.debugLineNum = 91;BA.debugLine="SideMenu.SetAttr(\"position\", \"right\")";
 _sidemenu._setattr /*b4j.example.wixelement*/ ("position",(Object)("right"));
- //BA.debugLineNum = 80;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixsidemenu)(this);
- //BA.debugLineNum = 81;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixsidemenu  _setpositiontop(String _c) throws Exception{
- //BA.debugLineNum = 90;BA.debugLine="Sub SetPositionTop(c As String) As WixSideMenu  'i";
- //BA.debugLineNum = 91;BA.debugLine="SideMenu.SetAttr(\"position\", \"top\")";
-_sidemenu._setattr /*b4j.example.wixelement*/ ("position",(Object)("top"));
  //BA.debugLineNum = 92;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixsidemenu)(this);
  //BA.debugLineNum = 93;BA.debugLine="End Sub";
 return null;
 }
-public b4j.example.wixsidemenu  _settemplate(String _t) throws Exception{
- //BA.debugLineNum = 37;BA.debugLine="Sub SetTemplate(t As String) As WixSideMenu";
- //BA.debugLineNum = 38;BA.debugLine="body.SetTemplate(t)";
-_body._settemplate /*b4j.example.wixelement*/ ((Object)(_t));
- //BA.debugLineNum = 39;BA.debugLine="Return Me";
+public b4j.example.wixsidemenu  _setpositiontop(String _c) throws Exception{
+ //BA.debugLineNum = 102;BA.debugLine="Sub SetPositionTop(c As String) As WixSideMenu  'i";
+ //BA.debugLineNum = 103;BA.debugLine="SideMenu.SetAttr(\"position\", \"top\")";
+_sidemenu._setattr /*b4j.example.wixelement*/ ("position",(Object)("top"));
+ //BA.debugLineNum = 104;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixsidemenu)(this);
- //BA.debugLineNum = 40;BA.debugLine="End Sub";
+ //BA.debugLineNum = 105;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixsidemenu  _setselect(Object _s) throws Exception{
+ //BA.debugLineNum = 84;BA.debugLine="Sub SetSelect(s As Object) As WixSideMenu";
+ //BA.debugLineNum = 85;BA.debugLine="SideMenu.SetAttr(\"select\", s)";
+_sidemenu._setattr /*b4j.example.wixelement*/ ("select",_s);
+ //BA.debugLineNum = 86;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixsidemenu)(this);
+ //BA.debugLineNum = 87;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixsidemenu  _settemplate(String _t) throws Exception{
+ //BA.debugLineNum = 43;BA.debugLine="Sub SetTemplate(t As String) As WixSideMenu";
+ //BA.debugLineNum = 44;BA.debugLine="body.SetTemplate(t)";
+_body._settemplate /*b4j.example.wixelement*/ ((Object)(_t));
+ //BA.debugLineNum = 45;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixsidemenu)(this);
+ //BA.debugLineNum = 46;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixsidemenu  _setwidth(int _w) throws Exception{
- //BA.debugLineNum = 71;BA.debugLine="Sub SetWidth(w As Int) As WixSideMenu";
- //BA.debugLineNum = 72;BA.debugLine="SideMenu.SetAttr(\"width\", w)";
+ //BA.debugLineNum = 77;BA.debugLine="Sub SetWidth(w As Int) As WixSideMenu";
+ //BA.debugLineNum = 78;BA.debugLine="SideMenu.SetAttr(\"width\", w)";
 _sidemenu._setattr /*b4j.example.wixelement*/ ("width",(Object)(_w));
- //BA.debugLineNum = 73;BA.debugLine="Return Me";
+ //BA.debugLineNum = 79;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixsidemenu)(this);
- //BA.debugLineNum = 74;BA.debugLine="End Sub";
+ //BA.debugLineNum = 80;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {
