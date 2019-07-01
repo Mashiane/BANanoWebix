@@ -54,6 +54,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public b4j.example.wixgrouplist  _additem(String _parentid,String _meid,String _mvalue,String _mhref,String _micon,String _badge,String _target,boolean _mopen) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _mitem = null;
  //BA.debugLineNum = 17;BA.debugLine="Sub AddItem(parentID As String, meID As String, mV";

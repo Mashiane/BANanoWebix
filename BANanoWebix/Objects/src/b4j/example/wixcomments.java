@@ -59,6 +59,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public String  _addcomment(String _cid,String _uid,String _cdate,String _ctext) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _comment = null;
  //BA.debugLineNum = 24;BA.debugLine="Sub AddComment(cID As String, uID As String, cDate";

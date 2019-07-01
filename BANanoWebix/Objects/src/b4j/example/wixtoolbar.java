@@ -53,6 +53,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public b4j.example.wixtoolbar  _addbutton(b4j.example.wixbutton _btn) throws Exception{
  //BA.debugLineNum = 44;BA.debugLine="Sub AddButton(btn As WixButton) As WixToolBar";
  //BA.debugLineNum = 45;BA.debugLine="ToolBar.AddColumns(btn.item)";

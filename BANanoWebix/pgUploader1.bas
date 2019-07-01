@@ -10,7 +10,7 @@ Sub Process_Globals
 	Public myForm As WixForm
 	Public BANano As BANano
 	Public fu As BANanoObject
-	
+	Private upload As WixUploader
 End Sub
 
 Sub Init
@@ -24,15 +24,14 @@ Sub Init
 	Dim R2 As WixRow
 	R2.Initialize("R2")
 	'
-	Dim dt As WixDataTable
-	dt.Initialize("people")
-	'
 	Dim sPhoto As String
 	Dim img As UOENowHTML
 	'create the template to show the image
 	img.Initialize("img", "img").SetStyle("cursor", "pointer").SetStyle("width", "80px").SetStyle("height", "80px").SetSRC("./assets/#photo#",True)
 	sPhoto = img.HTML
-	
+		
+	Dim dt As WixDataTable
+	dt.Initialize("people")
 	dt.CreateHeader("photo").SetHeader(" ").SetWidth(100).SetTemplate(sPhoto).Pop2(dt)
 	dt.CreateHeader("name").SetHeader("Employee Name").SetWidth(200).Pop2(dt)
 	dt.CreateHeader("job").SetHeader("Job Title").SetFillSpace(True).Pop2(dt)
@@ -55,11 +54,45 @@ Sub Init
 	pg.onitemclick("people", BANano.CallBack(Me,"itemClick",Array(row)))
 	
 	' create an uploader and add it to the page in run-time
-	Dim upload As WixUploader
-	upload.Initialize("upload").SetUpload("./assets/upload.php").SetName("uploader").SetApiOnly(True)
-	upload.SetAccept("image/png, image/gif, image/jpeg")
+	
+	upload.Initialize("upload").SetAccept("image/png, image/gif, image/jpeg").SetDataType("json").SetApiOnly(True)
+	upload.SetUpload("./assets/upload.php")
 	'
 	fu = pg.AddUploader(upload)
+	'
+	Dim ffile As BANanoObject
+	pg.OnFileUploadError("upload", BANano.CallBack(Me, "onFileUploadError", Array(ffile)))
+	pg.onFileUpload("upload", BANano.CallBack(Me, "onFileUpload", Array(ffile)))
+End Sub
+
+
+Sub onFileUpload(ffile As BANanoObject)
+	Log("onFileUpload")
+	'get the status
+	Log(ffile)
+	Dim status As String = ffile.GetField("status").Result
+	Select Case status
+	Case "success", "server"
+		'get the row id
+		Dim rowid As String = pg.GetRowIDFromContext(ffile)
+		'get the row object from data-table
+		Dim row As Map = pg.GetItem("people", rowid)
+		'get the file name
+		Dim fname As String = ffile.GetField("name").Result
+		'update the row photo
+		row.Put("photo", fname)
+		'update the data-table
+		pg.UpdateItem("people", rowid, row)
+	Case Else
+		pg.Alert("Error during file upload!")
+	End Select
+End Sub
+
+
+Sub OnFileUploadError(ffile As BANanoObject)
+	Log("OnFileUploadError")
+	Log(ffile)
+	pg.Alert("Error during file upload!")
 End Sub
 
 Sub itemClick(row As Map)

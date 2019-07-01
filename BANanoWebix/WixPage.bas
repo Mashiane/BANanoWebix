@@ -292,6 +292,12 @@ Sub Message(msg As String)
 	webix.RunMethod("message", Array(msg))
 End Sub
 
+
+'aler user
+Sub Alert(msg As String)
+	webix.RunMethod("alert", Array(msg))
+End Sub
+
 'show an error message
 Sub ToastError(Text As String)
 	Dim msg As Map = CreateMap()
@@ -350,6 +356,27 @@ Sub GetMarker(listID As String, recordID As String) As Map
 	Return values
 End Sub
 
+Sub OnUploadComplete(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onUploadComplete",cb))
+End Sub
+
+Sub onFileUploadError(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onFileUploadError",cb))
+End Sub
+
+Sub GetRowIDFromContext(bo As BANanoObject) As String
+	Dim context As Map = bo.GetField("context").Result
+	Dim rowid As String = context.Get("rowid")
+	rowid = CStr(rowid)
+	Return rowid
+End Sub
+
+Sub onFileUpload(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onFileUpload",cb))
+End Sub
 
 'on after select event
 Sub OnAfterSelect(eID As String, cb As BANanoObject)
@@ -466,6 +493,24 @@ Sub ClearAll(eID As String)
 	eID = eID.ToLowerCase
 	Dollar.Selector(eID).RunMethod("clearAll",Null)
 End Sub
+
+'get view from element
+Sub View(eID As String) As BANanoObject
+	Dim v As String = "$" & "view"
+	eID = eID.ToLowerCase
+	Dim res As BANanoObject = Dollar.Selector(eID).GetField(v)
+	Return res
+End Sub
+
+'add a drop zone
+Sub addDropZone(uploader As String, eID As String)
+	uploader = uploader.tolowercase
+	eID = eID.ToLowerCase
+	Dim iView As BANanoObject = View(eID)
+	Dollar.Selector(uploader).RunMethod("addDropZone",Array(iView))
+End Sub
+
+
 
 'parse data, typeOf 'json' (default), 'xml', 'csv', 'jsarray'
 Sub Parse(eID As String, data As List, typeOf As String)

@@ -133,6 +133,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public String  _addcondition(String _fldname,Object _fldvalue,anywheresoftware.b4a.objects.collections.Map _updatefields) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _rec = null;
  //BA.debugLineNum = 322;BA.debugLine="Sub AddCondition(fldName As String, fldValue As Ob";

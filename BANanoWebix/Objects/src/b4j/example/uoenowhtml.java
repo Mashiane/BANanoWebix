@@ -72,6 +72,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public b4j.example.uoenowhtml  _addattribute(String _skey,String _svalue) throws Exception{
  //BA.debugLineNum = 1144;BA.debugLine="public Sub AddAttribute(skey As String, svalue As";
  //BA.debugLineNum = 1145;BA.debugLine="skey = CStr(skey)";

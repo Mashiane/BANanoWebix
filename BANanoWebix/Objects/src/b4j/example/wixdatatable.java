@@ -73,6 +73,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public String  _addedittrash() throws Exception{
 b4j.example.wixdatacolumn _e = null;
 b4j.example.wixdatacolumn _d = null;

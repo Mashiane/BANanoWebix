@@ -72,6 +72,8 @@ public static b4j.example.pggrouplist _pggrouplist = null;
 public static b4j.example.pgcontext _pgcontext = null;
 public static b4j.example.pggooglemap _pggooglemap = null;
 public static b4j.example.pguploader1 _pguploader1 = null;
+public static b4j.example.pguploader2 _pguploader2 = null;
+public static b4j.example.pguploader3 _pguploader3 = null;
 public static boolean  _application_error(anywheresoftware.b4a.objects.B4AException _error,String _stacktrace) throws Exception{
  //BA.debugLineNum = 47;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
  //BA.debugLineNum = 48;BA.debugLine="Return True";
@@ -105,8 +107,8 @@ _banano.Header.AddCSSFile("all.min.css");
 _banano.Header.AddCSSFile("materialdesignicons.min.css");
  //BA.debugLineNum = 22;BA.debugLine="BANano.Header.AddCSSFile(\"webix.min.css\")";
 _banano.Header.AddCSSFile("webix.min.css");
- //BA.debugLineNum = 23;BA.debugLine="BANano.Header.AddCSSFile(\"material.min.css\")";
-_banano.Header.AddCSSFile("material.min.css");
+ //BA.debugLineNum = 23;BA.debugLine="BANano.Header.AddCSSFile(\"flat.min.css\")";
+_banano.Header.AddCSSFile("flat.min.css");
  //BA.debugLineNum = 24;BA.debugLine="BANano.Header.AddJavascriptFile(\"webix.min.js\")";
 _banano.Header.AddJavascriptFile("webix.min.js");
  //BA.debugLineNum = 25;BA.debugLine="BANano.Header.AddJavascriptFile(\"data.js\")";
@@ -138,9 +140,9 @@ return "";
 }
 public static String  _banano_ready() throws Exception{
  //BA.debugLineNum = 51;BA.debugLine="Sub BANano_Ready()";
- //BA.debugLineNum = 84;BA.debugLine="pgUploader1.Init            'LESSON 22";
-_pguploader1._init /*String*/ ();
- //BA.debugLineNum = 86;BA.debugLine="End Sub";
+ //BA.debugLineNum = 86;BA.debugLine="pgUploader3.Init			'LESSON 22.3";
+_pguploader3._init /*String*/ ();
+ //BA.debugLineNum = 88;BA.debugLine="End Sub";
 return "";
 }
 
@@ -178,6 +180,8 @@ pggrouplist._process_globals();
 pgcontext._process_globals();
 pggooglemap._process_globals();
 pguploader1._process_globals();
+pguploader2._process_globals();
+pguploader3._process_globals();
 		
         } catch (Exception e) {
 			throw new RuntimeException(e);

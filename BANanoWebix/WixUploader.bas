@@ -14,7 +14,8 @@ End Sub
 Public Sub Initialize(sID As String) As WixUploader
 	ID = sID.ToLowerCase
 	Uploader.Initialize(ID).SetView("uploader")
-	Uploader.SetAttr("name", "uploader")
+	SetName("upload")
+	SetInputName("upload")
 	Return Me
 End Sub
 
@@ -23,13 +24,19 @@ Sub SetValue(v As String) As WixUploader
 	Return Me
 End Sub
 
-Sub SetinputName(n As String) As WixUploader
+Sub SetInputName(n As String) As WixUploader
 	Uploader.SetAttr("inputName", n)
 	Return Me
 End Sub
 
 Sub SetApiOnly(b As Boolean) As WixUploader
 	Uploader.SetAttr("apiOnly", b)
+End Sub
+
+'the type of a server-side response. Optional, json by default
+Sub SetDataType(d As String) As WixUploader
+	Uploader.SetAttr("datatype", d)
+	Return Me
 End Sub
 
 Sub SetMultiple(b As Boolean) As WixUploader
@@ -47,6 +54,7 @@ Sub SetName(n As String) As WixUploader
 	Return Me
 End Sub
 
+'the ID of a component that will display values of chosen files
 Sub SetLink(l As String) As WixUploader
 	Uploader.SetAttr("link", l)
 	Return Me
@@ -63,6 +71,7 @@ Sub SetAccept(a As String) As WixUploader
 	Return Me
 End Sub
 
+'a path to a script file that will handle uploading
 Sub SetUpload(u As String) As WixUploader
 	Uploader.SetAttr("upload", u)
 	Return Me

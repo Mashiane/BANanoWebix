@@ -56,6 +56,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public b4j.example.wixcombo  _addoption(String _optid,String _optvalue) throws Exception{
  //BA.debugLineNum = 58;BA.debugLine="Sub AddOption(optID As String, optValue As String)";
  //BA.debugLineNum = 59;BA.debugLine="Options.Add(CreateMap(\"id\":optID,\"value\":optValue";

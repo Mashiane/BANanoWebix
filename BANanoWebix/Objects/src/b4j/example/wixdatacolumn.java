@@ -55,6 +55,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public b4j.example.wixdatacolumn  _aligncenter() throws Exception{
  //BA.debugLineNum = 76;BA.debugLine="Sub AlignCenter As WixDataColumn";
  //BA.debugLineNum = 77;BA.debugLine="Column.SetStyle(\"text-align\", \"center\")";

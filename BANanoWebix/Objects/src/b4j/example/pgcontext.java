@@ -50,6 +50,8 @@ public static b4j.example.pgcomments _pgcomments = null;
 public static b4j.example.pggrouplist _pggrouplist = null;
 public static b4j.example.pggooglemap _pggooglemap = null;
 public static b4j.example.pguploader1 _pguploader1 = null;
+public static b4j.example.pguploader2 _pguploader2 = null;
+public static b4j.example.pguploader3 _pguploader3 = null;
 public static String  _init() throws Exception{
 b4j.example.wixrow _r1 = null;
 b4j.example.uoenowhtml _div1 = null;

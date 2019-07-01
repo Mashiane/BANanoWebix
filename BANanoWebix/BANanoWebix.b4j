@@ -161,9 +161,11 @@ Module91=WixGoogleMap
 Module92=pgGoogleMap
 Module93=WixUploader
 Module94=pgUploader1
+Module95=pgUploader2
+Module96=pgUploader3
 NumberOfFiles=31
 NumberOfLibraries=4
-NumberOfModules=94
+NumberOfModules=96
 Version=7.51
 @EndOfDesignText@
  #Region Project Attributes 
@@ -188,7 +190,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.Header.addcssfile("all.min.css")
 	BANano.Header.AddCSSFile("materialdesignicons.min.css")
 	BANano.Header.AddCSSFile("webix.min.css")
-	BANano.Header.AddCSSFile("material.min.css")
+	BANano.Header.AddCSSFile("flat.min.css")
 	BANano.Header.AddJavascriptFile("webix.min.js")
 	BANano.Header.AddJavascriptFile("data.js")
 	'BANano.TranspilerOptions.MergeAllCSSFiles = True
@@ -249,6 +251,8 @@ Sub BANano_Ready()
 	'pgContext.Init		       'LESSON 19
 	'pgGoogleMap.Init           'LESSON 20
 	'pgTabBar.Init		        'LESSON 21
-	pgUploader1.Init            'LESSON 22
+	'pgUploader1.Init            'LESSON 22.1
+	'pgUploader2.Init            'LESSON 22.2
+	pgUploader3.Init			'LESSON 22.3
 	'pgIndex.Init
 End Sub

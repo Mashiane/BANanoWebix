@@ -54,6 +54,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public String  _addtocolumn(b4j.example.wixcolumn _c) throws Exception{
  //BA.debugLineNum = 36;BA.debugLine="Sub AddToColumn(c As WixColumn)";
  //BA.debugLineNum = 37;BA.debugLine="c.AddItem(Item)";

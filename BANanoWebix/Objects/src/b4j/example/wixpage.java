@@ -62,13 +62,15 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public String  _add(String _listid,anywheresoftware.b4a.objects.collections.Map _record) throws Exception{
- //BA.debugLineNum = 313;BA.debugLine="Sub Add(listID As String, record As Map)";
- //BA.debugLineNum = 314;BA.debugLine="listID = listID.tolowercase";
+ //BA.debugLineNum = 319;BA.debugLine="Sub Add(listID As String, record As Map)";
+ //BA.debugLineNum = 320;BA.debugLine="listID = listID.tolowercase";
 _listid = _listid.toLowerCase();
- //BA.debugLineNum = 315;BA.debugLine="Dollar.Selector(listID).RunMethod(\"add\",Array(rec";
+ //BA.debugLineNum = 321;BA.debugLine="Dollar.Selector(listID).RunMethod(\"add\",Array(rec";
 _dollar.Selector((Object)(_listid)).RunMethod("add",(Object)(new Object[]{(Object)(_record.getObject())}));
- //BA.debugLineNum = 316;BA.debugLine="End Sub";
+ //BA.debugLineNum = 322;BA.debugLine="End Sub";
 return "";
 }
 public String  _addchildnode(String _treeid,String _parentid,anywheresoftware.b4a.objects.collections.Map _node) throws Exception{
@@ -84,23 +86,37 @@ return "";
 }
 public com.ab.banano.BANanoObject  _addcontext(b4j.example.wixcontext _ctx) throws Exception{
 com.ab.banano.BANanoObject _ctxux = null;
- //BA.debugLineNum = 591;BA.debugLine="Sub AddContext(ctx As WixContext) As BANanoObject";
- //BA.debugLineNum = 592;BA.debugLine="Dim ctxUX As BANanoObject = UX(ctx.Item)";
+ //BA.debugLineNum = 636;BA.debugLine="Sub AddContext(ctx As WixContext) As BANanoObject";
+ //BA.debugLineNum = 637;BA.debugLine="Dim ctxUX As BANanoObject = UX(ctx.Item)";
 _ctxux = _ux(_ctx._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 593;BA.debugLine="Return ctxUX";
+ //BA.debugLineNum = 638;BA.debugLine="Return ctxUX";
 if (true) return _ctxux;
- //BA.debugLineNum = 594;BA.debugLine="End Sub";
+ //BA.debugLineNum = 639;BA.debugLine="End Sub";
 return null;
 }
 public com.ab.banano.BANanoObject  _addcontextmenu(b4j.example.wixcontextmenu _ctx) throws Exception{
 com.ab.banano.BANanoObject _ctxux = null;
- //BA.debugLineNum = 597;BA.debugLine="Sub AddContextMenu(ctx As WixContextMenu) As BANan";
- //BA.debugLineNum = 598;BA.debugLine="Dim ctxUX As BANanoObject = UX(ctx.Item)";
+ //BA.debugLineNum = 642;BA.debugLine="Sub AddContextMenu(ctx As WixContextMenu) As BANan";
+ //BA.debugLineNum = 643;BA.debugLine="Dim ctxUX As BANanoObject = UX(ctx.Item)";
 _ctxux = _ux(_ctx._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 599;BA.debugLine="Return ctxUX";
+ //BA.debugLineNum = 644;BA.debugLine="Return ctxUX";
 if (true) return _ctxux;
- //BA.debugLineNum = 600;BA.debugLine="End Sub";
+ //BA.debugLineNum = 645;BA.debugLine="End Sub";
 return null;
+}
+public String  _adddropzone(String _uploader,String _eid) throws Exception{
+com.ab.banano.BANanoObject _iview = null;
+ //BA.debugLineNum = 500;BA.debugLine="Sub addDropZone(uploader As String, eID As String)";
+ //BA.debugLineNum = 501;BA.debugLine="uploader = uploader.tolowercase";
+_uploader = _uploader.toLowerCase();
+ //BA.debugLineNum = 502;BA.debugLine="eID = eID.ToLowerCase";
+_eid = _eid.toLowerCase();
+ //BA.debugLineNum = 503;BA.debugLine="Dim iView As BANanoObject = View(eID)";
+_iview = _view(_eid);
+ //BA.debugLineNum = 504;BA.debugLine="Dollar.Selector(uploader).RunMethod(\"addDropZone\"";
+_dollar.Selector((Object)(_uploader)).RunMethod("addDropZone",(Object)(new Object[]{(Object)(_iview)}));
+ //BA.debugLineNum = 505;BA.debugLine="End Sub";
+return "";
 }
 public String  _addnode(String _treeid,anywheresoftware.b4a.objects.collections.Map _node) throws Exception{
  //BA.debugLineNum = 108;BA.debugLine="Sub AddNode(treeID As String, node As Map)";
@@ -120,52 +136,59 @@ return "";
 }
 public com.ab.banano.BANanoObject  _addsidemenu(b4j.example.wixsidemenu _ctx) throws Exception{
 com.ab.banano.BANanoObject _ctxux = null;
- //BA.debugLineNum = 609;BA.debugLine="Sub AddSideMenu(ctx As WixSideMenu) As BANanoObjec";
- //BA.debugLineNum = 610;BA.debugLine="Dim ctxUX As BANanoObject = UX(ctx.Item)";
+ //BA.debugLineNum = 654;BA.debugLine="Sub AddSideMenu(ctx As WixSideMenu) As BANanoObjec";
+ //BA.debugLineNum = 655;BA.debugLine="Dim ctxUX As BANanoObject = UX(ctx.Item)";
 _ctxux = _ux(_ctx._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 611;BA.debugLine="Return ctxUX";
+ //BA.debugLineNum = 656;BA.debugLine="Return ctxUX";
 if (true) return _ctxux;
- //BA.debugLineNum = 612;BA.debugLine="End Sub";
+ //BA.debugLineNum = 657;BA.debugLine="End Sub";
 return null;
 }
 public com.ab.banano.BANanoObject  _adduploader(b4j.example.wixuploader _ctx) throws Exception{
 com.ab.banano.BANanoObject _ctxux = null;
- //BA.debugLineNum = 616;BA.debugLine="Sub AddUploader(ctx As WixUploader) As BANanoObjec";
- //BA.debugLineNum = 617;BA.debugLine="Dim ctxUX As BANanoObject = UX(ctx.Item)";
+ //BA.debugLineNum = 661;BA.debugLine="Sub AddUploader(ctx As WixUploader) As BANanoObjec";
+ //BA.debugLineNum = 662;BA.debugLine="Dim ctxUX As BANanoObject = UX(ctx.Item)";
 _ctxux = _ux(_ctx._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 618;BA.debugLine="Return ctxUX";
+ //BA.debugLineNum = 663;BA.debugLine="Return ctxUX";
 if (true) return _ctxux;
- //BA.debugLineNum = 619;BA.debugLine="End Sub";
+ //BA.debugLineNum = 664;BA.debugLine="End Sub";
 return null;
 }
 public com.ab.banano.BANanoObject  _addwindow(b4j.example.wixwindow _ctx) throws Exception{
 com.ab.banano.BANanoObject _ctxux = null;
- //BA.debugLineNum = 603;BA.debugLine="Sub AddWindow(ctx As WixWindow) As BANanoObject";
- //BA.debugLineNum = 604;BA.debugLine="Dim ctxUX As BANanoObject = UX(ctx.Item)";
+ //BA.debugLineNum = 648;BA.debugLine="Sub AddWindow(ctx As WixWindow) As BANanoObject";
+ //BA.debugLineNum = 649;BA.debugLine="Dim ctxUX As BANanoObject = UX(ctx.Item)";
 _ctxux = _ux(_ctx._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 605;BA.debugLine="Return ctxUX";
+ //BA.debugLineNum = 650;BA.debugLine="Return ctxUX";
 if (true) return _ctxux;
- //BA.debugLineNum = 606;BA.debugLine="End Sub";
+ //BA.debugLineNum = 651;BA.debugLine="End Sub";
 return null;
 }
 public String  _adjust(String _eid) throws Exception{
- //BA.debugLineNum = 447;BA.debugLine="Sub Adjust(eID As String)";
- //BA.debugLineNum = 448;BA.debugLine="eID = eID.ToLowerCase";
+ //BA.debugLineNum = 474;BA.debugLine="Sub Adjust(eID As String)";
+ //BA.debugLineNum = 475;BA.debugLine="eID = eID.ToLowerCase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 449;BA.debugLine="Dollar.Selector(eID).RunMethod(\"adjust\",Null)";
+ //BA.debugLineNum = 476;BA.debugLine="Dollar.Selector(eID).RunMethod(\"adjust\",Null)";
 _dollar.Selector((Object)(_eid)).RunMethod("adjust",__c.Null);
- //BA.debugLineNum = 450;BA.debugLine="End Sub";
+ //BA.debugLineNum = 477;BA.debugLine="End Sub";
+return "";
+}
+public String  _alert(String _msg) throws Exception{
+ //BA.debugLineNum = 291;BA.debugLine="Sub Alert(msg As String)";
+ //BA.debugLineNum = 292;BA.debugLine="webix.RunMethod(\"alert\", Array(msg))";
+_webix.RunMethod("alert",(Object)(new Object[]{(Object)(_msg)}));
+ //BA.debugLineNum = 293;BA.debugLine="End Sub";
 return "";
 }
 public String  _bind(String _frmid,String _dattableid) throws Exception{
- //BA.debugLineNum = 471;BA.debugLine="Sub Bind(frmID As String, datTableID As String)";
- //BA.debugLineNum = 472;BA.debugLine="frmID = frmID.ToLowerCase";
+ //BA.debugLineNum = 516;BA.debugLine="Sub Bind(frmID As String, datTableID As String)";
+ //BA.debugLineNum = 517;BA.debugLine="frmID = frmID.ToLowerCase";
 _frmid = _frmid.toLowerCase();
- //BA.debugLineNum = 473;BA.debugLine="datTableID = datTableID.ToLowerCase";
+ //BA.debugLineNum = 518;BA.debugLine="datTableID = datTableID.ToLowerCase";
 _dattableid = _dattableid.toLowerCase();
- //BA.debugLineNum = 474;BA.debugLine="Dollar.Selector(frmID).RunMethod(\"bind\",Array(dat";
+ //BA.debugLineNum = 519;BA.debugLine="Dollar.Selector(frmID).RunMethod(\"bind\",Array(dat";
 _dollar.Selector((Object)(_frmid)).RunMethod("bind",(Object)(new Object[]{(Object)(_dattableid)}));
- //BA.debugLineNum = 475;BA.debugLine="End Sub";
+ //BA.debugLineNum = 520;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -198,52 +221,52 @@ _enumwixicons = new b4j.example.wixicons();
 return "";
 }
 public String  _clear(String _itm) throws Exception{
- //BA.debugLineNum = 307;BA.debugLine="Sub Clear(itm As String)";
- //BA.debugLineNum = 308;BA.debugLine="itm = itm.tolowercase";
+ //BA.debugLineNum = 313;BA.debugLine="Sub Clear(itm As String)";
+ //BA.debugLineNum = 314;BA.debugLine="itm = itm.tolowercase";
 _itm = _itm.toLowerCase();
- //BA.debugLineNum = 309;BA.debugLine="Dollar.Selector(itm).RunMethod(\"clear\",Null)";
+ //BA.debugLineNum = 315;BA.debugLine="Dollar.Selector(itm).RunMethod(\"clear\",Null)";
 _dollar.Selector((Object)(_itm)).RunMethod("clear",__c.Null);
- //BA.debugLineNum = 310;BA.debugLine="End Sub";
+ //BA.debugLineNum = 316;BA.debugLine="End Sub";
 return "";
 }
 public String  _clearall(String _eid) throws Exception{
- //BA.debugLineNum = 459;BA.debugLine="Sub ClearAll(eID As String)";
- //BA.debugLineNum = 460;BA.debugLine="eID = eID.ToLowerCase";
+ //BA.debugLineNum = 486;BA.debugLine="Sub ClearAll(eID As String)";
+ //BA.debugLineNum = 487;BA.debugLine="eID = eID.ToLowerCase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 461;BA.debugLine="Dollar.Selector(eID).RunMethod(\"clearAll\",Null)";
+ //BA.debugLineNum = 488;BA.debugLine="Dollar.Selector(eID).RunMethod(\"clearAll\",Null)";
 _dollar.Selector((Object)(_eid)).RunMethod("clearAll",__c.Null);
- //BA.debugLineNum = 462;BA.debugLine="End Sub";
+ //BA.debugLineNum = 489;BA.debugLine="End Sub";
 return "";
 }
 public String  _close(com.ab.banano.BANanoObject _itm) throws Exception{
- //BA.debugLineNum = 579;BA.debugLine="Sub Close(itm As BANanoObject)";
- //BA.debugLineNum = 580;BA.debugLine="itm.RunMethod(\"close\", Null)";
+ //BA.debugLineNum = 624;BA.debugLine="Sub Close(itm As BANanoObject)";
+ //BA.debugLineNum = 625;BA.debugLine="itm.RunMethod(\"close\", Null)";
 _itm.RunMethod("close",__c.Null);
- //BA.debugLineNum = 581;BA.debugLine="End Sub";
+ //BA.debugLineNum = 626;BA.debugLine="End Sub";
 return "";
 }
 public String  _confirm(com.ab.banano.BANanoObject _callback,String _stitle,String _stext) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _opt = null;
- //BA.debugLineNum = 298;BA.debugLine="Sub Confirm(CallBack As BANanoObject, stitle As St";
- //BA.debugLineNum = 299;BA.debugLine="Dim opt As Map = CreateMap()";
+ //BA.debugLineNum = 304;BA.debugLine="Sub Confirm(CallBack As BANanoObject, stitle As St";
+ //BA.debugLineNum = 305;BA.debugLine="Dim opt As Map = CreateMap()";
 _opt = new anywheresoftware.b4a.objects.collections.Map();
 _opt = __c.createMap(new Object[] {});
- //BA.debugLineNum = 300;BA.debugLine="opt.Put(\"title\", stitle)";
+ //BA.debugLineNum = 306;BA.debugLine="opt.Put(\"title\", stitle)";
 _opt.Put((Object)("title"),(Object)(_stitle));
- //BA.debugLineNum = 301;BA.debugLine="opt.Put(\"text\", stext)";
+ //BA.debugLineNum = 307;BA.debugLine="opt.Put(\"text\", stext)";
 _opt.Put((Object)("text"),(Object)(_stext));
- //BA.debugLineNum = 302;BA.debugLine="opt.Put(\"callback\", CallBack)";
+ //BA.debugLineNum = 308;BA.debugLine="opt.Put(\"callback\", CallBack)";
 _opt.Put((Object)("callback"),(Object)(_callback));
- //BA.debugLineNum = 303;BA.debugLine="webix.RunMethod(\"confirm\", opt)";
+ //BA.debugLineNum = 309;BA.debugLine="webix.RunMethod(\"confirm\", opt)";
 _webix.RunMethod("confirm",(Object)(_opt.getObject()));
- //BA.debugLineNum = 304;BA.debugLine="End Sub";
+ //BA.debugLineNum = 310;BA.debugLine="End Sub";
 return "";
 }
 public String  _cstr(Object _o) throws Exception{
- //BA.debugLineNum = 318;BA.debugLine="Sub CStr(o As Object) As String";
- //BA.debugLineNum = 319;BA.debugLine="Return \"\" & o";
+ //BA.debugLineNum = 324;BA.debugLine="Sub CStr(o As Object) As String";
+ //BA.debugLineNum = 325;BA.debugLine="Return \"\" & o";
 if (true) return ""+BA.ObjectToString(_o);
- //BA.debugLineNum = 320;BA.debugLine="End Sub";
+ //BA.debugLineNum = 326;BA.debugLine="End Sub";
 return "";
 }
 public String  _define(String _eid,anywheresoftware.b4a.objects.collections.Map _properties) throws Exception{
@@ -275,87 +298,87 @@ return "";
 }
 public Object  _exists(String _listid,String _eid) throws Exception{
 String _recid = "";
- //BA.debugLineNum = 412;BA.debugLine="Sub Exists(listID As String, eID As String) As Obj";
- //BA.debugLineNum = 413;BA.debugLine="listID = listID.tolowercase";
+ //BA.debugLineNum = 439;BA.debugLine="Sub Exists(listID As String, eID As String) As Obj";
+ //BA.debugLineNum = 440;BA.debugLine="listID = listID.tolowercase";
 _listid = _listid.toLowerCase();
- //BA.debugLineNum = 414;BA.debugLine="Dim recID As String = Dollar.Selector(listID).Run";
+ //BA.debugLineNum = 441;BA.debugLine="Dim recID As String = Dollar.Selector(listID).Run";
 _recid = BA.ObjectToString(_dollar.Selector((Object)(_listid)).RunMethod("exists",(Object)(new Object[]{(Object)(_eid)})).Result());
- //BA.debugLineNum = 415;BA.debugLine="Return recID";
+ //BA.debugLineNum = 442;BA.debugLine="Return recID";
 if (true) return (Object)(_recid);
- //BA.debugLineNum = 416;BA.debugLine="End Sub";
+ //BA.debugLineNum = 443;BA.debugLine="End Sub";
 return null;
 }
 public String  _export2csv(String _eid) throws Exception{
 com.ab.banano.BANanoObject _itm = null;
 anywheresoftware.b4a.objects.collections.Map _opt = null;
- //BA.debugLineNum = 536;BA.debugLine="Sub Export2CSV(eID As String)";
- //BA.debugLineNum = 537;BA.debugLine="eID = eID.ToLowerCase";
+ //BA.debugLineNum = 581;BA.debugLine="Sub Export2CSV(eID As String)";
+ //BA.debugLineNum = 582;BA.debugLine="eID = eID.ToLowerCase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 539;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
+ //BA.debugLineNum = 584;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
 _itm = _dollar.Selector((Object)(_eid));
- //BA.debugLineNum = 541;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
+ //BA.debugLineNum = 586;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
 _opt = new anywheresoftware.b4a.objects.collections.Map();
 _opt = __c.createMap(new Object[] {(Object)("filename"),(Object)(_eid+".png")});
- //BA.debugLineNum = 543;BA.debugLine="webix.RunMethod(\"toCSV\", Array(itm, opt))";
+ //BA.debugLineNum = 588;BA.debugLine="webix.RunMethod(\"toCSV\", Array(itm, opt))";
 _webix.RunMethod("toCSV",(Object)(new Object[]{(Object)(_itm),(Object)(_opt.getObject())}));
- //BA.debugLineNum = 544;BA.debugLine="End Sub";
+ //BA.debugLineNum = 589;BA.debugLine="End Sub";
 return "";
 }
 public String  _export2excel(String _eid) throws Exception{
 com.ab.banano.BANanoObject _itm = null;
 anywheresoftware.b4a.objects.collections.Map _opt = null;
- //BA.debugLineNum = 514;BA.debugLine="Sub Export2Excel(eID As String)";
- //BA.debugLineNum = 515;BA.debugLine="eID = eID.ToLowerCase";
+ //BA.debugLineNum = 559;BA.debugLine="Sub Export2Excel(eID As String)";
+ //BA.debugLineNum = 560;BA.debugLine="eID = eID.ToLowerCase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 517;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
+ //BA.debugLineNum = 562;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
 _itm = _dollar.Selector((Object)(_eid));
- //BA.debugLineNum = 519;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
+ //BA.debugLineNum = 564;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
 _opt = new anywheresoftware.b4a.objects.collections.Map();
 _opt = __c.createMap(new Object[] {(Object)("filename"),(Object)(_eid+".png")});
- //BA.debugLineNum = 521;BA.debugLine="webix.RunMethod(\"toExcel\", Array(itm, opt))";
+ //BA.debugLineNum = 566;BA.debugLine="webix.RunMethod(\"toExcel\", Array(itm, opt))";
 _webix.RunMethod("toExcel",(Object)(new Object[]{(Object)(_itm),(Object)(_opt.getObject())}));
- //BA.debugLineNum = 522;BA.debugLine="End Sub";
+ //BA.debugLineNum = 567;BA.debugLine="End Sub";
 return "";
 }
 public String  _export2pdf(String _eid) throws Exception{
 com.ab.banano.BANanoObject _itm = null;
 anywheresoftware.b4a.objects.collections.Map _opt = null;
- //BA.debugLineNum = 525;BA.debugLine="Sub Export2PDF(eID As String)";
- //BA.debugLineNum = 526;BA.debugLine="eID = eID.ToLowerCase";
+ //BA.debugLineNum = 570;BA.debugLine="Sub Export2PDF(eID As String)";
+ //BA.debugLineNum = 571;BA.debugLine="eID = eID.ToLowerCase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 528;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
+ //BA.debugLineNum = 573;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
 _itm = _dollar.Selector((Object)(_eid));
- //BA.debugLineNum = 530;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
+ //BA.debugLineNum = 575;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
 _opt = new anywheresoftware.b4a.objects.collections.Map();
 _opt = __c.createMap(new Object[] {(Object)("filename"),(Object)(_eid+".png")});
- //BA.debugLineNum = 532;BA.debugLine="webix.RunMethod(\"toPDF\", Array(itm, opt))";
+ //BA.debugLineNum = 577;BA.debugLine="webix.RunMethod(\"toPDF\", Array(itm, opt))";
 _webix.RunMethod("toPDF",(Object)(new Object[]{(Object)(_itm),(Object)(_opt.getObject())}));
- //BA.debugLineNum = 533;BA.debugLine="End Sub";
+ //BA.debugLineNum = 578;BA.debugLine="End Sub";
 return "";
 }
 public String  _export2png(String _eid) throws Exception{
 com.ab.banano.BANanoObject _itm = null;
 anywheresoftware.b4a.objects.collections.Map _opt = null;
- //BA.debugLineNum = 503;BA.debugLine="Sub Export2PNG(eID As String)";
- //BA.debugLineNum = 504;BA.debugLine="eID = eID.ToLowerCase";
+ //BA.debugLineNum = 548;BA.debugLine="Sub Export2PNG(eID As String)";
+ //BA.debugLineNum = 549;BA.debugLine="eID = eID.ToLowerCase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 506;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
+ //BA.debugLineNum = 551;BA.debugLine="Dim itm As BANanoObject = Dollar.Selector(eID)";
 _itm = _dollar.Selector((Object)(_eid));
- //BA.debugLineNum = 508;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
+ //BA.debugLineNum = 553;BA.debugLine="Dim opt As Map = CreateMap(\"filename\": eID & \".pn";
 _opt = new anywheresoftware.b4a.objects.collections.Map();
 _opt = __c.createMap(new Object[] {(Object)("filename"),(Object)(_eid+".png")});
- //BA.debugLineNum = 510;BA.debugLine="webix.RunMethod(\"toPNG\", Array(itm, opt))";
+ //BA.debugLineNum = 555;BA.debugLine="webix.RunMethod(\"toPNG\", Array(itm, opt))";
 _webix.RunMethod("toPNG",(Object)(new Object[]{(Object)(_itm),(Object)(_opt.getObject())}));
- //BA.debugLineNum = 511;BA.debugLine="End Sub";
+ //BA.debugLineNum = 556;BA.debugLine="End Sub";
 return "";
 }
 public String  _filedialog(String _frmid,anywheresoftware.b4a.objects.collections.Map _opt) throws Exception{
- //BA.debugLineNum = 484;BA.debugLine="Sub FileDialog(frmID As String, opt As Map)";
- //BA.debugLineNum = 485;BA.debugLine="frmID = frmID.tolowercase";
+ //BA.debugLineNum = 529;BA.debugLine="Sub FileDialog(frmID As String, opt As Map)";
+ //BA.debugLineNum = 530;BA.debugLine="frmID = frmID.tolowercase";
 _frmid = _frmid.toLowerCase();
- //BA.debugLineNum = 486;BA.debugLine="Dollar.Selector(frmID).RunMethod(\"fileDialog\",Arr";
+ //BA.debugLineNum = 531;BA.debugLine="Dollar.Selector(frmID).RunMethod(\"fileDialog\",Arr";
 _dollar.Selector((Object)(_frmid)).RunMethod("fileDialog",(Object)(new Object[]{(Object)(_opt.getObject())}));
- //BA.debugLineNum = 487;BA.debugLine="End Sub";
+ //BA.debugLineNum = 532;BA.debugLine="End Sub";
 return "";
 }
 public String  _freezerow(String _dtid,int _r) throws Exception{
@@ -369,104 +392,120 @@ return "";
 }
 public anywheresoftware.b4a.objects.collections.Map  _getcleanvalues(String _frmid) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _rec = null;
- //BA.debugLineNum = 433;BA.debugLine="Sub GetCleanValues(frmID As String) As Map";
- //BA.debugLineNum = 434;BA.debugLine="frmID = frmID.ToLowerCase";
+ //BA.debugLineNum = 460;BA.debugLine="Sub GetCleanValues(frmID As String) As Map";
+ //BA.debugLineNum = 461;BA.debugLine="frmID = frmID.ToLowerCase";
 _frmid = _frmid.toLowerCase();
- //BA.debugLineNum = 435;BA.debugLine="Dim rec As Map = CreateMap()";
+ //BA.debugLineNum = 462;BA.debugLine="Dim rec As Map = CreateMap()";
 _rec = new anywheresoftware.b4a.objects.collections.Map();
 _rec = __c.createMap(new Object[] {});
- //BA.debugLineNum = 436;BA.debugLine="rec = Dollar.Selector(frmID).RunMethod(\"getCleanV";
+ //BA.debugLineNum = 463;BA.debugLine="rec = Dollar.Selector(frmID).RunMethod(\"getCleanV";
 _rec.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(_dollar.Selector((Object)(_frmid)).RunMethod("getCleanValues",__c.Null).Result()));
- //BA.debugLineNum = 437;BA.debugLine="Return rec";
+ //BA.debugLineNum = 464;BA.debugLine="Return rec";
 if (true) return _rec;
- //BA.debugLineNum = 438;BA.debugLine="End Sub";
+ //BA.debugLineNum = 465;BA.debugLine="End Sub";
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _getdirtyvalues(String _frmid) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _rec = null;
- //BA.debugLineNum = 425;BA.debugLine="Sub GetDirtyValues(frmID As String) As Map";
- //BA.debugLineNum = 426;BA.debugLine="frmID = frmID.ToLowerCase";
+ //BA.debugLineNum = 452;BA.debugLine="Sub GetDirtyValues(frmID As String) As Map";
+ //BA.debugLineNum = 453;BA.debugLine="frmID = frmID.ToLowerCase";
 _frmid = _frmid.toLowerCase();
- //BA.debugLineNum = 427;BA.debugLine="Dim rec As Map = CreateMap()";
+ //BA.debugLineNum = 454;BA.debugLine="Dim rec As Map = CreateMap()";
 _rec = new anywheresoftware.b4a.objects.collections.Map();
 _rec = __c.createMap(new Object[] {});
- //BA.debugLineNum = 428;BA.debugLine="rec = Dollar.Selector(frmID).RunMethod(\"getDirtyV";
+ //BA.debugLineNum = 455;BA.debugLine="rec = Dollar.Selector(frmID).RunMethod(\"getDirtyV";
 _rec.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(_dollar.Selector((Object)(_frmid)).RunMethod("getDirtyValues",__c.Null).Result()));
- //BA.debugLineNum = 429;BA.debugLine="Return rec";
+ //BA.debugLineNum = 456;BA.debugLine="Return rec";
 if (true) return _rec;
- //BA.debugLineNum = 430;BA.debugLine="End Sub";
+ //BA.debugLineNum = 457;BA.debugLine="End Sub";
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _getitem(String _listid,String _recordid) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _values = null;
- //BA.debugLineNum = 330;BA.debugLine="Sub GetItem(listID As String, recordID As String)";
- //BA.debugLineNum = 331;BA.debugLine="listID = listID.ToLowerCase";
+ //BA.debugLineNum = 336;BA.debugLine="Sub GetItem(listID As String, recordID As String)";
+ //BA.debugLineNum = 337;BA.debugLine="listID = listID.ToLowerCase";
 _listid = _listid.toLowerCase();
- //BA.debugLineNum = 332;BA.debugLine="recordID = recordID.tolowercase";
+ //BA.debugLineNum = 338;BA.debugLine="recordID = recordID.tolowercase";
 _recordid = _recordid.toLowerCase();
- //BA.debugLineNum = 333;BA.debugLine="Dim values As Map = Dollar.Selector(listID).RunMe";
+ //BA.debugLineNum = 339;BA.debugLine="Dim values As Map = Dollar.Selector(listID).RunMe";
 _values = new anywheresoftware.b4a.objects.collections.Map();
 _values.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(_dollar.Selector((Object)(_listid)).RunMethod("getItem",(Object)(new Object[]{(Object)(_recordid)})).Result()));
- //BA.debugLineNum = 334;BA.debugLine="Return values";
+ //BA.debugLineNum = 340;BA.debugLine="Return values";
 if (true) return _values;
- //BA.debugLineNum = 335;BA.debugLine="End Sub";
+ //BA.debugLineNum = 341;BA.debugLine="End Sub";
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _getmarker(String _listid,String _recordid) throws Exception{
 String _mkey = "";
 anywheresoftware.b4a.objects.collections.Map _values = null;
- //BA.debugLineNum = 338;BA.debugLine="Sub GetMarker(listID As String, recordID As String";
- //BA.debugLineNum = 339;BA.debugLine="Dim mKey As String = \"$\" & \"marker\"";
+ //BA.debugLineNum = 344;BA.debugLine="Sub GetMarker(listID As String, recordID As String";
+ //BA.debugLineNum = 345;BA.debugLine="Dim mKey As String = \"$\" & \"marker\"";
 _mkey = "$"+"marker";
- //BA.debugLineNum = 340;BA.debugLine="listID = listID.ToLowerCase";
+ //BA.debugLineNum = 346;BA.debugLine="listID = listID.ToLowerCase";
 _listid = _listid.toLowerCase();
- //BA.debugLineNum = 341;BA.debugLine="recordID = recordID.tolowercase";
+ //BA.debugLineNum = 347;BA.debugLine="recordID = recordID.tolowercase";
 _recordid = _recordid.toLowerCase();
- //BA.debugLineNum = 342;BA.debugLine="Dim values As Map = Dollar.Selector(listID).RunMe";
+ //BA.debugLineNum = 348;BA.debugLine="Dim values As Map = Dollar.Selector(listID).RunMe";
 _values = new anywheresoftware.b4a.objects.collections.Map();
 _values.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(_dollar.Selector((Object)(_listid)).RunMethod("getItem",(Object)(new Object[]{(Object)(_recordid)})).Result()));
- //BA.debugLineNum = 343;BA.debugLine="values.Remove(mKey)";
+ //BA.debugLineNum = 349;BA.debugLine="values.Remove(mKey)";
 _values.Remove((Object)(_mkey));
- //BA.debugLineNum = 344;BA.debugLine="Return values";
+ //BA.debugLineNum = 350;BA.debugLine="Return values";
 if (true) return _values;
- //BA.debugLineNum = 345;BA.debugLine="End Sub";
+ //BA.debugLineNum = 351;BA.debugLine="End Sub";
 return null;
+}
+public String  _getrowidfromcontext(com.ab.banano.BANanoObject _bo) throws Exception{
+anywheresoftware.b4a.objects.collections.Map _context = null;
+String _rowid = "";
+ //BA.debugLineNum = 363;BA.debugLine="Sub GetRowIDFromContext(bo As BANanoObject) As Str";
+ //BA.debugLineNum = 364;BA.debugLine="Dim context As Map = bo.GetField(\"context\").Resul";
+_context = new anywheresoftware.b4a.objects.collections.Map();
+_context.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(_bo.GetField("context").Result()));
+ //BA.debugLineNum = 365;BA.debugLine="Dim rowid As String = context.Get(\"rowid\")";
+_rowid = BA.ObjectToString(_context.Get((Object)("rowid")));
+ //BA.debugLineNum = 366;BA.debugLine="rowid = CStr(rowid)";
+_rowid = _cstr((Object)(_rowid));
+ //BA.debugLineNum = 367;BA.debugLine="Return rowid";
+if (true) return _rowid;
+ //BA.debugLineNum = 368;BA.debugLine="End Sub";
+return "";
 }
 public Object  _getselected(String _listid) throws Exception{
 String _recid = "";
- //BA.debugLineNum = 398;BA.debugLine="Sub GetSelected(listID As String) As Object";
- //BA.debugLineNum = 399;BA.debugLine="listID = listID.tolowercase";
+ //BA.debugLineNum = 425;BA.debugLine="Sub GetSelected(listID As String) As Object";
+ //BA.debugLineNum = 426;BA.debugLine="listID = listID.tolowercase";
 _listid = _listid.toLowerCase();
- //BA.debugLineNum = 400;BA.debugLine="Dim recID As String = Dollar.Selector(listID).Run";
+ //BA.debugLineNum = 427;BA.debugLine="Dim recID As String = Dollar.Selector(listID).Run";
 _recid = BA.ObjectToString(_dollar.Selector((Object)(_listid)).RunMethod("getSelected",__c.Null).Result());
- //BA.debugLineNum = 401;BA.debugLine="Return recID";
+ //BA.debugLineNum = 428;BA.debugLine="Return recID";
 if (true) return (Object)(_recid);
- //BA.debugLineNum = 402;BA.debugLine="End Sub";
+ //BA.debugLineNum = 429;BA.debugLine="End Sub";
 return null;
 }
 public String  _getselectedid(String _listid) throws Exception{
 String _recid = "";
- //BA.debugLineNum = 391;BA.debugLine="Sub GetSelectedID(listID As String) As String";
- //BA.debugLineNum = 392;BA.debugLine="listID = listID.tolowercase";
+ //BA.debugLineNum = 418;BA.debugLine="Sub GetSelectedID(listID As String) As String";
+ //BA.debugLineNum = 419;BA.debugLine="listID = listID.tolowercase";
 _listid = _listid.toLowerCase();
- //BA.debugLineNum = 393;BA.debugLine="Dim recID As String = Dollar.Selector(listID).Run";
+ //BA.debugLineNum = 420;BA.debugLine="Dim recID As String = Dollar.Selector(listID).Run";
 _recid = BA.ObjectToString(_dollar.Selector((Object)(_listid)).RunMethod("getSelectedId",__c.Null).Result());
- //BA.debugLineNum = 394;BA.debugLine="Return recID";
+ //BA.debugLineNum = 421;BA.debugLine="Return recID";
 if (true) return _recid;
- //BA.debugLineNum = 395;BA.debugLine="End Sub";
+ //BA.debugLineNum = 422;BA.debugLine="End Sub";
 return "";
 }
 public anywheresoftware.b4a.objects.collections.Map  _getselecteditem(String _listid) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _recid = null;
- //BA.debugLineNum = 405;BA.debugLine="Sub GetSelectedItem(listID As String) As Map";
- //BA.debugLineNum = 406;BA.debugLine="listID = listID.tolowercase";
+ //BA.debugLineNum = 432;BA.debugLine="Sub GetSelectedItem(listID As String) As Map";
+ //BA.debugLineNum = 433;BA.debugLine="listID = listID.tolowercase";
 _listid = _listid.toLowerCase();
- //BA.debugLineNum = 407;BA.debugLine="Dim recID As Map = Dollar.Selector(listID).RunMet";
+ //BA.debugLineNum = 434;BA.debugLine="Dim recID As Map = Dollar.Selector(listID).RunMet";
 _recid = new anywheresoftware.b4a.objects.collections.Map();
 _recid.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(_dollar.Selector((Object)(_listid)).RunMethod("getSelectedItem",__c.Null).Result()));
- //BA.debugLineNum = 408;BA.debugLine="Return recID";
+ //BA.debugLineNum = 435;BA.debugLine="Return recID";
 if (true) return _recid;
- //BA.debugLineNum = 409;BA.debugLine="End Sub";
+ //BA.debugLineNum = 436;BA.debugLine="End Sub";
 return null;
 }
 public String  _getvalue(String _itm) throws Exception{
@@ -498,10 +537,10 @@ if (true) return _res;
 return null;
 }
 public String  _hide(com.ab.banano.BANanoObject _itm) throws Exception{
- //BA.debugLineNum = 573;BA.debugLine="Sub Hide(itm As BANanoObject)";
- //BA.debugLineNum = 574;BA.debugLine="itm.RunMethod(\"hide\", Null)";
+ //BA.debugLineNum = 618;BA.debugLine="Sub Hide(itm As BANanoObject)";
+ //BA.debugLineNum = 619;BA.debugLine="itm.RunMethod(\"hide\", Null)";
 _itm.RunMethod("hide",__c.Null);
- //BA.debugLineNum = 575;BA.debugLine="End Sub";
+ //BA.debugLineNum = 620;BA.debugLine="End Sub";
 return "";
 }
 public String  _hideit(String _itmid) throws Exception{
@@ -541,12 +580,12 @@ return null;
 }
 public boolean  _isvisible(com.ab.banano.BANanoObject _itm) throws Exception{
 boolean _res = false;
- //BA.debugLineNum = 585;BA.debugLine="Sub IsVisible(itm As BANanoObject) As Boolean";
- //BA.debugLineNum = 586;BA.debugLine="Dim res As Boolean = itm.RunMethod(\"isVisible\", N";
+ //BA.debugLineNum = 630;BA.debugLine="Sub IsVisible(itm As BANanoObject) As Boolean";
+ //BA.debugLineNum = 631;BA.debugLine="Dim res As Boolean = itm.RunMethod(\"isVisible\", N";
 _res = BA.ObjectToBoolean(_itm.RunMethod("isVisible",__c.Null).Result());
- //BA.debugLineNum = 587;BA.debugLine="Return res";
+ //BA.debugLineNum = 632;BA.debugLine="Return res";
 if (true) return _res;
- //BA.debugLineNum = 588;BA.debugLine="End Sub";
+ //BA.debugLineNum = 633;BA.debugLine="End Sub";
 return false;
 }
 public String  _message(String _msg) throws Exception{
@@ -584,12 +623,12 @@ _dollar.Selector((Object)(_dtid)).RunMethod("moveTop",(Object)(new Object[]{(Obj
 return "";
 }
 public String  _onafterselect(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
- //BA.debugLineNum = 349;BA.debugLine="Sub OnAfterSelect(eID As String, cb As BANanoObjec";
- //BA.debugLineNum = 350;BA.debugLine="eID = eID.tolowercase";
+ //BA.debugLineNum = 376;BA.debugLine="Sub OnAfterSelect(eID As String, cb As BANanoObjec";
+ //BA.debugLineNum = 377;BA.debugLine="eID = eID.tolowercase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 351;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
+ //BA.debugLineNum = 378;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
 _dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(Object)("onAfterSelect"),(Object)(_cb)}));
- //BA.debugLineNum = 352;BA.debugLine="End Sub";
+ //BA.debugLineNum = 379;BA.debugLine="End Sub";
 return "";
 }
 public String  _onaftertabclick(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
@@ -602,12 +641,12 @@ _dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(
 return "";
 }
 public String  _onafterunselect(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
- //BA.debugLineNum = 371;BA.debugLine="Sub OnAfterUnSelect(eID As String, cb As BANanoObj";
- //BA.debugLineNum = 372;BA.debugLine="eID = eID.tolowercase";
+ //BA.debugLineNum = 398;BA.debugLine="Sub OnAfterUnSelect(eID As String, cb As BANanoObj";
+ //BA.debugLineNum = 399;BA.debugLine="eID = eID.tolowercase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 373;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
+ //BA.debugLineNum = 400;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
 _dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(Object)("onAfterUnSelect"),(Object)(_cb)}));
- //BA.debugLineNum = 374;BA.debugLine="End Sub";
+ //BA.debugLineNum = 401;BA.debugLine="End Sub";
 return "";
 }
 public String  _onchange(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
@@ -629,12 +668,12 @@ _dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(
 return "";
 }
 public String  _onclick(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
- //BA.debugLineNum = 359;BA.debugLine="Sub OnClick(eID As String, cb As BANanoObject)";
- //BA.debugLineNum = 360;BA.debugLine="eID = eID.tolowercase";
+ //BA.debugLineNum = 386;BA.debugLine="Sub OnClick(eID As String, cb As BANanoObject)";
+ //BA.debugLineNum = 387;BA.debugLine="eID = eID.tolowercase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 361;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
+ //BA.debugLineNum = 388;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
 _dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(Object)("onClick"),(Object)(_cb)}));
- //BA.debugLineNum = 362;BA.debugLine="End Sub";
+ //BA.debugLineNum = 389;BA.debugLine="End Sub";
 return "";
 }
 public String  _onenter(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
@@ -646,13 +685,31 @@ _dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(
  //BA.debugLineNum = 143;BA.debugLine="End Sub";
 return "";
 }
-public String  _onitemclick(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
- //BA.debugLineNum = 354;BA.debugLine="Sub OnItemClick(eID As String, cb As BANanoObject)";
- //BA.debugLineNum = 355;BA.debugLine="eID = eID.tolowercase";
+public String  _onfileupload(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
+ //BA.debugLineNum = 370;BA.debugLine="Sub onFileUpload(eID As String, cb As BANanoObject";
+ //BA.debugLineNum = 371;BA.debugLine="eID = eID.tolowercase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 356;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
+ //BA.debugLineNum = 372;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
+_dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(Object)("onFileUpload"),(Object)(_cb)}));
+ //BA.debugLineNum = 373;BA.debugLine="End Sub";
+return "";
+}
+public String  _onfileuploaderror(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
+ //BA.debugLineNum = 358;BA.debugLine="Sub onFileUploadError(eID As String, cb As BANanoO";
+ //BA.debugLineNum = 359;BA.debugLine="eID = eID.tolowercase";
+_eid = _eid.toLowerCase();
+ //BA.debugLineNum = 360;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
+_dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(Object)("onFileUploadError"),(Object)(_cb)}));
+ //BA.debugLineNum = 361;BA.debugLine="End Sub";
+return "";
+}
+public String  _onitemclick(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
+ //BA.debugLineNum = 381;BA.debugLine="Sub OnItemClick(eID As String, cb As BANanoObject)";
+ //BA.debugLineNum = 382;BA.debugLine="eID = eID.tolowercase";
+_eid = _eid.toLowerCase();
+ //BA.debugLineNum = 383;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
 _dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(Object)("onItemClick"),(Object)(_cb)}));
- //BA.debugLineNum = 357;BA.debugLine="End Sub";
+ //BA.debugLineNum = 384;BA.debugLine="End Sub";
 return "";
 }
 public String  _onliveedit(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
@@ -665,12 +722,12 @@ _dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(
 return "";
 }
 public String  _onmenuitemclick(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
- //BA.debugLineNum = 364;BA.debugLine="Sub OnMenuItemClick(eID As String, cb As BANanoObj";
- //BA.debugLineNum = 365;BA.debugLine="eID = eID.tolowercase";
+ //BA.debugLineNum = 391;BA.debugLine="Sub OnMenuItemClick(eID As String, cb As BANanoObj";
+ //BA.debugLineNum = 392;BA.debugLine="eID = eID.tolowercase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 366;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
+ //BA.debugLineNum = 393;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
 _dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(Object)("onMenuItemClick"),(Object)(_cb)}));
- //BA.debugLineNum = 367;BA.debugLine="End Sub";
+ //BA.debugLineNum = 394;BA.debugLine="End Sub";
 return "";
 }
 public String  _onselectchange(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
@@ -691,13 +748,22 @@ _dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(
  //BA.debugLineNum = 155;BA.debugLine="End Sub";
 return "";
 }
-public String  _parse(String _eid,anywheresoftware.b4a.objects.collections.List _data,String _typeof) throws Exception{
- //BA.debugLineNum = 465;BA.debugLine="Sub Parse(eID As String, data As List, typeOf As S";
- //BA.debugLineNum = 466;BA.debugLine="eID = eID.tolowercase";
+public String  _onuploadcomplete(String _eid,com.ab.banano.BANanoObject _cb) throws Exception{
+ //BA.debugLineNum = 353;BA.debugLine="Sub OnUploadComplete(eID As String, cb As BANanoOb";
+ //BA.debugLineNum = 354;BA.debugLine="eID = eID.tolowercase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 467;BA.debugLine="Dollar.Selector(eID).RunMethod(\"parse\",Array(data";
+ //BA.debugLineNum = 355;BA.debugLine="Dollar.Selector(eID).RunMethod(\"attachEvent\",Arra";
+_dollar.Selector((Object)(_eid)).RunMethod("attachEvent",(Object)(new Object[]{(Object)("onUploadComplete"),(Object)(_cb)}));
+ //BA.debugLineNum = 356;BA.debugLine="End Sub";
+return "";
+}
+public String  _parse(String _eid,anywheresoftware.b4a.objects.collections.List _data,String _typeof) throws Exception{
+ //BA.debugLineNum = 510;BA.debugLine="Sub Parse(eID As String, data As List, typeOf As S";
+ //BA.debugLineNum = 511;BA.debugLine="eID = eID.tolowercase";
+_eid = _eid.toLowerCase();
+ //BA.debugLineNum = 512;BA.debugLine="Dollar.Selector(eID).RunMethod(\"parse\",Array(data";
 _dollar.Selector((Object)(_eid)).RunMethod("parse",(Object)(new Object[]{(Object)(_data.getObject()),(Object)(_typeof)}));
- //BA.debugLineNum = 468;BA.debugLine="End Sub";
+ //BA.debugLineNum = 513;BA.debugLine="End Sub";
 return "";
 }
 public String  _refresh(String _eid) throws Exception{
@@ -710,33 +776,33 @@ _dollar.Selector((Object)(_eid)).RunMethod("refresh",__c.Null);
 return "";
 }
 public String  _remove(String _listid,String _recid) throws Exception{
- //BA.debugLineNum = 384;BA.debugLine="Sub Remove(listID As String, recID As String)";
- //BA.debugLineNum = 385;BA.debugLine="listID = listID.tolowercase";
+ //BA.debugLineNum = 411;BA.debugLine="Sub Remove(listID As String, recID As String)";
+ //BA.debugLineNum = 412;BA.debugLine="listID = listID.tolowercase";
 _listid = _listid.toLowerCase();
- //BA.debugLineNum = 386;BA.debugLine="If recID = \"\" Then Return";
+ //BA.debugLineNum = 413;BA.debugLine="If recID = \"\" Then Return";
 if ((_recid).equals("")) { 
 if (true) return "";};
- //BA.debugLineNum = 387;BA.debugLine="Dollar.Selector(listID).RunMethod(\"remove\",Array(";
+ //BA.debugLineNum = 414;BA.debugLine="Dollar.Selector(listID).RunMethod(\"remove\",Array(";
 _dollar.Selector((Object)(_listid)).RunMethod("remove",(Object)(new Object[]{(Object)(_recid)}));
- //BA.debugLineNum = 388;BA.debugLine="End Sub";
+ //BA.debugLineNum = 415;BA.debugLine="End Sub";
 return "";
 }
 public String  _resize(String _eid) throws Exception{
- //BA.debugLineNum = 453;BA.debugLine="Sub Resize(eID As String)";
- //BA.debugLineNum = 454;BA.debugLine="eID = eID.ToLowerCase";
+ //BA.debugLineNum = 480;BA.debugLine="Sub Resize(eID As String)";
+ //BA.debugLineNum = 481;BA.debugLine="eID = eID.ToLowerCase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 455;BA.debugLine="Dollar.Selector(eID).RunMethod(\"resize\",Null)";
+ //BA.debugLineNum = 482;BA.debugLine="Dollar.Selector(eID).RunMethod(\"resize\",Null)";
 _dollar.Selector((Object)(_eid)).RunMethod("resize",__c.Null);
- //BA.debugLineNum = 456;BA.debugLine="End Sub";
+ //BA.debugLineNum = 483;BA.debugLine="End Sub";
 return "";
 }
 public String  _save(String _frmid) throws Exception{
- //BA.debugLineNum = 478;BA.debugLine="Sub Save(frmID As String)";
- //BA.debugLineNum = 479;BA.debugLine="frmID = frmID.tolowercase";
+ //BA.debugLineNum = 523;BA.debugLine="Sub Save(frmID As String)";
+ //BA.debugLineNum = 524;BA.debugLine="frmID = frmID.tolowercase";
 _frmid = _frmid.toLowerCase();
- //BA.debugLineNum = 480;BA.debugLine="Dollar.Selector(frmID).RunMethod(\"save\",Null)";
+ //BA.debugLineNum = 525;BA.debugLine="Dollar.Selector(frmID).RunMethod(\"save\",Null)";
 _dollar.Selector((Object)(_frmid)).RunMethod("save",__c.Null);
- //BA.debugLineNum = 481;BA.debugLine="End Sub";
+ //BA.debugLineNum = 526;BA.debugLine="End Sub";
 return "";
 }
 public String  _selectitem(String _treeid,String _nodeid) throws Exception{
@@ -752,24 +818,24 @@ return "";
 }
 public anywheresoftware.b4a.objects.collections.List  _serialize(String _eid,boolean _ball) throws Exception{
 anywheresoftware.b4a.objects.collections.List _res = null;
- //BA.debugLineNum = 377;BA.debugLine="Sub Serialize(eID As String, bAll As Boolean) As L";
- //BA.debugLineNum = 378;BA.debugLine="eID = eID.ToLowerCase";
+ //BA.debugLineNum = 404;BA.debugLine="Sub Serialize(eID As String, bAll As Boolean) As L";
+ //BA.debugLineNum = 405;BA.debugLine="eID = eID.ToLowerCase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 379;BA.debugLine="Dim res As List = Dollar.Selector(eID).RunMethod(";
+ //BA.debugLineNum = 406;BA.debugLine="Dim res As List = Dollar.Selector(eID).RunMethod(";
 _res = new anywheresoftware.b4a.objects.collections.List();
 _res.setObject((java.util.List)(_dollar.Selector((Object)(_eid)).RunMethod("serialize",(Object)(new Object[]{(Object)(_ball)})).Result()));
- //BA.debugLineNum = 380;BA.debugLine="Return res";
+ //BA.debugLineNum = 407;BA.debugLine="Return res";
 if (true) return _res;
- //BA.debugLineNum = 381;BA.debugLine="End Sub";
+ //BA.debugLineNum = 408;BA.debugLine="End Sub";
 return null;
 }
 public String  _setbottomtext(String _eid,String _etext) throws Exception{
- //BA.debugLineNum = 441;BA.debugLine="Sub SetBottomText(eID As String, eText As String)";
- //BA.debugLineNum = 442;BA.debugLine="eID = eID.tolowercase";
+ //BA.debugLineNum = 468;BA.debugLine="Sub SetBottomText(eID As String, eText As String)";
+ //BA.debugLineNum = 469;BA.debugLine="eID = eID.tolowercase";
 _eid = _eid.toLowerCase();
- //BA.debugLineNum = 443;BA.debugLine="Dollar.Selector(eID).RunMethod(\"setBottomText\",Ar";
+ //BA.debugLineNum = 470;BA.debugLine="Dollar.Selector(eID).RunMethod(\"setBottomText\",Ar";
 _dollar.Selector((Object)(_eid)).RunMethod("setBottomText",(Object)(new Object[]{(Object)(_etext)}));
- //BA.debugLineNum = 444;BA.debugLine="End Sub";
+ //BA.debugLineNum = 471;BA.debugLine="End Sub";
 return "";
 }
 public b4j.example.wixpage  _setcontainer(String _contid) throws Exception{
@@ -861,10 +927,10 @@ _dollar.Selector((Object)(_itm)).RunMethod("setValues",(Object)(new Object[]{(Ob
 return "";
 }
 public String  _show(com.ab.banano.BANanoObject _itm) throws Exception{
- //BA.debugLineNum = 567;BA.debugLine="Sub Show(itm As BANanoObject)";
- //BA.debugLineNum = 568;BA.debugLine="itm.RunMethod(\"show\", Null)";
+ //BA.debugLineNum = 612;BA.debugLine="Sub Show(itm As BANanoObject)";
+ //BA.debugLineNum = 613;BA.debugLine="itm.RunMethod(\"show\", Null)";
 _itm.RunMethod("show",__c.Null);
- //BA.debugLineNum = 569;BA.debugLine="End Sub";
+ //BA.debugLineNum = 614;BA.debugLine="End Sub";
 return "";
 }
 public String  _showit(String _itmid) throws Exception{
@@ -877,51 +943,51 @@ _dollar.Selector((Object)(_itmid)).RunMethod("show",(Object)(""));
 return "";
 }
 public String  _showitem(String _listid,String _eid) throws Exception{
- //BA.debugLineNum = 419;BA.debugLine="Sub ShowItem(listID As String, eID As String)";
- //BA.debugLineNum = 420;BA.debugLine="listID = listID.tolowercase";
+ //BA.debugLineNum = 446;BA.debugLine="Sub ShowItem(listID As String, eID As String)";
+ //BA.debugLineNum = 447;BA.debugLine="listID = listID.tolowercase";
 _listid = _listid.toLowerCase();
- //BA.debugLineNum = 421;BA.debugLine="Dollar.Selector(listID).RunMethod(\"showItem\",Arra";
+ //BA.debugLineNum = 448;BA.debugLine="Dollar.Selector(listID).RunMethod(\"showItem\",Arra";
 _dollar.Selector((Object)(_listid)).RunMethod("showItem",(Object)(new Object[]{(Object)(_eid)}));
- //BA.debugLineNum = 422;BA.debugLine="End Sub";
+ //BA.debugLineNum = 449;BA.debugLine="End Sub";
 return "";
 }
 public String  _showpopup(String _stemplate,int _height,int _width,String _position) throws Exception{
 b4j.example.wixpopup _p = null;
 com.ab.banano.BANanoObject _pp = null;
- //BA.debugLineNum = 547;BA.debugLine="Sub ShowPopUp(sTemplate As String, height As Int,";
- //BA.debugLineNum = 548;BA.debugLine="Dim p As WixPopUp";
+ //BA.debugLineNum = 592;BA.debugLine="Sub ShowPopUp(sTemplate As String, height As Int,";
+ //BA.debugLineNum = 593;BA.debugLine="Dim p As WixPopUp";
 _p = new b4j.example.wixpopup();
- //BA.debugLineNum = 549;BA.debugLine="p.Initialize(\"popupi\").SetHeight(height).SetWidth";
+ //BA.debugLineNum = 594;BA.debugLine="p.Initialize(\"popupi\").SetHeight(height).SetWidth";
 _p._initialize /*b4j.example.wixpopup*/ (ba,"popupi")._setheight /*b4j.example.wixpopup*/ (_height)._setwidth /*b4j.example.wixpopup*/ (_width)._setposition /*b4j.example.wixpopup*/ (_position)._settemplate /*b4j.example.wixpopup*/ (_stemplate);
- //BA.debugLineNum = 550;BA.debugLine="Dim pp As BANanoObject = webix.RunMethod(\"ui\",p.i";
+ //BA.debugLineNum = 595;BA.debugLine="Dim pp As BANanoObject = webix.RunMethod(\"ui\",p.i";
 _pp = _webix.RunMethod("ui",(Object)(_p._item /*anywheresoftware.b4a.objects.collections.Map*/ ().getObject()));
- //BA.debugLineNum = 551;BA.debugLine="pp.RunMethod(\"show\", Null)";
+ //BA.debugLineNum = 596;BA.debugLine="pp.RunMethod(\"show\", Null)";
 _pp.RunMethod("show",__c.Null);
- //BA.debugLineNum = 552;BA.debugLine="End Sub";
+ //BA.debugLineNum = 597;BA.debugLine="End Sub";
 return "";
 }
 public String  _toasterror(String _text) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _msg = null;
- //BA.debugLineNum = 290;BA.debugLine="Sub ToastError(Text As String)";
- //BA.debugLineNum = 291;BA.debugLine="Dim msg As Map = CreateMap()";
+ //BA.debugLineNum = 296;BA.debugLine="Sub ToastError(Text As String)";
+ //BA.debugLineNum = 297;BA.debugLine="Dim msg As Map = CreateMap()";
 _msg = new anywheresoftware.b4a.objects.collections.Map();
 _msg = __c.createMap(new Object[] {});
- //BA.debugLineNum = 292;BA.debugLine="msg.put(\"type\",\"error\")";
+ //BA.debugLineNum = 298;BA.debugLine="msg.put(\"type\",\"error\")";
 _msg.Put((Object)("type"),(Object)("error"));
- //BA.debugLineNum = 293;BA.debugLine="msg.put(\"text\", Text)";
+ //BA.debugLineNum = 299;BA.debugLine="msg.put(\"text\", Text)";
 _msg.Put((Object)("text"),(Object)(_text));
- //BA.debugLineNum = 294;BA.debugLine="webix.RunMethod(\"message\", Array(msg))";
+ //BA.debugLineNum = 300;BA.debugLine="webix.RunMethod(\"message\", Array(msg))";
 _webix.RunMethod("message",(Object)(new Object[]{(Object)(_msg.getObject())}));
- //BA.debugLineNum = 295;BA.debugLine="End Sub";
+ //BA.debugLineNum = 301;BA.debugLine="End Sub";
 return "";
 }
 public String  _toggle(String _sbid) throws Exception{
- //BA.debugLineNum = 490;BA.debugLine="Sub Toggle(sbID As String)";
- //BA.debugLineNum = 491;BA.debugLine="sbID = sbID.tolowercase";
+ //BA.debugLineNum = 535;BA.debugLine="Sub Toggle(sbID As String)";
+ //BA.debugLineNum = 536;BA.debugLine="sbID = sbID.tolowercase";
 _sbid = _sbid.toLowerCase();
- //BA.debugLineNum = 492;BA.debugLine="Dollar.Selector(sbID).RunMethod(\"toggle\",Null)";
+ //BA.debugLineNum = 537;BA.debugLine="Dollar.Selector(sbID).RunMethod(\"toggle\",Null)";
 _dollar.Selector((Object)(_sbid)).RunMethod("toggle",__c.Null);
- //BA.debugLineNum = 493;BA.debugLine="End Sub";
+ //BA.debugLineNum = 538;BA.debugLine="End Sub";
 return "";
 }
 public String  _ui() throws Exception{
@@ -949,12 +1015,12 @@ return "";
 }
 public com.ab.banano.BANanoObject  _uiobject(anywheresoftware.b4a.objects.collections.Map _m) throws Exception{
 com.ab.banano.BANanoObject _res = null;
- //BA.debugLineNum = 555;BA.debugLine="Sub UIObject(m As Map) As BANanoObject";
- //BA.debugLineNum = 556;BA.debugLine="Dim res As BANanoObject = webix.RunMethod(\"ui\", m";
+ //BA.debugLineNum = 600;BA.debugLine="Sub UIObject(m As Map) As BANanoObject";
+ //BA.debugLineNum = 601;BA.debugLine="Dim res As BANanoObject = webix.RunMethod(\"ui\", m";
 _res = _webix.RunMethod("ui",(Object)(_m.getObject()));
- //BA.debugLineNum = 557;BA.debugLine="Return res";
+ //BA.debugLineNum = 602;BA.debugLine="Return res";
 if (true) return _res;
- //BA.debugLineNum = 558;BA.debugLine="End Sub";
+ //BA.debugLineNum = 603;BA.debugLine="End Sub";
 return null;
 }
 public anywheresoftware.b4a.objects.collections.List  _unflatten(anywheresoftware.b4a.objects.collections.List _data,String _childname) throws Exception{
@@ -1049,35 +1115,50 @@ if (true) return _ub;
 return "";
 }
 public String  _updateitem(String _ownerid,String _recid,anywheresoftware.b4a.objects.collections.Map _recdata) throws Exception{
- //BA.debugLineNum = 323;BA.debugLine="Sub UpdateItem(ownerID As String, recID As String,";
- //BA.debugLineNum = 324;BA.debugLine="ownerID = ownerID.ToLowerCase";
+ //BA.debugLineNum = 329;BA.debugLine="Sub UpdateItem(ownerID As String, recID As String,";
+ //BA.debugLineNum = 330;BA.debugLine="ownerID = ownerID.ToLowerCase";
 _ownerid = _ownerid.toLowerCase();
- //BA.debugLineNum = 325;BA.debugLine="recID = recID.tolowercase";
+ //BA.debugLineNum = 331;BA.debugLine="recID = recID.tolowercase";
 _recid = _recid.toLowerCase();
- //BA.debugLineNum = 326;BA.debugLine="Dollar.Selector(ownerID).RunMethod(\"updateItem\",A";
+ //BA.debugLineNum = 332;BA.debugLine="Dollar.Selector(ownerID).RunMethod(\"updateItem\",A";
 _dollar.Selector((Object)(_ownerid)).RunMethod("updateItem",(Object)(new Object[]{(Object)(_recid),(Object)(_recdata.getObject())}));
- //BA.debugLineNum = 327;BA.debugLine="End Sub";
+ //BA.debugLineNum = 333;BA.debugLine="End Sub";
 return "";
 }
 public com.ab.banano.BANanoObject  _ux(anywheresoftware.b4a.objects.collections.Map _m) throws Exception{
 com.ab.banano.BANanoObject _res = null;
- //BA.debugLineNum = 561;BA.debugLine="Sub UX(m As Map) As BANanoObject";
- //BA.debugLineNum = 562;BA.debugLine="Dim res As BANanoObject = webix.RunMethod(\"ui\", m";
+ //BA.debugLineNum = 606;BA.debugLine="Sub UX(m As Map) As BANanoObject";
+ //BA.debugLineNum = 607;BA.debugLine="Dim res As BANanoObject = webix.RunMethod(\"ui\", m";
 _res = _webix.RunMethod("ui",(Object)(_m.getObject()));
- //BA.debugLineNum = 563;BA.debugLine="Return res";
+ //BA.debugLineNum = 608;BA.debugLine="Return res";
 if (true) return _res;
- //BA.debugLineNum = 564;BA.debugLine="End Sub";
+ //BA.debugLineNum = 609;BA.debugLine="End Sub";
+return null;
+}
+public com.ab.banano.BANanoObject  _view(String _eid) throws Exception{
+String _v = "";
+com.ab.banano.BANanoObject _res = null;
+ //BA.debugLineNum = 492;BA.debugLine="Sub View(eID As String) As BANanoObject";
+ //BA.debugLineNum = 493;BA.debugLine="Dim v As String = \"$\" & \"view\"";
+_v = "$"+"view";
+ //BA.debugLineNum = 494;BA.debugLine="eID = eID.ToLowerCase";
+_eid = _eid.toLowerCase();
+ //BA.debugLineNum = 495;BA.debugLine="Dim res As BANanoObject = Dollar.Selector(eID).Ge";
+_res = _dollar.Selector((Object)(_eid)).GetField(_v);
+ //BA.debugLineNum = 496;BA.debugLine="Return res";
+if (true) return _res;
+ //BA.debugLineNum = 497;BA.debugLine="End Sub";
 return null;
 }
 public String  _windowfullscreen(String _wid) throws Exception{
- //BA.debugLineNum = 496;BA.debugLine="Sub WindowFullScreen(wID As String)";
- //BA.debugLineNum = 497;BA.debugLine="wID = wID.ToLowerCase";
+ //BA.debugLineNum = 541;BA.debugLine="Sub WindowFullScreen(wID As String)";
+ //BA.debugLineNum = 542;BA.debugLine="wID = wID.ToLowerCase";
 _wid = _wid.toLowerCase();
- //BA.debugLineNum = 498;BA.debugLine="Define(wID, CreateMap(\"fullscreen\":True,\"top\":0,\"";
+ //BA.debugLineNum = 543;BA.debugLine="Define(wID, CreateMap(\"fullscreen\":True,\"top\":0,\"";
 _define(_wid,__c.createMap(new Object[] {(Object)("fullscreen"),(Object)(__c.True),(Object)("top"),(Object)(0),(Object)("left"),(Object)(0)}));
- //BA.debugLineNum = 499;BA.debugLine="Resize(wID)";
+ //BA.debugLineNum = 544;BA.debugLine="Resize(wID)";
 _resize(_wid);
- //BA.debugLineNum = 500;BA.debugLine="End Sub";
+ //BA.debugLineNum = 545;BA.debugLine="End Sub";
 return "";
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

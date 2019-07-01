@@ -53,6 +53,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
  //BA.debugLineNum = 39;BA.debugLine="Sub AddToForm(frm As WixForm)";
  //BA.debugLineNum = 40;BA.debugLine="frm.AddItem(Item)";

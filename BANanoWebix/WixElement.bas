@@ -14,7 +14,6 @@ Sub Class_Globals
 	Private Element As Map
 	Public Value As Object
 	Public Elements As List
-	Public Name As String
 	Private Attributes As Map
 	Public TypeOf As String
 	Public Container As String
@@ -82,7 +81,6 @@ Public Sub Initialize(sID As String) As WixElement
 	Styles.Initialize 
 	Element = CreateMap("id":ID)
 	Value = ""
-	Name = ID
 	Container = ""
 	Rows.Initialize
 	Elements.Initialize
@@ -103,6 +101,13 @@ Public Sub Initialize(sID As String) As WixElement
 	Header = ""
 	Body = ""
 	HTMLAttributes.Initialize
+	SetName(ID)
+	Return Me
+End Sub
+
+'set the name
+Sub SetName(n As String) As WixElement
+	SetProperty("name", n)
 	Return Me
 End Sub
 
@@ -324,7 +329,6 @@ Sub Item As Map
 	SetOnContent("container", Container)
 	SetOnContent("type", TypeOf)
 	SetOnContent("view", View)
-	SetOnContent("name", Name)
 	SetOnContent("css", CSS)
 	SetOnContent("value", Value)
 	SetOnContent("align", Align)

@@ -54,6 +54,8 @@ public b4j.example.pggrouplist _pggrouplist = null;
 public b4j.example.pgcontext _pgcontext = null;
 public b4j.example.pggooglemap _pggooglemap = null;
 public b4j.example.pguploader1 _pguploader1 = null;
+public b4j.example.pguploader2 _pguploader2 = null;
+public b4j.example.pguploader3 _pguploader3 = null;
 public String  _addcheckbox(String _eid,String _label,String _value) throws Exception{
  //BA.debugLineNum = 74;BA.debugLine="Sub AddCheckBox(eid As String, label As String, va";
  //BA.debugLineNum = 75;BA.debugLine="elements.Add(El(eid, label, \"checkbox\", value, Nu";
