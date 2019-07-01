@@ -13,6 +13,7 @@ Sub Class_Globals
 	Public DT_SELECT_ROW As String = "row"
 	Public DT_SELECT_CELL As String = "cell"
 	Public DT_SELECT_COLUMN As String = "column"
+	Public Items As List
 End Sub
 
 'Initializes the TreeTableTable sheet
@@ -20,6 +21,7 @@ Public Sub Initialize(eID As String) As WixTreeTable
 	ID = eID.tolowercase
 	TreeTable.Initialize(ID).SetView("treetable")
 	Columns.Initialize 
+	Items.Initialize 
 	Return Me
 End Sub
 
@@ -101,3 +103,23 @@ Sub SetAutoWidth(b As Boolean) As WixTreeTable
 	TreeTable.SetAttr("autowidth", b)
 	Return Me
 End Sub
+
+
+'add item
+Sub AddItem(parentID As String, meID As String, mValue As String, mData As Map, mOpen As Boolean) As WixTreeTable
+	parentID = parentID.tolowercase
+	meID = meID.tolowercase
+	Dim mitem As Map = CreateMap()
+	mitem.Put("id", meID)
+	mitem.Put("value", mValue)
+	mitem.Put("open", mOpen)
+	mitem.Put("parentid", parentID)
+	For Each mKey As String In mData.Keys
+		Dim mValue1 As String = mData.Get(mKey)
+		mKey = mKey.tolowercase
+		mitem.Put(mKey, mValue1)
+	Next
+	Items.Add(mitem)
+	Return Me
+End Sub
+

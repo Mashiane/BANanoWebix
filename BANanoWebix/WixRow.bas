@@ -29,6 +29,14 @@ Sub AddColumns(i As Map) As WixRow
 	Return Me
 End Sub
 
+
+'add to cells
+Sub AddCells(i As Map) As WixRow
+	Row.AddCells(i)
+	Return Me
+End Sub
+
+
 'add to columns
 Sub AddColumnsItem(i As Map) As WixRow
 	AddColumns(i)
@@ -90,5 +98,11 @@ End Sub
 'set width
 Sub SetWidth(w As Int) As WixRow
 	Row.setwidth(w)
+	Return Me
+End Sub
+
+'set template
+Sub SetTemplate(t As String) As WixRow
+	Row.SetTemplate(t)
 	Return Me
 End Sub

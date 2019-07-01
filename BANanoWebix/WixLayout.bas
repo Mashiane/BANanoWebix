@@ -21,3 +21,10 @@ End Sub
 Sub Item As Map
 	Return Layout.item
 End Sub
+
+
+'set template
+Sub SetTemplate(t As String) As WixLayout
+	Layout.SetTemplate(t)
+	Return Me
+End Sub

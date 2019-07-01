@@ -26,6 +26,10 @@ public class wixmultiview extends B4AClass.ImplB4AClass implements BA.SubDelegat
 public String _id = "";
 public b4j.example.wixelement _multiview = null;
 public b4j.example.main _main = null;
+public b4j.example.pgtabbar _pgtabbar = null;
+public b4j.example.pgtree _pgtree = null;
+public b4j.example.pgmenu _pgmenu = null;
+public b4j.example.pglist _pglist = null;
 public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pgdatatable1 _pgdatatable1 = null;
 public b4j.example.pgdatatable _pgdatatable = null;
@@ -40,14 +44,15 @@ public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pglist _pglist = null;
 public b4j.example.pgunitlist _pgunitlist = null;
 public b4j.example.pgpropertysheet _pgpropertysheet = null;
-public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgtreetable _pgtreetable = null;
-public b4j.example.pgmenu _pgmenu = null;
 public b4j.example.pgsidebar _pgsidebar = null;
 public b4j.example.pgcomments _pgcomments = null;
+public b4j.example.pggrouplist _pggrouplist = null;
+public b4j.example.pgcontext _pgcontext = null;
+public b4j.example.pggooglemap _pggooglemap = null;
+public b4j.example.pguploader1 _pguploader1 = null;
 public String  _class_globals() throws Exception{
  //BA.debugLineNum = 2;BA.debugLine="Sub Class_Globals";
  //BA.debugLineNum = 3;BA.debugLine="Public ID As String";
@@ -76,6 +81,33 @@ public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
  //BA.debugLineNum = 25;BA.debugLine="Return MultiView.item";
 if (true) return _multiview._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
  //BA.debugLineNum = 26;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixmultiview  _setanimate(boolean _b) throws Exception{
+ //BA.debugLineNum = 35;BA.debugLine="Sub SetAnimate(b As Boolean) As WixMultiView";
+ //BA.debugLineNum = 36;BA.debugLine="MultiView.SetAttr(\"animate\", b)";
+_multiview._setattr /*b4j.example.wixelement*/ ("animate",(Object)(_b));
+ //BA.debugLineNum = 37;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixmultiview)(this);
+ //BA.debugLineNum = 38;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixmultiview  _setfitbiggest(boolean _b) throws Exception{
+ //BA.debugLineNum = 29;BA.debugLine="Sub SetFitBiggest(b As Boolean) As WixMultiView";
+ //BA.debugLineNum = 30;BA.debugLine="MultiView.SetAttr(\"fitBiggest\", b)";
+_multiview._setattr /*b4j.example.wixelement*/ ("fitBiggest",(Object)(_b));
+ //BA.debugLineNum = 31;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixmultiview)(this);
+ //BA.debugLineNum = 32;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixmultiview  _setkeepviews(boolean _b) throws Exception{
+ //BA.debugLineNum = 41;BA.debugLine="Sub SetkeepViews(b As Boolean) As WixMultiView";
+ //BA.debugLineNum = 42;BA.debugLine="MultiView.SetAttr(\"keepViews\", b)";
+_multiview._setattr /*b4j.example.wixelement*/ ("keepViews",(Object)(_b));
+ //BA.debugLineNum = 43;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixmultiview)(this);
+ //BA.debugLineNum = 44;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixmultiview  _settooltip(String _tt) throws Exception{

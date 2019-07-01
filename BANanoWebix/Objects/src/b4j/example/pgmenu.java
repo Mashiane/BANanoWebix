@@ -28,6 +28,9 @@ public static com.ab.banano.BANanoObject _winux = null;
 public static b4j.example.wixwindow _win = null;
 public static b4j.example.wixsidemenu _sm = null;
 public static b4j.example.main _main = null;
+public static b4j.example.pgtabbar _pgtabbar = null;
+public static b4j.example.pgtree _pgtree = null;
+public static b4j.example.pglist _pglist = null;
 public static b4j.example.pgdataview _pgdataview = null;
 public static b4j.example.pgdatatable1 _pgdatatable1 = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
@@ -42,13 +45,15 @@ public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
 public static b4j.example.pglayout _pglayout = null;
-public static b4j.example.pglist _pglist = null;
 public static b4j.example.pgunitlist _pgunitlist = null;
 public static b4j.example.pgpropertysheet _pgpropertysheet = null;
-public static b4j.example.pgtree _pgtree = null;
 public static b4j.example.pgtreetable _pgtreetable = null;
 public static b4j.example.pgsidebar _pgsidebar = null;
 public static b4j.example.pgcomments _pgcomments = null;
+public static b4j.example.pggrouplist _pggrouplist = null;
+public static b4j.example.pgcontext _pgcontext = null;
+public static b4j.example.pggooglemap _pggooglemap = null;
+public static b4j.example.pguploader1 _pguploader1 = null;
 public static String  _createsidemenu() throws Exception{
  //BA.debugLineNum = 28;BA.debugLine="Sub CreateSideMenu";
  //BA.debugLineNum = 30;BA.debugLine="sm.Initialize(\"sm\")";
@@ -61,8 +66,8 @@ _sm._additem /*b4j.example.wixsidemenu*/ ("new","New","","mdi mdi-account","2","
 _sm._additem /*b4j.example.wixsidemenu*/ ("open","Open","http://www.b4x.com","mdi mdi-cube","","");
  //BA.debugLineNum = 34;BA.debugLine="sm.AddItem(\"close\", \"Close\", \"\", \"mdi mdi-databas";
 _sm._additem /*b4j.example.wixsidemenu*/ ("close","Close","","mdi mdi-database","3","");
- //BA.debugLineNum = 35;BA.debugLine="smUX = pg.UX(sm.Item)";
-_smux = _pg._ux /*com.ab.banano.BANanoObject*/ (_sm._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
+ //BA.debugLineNum = 35;BA.debugLine="smUX = pg.AddSideMenu(sm)";
+_smux = _pg._addsidemenu /*com.ab.banano.BANanoObject*/ (_sm);
  //BA.debugLineNum = 36;BA.debugLine="End Sub";
 return "";
 }
@@ -86,14 +91,15 @@ _win._toolbar /*b4j.example.wixtoolbar*/ ._createicon /*b4j.example.wixicon*/ ("
 _win._settoolbar /*b4j.example.wixwindow*/ (anywheresoftware.b4a.keywords.Common.True);
  //BA.debugLineNum = 22;BA.debugLine="win.SetTemplate(\"<br>We can show HTML here, or ot";
 _win._settemplate /*b4j.example.wixwindow*/ ("<br>We can show HTML here, or other Webix components - we could, in fact, build an entire application UI in a window!");
- //BA.debugLineNum = 25;BA.debugLine="winUX = pg.UX(win.Item)";
-_winux = _pg._ux /*com.ab.banano.BANanoObject*/ (_win._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
+ //BA.debugLineNum = 25;BA.debugLine="winUX = pg.AddWindow(win)";
+_winux = _pg._addwindow /*com.ab.banano.BANanoObject*/ (_win);
  //BA.debugLineNum = 26;BA.debugLine="End Sub";
 return "";
 }
 public static String  _init() throws Exception{
 b4j.example.wixtoolbar _tblbar = null;
 b4j.example.wixmenu _menu = null;
+anywheresoftware.b4a.objects.collections.List _data = null;
 b4j.example.wixmenu _menu1 = null;
 anywheresoftware.b4a.objects.collections.Map _meid = null;
  //BA.debugLineNum = 38;BA.debugLine="Sub Init";
@@ -141,96 +147,101 @@ _menu._additem /*b4j.example.wixmenu*/ ("","ft","Fire Torpedoes","","","","");
 _menu._additem /*b4j.example.wixmenu*/ ("","win","Window","","","","");
  //BA.debugLineNum = 67;BA.debugLine="menu.AddItem(\"\", \"iframe\", \"iFrame\", \"\",\"\",\"\",\"\")";
 _menu._additem /*b4j.example.wixmenu*/ ("","iframe","iFrame","","","","");
- //BA.debugLineNum = 68;BA.debugLine="pg.Page.AddRows(menu.Item)";
+ //BA.debugLineNum = 69;BA.debugLine="Dim data As List = pg.Unflatten(menu.Items,\"subme";
+_data = new anywheresoftware.b4a.objects.collections.List();
+_data = _pg._unflatten /*anywheresoftware.b4a.objects.collections.List*/ (_menu._items /*anywheresoftware.b4a.objects.collections.List*/ ,"submenu");
+ //BA.debugLineNum = 70;BA.debugLine="menu.setdata(data)";
+_menu._setdata /*b4j.example.wixmenu*/ (_data);
+ //BA.debugLineNum = 71;BA.debugLine="pg.Page.AddRows(menu.Item)";
 _pg._page /*b4j.example.wixelement*/ ._addrows /*b4j.example.wixelement*/ (_menu._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 72;BA.debugLine="pg.Page.AddRows(CreateMap())";
+ //BA.debugLineNum = 75;BA.debugLine="pg.Page.AddRows(CreateMap())";
 _pg._page /*b4j.example.wixelement*/ ._addrows /*b4j.example.wixelement*/ (anywheresoftware.b4a.keywords.Common.createMap(new Object[] {}));
- //BA.debugLineNum = 75;BA.debugLine="Dim menu1 As WixMenu";
+ //BA.debugLineNum = 78;BA.debugLine="Dim menu1 As WixMenu";
 _menu1 = new b4j.example.wixmenu();
- //BA.debugLineNum = 76;BA.debugLine="menu1.Initialize(\"menu1\")";
+ //BA.debugLineNum = 79;BA.debugLine="menu1.Initialize(\"menu1\")";
 _menu1._initialize /*b4j.example.wixmenu*/ (ba,"menu1");
- //BA.debugLineNum = 78;BA.debugLine="menu1.SetItemSubSign(True)";
+ //BA.debugLineNum = 81;BA.debugLine="menu1.SetItemSubSign(True)";
 _menu1._setitemsubsign /*b4j.example.wixmenu*/ (anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 79;BA.debugLine="menu1.SetSelect(True)";
+ //BA.debugLineNum = 82;BA.debugLine="menu1.SetSelect(True)";
 _menu1._setselect /*b4j.example.wixmenu*/ (anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 80;BA.debugLine="menu1.setWidth(180)";
+ //BA.debugLineNum = 83;BA.debugLine="menu1.setWidth(180)";
 _menu1._setwidth /*b4j.example.wixmenu*/ ((int) (180));
- //BA.debugLineNum = 81;BA.debugLine="menu1.SetHeight(300)";
+ //BA.debugLineNum = 84;BA.debugLine="menu1.SetHeight(300)";
 _menu1._setheight /*b4j.example.wixmenu*/ ((int) (300));
- //BA.debugLineNum = 83;BA.debugLine="menu1.SetLayoutY(\"\")";
+ //BA.debugLineNum = 86;BA.debugLine="menu1.SetLayoutY(\"\")";
 _menu1._setlayouty /*b4j.example.wixmenu*/ ("");
- //BA.debugLineNum = 84;BA.debugLine="menu1.AddItem(\"\", \"mt\", \"Man Tactical\",\"\",\"\",\"3\",";
+ //BA.debugLineNum = 87;BA.debugLine="menu1.AddItem(\"\", \"mt\", \"Man Tactical\",\"\",\"\",\"3\",";
 _menu1._additem /*b4j.example.wixmenu*/ ("","mt","Man Tactical","","","3","");
- //BA.debugLineNum = 85;BA.debugLine="menu1.AddItem(\"mt\", \"mtw\", \"Worf\", \"\",\"\",\"\",\"\")";
+ //BA.debugLineNum = 88;BA.debugLine="menu1.AddItem(\"mt\", \"mtw\", \"Worf\", \"\",\"\",\"\",\"\")";
 _menu1._additem /*b4j.example.wixmenu*/ ("mt","mtw","Worf","","","","");
- //BA.debugLineNum = 86;BA.debugLine="menu1.AddItem(\"mt\", \"mtd\", \"Data\", \"\",\"\",\"\",\"\")";
+ //BA.debugLineNum = 89;BA.debugLine="menu1.AddItem(\"mt\", \"mtd\", \"Data\", \"\",\"\",\"\",\"\")";
 _menu1._additem /*b4j.example.wixmenu*/ ("mt","mtd","Data","","","","");
- //BA.debugLineNum = 87;BA.debugLine="menu1.AddSeparator(\"mt\")";
+ //BA.debugLineNum = 90;BA.debugLine="menu1.AddSeparator(\"mt\")";
 _menu1._addseparator /*b4j.example.wixmenu*/ ("mt");
- //BA.debugLineNum = 88;BA.debugLine="menu1.AddItem(\"mt\", \"mtr\", \"Riker\", \"\",\"\",\"\",\"\")";
+ //BA.debugLineNum = 91;BA.debugLine="menu1.AddItem(\"mt\", \"mtr\", \"Riker\", \"\",\"\",\"\",\"\")";
 _menu1._additem /*b4j.example.wixmenu*/ ("mt","mtr","Riker","","","","");
- //BA.debugLineNum = 89;BA.debugLine="menu1.AddItem(\"\", \"fp\", \"Fire Phasers\",\"\",\"\",\"\",\"";
+ //BA.debugLineNum = 92;BA.debugLine="menu1.AddItem(\"\", \"fp\", \"Fire Phasers\",\"\",\"\",\"\",\"";
 _menu1._additem /*b4j.example.wixmenu*/ ("","fp","Fire Phasers","","","","");
- //BA.debugLineNum = 90;BA.debugLine="menu1.AddItem(\"\", \"ft\", \"Fire Torpedoes\", \"\",\"\",\"";
+ //BA.debugLineNum = 93;BA.debugLine="menu1.AddItem(\"\", \"ft\", \"Fire Torpedoes\", \"\",\"\",\"";
 _menu1._additem /*b4j.example.wixmenu*/ ("","ft","Fire Torpedoes","","","","");
- //BA.debugLineNum = 91;BA.debugLine="menu1.AddItem(\"\", \"win\", \"Window\", \"\",\"\",\"\",\"\")";
+ //BA.debugLineNum = 94;BA.debugLine="menu1.AddItem(\"\", \"win\", \"Window\", \"\",\"\",\"\",\"\")";
 _menu1._additem /*b4j.example.wixmenu*/ ("","win","Window","","","","");
- //BA.debugLineNum = 92;BA.debugLine="menu1.AddItem(\"\", \"iframe\", \"iFrame\", \"\",\"\",\"\",\"\"";
+ //BA.debugLineNum = 95;BA.debugLine="menu1.AddItem(\"\", \"iframe\", \"iFrame\", \"\",\"\",\"\",\"\"";
 _menu1._additem /*b4j.example.wixmenu*/ ("","iframe","iFrame","","","","");
- //BA.debugLineNum = 93;BA.debugLine="pg.Page.AddRows(menu1.Item)";
+ //BA.debugLineNum = 96;BA.debugLine="pg.Page.AddRows(menu1.Item)";
 _pg._page /*b4j.example.wixelement*/ ._addrows /*b4j.example.wixelement*/ (_menu1._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 109;BA.debugLine="pg.ui";
+ //BA.debugLineNum = 112;BA.debugLine="pg.ui";
 _pg._ui /*String*/ ();
- //BA.debugLineNum = 111;BA.debugLine="Dim meID As Map";
+ //BA.debugLineNum = 114;BA.debugLine="Dim meID As Map";
 _meid = new anywheresoftware.b4a.objects.collections.Map();
- //BA.debugLineNum = 112;BA.debugLine="pg.onMenuItemClick(\"menu\", BANano.CallBack(Me, \"i";
+ //BA.debugLineNum = 115;BA.debugLine="pg.onMenuItemClick(\"menu\", BANano.CallBack(Me, \"i";
 _pg._onmenuitemclick /*String*/ ("menu",(com.ab.banano.BANanoObject)(_banano.CallBack(pgmenu.getObject(),"itemClick",anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(_meid.getObject())}))));
- //BA.debugLineNum = 113;BA.debugLine="pg.onMenuItemClick(\"menu1\", BANano.CallBack(Me, \"";
+ //BA.debugLineNum = 116;BA.debugLine="pg.onMenuItemClick(\"menu1\", BANano.CallBack(Me, \"";
 _pg._onmenuitemclick /*String*/ ("menu1",(com.ab.banano.BANanoObject)(_banano.CallBack(pgmenu.getObject(),"itemClick",anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(_meid.getObject())}))));
- //BA.debugLineNum = 115;BA.debugLine="End Sub";
+ //BA.debugLineNum = 118;BA.debugLine="End Sub";
 return "";
 }
 public static String  _itemclick(String _meid) throws Exception{
- //BA.debugLineNum = 144;BA.debugLine="Sub itemClick(meid As String)";
- //BA.debugLineNum = 145;BA.debugLine="Select Case meid";
+ //BA.debugLineNum = 147;BA.debugLine="Sub itemClick(meid As String)";
+ //BA.debugLineNum = 148;BA.debugLine="Select Case meid";
 switch (BA.switchObjectToInt(_meid,"iframe","win","mt")) {
 case 0: {
  break; }
 case 1: {
- //BA.debugLineNum = 148;BA.debugLine="CreateWindow";
+ //BA.debugLineNum = 151;BA.debugLine="CreateWindow";
 _createwindow();
- //BA.debugLineNum = 149;BA.debugLine="pg.Show(winUX)";
+ //BA.debugLineNum = 152;BA.debugLine="pg.Show(winUX)";
 _pg._show /*String*/ (_winux);
- //BA.debugLineNum = 151;BA.debugLine="pg.OnItemClick(win.ToolBarID, BANano.CallBack(Me";
+ //BA.debugLineNum = 154;BA.debugLine="pg.OnItemClick(win.ToolBarID, BANano.CallBack(Me";
 _pg._onitemclick /*String*/ (_win._toolbarid /*String*/ ,(com.ab.banano.BANanoObject)(_banano.CallBack(pgmenu.getObject(),"windowClick",anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(_meid)}))));
  break; }
 case 2: {
- //BA.debugLineNum = 153;BA.debugLine="pg.ShowPopUp(\"I'm loving Webix Intergrations!\",";
+ //BA.debugLineNum = 156;BA.debugLine="pg.ShowPopUp(\"I'm loving Webix Intergrations!\",";
 _pg._showpopup /*String*/ ("I'm loving Webix Intergrations!",(int) (75),(int) (375),"center");
  break; }
 default: {
- //BA.debugLineNum = 155;BA.debugLine="pg.Message(meid)";
+ //BA.debugLineNum = 158;BA.debugLine="pg.Message(meid)";
 _pg._message /*String*/ (_meid);
  break; }
 }
 ;
- //BA.debugLineNum = 157;BA.debugLine="End Sub";
+ //BA.debugLineNum = 160;BA.debugLine="End Sub";
 return "";
 }
 public static String  _openmenu(String _meid) throws Exception{
 boolean _bvisible = false;
- //BA.debugLineNum = 117;BA.debugLine="Sub OpenMenu(meid As String)";
- //BA.debugLineNum = 119;BA.debugLine="Dim bVisible As Boolean = pg.IsVisible(smUX)";
+ //BA.debugLineNum = 120;BA.debugLine="Sub OpenMenu(meid As String)";
+ //BA.debugLineNum = 122;BA.debugLine="Dim bVisible As Boolean = pg.IsVisible(smUX)";
 _bvisible = _pg._isvisible /*boolean*/ (_smux);
- //BA.debugLineNum = 120;BA.debugLine="If bVisible Then";
+ //BA.debugLineNum = 123;BA.debugLine="If bVisible Then";
 if (_bvisible) { 
- //BA.debugLineNum = 121;BA.debugLine="pg.Hide(smUX)";
+ //BA.debugLineNum = 124;BA.debugLine="pg.Hide(smUX)";
 _pg._hide /*String*/ (_smux);
  }else {
- //BA.debugLineNum = 123;BA.debugLine="pg.Show(smUX)";
+ //BA.debugLineNum = 126;BA.debugLine="pg.Show(smUX)";
 _pg._show /*String*/ (_smux);
  };
- //BA.debugLineNum = 128;BA.debugLine="End Sub";
+ //BA.debugLineNum = 131;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
@@ -251,27 +262,27 @@ _sm = new b4j.example.wixsidemenu();
 return "";
 }
 public static String  _sideclick(String _meid) throws Exception{
- //BA.debugLineNum = 130;BA.debugLine="Sub sideClick(meid As String)";
- //BA.debugLineNum = 131;BA.debugLine="pg.Message(meid)";
+ //BA.debugLineNum = 133;BA.debugLine="Sub sideClick(meid As String)";
+ //BA.debugLineNum = 134;BA.debugLine="pg.Message(meid)";
 _pg._message /*String*/ (_meid);
- //BA.debugLineNum = 132;BA.debugLine="End Sub";
+ //BA.debugLineNum = 135;BA.debugLine="End Sub";
 return "";
 }
 public static String  _windowclick(String _meid) throws Exception{
- //BA.debugLineNum = 135;BA.debugLine="Sub windowClick(meID As String)";
- //BA.debugLineNum = 136;BA.debugLine="Select Case meID";
+ //BA.debugLineNum = 138;BA.debugLine="Sub windowClick(meID As String)";
+ //BA.debugLineNum = 139;BA.debugLine="Select Case meID";
 switch (BA.switchObjectToInt(_meid,"icnclose")) {
 case 0: {
- //BA.debugLineNum = 138;BA.debugLine="pg.Close(winUX)";
+ //BA.debugLineNum = 141;BA.debugLine="pg.Close(winUX)";
 _pg._close /*String*/ (_winux);
  break; }
 default: {
- //BA.debugLineNum = 140;BA.debugLine="pg.Message(meID)";
+ //BA.debugLineNum = 143;BA.debugLine="pg.Message(meID)";
 _pg._message /*String*/ (_meid);
  break; }
 }
 ;
- //BA.debugLineNum = 142;BA.debugLine="End Sub";
+ //BA.debugLineNum = 145;BA.debugLine="End Sub";
 return "";
 }
 }

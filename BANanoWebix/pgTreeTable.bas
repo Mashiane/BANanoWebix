@@ -21,22 +21,22 @@ Sub Init
 	prop.SetAutoWidth(True).SetEditable(True)
 	'
 	Dim c1 As WixDataColumn
-	c1.Initialize1(prop, "id").SetHeader(" ").Setwidth(50).SetSort("string").pop1
+	c1.Initialize1(prop, "id").SetHeader("#").Setwidth(50).SetSort("string").pop1
 	' 
 	Dim c2 As WixDataColumn
 	c2.Initialize1(prop, "value").Setheader("Candy Bars").SetTemplate("{common.treetable()} #value#").Setwidth(300).Setsort("string").Pop1
 	'
 	Dim c3 As WixDataColumn
 	c3.Initialize1(prop, "nutsornot").Setheader("Nuts?").Setwidth(180).SetSort("string").Pop1
-	'	
-	Dim data As List
-	data.Initialize
 	'
-	Dim dummy As UOENowData
-	dummy.Initialize 
-	data = dummy.GetRecordsWithStructure(CreateMap("id": "id", "value":"name", "open": dummy.DT_YES_NO, "nutsornot": "name"), 10)
+	prop.AddItem("", "1", "Hershey", CreateMap(), True)
+	prop.AddItem("1", "1.1", "Almond Joy", CreateMap("nutsOrNot" : "Has Nuts"),False)
+	prop.AddItem("1", "1.2", "Hershey's Kisses", CreateMap("nutsOrNot" : "No Nuts"), True)
+	prop.AddItem("1.2", "1.2.1", "Milk Chocolate With Almonds", CreateMap("nutsOrNot" : "Oh Yeah, Except These"), False)
+	'
+	Dim data As List = pg.Unflatten(prop.Items, "data")
 	prop.SetData(data)
-	
+	'
 	pg.Page.AddRows(prop.Item)
 	'
 	pg.ui

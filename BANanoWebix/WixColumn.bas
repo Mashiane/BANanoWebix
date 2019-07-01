@@ -67,3 +67,9 @@ Sub SetWidth(w As Int) As WixColumn
 	Column.SetWidth(w)
 	Return Me
 End Sub
+
+'set template
+Sub SetTemplate(t As String) As WixColumn
+	Column.SetTemplate(t)
+	Return Me
+End Sub

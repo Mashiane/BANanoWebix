@@ -26,6 +26,10 @@ public class wixlayout extends B4AClass.ImplB4AClass implements BA.SubDelegator{
 public String _id = "";
 public b4j.example.wixelement _layout = null;
 public b4j.example.main _main = null;
+public b4j.example.pgtabbar _pgtabbar = null;
+public b4j.example.pgtree _pgtree = null;
+public b4j.example.pgmenu _pgmenu = null;
+public b4j.example.pglist _pglist = null;
 public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pgdatatable1 _pgdatatable1 = null;
 public b4j.example.pgdatatable _pgdatatable = null;
@@ -40,14 +44,15 @@ public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pglist _pglist = null;
 public b4j.example.pgunitlist _pgunitlist = null;
 public b4j.example.pgpropertysheet _pgpropertysheet = null;
-public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgtreetable _pgtreetable = null;
-public b4j.example.pgmenu _pgmenu = null;
 public b4j.example.pgsidebar _pgsidebar = null;
 public b4j.example.pgcomments _pgcomments = null;
+public b4j.example.pggrouplist _pggrouplist = null;
+public b4j.example.pgcontext _pgcontext = null;
+public b4j.example.pggooglemap _pggooglemap = null;
+public b4j.example.pguploader1 _pguploader1 = null;
 public String  _class_globals() throws Exception{
  //BA.debugLineNum = 2;BA.debugLine="Sub Class_Globals";
  //BA.debugLineNum = 3;BA.debugLine="Public ID As String";
@@ -74,6 +79,15 @@ public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
  //BA.debugLineNum = 16;BA.debugLine="Return Layout.item";
 if (true) return _layout._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
  //BA.debugLineNum = 17;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixlayout  _settemplate(String _t) throws Exception{
+ //BA.debugLineNum = 21;BA.debugLine="Sub SetTemplate(t As String) As WixLayout";
+ //BA.debugLineNum = 22;BA.debugLine="Layout.SetTemplate(t)";
+_layout._settemplate /*b4j.example.wixelement*/ ((Object)(_t));
+ //BA.debugLineNum = 23;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixlayout)(this);
+ //BA.debugLineNum = 24;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

@@ -30,3 +30,21 @@ End Sub
 Sub Item As Map
 	Return MultiView.item
 End Sub
+
+'set fitBiggest
+Sub SetFitBiggest(b As Boolean) As WixMultiView
+	MultiView.SetAttr("fitBiggest", b)
+	Return Me
+End Sub
+
+'set animate
+Sub SetAnimate(b As Boolean) As WixMultiView
+	MultiView.SetAttr("animate", b)
+	Return Me
+End Sub
+
+'set keepViews
+Sub SetkeepViews(b As Boolean) As WixMultiView
+	MultiView.SetAttr("keepViews", b)
+	Return Me
+End Sub

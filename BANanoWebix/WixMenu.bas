@@ -8,9 +8,8 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Menu As WixElement
-	Private Data As List
 	Private typeof As Map
-	Private menus As Map
+	Public Items As List
 	Private sepCount As Int
 End Sub
 
@@ -18,9 +17,8 @@ End Sub
 Public Sub Initialize(iID As String) As WixMenu
 	ID = iID.tolowercase
 	Menu.Initialize(iID).SetView("menu")
-	Data.Initialize 
 	typeof = CreateMap()
-	menus.Initialize
+	Items.Initialize
 	sepCount = 0
 	Return Me
 End Sub
@@ -67,7 +65,7 @@ Sub SetAutoWidth(b As Boolean) As WixMenu
 	Return Me
 End Sub
 
-'add menu item
+'add item
 Sub AddItem(parentID As String, meID As String, mValue As String, mhref As String, mIcon As String, badge As String, target As String) As WixMenu
 	parentID = parentID.tolowercase
 	meID = meID.tolowercase
@@ -78,19 +76,8 @@ Sub AddItem(parentID As String, meID As String, mValue As String, mhref As Strin
 	mitem.Put("badge", badge)
 	mitem.Put("target", target)
 	mitem.Put("icon", mIcon)
-	If parentID = "" Then
-		Dim submenu As List
-		submenu.Initialize 
-		mitem.Put("submenu", submenu)
-		menus.Put(meID,mitem)
-	Else
-		'get existing menu
-		Dim oldmenu As Map = menus.Get(parentID)
-		Dim submenus As List = oldmenu.Get("submenu")
-		submenus.Add(mitem)
-		oldmenu.Put("submenu", submenus)
-		menus.Put(parentID,oldmenu)
-	End If	
+	mitem.Put("parentid", parentID)
+	Items.Add(mitem)
 	Return Me
 End Sub
 
@@ -100,20 +87,10 @@ Sub AddSeparator(parentID As String) As WixMenu
 	sepCount = sepCount & ""
 	Dim meID As String = "sep" & sepCount
 	Dim mItem As Map = CreateMap()
+	mItem.Put("id", meID)
+	mItem.Put("parentid", parentID)
 	mItem.Put("$template", "Separator")
-	If parentID = "" Then
-		Dim submenu As List
-		submenu.Initialize
-		mItem.Put("submenu", submenu)
-		menus.Put(meID,mItem)
-	Else
-		'get existing menu
-		Dim oldmenu As Map = menus.Get(parentID)
-		Dim submenus As List = oldmenu.Get("submenu")
-		submenus.Add(mItem)
-		oldmenu.Put("submenu", submenus)
-		menus.Put(parentID,oldmenu)
-	End If
+	Items.Add(mItem)
 	Return Me	
 End Sub
 
@@ -124,11 +101,6 @@ End Sub
 
 'return the item
 Sub Item As Map
-	Data.clear
-	For Each menuitem As Map In menus.Values
-		Data.Add(menuitem)
-	Next
-	Menu.SetData(Data)
 	Menu.SetAttr("type", typeof)
 	Return Menu.item
 End Sub
@@ -139,3 +111,7 @@ Sub SetSelect(b As Boolean) As WixMenu
 	Return Me
 End Sub
 
+Sub SetData(d As List) As WixMenu
+	Menu.SetAttr("data", d)
+	Return Me
+End Sub

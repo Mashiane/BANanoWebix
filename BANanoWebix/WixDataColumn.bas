@@ -46,6 +46,12 @@ End Sub
 Sub Pop1
 	Dim columns As List = tr.columns
 	columns.add(Item)
+End Sub
+
+'add to treetable
+Sub Pop2(tbl As WixDataTable)
+	Dim columns As List = tbl.columns
+	columns.add(Item)
 End Sub 
 
 'set options

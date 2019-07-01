@@ -19,6 +19,12 @@ Public Sub Initialize(bID As String) As WixDateTimePicker
 	Return Me
 End Sub
 
+'set time only
+Sub SetTypeTime(b As Boolean) As WixDateTimePicker   'ignore
+	DateTimePicker.SetProperty("type", "time")
+	Return Me
+End Sub
+
 'editable
 Sub SetEditable(b As Boolean) As WixDateTimePicker
 	DateTimePicker.SetProperty("editable", b)

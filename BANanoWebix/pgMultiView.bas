@@ -57,7 +57,7 @@ Sub Init
 	'
 	Dim tb As WixTabView
 	tb.Initialize("")
-	tb.SetMultiViewAnimate(True)
+	tb.SetAnimate(True)
 	tb.SetTabBarClose(True)
 	tb.AddTab("","Entry","Some form controls here",CreateMap("css":"entry"))
 	tb.AddTab("","Results","Some results of data entry here",CreateMap("css":"results"))

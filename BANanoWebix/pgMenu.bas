@@ -28,7 +28,7 @@ Sub CreateWindow
 	win.SetTemplate("<br>We can show HTML here, or other Webix components - we could, in fact, build an entire application UI in a window!")
 	'win.SetFullScreen(True)
 	'
-	winUX = pg.UX(win.Item)
+	winUX = pg.AddWindow(win)
 End Sub
 
 Sub CreateSideMenu
@@ -38,7 +38,7 @@ Sub CreateSideMenu
 	sm.AddItem("new", "New", "", "mdi mdi-account","2","")
 	sm.AddItem("open", "Open", "http://www.b4x.com", "mdi mdi-cube","","")
 	sm.AddItem("close", "Close", "", "mdi mdi-database","3","")
-	smUX = pg.UX(sm.Item)
+	smUX = pg.AddSideMenu(sm)
 End Sub
 
 Sub Init
@@ -71,6 +71,9 @@ Sub Init
 	menu.AddItem("", "ft", "Fire Torpedoes", "","","","")
 	menu.AddItem("", "win", "Window", "","","","")
 	menu.AddItem("", "iframe", "iFrame", "","","","")
+	'
+	Dim data As List = pg.Unflatten(menu.Items,"submenu")
+	menu.setdata(data)
 	pg.Page.AddRows(menu.Item)
 	
 	

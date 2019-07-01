@@ -10,6 +10,9 @@ Sub Class_Globals
 	Public ID As String
 	Private Elements As List
 	Private Columns As List
+	Private Rules As Map
+	Private webix As BANanoObject
+	Private Rows As List
 End Sub
 
 'initialize the form
@@ -18,8 +21,40 @@ Public Sub Initialize(fID As String) As WixForm
 	Form.Initialize(fID).SetView("form")
 	Elements.Initialize
 	Columns.Initialize  
+	Rules.Initialize 
+	webix.Initialize("webix") 
+	Rows.Initialize 
 	Return Me
 End Sub
+
+Sub AddRuleIsEmail(eID As String) As WixForm
+	eID = eID.tolowercase
+	Dim ie As String = webix.GetField("rules").GetField("isEmail").result
+	Rules.Put(eID, ie)
+	Return Me
+End Sub
+
+Sub AddRuleIsNotEmpty(eID As String) As WixForm
+	eID = eID.tolowercase
+	Dim ie As String = webix.GetField("rules").GetField("isNotEmpty").result
+	Rules.Put(eID, ie)
+	Return Me
+End Sub
+
+Sub AddRuleIsChecked(eID As String) As WixForm
+	eID = eID.tolowercase
+	Dim ie As String = webix.GetField("rules").GetField("isChecked").result
+	Rules.Put(eID, ie)
+	Return Me
+End Sub
+
+Sub AddRuleIsNumber(eID As String) As WixForm
+	eID = eID.tolowercase
+	Dim ie As String = webix.GetField("rules").GetField("isNumber").result
+	Rules.Put(eID, ie)
+	Return Me
+End Sub
+
 
 Sub SetScroll(b As Boolean) As WixForm
 	Form.SetProperty("scroll", b)
@@ -47,6 +82,11 @@ Sub AddColumns(i As Map)
 	Columns.Add(i)
 End Sub
 
+'add an item to the rows
+Sub AddRows(i As Map)
+	Rows.Add(i)
+End Sub
+
 'add to column
 Sub AddToColumn(c As WixColumn)
 	c.AddItem(Item)
@@ -71,10 +111,20 @@ End Sub
 
 'return the item
 Sub Item As Map
-	Dim cols As Map = CreateMap()
-	cols.Put("cols", Columns)
-	Elements.Add(cols)
-	Form.SetProperty("elements", Elements)
+	If Columns.Size > 0 Then
+		Dim cols As Map = CreateMap()
+		cols.Put("cols", Columns)
+		Elements.Add(cols)
+	End If
+	If Elements.Size > 0 Then
+		Form.SetProperty("elements", Elements)
+	End If
+	If Rules.Size > 0 Then
+		Form.SetProperty("rules", Rules)
+	End If
+	If Rows.Size > 0 Then
+		Form.SetAttr("rows", Rows)
+	End If
 	Return Form.item
 End Sub
 

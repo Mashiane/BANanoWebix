@@ -24,6 +24,9 @@ static {
 public static b4j.example.wixpage _pg = null;
 public static com.ab.banano.BANano _banano = null;
 public static b4j.example.main _main = null;
+public static b4j.example.pgtabbar _pgtabbar = null;
+public static b4j.example.pgmenu _pgmenu = null;
+public static b4j.example.pglist _pglist = null;
 public static b4j.example.pgdataview _pgdataview = null;
 public static b4j.example.pgdatatable1 _pgdatatable1 = null;
 public static b4j.example.pgdatatable _pgdatatable = null;
@@ -38,13 +41,15 @@ public static b4j.example.pglayouts1 _pglayouts1 = null;
 public static b4j.example.pglayouts2 _pglayouts2 = null;
 public static b4j.example.pglayouts _pglayouts = null;
 public static b4j.example.pglayout _pglayout = null;
-public static b4j.example.pglist _pglist = null;
 public static b4j.example.pgunitlist _pgunitlist = null;
 public static b4j.example.pgpropertysheet _pgpropertysheet = null;
 public static b4j.example.pgtreetable _pgtreetable = null;
-public static b4j.example.pgmenu _pgmenu = null;
 public static b4j.example.pgsidebar _pgsidebar = null;
 public static b4j.example.pgcomments _pgcomments = null;
+public static b4j.example.pggrouplist _pggrouplist = null;
+public static b4j.example.pgcontext _pgcontext = null;
+public static b4j.example.pggooglemap _pggooglemap = null;
+public static b4j.example.pguploader1 _pguploader1 = null;
 public static String  _init() throws Exception{
 b4j.example.wixtree _prop = null;
 anywheresoftware.b4a.objects.collections.List _data = null;
@@ -78,23 +83,42 @@ _data.Add((Object)(anywheresoftware.b4a.keywords.Common.createMap(new Object[] {
 _data.Add((Object)(anywheresoftware.b4a.keywords.Common.createMap(new Object[] {(Object)("id"),(Object)(5),(Object)("value"),(Object)("Pulp fiction"),(Object)("year"),(Object)(1994),(Object)("votes"),(Object)(533848),(Object)("rating"),(Object)(8.9),(Object)("rank"),(Object)(5)}).getObject()));
  //BA.debugLineNum = 25;BA.debugLine="data.Add(CreateMap(\"id\":6, \"value\":\"12 Angry Men\"";
 _data.Add((Object)(anywheresoftware.b4a.keywords.Common.createMap(new Object[] {(Object)("id"),(Object)(6),(Object)("value"),(Object)("12 Angry Men"),(Object)("year"),(Object)(1957),(Object)("votes"),(Object)(164558),(Object)("rating"),(Object)(8.9),(Object)("rank"),(Object)(6)}).getObject()));
- //BA.debugLineNum = 27;BA.debugLine="prop.SetData(data)";
+ //BA.debugLineNum = 28;BA.debugLine="prop.AddItem(\"\",\"songs\",\"Songs\",\"\",\"\",\"2\",\"\",True";
+_prop._additem /*b4j.example.wixtree*/ ("","songs","Songs","","","2","",anywheresoftware.b4a.keywords.Common.True);
+ //BA.debugLineNum = 29;BA.debugLine="prop.AddItem(\"songs\", \"metallica\", \"Metallica\",\"\"";
+_prop._additem /*b4j.example.wixtree*/ ("songs","metallica","Metallica","","","3","",anywheresoftware.b4a.keywords.Common.True);
+ //BA.debugLineNum = 30;BA.debugLine="prop.AddItem(\"metallica\", \"es\", \"Enter Sandman\",\"";
+_prop._additem /*b4j.example.wixtree*/ ("metallica","es","Enter Sandman","","","","",anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 31;BA.debugLine="prop.AddItem(\"metallica\", \"rhl\", \"Ride the Lighni";
+_prop._additem /*b4j.example.wixtree*/ ("metallica","rhl","Ride the Lighning","","","","",anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 32;BA.debugLine="prop.AddItem(\"metallica\", \"hero\", \"Hero of the Da";
+_prop._additem /*b4j.example.wixtree*/ ("metallica","hero","Hero of the Day","","","","",anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 34;BA.debugLine="prop.AddItem(\"songs\", \"billyjoel\", \"Billy Joel\",\"";
+_prop._additem /*b4j.example.wixtree*/ ("songs","billyjoel","Billy Joel","","","2","",anywheresoftware.b4a.keywords.Common.True);
+ //BA.debugLineNum = 35;BA.debugLine="prop.AddItem(\"billyjoel\", \"mo\", \"Movin' Out\",\"\",\"";
+_prop._additem /*b4j.example.wixtree*/ ("billyjoel","mo","Movin' Out","","","","",anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 36;BA.debugLine="prop.AddItem(\"billyjoel\", \"pm\", \"Piano Man\",\"\",\"\"";
+_prop._additem /*b4j.example.wixtree*/ ("billyjoel","pm","Piano Man","","","","",anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 38;BA.debugLine="Dim data As List = pg.Unflatten(prop.Items, \"data";
+_data = new anywheresoftware.b4a.objects.collections.List();
+_data = _pg._unflatten /*anywheresoftware.b4a.objects.collections.List*/ (_prop._items /*anywheresoftware.b4a.objects.collections.List*/ ,"data");
+ //BA.debugLineNum = 39;BA.debugLine="prop.SetData(data)";
 _prop._setdata /*b4j.example.wixtree*/ (_data);
- //BA.debugLineNum = 29;BA.debugLine="pg.Page.AddRows(prop.Item)";
+ //BA.debugLineNum = 41;BA.debugLine="pg.Page.AddRows(prop.Item)";
 _pg._page /*b4j.example.wixelement*/ ._addrows /*b4j.example.wixelement*/ (_prop._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 32;BA.debugLine="pg.ui";
+ //BA.debugLineNum = 44;BA.debugLine="pg.ui";
 _pg._ui /*String*/ ();
- //BA.debugLineNum = 34;BA.debugLine="pg.AddNode(\"tree\", CreateMap(\"id\":7, \"value\":\"Mas";
+ //BA.debugLineNum = 46;BA.debugLine="pg.AddNode(\"tree\", CreateMap(\"id\":7, \"value\":\"Mas";
 _pg._addnode /*String*/ ("tree",anywheresoftware.b4a.keywords.Common.createMap(new Object[] {(Object)("id"),(Object)(7),(Object)("value"),(Object)("Mashy"),(Object)("year"),(Object)(1973)}));
- //BA.debugLineNum = 35;BA.debugLine="pg.AddChildNode(\"tree\",\"7\", CreateMap(\"id\":8,\"val";
+ //BA.debugLineNum = 47;BA.debugLine="pg.AddChildNode(\"tree\",\"7\", CreateMap(\"id\":8,\"val";
 _pg._addchildnode /*String*/ ("tree","7",anywheresoftware.b4a.keywords.Common.createMap(new Object[] {(Object)("id"),(Object)(8),(Object)("value"),(Object)("Ozzie"),(Object)("year"),(Object)(2003)}));
- //BA.debugLineNum = 36;BA.debugLine="pg.Refresh(\"tree\")";
+ //BA.debugLineNum = 48;BA.debugLine="pg.Refresh(\"tree\")";
 _pg._refresh /*String*/ ("tree");
- //BA.debugLineNum = 38;BA.debugLine="Dim recid As String";
+ //BA.debugLineNum = 50;BA.debugLine="Dim recid As String";
 _recid = "";
- //BA.debugLineNum = 39;BA.debugLine="pg.OnItemClick(\"tree\", BANano.CallBack(Me, \"tree_";
+ //BA.debugLineNum = 51;BA.debugLine="pg.OnItemClick(\"tree\", BANano.CallBack(Me, \"tree_";
 _pg._onitemclick /*String*/ ("tree",(com.ab.banano.BANanoObject)(_banano.CallBack(pgtree.getObject(),"tree_itemclick",anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(_recid)}))));
- //BA.debugLineNum = 40;BA.debugLine="End Sub";
+ //BA.debugLineNum = 52;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
@@ -107,12 +131,12 @@ _banano = new com.ab.banano.BANano();
 return "";
 }
 public static String  _tree_itemclick(String _recid) throws Exception{
- //BA.debugLineNum = 42;BA.debugLine="Sub tree_itemclick(recid As String)";
- //BA.debugLineNum = 43;BA.debugLine="recid = pg.CStr(recid)";
+ //BA.debugLineNum = 54;BA.debugLine="Sub tree_itemclick(recid As String)";
+ //BA.debugLineNum = 55;BA.debugLine="recid = pg.CStr(recid)";
 _recid = _pg._cstr /*String*/ ((Object)(_recid));
- //BA.debugLineNum = 45;BA.debugLine="pg.Message(recid)";
+ //BA.debugLineNum = 57;BA.debugLine="pg.Message(recid)";
 _pg._message /*String*/ (_recid);
- //BA.debugLineNum = 46;BA.debugLine="End Sub";
+ //BA.debugLineNum = 58;BA.debugLine="End Sub";
 return "";
 }
 }

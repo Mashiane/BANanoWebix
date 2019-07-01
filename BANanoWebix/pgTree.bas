@@ -30,6 +30,18 @@ Sub Init
 	data.Add(CreateMap("id":5, "value":"Pulp fiction", "year":1994, "votes":533848, "rating":8.9, "rank":5))
 	data.Add(CreateMap("id":6, "value":"12 Angry Men", "year":1957, "votes":164558, "rating":8.9, "rank":6))
 	
+	'
+	prop.AddItem("","songs","Songs","","","2","",True)
+	prop.AddItem("songs", "metallica", "Metallica","","","3","",True)
+	prop.AddItem("metallica", "es", "Enter Sandman","","","","",False)
+	prop.AddItem("metallica", "rhl", "Ride the Lighning","","","","",False)
+	prop.AddItem("metallica", "hero", "Hero of the Day","","","","",False)
+	'
+	prop.AddItem("songs", "billyjoel", "Billy Joel","","","2","",True)
+	prop.AddItem("billyjoel", "mo", "Movin' Out","","","","",False)
+	prop.AddItem("billyjoel", "pm", "Piano Man","","","","",False)
+	'
+	Dim data As List = pg.Unflatten(prop.Items, "data")
 	prop.SetData(data)
 	
 	pg.Page.AddRows(prop.Item)

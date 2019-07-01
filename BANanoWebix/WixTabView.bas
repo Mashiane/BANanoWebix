@@ -22,8 +22,20 @@ Public Sub Initialize(sid As String) As WixTabView
 	Return Me
 End Sub
 
+'set height
+Sub SetHeight(h As Int) As WixTabView
+	TabView.SetAttr("height", h)
+	Return Me
+End Sub
+
+'set width
+Sub SetWidth(w As Int) As WixTabView
+	TabView.SetAttr("width", w)
+	Return Me
+End Sub
+
 'set multiview animated
-Sub SetMultiViewAnimate(b As Boolean) As WixTabView
+Sub SetAnimate(b As Boolean) As WixTabView
 	mv.SetAnimate(b)
 	Return Me
 End Sub
@@ -45,6 +57,18 @@ Sub Item As Map
 	TabView.SetAttr("tabbar", tb.Item)
 	TabView.SetAttr("multiview", mv.Item)
 	Return TabView.item
+End Sub
+
+'set on bottom
+Sub SetTypeBottom(b As Boolean) As WixTabView
+	TabView.SetType("bottom")
+	Return Me
+End Sub
+
+'set multiview
+Sub SetMultiView(b As Boolean) As WixTabView
+	TabView.SetAttr("multiview",b)
+	Return Me
 End Sub
 
 'add an item

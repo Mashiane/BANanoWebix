@@ -8,12 +8,26 @@ Version=7.5
 Sub Class_Globals
 	Public List As WixElement
 	Public ID As String
+	Private typeOf As Map
 End Sub
 
 'Initializes list object
 Public Sub Initialize(lID As String) As WixList
 	ID = lID.tolowercase
 	List.Initialize(ID).SetView("list")
+	Return Me
+End Sub
+
+
+'set item height
+Sub SetItemHeight(h As Object) As WixList
+	typeOf.Put("height", h)
+	Return Me
+End Sub
+
+'set item width
+Sub SetItemWidth(w As Object) As WixList
+	typeOf.Put("width", w)
 	Return Me
 End Sub
 
@@ -73,6 +87,7 @@ End Sub
 
 'return the object
 Sub Item As Map
+	List.SetAttr("type", typeOf)
 	Return List.item
 End Sub
 
@@ -85,6 +100,17 @@ End Sub
 'set height
 Sub SetHeight(t As String) As WixList
 	List.SetHeight(t)
+	Return Me
+End Sub
+
+'set height
+Sub SetAutoHeight(b As Boolean) As WixList
+	List.SetAttr("autoheight", b)
+	Return Me
+End Sub
+
+Sub SetTypeUploader(b As Boolean) As WixList  'ignore
+	List.SetType("uploader")
 	Return Me
 End Sub
 

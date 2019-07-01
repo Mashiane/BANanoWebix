@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Tree As WixElement
 	Private scheme As Map
+	Public Items As List
 End Sub
 
 'Initializes the Tree sheet
@@ -16,6 +17,7 @@ Public Sub Initialize(eID As String) As WixTree
 	ID = eID.tolowercase
 	Tree.Initialize(ID).SetView("tree")
 	scheme = CreateMap()
+	Items.Initialize 
 	Return Me
 End Sub
 
@@ -91,3 +93,21 @@ Sub SetWidth(h As Int) As WixTree
 	Tree.SetWidth(h)
 	Return Me
 End Sub
+
+'add item
+Sub AddItem(parentID As String, meID As String, mValue As String, mhref As String, mIcon As String, badge As String, target As String, mOpen As Boolean) As WixTree
+	parentID = parentID.tolowercase
+	meID = meID.tolowercase
+	Dim mitem As Map = CreateMap()
+	mitem.Put("id", meID)
+	mitem.Put("value", mValue)
+	mitem.Put("href", mhref)
+	mitem.Put("badge", badge)
+	mitem.Put("target", target)
+	mitem.Put("icon", mIcon)
+	mitem.Put("open", mOpen)
+	mitem.Put("parentid", parentID)
+	Items.Add(mitem)
+	Return Me
+End Sub
+

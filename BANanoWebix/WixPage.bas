@@ -17,8 +17,46 @@ Sub Class_Globals
 	Private uniteFld As String
 	Private ulName As String
 	Private BANano As BANano  'ignore
+	Public EnumWixIcons As WixIcons
 End Sub
 
+'unflatten as list of map objects using id, parentid, data attributes
+Sub Unflatten(data As List, childname As String) As List
+	'id, parentid, data
+	Dim tree As List
+	Dim mappedArr As Map
+	'
+	tree.Initialize
+	mappedArr.Initialize
+	'
+	'create a temp map to hold everything with 'children' as 'data'
+	For Each arrElem As Map In data
+		Dim dID As String = arrElem.Get("id")
+		'
+		Dim cdata As List
+		cdata.Initialize
+		arrElem.Put(childname, cdata)
+		'
+		mappedArr.Put(dID, arrElem)
+	Next
+	'
+	For Each dID As String In mappedArr.Keys
+		Dim mappedElem As Map = mappedArr.Get(dID)
+		Dim parentid As String = mappedElem.Get("parentid")
+		' If the element is at the root level, add it to first level elements list.
+		If parentid = "" Then
+			tree.Add(mappedElem)
+		Else
+			'If the element is not at the root level, add it to its parent list of children.
+			Dim parentElem As Map = mappedArr.Get(parentid)
+			Dim children As List = parentElem.Get(childname)
+			children.Add(mappedElem)
+			parentElem.Put(childname, children)
+			mappedArr.Put(parentid, parentElem)
+		End If
+	Next
+	Return tree
+End Sub
 
 'set uniteby should be an existing field
 Sub SetUniteBy(ulID As String, fldName As String)
@@ -42,19 +80,27 @@ private Sub uniteby(obj As Map) As String
 End Sub
 
 
-'initialize the page
+'initialize the page and empty the page '#body' element
 Public Sub Initialize(pgID As String) As WixPage
 	hints.Initialize 
 	Dollar.Initialize("$$")
 	ID = pgID.tolowercase
 	webix.Initialize("webix")
 	Page.Initialize(ID)
-	Page.Container = "body" 
-	'empty the body
-	BANano.GetElement("#body").empty
 	'init other stuff
 	EnumButtonTypes.Initialize
 	EnumLayoutTypes.Initialize  
+	EnumWixIcons.Initialize
+	SetContainer("body") 
+	Return Me
+End Sub
+
+'set the container of the page
+Sub SetContainer(contID As String) As WixPage
+	contID = contID.tolowercase
+	Dim sKey As String = "#" & contID
+	Page.Container = contID
+	BANano.GetElement(sKey).empty
 	Return Me
 End Sub
 
@@ -83,8 +129,6 @@ Sub SelectItem(treeID As String, nodeID As String)
 	nodeID = nodeID.tolowercase
 	Dollar.Selector(treeID).RunMethod("select", Array(nodeID))
 End Sub
-
-
 
 'set a hint for input element
 Sub SetHint(eID As String, sHint As String)
@@ -176,6 +220,11 @@ Sub SetHeader(sTitle As String) As WixPage
 	Return Me
 End Sub
 
+'add a row
+Sub AddRow(r As WixRow)
+	Page.AddRow(r)
+End Sub
+
 'set the item value
 Sub SetValue(itm As String, value As String)
 	itm = itm.ToLowerCase
@@ -229,7 +278,7 @@ Sub DisableIT(itmID As String)
 End Sub
 
 'render the page UX
-Sub UI
+Sub UI()
 	webix.RunMethod("ui",Page.item)
 	'add hints
 	For Each sHint As String In hints.Keys
@@ -290,6 +339,17 @@ Sub GetItem(listID As String, recordID As String) As Map
 	Dim values As Map = Dollar.Selector(listID).RunMethod("getItem",Array(recordID)).Result
 	Return values
 End Sub
+
+'get an item
+Sub GetMarker(listID As String, recordID As String) As Map
+	Dim mKey As String = "$" & "marker"
+	listID = listID.ToLowerCase
+	recordID = recordID.tolowercase
+	Dim values As Map = Dollar.Selector(listID).RunMethod("getItem",Array(recordID)).Result
+	values.Remove(mKey)
+	Return values
+End Sub
+
 
 'on after select event
 Sub OnAfterSelect(eID As String, cb As BANanoObject)
@@ -361,7 +421,7 @@ Sub Exists(listID As String, eID As String) As Object
 	Return recID
 End Sub
 
-'show an item
+'show an item by scrolling to it
 Sub ShowItem(listID As String, eID As String)
 	listID = listID.tolowercase
 	Dollar.Selector(listID).RunMethod("showItem",Array(eID))
@@ -424,6 +484,12 @@ End Sub
 Sub Save(frmID As String)
 	frmID = frmID.tolowercase
 	Dollar.Selector(frmID).RunMethod("save",Null)
+End Sub
+
+'open the file dialog
+Sub FileDialog(frmID As String, opt As Map)
+	frmID = frmID.tolowercase
+	Dollar.Selector(frmID).RunMethod("fileDialog",Array(opt))
 End Sub
 
 'toggle
@@ -492,11 +558,16 @@ Sub ShowPopUp(sTemplate As String, height As Int, width As Int, position As Stri
 End Sub
 
 'return ui element from map
-Sub UX(m As Map) As BANanoObject
+Sub UIObject(m As Map) As BANanoObject
 	Dim res As BANanoObject = webix.RunMethod("ui", m)
 	Return res
 End Sub
 
+'return ui element from map
+Sub UX(m As Map) As BANanoObject
+	Dim res As BANanoObject = webix.RunMethod("ui", m)
+	Return res
+End Sub
 
 'show an element
 Sub Show(itm As BANanoObject)
@@ -520,4 +591,35 @@ End Sub
 Sub IsVisible(itm As BANanoObject) As Boolean
 	Dim res As Boolean = itm.RunMethod("isVisible", Null).result
 	Return res
+End Sub
+
+'add context
+Sub AddContext(ctx As WixContext) As BANanoObject
+	Dim ctxUX As BANanoObject = UX(ctx.Item)
+	Return ctxUX
+End Sub
+
+'add context menu
+Sub AddContextMenu(ctx As WixContextMenu) As BANanoObject
+	Dim ctxUX As BANanoObject = UX(ctx.Item)
+	Return ctxUX
+End Sub
+
+'add a window
+Sub AddWindow(ctx As WixWindow) As BANanoObject
+	Dim ctxUX As BANanoObject = UX(ctx.Item)
+	Return ctxUX
+End Sub
+
+'add a side menu
+Sub AddSideMenu(ctx As WixSideMenu) As BANanoObject
+	Dim ctxUX As BANanoObject = UX(ctx.Item)
+	Return ctxUX
+End Sub
+
+
+'add uploader
+Sub AddUploader(ctx As WixUploader) As BANanoObject
+	Dim ctxUX As BANanoObject = UX(ctx.Item)
+	Return ctxUX
 End Sub

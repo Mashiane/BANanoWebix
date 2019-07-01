@@ -183,6 +183,18 @@ Sub AddHeader1(hdr As WixDataColumn)
 	Columns.Add(hdr.Item)
 End Sub
 
+Sub CreateHeader(hid As String) As WixDataColumn
+	Dim hdr As WixDataColumn
+	hdr.Initialize2(hid)
+	Return hdr	
+End Sub
+
+'set RowHeight
+Sub SetRowHeight(h As Int) As WixDataTable
+	DataTable.SetAttr("rowHeight", h)
+	Return Me
+End Sub
+
 'set rows to freeze
 Sub SetTopSplit(r As Int) As WixDataTable
 	DataTable.SetAttr("topSplit", r)

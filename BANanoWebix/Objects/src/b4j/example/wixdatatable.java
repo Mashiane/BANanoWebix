@@ -46,6 +46,10 @@ public String _dt_adjust_header = "";
 public boolean _dt_adjust_true = false;
 public anywheresoftware.b4a.objects.collections.List _columns = null;
 public b4j.example.main _main = null;
+public b4j.example.pgtabbar _pgtabbar = null;
+public b4j.example.pgtree _pgtree = null;
+public b4j.example.pgmenu _pgmenu = null;
+public b4j.example.pglist _pglist = null;
 public b4j.example.pgdataview _pgdataview = null;
 public b4j.example.pgdatatable1 _pgdatatable1 = null;
 public b4j.example.pgdatatable _pgdatatable = null;
@@ -60,14 +64,15 @@ public b4j.example.pglayouts1 _pglayouts1 = null;
 public b4j.example.pglayouts2 _pglayouts2 = null;
 public b4j.example.pglayouts _pglayouts = null;
 public b4j.example.pglayout _pglayout = null;
-public b4j.example.pglist _pglist = null;
 public b4j.example.pgunitlist _pgunitlist = null;
 public b4j.example.pgpropertysheet _pgpropertysheet = null;
-public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgtreetable _pgtreetable = null;
-public b4j.example.pgmenu _pgmenu = null;
 public b4j.example.pgsidebar _pgsidebar = null;
 public b4j.example.pgcomments _pgcomments = null;
+public b4j.example.pggrouplist _pggrouplist = null;
+public b4j.example.pgcontext _pgcontext = null;
+public b4j.example.pggooglemap _pggooglemap = null;
+public b4j.example.pguploader1 _pguploader1 = null;
 public String  _addedittrash() throws Exception{
 b4j.example.wixdatacolumn _e = null;
 b4j.example.wixdatacolumn _d = null;
@@ -117,10 +122,10 @@ _columns.Add((Object)(_hdr._item /*anywheresoftware.b4a.objects.collections.Map*
 return "";
 }
 public String  _addtoform(b4j.example.wixform _frm) throws Exception{
- //BA.debugLineNum = 255;BA.debugLine="Sub AddToForm(frm As WixForm)";
- //BA.debugLineNum = 256;BA.debugLine="frm.AddItem(Item)";
+ //BA.debugLineNum = 267;BA.debugLine="Sub AddToForm(frm As WixForm)";
+ //BA.debugLineNum = 268;BA.debugLine="frm.AddItem(Item)";
 _frm._additem /*String*/ (_item());
- //BA.debugLineNum = 257;BA.debugLine="End Sub";
+ //BA.debugLineNum = 269;BA.debugLine="End Sub";
 return "";
 }
 public String  _class_globals() throws Exception{
@@ -172,6 +177,18 @@ _columns = new anywheresoftware.b4a.objects.collections.List();
  //BA.debugLineNum = 29;BA.debugLine="End Sub";
 return "";
 }
+public b4j.example.wixdatacolumn  _createheader(String _hid) throws Exception{
+b4j.example.wixdatacolumn _hdr = null;
+ //BA.debugLineNum = 180;BA.debugLine="Sub CreateHeader(hid As String) As WixDataColumn";
+ //BA.debugLineNum = 181;BA.debugLine="Dim hdr As WixDataColumn";
+_hdr = new b4j.example.wixdatacolumn();
+ //BA.debugLineNum = 182;BA.debugLine="hdr.Initialize2(hid)";
+_hdr._initialize2 /*b4j.example.wixdatacolumn*/ (_hid);
+ //BA.debugLineNum = 183;BA.debugLine="Return hdr";
+if (true) return _hdr;
+ //BA.debugLineNum = 184;BA.debugLine="End Sub";
+return null;
+}
 public b4j.example.wixdatatable  _initialize(anywheresoftware.b4a.BA _ba,String _tid) throws Exception{
 innerInitialize(_ba);
  //BA.debugLineNum = 119;BA.debugLine="Public Sub Initialize(tID As String) As WixDataTab";
@@ -189,23 +206,23 @@ if (true) return (b4j.example.wixdatatable)(this);
 return null;
 }
 public anywheresoftware.b4a.objects.collections.Map  _item() throws Exception{
- //BA.debugLineNum = 230;BA.debugLine="Sub Item As Map";
- //BA.debugLineNum = 231;BA.debugLine="DataTable.SetAttr(\"columns\", Columns)";
+ //BA.debugLineNum = 242;BA.debugLine="Sub Item As Map";
+ //BA.debugLineNum = 243;BA.debugLine="DataTable.SetAttr(\"columns\", Columns)";
 _datatable._setattr /*b4j.example.wixelement*/ ("columns",(Object)(_columns.getObject()));
- //BA.debugLineNum = 232;BA.debugLine="DataTable.SetAttr(\"autoConfig\", AutoConfig)";
+ //BA.debugLineNum = 244;BA.debugLine="DataTable.SetAttr(\"autoConfig\", AutoConfig)";
 _datatable._setattr /*b4j.example.wixelement*/ ("autoConfig",(Object)(_autoconfig));
- //BA.debugLineNum = 233;BA.debugLine="Return DataTable.item";
+ //BA.debugLineNum = 245;BA.debugLine="Return DataTable.item";
 if (true) return _datatable._item /*anywheresoftware.b4a.objects.collections.Map*/ ();
- //BA.debugLineNum = 234;BA.debugLine="End Sub";
+ //BA.debugLineNum = 246;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatatable  _setautoconfig(boolean _a) throws Exception{
- //BA.debugLineNum = 237;BA.debugLine="Sub SetAutoConfig(a As Boolean) As WixDataTable";
- //BA.debugLineNum = 238;BA.debugLine="AutoConfig = a";
+ //BA.debugLineNum = 249;BA.debugLine="Sub SetAutoConfig(a As Boolean) As WixDataTable";
+ //BA.debugLineNum = 250;BA.debugLine="AutoConfig = a";
 _autoconfig = _a;
- //BA.debugLineNum = 239;BA.debugLine="Return Me";
+ //BA.debugLineNum = 251;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatatable)(this);
- //BA.debugLineNum = 240;BA.debugLine="End Sub";
+ //BA.debugLineNum = 252;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatatable  _setautoheight(boolean _b) throws Exception{
@@ -227,21 +244,21 @@ if (true) return (b4j.example.wixdatatable)(this);
 return null;
 }
 public b4j.example.wixdatatable  _setblockselect(boolean _b) throws Exception{
- //BA.debugLineNum = 193;BA.debugLine="Sub SetBlockSelect(b As Boolean) As WixDataTable";
- //BA.debugLineNum = 194;BA.debugLine="DataTable.SetAttr(\"blockselect\", b)";
+ //BA.debugLineNum = 205;BA.debugLine="Sub SetBlockSelect(b As Boolean) As WixDataTable";
+ //BA.debugLineNum = 206;BA.debugLine="DataTable.SetAttr(\"blockselect\", b)";
 _datatable._setattr /*b4j.example.wixelement*/ ("blockselect",(Object)(_b));
- //BA.debugLineNum = 195;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixdatatable)(this);
- //BA.debugLineNum = 196;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixdatatable  _setborderless(boolean _b) throws Exception{
- //BA.debugLineNum = 205;BA.debugLine="Sub SetBorderLess(b As Boolean) As WixDataTable";
- //BA.debugLineNum = 206;BA.debugLine="DataTable.SetAttr(\"borderless\", b)";
-_datatable._setattr /*b4j.example.wixelement*/ ("borderless",(Object)(_b));
  //BA.debugLineNum = 207;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatatable)(this);
  //BA.debugLineNum = 208;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixdatatable  _setborderless(boolean _b) throws Exception{
+ //BA.debugLineNum = 217;BA.debugLine="Sub SetBorderLess(b As Boolean) As WixDataTable";
+ //BA.debugLineNum = 218;BA.debugLine="DataTable.SetAttr(\"borderless\", b)";
+_datatable._setattr /*b4j.example.wixelement*/ ("borderless",(Object)(_b));
+ //BA.debugLineNum = 219;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixdatatable)(this);
+ //BA.debugLineNum = 220;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatatable  _setcolumnwidth(int _w) throws Exception{
@@ -263,12 +280,12 @@ if (true) return (b4j.example.wixdatatable)(this);
 return null;
 }
 public b4j.example.wixdatatable  _setdata(anywheresoftware.b4a.objects.collections.List _data) throws Exception{
- //BA.debugLineNum = 260;BA.debugLine="Sub SetData(data As List) As WixDataTable";
- //BA.debugLineNum = 261;BA.debugLine="DataTable.SetData(data)";
+ //BA.debugLineNum = 272;BA.debugLine="Sub SetData(data As List) As WixDataTable";
+ //BA.debugLineNum = 273;BA.debugLine="DataTable.SetData(data)";
 _datatable._setdata /*b4j.example.wixelement*/ (_data);
- //BA.debugLineNum = 262;BA.debugLine="Return Me";
+ //BA.debugLineNum = 274;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatatable)(this);
- //BA.debugLineNum = 263;BA.debugLine="End Sub";
+ //BA.debugLineNum = 275;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatatable  _setdatatype(String _t) throws Exception{
@@ -281,21 +298,21 @@ if (true) return (b4j.example.wixdatatable)(this);
 return null;
 }
 public b4j.example.wixdatatable  _seteditable(boolean _b) throws Exception{
- //BA.debugLineNum = 218;BA.debugLine="Sub SetEditable(b As Boolean) As WixDataTable";
- //BA.debugLineNum = 219;BA.debugLine="DataTable.SetAttr(\"editable\", b)";
+ //BA.debugLineNum = 230;BA.debugLine="Sub SetEditable(b As Boolean) As WixDataTable";
+ //BA.debugLineNum = 231;BA.debugLine="DataTable.SetAttr(\"editable\", b)";
 _datatable._setattr /*b4j.example.wixelement*/ ("editable",(Object)(_b));
- //BA.debugLineNum = 220;BA.debugLine="Return Me";
+ //BA.debugLineNum = 232;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatatable)(this);
- //BA.debugLineNum = 221;BA.debugLine="End Sub";
+ //BA.debugLineNum = 233;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatatable  _seteditaction(String _a) throws Exception{
- //BA.debugLineNum = 199;BA.debugLine="Sub SetEditAction(a As String) As WixDataTable";
- //BA.debugLineNum = 200;BA.debugLine="DataTable.SetAttr(\"editaction\", a)";
+ //BA.debugLineNum = 211;BA.debugLine="Sub SetEditAction(a As String) As WixDataTable";
+ //BA.debugLineNum = 212;BA.debugLine="DataTable.SetAttr(\"editaction\", a)";
 _datatable._setattr /*b4j.example.wixelement*/ ("editaction",(Object)(_a));
- //BA.debugLineNum = 201;BA.debugLine="Return Me";
+ //BA.debugLineNum = 213;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatatable)(this);
- //BA.debugLineNum = 202;BA.debugLine="End Sub";
+ //BA.debugLineNum = 214;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatatable  _setform(String _frmid) throws Exception{
@@ -310,12 +327,12 @@ if (true) return (b4j.example.wixdatatable)(this);
 return null;
 }
 public b4j.example.wixdatatable  _setheight(int _h) throws Exception{
- //BA.debugLineNum = 243;BA.debugLine="Sub SetHeight(h As Int) As WixDataTable";
- //BA.debugLineNum = 244;BA.debugLine="DataTable.SetHeight(h)";
+ //BA.debugLineNum = 255;BA.debugLine="Sub SetHeight(h As Int) As WixDataTable";
+ //BA.debugLineNum = 256;BA.debugLine="DataTable.SetHeight(h)";
 _datatable._setheight /*b4j.example.wixelement*/ (_h);
- //BA.debugLineNum = 245;BA.debugLine="Return Me";
+ //BA.debugLineNum = 257;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatatable)(this);
- //BA.debugLineNum = 246;BA.debugLine="End Sub";
+ //BA.debugLineNum = 258;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatatable  _sethover(String _h) throws Exception{
@@ -328,12 +345,12 @@ if (true) return (b4j.example.wixdatatable)(this);
 return null;
 }
 public b4j.example.wixdatatable  _setleftsplit(int _c) throws Exception{
- //BA.debugLineNum = 187;BA.debugLine="Sub SetLeftSplit(c As Int) As WixDataTable";
- //BA.debugLineNum = 188;BA.debugLine="DataTable.SetAttr(\"leftSplit\", c)";
+ //BA.debugLineNum = 199;BA.debugLine="Sub SetLeftSplit(c As Int) As WixDataTable";
+ //BA.debugLineNum = 200;BA.debugLine="DataTable.SetAttr(\"leftSplit\", c)";
 _datatable._setattr /*b4j.example.wixelement*/ ("leftSplit",(Object)(_c));
- //BA.debugLineNum = 189;BA.debugLine="Return Me";
+ //BA.debugLineNum = 201;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatatable)(this);
- //BA.debugLineNum = 190;BA.debugLine="End Sub";
+ //BA.debugLineNum = 202;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatatable  _setmultiselect(Object _s) throws Exception{
@@ -383,6 +400,15 @@ if (true) return (b4j.example.wixdatatable)(this);
  //BA.debugLineNum = 97;BA.debugLine="End Sub";
 return null;
 }
+public b4j.example.wixdatatable  _setrowheight(int _h) throws Exception{
+ //BA.debugLineNum = 187;BA.debugLine="Sub SetRowHeight(h As Int) As WixDataTable";
+ //BA.debugLineNum = 188;BA.debugLine="DataTable.SetAttr(\"rowHeight\", h)";
+_datatable._setattr /*b4j.example.wixelement*/ ("rowHeight",(Object)(_h));
+ //BA.debugLineNum = 189;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixdatatable)(this);
+ //BA.debugLineNum = 190;BA.debugLine="End Sub";
+return null;
+}
 public b4j.example.wixdatatable  _setscroll(boolean _b) throws Exception{
  //BA.debugLineNum = 140;BA.debugLine="Sub SetScroll(b As Boolean) As WixDataTable";
  //BA.debugLineNum = 141;BA.debugLine="DataTable.SetAttr(\"scroll\", b)";
@@ -420,30 +446,30 @@ if (true) return (b4j.example.wixdatatable)(this);
 return null;
 }
 public b4j.example.wixdatatable  _setstyle(String _prop,String _val) throws Exception{
- //BA.debugLineNum = 212;BA.debugLine="Sub SetStyle(prop As String, val As String) As Wix";
- //BA.debugLineNum = 213;BA.debugLine="DataTable.SetStyle(prop,val)";
+ //BA.debugLineNum = 224;BA.debugLine="Sub SetStyle(prop As String, val As String) As Wix";
+ //BA.debugLineNum = 225;BA.debugLine="DataTable.SetStyle(prop,val)";
 _datatable._setstyle /*b4j.example.wixelement*/ (_prop,_val);
- //BA.debugLineNum = 214;BA.debugLine="Return Me";
-if (true) return (b4j.example.wixdatatable)(this);
- //BA.debugLineNum = 215;BA.debugLine="End Sub";
-return null;
-}
-public b4j.example.wixdatatable  _settooltip(String _tt) throws Exception{
- //BA.debugLineNum = 224;BA.debugLine="Sub SetTooltip(tt As String) As WixDataTable";
- //BA.debugLineNum = 225;BA.debugLine="DataTable.SetTooltip(tt)";
-_datatable._settooltip /*b4j.example.wixelement*/ (_tt);
  //BA.debugLineNum = 226;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatatable)(this);
  //BA.debugLineNum = 227;BA.debugLine="End Sub";
 return null;
 }
-public b4j.example.wixdatatable  _settopsplit(int _r) throws Exception{
- //BA.debugLineNum = 181;BA.debugLine="Sub SetTopSplit(r As Int) As WixDataTable";
- //BA.debugLineNum = 182;BA.debugLine="DataTable.SetAttr(\"topSplit\", r)";
-_datatable._setattr /*b4j.example.wixelement*/ ("topSplit",(Object)(_r));
- //BA.debugLineNum = 183;BA.debugLine="Return Me";
+public b4j.example.wixdatatable  _settooltip(String _tt) throws Exception{
+ //BA.debugLineNum = 236;BA.debugLine="Sub SetTooltip(tt As String) As WixDataTable";
+ //BA.debugLineNum = 237;BA.debugLine="DataTable.SetTooltip(tt)";
+_datatable._settooltip /*b4j.example.wixelement*/ (_tt);
+ //BA.debugLineNum = 238;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatatable)(this);
- //BA.debugLineNum = 184;BA.debugLine="End Sub";
+ //BA.debugLineNum = 239;BA.debugLine="End Sub";
+return null;
+}
+public b4j.example.wixdatatable  _settopsplit(int _r) throws Exception{
+ //BA.debugLineNum = 193;BA.debugLine="Sub SetTopSplit(r As Int) As WixDataTable";
+ //BA.debugLineNum = 194;BA.debugLine="DataTable.SetAttr(\"topSplit\", r)";
+_datatable._setattr /*b4j.example.wixelement*/ ("topSplit",(Object)(_r));
+ //BA.debugLineNum = 195;BA.debugLine="Return Me";
+if (true) return (b4j.example.wixdatatable)(this);
+ //BA.debugLineNum = 196;BA.debugLine="End Sub";
 return null;
 }
 public b4j.example.wixdatatable  _seturl(String _u) throws Exception{
@@ -465,12 +491,12 @@ if (true) return (b4j.example.wixdatatable)(this);
 return null;
 }
 public b4j.example.wixdatatable  _setwidth(int _h) throws Exception{
- //BA.debugLineNum = 249;BA.debugLine="Sub SetWidth(h As Int) As WixDataTable";
- //BA.debugLineNum = 250;BA.debugLine="DataTable.SetWidth(h)";
+ //BA.debugLineNum = 261;BA.debugLine="Sub SetWidth(h As Int) As WixDataTable";
+ //BA.debugLineNum = 262;BA.debugLine="DataTable.SetWidth(h)";
 _datatable._setwidth /*b4j.example.wixelement*/ (_h);
- //BA.debugLineNum = 251;BA.debugLine="Return Me";
+ //BA.debugLineNum = 263;BA.debugLine="Return Me";
 if (true) return (b4j.example.wixdatatable)(this);
- //BA.debugLineNum = 252;BA.debugLine="End Sub";
+ //BA.debugLineNum = 264;BA.debugLine="End Sub";
 return null;
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {
