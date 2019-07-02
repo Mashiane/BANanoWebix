@@ -37,9 +37,19 @@ Sub AddItem(meID As String, mValue As String, mhref As String, mIcon As String, 
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixSideMenu
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		SideMenu.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 
 'set scroll
-Sub SetScroll(b As Boolean) As WixSideMenu
+Sub SetScroll(b As Object) As WixSideMenu
 	SideMenu.SetProperty("scroll", b)
 	Return Me
 End Sub

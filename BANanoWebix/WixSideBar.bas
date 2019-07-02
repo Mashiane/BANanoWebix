@@ -35,6 +35,16 @@ Sub AddItem(parentID As String, meID As String, mValue As String, mhref As Strin
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixSideBar
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		SideBar.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set activeTitle:false 
 Sub SetActiveTitle(b As Boolean) As WixSideBar
 	SideBar.SetAttr("activeTitle", b)
@@ -129,7 +139,7 @@ Sub SetSelect(b As Boolean) As WixSideBar
 End Sub
 
 'set scroll
-Sub SetScroll(b As Boolean) As WixSideBar
+Sub SetScroll(b As object) As WixSideBar
 	SideBar.SetProperty("scroll", b)
 	Return Me
 End Sub

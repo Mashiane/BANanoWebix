@@ -32,6 +32,16 @@ private Sub El(eid As String, label As String, typeOf As String, value As Object
 	Return opt
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixProperty
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Property.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set name width
 Sub SetNameWidth(w As Int) As WixProperty
 	Property.SetAttr("nameWidth", w)

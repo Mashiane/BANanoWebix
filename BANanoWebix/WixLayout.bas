@@ -22,9 +22,18 @@ Sub Item As Map
 	Return Layout.item
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixLayout
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Layout.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'set scroll
-Sub SetScroll(b As Boolean) As WixLayout
+Sub SetScroll(b As Object) As WixLayout
 	Layout.SetProperty("scroll", b)
 	Return Me
 End Sub

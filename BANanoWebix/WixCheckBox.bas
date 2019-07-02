@@ -30,6 +30,16 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixCheckBox
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		CheckBox.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'return the item
 Sub Item As Map
 	If LabelOnRight Then

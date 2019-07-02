@@ -23,6 +23,16 @@ Public Sub Initialize(sid As String) As WixWindow
 	Return Me
 End Sub
 
+
+'use a map object
+Sub SetMap(m As Map) As WixWindow
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Window.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 'set full screen
 Sub SetFullScreen(b As Boolean) As WixWindow
 	Window.SetAttr("fullscreen", b)

@@ -25,6 +25,16 @@ Public Sub Initialize(iID As String) As WixSlider
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixSlider
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Slider.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)

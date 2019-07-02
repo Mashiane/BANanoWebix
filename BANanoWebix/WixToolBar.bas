@@ -23,6 +23,16 @@ Public Sub Initialize(sID As String) As WixToolBar
 	Return Me
 End Sub
 
+
+'use a map object
+Sub SetMap(m As Map) As WixToolBar
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		ToolBar.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 'set padding
 Sub SetPadding(p As String) As WixToolBar
 	ToolBar.SetAttr("padding", p)

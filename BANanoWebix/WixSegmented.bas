@@ -21,6 +21,15 @@ Public Sub Initialize(iID As String) As WixSegmented
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixSegmented
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Segmented.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixSegmented

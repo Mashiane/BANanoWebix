@@ -18,6 +18,15 @@ Public Sub Initialize(lID As String) As WixList
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixList
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		List.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'set item height
 Sub SetItemHeight(h As Object) As WixList
@@ -73,7 +82,7 @@ Sub SetMultiSelect(b As Boolean) As WixList
 End Sub
 
 'set SetScroll
-Sub SetScroll(b As Boolean) As WixList
+Sub SetScroll(b As object) As WixList
 	List.SetAttr("scroll", b)
 	Return Me
 End Sub

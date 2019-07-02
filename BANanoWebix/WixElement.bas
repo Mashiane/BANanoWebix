@@ -33,6 +33,15 @@ Sub Class_Globals
 	Private elementsConfig As Map
 End Sub
 
+
+'add rows
+Sub AddWixRows(lst As List)
+	For Each i As WixRow In lst
+		AddRow(i)
+	Next
+End Sub
+
+
 'set height
 Sub SetAutoHeight(b As Boolean) As WixElement
 	SetAttr("autoheight", b)
@@ -47,7 +56,7 @@ End Sub
 
 
 'set scroll
-Sub SetScroll(c As Boolean) As WixElement
+Sub SetScroll(c As Object) As WixElement
 	SetAttr("scroll", c)
 	Return Me
 End Sub
@@ -450,6 +459,23 @@ End Sub
 Sub AddRow(wxEL As WixRow)
 	AddRows(wxEL.Item)
 End Sub
+
+'add row items
+Sub AddRowItems(items As List)
+	For Each m As Map In items
+		AddRows(m)
+	Next
+End Sub
+
+'use a map object
+Sub SetMap(m As Map) As WixElement
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'add to rows of parent
 Sub AddToRows(prt As WixElement)

@@ -26,6 +26,16 @@ Sub SetData(d As List) As WixSuggest
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixSuggest
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Suggest.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'return the item
 private Sub Item As Map
 	Suggest.SetAttr("data", Data)

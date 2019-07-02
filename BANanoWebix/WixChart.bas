@@ -29,6 +29,17 @@ Public Sub Initialize(iID As String) As WixChart
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixChart
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Chart.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
+
 'set event radius
 Sub SetEventRadius(r As Int) As WixChart
 	Chart.setproperty("eventRadius", r)

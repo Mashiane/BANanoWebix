@@ -22,6 +22,16 @@ Public Sub Initialize(sid As String) As WixTabView
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixTabView
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		TabView.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set height
 Sub SetHeight(h As Object) As WixTabView
 	TabView.SetAttr("height", h)

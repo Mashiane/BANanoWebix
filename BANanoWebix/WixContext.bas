@@ -25,6 +25,16 @@ Sub SetMaster(pID As String) As WixContext
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixContext
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Context.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set height
 Sub SetHeight(h As Object) As WixContext
 	Context.SetAttr("height", h)

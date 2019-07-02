@@ -30,8 +30,21 @@ Sub AddColumns(i As Map) As WixRow
 End Sub
 
 
+'set auto width
+Sub SetAutoWidth(b As Boolean) As WixRow
+	Row.SetAttr("autowidth", b)
+	Return Me
+End Sub
+
+
+'set auto height
+Sub SetAutoHeight(b As Boolean) As WixRow
+	Row.SetAttr("autoheight", b)
+	Return Me
+End Sub
+
 'set scroll
-Sub SetScroll(b As Boolean) As WixRow
+Sub SetScroll(b As Object) As WixRow
 	Row.SetProperty("scroll", b)
 	Return Me
 End Sub
@@ -102,7 +115,7 @@ Sub SetHeight(h As Object) As WixRow
 End Sub
 
 'set width
-Sub SetWidth(w As object) As WixRow
+Sub SetWidth(w As Object) As WixRow
 	Row.setwidth(w)
 	Return Me
 End Sub
@@ -112,3 +125,32 @@ Sub SetTemplate(t As String) As WixRow
 	Row.SetTemplate(t)
 	Return Me
 End Sub
+
+'add to rows of parent
+Sub AddToRows(prt As WixElement)
+	prt.AddRows(Item)
+End Sub
+
+'add to rows of parent
+Sub AddToColumns(prt As WixElement)
+	prt.AddColumns(Item)
+End Sub
+
+Sub AddToScrollViewRows(sv As WixScrollView)
+	sv.AddRows(Item)
+End Sub
+
+Sub AddToPageRows(sv As WixPage)
+	sv.AddRows(Item)
+End Sub
+
+'use a map object
+Sub SetMap(m As Map) As WixRow
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Row.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+

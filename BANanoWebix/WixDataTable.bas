@@ -34,6 +34,35 @@ Sub Class_Globals
 	Public Columns As List
 End Sub
 
+'set yCount number of items in a column
+Sub SetYCount(x As Int) As WixDataTable
+	DataTable.SetAttr("yCount", x)
+	Return Me
+End Sub
+
+
+'set navigation
+Sub SetNavigation(b As Object) As WixDataTable
+	DataTable.SetAttr("navigation", b)
+	Return Me
+End Sub
+
+
+'set xCount i.e number of items in a row
+Sub SetXCount(x As Int) As WixDataTable
+	DataTable.SetAttr("xCount", x)
+	Return Me
+End Sub
+
+'use a map object
+Sub SetMap(m As Map) As WixDataTable
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		DataTable.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'set SetPager
 Sub SetPager(p As String) As WixDataTable
@@ -43,13 +72,13 @@ Sub SetPager(p As String) As WixDataTable
 End Sub
 
 'set scrollY
-Sub SetScrollY(b As Boolean) As WixDataTable
+Sub SetScrollY(b As Object) As WixDataTable
 	DataTable.SetAttr("scrollY", b)
 	Return Me
 End Sub
 
 'set scrollX
-Sub SetScrollX(b As Boolean) As WixDataTable
+Sub SetScrollX(b As Object) As WixDataTable
 	DataTable.SetAttr("scrollX", b)
 	Return Me
 End Sub
@@ -143,7 +172,7 @@ Sub AddHeader(sid As String, sheader As String, iFillSpace As Int) As WixDataTab
 End Sub
 
 'set scroll
-Sub SetScroll(b As Boolean) As WixDataTable
+Sub SetScroll(b As object) As WixDataTable
 	DataTable.SetAttr("scroll", b)
 	Return Me
 End Sub

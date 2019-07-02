@@ -29,6 +29,15 @@ Sub SetTooltip(tt As String) As WixDBLList
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixDBLList
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		DBLList.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'return the item
 Sub Item As Map
@@ -42,7 +51,7 @@ Sub SetStyle(prop As String, val As String) As WixDBLList
 End Sub
 
 'set height
-Sub SetHeight(h As object) As WixDBLList
+Sub SetHeight(h As Object) As WixDBLList
 	DBLList.SetHeight(h)
 	Return Me
 End Sub

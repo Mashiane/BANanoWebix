@@ -23,6 +23,16 @@ Sub SetLabelRight(l As String) As WixSwitch
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixSwitch
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Switch.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set on label
 Sub SetOnLabel(l As String) As WixSwitch
 	Switch.SetAttr("onLabel", l)

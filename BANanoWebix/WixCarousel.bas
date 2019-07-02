@@ -26,6 +26,16 @@ Sub SetScrollSpeed(s As Int) As WixCarousel
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixCarousel
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Carousel.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'return the item
 Sub Item As Map
 	Carousel.SetAttr("navigation", nav.Item)

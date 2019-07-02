@@ -25,6 +25,16 @@ Sub SetItemHeight(h As Object) As WixUnitList
 	Return Me
 End Sub
 
+
+'use a map object
+Sub SetMap(m As Map) As WixUnitList
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		UnitList.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 'set item width
 Sub SetItemWidth(w As Object) As WixUnitList
 	typeOf.Put("width", w)

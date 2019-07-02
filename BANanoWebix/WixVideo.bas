@@ -25,6 +25,16 @@ Public Sub Initialize(iID As String) As WixVideo
 	Return Me
 End Sub
 
+
+'use a map object
+Sub SetMap(m As Map) As WixVideo
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Video.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 'set tooltip
 Sub SetTooltip(tt As String) As WixVideo
 	Video.SetProperty("tooltip", tt)

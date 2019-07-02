@@ -31,3 +31,12 @@ End Sub
 Sub AddToColumns(parent As WixElement)
 	parent.AddColumns(Item)
 End Sub
+
+'use a map object
+Sub SetMap(m As Map) As WixResizer
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Resizer.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub

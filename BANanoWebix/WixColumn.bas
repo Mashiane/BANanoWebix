@@ -29,6 +29,16 @@ Sub SetTooltip(tt As String) As WixColumn
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixColumn
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Column.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'add to columns collection of the column
 Sub AddColumns(itm As Map) As WixColumn
 	Column.AddColumns(itm)

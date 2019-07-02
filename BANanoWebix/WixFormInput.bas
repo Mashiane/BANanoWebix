@@ -22,6 +22,16 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixFormInput
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		FormInput.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set body
 Sub SetBody(b As Object) As WixFormInput
 	FormInput.SetBody(b)

@@ -26,6 +26,16 @@ Public Sub Initialize(sid As String) As WixComments
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixComments
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Comments.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'add a comment
 Sub AddComment(cID As String, uID As String, cDate As String, cText As String)
 	Dim comment As Map = CreateMap()

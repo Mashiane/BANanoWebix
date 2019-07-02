@@ -24,11 +24,47 @@ Sub SetInvalidMessage(msg As String) As WixTextBox
 	Return Me
 End Sub
 
+'set format
+Sub SetFormat(f As String) As WixTextBox
+	TextBox.SetAttr("format", f)
+	Return Me
+End Sub
+
+'make money
+Sub MakeMoney(b As Boolean) As WixTextBox   'ignore
+	SetFormat("1,111.00")
+	Return Me
+End Sub
+
+'make telephone
+Sub MakeTelephone10(b As Boolean) As WixTextBox   'ignore
+	SetFormat("111-111-1111")
+	Return Me
+End Sub
+
+
 'set as password
 Sub SetTypePassword(r As String) As WixTextBox  'ignore
 	TextBox.SetType("password")
 	Return Me
 End Sub
+
+'use a map object
+Sub SetMap(m As Map) As WixTextBox
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		TextBox.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+'set attribute
+Sub SetAttr(p As String, v As Object) As WixTextBox  'ignore
+	TextBox.SetAttr(p, v)
+	Return Me
+End Sub
+
+
 
 'set as email
 Sub SetTypeEmail(r As String) As WixTextBox  'ignore

@@ -23,6 +23,16 @@ Public Sub Initialize(iID As String) As WixMenu
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixMenu
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Menu.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 ' set menu pos right
 Sub SetSubMenuPosRight(r As String) As WixMenu   'ignore
 	Menu.SetAttr("subMenuPos", "right")

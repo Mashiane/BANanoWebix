@@ -25,6 +25,16 @@ Public Sub Initialize(eID As String) As WixTreeTable
 	Return Me
 End Sub
 
+
+'use a map object
+Sub SetMap(m As Map) As WixTreeTable
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		TreeTable.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 'set editable
 Sub SetEditable(b As Boolean) As WixTreeTable
 	TreeTable.SetAttr("editable", b)

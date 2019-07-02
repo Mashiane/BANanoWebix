@@ -21,6 +21,16 @@ Public Sub Initialize(eID As String) As WixTree
 	Return Me
 End Sub
 
+
+'use a map object
+Sub SetMap(m As Map) As WixTree
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Tree.SetAttr(strKey, strVal)
+	Next
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Tree.SetAttr("scheme", scheme)

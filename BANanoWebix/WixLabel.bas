@@ -24,6 +24,15 @@ Sub Item As Map
 	Return Label.item
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixLabel
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Label.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'set the parent
 Sub SetParent(p As WixElement) As WixLabel

@@ -23,6 +23,16 @@ Sub SetValue(v As String) As WixTextArea
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixTextArea
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		TextArea.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set invalid message
 Sub SetInvalidMessage(msg As String) As WixTextArea
 	TextArea.SetInvalidMessage(msg)

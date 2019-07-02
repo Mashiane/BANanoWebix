@@ -24,6 +24,16 @@ Sub SetValue(v As String) As WixUploader
 	Return Me
 End Sub
 
+
+'use a map object
+Sub SetMap(m As Map) As WixUploader
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Uploader.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 Sub SetInputName(n As String) As WixUploader
 	Uploader.SetAttr("inputName", n)
 	Return Me

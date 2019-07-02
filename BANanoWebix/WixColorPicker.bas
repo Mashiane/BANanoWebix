@@ -28,6 +28,16 @@ Sub SetTooltip(tt As String) As WixColorPicker
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixColorPicker
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		ColorPicker.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)

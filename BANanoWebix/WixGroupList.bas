@@ -36,6 +36,16 @@ Sub AddItem(parentID As String, meID As String, mValue As String, mhref As Strin
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixGroupList
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		GroupList.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set style to update css property
 Sub SetStyle(prop As String, val As String) As WixGroupList
 	GroupList.SetStyle(prop,val)
@@ -83,7 +93,7 @@ Sub SetMultiSelect(b As Boolean) As WixGroupList
 End Sub
 
 'set SetScroll
-Sub SetScroll(b As Boolean) As WixGroupList
+Sub SetScroll(b As object) As WixGroupList
 	GroupList.SetAttr("scroll", b)
 	Return Me
 End Sub

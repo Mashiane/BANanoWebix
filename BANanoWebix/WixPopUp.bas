@@ -19,6 +19,16 @@ Public Sub Initialize(sid As String) As WixPopUp
 	Return Me 
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixPopUp
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Popup.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set move
 Sub SetMove(b As Boolean) As WixPopUp
 	Popup.SetAttr("move", b)

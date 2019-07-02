@@ -20,6 +20,16 @@ Public Sub Initialize(sid As String) As WixTabBar
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixTabBar
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		TabBar.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'add item
 Sub AddItem(iID As String, iText As String, iIcon As String)
 	iID = iID.tolowercase

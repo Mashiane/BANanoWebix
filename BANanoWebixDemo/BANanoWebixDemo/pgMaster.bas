@@ -44,6 +44,7 @@ Sub Init
 	sm.AddItem("", "datatable", "L8 DataTable","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("datatable", "lesson8_1", "Lesson 8.1","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("datatable", "lesson8_2", "Lesson 8.2","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("datatable", "lesson8_3", "Lesson 8.3","","mdi mdi-view-dashboard", "","")
 	'
 	sm.AddItem("", "dataview", "L9 DataView","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lists", "L10-L11 Lists","","mdi mdi-view-dashboard", "","")
@@ -67,7 +68,10 @@ Sub Init
 	sm.AddItem("uploader", "lesson22_1", "L22.1 Upload Grid","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("uploader", "lesson22_2", "L22.2 Linked List","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("uploader", "lesson22_3", "L22.3 Drop Zone","","mdi mdi-view-dashboard", "","")
+	'
 	sm.AddItem("", "lesson23", "L23 Video","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "lesson24", "L24 Scroll View","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "lesson25", "L25 Template","","mdi mdi-view-dashboard", "","")
 	
 	Dim items As List = sm.Items
 	Dim data As List = pg.Unflatten(items,"data")
@@ -98,6 +102,12 @@ End Sub
 
 Sub itemClick(meID As String)
 	Select Case meID
+	Case "lesson8_3"
+		pgLesson8_3.Init("r2c2_content")		
+	Case "lesson24"
+		pgScrollView.Init("r2c2_content")
+	Case "lesson25"
+		pgTemplate.Init("r2c2_content")
 	Case "forms1"
 		pgForms.Init("r2c2_content")
 	Case "forms2"		

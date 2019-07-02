@@ -25,6 +25,16 @@ Sub SetTypeTime(b As Boolean) As WixDateTimePicker   'ignore
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixDateTimePicker
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		DateTimePicker.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'editable
 Sub SetEditable(b As Boolean) As WixDateTimePicker
 	DateTimePicker.SetProperty("editable", b)

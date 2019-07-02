@@ -24,9 +24,18 @@ Public Sub Initialize(tID As String) As WixDataView
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixDataView
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		DataView.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'set scroll
-Sub SetScroll(b As Boolean) As WixDataView
+Sub SetScroll(b As Object) As WixDataView
 	DataView.SetProperty("scroll", b)
 	Return Me
 End Sub
@@ -97,6 +106,12 @@ End Sub
 'set xCount i.e number of items in a row
 Sub SetXCount(x As Int) As WixDataView
 	DataView.SetAttr("xCount", x)
+	Return Me
+End Sub
+
+'set navigation
+Sub SetNavigation(b As Object) As WixDataView
+	DataView.SetAttr("navigation", b)
 	Return Me
 End Sub
 

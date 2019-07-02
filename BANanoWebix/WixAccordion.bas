@@ -59,3 +59,12 @@ Sub AddItem(iID As String, header As String, body As String, width As Int, bColl
 	End If
 	Return h
 End Sub
+
+'use a map object
+Sub SetMap(m As Map) As WixAccordion
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Accordion.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub

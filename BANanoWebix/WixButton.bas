@@ -35,6 +35,16 @@ Public Sub Initialize(bID As String) As WixButton
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixButton
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Button.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'sub SetInputWidth
 Sub SetInputWidth(w As Int) As WixButton
 	Button.SetInputWidth(w)

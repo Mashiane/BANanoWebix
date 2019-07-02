@@ -23,6 +23,16 @@ Public Sub Initialize(sid As String) As WixGoogleMap
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixGoogleMap
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		GoogleMap.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'add marker
 Sub AddMarker(mID As String, mLat As Double, mLng As Double, mTitle As String, mCanDrag As Boolean, mHidden As Boolean) As WixGoogleMap
 	Dim Marker As Map = CreateMap()

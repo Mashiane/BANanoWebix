@@ -18,6 +18,15 @@ Public Sub Initialize(iID As String) As WixSection
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixSection
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Section.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixSection

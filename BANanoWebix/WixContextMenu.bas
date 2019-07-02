@@ -32,6 +32,15 @@ Sub Item As Map
 	Return ContextMenu.item
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixContextMenu
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		ContextMenu.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 ' set menu pos right
 Sub SetSubMenuPosRight(r As String) As WixContextMenu   'ignore
@@ -47,7 +56,7 @@ Sub SetHeight(h As Object) As WixContextMenu
 End Sub
 
 'set width
-Sub SetWidth(w As object) As WixContextMenu
+Sub SetWidth(w As Object) As WixContextMenu
 	ContextMenu.SetAttr("width", w)
 	Return Me
 End Sub

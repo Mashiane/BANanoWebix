@@ -29,3 +29,12 @@ End Sub
 Sub Item As Map
 	Return Header.item
 End Sub
+
+'use a map object
+Sub SetMap(m As Map) As WixHeader
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Header.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub

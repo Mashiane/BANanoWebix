@@ -34,6 +34,16 @@ Sub SetTooltip(tt As String) As WixCombo
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixCombo
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Combo.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set options
 Sub SetOptions(o As List) As WixCombo
 	Options = o

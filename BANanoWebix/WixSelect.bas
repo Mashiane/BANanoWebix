@@ -25,6 +25,15 @@ Sub SetStyle(prop As String, val As String) As WixSelect
 	Return Me
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixSelect
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		DropDown.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixSelect

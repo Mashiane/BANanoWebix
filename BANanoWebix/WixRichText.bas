@@ -22,6 +22,15 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixRichText
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		RichText.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixRichText
@@ -41,7 +50,7 @@ Sub Item As Map
 End Sub
 
 'set height
-Sub SetHeight(h As object) As WixRichText
+Sub SetHeight(h As Object) As WixRichText
 	RichText.SetHeight(h)
 	Return Me
 End Sub

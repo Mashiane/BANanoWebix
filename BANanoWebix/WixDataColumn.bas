@@ -35,6 +35,16 @@ Public Sub Initialize2(cID As String) As WixDataColumn
 	Return Me 
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixDataColumn
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Column.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 
 'add to parent data table
 Sub Pop

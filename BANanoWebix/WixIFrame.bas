@@ -27,9 +27,18 @@ Sub Item As Map
 	Return IFrame.item
 End Sub
 
+'use a map object
+Sub SetMap(m As Map) As WixIFrame
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		IFrame.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
 
 'set scroll
-Sub SetScroll(b As Boolean) As WixIFrame
+Sub SetScroll(b As Object) As WixIFrame
 	IFrame.SetProperty("scroll", b)
 	Return Me
 End Sub

@@ -28,21 +28,46 @@ Public Sub Initialize(fID As String) As WixForm
 End Sub
 
 
+
+'add row items
+Sub AddRowItems(items As List)
+	For Each m As Map In items
+		AddRows(m)
+	Next
+End Sub
+
+'add rows
+Sub AddWixRows(lst As List)
+	For Each i As WixRow In lst
+		AddRows(i.Item)
+	Next
+End Sub
+
+'use a map object
+Sub SetMap(m As Map) As WixForm
+	For Each strKey As String In m.Keys
+		Dim strVal As String = m.Get(strKey)
+		Form.SetAttr(strKey,	strVal)
+	Next
+	Return Me
+End Sub
+
+
 'set scrollY
-Sub SetScrollY(b As Boolean) As WixForm
+Sub SetScrollY(b As Object) As WixForm
 	Form.SetAttr("scrollY", b)
 	Return Me
 End Sub
 
 'set scrollX
-Sub SetScrollX(b As Boolean) As WixForm
+Sub SetScrollX(b As Object) As WixForm
 	Form.SetAttr("scrollX", b)
 	Return Me
 End Sub
 
 
 'set scroll
-Sub SetScroll(b As Boolean) As WixForm
+Sub SetScroll(b As Object) As WixForm
 	Form.SetProperty("scroll", b)
 	Return Me
 End Sub
