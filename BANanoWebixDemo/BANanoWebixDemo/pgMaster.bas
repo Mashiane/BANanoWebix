@@ -1,0 +1,164 @@
+﻿B4J=true
+Group=Default Group
+ModulesStructureVersion=1
+Type=StaticCode
+Version=7.51
+@EndOfDesignText@
+'Static code module
+#IgnoreWarnings:12
+Sub Process_Globals
+	Private pg As WixPage
+	Private BANano As BANano
+End Sub
+
+Sub Init
+	pg.Initialize("forms", "body").SetTypeSpace("")
+	'
+	Dim R1 As WixRow
+	R1.Initialize("R1")
+	'add toolbar
+	Dim tblBar As WixToolBar
+	tblBar.Initialize("tblBar")
+	tblBar.CreateIcon("menuopen").SetIcon("mdi mdi-menu").SetClick(BANano.CallBack(Me, "OpenMenu", Null)).Pop
+	tblBar.CreateLabel("heading").SetLabel("BANanoWebix - A Webix Wrapper for BANano").Pop
+	tblBar.setPadding(3)
+	R1.AddRows(tblBar.Item)
+	'
+	Dim sm As WixSideBar
+	sm.Initialize("sm").SetPositionRight("").SetCollapsed(False).SetActiveTitle(True).SetScroll(True)
+	'
+	sm.AddItem("", "layouts", "L1-L3 Layouts","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("layouts", "lesson1", "Lesson 1","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("layouts", "lesson2", "Lesson 2","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("layouts", "lesson3_1", "Lesson 3.1","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("layouts", "lesson3_2", "Lesson 3.2","","mdi mdi-view-dashboard", "","")
+	'
+	sm.AddItem("", "multiview", "L4 MultiView","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "toolbar", "L5 ToolBar","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "dataentry1", "L6 Data Entry","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("dataentry1", "dataentry", "L6 Data Entry","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("dataentry1", "forms1", "Forms 1","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("dataentry1", "forms2", "Forms 2","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "charts", "L7 Charts","","mdi mdi-view-dashboard", "","")
+	'
+	sm.AddItem("", "datatable", "L8 DataTable","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("datatable", "lesson8_1", "Lesson 8.1","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("datatable", "lesson8_2", "Lesson 8.2","","mdi mdi-view-dashboard", "","")
+	'
+	sm.AddItem("", "dataview", "L9 DataView","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "lists", "L10-L11 Lists","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("lists", "list", "L10 List","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("lists", "unitlist", "L11 Unit List","","mdi mdi-view-dashboard", "","")
+	'
+	sm.AddItem("", "property", "L12 Property Sheet", "", "mdi mdi-table", "","")
+	'
+	sm.AddItem("", "trees", "L13-L14 Trees","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("trees", "treeview", "L13 Tree","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("trees", "treedata", "L14 Tree Data","","mdi mdi-view-dashboard", "","")
+	'
+	sm.AddItem("", "menu", "L15 Menu", "", "mdi mdi-table", "","")
+	sm.AddItem("", "sidebar", "L16 Side Bar", "", "mdi mdi-table", "","")
+	sm.AddItem("", "comments", "L17 Comments", "", "mdi mdi-table", "","")
+	sm.AddItem("", "grouplist", "L18 Group List","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "context", "L19 Contexts", "", "mdi mdi-table", "","")
+	sm.AddItem("", "gmap", "L20 GoogleMap", "", "mdi mdi-table", "","")
+	sm.AddItem("", "tabbar", "L21 Tab Bar", "", "mdi mdi-table", "","")
+	sm.AddItem("", "uploader", "L22 Uploader", "", "mdi mdi-table", "","")
+	sm.AddItem("uploader", "lesson22_1", "L22.1 Upload Grid","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("uploader", "lesson22_2", "L22.2 Linked List","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("uploader", "lesson22_3", "L22.3 Drop Zone","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "lesson23", "L23 Video","","mdi mdi-view-dashboard", "","")
+	
+	Dim items As List = sm.Items
+	Dim data As List = pg.Unflatten(items,"data")
+	sm.SetData(data)
+	'
+	Dim R2 As WixRow
+	R2.Initialize("R2")
+	'
+	R2.AddColumns(sm.Item)
+	'
+	Dim R2C2 As WixElement
+	R2C2.Initialize("R2C2")
+	Dim div As UOENowHTML
+	div.Initialize("r2c2_content","div").SetStyle("width","100%").SetStyle("height","100%")
+	R2C2.SetTemplate(div.HTML)
+	'
+	R2.AddColumns(R2C2.item)
+	'
+	pg.AddRow(R1)
+	pg.AddRow(R2)
+	'
+	pg.ui
+	'
+	Dim meid As Map
+	pg.OnItemClick("sm", BANano.CallBack(Me, "itemClick", Array(meid)))
+End Sub
+
+
+Sub itemClick(meID As String)
+	Select Case meID
+	Case "forms1"
+		pgForms.Init("r2c2_content")
+	Case "forms2"		
+		pgForms1.Init("r2c2_content")
+	Case "lesson23"
+		pgVideo.Init("r2c2_content")
+	Case "lesson22_1"
+		pgUploader1.Init("r2c2_content")
+	Case "lesson22_2"
+		pgUploader2.Init("r2c2_content")
+	Case "lesson22_3"
+		pgUploader3.Init("r2c2_content")
+	Case "tabbar"
+		pgTabBar.Init("r2c2_content")
+	Case "gmap"
+		pgGoogleMap.Init("r2c2_content")
+	Case "context"
+		pgContext.Init("r2c2_content")
+	Case "comments"
+			pgComments.Init("r2c2_content")
+	Case "sidebar"
+		pgSideBar.Init("r2c2_content")
+	Case "menu"
+		pgMenu.Init("r2c2_content")
+	Case "treeview"
+		pgTree.Init("r2c2_content")
+	Case "treedata"
+		pgTreeTable.Init("r2c2_content")
+	Case "property"
+		pgPropertySheet.Init("r2c2_content")
+	Case "grouplist"
+		pgGroupList.Init("r2c2_content")
+	Case "unitlist"
+		pgUnitList.Init("r2c2_content")
+	Case "list"
+		pgList.Init("r2c2_content")
+	Case "dataview"
+		pgDataView.Init("r2c2_content")
+	Case "lesson8_1"
+		pgDataTable.Init("r2c2_content")
+	Case "lesson8_2"
+		pgDataTable1.Init("r2c2_content")
+	Case "charts"
+		pgCharts.Init("r2c2_content")
+	Case "lesson1"
+		pgLayout.Init("r2c2_content")
+	Case "lesson2"
+		pgLayouts.Init("r2c2_content")
+	Case "lesson3_1"
+		pgLayouts1.init("r2c2_content")
+	Case "lesson3_2"
+		pgLayouts2.init("r2c2_content")
+	Case "multiview"
+		pgMultiView.Init("r2c2_content")
+	Case "toolbar"
+		pgToolBar.Init("r2c2_content")
+	Case "dataentry"
+		pgDataEntry.Init("r2c2_content")		
+	End Select
+End Sub
+
+Sub OpenMenu()
+	pg.Toggle("sm")
+End Sub

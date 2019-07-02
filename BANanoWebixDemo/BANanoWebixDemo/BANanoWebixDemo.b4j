@@ -1,0 +1,143 @@
+﻿AppType=JavaFX
+Build1=Default,b4j.Mashy.BANanoWebixDemo
+File1=1.png
+File10=icons8-save-as-100.png
+File11=icons8-save-close-40.png
+File12=james.jpg
+File13=marie.jpg
+File14=michael.jpg
+File15=mike.jpg
+File16=movie.mp4
+File17=movie.ogv
+File18=olivia.jpg
+File19=ryan.jpg
+File2=2.png
+File20=upload.php
+File21=usher.jpg
+File3=data.js
+File4=emily.jpg
+File5=fonts.zip
+File6=icons8-add-row-40.png
+File7=icons8-compose-40.png
+File8=icons8-edit-40.png
+File9=icons8-pencil-40.png
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup11=Default Group
+FileGroup12=Default Group
+FileGroup13=Default Group
+FileGroup14=Default Group
+FileGroup15=Default Group
+FileGroup16=Default Group
+FileGroup17=Default Group
+FileGroup18=Default Group
+FileGroup19=Default Group
+FileGroup2=Default Group
+FileGroup20=Default Group
+FileGroup21=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+Library1=jcore
+Library2=jfx
+Library3=banano
+Library4=bananopostprocessor
+Library5=bananowebix
+Module1=pgMaster
+Module10=pgDataTable
+Module11=pgDataTable1
+Module12=pgDataView
+Module13=pgForms
+Module14=pgForms1
+Module15=pgGoogleMap
+Module16=pgGroupList
+Module17=pgIndex
+Module18=pgList
+Module19=pgMenu
+Module2=pgLayout
+Module20=pgMultiView
+Module21=pgPropertySheet
+Module22=pgSideBar
+Module23=pgTabBar
+Module24=pgToolBar
+Module25=pgTree
+Module26=pgTreeTable
+Module27=pgUnitList
+Module28=pgUploader1
+Module29=pgUploader2
+Module3=pgLayouts
+Module30=pgUploader3
+Module31=pgVideo
+Module4=pgLayouts1
+Module5=pgLayouts2
+Module6=pgCharts
+Module7=pgComments
+Module8=pgContext
+Module9=pgDataEntry
+NumberOfFiles=21
+NumberOfLibraries=5
+NumberOfModules=31
+Version=7.51
+@EndOfDesignText@
+ #Region Project Attributes 
+#End Region
+#IgnoreWarnings:15
+Sub Process_Globals
+	Public BANano As BANano 'ignore
+	Public AppName As String = "BANanoWebixDemo"
+	Private Publish As String
+	Private BP As BANanoPostProcessor
+End Sub
+
+Sub AppStart (Form1 As Form, Args() As String)
+	Publish = "C:\xampp\htdocs"
+	Dim version As String = DateTime.now
+	Dim appFile As String = $"app${version}.js"$
+	BANano.Initialize("BANano", AppName,1)
+	BANano.HTML_NAME = "index.html"
+	BANano.Header.Title = AppName
+	BANano.JAVASCRIPT_NAME = appFile
+	BANano.Header.addcssfile("all.min.css")
+	BANano.Header.AddCSSFile("materialdesignicons.min.css")
+	BANano.Header.AddCSSFile("webix.min.css")
+	'*themes
+	BANano.Header.AddCSSFile("material.min.css")
+	'BANano.Header.AddCSSFile("flat.min.css")
+	'BANano.Header.AddCSSFile("compact.min.css")
+	'BANano.Header.AddCSSFile("contrast.min.css")
+	'** themes
+	BANano.Header.AddJavascriptFile("webix.min.js")
+	BANano.Header.AddJavascriptFile("data.js")
+	'BANano.TranspilerOptions.MergeAllCSSFiles = True
+	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True
+	'BANano.TranspilerOptions.ShowWarningDeadCode = True
+	'BANano.TranspilerOptions.RemoveDeadCode = True
+	BANano.TranspilerOptions.UseServiceWorker = False 
+	BANano.Build(Publish)
+	'post processor
+	BP.Initialize
+	BP.PublishPath = Publish
+	BP.ShortName = AppName
+	BP.AssetsPath = BANano.ASSETS_FOLDER
+	BP.ScriptsPath = BANano.SCRIPTS_FOLDER
+	BP.StylesPath = BANano.STYLES_FOLDER
+	BP.ScriptFile = BANano.JAVASCRIPT_NAME
+	BP.UnzipFonts
+	BP.Open(True)
+	ExitApplication
+End Sub
+
+'Return true to allow the default exceptions handler to handle the uncaught exception.
+Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
+	Return True
+End Sub
+
+Sub BANano_Ready()
+	'pgIndex.Init
+	pgMaster.init
+End Sub
