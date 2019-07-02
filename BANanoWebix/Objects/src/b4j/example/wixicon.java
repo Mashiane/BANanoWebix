@@ -29,6 +29,7 @@ public com.ab.banano.BANanoObject _onclick = null;
 public String _iconname = "";
 public b4j.example.wixelement _parent = null;
 public b4j.example.main _main = null;
+public b4j.example.pgvideo _pgvideo = null;
 public b4j.example.pgtabbar _pgtabbar = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgmenu _pgmenu = null;

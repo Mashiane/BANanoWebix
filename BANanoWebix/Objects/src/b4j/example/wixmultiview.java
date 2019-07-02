@@ -26,6 +26,7 @@ public class wixmultiview extends B4AClass.ImplB4AClass implements BA.SubDelegat
 public String _id = "";
 public b4j.example.wixelement _multiview = null;
 public b4j.example.main _main = null;
+public b4j.example.pgvideo _pgvideo = null;
 public b4j.example.pgtabbar _pgtabbar = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgmenu _pgmenu = null;

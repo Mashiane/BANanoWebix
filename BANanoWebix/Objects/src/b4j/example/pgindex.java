@@ -26,6 +26,7 @@ public static b4j.example.wixlist _mylist = null;
 public static b4j.example.wixform _myform = null;
 public static com.ab.banano.BANano _banano = null;
 public static b4j.example.main _main = null;
+public static b4j.example.pgvideo _pgvideo = null;
 public static b4j.example.pgtabbar _pgtabbar = null;
 public static b4j.example.pgtree _pgtree = null;
 public static b4j.example.pgmenu _pgmenu = null;

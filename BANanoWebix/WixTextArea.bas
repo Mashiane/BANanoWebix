@@ -23,6 +23,11 @@ Sub SetValue(v As String) As WixTextArea
 	Return Me
 End Sub
 
+'set invalid message
+Sub SetInvalidMessage(msg As String) As WixTextArea
+	TextArea.SetInvalidMessage(msg)
+	Return Me
+End Sub
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixTextArea

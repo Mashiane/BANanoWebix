@@ -31,6 +31,7 @@ End Sub
 
 Sub SetApiOnly(b As Boolean) As WixUploader
 	Uploader.SetAttr("apiOnly", b)
+	Return Me
 End Sub
 
 'the type of a server-side response. Optional, json by default

@@ -31,6 +31,7 @@ public String _map_type_satellite = "";
 public String _map_type_hybrid = "";
 public String _map_type_terrain = "";
 public b4j.example.main _main = null;
+public b4j.example.pgvideo _pgvideo = null;
 public b4j.example.pgtabbar _pgtabbar = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgmenu _pgmenu = null;

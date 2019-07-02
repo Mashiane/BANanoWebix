@@ -26,14 +26,13 @@ public class wixbuttontypes extends B4AClass.ImplB4AClass implements BA.SubDeleg
 public String _buttonbase = "";
 public String _buttondanger = "";
 public String _buttonform = "";
-public String _buttonprev = "";
-public String _buttonnext = "";
 public String _buttonimage = "";
 public String _buttoniconbutton = "";
 public String _buttoniconbuttontop = "";
 public String _buttonimagebutton = "";
 public String _buttonicon = "";
 public b4j.example.main _main = null;
+public b4j.example.pgvideo _pgvideo = null;
 public b4j.example.pgtabbar _pgtabbar = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgmenu _pgmenu = null;
@@ -71,27 +70,23 @@ _buttonbase = "";
 _buttondanger = "danger";
  //BA.debugLineNum = 4;BA.debugLine="Public ButtonForm As String = \"form\"";
 _buttonform = "form";
- //BA.debugLineNum = 5;BA.debugLine="Public ButtonPrev As String = \"prev\"";
-_buttonprev = "prev";
- //BA.debugLineNum = 6;BA.debugLine="Public ButtonNext As String = \"next\"";
-_buttonnext = "next";
- //BA.debugLineNum = 7;BA.debugLine="Public ButtonImage As String = \"image\"";
+ //BA.debugLineNum = 5;BA.debugLine="Public ButtonImage As String = \"image\"";
 _buttonimage = "image";
- //BA.debugLineNum = 8;BA.debugLine="Public ButtonIconButton As String = \"iconButton\"";
+ //BA.debugLineNum = 6;BA.debugLine="Public ButtonIconButton As String = \"iconButton\"";
 _buttoniconbutton = "iconButton";
- //BA.debugLineNum = 9;BA.debugLine="Public ButtonIconButtonTop As String = \"iconButto";
+ //BA.debugLineNum = 7;BA.debugLine="Public ButtonIconButtonTop As String = \"iconButto";
 _buttoniconbuttontop = "iconButtonTop";
- //BA.debugLineNum = 10;BA.debugLine="Public ButtonImageButton As String = \"imageButton";
+ //BA.debugLineNum = 8;BA.debugLine="Public ButtonImageButton As String = \"imageButton";
 _buttonimagebutton = "imageButton";
- //BA.debugLineNum = 11;BA.debugLine="Public ButtonIcon As String = \"icon\"";
+ //BA.debugLineNum = 9;BA.debugLine="Public ButtonIcon As String = \"icon\"";
 _buttonicon = "icon";
- //BA.debugLineNum = 12;BA.debugLine="End Sub";
+ //BA.debugLineNum = 10;BA.debugLine="End Sub";
 return "";
 }
 public String  _initialize(anywheresoftware.b4a.BA _ba) throws Exception{
 innerInitialize(_ba);
- //BA.debugLineNum = 15;BA.debugLine="Public Sub Initialize";
- //BA.debugLineNum = 17;BA.debugLine="End Sub";
+ //BA.debugLineNum = 13;BA.debugLine="Public Sub Initialize";
+ //BA.debugLineNum = 15;BA.debugLine="End Sub";
 return "";
 }
 public Object callSub(String sub, Object sender, Object[] args) throws Exception {

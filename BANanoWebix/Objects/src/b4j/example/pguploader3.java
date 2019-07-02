@@ -27,6 +27,7 @@ public static com.ab.banano.BANano _banano = null;
 public static com.ab.banano.BANanoObject _fu = null;
 public static b4j.example.wixlist _listview = null;
 public static b4j.example.main _main = null;
+public static b4j.example.pgvideo _pgvideo = null;
 public static b4j.example.pgtabbar _pgtabbar = null;
 public static b4j.example.pgtree _pgtree = null;
 public static b4j.example.pgmenu _pgmenu = null;
@@ -60,87 +61,87 @@ b4j.example.wixrow _r1 = null;
 b4j.example.wixlist _lst = null;
 b4j.example.wixuploader _upload = null;
 com.ab.banano.BANanoObject _ffile = null;
- //BA.debugLineNum = 10;BA.debugLine="Sub Init";
- //BA.debugLineNum = 12;BA.debugLine="pg.Initialize(\"\").SetHeader(\"Lesson 22: File Uplo";
+ //BA.debugLineNum = 11;BA.debugLine="Sub Init";
+ //BA.debugLineNum = 13;BA.debugLine="pg.Initialize(\"\").SetHeader(\"Lesson 22: File Uplo";
 _pg._initialize /*b4j.example.wixpage*/ (ba,"")._setheader /*b4j.example.wixpage*/ ("Lesson 22: File Uploader - Part 3 (DropZone)");
- //BA.debugLineNum = 13;BA.debugLine="pg.Page.SetTypeSpace";
+ //BA.debugLineNum = 14;BA.debugLine="pg.Page.SetTypeSpace";
 _pg._page /*b4j.example.wixelement*/ ._settypespace /*b4j.example.wixelement*/ ();
- //BA.debugLineNum = 15;BA.debugLine="Dim R1 As WixRow";
+ //BA.debugLineNum = 16;BA.debugLine="Dim R1 As WixRow";
 _r1 = new b4j.example.wixrow();
- //BA.debugLineNum = 16;BA.debugLine="R1.Initialize(\"R1\")";
+ //BA.debugLineNum = 17;BA.debugLine="R1.Initialize(\"R1\")";
 _r1._initialize /*b4j.example.wixrow*/ (ba,"R1");
- //BA.debugLineNum = 18;BA.debugLine="Dim lst As WixList";
+ //BA.debugLineNum = 19;BA.debugLine="Dim lst As WixList";
 _lst = new b4j.example.wixlist();
- //BA.debugLineNum = 19;BA.debugLine="lst.Initialize(\"mylist\").SetTypeUploader(True).Se";
+ //BA.debugLineNum = 20;BA.debugLine="lst.Initialize(\"mylist\").SetTypeUploader(True).Se";
 _lst._initialize /*b4j.example.wixlist*/ (ba,"mylist")._settypeuploader /*b4j.example.wixlist*/ (anywheresoftware.b4a.keywords.Common.True)._setheight /*b4j.example.wixlist*/ (BA.NumberToString(600))._setwidth /*b4j.example.wixlist*/ (BA.NumberToString(300))._setscroll /*b4j.example.wixlist*/ (anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 21;BA.debugLine="R1.AddItem(lst.Item)";
+ //BA.debugLineNum = 22;BA.debugLine="R1.AddItem(lst.Item)";
 _r1._additem /*b4j.example.wixrow*/ (_lst._item /*anywheresoftware.b4a.objects.collections.Map*/ ());
- //BA.debugLineNum = 23;BA.debugLine="pg.AddRow(R1)";
+ //BA.debugLineNum = 24;BA.debugLine="pg.AddRow(R1)";
 _pg._addrow /*String*/ (_r1);
- //BA.debugLineNum = 25;BA.debugLine="pg.ui";
+ //BA.debugLineNum = 26;BA.debugLine="pg.ui";
 _pg._ui /*String*/ ();
- //BA.debugLineNum = 27;BA.debugLine="Dim upload As WixUploader";
+ //BA.debugLineNum = 28;BA.debugLine="Dim upload As WixUploader";
 _upload = new b4j.example.wixuploader();
- //BA.debugLineNum = 28;BA.debugLine="upload.Initialize(\"upload\").SetApiOnly(True).SetL";
+ //BA.debugLineNum = 29;BA.debugLine="upload.Initialize(\"upload\").SetApiOnly(True).SetL";
 _upload._initialize /*b4j.example.wixuploader*/ (ba,"upload")._setapionly /*b4j.example.wixuploader*/ (anywheresoftware.b4a.keywords.Common.True)._setlink /*b4j.example.wixuploader*/ ("mylist")._setupload /*b4j.example.wixuploader*/ ("./assets/upload.php")._setapionly /*b4j.example.wixuploader*/ (anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 30;BA.debugLine="fu = pg.AddUploader(upload)";
+ //BA.debugLineNum = 31;BA.debugLine="fu = pg.AddUploader(upload)";
 _fu = _pg._adduploader /*com.ab.banano.BANanoObject*/ (_upload);
- //BA.debugLineNum = 33;BA.debugLine="Dim ffile As BANanoObject";
+ //BA.debugLineNum = 34;BA.debugLine="Dim ffile As BANanoObject";
 _ffile = new com.ab.banano.BANanoObject();
- //BA.debugLineNum = 34;BA.debugLine="pg.OnFileUploadError(\"upload\", BANano.CallBack(Me";
+ //BA.debugLineNum = 35;BA.debugLine="pg.OnFileUploadError(\"upload\", BANano.CallBack(Me";
 _pg._onfileuploaderror /*String*/ ("upload",(com.ab.banano.BANanoObject)(_banano.CallBack(pguploader3.getObject(),"onFileUploadError",anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(_ffile)}))));
- //BA.debugLineNum = 35;BA.debugLine="pg.onFileUpload(\"upload\", BANano.CallBack(Me, \"on";
+ //BA.debugLineNum = 36;BA.debugLine="pg.onFileUpload(\"upload\", BANano.CallBack(Me, \"on";
 _pg._onfileupload /*String*/ ("upload",(com.ab.banano.BANanoObject)(_banano.CallBack(pguploader3.getObject(),"onFileUpload",anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(_ffile)}))));
- //BA.debugLineNum = 38;BA.debugLine="pg.addDropZone(\"upload\", \"mylist\")";
+ //BA.debugLineNum = 39;BA.debugLine="pg.addDropZone(\"upload\", \"mylist\")";
 _pg._adddropzone /*String*/ ("upload","mylist");
- //BA.debugLineNum = 40;BA.debugLine="End Sub";
+ //BA.debugLineNum = 41;BA.debugLine="End Sub";
 return "";
 }
 public static String  _onfileupload(com.ab.banano.BANanoObject _ffile) throws Exception{
 String _status = "";
- //BA.debugLineNum = 43;BA.debugLine="Sub onFileUpload(ffile As BANanoObject)";
- //BA.debugLineNum = 44;BA.debugLine="Log(\"onFileUpload\")";
+ //BA.debugLineNum = 44;BA.debugLine="Sub onFileUpload(ffile As BANanoObject)";
+ //BA.debugLineNum = 45;BA.debugLine="Log(\"onFileUpload\")";
 anywheresoftware.b4a.keywords.Common.Log("onFileUpload");
- //BA.debugLineNum = 45;BA.debugLine="Log(ffile)";
+ //BA.debugLineNum = 46;BA.debugLine="Log(ffile)";
 anywheresoftware.b4a.keywords.Common.Log(BA.ObjectToString(_ffile));
- //BA.debugLineNum = 46;BA.debugLine="Dim status As String = ffile.GetField(\"status\").R";
+ //BA.debugLineNum = 47;BA.debugLine="Dim status As String = ffile.GetField(\"status\").R";
 _status = BA.ObjectToString(_ffile.GetField("status").Result());
- //BA.debugLineNum = 47;BA.debugLine="Select Case status";
+ //BA.debugLineNum = 48;BA.debugLine="Select Case status";
 switch (BA.switchObjectToInt(_status,"success","server")) {
 case 0: 
 case 1: {
  break; }
 default: {
- //BA.debugLineNum = 50;BA.debugLine="pg.Alert(\"Error during file upload!\")";
+ //BA.debugLineNum = 51;BA.debugLine="pg.Alert(\"Error during file upload!\")";
 _pg._alert /*String*/ ("Error during file upload!");
  break; }
 }
 ;
- //BA.debugLineNum = 52;BA.debugLine="End Sub";
+ //BA.debugLineNum = 53;BA.debugLine="End Sub";
 return "";
 }
 public static String  _onfileuploaderror(com.ab.banano.BANanoObject _ffile) throws Exception{
- //BA.debugLineNum = 54;BA.debugLine="Sub OnFileUploadError(ffile As BANanoObject)";
- //BA.debugLineNum = 55;BA.debugLine="Log(\"OnFileUploadError\")";
+ //BA.debugLineNum = 55;BA.debugLine="Sub OnFileUploadError(ffile As BANanoObject)";
+ //BA.debugLineNum = 56;BA.debugLine="Log(\"OnFileUploadError\")";
 anywheresoftware.b4a.keywords.Common.Log("OnFileUploadError");
- //BA.debugLineNum = 56;BA.debugLine="pg.Alert(\"Error during file upload!\")";
+ //BA.debugLineNum = 57;BA.debugLine="pg.Alert(\"Error during file upload!\")";
 _pg._alert /*String*/ ("Error during file upload!");
- //BA.debugLineNum = 57;BA.debugLine="End Sub";
+ //BA.debugLineNum = 58;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 2;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 3;BA.debugLine="Private pg As WixPage";
+ //BA.debugLineNum = 3;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 4;BA.debugLine="Private pg As WixPage";
 _pg = new b4j.example.wixpage();
- //BA.debugLineNum = 4;BA.debugLine="Public myForm As WixForm";
+ //BA.debugLineNum = 5;BA.debugLine="Public myForm As WixForm";
 _myform = new b4j.example.wixform();
- //BA.debugLineNum = 5;BA.debugLine="Public BANano As BANano";
+ //BA.debugLineNum = 6;BA.debugLine="Public BANano As BANano";
 _banano = new com.ab.banano.BANano();
- //BA.debugLineNum = 6;BA.debugLine="Public fu As BANanoObject";
+ //BA.debugLineNum = 7;BA.debugLine="Public fu As BANanoObject";
 _fu = new com.ab.banano.BANanoObject();
- //BA.debugLineNum = 7;BA.debugLine="Public listView As WixList";
+ //BA.debugLineNum = 8;BA.debugLine="Public listView As WixList";
 _listview = new b4j.example.wixlist();
- //BA.debugLineNum = 8;BA.debugLine="End Sub";
+ //BA.debugLineNum = 9;BA.debugLine="End Sub";
 return "";
 }
 }

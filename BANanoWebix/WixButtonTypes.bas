@@ -8,8 +8,6 @@ Sub Class_Globals
 	Public ButtonBase As String = ""
 	Public ButtonDanger As String = "danger"
 	Public ButtonForm As String = "form"
-	Public ButtonPrev As String = "prev"
-	Public ButtonNext As String = "next"
 	Public ButtonImage As String = "image"
 	Public ButtonIconButton As String = "iconButton"
 	Public ButtonIconButtonTop As String = "iconButtonTop"

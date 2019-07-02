@@ -279,12 +279,17 @@ End Sub
 
 'render the page UX
 Sub UI()
-	webix.RunMethod("ui",Page.item)
+	webix.RunMethod("ui",Array(Page.item))
 	'add hints
 	For Each sHint As String In hints.Keys
 		Dim sValue As String = hints.Get(sHint)
 		SetBottomText(sHint, sValue)
 	Next
+End Sub
+
+'set to full screen
+Sub FullScreen
+	webix.RunMethod("ui", Array("fullScreen"))
 End Sub
 
 'message user
@@ -604,13 +609,13 @@ End Sub
 
 'return ui element from map
 Sub UIObject(m As Map) As BANanoObject
-	Dim res As BANanoObject = webix.RunMethod("ui", m)
+	Dim res As BANanoObject = webix.RunMethod("ui", Array(m))
 	Return res
 End Sub
 
 'return ui element from map
 Sub UX(m As Map) As BANanoObject
-	Dim res As BANanoObject = webix.RunMethod("ui", m)
+	Dim res As BANanoObject = webix.RunMethod("ui", Array(m))
 	Return res
 End Sub
 

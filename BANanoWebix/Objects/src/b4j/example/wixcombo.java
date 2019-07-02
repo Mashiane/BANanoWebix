@@ -29,6 +29,7 @@ public anywheresoftware.b4a.objects.collections.List _options = null;
 public int _ycount = 0;
 public anywheresoftware.b4a.objects.collections.Map _opt = null;
 public b4j.example.main _main = null;
+public b4j.example.pgvideo _pgvideo = null;
 public b4j.example.pgtabbar _pgtabbar = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgmenu _pgmenu = null;

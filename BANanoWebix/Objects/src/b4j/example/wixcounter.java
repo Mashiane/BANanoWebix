@@ -29,6 +29,7 @@ public int _minimum = 0;
 public int _maximum = 0;
 public int _stepper = 0;
 public b4j.example.main _main = null;
+public b4j.example.pgvideo _pgvideo = null;
 public b4j.example.pgtabbar _pgtabbar = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgmenu _pgmenu = null;

@@ -26,6 +26,7 @@ public class wixdatacollection extends B4AClass.ImplB4AClass implements BA.SubDe
 public String _url = "";
 public anywheresoftware.b4a.objects.collections.Map _options = null;
 public b4j.example.main _main = null;
+public b4j.example.pgvideo _pgvideo = null;
 public b4j.example.pgtabbar _pgtabbar = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgmenu _pgmenu = null;

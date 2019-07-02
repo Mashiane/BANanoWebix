@@ -45,6 +45,7 @@ public static com.ab.banano.BANano _banano = null;
 public static String _appname = "";
 public static String _publish = "";
 public static b4j.example.bananopostprocessor _bp = null;
+public static b4j.example.pgvideo _pgvideo = null;
 public static b4j.example.pgtabbar _pgtabbar = null;
 public static b4j.example.pgtree _pgtree = null;
 public static b4j.example.pgmenu _pgmenu = null;
@@ -140,9 +141,9 @@ return "";
 }
 public static String  _banano_ready() throws Exception{
  //BA.debugLineNum = 51;BA.debugLine="Sub BANano_Ready()";
- //BA.debugLineNum = 86;BA.debugLine="pgUploader3.Init			'LESSON 22.3";
-_pguploader3._init /*String*/ ();
- //BA.debugLineNum = 88;BA.debugLine="End Sub";
+ //BA.debugLineNum = 87;BA.debugLine="pgVideo.Init		        'LESSON 23";
+_pgvideo._init /*String*/ ();
+ //BA.debugLineNum = 89;BA.debugLine="End Sub";
 return "";
 }
 
@@ -153,6 +154,7 @@ public static void initializeProcessGlobals() {
 	    main.processGlobalsRun = true;
 		try {
 		        main._process_globals();
+pgvideo._process_globals();
 pgtabbar._process_globals();
 pgtree._process_globals();
 pgmenu._process_globals();

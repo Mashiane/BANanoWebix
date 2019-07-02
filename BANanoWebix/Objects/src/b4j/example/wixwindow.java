@@ -29,6 +29,7 @@ public b4j.example.wixtoolbar _toolbar = null;
 public b4j.example.wixelement _body = null;
 public String _toolbarid = "";
 public b4j.example.main _main = null;
+public b4j.example.pgvideo _pgvideo = null;
 public b4j.example.pgtabbar _pgtabbar = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgmenu _pgmenu = null;

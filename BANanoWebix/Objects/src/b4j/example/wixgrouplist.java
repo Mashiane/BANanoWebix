@@ -27,6 +27,7 @@ public b4j.example.wixelement _grouplist = null;
 public String _id = "";
 public anywheresoftware.b4a.objects.collections.List _items = null;
 public b4j.example.main _main = null;
+public b4j.example.pgvideo _pgvideo = null;
 public b4j.example.pgtabbar _pgtabbar = null;
 public b4j.example.pgtree _pgtree = null;
 public b4j.example.pgmenu _pgmenu = null;

@@ -18,6 +18,12 @@ Public Sub Initialize(tID As String) As WixTextBox
 	Return Me
 End Sub
 
+'set invalid message
+Sub SetInvalidMessage(msg As String) As WixTextBox
+	TextBox.SetAttr("invalidMessage", msg)
+	Return Me
+End Sub
+
 'set as password
 Sub SetTypePassword(r As String) As WixTextBox  'ignore
 	TextBox.SetType("password")
