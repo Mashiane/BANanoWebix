@@ -30,7 +30,7 @@ Sub Init(pgContainer As String)
 	
 	'
 	Dim sm As WixSideBar
-	sm.Initialize("sm").SetPositionRight("").SetCollapsed(True).SetActiveTitle(True)
+	sm.Initialize("smx").SetPositionRight("").SetCollapsed(True).SetActiveTitle(True)
 	'
 	sm.AddItem("", "dashboard", "Dashboards","","mdi mdi-view-dashboard", "2","")
 	sm.AddItem("dashboard", "dashboard1", "Dashboard 1","","mdi mdi-view-dashboard", "","")
@@ -59,7 +59,7 @@ Sub Init(pgContainer As String)
 	pg.ui
 	'
 	Dim meid As Map
-	pg.OnItemClick("sm", BANano.CallBack(Me, "itemClick", Array(meid)))
+	pg.OnItemClick("smx", BANano.CallBack(Me, "itemClick", Array(meid)))
 
 End Sub
 
@@ -68,5 +68,5 @@ Sub itemClick(meID As String)
 End Sub
 
 Sub OpenMenu()
-	pg.Toggle("sm")
+	pg.Toggle("smx")
 End Sub
