@@ -122,13 +122,13 @@ Sub SetLabel(lbl As String) As WixTextBox
 End Sub
 
 'set the width
-Sub SetWidth(w As Int) As WixTextBox
+Sub SetWidth(w As Object) As WixTextBox
 	TextBox.Width = w
 	Return Me
 End Sub
 
 'set the height
-Sub SetHeight(h As Int) As WixTextBox
+Sub SetHeight(h As Object) As WixTextBox
 	TextBox.Height = h
 	Return Me
 End Sub

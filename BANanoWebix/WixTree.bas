@@ -46,7 +46,7 @@ Sub SetSelect(b As Boolean) As WixTree
 End Sub
 
 'set multi select
-Sub SetMultiSelect(b As Boolean) As WixTree
+Sub SetMultiSelect(b As Boolean) As WixTree   'ignore
 	Tree.SetAttr("select", "multiselect")
 	Return Me
 End Sub
@@ -83,13 +83,13 @@ Sub SetTooltip(tt As String) As WixTree
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixTree
+Sub SetHeight(h As Object) As WixTree
 	Tree.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(h As Int) As WixTree
+Sub SetWidth(h As object) As WixTree
 	Tree.SetWidth(h)
 	Return Me
 End Sub

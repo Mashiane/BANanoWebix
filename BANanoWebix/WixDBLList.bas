@@ -42,7 +42,7 @@ Sub SetStyle(prop As String, val As String) As WixDBLList
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixDBLList
+Sub SetHeight(h As object) As WixDBLList
 	DBLList.SetHeight(h)
 	Return Me
 End Sub

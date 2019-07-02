@@ -50,13 +50,13 @@ Sub SetControls(b As Boolean) As WixVideo
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixVideo
+Sub SetHeight(h As Object) As WixVideo
 	Video.SetAttr("height", h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixVideo
+Sub SetWidth(w As Object) As WixVideo
 	Video.SetAttr("width", w)
 	Return Me
 End Sub

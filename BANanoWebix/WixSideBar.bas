@@ -8,20 +8,18 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public SideBar As WixElement
-	Private data As List
-	Private menus As Map
+	Public Items As List
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
 Public Sub Initialize(sid As String) As WixSideBar
 	ID = sid.tolowercase
 	SideBar.Initialize(sid).SetView("sidebar")
-	data.Initialize
-	menus.Initialize
+	Items.Initialize
 	Return Me
 End Sub
 
-'add menu item
+'add item
 Sub AddItem(parentID As String, meID As String, mValue As String, mhref As String, mIcon As String, badge As String, target As String) As WixSideBar
 	parentID = parentID.tolowercase
 	meID = meID.tolowercase
@@ -32,19 +30,8 @@ Sub AddItem(parentID As String, meID As String, mValue As String, mhref As Strin
 	mitem.Put("badge", badge)
 	mitem.Put("target", target)
 	mitem.Put("icon", mIcon)
-	If parentID = "" Then
-		Dim submenu As List
-		submenu.Initialize
-		mitem.Put("data", submenu)
-		menus.Put(meID,mitem)
-	Else
-		'get existing menu
-		Dim oldmenu As Map = menus.Get(parentID)
-		Dim submenus As List = oldmenu.Get("data")
-		submenus.Add(mitem)
-		oldmenu.Put("data", submenus)
-		menus.Put(parentID,oldmenu)
-	End If
+	mitem.Put("parentid", parentID)
+	Items.Add(mitem)
 	Return Me
 End Sub
 
@@ -66,13 +53,14 @@ Sub SetTitleHeight(h As Int) As WixSideBar
 	Return Me
 End Sub
 
+'set data
+Sub SetData(d As List) As WixSideBar
+	SideBar.SetData(d)
+	Return Me
+End Sub
+
 'return menu
 Sub Item As Map
-	data.clear
-	For Each menuitem As Map In menus.Values
-		data.Add(menuitem)
-	Next
-	SideBar.SetData(data)
 	Return SideBar.item
 End Sub
 
@@ -89,14 +77,14 @@ Sub SetCollapsedWidth(h As Boolean) As WixSideBar
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixSideBar
+Sub SetHeight(h As Object) As WixSideBar
 	SideBar.SetAttr("height", h)
 	Return Me
 End Sub
 
 
 'set width
-Sub SetWidth(w As Int) As WixSideBar
+Sub SetWidth(w As Object) As WixSideBar
 	SideBar.SetAttr("width", w)
 	Return Me
 End Sub
@@ -140,3 +128,8 @@ Sub SetSelect(b As Boolean) As WixSideBar
 	Return Me
 End Sub
 
+'set scroll
+Sub SetScroll(b As Boolean) As WixSideBar
+	SideBar.SetProperty("scroll", b)
+	Return Me
+End Sub

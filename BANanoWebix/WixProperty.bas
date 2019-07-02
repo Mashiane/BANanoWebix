@@ -119,13 +119,13 @@ Sub SetTooltip(tt As String) As WixProperty
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixProperty
+Sub SetHeight(h As Object) As WixProperty
 	Property.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(h As Int) As WixProperty
+Sub SetWidth(h As object) As WixProperty
 	Property.SetWidth(h)
 	Return Me
 End Sub

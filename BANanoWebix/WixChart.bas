@@ -385,13 +385,13 @@ Sub SetStyle(prop As String, val As String) As WixChart
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixChart
+Sub SetHeight(h As Object) As WixChart
 	Chart.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(h As Int) As WixChart
+Sub SetWidth(h As object) As WixChart
 	Chart.SetWidth(h)
 	Return Me
 End Sub

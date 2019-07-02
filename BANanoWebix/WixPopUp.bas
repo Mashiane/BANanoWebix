@@ -26,7 +26,7 @@ Sub SetMove(b As Boolean) As WixPopUp
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixPopUp
+Sub SetHeight(h As Object) As WixPopUp
 	Popup.SetAttr("height", h)
 	Return Me
 End Sub
@@ -51,7 +51,7 @@ Sub SetPositionRight(c As String) As WixPopUp  'ignore
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixPopUp
+Sub SetWidth(w As object) As WixPopUp
 	Popup.SetAttr("width", w)
 	Return Me
 End Sub

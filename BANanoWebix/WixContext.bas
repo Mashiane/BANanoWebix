@@ -26,13 +26,13 @@ Sub SetMaster(pID As String) As WixContext
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixContext
+Sub SetHeight(h As Object) As WixContext
 	Context.SetAttr("height", h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixContext
+Sub SetWidth(w As Object) As WixContext
 	Context.SetAttr("width", w)
 	Return Me
 End Sub

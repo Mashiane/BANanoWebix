@@ -57,13 +57,13 @@ Sub AddToRow(r As WixRow)
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixColumn
+Sub SetHeight(h As Object) As WixColumn
 	Column.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixColumn
+Sub SetWidth(w As object) As WixColumn
 	Column.SetWidth(w)
 	Return Me
 End Sub

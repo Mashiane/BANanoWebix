@@ -30,6 +30,12 @@ Sub AddColumns(i As Map) As WixRow
 End Sub
 
 
+'set scroll
+Sub SetScroll(b As Boolean) As WixRow
+	Row.SetProperty("scroll", b)
+	Return Me
+End Sub
+
 'add to cells
 Sub AddCells(i As Map) As WixRow
 	Row.AddCells(i)
@@ -90,13 +96,13 @@ Sub AddToPage(p As WixPage)
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixRow
+Sub SetHeight(h As Object) As WixRow
 	Row.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixRow
+Sub SetWidth(w As object) As WixRow
 	Row.setwidth(w)
 	Return Me
 End Sub

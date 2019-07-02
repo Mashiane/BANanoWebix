@@ -27,6 +27,26 @@ Public Sub Initialize(fID As String) As WixForm
 	Return Me
 End Sub
 
+
+'set scrollY
+Sub SetScrollY(b As Boolean) As WixForm
+	Form.SetAttr("scrollY", b)
+	Return Me
+End Sub
+
+'set scrollX
+Sub SetScrollX(b As Boolean) As WixForm
+	Form.SetAttr("scrollX", b)
+	Return Me
+End Sub
+
+
+'set scroll
+Sub SetScroll(b As Boolean) As WixForm
+	Form.SetProperty("scroll", b)
+	Return Me
+End Sub
+
 Sub AddRuleIsEmail(eID As String) As WixForm
 	eID = eID.tolowercase
 	Dim ie As String = webix.GetField("rules").GetField("isEmail").result
@@ -52,12 +72,6 @@ Sub AddRuleIsNumber(eID As String) As WixForm
 	eID = eID.tolowercase
 	Dim ie As String = webix.GetField("rules").GetField("isNumber").result
 	Rules.Put(eID, ie)
-	Return Me
-End Sub
-
-
-Sub SetScroll(b As Boolean) As WixForm
-	Form.SetProperty("scroll", b)
 	Return Me
 End Sub
 
@@ -98,13 +112,13 @@ Sub AddToForm(frm As WixForm)
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixForm
+Sub SetWidth(w As Object) As WixForm
 	Form.Width = w
 	Return Me
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixForm
+Sub SetHeight(h As Object) As WixForm
 	Form.Height = h
 	Return Me
 End Sub

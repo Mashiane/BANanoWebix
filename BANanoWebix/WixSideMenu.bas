@@ -37,6 +37,13 @@ Sub AddItem(meID As String, mValue As String, mhref As String, mIcon As String, 
 	Return Me
 End Sub
 
+
+'set scroll
+Sub SetScroll(b As Boolean) As WixSideMenu
+	SideMenu.SetProperty("scroll", b)
+	Return Me
+End Sub
+
 'return menu
 Sub Item As Map
 	body.SetAttr("type", typeOf)
@@ -53,7 +60,7 @@ End Sub
 
 
 'set height
-Sub SetHeight(h As Int) As WixSideMenu
+Sub SetHeight(h As Object) As WixSideMenu
 	SideMenu.SetAttr("height", h)
 	Return Me
 End Sub
@@ -73,14 +80,14 @@ End Sub
 
 
 'set layout x
-Sub SetLayoutX(h As Boolean) As WixSideMenu
+Sub SetLayoutX(h As Boolean) As WixSideMenu   'ignore
 	body.SetAttr("layout", "x")
 	Return Me
 End Sub
 
 
 'set width
-Sub SetWidth(w As Int) As WixSideMenu
+Sub SetWidth(w As Object) As WixSideMenu
 	SideMenu.SetAttr("width", w)
 	Return Me
 End Sub

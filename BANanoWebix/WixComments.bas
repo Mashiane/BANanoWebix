@@ -78,7 +78,7 @@ Sub SetMoreButton(m As String) As WixComments
 End Sub
 
 'set mode chat
-Sub SetModeChat(c As String) As WixComments
+Sub SetModeChat(c As String) As WixComments   'ignore
 	Comments.SetAttr("mode", "chat")
 	Return Me
 End Sub
@@ -96,13 +96,13 @@ Sub SetUsers(cUsers As List) As WixComments
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixComments
+Sub SetWidth(w As Object) As WixComments
 	Comments.SetAttr("width", w)
 	Return Me
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixComments
+Sub SetHeight(h As Object) As WixComments
 	Comments.SetAttr("height", h)
 	Return Me
 End Sub

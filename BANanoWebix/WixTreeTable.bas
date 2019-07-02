@@ -80,13 +80,13 @@ Sub SetTooltip(tt As String) As WixTreeTable
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixTreeTable
+Sub SetHeight(h As Object) As WixTreeTable
 	TreeTable.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(h As Int) As WixTreeTable
+Sub SetWidth(h As object) As WixTreeTable
 	TreeTable.SetWidth(h)
 	Return Me
 End Sub

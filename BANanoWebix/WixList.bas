@@ -98,7 +98,7 @@ Sub SetTemplate(t As String) As WixList
 End Sub
 
 'set height
-Sub SetHeight(t As String) As WixList
+Sub SetHeight(t As Object) As WixList
 	List.SetHeight(t)
 	Return Me
 End Sub
@@ -115,7 +115,7 @@ Sub SetTypeUploader(b As Boolean) As WixList  'ignore
 End Sub
 
 'set width
-Sub SetWidth(t As String) As WixList
+Sub SetWidth(t As object) As WixList
 	List.SetWidth(t)
 	Return Me
 End Sub

@@ -38,7 +38,7 @@ Sub AddSlide(sld As WixElement)
 End Sub
 
 'set side navigation
-Sub SetNavigationTypeSide(r As String) As WixCarousel
+Sub SetNavigationTypeSide(r As String) As WixCarousel  'ignore
 	nav.SetAttr("type", "side")
 	Return Me
 End Sub
@@ -57,7 +57,7 @@ End Sub
 
 
 'set side navigation
-Sub SetNavigationTypeCorner(r As String) As WixCarousel
+Sub SetNavigationTypeCorner(r As String) As WixCarousel   'ignore
 	nav.SetAttr("type", "corner")
 	Return Me
 End Sub

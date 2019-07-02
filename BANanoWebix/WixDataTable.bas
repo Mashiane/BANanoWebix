@@ -258,13 +258,13 @@ Sub SetAutoConfig(a As Boolean) As WixDataTable
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixDataTable
+Sub SetHeight(h As Object) As WixDataTable
 	DataTable.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(h As Int) As WixDataTable
+Sub SetWidth(h As object) As WixDataTable
 	DataTable.SetWidth(h)
 	Return Me
 End Sub

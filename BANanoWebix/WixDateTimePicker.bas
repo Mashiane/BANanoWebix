@@ -81,7 +81,7 @@ Sub SetTimePicker(t As Boolean) As WixDateTimePicker
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixDateTimePicker
+Sub SetWidth(w As Object) As WixDateTimePicker
 	DateTimePicker.Width = w
 	Return Me
 End Sub

@@ -24,7 +24,7 @@ Public Sub Initialize(iID As String) As WixMenu
 End Sub
 
 ' set menu pos right
-Sub SetSubMenuPosRight(r As String) As WixMenu
+Sub SetSubMenuPosRight(r As String) As WixMenu   'ignore
 	Menu.SetAttr("subMenuPos", "right")
 	Return Me
 End Sub
@@ -42,13 +42,13 @@ Sub SetTooltip(tt As String) As WixMenu
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixMenu
+Sub SetHeight(h As Object) As WixMenu
 	Menu.SetAttr("height", h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixMenu
+Sub SetWidth(w As Object) As WixMenu
 	Menu.SetAttr("width", w)
 	Return Me
 End Sub

@@ -78,12 +78,12 @@ Sub SetUpload(u As String) As WixUploader
 	Return Me
 End Sub
 
-Sub SetHeight(h As Int) As WixUploader
+Sub SetHeight(h As Object) As WixUploader
 	Uploader.SetHeight(h)
 	Return Me
 End Sub
 
-Sub SetWidth(w As Int) As WixUploader
+Sub SetWidth(w As Object) As WixUploader
 	Uploader.SetWidth(w)
 	Return Me
 End Sub

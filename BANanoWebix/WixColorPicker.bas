@@ -53,7 +53,7 @@ Sub SetLabel(l As String) As WixColorPicker
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixColorPicker
+Sub SetWidth(w As Object) As WixColorPicker
 	ColorPicker.Width = w
 	Return Me
 End Sub

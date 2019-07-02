@@ -37,13 +37,13 @@ Sub SetStyle(prop As String, val As String) As UOENowHTML
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As UOENowHTML
+Sub SetWidth(w As Object) As UOENowHTML
 	AddAttribute("width", w)
 	Return Me
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As UOENowHTML
+Sub SetHeight(h As String) As UOENowHTML
 	AddAttribute("height", h)
 	Return Me
 End Sub

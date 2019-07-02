@@ -23,13 +23,13 @@ Public Sub Initialize(sid As String) As WixTabView
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixTabView
+Sub SetHeight(h As Object) As WixTabView
 	TabView.SetAttr("height", h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixTabView
+Sub SetWidth(w As Object) As WixTabView
 	TabView.SetAttr("width", w)
 	Return Me
 End Sub
@@ -60,7 +60,7 @@ Sub Item As Map
 End Sub
 
 'set on bottom
-Sub SetTypeBottom(b As Boolean) As WixTabView
+Sub SetTypeBottom(b As Boolean) As WixTabView   'ignore
 	TabView.SetType("bottom")
 	Return Me
 End Sub

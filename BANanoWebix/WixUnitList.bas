@@ -69,13 +69,13 @@ Sub SetTooltip(tt As String) As WixUnitList
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixUnitList
+Sub SetHeight(h As Object) As WixUnitList
 	UnitList.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(h As Int) As WixUnitList
+Sub SetWidth(h As object) As WixUnitList
 	UnitList.SetWidth(h)
 	Return Me
 End Sub

@@ -213,13 +213,13 @@ Sub SetTypeNext(r As String) As WixButton  'ignore
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixButton
+Sub SetHeight(h As Object) As WixButton
 	Button.Height = h
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixButton
+Sub SetWidth(w As object) As WixButton
 	Button.Width = w
 	Return Me
 End Sub

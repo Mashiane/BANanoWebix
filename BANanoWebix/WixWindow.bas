@@ -96,7 +96,7 @@ Sub SetLeft(t As Int) As WixWindow
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixWindow
+Sub SetHeight(h As Object) As WixWindow
 	Window.SetAttr("height", h)
 	Return Me
 End Sub
@@ -109,7 +109,7 @@ End Sub
 
 
 'set width
-Sub SetWidth(w As Int) As WixWindow
+Sub SetWidth(w As object) As WixWindow
 	Window.SetAttr("width", w)
 	Return Me
 End Sub

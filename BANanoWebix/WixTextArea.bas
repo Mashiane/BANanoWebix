@@ -70,13 +70,13 @@ Sub SetLabel(lbl As String) As WixTextArea
 End Sub
 
 'set the width
-Sub SetWidth(w As Int) As WixTextArea
+Sub SetWidth(w As object) As WixTextArea
 	TextArea.SetWidth(w)
 	Return Me
 End Sub
 
 'set the height
-Sub SetHeight(h As Int) As WixTextArea
+Sub SetHeight(h As Object) As WixTextArea
 	TextArea.SetHeight(h)
 	Return Me
 End Sub

@@ -20,6 +20,47 @@ Sub Class_Globals
 	Public EnumWixIcons As WixIcons
 End Sub
 
+'initialize the page and empty the page '#body' element
+Public Sub Initialize(pgID As String, pgContainer As String) As WixPage
+	hints.Initialize 
+	Dollar.Initialize("$$")
+	ID = pgID.tolowercase
+	webix.Initialize("webix")
+	Page.Initialize(ID)
+	'init other stuff
+	EnumButtonTypes.Initialize
+	EnumLayoutTypes.Initialize  
+	EnumWixIcons.Initialize
+	SetContainer(pgContainer)
+	Return Me
+End Sub
+
+'set scroll
+Sub SetScroll(b As Boolean) As WixPage
+	Page.SetProperty("scroll", b)
+	Return Me
+End Sub
+
+'set gravity
+Sub SetGravity(g As Int) As WixPage
+	Page.SetGravity(g)
+	Return Me
+End Sub
+
+'set view
+Sub SetView(v As String) As WixPage
+	Page.SetView(v)
+	Return Me
+End Sub
+
+'add rows cells
+Sub AddRowsCells(mCells As List) As WixPage
+	Dim opt As Map = CreateMap()
+	opt.Put("cells", mCells)
+	AddRows(opt)
+	Return Me
+End Sub
+
 'unflatten as list of map objects using id, parentid, data attributes
 Sub Unflatten(data As List, childname As String) As List
 	'id, parentid, data
@@ -80,18 +121,21 @@ private Sub uniteby(obj As Map) As String
 End Sub
 
 
-'initialize the page and empty the page '#body' element
-Public Sub Initialize(pgID As String) As WixPage
-	hints.Initialize 
-	Dollar.Initialize("$$")
-	ID = pgID.tolowercase
-	webix.Initialize("webix")
-	Page.Initialize(ID)
-	'init other stuff
-	EnumButtonTypes.Initialize
-	EnumLayoutTypes.Initialize  
-	EnumWixIcons.Initialize
-	SetContainer("body") 
+'set height
+Sub SetHeight(h As Object) As WixPage
+	Page.setHeight(h)
+	Return Me
+End Sub
+
+'set width
+Sub SetWidth(w As Object) As WixPage
+	Page.SetWidth(w)
+	Return Me
+End Sub
+
+'set css
+Sub SetStyle(prop As String, val As String) As WixPage
+	Page.SetStyle(prop,val)
 	Return Me
 End Sub
 
@@ -180,6 +224,20 @@ Sub OnSelectChange(eID As String, cb As BANanoObject)
 End Sub
 
 
+'add a spacer to the rows
+Sub AddRowsSpacer()
+	Dim s As WixElement
+	s.Initialize("").SetView("spacer")
+	AddRows(s.item)
+End Sub
+
+'add a spacer to the columns
+Sub AddColumnsSpacer()
+	Dim s As WixElement
+	s.Initialize("").SetView("spacer")
+	AddColumns(s.item)
+End Sub
+
 'Refresh
 Sub Refresh(eID As String)
 	eID = eID.tolowercase
@@ -220,9 +278,63 @@ Sub SetHeader(sTitle As String) As WixPage
 	Return Me
 End Sub
 
+'set type
+Sub SetType(t As String) As WixPage
+	Page.SetType(t)
+	Return Me
+End Sub
+
+
+'make clean layout
+Sub SetTypeClean(a As String) As WixPage  'ignore
+	SetType("clean")
+	Return Me
+End Sub
+
+'make line layout
+Sub SetTypeLine(a As String) As WixPage   'ignore
+	SetType("line")
+	Return Me
+End Sub
+
+'make wide layout
+Sub SetTypeWide(a As String) As WixPage   'ignore
+	SetType("wide")
+	Return Me
+End Sub
+
+'make space layout
+Sub SetTypeSpace(a As String) As WixPage   'ignore
+	SetType("space")
+	Return Me
+End Sub
+
+'make a head layout
+Sub SetTypeHead(a As String) As WixPage   'ignore
+	SetType("head")
+	Return Me
+End Sub
+
+'make form layout
+Sub SetTypeForm(a As String) As WixPage  'ignore
+	SetType("form")
+	Return Me
+End Sub
+
+
 'add a row
 Sub AddRow(r As WixRow)
 	Page.AddRow(r)
+End Sub
+
+'add item to a row
+Sub AddRows(itm As Map)
+	Page.AddRows(itm)
+End Sub
+
+'add item to a column
+Sub AddColumns(itm As Map)
+	Page.AddColumns(itm)
 End Sub
 
 'set the item value

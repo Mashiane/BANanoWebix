@@ -97,7 +97,7 @@ Sub SetHeader(h As String) As WixDataColumn
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixDataColumn
+Sub SetWidth(w As object) As WixDataColumn
 	Column.SetAttr("width", w)
 	Return Me
 End Sub

@@ -24,6 +24,13 @@ Public Sub Initialize(tID As String) As WixDataView
 	Return Me
 End Sub
 
+
+'set scroll
+Sub SetScroll(b As Boolean) As WixDataView
+	DataView.SetProperty("scroll", b)
+	Return Me
+End Sub
+
 'set rank
 Sub SetRank(r As Object) As WixDataView
 	DataView.SetAttr("rank", r)
@@ -125,13 +132,13 @@ Sub Item As Map
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixDataView
+Sub SetHeight(h As Object) As WixDataView
 	DataView.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(h As Int) As WixDataView
+Sub SetWidth(h As object) As WixDataView
 	DataView.SetWidth(h)
 	Return Me
 End Sub

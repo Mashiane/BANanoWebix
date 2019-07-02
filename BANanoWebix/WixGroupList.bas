@@ -113,7 +113,7 @@ Sub SetHeight(t As String) As WixGroupList
 End Sub
 
 'set width
-Sub SetWidth(t As String) As WixGroupList
+Sub SetWidth(t As Object) As WixGroupList
 	GroupList.SetWidth(t)
 	Return Me
 End Sub

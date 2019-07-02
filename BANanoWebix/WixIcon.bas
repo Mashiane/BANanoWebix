@@ -94,13 +94,13 @@ Sub Item As Map
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixIcon
+Sub SetHeight(h As Object) As WixIcon
 	Icon.Height = h
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixIcon
+Sub SetWidth(w As Object) As WixIcon
 	Icon.Width = w
 	Return Me
 End Sub

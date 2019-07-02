@@ -57,13 +57,13 @@ Sub SetBorderLess(b As Boolean) As WixGoogleMap
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixGoogleMap
+Sub SetHeight(h As Object) As WixGoogleMap
 	GoogleMap.SetAttr("height", h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixGoogleMap
+Sub SetWidth(w As object) As WixGoogleMap
 	GoogleMap.SetAttr("width", w)
 	Return Me
 End Sub

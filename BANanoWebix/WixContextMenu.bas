@@ -34,20 +34,20 @@ End Sub
 
 
 ' set menu pos right
-Sub SetSubMenuPosRight(r As String) As WixContextMenu
+Sub SetSubMenuPosRight(r As String) As WixContextMenu   'ignore
 	ContextMenu.SetAttr("subMenuPos", "right")
 	Return Me
 End Sub
 
 
 'set height
-Sub SetHeight(h As Int) As WixContextMenu
+Sub SetHeight(h As Object) As WixContextMenu
 	ContextMenu.SetAttr("height", h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixContextMenu
+Sub SetWidth(w As object) As WixContextMenu
 	ContextMenu.SetAttr("width", w)
 	Return Me
 End Sub

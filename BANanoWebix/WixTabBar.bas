@@ -54,20 +54,20 @@ End Sub
 
 
 'set height
-Sub SetHeight(h As Int) As WixTabBar
+Sub SetHeight(h As Object) As WixTabBar
 	TabBar.SetAttr("height", h)
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixTabBar
+Sub SetWidth(w As Object) As WixTabBar
 	TabBar.SetAttr("width", w)
 	Return Me
 End Sub
 
 
 'set on bottom
-Sub SetTypeBottom(b As Boolean) As WixTabBar
+Sub SetTypeBottom(b As Boolean) As WixTabBar   'ignore
 	TabBar.SetType("bottom")
 	Return Me
 End Sub

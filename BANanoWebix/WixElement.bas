@@ -8,8 +8,8 @@ Version=7.5
 Sub Class_Globals
 	Public ID As String
 	Public Columns As List
-	Public Width As Int
-	Public Height As Int
+	Public Width As Object
+	Public Height As Object
 	Public Rows As List
 	Private Element As Map
 	Public Value As Object
@@ -31,6 +31,18 @@ Sub Class_Globals
 	Private Styles As Map
 	Private Cells As List
 	Private elementsConfig As Map
+End Sub
+
+'set height
+Sub SetAutoHeight(b As Boolean) As WixElement
+	SetAttr("autoheight", b)
+	Return Me
+End Sub
+
+'set width
+Sub SetAutoWidth(b As Boolean) As WixElement
+	SetAttr("autowidth", b)
+	Return Me
 End Sub
 
 
@@ -287,13 +299,13 @@ Sub SetType(t As String) As WixElement
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixElement
+Sub SetHeight(h As Object) As WixElement
 	Height = h
 	Return Me
 End Sub
 
 'set width
-Sub SetWidth(w As Int) As WixElement
+Sub SetWidth(w As object) As WixElement
 	Width = w
 	Return Me
 End Sub
@@ -374,7 +386,7 @@ Sub SetClick(c As BANanoObject) As WixElement
 End Sub
 
 'add resizer
-Sub AddResizerToColumns As WixElement
+Sub AddResizerToColumns(s As String) As WixElement   'ignore
 	Dim r As WixResizer
 	r.Initialize("")
 	AddColumns(r.Item)
@@ -508,44 +520,44 @@ Sub SetOnCondition(Condition As Int, Prop As String, PropValue As Object) As Wix
 End Sub
 
 'make clean layout
-Sub SetTypeClean As WixElement
+Sub SetTypeClean(r As String) As WixElement  'ignore
 	SetType("clean")
 	Return Me
 End Sub
 
 'make line layout
-Sub SetTypeLine As WixElement
+Sub SetTypeLine(r As String) As WixElement   'ignore
 	SetType("line")
 	Return Me
 End Sub
 
 'make wide layout
-Sub SetTypeWide As WixElement
+Sub SetTypeWide(r As String) As WixElement   'ignore
 	SetType("wide")
 	Return Me
 End Sub
 
 'make space layout
-Sub SetTypeSpace As WixElement
+Sub SetTypeSpace(r As String) As WixElement   'ignore
 	SetType("space")
 	Return Me
 End Sub
 
 'make a head layout
-Sub SetTypeHead As WixElement
+Sub SetTypeHead(r As String) As WixElement		'ignore
 	SetType("head")
 	Return Me
 End Sub
 
 'make form layout
-Sub SetTypeForm As WixElement
+Sub SetTypeForm(r As String) As WixElement		'ignore
 	SetType("form")
 	Return Me
 End Sub
 
 
 'set header layout
-Sub SetViewHeaderLayout As WixElement
+Sub SetViewHeaderLayout(r As String) As WixElement		'ignore
 	SetView("headerlayout")
 	Return Me
 End Sub
@@ -562,7 +574,7 @@ Sub SetCollapsed(c As Boolean) As WixElement
 End Sub
 
 'set type icon button
-Sub SetDefaultTypeIconButton() As WixElement
+Sub SetDefaultTypeIconButton(r As String) As WixElement		'ignore
 	TypeOf = "iconButton"
 	Return Me
 End Sub

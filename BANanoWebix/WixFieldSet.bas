@@ -49,7 +49,7 @@ Sub SetLabel(l As String) As WixFieldSet
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixFieldSet
+Sub SetHeight(h As object) As WixFieldSet
 	FieldSet.SetHeight(h)
 	Return Me
 End Sub

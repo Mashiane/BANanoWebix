@@ -27,6 +27,13 @@ Sub Item As Map
 	Return IFrame.item
 End Sub
 
+
+'set scroll
+Sub SetScroll(b As Boolean) As WixIFrame
+	IFrame.SetProperty("scroll", b)
+	Return Me
+End Sub
+
 'set template
 Sub SetSRC(t As String) As WixIFrame
 	IFrame.SetAttr("src", t)
@@ -34,14 +41,14 @@ Sub SetSRC(t As String) As WixIFrame
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixIFrame
+Sub SetHeight(h As Object) As WixIFrame
 	IFrame.SetAttr("height", h)
 	Return Me
 End Sub
 
 
 'set width
-Sub SetWidth(w As Int) As WixIFrame
+Sub SetWidth(w As Object) As WixIFrame
 	IFrame.SetAttr("width", w)
 	Return Me
 End Sub

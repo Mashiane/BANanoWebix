@@ -41,7 +41,7 @@ Sub Item As Map
 End Sub
 
 'set height
-Sub SetHeight(h As Int) As WixRichText
+Sub SetHeight(h As object) As WixRichText
 	RichText.SetHeight(h)
 	Return Me
 End Sub

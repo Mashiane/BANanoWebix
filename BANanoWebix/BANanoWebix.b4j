@@ -1,263 +1,131 @@
 ﻿AppType=JavaFX
-Build1=Default,b4j.example
+Build1=Default,b4j.Mashy.BANanoWebix
 File1=1.png
-File10=fonts.zip
-File11=icons8-add-row-40.png
-File12=icons8-compose-40.png
-File13=icons8-edit-40.png
-File14=icons8-pencil-40.png
-File15=icons8-save-as-100.png
-File16=icons8-save-close-40.png
-File17=james.jpg
-File18=license.txt
-File19=marie.jpg
+File10=materialdesignicons.min.css
+File11=mini.min.css
+File12=upload.php
+File13=webix.min.css
+File14=webix.min.js
 File2=2.png
-File20=material.min.css
-File21=materialdesignicons.min.css
-File22=michael.jpg
-File23=mike.jpg
-File24=mini.min.css
-File25=movie.mp4
-File26=movie.ogv
-File27=olivia.jpg
-File28=ryan.jpg
-File29=upload.php
 File3=all.min.css
-File30=usher.jpg
-File31=webix.min.css
-File32=webix.min.js
-File4=avatar.jpg
-File5=compact.min.css
-File6=contrast.min.css
-File7=data.js
-File8=emily.jpg
-File9=flat.min.css
-FileGroup1=Default Group
-FileGroup10=Default Group
-FileGroup11=Default Group
-FileGroup12=Default Group
-FileGroup13=Default Group
-FileGroup14=Default Group
-FileGroup15=Default Group
-FileGroup16=Default Group
-FileGroup17=Default Group
-FileGroup18=Default Group
-FileGroup19=Default Group
-FileGroup2=Default Group
-FileGroup20=Default Group
-FileGroup21=Default Group
-FileGroup22=Default Group
-FileGroup23=Default Group
-FileGroup24=Default Group
-FileGroup25=Default Group
-FileGroup26=Default Group
-FileGroup27=Default Group
-FileGroup28=Default Group
-FileGroup29=Default Group
-FileGroup3=Default Group
-FileGroup30=Default Group
-FileGroup31=Default Group
-FileGroup32=Default Group
-FileGroup4=Default Group
-FileGroup5=Default Group
-FileGroup6=Default Group
-FileGroup7=Default Group
+File4=compact.min.css
+File5=contrast.min.css
+File6=flat.min.css
+File7=fonts.zip
+File8=license.txt
+File9=material.min.css
+FileGroup1=Assets
+FileGroup10=Styles
+FileGroup11=Styles
+FileGroup12=Assets
+FileGroup13=Styles
+FileGroup14=Scripts
+FileGroup2=Assets
+FileGroup3=Styles
+FileGroup4=Styles
+FileGroup5=Styles
+FileGroup6=Styles
+FileGroup7=Assets
 FileGroup8=Default Group
-FileGroup9=Default Group
+FileGroup9=Styles
 Group=Default Group
 Library1=jcore
 Library2=jfx
 Library3=banano
-Library4=bananopostprocessor
 Module1=WixPage
-Module10=WixList
-Module11=WixForm
-Module12=WixLayout
-Module13=WixContext
-Module14=pgMenu
-Module15=WixWindow
-Module16=pgList
-Module17=pgDataView
-Module18=pgDataTable1
-Module19=WixDataTable
-Module2=pgVideo
-Module20=WixDataColumn
-Module21=pgDataTable
-Module22=pgCharts
-Module23=WixChart
-Module24=pgDataEntry
-Module25=pgForms1
-Module26=WixToolBar
-Module27=WixButton
-Module28=WixIcon
-Module29=pgForms
-Module3=pgTabBar
-Module30=pgToolBar
-Module31=pgIndex
-Module32=pgMultiView
-Module33=WixPortlet
-Module34=WixMultiView
-Module35=pgLayouts1
-Module36=WixAccordion
-Module37=pgLayouts2
-Module38=WixLayoutTypes
-Module39=pgLayouts
+Module10=WixComments
+Module11=WixDataTable
+Module12=WixForm
+Module13=WixContextMenu
+Module14=WixUnitList
+Module15=WixRow
+Module16=WixList
+Module17=WixContext
+Module18=WixWindow
+Module19=WixDataColumn
+Module2=WixElement
+Module20=WixChart
+Module21=WixToolBar
+Module22=WixButton
+Module23=WixIcon
+Module24=WixPortlet
+Module25=WixMultiView
+Module26=WixAccordion
+Module27=WixLayoutTypes
+Module28=WixCombo
+Module29=WixButtonTypes
+Module3=WixLayout
+Module30=WixColumn
+Module31=WixHeader
+Module32=WixTextArea
+Module33=WixCheckBox
+Module34=WixRadio
+Module35=WixRichSelect
+Module36=WixCounter
+Module37=WixSegmented
+Module38=WixTextBox
+Module39=WixColorPicker
 Module4=WixTabBar
-Module40=WixCombo
-Module41=WixButtonTypes
-Module42=WixColumn
-Module43=WixHeader
-Module44=WixTextArea
-Module45=WixCheckBox
-Module46=WixRadio
-Module47=WixRichSelect
-Module48=WixCounter
-Module49=WixSegmented
+Module40=WixDateTimePicker
+Module41=WixLabel
+Module42=WixSection
+Module43=WixSuggest
+Module44=WixResizer
+Module45=WixDataCollection
+Module46=WixSelect
+Module47=WixRangeSlider
+Module48=WixSearch
+Module49=WixSlider
 Module5=WixTabView
-Module50=WixTextBox
-Module51=WixColorPicker
-Module52=WixDateTimePicker
-Module53=WixLabel
-Module54=WixSection
-Module55=WixSuggest
-Module56=WixResizer
-Module57=pgLayout
-Module58=WixMenu
-Module59=WixDataCollection
-Module6=WixElement
-Module60=WixCarousel
-Module61=WixSelect
-Module62=WixRangeSlider
-Module63=WixSearch
-Module64=WixSlider
-Module65=WixRichText
-Module66=WixDBLList
-Module67=WixFieldSet
-Module68=WixFormInput
-Module69=WixDataView
-Module7=pgTree
-Module70=UOENowHTML
-Module71=WixPager
-Module72=UOENowData
-Module73=pgUnitList
-Module74=WixProperty
-Module75=pgPropertySheet
-Module76=WixTree
-Module77=WixTreeTable
-Module78=pgTreeTable
-Module79=WixPopUp
-Module8=WixUnitList
-Module80=WixSideMenu
-Module81=WixIFrame
-Module82=WixSwitch
-Module83=WixSideBar
-Module84=pgSideBar
-Module85=WixComments
-Module86=pgComments
-Module87=WixIcons
-Module88=WixGroupList
-Module89=pgGroupList
-Module9=WixRow
-Module90=pgContext
-Module91=WixContextMenu
-Module92=WixGoogleMap
-Module93=pgGoogleMap
-Module94=WixUploader
-Module95=pgUploader1
-Module96=pgUploader2
-Module97=pgUploader3
-Module98=WixVideo
-NumberOfFiles=32
-NumberOfLibraries=4
-NumberOfModules=98
+Module50=WixRichText
+Module51=WixDBLList
+Module52=WixFieldSet
+Module53=WixFormInput
+Module54=WixDataView
+Module55=UOENowHTML
+Module56=WixPager
+Module57=UOENowData
+Module58=WixProperty
+Module59=WixTreeTable
+Module6=WixMenu
+Module60=WixPopUp
+Module61=WixIFrame
+Module62=WixSwitch
+Module63=WixSideBar
+Module64=WixIcons
+Module65=WixGroupList
+Module66=WixGoogleMap
+Module67=WixUploader
+Module68=WixVideo
+Module7=WixCarousel
+Module8=WixTree
+Module9=WixSideMenu
+NumberOfFiles=14
+NumberOfLibraries=3
+NumberOfModules=68
 Version=7.51
 @EndOfDesignText@
  #Region Project Attributes 
+ 	#MergeLibraries: True
+	#LibraryAuthor: Anele Mashy Mbanga
+	#LibraryVersion: 1.00
+	#LibraryName: BANanoWebix
 #End Region
+
 #IgnoreWarnings:15
 Sub Process_Globals
 	Public BANano As BANano 'ignore
-	Public AppName As String = "Webix"
-	Private Publish As String
-	Private BP As BANanoPostProcessor
 End Sub
 
 Sub AppStart (Form1 As Form, Args() As String)
-	Publish = "C:\xampp\htdocs"
-	Dim version As String = DateTime.now
-	Dim appFile As String = $"app${version}.js"$
-	BANano.Initialize("BANano", AppName,1)
-	BANano.HTML_NAME = "index.html"
-	BANano.UseServiceWorker = False
-	BANano.Header.Title = AppName
-	BANano.JAVASCRIPT_NAME = appFile
-	BANano.Header.addcssfile("all.min.css")
-	BANano.Header.AddCSSFile("materialdesignicons.min.css")
-	BANano.Header.AddCSSFile("webix.min.css")
-	BANano.Header.AddCSSFile("flat.min.css")
-	BANano.Header.AddJavascriptFile("webix.min.js")
-	BANano.Header.AddJavascriptFile("data.js")
-	'BANano.TranspilerOptions.MergeAllCSSFiles = True
-	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True
-	'BANano.TranspilerOptions.ShowWarningDeadCode = True
-	'BANano.TranspilerOptions.RemoveDeadCode = True
-	'BANano.TranspilerOptions.UseServiceWorker = True 
-	'BANano.BuildAsB4XLib("1.00") 
-	BANano.Build(Publish)
-	'post processor
-	BP.Initialize
-	BP.PublishPath = Publish
-	BP.ShortName = AppName
-	BP.AssetsPath = BANano.ASSETS_FOLDER
-	BP.ScriptsPath = BANano.SCRIPTS_FOLDER
-	BP.StylesPath = BANano.STYLES_FOLDER
-	BP.ScriptFile = BANano.JAVASCRIPT_NAME
-	BP.UnzipFonts
-	BP.Open(True)
+	'initialize banano for first use
+	BANano.Initialize("BANano", "BANanoWebix",DateTime.Now)
+	BANano.TranspilerOptions.UseServiceWorker = False
+	BANano.BuildAsB4XLib("1.00")
 	ExitApplication
 End Sub
 
 'Return true to allow the default exceptions handler to handle the uncaught exception.
 Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 	Return True
-End Sub
-
-Sub BANano_Ready()
-	'uncomment this line ONLY for LESSON 1
-	'pgLayout.init
-	'uncomment this line ONLY for LESSON 2
-	'pgLayouts.init
-	'uncomment this line ONLY for LESSON 3.1
-	'pgLayouts1.init 
-	'uncomment this line ONLY for LESSON 3.2
-	'pgLayouts2.Init
-	'uncomment this line ONLY for LESSON 4
-	'pgMultiView.init 
-	'uncomment this line ONLY for LESSON 5
-	'pgToolBar.Init
-	'uncomment this line ONLY for LESSON 6
-	'pgDataEntry.init 
-	'uncomment this line ONLY for LESSON 7 - part 1
-	'pgCharts.Init
-	'uncomment this line ONLY for LESSON 8
-	'pgDataTable.Init   ' LESSON 8.1
-	'pgDataTable1.Init   ' LESSON 8.2
-	'pgDataView.Init    ' LESSON 9
-	'pgList.Init 	   'LESSON 10 
-	'pgUnitList.init    'LESSON 11
-	'pgPropertySheet.Init      'LESSON 12
-	'pgTree.Init               'LESSON 13
-	'pgTreeTable.Init          'LESSON 14
-	'pgMenu.Init			   'LESSON 15
-	'pgSideBar.init            'LESSON 16
-	'pgComments.Init	       'LESSON 17
-	'pgGroupList.Init		   'LESSON 18
-	'pgContext.Init		       'LESSON 19
-	'pgGoogleMap.Init           'LESSON 20
-	'pgTabBar.Init		        'LESSON 21
-	'pgUploader1.Init            'LESSON 22.1
-	'pgUploader2.Init            'LESSON 22.2
-	'pgUploader3.Init			'LESSON 22.3
-	pgVideo.Init		        'LESSON 23
-	'pgIndex.Init
 End Sub
