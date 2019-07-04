@@ -11,7 +11,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("", pgContainer).SetHeader("Lesson 3.1. Accordion")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 3.1. Accordion").SetResponsive("master")
 	
 	Dim acc As WixAccordion
 	acc.Initialize("")

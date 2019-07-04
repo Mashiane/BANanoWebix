@@ -24,6 +24,13 @@ Sub Item As Map
 	Return Label.item
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixLabel
+	Label.SetName(n)
+	Return Me
+End Sub
+
 'use a map object
 Sub SetMap(m As Map) As WixLabel
 	For Each strKey As String In m.Keys
@@ -33,6 +40,31 @@ Sub SetMap(m As Map) As WixLabel
 	Return Me
 End Sub
 
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixLabel
+	Label.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixLabel
+	Label.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixLabel
+	Label.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixLabel
+	Label.SetMinHeight(h)
+	Return Me
+End Sub
 
 'set the parent
 Sub SetParent(p As WixElement) As WixLabel
@@ -91,4 +123,20 @@ End Sub
 Sub SetAlignLeft(r As String) As WixLabel 'ignore
 	Label.SetAlignleft("")
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

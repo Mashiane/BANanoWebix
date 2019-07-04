@@ -35,6 +35,72 @@ Public Sub Initialize(pgID As String, pgContainer As String) As WixPage
 	Return Me
 End Sub
 
+'set locale
+Sub SetLocale(locale As String) As WixPage
+	Dim i18n As BANanoObject = webix.GetField("i18n")
+	i18n.RunMethod("setLocale", Array(locale))
+	Return Me
+End Sub
+
+'own date format
+'"%Y-%m-%d"
+'"%m/%d/%y"
+'"%M %y"
+'"W:%W %D"
+Sub DateToStr(f As String) As Object
+	Dim df As BANanoObject = webix.GetField("Date")
+	Dim df1 As Object = df.RunMethod("dateToStr", Array(f)).result
+	Return df1
+End Sub
+
+'current locale date format
+Sub LocateDateFormat() As Object   'ignore
+	Dim df As Object = webix.GetField("i18n").GetField("dateFormatStr").Result
+	Return df
+End Sub
+
+'current locate long date format
+Sub LocaleLongDateFormat() As Object   'ignore
+	Dim df As Object = webix.GetField("i18n").GetField("longDateFormatStr").Result
+	Return df
+End Sub
+
+'current locate number format
+Sub LocaleNumberFormat(r As Boolean) As Object   'ignore
+	Dim df As Object = webix.GetField("i18n").GetField("numberFormat").Result
+	Return df
+End Sub
+
+'current locale price format
+Sub LongPriceFormat(r As Boolean) As Object   'ignore
+	Dim df As Object = webix.GetField("i18n").GetField("priceFormat").Result
+	Return df
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixPage
+	Page.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixPage
+	Page.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixPage
+	Page.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixPage
+	Page.SetMinHeight(h)
+	Return Me
+End Sub
 
 'add rows
 Sub AddWixRows(lst As List)
@@ -356,6 +422,11 @@ Sub AddRows(itm As Map)
 	Page.AddRows(itm)
 End Sub
 
+'return item
+Sub Item As Map
+	Return Page.item
+End Sub
+
 'add item to a column
 Sub AddColumns(itm As Map)
 	Page.AddColumns(itm)
@@ -424,8 +495,9 @@ Sub UI()
 End Sub
 
 'set to full screen
-Sub FullScreen
+Sub SetFullScreen(b As Boolean) As WixPage			'ignore
 	webix.RunMethod("ui", Array("fullScreen"))
+	Return Me
 End Sub
 
 'message user
@@ -529,6 +601,17 @@ Sub OnItemClick(eID As String, cb As BANanoObject)
 	eID = eID.tolowercase
 	Dollar.Selector(eID).RunMethod("attachEvent",Array("onItemClick",cb))
 End Sub
+
+Sub OnAfterEditStart(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onAfterEditStart",cb))
+End Sub
+
+Sub OnAfterEditStop(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onAfterEditStop",cb))
+End Sub
+
 
 Sub OnClick(eID As String, cb As BANanoObject)
 	eID = eID.tolowercase
@@ -804,8 +887,36 @@ Sub AddSideMenu(ctx As WixSideMenu) As BANanoObject
 End Sub
 
 
+'set name
+Sub SetName(n As String) As WixPage
+	Page.SetName(n)
+	Return Me
+End Sub
+
 'add uploader
 Sub AddUploader(ctx As WixUploader) As BANanoObject
 	Dim ctxUX As BANanoObject = UX(ctx.Item)
 	Return ctxUX
+End Sub
+
+'add suggestion
+Sub AddSuggestion(ctx As WixSuggest) As BANanoObject
+	Dim ctxUX As BANanoObject = UX(ctx.Item)
+	Return ctxUX
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

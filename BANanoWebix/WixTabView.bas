@@ -12,7 +12,7 @@ Sub Class_Globals
 	Private tb As WixElement
 End Sub
 
-'Initializes the accordion
+'Initializes the TabView
 Public Sub Initialize(sid As String) As WixTabView
 	ID = sid.tolowercase
 	TabView.Initialize(ID)
@@ -31,6 +31,37 @@ Sub SetMap(m As Map) As WixTabView
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixTabView
+	TabView.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixTabView
+	TabView.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixTabView
+	TabView.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixTabView
+	TabView.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixTabView
+	TabView.SetMinHeight(h)
+	Return Me
+End Sub
 
 'set height
 Sub SetHeight(h As Object) As WixTabView
@@ -94,4 +125,20 @@ Sub AddTab(iid As String, header As String, template As String, attributes As Ma
 		Next
 	End If
 	TabView.AddCells(i.Item)
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

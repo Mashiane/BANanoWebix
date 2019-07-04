@@ -12,7 +12,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("", pgContainer).SetHeader("Lesson 5: WixToolBar")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 5: WixToolBar").SetResponsive("master")
 	
 	'create a toolbar
 	Dim tblBar As WixToolBar

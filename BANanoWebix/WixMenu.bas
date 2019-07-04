@@ -33,6 +33,37 @@ Sub SetMap(m As Map) As WixMenu
 End Sub
 
 
+'set name
+Sub SetName(n As String) As WixMenu
+	Menu.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixMenu
+	Menu.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixMenu
+	Menu.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixMenu
+	Menu.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixMenu
+	Menu.SetMinHeight(h)
+	Return Me
+End Sub
+
 ' set menu pos right
 Sub SetSubMenuPosRight(r As String) As WixMenu   'ignore
 	Menu.SetAttr("subMenuPos", "right")
@@ -124,4 +155,20 @@ End Sub
 Sub SetData(d As List) As WixMenu
 	Menu.SetAttr("data", d)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

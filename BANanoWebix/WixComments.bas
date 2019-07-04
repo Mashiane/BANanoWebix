@@ -17,12 +17,44 @@ Sub Class_Globals
 	Public USER_NONE As String = "none"
 End Sub
 
-'Initializes the comments object
+'Initializes the Comments object
 Public Sub Initialize(sid As String) As WixComments
 	ID = sid.tolowercase
 	Comments.Initialize(ID).SetView("comments")
 	Users.Initialize 
-	Data.Initialize 
+	Data.Initialize
+	Return Me
+End Sub
+
+
+'set name
+Sub SetName(n As String) As WixComments
+	Comments.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixComments
+	Comments.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixComments
+	Comments.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixComments
+	Comments.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixComments
+	Comments.SetMinHeight(h)
 	Return Me
 End Sub
 
@@ -64,7 +96,7 @@ Sub SetMore(m As Int) As WixComments
 End Sub
 
 
-'set comments
+'set Comments
 Sub SetCurrentUser(u As Int) As WixComments
 	Comments.SetAttr("currentUser", u)
 	Return Me
@@ -115,4 +147,20 @@ End Sub
 Sub SetHeight(h As Object) As WixComments
 	Comments.SetAttr("height", h)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

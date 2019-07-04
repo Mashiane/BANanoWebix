@@ -28,6 +28,37 @@ Sub SetMap(m As Map) As WixSection
 End Sub
 
 
+'set name
+Sub SetName(n As String) As WixSection
+	Section.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixSection
+	Section.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixSection
+	Section.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixSection
+	Section.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixSection
+	Section.SetMinHeight(h)
+	Return Me
+End Sub
+
 'set tooltip
 Sub SetTooltip(tt As String) As WixSection
 	Section.SetTooltip(tt)
@@ -47,4 +78,20 @@ End Sub
 'add to toolbar
 Sub AddToToolbar(tblB As WixToolBar)
 	tblB.Toolbar.AddItem(Item)
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

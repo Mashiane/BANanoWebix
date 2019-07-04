@@ -12,7 +12,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init
-	pg.Initialize("forms", "body").SetTypeSpace("")
+	pg.Initialize("master", "body").SetTypeSpace("").SetResponsive(True)
 	'
 	Dim R1 As WixRow
 	R1.Initialize("R1")
@@ -45,6 +45,7 @@ Sub Init
 	sm.AddItem("datatable", "lesson8_1", "Lesson 8.1","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("datatable", "lesson8_2", "Lesson 8.2","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("datatable", "lesson8_3", "Lesson 8.3","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("datatable", "lesson8_4", "Lesson 8.4","","mdi mdi-view-dashboard", "","")
 	'
 	sm.AddItem("", "dataview", "L9 DataView","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lists", "L10-L11 Lists","","mdi mdi-view-dashboard", "","")
@@ -72,6 +73,9 @@ Sub Init
 	sm.AddItem("", "lesson23", "L23 Video","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lesson24", "L24 Scroll View","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lesson25", "L25 Template","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "lesson26", "L26 Responsive","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "lesson27", "L27 FlexLayout","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "lesson28", "L28 Suggest","","mdi mdi-view-dashboard", "","")
 	
 	Dim items As List = sm.Items
 	Dim data As List = pg.Unflatten(items,"data")
@@ -102,6 +106,14 @@ End Sub
 
 Sub itemClick(meID As String)
 	Select Case meID
+	Case "lesson8_4"
+		pgLesson8_4.Init("r2c2_content")
+	Case "lesson28"
+		pgSuggest.Init("r2c2_content")
+	Case "lesson27"
+		pgFlexLayout.Init("r2c2_content")
+	Case "lesson26"
+		pgResponsive.Init("r2c2_content")
 	Case "lesson8_3"
 		pgLesson8_3.Init("r2c2_content")		
 	Case "lesson24"
@@ -127,7 +139,7 @@ Sub itemClick(meID As String)
 	Case "context"
 		pgContext.Init("r2c2_content")
 	Case "comments"
-			pgComments.Init("r2c2_content")
+		pgComments.Init("r2c2_content")
 	Case "sidebar"
 		pgSideBar.Init("r2c2_content")
 	Case "menu"

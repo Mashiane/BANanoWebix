@@ -25,6 +25,13 @@ Public Sub Initialize(sID As String) As WixHeader
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixHeader
+	Header.SetName(n)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Return Header.item
@@ -37,4 +44,46 @@ Sub SetMap(m As Map) As WixHeader
 		Header.SetAttr(strKey,	strVal)
 	Next
 	Return Me
+End Sub
+
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixHeader
+	Header.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixHeader
+	Header.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixHeader
+	Header.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixHeader
+	Header.SetMinHeight(h)
+	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

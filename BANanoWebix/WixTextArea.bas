@@ -23,6 +23,37 @@ Sub SetValue(v As String) As WixTextArea
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixTextArea
+	TextArea.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixTextArea
+	TextArea.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixTextArea
+	TextArea.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixTextArea
+	TextArea.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixTextArea
+	TextArea.SetMinHeight(h)
+	Return Me
+End Sub
 'use a map object
 Sub SetMap(m As Map) As WixTextArea
 	For Each strKey As String In m.Keys
@@ -80,7 +111,7 @@ Sub SetLabel(lbl As String) As WixTextArea
 End Sub
 
 'set the width
-Sub SetWidth(w As object) As WixTextArea
+Sub SetWidth(w As Object) As WixTextArea
 	TextArea.SetWidth(w)
 	Return Me
 End Sub
@@ -133,4 +164,20 @@ End Sub
 Sub SetAlignLeft(r As String) As WixTextArea 'ignore
 	TextArea.SetAlignleft("")
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

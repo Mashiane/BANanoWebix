@@ -12,7 +12,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("forms", pgContainer).SetHeader("Lesson 11: Unit List")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 11: Unit List").SetResponsive("master")
 	'
 	Dim ul As WixUnitList
 	ul.Initialize("ulx")

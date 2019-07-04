@@ -24,6 +24,37 @@ Public Sub Initialize(sID As String) As WixToolBar
 End Sub
 
 
+'set name
+Sub SetName(n As String) As WixToolBar
+	ToolBar.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixToolBar
+	ToolBar.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixToolBar
+	ToolBar.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixToolBar
+	ToolBar.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixToolBar
+	ToolBar.SetMinHeight(h)
+	Return Me
+End Sub
+
 'use a map object
 Sub SetMap(m As Map) As WixToolBar
 	For Each strKey As String In m.Keys
@@ -101,4 +132,26 @@ End Sub
 Sub AddIcon(icn As WixIcon) As WixToolBar
 	ToolBar.AddColumns(icn.Item)
 	Return Me
+End Sub
+
+'add elements
+Sub AddElements(e As Map) As WixToolBar
+	ToolBar.AddElements(e)
+	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

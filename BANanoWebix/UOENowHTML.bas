@@ -27,7 +27,13 @@ Sub Class_Globals
 	Private Text As String
 	Private TextAfter As Boolean
 	Private SBAfter As StringBuilder
+	Private SBBefore As StringBuilder
 	Public IsImportant As Boolean
+End Sub
+
+Sub SetImportant(b As Boolean) As UOENowHTML
+	IsImportant = b
+	Return Me
 End Sub
 
 'set style
@@ -42,56 +48,72 @@ Sub SetWidth(w As Object) As UOENowHTML
 	Return Me
 End Sub
 
+'set width
+Sub SetCSS(w As Object) As UOENowHTML
+	AddAttribute("css", w)
+	Return Me
+End Sub
+
 'set height
 Sub SetHeight(h As String) As UOENowHTML
 	AddAttribute("height", h)
 	Return Me
 End Sub
 
-Sub SetPaddingBottom(PaddingBottom As String)
+Sub SetPaddingBottom(PaddingBottom As String) As UOENowHTML
 	AddStyleAttribute("padding-bottom", MakePx(PaddingBottom))
+	Return Me
 End Sub
 
-Sub SetPaddingRight(PaddingRight As String)
+Sub SetPaddingRight(PaddingRight As String) As UOENowHTML
 	AddStyleAttribute("padding-right", MakePx(PaddingRight))
+	Return Me
 End Sub
 
-Sub SetPaddingLeft(PaddingLeft As String)
+Sub SetPaddingLeft(PaddingLeft As String) As UOENowHTML
 	AddStyleAttribute("padding-left", MakePx(PaddingLeft))
+	Return Me
 End Sub
 	
-Sub SetPaddingTop(PaddingTop As String)
+Sub SetPaddingTop(PaddingTop As String) As UOENowHTML
 	AddStyleAttribute("padding-top", MakePx(PaddingTop))
+	Return Me
 End Sub
 
-Sub SetMarginBottom(MarginBottom As String)
+Sub SetMarginBottom(MarginBottom As String) As UOENowHTML
 	AddStyleAttribute("margin-bottom", MakePx(MarginBottom))
+	Return Me
 End Sub
 
-Sub SetMarginRight(MarginRight As String)
+Sub SetMarginRight(MarginRight As String) As UOENowHTML
 	AddStyleAttribute("margin-right", MakePx(MarginRight))
+	Return Me
 End Sub
 
-Sub SetMarginLeft(MarginLeft As String)
+Sub SetMarginLeft(MarginLeft As String) As UOENowHTML
 	AddStyleAttribute("margin-left", MakePx(MarginLeft))
+	Return Me
 End Sub
 	
-Sub SetMarginTop(MarginTop As String)
+Sub SetMarginTop(MarginTop As String) As UOENowHTML
 	AddStyleAttribute("margin-top", MakePx(MarginTop))
+	Return Me
 End Sub
 
-Sub UseTheme(sPrefix As String, themeName As String)
-	If themeName = "" Then Return
+Sub UseTheme(sPrefix As String, themeName As String) As UOENowHTML
+	If themeName = "" Then Return Me
 	themeName = themeName.tolowercase
 	If sPrefix <> "" And themeName <> "" Then
 		AddClass($"${sPrefix}-${themeName}"$)
 	End If
+	Return Me
 End Sub
 
-Sub AddAttributeIfSet(prop As String, value As String)
+Sub AddAttributeIfSet(prop As String, value As String) As UOENowHTML
 	If value <> "" Then
 		AddAttribute(prop,value)
 	End If
+	Return Me
 End Sub
 
 Sub SetPlaceHolder(sPlaceholder As String) As UOENowHTML
@@ -99,17 +121,20 @@ Sub SetPlaceHolder(sPlaceholder As String) As UOENowHTML
 	Return Me
 End Sub
 
-Sub SetTITLE(stitle As String)
+Sub SetTITLE(stitle As String) As UOENowHTML
 	AddAttribute("title", stitle)
+	Return Me
 End Sub
 
-Sub SetREL(rel As String)
+Sub SetREL(rel As String) As UOENowHTML
 	AddAttribute("rel", rel)
+	Return Me
 End Sub
 
 'clear contents
-Sub Clear
+Sub Clear As UOENowHTML
 	Contents.clear
+	Return Me
 End Sub
 
 Sub AddPropertyOnCondition(bCondition As Boolean, attr As String, value As String) As UOENowHTML
@@ -614,6 +639,7 @@ End Sub
 'Initializes the html builder
 Public Sub Initialize(elID As String, eltag As String) As UOENowHTML
 	IsImportant = True
+	SBBefore.Initialize 
 	SBAfter.Initialize 
 	ID = elID.ToLowerCase
 	properties.Initialize
@@ -790,6 +816,16 @@ public Sub AddContentAfter(value As String) As UOENowHTML
 	If value.Length > 0 Then
 		value = FormatText(value)
 		SBAfter.Append(value)
+	End If
+	Return Me
+End Sub
+
+'add content to the element before open 
+public Sub AddContentBefore(value As String) As UOENowHTML
+	value = CStr(value)
+	If value.Length > 0 Then
+		value = FormatText(value)
+		SBBefore.Append(value)
 	End If
 	Return Me
 End Sub
@@ -1069,8 +1105,9 @@ private Sub RemDelim(sValue As String, Delim As String) As String
 End Sub
 
 'set the style attribute
-Sub AddStyle(prop As String, value As String)
+Sub AddStyle(prop As String, value As String) As UOENowHTML
 	AddStyleAttribute(prop,value)
+	Return Me
 End Sub
 
 'set a style property
@@ -1245,6 +1282,7 @@ public Sub ToString As String
 	End Select
 	Dim sb As StringBuilder
 	sb.Initialize
+	sb.Append(SBBefore)
 	sb.Append(Open)
 	If TextAfter = True Then
 		Contents.Add(Text)

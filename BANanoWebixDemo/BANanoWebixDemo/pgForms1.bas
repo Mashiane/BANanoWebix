@@ -13,7 +13,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("forms1", pgContainer)
+	pg.Initialize("wp", pgContainer).SetResponsive("master")
 	'
 	Dim R1 As WixRow
 	R1.Initialize("R1")
@@ -59,8 +59,8 @@ Sub Init(pgContainer As String)
 	countries.Add(CreateMap("id":6, "value": "Moldova"))
 	'
 	Dim suggest As WixSuggest
-	suggest.Initialize(pg, "countries").SetData(countries)
-	suggest.UI
+	suggest.Initialize("countries").SetData(countries)
+	pg.AddSuggestion(suggest)
 	
 	'add form
 	myForm.Initialize("mashform1").SetWidth(500)

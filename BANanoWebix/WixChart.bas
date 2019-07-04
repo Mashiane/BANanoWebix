@@ -25,7 +25,39 @@ Public Sub Initialize(iID As String) As WixChart
 	yAxis.Initialize 
 	xAxis.Initialize 
 	Tooltip.Initialize 
-	Padding.Initialize 
+	Padding.Initialize
+	Return Me
+End Sub
+
+
+'set name
+Sub SetName(n As String) As WixChart
+	Chart.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixChart
+	Chart.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixChart
+	Chart.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixChart
+	Chart.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixChart
+	Chart.SetMinHeight(h)
 	Return Me
 End Sub
 
@@ -402,7 +434,7 @@ Sub SetHeight(h As Object) As WixChart
 End Sub
 
 'set width
-Sub SetWidth(h As object) As WixChart
+Sub SetWidth(h As Object) As WixChart
 	Chart.SetWidth(h)
 	Return Me
 End Sub
@@ -477,4 +509,20 @@ End Sub
 Sub SetYAxisTitle(t As String) As WixChart
 	yAxis.Put("title", t)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

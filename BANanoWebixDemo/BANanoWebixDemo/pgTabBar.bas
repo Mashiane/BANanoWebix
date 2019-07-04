@@ -11,7 +11,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("", pgContainer).SetHeader("Lesson 21: TabBar")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 21: TabBar").SetResponsive("master")
 	'
 	Dim R1 As WixRow
 	R1.Initialize("R1")

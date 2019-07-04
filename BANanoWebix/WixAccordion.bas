@@ -20,6 +20,39 @@ Public Sub Initialize(sid As String) As WixAccordion
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixAccordion
+	Accordion.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixAccordion
+	Accordion.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixAccordion
+	Accordion.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixAccordion
+	Accordion.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixAccordion
+	Accordion.SetMinHeight(h)
+	Return Me
+End Sub
+
+
 'set collapsed
 Sub SetCollapsed(b As Boolean) As WixAccordion
 	Accordion.SetProperty("collapsed", b)

@@ -15,7 +15,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("", pgContainer).SetHeader("Lesson 22: File Uploader - Part 1").SetTypeSpace("")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 22: File Uploader - Part 1").SetTypeSpace("").SetResponsive("master")
 	'
 	Dim R1 As WixRow
 	R1.Initialize("R1").SetTemplate("<p>Click on any photo to change it</p>").SetHeight(50)
@@ -32,9 +32,9 @@ Sub Init(pgContainer As String)
 		
 	Dim dt As WixDataTable
 	dt.Initialize("people")
-	dt.CreateHeader("photo").SetHeader(" ").SetWidth(100).SetTemplate(sPhoto).Pop2(dt)
-	dt.CreateHeader("name").SetHeader("Employee Name").SetWidth(200).Pop2(dt)
-	dt.CreateHeader("job").SetHeader("Job Title").SetFillSpace(True).Pop2(dt)
+	dt.CreateColumn("photo").SetHeader(" ").SetWidth(100).SetTemplate(sPhoto).AddToColumns(dt.datatable)
+	dt.CreateColumn("name").SetHeader("Employee Name").SetWidth(200).AddToColumns(dt.datatable)
+	dt.CreateColumn("job").SetHeader("Job Title").SetFillSpace(True).AddToColumns(dt.datatable)
 	dt.Setautoheight(True).SetscrollX(False).SetRowHeight(80)
 	'
 	Dim data As List

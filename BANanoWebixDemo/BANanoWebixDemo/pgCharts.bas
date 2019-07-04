@@ -11,8 +11,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("",pgContainer)
-	pg.SetHeader("Lesson 7: WixCharts")
+	pg.Initialize("wp",pgContainer).SetResponsive("master").SetHeader("Lesson 7: WixCharts")
 	'define chart data
 	Dim chartData As List
 	chartData.Initialize

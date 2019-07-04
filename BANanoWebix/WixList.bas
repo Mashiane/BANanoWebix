@@ -9,12 +9,23 @@ Sub Class_Globals
 	Public List As WixElement
 	Public ID As String
 	Private typeOf As Map
+	Private Items As List
 End Sub
 
 'Initializes list object
 Public Sub Initialize(lID As String) As WixList
 	ID = lID.tolowercase
 	List.Initialize(ID).SetView("list")
+	Items.Initialize 
+	Return Me
+End Sub
+
+'add an item
+Sub AddItem(iKey As String, iValue As String) As WixList
+	Dim m As Map = CreateMap()
+	m.Put("id", iKey)
+	m.Put("value", iValue)
+	Items.Add(m)
 	Return Me
 End Sub
 
@@ -27,6 +38,37 @@ Sub SetMap(m As Map) As WixList
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixList
+	List.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixList
+	List.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixList
+	List.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixList
+	List.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixList
+	List.SetMinHeight(h)
+	Return Me
+End Sub
 
 'set item height
 Sub SetItemHeight(h As Object) As WixList
@@ -82,7 +124,7 @@ Sub SetMultiSelect(b As Boolean) As WixList
 End Sub
 
 'set SetScroll
-Sub SetScroll(b As object) As WixList
+Sub SetScroll(b As Object) As WixList
 	List.SetAttr("scroll", b)
 	Return Me
 End Sub
@@ -96,6 +138,9 @@ End Sub
 
 'return the object
 Sub Item As Map
+	If Items.Size > 0 Then
+		SetData(Items)
+	End If
 	List.SetAttr("type", typeOf)
 	Return List.item
 End Sub
@@ -124,7 +169,7 @@ Sub SetTypeUploader(b As Boolean) As WixList  'ignore
 End Sub
 
 'set width
-Sub SetWidth(t As object) As WixList
+Sub SetWidth(t As Object) As WixList
 	List.SetWidth(t)
 	Return Me
 End Sub
@@ -133,4 +178,20 @@ End Sub
 Sub SetData(t As List) As WixList
 	List.SetData(t)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

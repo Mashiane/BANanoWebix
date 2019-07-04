@@ -19,10 +19,41 @@ Public Sub Initialize(sid As String) As WixWindow
 	ToolBarID = ID & "tblbar"
 	Window.Initialize(ID).SetView("window")
 	ToolBar.Initialize(ToolBarID) 
-	body.Initialize(ID & "body") 
+	body.Initialize(ID & "body")
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixWindow
+	Window.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixWindow
+	Window.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixWindow
+	Window.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixWindow
+	Window.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixWindow
+	Window.SetMinHeight(h)
+	Return Me
+End Sub
 
 'use a map object
 Sub SetMap(m As Map) As WixWindow
@@ -119,7 +150,23 @@ End Sub
 
 
 'set width
-Sub SetWidth(w As object) As WixWindow
+Sub SetWidth(w As Object) As WixWindow
 	Window.SetAttr("width", w)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

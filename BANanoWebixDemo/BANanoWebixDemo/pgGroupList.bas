@@ -11,7 +11,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("forms", pgContainer).SetHeader("Lesson 18: GroupList")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 18: GroupList").SetResponsive("master")
 	'
 	Dim gl As WixGroupList
 	gl.Initialize("gl").SetScroll(True).SetWidth(300).SetBorderLess(False)

@@ -15,7 +15,7 @@ End Sub
 
 
 Public Sub Init(pgContainer As String)
-	pg.Initialize("forms", pgContainer).SetHeader("Lesson 10: List")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 10: List").SetResponsive("master")
 	'
 	Dim R1 As WixRow
 	R1.Initialize("R1").SetHeight(10)

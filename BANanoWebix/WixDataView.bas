@@ -34,6 +34,42 @@ Sub SetMap(m As Map) As WixDataView
 End Sub
 
 
+'set name
+Sub SetName(n As String) As WixDataView
+	DataView.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixDataView
+	DataView.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixDataView
+	DataView.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixDataView
+	DataView.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixDataView
+	DataView.SetMinHeight(h)
+	Return Me
+End Sub
+
+Sub SetSizeToContent(b As Object) As WixDataView
+	DataView.SetAttr("sizeToContent", b)
+	Return Me
+End Sub
+
 'set scroll
 Sub SetScroll(b As Object) As WixDataView
 	DataView.SetProperty("scroll", b)
@@ -153,7 +189,7 @@ Sub SetHeight(h As Object) As WixDataView
 End Sub
 
 'set width
-Sub SetWidth(h As object) As WixDataView
+Sub SetWidth(h As Object) As WixDataView
 	DataView.SetWidth(h)
 	Return Me
 End Sub
@@ -167,4 +203,20 @@ End Sub
 Sub SetData(data As List) As WixDataView
 	DataView.SetData(data)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

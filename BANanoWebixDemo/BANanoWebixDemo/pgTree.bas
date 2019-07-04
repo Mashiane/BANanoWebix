@@ -12,7 +12,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("forms", pgContainer).SetHeader("Lesson 13: Tree")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 13: Tree").SetResponsive("master")
 	'
 	Dim prop As WixTree
 	prop.Initialize("tree").SetSelect(True).Setborderless(False)

@@ -12,7 +12,7 @@ End Sub
 'Initializes the object. You can add parameters to this method if needed.
 Public Sub Init(pgContainer As String)
 	'initialize the page, we want it to be a layout and the type should be wide
-	pg.Initialize("", pgContainer).SetTypeClean("").SetHeader("Lesson 2: Layouts")
+	pg.Initialize("wp", pgContainer).SetTypeClean("").SetHeader("Lesson 2: Layouts").SetResponsive("master")
 	'different layouts
 	'
 	Dim l1 As WixElement

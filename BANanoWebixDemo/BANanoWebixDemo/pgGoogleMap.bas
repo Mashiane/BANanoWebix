@@ -13,7 +13,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("forms", pgContainer).SetHeader("Lesson 20: Google Map")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 20: Google Map").SetResponsive("master")
 	'
 	Dim R1 As WixRow
 	R1.Initialize("R1")

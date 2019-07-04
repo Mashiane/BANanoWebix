@@ -11,7 +11,7 @@ Sub Class_Globals
 	Private options As List
 End Sub
 
-'Initializes the accordion
+'Initializes the TabBar
 Public Sub Initialize(sid As String) As WixTabBar
 	ID = sid.tolowercase
 	TabBar.Initialize(ID)
@@ -29,6 +29,37 @@ Sub SetMap(m As Map) As WixTabBar
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixTabBar
+	TabBar.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixTabBar
+	TabBar.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixTabBar
+	TabBar.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixTabBar
+	TabBar.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixTabBar
+	TabBar.SetMinHeight(h)
+	Return Me
+End Sub
 
 'add item
 Sub AddItem(iID As String, iText As String, iIcon As String)
@@ -110,4 +141,20 @@ End Sub
 Sub SetkeepViews(b As Boolean) As WixTabBar
 	TabBar.SetAttr("keepViews", b)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

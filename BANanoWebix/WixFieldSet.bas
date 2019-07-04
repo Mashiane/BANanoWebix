@@ -12,13 +12,45 @@ Sub Class_Globals
 	Private Rows As List
 End Sub
 
-'Initializes the accordion
+'Initializes the FieldSet
 Public Sub Initialize(sid As String) As WixFieldSet
 	ID = sid.tolowercase
 	FieldSet.Initialize(ID)
 	FieldSet.SetView("fieldset")
 	body.Initialize 
-	Rows.Initialize 
+	Rows.Initialize
+	Return Me
+End Sub
+
+
+'set name
+Sub SetName(n As String) As WixFieldSet
+	FieldSet.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixFieldSet
+	FieldSet.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixFieldSet
+	FieldSet.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixFieldSet
+	FieldSet.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixFieldSet
+	FieldSet.SetMinHeight(h)
 	Return Me
 End Sub
 
@@ -58,7 +90,23 @@ Sub SetLabel(l As String) As WixFieldSet
 End Sub
 
 'set height
-Sub SetHeight(h As object) As WixFieldSet
+Sub SetHeight(h As Object) As WixFieldSet
 	FieldSet.SetHeight(h)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

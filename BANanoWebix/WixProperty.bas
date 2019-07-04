@@ -32,6 +32,38 @@ private Sub El(eid As String, label As String, typeOf As String, value As Object
 	Return opt
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixProperty
+	Property.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixProperty
+	Property.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixProperty
+	Property.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixProperty
+	Property.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixProperty
+	Property.SetMinHeight(h)
+	Return Me
+End Sub
+
 'use a map object
 Sub SetMap(m As Map) As WixProperty
 	For Each strKey As String In m.Keys
@@ -135,7 +167,23 @@ Sub SetHeight(h As Object) As WixProperty
 End Sub
 
 'set width
-Sub SetWidth(h As object) As WixProperty
+Sub SetWidth(h As Object) As WixProperty
 	Property.SetWidth(h)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

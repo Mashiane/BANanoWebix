@@ -22,7 +22,7 @@ End Sub
 #End If
 
 Sub Init(pgContainer As String)
-	pg.Initialize("forms", pgContainer)
+	pg.Initialize("wp", pgContainer).SetResponsive("master")
 	Dim R1 As WixRow
 	R1.Initialize("R1")
 	 

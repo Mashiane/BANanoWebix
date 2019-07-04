@@ -21,10 +21,41 @@ End Sub
 Public Sub Initialize(iID As String) As WixVideo
 	ID = iID.tolowercase
 	Video.Initialize(iID).SetView("video")
-	sources.Initialize 
+	sources.Initialize
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixVideo
+	Video.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixVideo
+	Video.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixVideo
+	Video.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixVideo
+	Video.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixVideo
+	Video.SetMinHeight(h)
+	Return Me
+End Sub
 
 'use a map object
 Sub SetMap(m As Map) As WixVideo
@@ -92,4 +123,20 @@ End Sub
 Sub SetSRC(l As String) As WixVideo
 	sources.Add(l)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

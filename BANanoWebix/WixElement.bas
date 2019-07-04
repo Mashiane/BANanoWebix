@@ -31,8 +31,43 @@ Sub Class_Globals
 	Private Styles As Map
 	Private Cells As List
 	Private elementsConfig As Map
+	Private cols As List
 End Sub
 
+'create texbox
+Sub CreateTextBox(eid As String) As WixTextBox
+	Dim txtbox As WixTextBox
+	txtbox.Initialize(eid)
+	Return txtbox 
+End Sub
+
+' create a button
+Sub CreateButton(eid As String) As WixButton
+	Dim btn As WixButton
+	btn.Initialize(eid)
+	Return btn 	
+End Sub
+
+'create a checkbox
+Sub CreateCheckBox(eid As String) As WixCheckBox
+	Dim chk As WixCheckBox
+	chk.Initialize(eid)
+	Return chk 
+End Sub
+
+'create a color picker
+Sub CreateColorPicker(eid As String) As WixColorPicker
+	Dim cp As WixColorPicker
+	cp.Initialize(eid)
+	Return cp
+End Sub
+
+'create a combo
+Sub CreateCombo(eid As String) As WixCombo
+	Dim cp As WixCombo
+	cp.Initialize(eid)
+	Return cp
+End Sub
 
 'add rows
 Sub AddWixRows(lst As List)
@@ -41,10 +76,21 @@ Sub AddWixRows(lst As List)
 	Next
 End Sub
 
-
 'set height
 Sub SetAutoHeight(b As Boolean) As WixElement
 	SetAttr("autoheight", b)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixElement
+	SetAttr("responsive", b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixElement
+	SetAttr("responsiveCell", b)
 	Return Me
 End Sub
 
@@ -54,6 +100,12 @@ Sub SetAutoWidth(b As Boolean) As WixElement
 	Return Me
 End Sub
 
+
+'set suggest
+Sub SetSuggest(s As Object) As WixElement
+	SetAttr("suggest", s)
+	Return Me
+End Sub
 
 'set scroll
 Sub SetScroll(c As Object) As WixElement
@@ -96,7 +148,8 @@ End Sub
 Public Sub Initialize(sID As String) As WixElement
 	ID = sID.ToLowerCase
 	Width = 0
-	Cells.Initialize 
+	Cells.Initialize
+	cols.Initialize  
 	elementsConfig.Initialize 
 	Height = 0
 	Styles.Initialize 
@@ -314,7 +367,7 @@ Sub SetHeight(h As Object) As WixElement
 End Sub
 
 'set width
-Sub SetWidth(w As object) As WixElement
+Sub SetWidth(w As Object) As WixElement
 	Width = w
 	Return Me
 End Sub
@@ -359,7 +412,8 @@ Sub Item As Map
 	SetOnContent("labelAlign", Label.Align)
 	SetOnCondition(Gravity,"gravity", Gravity)
 	SetOnCondition(Label.Width,"labelWidth", Label.Width)
-	SetOnCondition(Columns.Size,"cols", Columns)
+	SetOnCondition(Columns.Size,"columns", Columns)
+	SetOnCondition(cols.Size, "cols", cols)
 	SetOnCondition(Rows.Size, "rows", Rows)
 	SetOnCondition(Elements.Size, "elements", Elements)
 	SetOnCondition(Cells.Size, "cells", Cells)
@@ -410,6 +464,12 @@ End Sub
 
 'add item to a column
 Sub AddColumns(itm As Map) As WixElement
+	cols.Add(itm)
+	Return Me
+End Sub
+
+'add item to a column
+Sub AddDataColumn(itm As Map) As WixElement
 	Columns.Add(itm)
 	Return Me
 End Sub
@@ -628,3 +688,25 @@ Sub SetDefaultTypeIconButtonTop(r As String) As WixElement  'ignore
 	TypeOf = "iconButtonTop"
 	Return Me
 End Sub
+
+'add an icon and define it
+Sub CreateIcon(sid As String) As WixIcon
+	Dim btn As WixIcon
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+'add a label
+Sub CreateLabel(sid As String) As WixLabel
+	Dim lbl As WixLabel
+	lbl.Initialize(sid)
+	Return lbl
+End Sub
+
+'add a toggle button and define it
+Sub CreateToggle(sid As String) As WixButton
+	Dim btn As WixButton
+	btn.Initialize(sid).SetToggle("")
+	Return btn
+End Sub
+

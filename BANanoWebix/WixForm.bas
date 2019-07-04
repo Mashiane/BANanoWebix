@@ -23,11 +23,53 @@ Public Sub Initialize(fID As String) As WixForm
 	Columns.Initialize  
 	Rules.Initialize 
 	webix.Initialize("webix") 
-	Rows.Initialize 
+	Rows.Initialize
 	Return Me
 End Sub
 
 
+' set padding
+Sub SetPadding(padding As Object) As WixForm
+	Form.SetPadding(padding)
+	Return Me
+End Sub
+
+' set margin
+Sub SetMargin(margin As Object) As WixForm
+	Form.SetMargin(margin)
+	Return Me
+End Sub
+
+'set name
+Sub SetName(n As String) As WixForm
+	Form.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixForm
+	Form.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixForm
+	Form.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixForm
+	Form.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixForm
+	Form.SetMinHeight(h)
+	Return Me
+End Sub
 
 'add row items
 Sub AddRowItems(items As List)
@@ -170,4 +212,20 @@ End Sub
 'add an element to the form
 Sub AddItem(itm As Map)
 	Form.AddItem(itm)
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

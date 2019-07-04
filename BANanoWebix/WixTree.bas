@@ -17,10 +17,41 @@ Public Sub Initialize(eID As String) As WixTree
 	ID = eID.tolowercase
 	Tree.Initialize(ID).SetView("tree")
 	scheme = CreateMap()
-	Items.Initialize 
+	Items.Initialize
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixTree
+	Tree.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixTree
+	Tree.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixTree
+	Tree.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixTree
+	Tree.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixTree
+	Tree.SetMinHeight(h)
+	Return Me
+End Sub
 
 'use a map object
 Sub SetMap(m As Map) As WixTree
@@ -99,7 +130,7 @@ Sub SetHeight(h As Object) As WixTree
 End Sub
 
 'set width
-Sub SetWidth(h As object) As WixTree
+Sub SetWidth(h As Object) As WixTree
 	Tree.SetWidth(h)
 	Return Me
 End Sub
@@ -121,3 +152,18 @@ Sub AddItem(parentID As String, meID As String, mValue As String, mhref As Strin
 	Return Me
 End Sub
 
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
+End Sub

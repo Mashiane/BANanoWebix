@@ -13,7 +13,7 @@ End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
 Public Sub Init(pgContainer As String)
-	pg.Initialize("forms", pgContainer).SetHeader("Lesson 9: DataView")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 9: DataView").SetResponsive("master")
 	
 	Dim R1 As WixRow
 	R1.Initialize("R1")

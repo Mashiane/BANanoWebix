@@ -23,6 +23,39 @@ Public Sub Initialize(iID As String) As WixCombo
 	Return Me
 End Sub
 
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixCombo
+	Combo.SetResponsive(b)
+	Return Me
+End Sub
+
+
+'set name
+Sub SetName(n As String) As WixCombo
+	Combo.SetName(n)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixCombo
+	Combo.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixCombo
+	Combo.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixCombo
+	Combo.SetMinHeight(h)
+	Return Me
+End Sub
+
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
@@ -135,4 +168,26 @@ End Sub
 Sub SetAlignLeft(r As String) As WixCombo 'ignore
 	Combo.SetAlignleft("")
 	Return Me
+End Sub
+
+'set suggest
+Sub SetSuggest(s As Object) As WixCombo
+	Combo.setSuggest(s)
+	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

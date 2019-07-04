@@ -11,7 +11,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("", pgContainer).SetHeader("Lesson 4: Carousel, Segment & Tab Bar")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 4: Carousel, Segment & Tab Bar").SetResponsive("master")
 	pg.setType("clean")
 	
 	Dim c As WixCarousel

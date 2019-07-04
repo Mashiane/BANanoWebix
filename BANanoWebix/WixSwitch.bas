@@ -33,6 +33,37 @@ Sub SetMap(m As Map) As WixSwitch
 End Sub
 
 
+'set name
+Sub SetName(n As String) As WixSwitch
+	Switch.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixSwitch
+	Switch.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixSwitch
+	Switch.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixSwitch
+	Switch.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixSwitch
+	Switch.SetMinHeight(h)
+	Return Me
+End Sub
+
 'set on label
 Sub SetOnLabel(l As String) As WixSwitch
 	Switch.SetAttr("onLabel", l)
@@ -114,4 +145,20 @@ End Sub
 Sub SetAlignLeft(r As String) As WixSwitch 'ignore
 	Switch.SetAlignleft("")
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

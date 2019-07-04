@@ -19,6 +19,39 @@ Public Sub Initialize(iID As String) As WixCheckBox
 	Return Me
 End Sub
 
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixCheckBox
+	CheckBox.SetResponsive(b)
+	Return Me
+End Sub
+
+
+'set name
+Sub SetName(n As String) As WixCheckBox
+	CheckBox.SetName(n)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixCheckBox
+	CheckBox.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixCheckBox
+	CheckBox.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixCheckBox
+	CheckBox.SetMinHeight(h)
+	Return Me
+End Sub
+
 'set tooltip
 Sub SetTooltip(tt As String) As WixCheckBox
 	CheckBox.SetProperty("tooltip", tt)
@@ -109,4 +142,20 @@ End Sub
 Sub SetAlignLeft(r As String) As WixCheckBox 'ignore
 	CheckBox.SetAlignleft("")
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

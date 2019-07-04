@@ -27,6 +27,37 @@ Sub AddColumns(itm As Map)
 	Template.AddColumns(itm)
 End Sub
 
+'set na
+Sub SetName(n As String) As WixTemplate
+	Template.SetName(n)
+	Return Me
+End Sub
+
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixTemplate
+	Template.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixTemplate
+	Template.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixTemplate
+	Template.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixTemplate
+	Template.SetMinHeight(h)
+	Return Me
+End Sub
 
 'add item to a row
 Sub AddRows(itm As Map)
@@ -147,4 +178,19 @@ Sub SetTypeForm(a As String) As WixTemplate  'ignore
 	Return Me
 End Sub
 
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
+End Sub
 

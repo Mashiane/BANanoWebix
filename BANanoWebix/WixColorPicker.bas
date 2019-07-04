@@ -22,6 +22,39 @@ Sub Item As Map
 	Return ColorPicker.item
 End Sub
 
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixColorPicker
+	ColorPicker.SetResponsive(b)
+	Return Me
+End Sub
+
+
+'set name
+Sub SetName(n As String) As WixColorPicker
+	ColorPicker.SetName(n)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixColorPicker
+	ColorPicker.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixColorPicker
+	ColorPicker.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixColorPicker
+	ColorPicker.SetMinHeight(h)
+	Return Me
+End Sub
+
 'set tooltip
 Sub SetTooltip(tt As String) As WixColorPicker
 	ColorPicker.SetTooltip(tt)
@@ -103,4 +136,20 @@ End Sub
 Sub SetAlignLeft(r As String) As WixColorPicker 'ignore
 	ColorPicker.SetAlignleft("")
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

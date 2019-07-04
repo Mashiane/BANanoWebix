@@ -10,7 +10,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("", pgContainer).SetHeader("Lesson 25: Template")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 25: Template").SetResponsive("master")
 	'
 	Dim we As WixElement
 	we.Initialize("we").SetPadding(40)

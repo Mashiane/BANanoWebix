@@ -16,7 +16,7 @@ End Sub
 
 Sub Init(pgContainer As String)
 	'create a page with a header and set 'space' layout
-	pg.Initialize("", pgContainer).SetHeader("Lesson 22: File Uploader - Part 3 (DropZone)").SetTypeSpace("")
+	pg.Initialize("", pgContainer).SetHeader("Lesson 22: File Uploader - Part 3 (DropZone)").SetTypeSpace("").SetResponsive("master")
 	'
 	Dim R1 As WixRow
 	R1.Initialize("R1")

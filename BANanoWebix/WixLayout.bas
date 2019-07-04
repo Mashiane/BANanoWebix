@@ -32,6 +32,37 @@ Sub SetMap(m As Map) As WixLayout
 End Sub
 
 
+'set name
+Sub SetName(n As String) As WixLayout
+	Layout.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixLayout
+	Layout.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixLayout
+	Layout.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixLayout
+	Layout.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixLayout
+	Layout.SetMinHeight(h)
+	Return Me
+End Sub
+
 'set scroll
 Sub SetScroll(b As Object) As WixLayout
 	Layout.SetProperty("scroll", b)
@@ -85,4 +116,20 @@ End Sub
 Sub SetTypeForm(a As String) As WixLayout   'ignore
 	SetType("form")
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

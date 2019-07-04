@@ -20,7 +20,7 @@ End Sub
 Public Sub Init(pgContainer As String)
 	Dim e As BANanoEvent
 	'initialize the page, we want it to be a layout and the type should be wide
-	pg.Initialize("mylay", pgContainer).SetTypeWide("").SetHeader("Lesson 1: Layouts").SetView("layout")
+	pg.Initialize("wp", pgContainer).SetTypeWide("").SetHeader("Lesson 1: Layouts").SetView("layout").SetResponsive("master")
 	'row 1, make it a header with Hello content and add it to the rows collection of the page
 	Dim R1 As WixElement
 	R1.Initialize("R1").SetType("header").SetTemplate("R1: Hello").AddToRows(pg.Page)

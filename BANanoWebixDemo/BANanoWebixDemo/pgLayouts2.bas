@@ -12,7 +12,7 @@ End Sub
 
 Sub Init(pgContainer As String)
 	'create a wide layout on the page
-	pg.Initialize("", pgContainer).SetHeader("Lesson 3.2 Accordion").SetType("wide")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 3.2 Accordion").SetType("wide").SetResponsive("master")
 	'
 	Dim R0 As WixRow
 	R0.Initialize("R0") 

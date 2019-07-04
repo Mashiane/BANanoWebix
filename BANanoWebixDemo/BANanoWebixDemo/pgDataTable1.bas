@@ -13,7 +13,7 @@ End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
 Public Sub Init(pgContainer As String)
-	pg.Initialize("forms", pgContainer).SetHeader("Lesson 8.2: DataTable")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 8.2: DataTable").SetResponsive("master")
 	'
 	Dim R1 As WixRow
 	R1.Initialize("R1")
@@ -34,16 +34,16 @@ Public Sub Init(pgContainer As String)
 	'
 	Dim c1 As WixDataColumn
 	Dim t As String = MarkerColor
-	c1.Initialize(dt1, "marker").SetHeader(" ").SetWidth(38).SetTemplate(t).SetEditor("color").Pop
+	c1.Initialize("marker").SetHeader(" ").SetWidth(38).SetTemplate(t).SetEditor("color").AddToColumns(dt1.DataTable)
 	'
 	Dim c2 As WixDataColumn
-	c2.Initialize(dt1, "title").Setheader("Show title").SetWidth(140).SetSort("string").Pop
+	c2.Initialize("title").Setheader("Show title").SetWidth(140).SetSort("string").AddToColumns(dt1.DataTable)
 	'
 	Dim c3 As WixDataColumn
-	c3.Initialize(dt1, "network").SetHeader("Network").SetWidth(100).SetEditor("text").Pop
+	c3.Initialize("network").SetHeader("Network").SetWidth(100).SetEditor("text").AddToColumns(dt1.DataTable)
 	'
 	Dim c4 As WixDataColumn
-	c4.Initialize(dt1, "seasons").SetHeader("Seasons").SetFillSpace(True).Pop
+	c4.Initialize("seasons").SetHeader("Seasons").SetFillSpace(True).AddToColumns(dt1.DataTable)
 	'
 	dt1.AddEditTrash
 	

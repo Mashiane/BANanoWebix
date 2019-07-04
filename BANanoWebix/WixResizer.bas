@@ -40,3 +40,14 @@ Sub SetMap(m As Map) As WixResizer
 	Next
 	Return Me
 End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
+End Sub

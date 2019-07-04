@@ -23,6 +23,37 @@ Sub AddToForm(frm As WixForm)
 End Sub
 
 
+'set name
+Sub SetName(n As String) As WixDBLList
+	DBLList.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixDBLList
+	DBLList.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixDBLList
+	DBLList.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixDBLList
+	DBLList.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixDBLList
+	DBLList.SetMinHeight(h)
+	Return Me
+End Sub
+
 'set tooltip
 Sub SetTooltip(tt As String) As WixDBLList
 	DBLList.SetTooltip(tt)
@@ -114,4 +145,20 @@ End Sub
 Sub SetAlignLeft(r As String) As WixDBLList 'ignore
 	DBLList.SetAlignleft("")
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

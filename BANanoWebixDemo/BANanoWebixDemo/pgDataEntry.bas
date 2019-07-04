@@ -12,7 +12,7 @@ End Sub
 
 Sub Init(pgContainer As String)
 	'initialize the page
-	pg.Initialize("", pgContainer).SetHeader("Lesson 6: Form Data Entry")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 6: Form Data Entry").SetResponsive("master")
 	
 	'create a dummy data source
 	Dim dataObj As List

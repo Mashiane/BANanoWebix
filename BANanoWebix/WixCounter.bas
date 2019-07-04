@@ -24,6 +24,38 @@ Public Sub Initialize(iID As String) As WixCounter
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixCounter
+	Counter.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixCounter
+	Counter.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixCounter
+	Counter.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixCounter
+	Counter.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixCounter
+	Counter.SetMinHeight(h)
+	Return Me
+End Sub
+
 'set tooltip
 Sub SetTooltip(tt As String) As WixCounter
 	Counter.SetTooltip(tt)
@@ -124,4 +156,20 @@ End Sub
 Sub SetAlignLeft(r As String) As WixCounter 'ignore
 	Counter.SetAlignleft("")
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

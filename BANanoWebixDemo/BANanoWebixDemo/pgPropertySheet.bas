@@ -12,7 +12,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("forms", pgContainer).SetHeader("Lesson 12: Property [Sheet]")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 12: Property [Sheet]").SetResponsive("master")
 	'
 	Dim color_options As List
 	color_options.Initialize 

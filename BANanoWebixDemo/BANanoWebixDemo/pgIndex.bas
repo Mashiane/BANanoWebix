@@ -13,7 +13,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("mashy", pgContainer).SetTypeLine("")
+	pg.Initialize("wp", pgContainer).SetTypeLine("").SetResponsive("master")
 	'*** define row 1
 	'add toolbar
 	Dim R1 As WixRow

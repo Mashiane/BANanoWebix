@@ -27,6 +27,38 @@ Sub SetShowFirst(b As Boolean) As WixPager
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixPager
+	Pager.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixPager
+	Pager.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixPager
+	Pager.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixPager
+	Pager.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixPager
+	Pager.SetMinHeight(h)
+	Return Me
+End Sub
+
 'show previous
 Sub SetShowPrev(b As Boolean) As WixPager
 	If b Then
@@ -112,4 +144,20 @@ Sub Item As Map
 		Pager.SetTemplate(sb.ToString)
 	End If
 	Return Pager.item
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

@@ -19,8 +19,15 @@ End Sub
 Sub Init(pgContainer As String)
 	'initialize the page and set the container to hold the widgets
 	'add a header and set its label
-	pg.Initialize("", pgContainer).SetHeader("Lesson 8.3 Datatable Pager")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 8.3 Datatable Pager").SetResponsive("master")
 	'
+	'create the list of years
+	Dim years As List
+	years.Initialize
+	For i = 1970 To 2015
+		years.Add(CreateMap("id":i, "value":i))
+	Next
+	
 	'create the data-table
 	Dim dt As WixDataTable
 	dt.Initialize("grida")

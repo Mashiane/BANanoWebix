@@ -35,6 +35,38 @@ Public Sub Initialize(bID As String) As WixButton
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixButton
+	Button.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixButton
+	Button.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixButton
+	Button.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixButton
+	Button.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixButton
+	Button.SetMinHeight(h)
+	Return Me
+End Sub
+
 'use a map object
 Sub SetMap(m As Map) As WixButton
 	For Each strKey As String In m.Keys
@@ -229,7 +261,7 @@ Sub SetHeight(h As Object) As WixButton
 End Sub
 
 'set width
-Sub SetWidth(w As object) As WixButton
+Sub SetWidth(w As Object) As WixButton
 	Button.Width = w
 	Return Me
 End Sub
@@ -251,4 +283,20 @@ End Sub
 Sub SetAlignLeft(r As String) As WixButton 'ignore
 	Button.SetAlignleft("")
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

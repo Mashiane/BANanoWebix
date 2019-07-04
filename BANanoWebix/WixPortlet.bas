@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public Portlet As WixElement
 End Sub
 
-'Initializes the accordion
+'Initializes the Portlet
 Public Sub Initialize(sid As String) As WixPortlet
 	ID = sid.tolowercase
 	Portlet.Initialize(ID)
@@ -27,6 +27,37 @@ Sub SetMap(m As Map) As WixPortlet
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixPortlet
+	Portlet.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixPortlet
+	Portlet.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixPortlet
+	Portlet.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixPortlet
+	Portlet.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixPortlet
+	Portlet.SetMinHeight(h)
+	Return Me
+End Sub
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixPortlet
@@ -47,3 +78,18 @@ Sub SetBody(b As String) As WixPortlet
 	Return Me
 End Sub
 
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
+End Sub

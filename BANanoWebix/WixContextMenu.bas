@@ -27,6 +27,38 @@ Sub SetMaster(pID As String) As WixContextMenu
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixContextMenu
+	ContextMenu.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixContextMenu
+	ContextMenu.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixContextMenu
+	ContextMenu.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixContextMenu
+	ContextMenu.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixContextMenu
+	ContextMenu.SetMinHeight(h)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Return ContextMenu.item
@@ -118,4 +150,20 @@ End Sub
 Sub SetSelect(b As Boolean) As WixContextMenu
 	ContextMenu.SetProperty("select", b)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

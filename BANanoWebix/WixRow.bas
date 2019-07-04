@@ -23,12 +23,56 @@ Sub SetTypeWide As WixRow
 	Return Me
 End Sub
 
+
+' set padding
+Sub SetPadding(padding As Object) As WixRow
+	Row.SetPadding(padding)
+	Return Me
+End Sub
+
+' set margin
+Sub SetMargin(margin As Object) As WixRow
+	Row.SetMargin(margin)
+	Return Me
+End Sub
+
 'add to columns
 Sub AddColumns(i As Map) As WixRow
 	Row.AddColumns(i)
 	Return Me
 End Sub
 
+
+'set name
+Sub SetName(n As String) As WixRow
+	Row.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixRow
+	Row.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixRow
+	Row.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixRow
+	Row.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixRow
+	Row.SetMinHeight(h)
+	Return Me
+End Sub
 
 'set auto width
 Sub SetAutoWidth(b As Boolean) As WixRow
@@ -153,4 +197,7 @@ Sub SetMap(m As Map) As WixRow
 	Return Me
 End Sub
 
-
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
+End Sub

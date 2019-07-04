@@ -8,19 +8,48 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public TextBox As WixElement
-	Private Suggest As String
 End Sub
 
 'Initializes the element
 Public Sub Initialize(tID As String) As WixTextBox
 	TextBox.Initialize(tID).SetView("text")
-	Suggest = ""
 	Return Me
 End Sub
 
 'set invalid message
 Sub SetInvalidMessage(msg As String) As WixTextBox
 	TextBox.SetAttr("invalidMessage", msg)
+	Return Me
+End Sub
+
+'set name
+Sub SetName(n As String) As WixTextBox
+	TextBox.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixTextBox
+	TextBox.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixTextBox
+	TextBox.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixTextBox
+	TextBox.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixTextBox
+	TextBox.SetMinHeight(h)
 	Return Me
 End Sub
 
@@ -110,8 +139,8 @@ Sub AddToForm(frm As WixForm)
 End Sub
 
 'set suggest
-Sub SetSuggest(s As String) As WixTextBox
-	Suggest = s
+Sub SetSuggest(s As Object) As WixTextBox
+	TextBox.SetSuggest(s)
 	Return Me	
 End Sub
 
@@ -135,7 +164,6 @@ End Sub
 
 'return item
 Sub Item As Map
-	TextBox.SetOnContent("suggest",Suggest)
 	Return TextBox.Item
 End Sub
 
@@ -211,4 +239,20 @@ Sub SetAlignLeft(r As String) As WixTextBox 'ignore
 	TextBox.SetAlignleft("")
 	Return Me
 End Sub
+
+'add to parent rows
+Sub AddToRows(parent As WixElement)
+	parent.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(parent As WixElement)
+	parent.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(parent As WixElement)
+	parent.AddElements(Item)
+End Sub
+
 

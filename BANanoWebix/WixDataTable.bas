@@ -31,7 +31,73 @@ Sub Class_Globals
 	Public DT_ADJUST_DATA As String = "data"
 	Public DT_ADJUST_HEADER As String = "header"
 	Public DT_ADJUST_TRUE As Boolean = True
-	Public Columns As List
+	Private Rules As Map
+End Sub
+
+'set select row
+Sub SetSelectRow(b As Boolean) As WixDataTable
+	SetSelect(DT_SELECT_ROW)
+	Return Me
+End Sub
+
+'set select cell
+Sub SetSelectCell(b As Boolean) As WixDataTable
+	SetSelect(DT_SELECT_CELL)
+	Return Me
+End Sub
+
+'set select column
+Sub SetSelectColumn(b As Boolean) As WixDataTable
+	SetSelect(DT_SELECT_COLUMN)
+	Return Me
+End Sub
+
+Sub SetHeaderBorders(b As Boolean) As WixDataTable
+	SetCSS("webix_header_border")
+	Return Me
+End Sub
+
+'set live validation
+Sub SetLiveValidation(b As Boolean) As WixDataTable
+	DataTable.SetAttr("liveValidation", b)
+	Return Me
+End Sub
+
+'set css
+Sub SetCSS(c As Object) As WixDataTable
+	DataTable.SetAttr("css", c)
+	Return Me
+End Sub
+
+'set name
+Sub SetName(n As String) As WixDataTable
+	DataTable.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixDataTable
+	DataTable.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixDataTable
+	DataTable.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixDataTable
+	DataTable.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixDataTable
+	DataTable.SetMinHeight(h)
+	Return Me
 End Sub
 
 'set yCount number of items in a column
@@ -111,12 +177,10 @@ End Sub
 
 'add edit/trash
 Sub AddEditTrash
-	Dim e As WixDataColumn
-	e.Initialize2("edit").SetHeader("Edit").SetTemplate("{common.editIcon()}").SetWidth(100)
-	Dim d As WixDataColumn
-	d.Initialize2("delete").SetHeader("Delete").SetTemplate("{common.trashIcon()}").SetWidth(100)
-	Columns.Add(e.item)
-	Columns.Add(d.item)
+	Dim e As WixDataColumn = CreateColumn("edit").SetHeader("Edit").SetTemplate("{common.editIcon()}").SetWidth(100)
+	Dim d As WixDataColumn = CreateColumn("delete").SetHeader("Delete").SetTemplate("{common.trashIcon()}").SetWidth(100)
+	DataTable.AddDataColumn(e.Item)
+	DataTable.AddDataColumn(d.item)
 End Sub
 
 'set hover
@@ -155,24 +219,18 @@ Public Sub Initialize(tID As String) As WixDataTable
 	ID = tID.ToLowerCase
 	DataTable.Initialize(ID).SetView("datatable")
 	AutoConfig = False
-	Columns.Initialize 
+	Rules.Initialize 
 	Return Me
 End Sub
 
-'add header
-Sub AddHeader(sid As String, sheader As String, iFillSpace As Int) As WixDataTable
-	Dim col As Map = CreateMap()
-	col.Put("id", sid)
-	col.Put("header", sheader)
-	If iFillSpace > 0 Then 
-		col.Put("fillspace", iFillSpace)
-	End If
-	Columns.Add(col)
-	Return Me
+'add column
+Sub AddColumns(c As WixDataColumn)
+	DataTable.AddDataColumn(c.Item)
 End Sub
+
 
 'set scroll
-Sub SetScroll(b As object) As WixDataTable
+Sub SetScroll(b As Object) As WixDataTable
 	DataTable.SetAttr("scroll", b)
 	Return Me
 End Sub
@@ -207,14 +265,10 @@ Sub SetAutoWidth(b As Boolean) As WixDataTable
 	Return Me
 End Sub
 
-'add header from definition
-Sub AddHeader1(hdr As WixDataColumn)
-	Columns.Add(hdr.Item)
-End Sub
-
-Sub CreateHeader(hid As String) As WixDataColumn
+'create a header to Pop2
+Sub CreateColumn(hid As String) As WixDataColumn
 	Dim hdr As WixDataColumn
-	hdr.Initialize2(hid)
+	hdr.Initialize(hid)
 	Return hdr	
 End Sub
 
@@ -275,7 +329,9 @@ End Sub
 
 'return the data table context
 Sub Item As Map
-	DataTable.SetAttr("columns", Columns)
+	If Rules.Size > 0 Then
+		DataTable.SetProperty("rules", Rules)
+	End If
 	DataTable.SetAttr("autoConfig", AutoConfig)
 	Return DataTable.item
 End Sub
@@ -293,7 +349,7 @@ Sub SetHeight(h As Object) As WixDataTable
 End Sub
 
 'set width
-Sub SetWidth(h As object) As WixDataTable
+Sub SetWidth(h As Object) As WixDataTable
 	DataTable.SetWidth(h)
 	Return Me
 End Sub
@@ -307,4 +363,20 @@ End Sub
 Sub SetData(data As List) As WixDataTable
 	DataTable.SetData(data)
 	Return Me
+End Sub
+
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
 End Sub

@@ -10,7 +10,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("", pgContainer).SetHeader("Lesson 24: ScrollView")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 24: ScrollView").SetResponsive("master")
 	'
 	Dim sv As WixScrollView
 	sv.Initialize("sv").Setscroll("xy").Setheight(200).Setwidth(200).SetStyle("border", "2px solid #ff0000")

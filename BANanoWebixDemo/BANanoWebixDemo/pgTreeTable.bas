@@ -12,7 +12,7 @@ Sub Process_Globals
 End Sub
 
 Sub Init(pgContainer As String)
-	pg.Initialize("forms", pgContainer).SetHeader("Lesson 14: Tree Table")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 14: Tree Table").SetResponsive("master")
 	'
 	Dim prop As WixTreeTable
 	prop.Initialize("treetable").Setborderless(True)
@@ -21,13 +21,13 @@ Sub Init(pgContainer As String)
 	prop.SetAutoWidth(True).SetEditable(True)
 	'
 	Dim c1 As WixDataColumn
-	c1.Initialize1(prop, "id").SetHeader("#").Setwidth(50).SetSort("string").pop1
+	c1.Initialize("id").SetHeader("#").Setwidth(50).SetSort("string").AddToColumns(prop.TreeTable)
 	' 
 	Dim c2 As WixDataColumn
-	c2.Initialize1(prop, "value").Setheader("Candy Bars").SetFillSpace(True).SetTemplate("{common.treetable()} #value#").Setwidth(300).Setsort("string").Pop1
+	c2.Initialize("value").Setheader("Candy Bars").SetFillSpace(True).SetTemplate("{common.treetable()} #value#").Setwidth(300).Setsort("string").AddToColumns(prop.treeTable)
 	'
 	Dim c3 As WixDataColumn
-	c3.Initialize1(prop, "nutsornot").Setheader("Nuts?").Setwidth(180).SetSort("string").Pop1
+	c3.Initialize("nutsornot").Setheader("Nuts?").Setwidth(180).SetSort("string").AddToColumns(prop.treeTable)
 	'
 	prop.AddItem("", "1", "Hershey", CreateMap(), True)
 	prop.AddItem("1", "1.1", "Almond Joy", CreateMap("nutsOrNot" : "Has Nuts"),False)

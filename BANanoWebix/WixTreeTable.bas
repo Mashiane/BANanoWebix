@@ -8,7 +8,6 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public TreeTable As WixElement
-	Public Columns As List
 	'selection
 	Public DT_SELECT_ROW As String = "row"
 	Public DT_SELECT_CELL As String = "cell"
@@ -20,11 +19,40 @@ End Sub
 Public Sub Initialize(eID As String) As WixTreeTable
 	ID = eID.tolowercase
 	TreeTable.Initialize(ID).SetView("treetable")
-	Columns.Initialize 
-	Items.Initialize 
+	Items.Initialize
 	Return Me
 End Sub
 
+'set name
+Sub SetName(n As String) As WixTreeTable
+	TreeTable.SetName(n)
+	Return Me
+End Sub
+
+'set reponsive
+Sub SetResponsive(b As Object) As WixTreeTable
+	TreeTable.SetResponsive(b)
+	Return Me
+End Sub
+
+'set reponsivecell
+Sub SetResponsiveCell(b As Object) As WixTreeTable
+	TreeTable.SetResponsiveCell(b)
+	Return Me
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixTreeTable
+	TreeTable.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixTreeTable
+	TreeTable.SetMinHeight(h)
+	Return Me
+End Sub
 
 'use a map object
 Sub SetMap(m As Map) As WixTreeTable
@@ -49,13 +77,12 @@ Sub SetSelect(s As Object) As WixTreeTable
 End Sub
 
 'add column
-Sub AddColumn(c As WixDataColumn)
-	Columns.Add(c.Item)
+Sub AddColumns(c As WixDataColumn)
+	TreeTable.AddDataColumn(c.Item)
 End Sub
 
 'return the item
 Sub Item As Map
-	TreeTable.SetAttr("columns", Columns)
 	Return TreeTable.item
 End Sub
 
@@ -96,7 +123,7 @@ Sub SetHeight(h As Object) As WixTreeTable
 End Sub
 
 'set width
-Sub SetWidth(h As object) As WixTreeTable
+Sub SetWidth(h As Object) As WixTreeTable
 	TreeTable.SetWidth(h)
 	Return Me
 End Sub
@@ -114,6 +141,12 @@ Sub SetAutoWidth(b As Boolean) As WixTreeTable
 	Return Me
 End Sub
 
+'create a header to Pop2
+Sub CreateColumn(hid As String) As WixDataColumn
+	Dim hdr As WixDataColumn
+	hdr.Initialize(hid)
+	Return hdr
+End Sub
 
 'add item
 Sub AddItem(parentID As String, meID As String, mValue As String, mData As Map, mOpen As Boolean) As WixTreeTable
@@ -133,3 +166,18 @@ Sub AddItem(parentID As String, meID As String, mValue As String, mData As Map, 
 	Return Me
 End Sub
 
+
+'add to parent rows
+Sub AddToRows(P As WixElement)
+	P.AddRows(Item)
+End Sub
+
+'add to parent columns
+Sub AddToColumns(P As WixElement)
+	P.AddColumns(Item)
+End Sub
+
+'add to parent elements
+Sub AddToElements(P As WixElement)
+	P.AddElements(Item)
+End Sub
