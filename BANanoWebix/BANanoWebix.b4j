@@ -66,51 +66,52 @@ Module37=WixRichSelect
 Module38=WixCounter
 Module39=WixSegmented
 Module4=WixDataView
-Module40=WixTextBox
-Module41=WixColorPicker
-Module42=WixDateTimePicker
-Module43=WixLabel
-Module44=WixSection
-Module45=WixSuggest
-Module46=WixResizer
-Module47=WixSelect
-Module48=WixRangeSlider
-Module49=WixSearch
+Module40=WixColorPicker
+Module41=WixDateTimePicker
+Module42=WixLabel
+Module43=WixSection
+Module44=WixSuggest
+Module45=WixResizer
+Module46=WixSelect
+Module47=WixRangeSlider
+Module48=WixSearch
+Module49=WixSlider
 Module5=WixDataTable
-Module50=WixSlider
-Module51=WixRichText
-Module52=WixDBLList
-Module53=WixFieldSet
-Module54=WixFormInput
-Module55=UOENowHTML
-Module56=UOENowData
-Module57=WixProperty
-Module58=WixTreeTable
-Module59=WixPopUp
+Module50=WixRichText
+Module51=WixDBLList
+Module52=WixFieldSet
+Module53=WixFormInput
+Module54=UOENowHTML
+Module55=UOENowData
+Module56=WixProperty
+Module57=WixTreeTable
+Module58=WixPopUp
+Module59=WixIFrame
 Module6=WixElement
-Module60=WixIFrame
-Module61=WixSwitch
-Module62=WixSideBar
-Module63=WixIcons
-Module64=WixGroupList
-Module65=WixGoogleMap
-Module66=WixUploader
-Module67=WixVideo
-Module68=WixTemplate
-Module69=WixScrollView
+Module60=WixSwitch
+Module61=WixSideBar
+Module62=WixIcons
+Module63=WixGroupList
+Module64=WixGoogleMap
+Module65=WixUploader
+Module66=WixVideo
+Module67=WixTemplate
+Module68=WixScrollView
+Module69=WixFlexLayout
 Module7=WixLayout
-Module70=WixFlexLayout
+Module70=WixText
+Module71=WixMessageBox
 Module8=WixTabBar
 Module9=WixTabView
 NumberOfFiles=14
 NumberOfLibraries=3
-NumberOfModules=70
+NumberOfModules=71
 Version=7.51
 @EndOfDesignText@
  #Region Project Attributes 
  	#MergeLibraries: True
 	#LibraryAuthor: Anele Mashy Mbanga
-	#LibraryVersion: 1.02
+	#LibraryVersion: 1.03
 	#LibraryName: BANanoWebix
 #End Region
 
@@ -123,7 +124,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'initialize banano for first use
 	BANano.Initialize("BANano", "BANanoWebix",DateTime.Now)
 	BANano.TranspilerOptions.UseServiceWorker = False
-	BANano.BuildAsB4XLib("1.02")
+	BANano.BuildAsB4XLib("1.03")
 	ExitApplication
 End Sub
 

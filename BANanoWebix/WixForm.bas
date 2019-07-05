@@ -27,6 +27,10 @@ Public Sub Initialize(fID As String) As WixForm
 	Return Me
 End Sub
 
+Sub SetComplexData(b As Boolean) As WixForm
+	Form.SetAttr("complexData", b)
+	Return Me
+End Sub
 
 ' set padding
 Sub SetPadding(padding As Object) As WixForm

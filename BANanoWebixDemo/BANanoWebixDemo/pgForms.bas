@@ -43,11 +43,11 @@ Sub Init(pgContainer As String)
 	myForm.Form.AddItem(cbo.Item)
 	
 	'
-	Dim txtBox As WixTextBox
+	Dim txtBox As WixText
 	txtBox.Initialize("txtBox").SetLabel("Text Box").SetPlaceHolder("Text Box").SetLabelPosition("top")
 	myForm.Form.AddItem(txtBox.Item)
 	'
-	Dim pwd As WixTextBox
+	Dim pwd As WixText
 	pwd.Initialize("pwd").SetTypePassword("").SetLabel("Password").SetPlaceHolder("Password").SetMaxLength(10)
 	myForm.Form.AddItem(pwd.Item)
 		

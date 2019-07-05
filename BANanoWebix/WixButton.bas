@@ -192,6 +192,23 @@ Sub SetOffIcon(icn As String) As WixButton
 	Return Me
 End Sub
 
+'set primary
+Sub SetPrimary(b As Boolean) As WixButton   'ignore
+	Button.SetCSS("webix_primary")
+	Return Me
+End Sub
+
+'set transparent
+Sub SetTransparent(b As Boolean) As WixButton   'ignore
+	Button.SetCSS("webix_transparent")
+	Return Me
+End Sub
+
+'set danger
+Sub SetDanger(b As Boolean) As WixButton     'ignore
+	Button.SetCSS("webix_danger")
+	Return Me
+End Sub
 
 'set label
 Sub SetLabel(lbl As String) As WixButton
@@ -282,6 +299,12 @@ End Sub
 'set align left
 Sub SetAlignLeft(r As String) As WixButton 'ignore
 	Button.SetAlignleft("")
+	Return Me
+End Sub
+
+'set auto width
+Sub SetAutoWidth(b As Boolean) As WixButton 'ignore
+	Button.SetAutoWidth(b)
 	Return Me
 End Sub
 

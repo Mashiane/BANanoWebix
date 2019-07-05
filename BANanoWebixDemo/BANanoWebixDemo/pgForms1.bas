@@ -90,7 +90,7 @@ Sub Init(pgContainer As String)
 	cp.Initialize("cp").SetLabel("Color Picker").SetValue("#0000ff").SetLabelWidth(100)
 	myForm.AddItem(cp.Item)
 	'
-	Dim txtcountries As WixTextBox
+	Dim txtcountries As WixText
 	txtcountries.Initialize("txtCountries").SetSuggest("countries").SetLabel("Countries")
 	myForm.AddItem(txtcountries.Item)
 	

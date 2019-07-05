@@ -73,6 +73,25 @@ Sub SetMap(m As Map) As WixCheckBox
 End Sub
 
 
+Sub SetValidateIsChecked(b As Boolean) As WixCheckBox   'ignore
+	CheckBox.SetAttr("validate","isChecked")
+	Return Me
+End Sub
+
+
+'set invalid message
+Sub SetInvalidMessage(msg As String) As WixCheckBox
+	CheckBox.SetAttr("invalidMessage", msg)
+	Return Me
+End Sub
+
+
+'set label right
+Sub SetLabelRight(l As String) As WixCheckBox
+	CheckBox.SetAttr("labelRight", l)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	If LabelOnRight Then

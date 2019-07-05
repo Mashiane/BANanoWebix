@@ -7,7 +7,7 @@ Version=7.51
 #IgnoreWarnings:12
 Sub Class_Globals
 	Public ID As String
-	Public TextArea As WixTextBox
+	Public TextArea As WixText
 End Sub
 
 'Initializes the text area

@@ -61,7 +61,7 @@ Sub Init(pgContainer As String)
 	e6.Initialize("").SetLabel("Date Time Picker").SetEditable(True).SetTimePicker(True).SetFormat("%d %M %Y at %H:%i")
 	C1.AddRows(e6.Item)
 	'
-	Dim e22 As WixTextBox
+	Dim e22 As WixText
 	e22.Initialize("pwd").SetTypePassword("").SetLabel("Password").SetValue("Password...").SetLabelPosition("top")
 	C1.AddRows(e22.Item)
 	pg.SetHint("pwd","Enter your password here...") 
@@ -103,7 +103,7 @@ Sub Init(pgContainer As String)
 	e10.Initialize("").SetLabel("Segmented").SetValue(3).SetOptions(dataObj)
 	C3.AddRows(e10.Item)
 	'
-	Dim e11 As WixTextBox
+	Dim e11 As WixText
 	e11.Initialize("myText").SetLabel("Text").SetLabelAlign("right") 
 	C3.AddRows(e11.Item)
 	'
@@ -147,7 +147,7 @@ Sub Init(pgContainer As String)
 '	Dim C2C1 As WixColumn
 '	C2C1.Initialize("C2C1").SetWidth(550)
 '	'
-'	Dim manID As WixTextBox
+'	Dim manID As WixText
 '	manID.Initialize("manID").SetLabel("Manager ID").SetWidth(300)
 '	C2C1.AddRows(manID.Item)
 '	

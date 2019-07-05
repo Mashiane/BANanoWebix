@@ -39,6 +39,8 @@ Sub Init
 	sm.AddItem("dataentry1", "dataentry", "L6 Data Entry","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("dataentry1", "forms1", "Forms 1","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("dataentry1", "forms2", "Forms 2","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("dataentry1", "form_validation", "Form Validation","","mdi mdi-view-dashboard", "","")
+	'
 	sm.AddItem("", "charts", "L7 Charts","","mdi mdi-view-dashboard", "","")
 	'
 	sm.AddItem("", "datatable", "L8 DataTable","","mdi mdi-view-dashboard", "","")
@@ -76,6 +78,7 @@ Sub Init
 	sm.AddItem("", "lesson26", "L26 Responsive","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lesson27", "L27 FlexLayout","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lesson28", "L28 Suggest","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "lesson29", "L29 Message Boxes","","mdi mdi-view-dashboard", "","")
 	
 	Dim items As List = sm.Items
 	Dim data As List = pg.Unflatten(items,"data")
@@ -106,6 +109,10 @@ End Sub
 
 Sub itemClick(meID As String)
 	Select Case meID
+	Case "lesson29"
+		pgMessageBoxes.Init("r2c2_content")
+	Case "form_validation"
+		pgFormValidation.Init("r2c2_content")		
 	Case "lesson8_4"
 		pgLesson8_4.Init("r2c2_content")
 	Case "lesson28"

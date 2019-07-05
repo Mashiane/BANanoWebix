@@ -35,24 +35,24 @@ Sub Class_Globals
 End Sub
 
 'set select row
-Sub SetSelectRow(b As Boolean) As WixDataTable
+Sub SetSelectRow(b As Boolean) As WixDataTable  'ignore
 	SetSelect(DT_SELECT_ROW)
 	Return Me
 End Sub
 
 'set select cell
-Sub SetSelectCell(b As Boolean) As WixDataTable
+Sub SetSelectCell(b As Boolean) As WixDataTable  'ignore
 	SetSelect(DT_SELECT_CELL)
 	Return Me
 End Sub
 
 'set select column
-Sub SetSelectColumn(b As Boolean) As WixDataTable
+Sub SetSelectColumn(b As Boolean) As WixDataTable  'ignore
 	SetSelect(DT_SELECT_COLUMN)
 	Return Me
 End Sub
 
-Sub SetHeaderBorders(b As Boolean) As WixDataTable
+Sub SetHeaderBorders(b As Boolean) As WixDataTable   'ignore
 	SetCSS("webix_header_border")
 	Return Me
 End Sub

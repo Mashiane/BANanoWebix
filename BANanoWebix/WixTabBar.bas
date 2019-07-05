@@ -143,6 +143,11 @@ Sub SetkeepViews(b As Boolean) As WixTabBar
 	Return Me
 End Sub
 
+'set selected tab
+Sub SetValue(v As Object) As WixTabBar
+	TabBar.SetAttr("value", v)
+	Return Me
+End Sub
 
 'add to parent rows
 Sub AddToRows(P As WixElement)

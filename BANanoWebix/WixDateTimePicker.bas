@@ -25,6 +25,12 @@ Sub SetTypeTime(b As Boolean) As WixDateTimePicker   'ignore
 	Return Me
 End Sub
 
+'set string result
+Sub SetStringResult(b As Boolean) As WixDateTimePicker
+	DateTimePicker.SetAttr("stringResult", b)
+	Return Me
+End Sub
+
 
 'set name
 Sub SetName(n As String) As WixDateTimePicker

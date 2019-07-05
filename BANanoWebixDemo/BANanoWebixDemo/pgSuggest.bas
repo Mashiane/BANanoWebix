@@ -38,7 +38,7 @@ Sub Init(pgContainer As String)
 	Dim form1 As WixForm
 	form1.Initialize("form1").SetWidth(300).SetScroll(False)
 	'create a textbox
-	Dim txt As WixTextBox = form1.Form.CreateTextBox("").SetName("country").SetLabel("Country").SetValue("Belarus").SetSuggest("suggest1")
+	Dim txt As WixText = form1.Form.CreateTextBox("").SetName("country").SetLabel("Country").SetValue("Belarus").SetSuggest("suggest1")
 	'create a callback
 	Dim cb As BANanoObject = BANano.CallBack(Me, "clickit", Null)
 	'create a button

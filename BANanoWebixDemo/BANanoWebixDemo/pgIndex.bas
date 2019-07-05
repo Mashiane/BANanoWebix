@@ -65,10 +65,10 @@ Sub Init(pgContainer As String)
 	'add form
 	myForm.Initialize("myform").SetWidth(500)
 	'
-	Dim title As WixTextBox
+	Dim title As WixText
 	title.Initialize("title").SetLabel("Title").AddToForm(myForm)
 	'
-	Dim year As WixTextBox
+	Dim year As WixText
 	year.Initialize("year").SetLabel("Year").AddToForm(myForm)
 	'
 	myForm.AddToColumn(R2C1)

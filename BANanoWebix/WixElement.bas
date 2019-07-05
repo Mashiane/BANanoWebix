@@ -35,8 +35,8 @@ Sub Class_Globals
 End Sub
 
 'create texbox
-Sub CreateTextBox(eid As String) As WixTextBox
-	Dim txtbox As WixTextBox
+Sub CreateTextBox(eid As String) As WixText
+	Dim txtbox As WixText
 	txtbox.Initialize(eid)
 	Return txtbox 
 End Sub
@@ -231,6 +231,11 @@ End Sub
 'set default width
 Sub SetDefaultWidth(w As Int) As WixElement
 	elementsConfig.Put("width", w)
+	Return Me
+End Sub
+
+Sub SetDefaultBottomPadding(w As Int) As WixElement
+	elementsConfig.Put("bottomPadding", w)
 	Return Me
 End Sub
 

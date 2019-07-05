@@ -505,11 +505,43 @@ Sub Message(msg As String)
 	webix.RunMethod("message", Array(msg))
 End Sub
 
+'message error
+Sub Message_Error(msg As String)
+	Dim opt As Map = CreateMap()
+	opt.Put("text", msg)
+	opt.Put("type", "error")
+	webix.RunMethod("message", Array(opt))
+End Sub
+
+'message success
+Sub Message_Success(msg As String)
+	Dim opt As Map = CreateMap()
+	opt.Put("text", msg)
+	opt.Put("type", "success")
+	webix.RunMethod("message", Array(opt))
+End Sub
+
+'message debug
+Sub Message_Debug(msg As String)
+	Dim opt As Map = CreateMap()
+	opt.Put("text", msg)
+	opt.Put("type", "debug")
+	webix.RunMethod("message", Array(opt))
+End Sub
 
 'aler user
-Sub Alert(msg As String)
+Sub Alert(msg As Object)
 	webix.RunMethod("alert", Array(msg))
 End Sub
+
+Sub Confirm1(msg As Object)
+	webix.RunMethod("confirm", Array(msg))
+End Sub
+
+Sub ModalBox(msg As Object)
+	webix.RunMethod("modalbox", Array(msg))
+End Sub
+
 
 'show an error message
 Sub ToastError(Text As String)
@@ -727,7 +759,7 @@ Sub View(eID As String) As BANanoObject
 End Sub
 
 'add a drop zone
-Sub addDropZone(uploader As String, eID As String)
+Sub AddDropZone(uploader As String, eID As String)
 	uploader = uploader.tolowercase
 	eID = eID.ToLowerCase
 	Dim iView As BANanoObject = View(eID)
@@ -765,6 +797,13 @@ End Sub
 Sub Toggle(sbID As String)
 	sbID = sbID.tolowercase
 	Dollar.Selector(sbID).RunMethod("toggle",Null)
+End Sub
+
+'validate
+Sub Validate(sbID As String) As Boolean
+	sbID = sbID.tolowercase
+	Dim res As Boolean = Dollar.Selector(sbID).RunMethod("validate",Null).Result
+	Return res
 End Sub
 
 'set full screen
@@ -879,6 +918,13 @@ Sub AddWindow(ctx As WixWindow) As BANanoObject
 	Dim ctxUX As BANanoObject = UX(ctx.Item)
 	Return ctxUX
 End Sub
+
+'add a messagebox
+Sub AddMessageBox(ctx As WixMessageBox) As BANanoObject
+	Dim ctxUX As BANanoObject = UX(ctx.Item)
+	Return ctxUX
+End Sub
+
 
 'add a side menu
 Sub AddSideMenu(ctx As WixSideMenu) As BANanoObject

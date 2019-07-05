@@ -59,9 +59,9 @@ Sub Init(pgContainer As String)
 	Dim lnk As UOENowHTML
 	lnk.Initialize("","a").SetHREF("//google.com?q=#title#").AddContent("#title#")
 	Dim l As String = lnk.HTML
-	dt.CreateColumn("title").SetTextFilter(True).SetSortString(True).SetAdjustHeader(True).SetTemplate(l).SetHeader("Film Title").SetEditorText("").SetWidth(200).AddToColumns(dt.DataTable)
+	dt.CreateColumn("title").SetTextFilter(True).SetSortString(True).SetTemplate(l).SetHeader("Film Title").SetEditorText("").SetWidth(200).AddToColumns(dt.DataTable)
 	'
-	dt.CreateColumn("year").SetSelectFilter(True).SetSortInt(True).SetAdjustData(True).SetEditorCombo("").SetHeader("Released").SetWidth(160).SetOptions(years).AddToColumns(dt.DataTable)
+	dt.CreateColumn("year").SetSelectFilter(True).SetSortInt(True).SetEditorCombo("").SetHeader("Released").SetWidth(160).SetOptions(years).AddToColumns(dt.DataTable)
 	'
 	Dim obj As Map
 	Dim tmp As BANanoObject = BANano.CallBack(Me,"DoVotes", Array(obj))
