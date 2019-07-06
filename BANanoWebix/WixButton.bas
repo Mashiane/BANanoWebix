@@ -259,18 +259,6 @@ Sub SetTypeForm(r As String) As WixButton  'ignore
 	Return Me
 End Sub
 
-'is prev
-Sub SetTypePrev(r As String) As WixButton  'ignore
-	ButtonType = "prev"
-	Return Me
-End Sub
-
-'is next
-Sub SetTypeNext(r As String) As WixButton  'ignore
-	ButtonType = "next"
-	Return Me
-End Sub
-
 'set height
 Sub SetHeight(h As Object) As WixButton
 	Button.Height = h

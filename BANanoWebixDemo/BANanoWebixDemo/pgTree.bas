@@ -17,7 +17,7 @@ Sub Init(pgContainer As String)
 	Dim prop As WixTree
 	prop.Initialize("tree").SetSelect(True).Setborderless(False)
 	prop.SetStyle("margin", "10px")
-	prop.SetTypeLineTree   ' show the line between items
+	prop.SetTypeLineTree(True)
 	prop.SetGroupBy("#year#")  ' still buggy...
 	
 	'load flat data
@@ -41,12 +41,7 @@ Sub Init(pgContainer As String)
 	prop.AddItem("billyjoel", "mo", "Movin' Out","","","","",False)
 	prop.AddItem("billyjoel", "pm", "Piano Man","","","","",False)
 	'
-	Dim items As List = prop.items
-	Dim data As List = pg.Unflatten(items, "data")
-	prop.SetData(data)
-	
 	pg.AddRows(prop.Item)
-	
 	'
 	pg.ui
 	'

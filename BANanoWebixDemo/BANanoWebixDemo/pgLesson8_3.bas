@@ -19,7 +19,7 @@ End Sub
 Sub Init(pgContainer As String)
 	'initialize the page and set the container to hold the widgets
 	'add a header and set its label
-	pg.Initialize("wp", pgContainer).SetHeader("Lesson 8.3 Datatable Pager").SetResponsive("master")
+	pg.Initialize("wp", pgContainer).SetHeader("Lesson 8.3 Datatable Pager").SetResponsive("master").SetAppName(Main.AppName)
 	'
 	'create the list of years
 	Dim years As List

@@ -9,7 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Tree As WixElement
 	Private scheme As Map
-	Public Items As List
+	private Items As List
 End Sub
 
 'Initializes the Tree sheet
@@ -21,6 +21,12 @@ Public Sub Initialize(eID As String) As WixTree
 	Return Me
 End Sub
 
+
+'set scroll
+Sub SetScroll(b As Object) As WixTree
+	Tree.SetProperty("scroll", b)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixTree
@@ -64,6 +70,10 @@ End Sub
 
 'return the item
 Sub Item As Map
+	If Items.Size > 0 Then
+		Dim data As List = modWebix.Unflatten(Items, "data")
+		SetData(data)
+	End If
 	Tree.SetAttr("scheme", scheme)
 	Return Tree.item
 End Sub
@@ -94,7 +104,7 @@ End Sub
 
 
 'set type line tree
-Sub SetTypeLineTree As WixTree
+Sub SetTypeLineTree(b As Boolean) As WixTree   'ignore
 	Tree.SetType("lineTree")
 	Return Me
 End Sub

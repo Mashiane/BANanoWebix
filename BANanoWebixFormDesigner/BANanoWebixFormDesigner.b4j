@@ -1,0 +1,205 @@
+﻿AppType=JavaFX
+Build1=Default,b4j.example
+File1=accordion.png
+File10=comments.png
+File11=context.png
+File12=contextmenu.png
+File13=counter.png
+File14=datasuggest.png
+File15=datatable.png
+File16=datatree.png
+File17=dataview.png
+File18=datepicker.png
+File19=daterange.png
+File2=button.png
+File20=daterangepicker (1).png
+File21=daterangepicker.png
+File22=doublelist.png
+File23=extras.zip
+File24=fieldset.png
+File25=fonts.zip
+File26=form.png
+File27=forminput.png
+File28=googlemap.png
+File29=gridsuggest.png
+File3=calendar.png
+File30=grouplist.png
+File31=hint.png
+File32=htmlform.png
+File33=icon.png
+File34=iframe.png
+File35=label.png
+File36=layout.png
+File37=list.png
+File38=menu.png
+File39=multiview.png
+File4=carousel.png
+File40=pager.png
+File41=popup.png
+File42=portlet.png
+File43=propertysheet.png
+File44=richselect.png
+File45=scrollview.png
+File46=search.png
+File47=segmented.png
+File48=select.png
+File49=sidebar.png
+File5=chart.png
+File50=sidemenu.png
+File51=slider.png
+File52=suggest.png
+File53=switch.png
+File54=tabbar.png
+File55=tabview.png
+File56=template.png
+File57=text.png
+File58=textarea.png
+File59=toggle.png
+File6=checkbox.png
+File60=toolbar.png
+File61=tooltip.png
+File62=treegrid.png
+File63=unitlist.png
+File64=uploader.png
+File65=video.png
+File66=window.png
+File7=colorboard.png
+File8=colorpicker.png
+File9=combo.png
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup11=Default Group
+FileGroup12=Default Group
+FileGroup13=Default Group
+FileGroup14=Default Group
+FileGroup15=Default Group
+FileGroup16=Default Group
+FileGroup17=Default Group
+FileGroup18=Default Group
+FileGroup19=Default Group
+FileGroup2=Default Group
+FileGroup20=Default Group
+FileGroup21=Default Group
+FileGroup22=Default Group
+FileGroup23=Default Group
+FileGroup24=Default Group
+FileGroup25=Default Group
+FileGroup26=Default Group
+FileGroup27=Default Group
+FileGroup28=Default Group
+FileGroup29=Default Group
+FileGroup3=Default Group
+FileGroup30=Default Group
+FileGroup31=Default Group
+FileGroup32=Default Group
+FileGroup33=Default Group
+FileGroup34=Default Group
+FileGroup35=Default Group
+FileGroup36=Default Group
+FileGroup37=Default Group
+FileGroup38=Default Group
+FileGroup39=Default Group
+FileGroup4=Default Group
+FileGroup40=Default Group
+FileGroup41=Default Group
+FileGroup42=Default Group
+FileGroup43=Default Group
+FileGroup44=Default Group
+FileGroup45=Default Group
+FileGroup46=Default Group
+FileGroup47=Default Group
+FileGroup48=Default Group
+FileGroup49=Default Group
+FileGroup5=Default Group
+FileGroup50=Default Group
+FileGroup51=Default Group
+FileGroup52=Default Group
+FileGroup53=Default Group
+FileGroup54=Default Group
+FileGroup55=Default Group
+FileGroup56=Default Group
+FileGroup57=Default Group
+FileGroup58=Default Group
+FileGroup59=Default Group
+FileGroup6=Default Group
+FileGroup60=Default Group
+FileGroup61=Default Group
+FileGroup62=Default Group
+FileGroup63=Default Group
+FileGroup64=Default Group
+FileGroup65=Default Group
+FileGroup66=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+Library1=jcore
+Library2=jfx
+Library3=banano
+Library4=bananowebix
+Library5=bananopostprocessor
+Module1=pgFormDesigner
+Module2=dForm
+Module3=dButton
+NumberOfFiles=66
+NumberOfLibraries=5
+NumberOfModules=3
+Version=7.51
+@EndOfDesignText@
+ #Region Project Attributes 
+#End Region
+#IgnoreWarnings:15
+Sub Process_Globals
+	Public BANano As BANano 'ignore
+	Public AppName As String = "BANanoWebixFormDesigner"
+	Private Publish As String
+	Private BP As BANanoPostProcessor
+End Sub
+
+Sub AppStart (Form1 As Form, Args() As String)
+	Publish = "C:\xampp\htdocs"
+	Dim version As String = DateTime.now
+	Dim appFile As String = $"app${version}.js"$
+	BANano.Initialize("BANano", AppName,1)
+	BANano.HTML_NAME = "index.html"
+	BANano.Header.Title = AppName
+	BANano.JAVASCRIPT_NAME = appFile
+	BANano.Header.addcssfile("all.min.css")
+	BANano.Header.AddCSSFile("materialdesignicons.min.css")
+	BANano.Header.AddCSSFile("webix.min.css")
+	'*themes
+	BANano.Header.AddCSSFile("material.min.css")
+	'BANano.Header.AddCSSFile("flat.min.css")
+	'BANano.Header.AddCSSFile("compact.min.css")
+	'BANano.Header.AddCSSFile("contrast.min.css")
+	'** themes
+	BANano.Header.AddJavascriptFile("webix.min.js")
+	'BANano.Header.AddJavascriptFile("data.js")
+	'BANano.TranspilerOptions.MergeAllCSSFiles = True
+	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True
+	'BANano.TranspilerOptions.ShowWarningDeadCode = True
+	'BANano.TranspilerOptions.RemoveDeadCode = True
+	BANano.TranspilerOptions.UseServiceWorker = False
+	BANano.Build(Publish)
+	'post processor
+	BP.Initialize
+	BP.PublishPath = Publish
+	BP.ShortName = AppName
+	BP.AssetsPath = BANano.ASSETS_FOLDER
+	BP.ScriptsPath = BANano.SCRIPTS_FOLDER
+	BP.StylesPath = BANano.STYLES_FOLDER
+	BP.ScriptFile = BANano.JAVASCRIPT_NAME
+	BP.UnzipFonts
+	BP.UnzipFile("extras.zip")
+	BP.Open(True)
+	ExitApplication
+End Sub
+
+'Return true to allow the default exceptions handler to handle the uncaught exception.
+Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
+	Return True
+End Sub
+
+Sub BANano_Ready()
+	pgFormDesigner.init
+End Sub

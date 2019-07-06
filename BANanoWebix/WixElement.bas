@@ -715,3 +715,339 @@ Sub CreateToggle(sid As String) As WixButton
 	Return btn
 End Sub
 
+Sub CreateAccordion(sid As String) As WixAccordion
+	Dim btn As WixAccordion
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateCarousel(sid As String) As WixCarousel
+	Dim btn As WixCarousel
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateChart(sid As String) As WixChart
+	Dim btn As WixChart
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateComments(sid As String) As WixComments
+	Dim btn As WixComments
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateContext(sid As String) As WixContext
+	Dim btn As WixContext
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateContextMenu(sid As String) As WixContextMenu
+	Dim btn As WixContextMenu
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateCounter(sid As String) As WixCounter
+	Dim btn As WixCounter
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateDataTable(sid As String) As WixDataTable
+	Dim btn As WixDataTable
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+
+Sub CreateDataView(sid As String) As WixDataView
+	Dim btn As WixDataView
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+
+Sub CreateDateTimePicker(sid As String) As WixDateTimePicker
+	Dim btn As WixDateTimePicker
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+
+Sub CreateDBLList(sid As String) As WixDBLList
+	Dim btn As WixDBLList
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+
+
+Sub CreateFieldSet(sid As String) As WixFieldSet
+	Dim btn As WixFieldSet
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateFlexLayout(sid As String) As WixFlexLayout
+	Dim btn As WixFlexLayout
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateForm(sid As String) As WixForm
+	Dim btn As WixForm
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+
+Sub CreateFormInput(sid As String) As WixFormInput
+	Dim btn As WixFormInput
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+
+Sub CreateGoogleMap(sid As String) As WixGoogleMap
+	Dim btn As WixGoogleMap
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateGroupList(sid As String) As WixGroupList
+	Dim btn As WixGroupList
+	btn.Initialize(sid)
+	Return btn
+End Sub
+
+Sub CreateHeader(sid As String) As WixHeader 
+	Dim itm As WixHeader 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateIFrame(sid As String) As WixIFrame 
+	Dim itm As WixIFrame 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateLayout(sid As String) As WixLayout 
+	Dim itm As WixLayout 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateList(sid As String) As WixList 
+	Dim itm As WixList 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateMenu(sid As String) As WixMenu 
+	Dim itm As WixMenu 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateMessageBox(sid As String) As WixMessageBox 
+	Dim itm As WixMessageBox 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateMultiView(sid As String) As WixMultiView 
+	Dim itm As WixMultiView 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreatePager(sid As String) As WixPager 
+	Dim itm As WixPager 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreatePopUp(sid As String) As WixPopUp 
+	Dim itm As WixPopUp 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreatePortlet(sid As String) As WixPortlet 
+	Dim itm As WixPortlet 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateProperty(sid As String) As WixProperty 
+	Dim itm As WixProperty 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateRadio(sid As String) As WixRadio 
+	Dim itm As WixRadio 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateRangeSlider(sid As String) As WixRangeSlider 
+	Dim itm As WixRangeSlider 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateResizer(sid As String) As WixResizer 
+	Dim itm As WixResizer 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateRichSelect(sid As String) As WixRichSelect 
+	Dim itm As WixRichSelect 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateRichText(sid As String) As WixRichText 
+	Dim itm As WixRichText 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateScrollView(sid As String) As WixScrollView 
+	Dim itm As WixScrollView 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateSearch(sid As String) As WixSearch 
+	Dim itm As WixSearch 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateSection(sid As String) As WixSection 
+	Dim itm As WixSection 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateSegmented(sid As String) As WixSegmented 
+	Dim itm As WixSegmented 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateSelect(sid As String) As WixSelect 
+	Dim itm As WixSelect 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateSideBar(sid As String) As WixSideBar 
+	Dim itm As WixSideBar 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateSideMenu(sid As String) As WixSideMenu 
+	Dim itm As WixSideMenu 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateSlider(sid As String) As WixSlider 
+	Dim itm As WixSlider 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateSuggest(sid As String) As WixSuggest 
+	Dim itm As WixSuggest 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateSwitch(sid As String) As WixSwitch 
+	Dim itm As WixSwitch 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateTabBar(sid As String) As WixTabBar 
+	Dim itm As WixTabBar 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateTabView(sid As String) As WixTabView 
+	Dim itm As WixTabView 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateTemplate(sid As String) As WixTemplate 
+	Dim itm As WixTemplate 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateText(sid As String) As WixText 
+	Dim itm As WixText 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateTextArea(sid As String) As WixTextArea 
+	Dim itm As WixTextArea 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateToolBar(sid As String) As WixToolBar 
+	Dim itm As WixToolBar 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateTree(sid As String) As WixTree 
+	Dim itm As WixTree 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateTreeTable(sid As String) As WixTreeTable 
+	Dim itm As WixTreeTable 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateUnitList(sid As String) As WixUnitList 
+	Dim itm As WixUnitList 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateUploader(sid As String) As WixUploader 
+	Dim itm As WixUploader 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateVideo(sid As String) As WixVideo 
+	Dim itm As WixVideo 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub
+
+Sub CreateWindow(sid As String) As WixWindow 
+	Dim itm As WixWindow 
+	itm.Initialize(sid) 
+	Return itm 
+End Sub

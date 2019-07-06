@@ -42,11 +42,6 @@ Sub Init(pgContainer As String)
 	gl.AddItem("dt","tdot", "The Drawing of the Three","","","","",False)
 	gl.AddItem("dt","twl", "The Waste Lands","","","","",False)
 	'
-	Dim items As List = gl.items
-	Dim data As List = pg.Unflatten(items, "data")
-	gl.SetData(data)
-	
-	'
 	'add group list to the rows collection
 	pg.AddRows(gl.Item)
 	pg.ui

@@ -43,10 +43,6 @@ Sub Init(pgContainer As String)
 	sm.AddItem("", "tables", "Data Tables", "", "mdi mdi-table", "","")
 	sm.AddItem("", "uis", "UI Components", "", "mdi mdi-puzzle", "","")
 	'
-	Dim items As List = sm.Items
-	Dim data As List = pg.Unflatten(items,"data")
-	sm.SetData(data)
-	'
 	Dim R2 As WixRow
 	R2.Initialize("R2")
 	' 

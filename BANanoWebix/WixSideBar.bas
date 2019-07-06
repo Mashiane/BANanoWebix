@@ -8,7 +8,7 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public SideBar As WixElement
-	Public Items As List
+	private Items As List
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
@@ -30,6 +30,26 @@ Sub AddItem(parentID As String, meID As String, mValue As String, mhref As Strin
 	mitem.Put("badge", badge)
 	mitem.Put("target", target)
 	mitem.Put("icon", mIcon)
+	mitem.Put("parentid", parentID)
+	Items.Add(mitem)
+	Return Me
+End Sub
+
+'add image
+Sub AddImage(parentID As String, meID As String, mValue As String, mhref As String, mIcon As String, badge As String, target As String) As WixSideBar
+	Dim ih As UOENowHTML
+	ih.Initialize("","img").SetImportant(False).SetSRC(mIcon,True).AddClass("sidebar-icon")
+	Dim icon As String = ih.html
+	Log(icon)
+	parentID = parentID.tolowercase
+	meID = meID.tolowercase
+	Dim mitem As Map = CreateMap()
+	mitem.Put("id", meID)
+	mitem.Put("value", mValue)
+	mitem.Put("href", mhref)
+	mitem.Put("badge", badge)
+	mitem.Put("target", target)
+	mitem.Put("icon", icon)
 	mitem.Put("parentid", parentID)
 	Items.Add(mitem)
 	Return Me
@@ -102,6 +122,10 @@ End Sub
 
 'return menu
 Sub Item As Map
+	If Items.Size > 0 Then
+		Dim data As List = modWebix.Unflatten(Items,"data")
+		SetData(data)
+	End If
 	Return SideBar.item
 End Sub
 

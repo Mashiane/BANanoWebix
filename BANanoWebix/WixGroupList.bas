@@ -8,7 +8,7 @@ Version=7.51
 Sub Class_Globals
 	Public GroupList As WixElement
 	Public ID As String
-	Public Items As List
+	private Items As List
 End Sub
 
 'Initializes GroupList object
@@ -139,6 +139,10 @@ End Sub
 
 'return the object
 Sub Item As Map
+	If Items.Size > 0 Then
+		Dim data As List = modWebix.Unflatten(Items, "data")
+		SetData(data)
+	End If
 	Return GroupList.item
 End Sub
 

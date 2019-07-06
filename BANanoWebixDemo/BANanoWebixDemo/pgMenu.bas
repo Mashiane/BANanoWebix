@@ -47,9 +47,6 @@ Sub Init(pgContainer As String)
 	menu.AddItem("", "win", "Window", "","","","")
 	menu.AddItem("", "iframe", "iFrame", "","","","")
 	'
-	Dim items As List = menu.items
-	Dim data As List = pg.Unflatten(items,"submenu")
-	menu.setdata(data)
 	pg.AddRows(menu.Item)
 		'
 	pg.AddRows(CreateMap())

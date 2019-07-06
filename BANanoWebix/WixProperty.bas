@@ -19,17 +19,25 @@ Public Sub Initialize(eID As String) As WixProperty
 	Return Me
 End Sub
 
-private Sub El(eid As String, label As String, typeOf As String, value As Object, options As List) As Map
-	eid = eid.tolowercase
+private Sub El(eid As String, label As String, typeOf As String, value As Object, options As List, format As Object) As Map
 	Dim opt As Map = CreateMap()
 	opt.Put("id", eid)
 	opt.Put("label", label)
 	opt.Put("type", typeOf)
 	opt.Put("value", value)
+	If format <> Null Then
+		opt.Put("format", format)
+	End If
 	If options <> Null Then
 		opt.Put("options", options)
 	End If
 	Return opt
+End Sub
+
+'set scroll
+Sub SetScroll(c As Object) As WixProperty
+	Property.SetAttr("scroll", c)
+	Return Me
 End Sub
 
 
@@ -88,39 +96,49 @@ End Sub
 
 'add color
 Sub AddColor(eid As String, label As String, value As String)
-	elements.Add(El(eid,label, "color", value, Null))
+	elements.Add(El(eid,label, "color", value, Null,Null))
 End Sub
 
 Sub AddTextBox(eid As String, label As String, value As String)
-	elements.Add(El(eid, label, "text", value, Null))
+	elements.Add(El(eid, label, "text", value, Null,Null))
 End Sub
 
 Sub AddLabel(label As String)
-	elements.Add(El("", label, "label", "", Null))
+	elements.Add(El("", label, "label", "", Null,Null))
 End Sub
 
 Sub AddPassword(eid As String, label As String, value As String)
-	elements.Add(El(eid, label, "password", value,  Null))
+	elements.Add(El(eid, label, "password", value,  Null, Null))
 End Sub
 
-Sub AddDate(eid As String, label As String, value As String)
-	elements.Add(El(eid, label, "date", value,  Null))
+Sub AddDate(eid As String, label As String, value As String, format As Object)
+	elements.Add(El(eid, label, "date", value,  Null, format))
 End Sub
 
 Sub AddSelect(eid As String, label As String, value As String, options As List)
-	elements.Add(El(eid, label, "select", value, options))
+	elements.Add(El(eid, label, "select", value, options, Null))
 End Sub
 
 Sub AddCombo(eid As String, label As String, value As String, options As List)
-	elements.Add(El(eid, label, "combo", value, options))
+	elements.Add(El(eid, label, "combo", value, options, Null))
 End Sub
 
 Sub AddRichSelect(eid As String, label As String, value As String, options As List)
-	elements.Add(El(eid, label, "richselect", value, options))
+	elements.Add(El(eid, label, "richselect", value, options, Null))
 End Sub
 
 Sub AddCheckBox(eid As String, label As String, value As String)
-	elements.Add(El(eid, label, "checkbox", value, Null))
+	elements.Add(El(eid, label, "checkbox", value, Null, Null))
+End Sub
+
+Sub Clear
+	elements.clear
+End Sub
+
+Sub Refresh(pg As WixPage)
+	Dim opt As Map = CreateMap("elements": elements)
+	pg.Define(ID, opt)
+	pg.Refresh(ID)
 End Sub
 
 'return the item

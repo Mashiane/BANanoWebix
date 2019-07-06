@@ -34,10 +34,6 @@ Sub Init(pgContainer As String)
 	prop.AddItem("1", "1.2", "Hershey's Kisses", CreateMap("nutsOrNot" : "No Nuts"), True)
 	prop.AddItem("1.2", "1.2.1", "Milk Chocolate With Almonds", CreateMap("nutsOrNot" : "Oh Yeah, Except These"), False)
 	'
-	Dim items As List = prop.items
-	Dim data As List = pg.Unflatten(items, "data")
-	prop.SetData(data)
-	'
 	pg.AddRows(prop.Item)
 	'
 	pg.ui

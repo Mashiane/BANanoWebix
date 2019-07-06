@@ -8,7 +8,7 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public ContextMenu As WixElement
-	Public Items As List
+	private Items As List
 	Private sepCount As Int
 End Sub
 
@@ -61,6 +61,10 @@ End Sub
 
 'return the item
 Sub Item As Map
+	If Items.Size > 0 Then
+		Dim data As List = modWebix.Unflatten(Items, "submenu")
+		SetData(data)
+	End If
 	Return ContextMenu.item
 End Sub
 

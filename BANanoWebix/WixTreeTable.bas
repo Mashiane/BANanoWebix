@@ -12,7 +12,7 @@ Sub Class_Globals
 	Public DT_SELECT_ROW As String = "row"
 	Public DT_SELECT_CELL As String = "cell"
 	Public DT_SELECT_COLUMN As String = "column"
-	Public Items As List
+	private Items As List
 End Sub
 
 'Initializes the TreeTableTable sheet
@@ -83,6 +83,10 @@ End Sub
 
 'return the item
 Sub Item As Map
+	If Items.Size > 0 Then
+		Dim data As List = modWebix.Unflatten(Items, "data")
+		SetData(data)
+	End If
 	Return TreeTable.item
 End Sub
 

@@ -54,9 +54,6 @@ Sub Init(pgContainer As String)
 	contextmenu.AddItem("sendto", "billie", "Billie","","","","")
 	contextmenu.AddItem("sendto", "rose", "Rose","","","","")
 	contextmenu.AddItem("","addcompanion","Add Companion","","","","")
-	Dim items As List = contextmenu.items
-	Dim data As List = pg.Unflatten(items, "submenu")
-	contextmenu.SetData(data)
 	'
 	pg.AddContextMenu(contextmenu)
 	'

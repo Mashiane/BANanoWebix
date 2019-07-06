@@ -9,7 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Menu As WixElement
 	Private typeof As Map
-	Public Items As List
+	private Items As List
 	Private sepCount As Int
 End Sub
 
@@ -142,6 +142,10 @@ End Sub
 
 'return the item
 Sub Item As Map
+	If Items.Size > 0 Then
+		Dim data As List = modWebix.Unflatten(Items,"submenu")
+		SetData(data)
+	End If
 	Menu.SetAttr("type", typeof)
 	Return Menu.item
 End Sub

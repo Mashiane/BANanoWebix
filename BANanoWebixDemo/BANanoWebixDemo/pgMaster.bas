@@ -79,10 +79,6 @@ Sub Init
 	sm.AddItem("", "lesson27", "L27 FlexLayout","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lesson28", "L28 Suggest","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lesson29", "L29 Message Boxes","","mdi mdi-view-dashboard", "","")
-	
-	Dim items As List = sm.Items
-	Dim data As List = pg.Unflatten(items,"data")
-	sm.SetData(data)
 	'
 	Dim R2 As WixRow
 	R2.Initialize("R2")
