@@ -9,32 +9,21 @@ Version=7.5
 Sub Class_Globals
 	Public ID As String
 	Public Button As WixElement
-	Private onClick As BANanoObject
-	Private ButtonType As String
-	Private ImageURL As String
-	Private Icon As String
 	Public Parent As WixElement
-	Private OnLabel As String
-	Private OffLabel As String
-	Private onIcon As String
-	Private offIcon As String
 End Sub
 
 'Initializes the button
 Public Sub Initialize(bID As String) As WixButton
 	ID = bID.ToLowerCase
 	Button.Initialize(ID).SetView("button")
-	onClick = Null
-	Icon = ""
 	Parent = Null
-	OffLabel = ""
-	OnLabel = ""
-	ImageURL = ""
-	offIcon = ""
-	onIcon = ""
 	Return Me
 End Sub
 
+Sub SetBadge(b As Object) As WixButton
+	Button.SetAttr("badge", b)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixButton
@@ -95,25 +84,6 @@ Sub SetStyle(prop As String, val As String) As WixButton
 	Return Me
 End Sub
 
-
-'set off label
-Sub SetOffLabel(l As String) As WixButton
-	OffLabel = l
-	Return Me
-End Sub
-
-'set on label
-Sub SetOnLabel(l As String) As WixButton
-	OnLabel = l
-	Return Me
-End Sub
-
-'set toggle
-Sub SetToggle(t As String) As WixButton  'ignore
-	Button.SetView("toggle")
-	Return Me	
-End Sub
-
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
@@ -137,22 +107,12 @@ End Sub
 
 'set onclick event
 Sub SetClick(e As BANanoObject) As WixButton
-	onClick = e
+	Button.SetAttr("click", e)
 	Return Me
 End Sub
 
 'return the item to add
 Sub Item As Map
-	Button.SetOnContent("onLabel", OnLabel)
-	Button.SetOnContent("offLabel", OffLabel)
-	Button.SetOnContent("offIcon", offIcon)
-	Button.SetOnContent("onIcon", onIcon)
-	Button.SetOnContent("icon", Icon)
-	Button.SetOnContent("image", ImageURL)
-	Button.TypeOf = ButtonType
-	If onClick <> Null Then 
-		Button.SetAttr("click", onClick)
-	End If
 	Return Button.item
 End Sub
 
@@ -170,43 +130,43 @@ End Sub
 
 'set the image
 Sub SetImage(img As String) As WixButton
-	ImageURL = img
+	Button.SetAttr("image", img)
 	Return Me
 End Sub
 
 'set the icon
 Sub SetIcon(icn As String) As WixButton
-	Icon = icn
-	Return Me
-End Sub
-
-'set onicon
-Sub SetOnIcon(icn As String) As WixButton
-	onIcon = icn
-	Return Me
-End Sub
-
-'set officon
-Sub SetOffIcon(icn As String) As WixButton
-	offIcon = icn
+	Button.SetAttr("icon", icn)
 	Return Me
 End Sub
 
 'set primary
-Sub SetPrimary(b As Boolean) As WixButton   'ignore
+Sub SetCSSPrimary(b As Boolean) As WixButton   'ignore
 	Button.SetCSS("webix_primary")
 	Return Me
 End Sub
 
 'set transparent
-Sub SetTransparent(b As Boolean) As WixButton   'ignore
+Sub SetCSSTransparent(b As Boolean) As WixButton   'ignore
 	Button.SetCSS("webix_transparent")
 	Return Me
 End Sub
 
 'set danger
-Sub SetDanger(b As Boolean) As WixButton     'ignore
+Sub SetCSSDanger(b As Boolean) As WixButton     'ignore
 	Button.SetCSS("webix_danger")
+	Return Me
+End Sub
+
+'set danger
+Sub SetCSSSecondary(b As Boolean) As WixButton     'ignore
+	Button.SetCSS("webix_secondary")
+	Return Me
+End Sub
+
+'set danger
+Sub SetPopUp(i As Object) As WixButton     'ignore
+	Button.SetAttr("popup", i)
 	Return Me
 End Sub
 
@@ -218,44 +178,32 @@ Sub SetLabel(lbl As String) As WixButton
 End Sub
 
 'set type icon button
-Sub SetTypeIconButton(i As String) As WixButton 'ignore
-	ButtonType = "iconButton"
+Sub SetTypeStandard(i As String) As WixButton 'ignore
+	Button.SetAttr("type", "standard")
+	Return Me
+End Sub
+
+'set type icon button
+Sub SetTypeIcon(i As String) As WixButton 'ignore
+	Button.SetAttr("type", "icon")
 	Return Me
 End Sub
 
 'set image button
-Sub SetTypeImageButton(r As String) As WixButton  'ignore
-	ButtonType =  "imageButton"
-	Return Me
-End Sub
-
-'button type image	
 Sub SetTypeImage(r As String) As WixButton  'ignore
-	ButtonType = "image"
+	Button.SetAttr("type", "image")
 	Return Me
 End Sub
 
-'button type icon
-Sub SetTypeIcon(r As String) As WixButton  'ignore
-	ButtonType = "icon"
+'set image top
+Sub SetTypeImageTop(r As String) As WixButton  'ignore
+	Button.SetAttr("type", "imageTop")
 	Return Me
 End Sub
 
 'button type iconbuttontop
-Sub SetTypeIconButtonTop(r As String) As WixButton  'ignore
-	ButtonType = "iconButtonTop"
-	Return Me
-End Sub
-
-'is danger
-Sub SetTypeDanger(r As String) As WixButton  'ignore
-	ButtonType = "danger"
-	Return Me
-End Sub
-
-'is form
-Sub SetTypeForm(r As String) As WixButton  'ignore
-	ButtonType = "form"
+Sub SetTypeIconTop(r As String) As WixButton  'ignore
+	Button.SetAttr("type", "iconTop")
 	Return Me
 End Sub
 

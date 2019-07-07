@@ -131,8 +131,8 @@ Sub Init(pgContainer As String)
 	e12.Initialize("").SetLabel("Text Area").SetHeight(220) 
 	C3.AddRows(e12.Item)
 	'
-	Dim e13 As WixButton
-	e13.Initialize("").SetToggle("").SetOnLabel("Toggle ON").SetOffLabel("Toggle OFF").SetWidth(100).SetAlignRight("")
+	Dim e13 As WixToggle
+	e13.Initialize("").SetOnLabel("Toggle ON").SetOffLabel("Toggle OFF").SetWidth(100).SetAlignRight("")
 	C3.AddRows(e13.item)
 	'
 	form1.AddColumn(C3)

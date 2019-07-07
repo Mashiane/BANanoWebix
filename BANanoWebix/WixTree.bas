@@ -9,7 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Tree As WixElement
 	Private scheme As Map
-	private Items As List
+	Private Items As List
 End Sub
 
 'Initializes the Tree sheet

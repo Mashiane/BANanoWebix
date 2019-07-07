@@ -11,15 +11,19 @@ End Sub
 Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Dim align As List
 	align.Initialize 
-	align.AddAll(Array("left","right"))
+	align.AddAll(Array("","left","right"))
 	'
 	Dim pos As List
 	pos.Initialize 
-	pos.AddAll(Array("left","top"))
+	pos.AddAll(Array("","left","top"))
 	'
 	Dim bType As List
 	bType.Initialize 
-	bType.AddAll(Array("","iconButton","imageButton","image","icon","iconButtonTop","danger","form"))
+	bType.AddAll(Array("","icon", "iconTop","image", "imageTop"))
+	'
+	Dim css As List
+	css.Initialize 
+	css.addall(Array("","webix_secondary","webix_primary","webix_danger","webix_transparent"))
 	'
 	Bag.Clear
 	Bag.AddLabel("Parent")
@@ -35,6 +39,10 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.AddTextBox("icon", "Icon","")
 	Bag.AddTextBox("image", "Image","")
 	Bag.AddTextBox("batch", "Batch","")
+	Bag.AddTextBox("popup", "PopUp","")
+	Bag.AddTextBox("badge", "Badge","")
+	Bag.AddCheckBox("autowidth", "Auto width ","")
+	Bag.AddCombo("css", "CSS","", css)
 	Bag.AddLabel("Size")
 	Bag.AddTextBox("width","Width","100")
 	Bag.AddTextBox("height","Height","")
@@ -42,10 +50,9 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.AddTextBox("label","Text","Button 1")
 	Bag.AddTextBox("labelWidth","Width","")
 	Bag.AddTextBox("labelHeight","Height","")
-	Bag.AddCombo("labelAlign","Align","left",align)
+	Bag.AddCombo("labelAlign","Align","",align)
 	Bag.AddCombo("labelPosition","Position","left",pos)
 	Bag.AddLabel("Event")
 	Bag.AddTextBox("click","On Click","BANano.CallBack(Me,button1_click,Null)")
-	
 	Bag.Refresh(Page)
 End Sub

@@ -27,6 +27,80 @@ Sub SetAppName(aName As String) As WixPage
 	Return Me
 End Sub
 
+'add item
+Sub AddNode(treeID As String, parentID As String, meID As String, mValue As String, mhref As String, mIcon As String, badge As String, target As String, mOpen As Boolean) As WixPage
+	treeID = treeID.ToLowerCase
+	parentID = parentID.tolowercase
+	meID = meID.tolowercase
+	Dim mitem As Map = CreateMap()
+	mitem.Put("id", meID)
+	mitem.Put("value", mValue)
+	mitem.Put("href", mhref)
+	mitem.Put("badge", badge)
+	mitem.Put("target", target)
+	mitem.Put("icon", mIcon)
+	mitem.Put("open", mOpen)
+	mitem.Put("parentid", parentID)
+	If parentID = "" Then
+		Dollar.Selector(treeID).RunMethod("add", Array(mitem,1))
+	Else
+		Dollar.Selector(treeID).RunMethod("add", Array(mitem,-1,parentID))
+	End If
+	Return Me
+End Sub
+
+'convert a map to a json string using BANanoJSONGenerator
+Sub Map2Json(mp As Map) As String
+	Dim JSON As BANanoJSONGenerator
+	JSON.Initialize(mp)
+	Return JSON.ToString
+End Sub
+
+
+'convert a json string to a map
+Sub Json2Map(strJSON As String) As Map
+	Dim json As BANanoJSONParser
+	Dim Map1 As Map
+	Map1.Initialize
+	Map1.clear
+	Try
+		If strJSON.length > 0 Then
+			json.Initialize(strJSON)
+			Map1 = json.NextObject
+		End If
+		Return Map1
+	Catch
+		Return Map1
+	End Try
+End Sub
+
+
+'convert a list to json
+Sub List2Json(mp As List) As String
+	Dim JSON As BANanoJSONGenerator
+	JSON.Initialize2(mp)
+	Return JSON.ToString
+End Sub
+
+' convert a json string to a list
+Sub Json2List(strValue As String) As List
+	Dim lst As List
+	lst.Initialize
+	lst.clear
+	If strValue.Length = 0 Then
+		Return lst
+	End If
+	Try
+		Dim parser As BANanoJSONParser
+		parser.Initialize(strValue)
+		Return parser.NextArray
+	Catch
+		Return lst
+	End Try
+End Sub
+
+
+
 'initialize the page and empty the page '#body' element
 Public Sub Initialize(pgID As String, pgContainer As String) As WixPage
 	hints.Initialize 
@@ -202,19 +276,6 @@ End Sub
 Sub Define(eID As String, properties As Map)
 	eID = eID.ToLowerCase
 	Dollar.Selector(eID).RunMethod("define",Array(properties))
-End Sub
-
-'add a node to a tree
-Sub AddNode(treeID As String, node As Map)
-	treeID = treeID.ToLowerCase
-	Dollar.Selector(treeID).RunMethod("add", Array(node,1))
-End Sub
-
-'add a node to a tree
-Sub AddChildNode(treeID As String, parentID As String, node As Map)
-	treeID = treeID.ToLowerCase
-	parentID = parentID.tolowercase
-	Dollar.Selector(treeID).RunMethod("add", Array(node,1,parentID))
 End Sub
 
 'select a node to a tree
@@ -542,6 +603,12 @@ Sub Clear(itm As String)
 	Dollar.Selector(itm).RunMethod("clear",Null)
 End Sub
 
+'sub clearValidation use with clear form
+Sub ClearValidation(elID As String)
+	elID = elID.ToLowerCase
+	Dollar.Selector(elID).RunMethod("clearValidation", Null)
+End Sub
+
 'add a record to the list
 Sub Add(listID As String, record As Map)
 	listID = listID.tolowercase
@@ -706,6 +773,13 @@ End Sub
 Sub SetBottomText(eID As String, eText As String)
 	eID = eID.tolowercase
 	Dollar.Selector(eID).RunMethod("setBottomText",Array(eText))
+End Sub
+
+'Start hint
+Sub StartHint(h As WixHint)
+	'webix.ui(hint).start();
+	Dim oh As BANanoObject = UX(h.Item)
+	oh.RunMethod("start", Null)
 End Sub
 
 'adjust

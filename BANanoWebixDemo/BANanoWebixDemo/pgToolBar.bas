@@ -30,16 +30,16 @@ Sub Init(pgContainer As String)
 	tblBar.CreateButton("btnClose").SetLabel("Close").SetIcon("window-close").SetBatch(1).SetClick(BANano.CallBack(Me,"btnclose_click",Null)).AddToToolbar(tblBar)
 	
 	Dim btnSave As WixButton
-	btnSave.Initialize("btnSave").SetLabel("Save").SetWidth(90).SetTypeIconButton("").SetIcon("window-close").SetBatch(2).SetClick(BANano.CallBack(Me,"btnsave_click",Null)).AddToToolbar(tblBar)
+	btnSave.Initialize("btnSave").SetLabel("Save").SetWidth(90).SetTypeIcon("").SetIcon("window-close").SetBatch(2).SetClick(BANano.CallBack(Me,"btnsave_click",Null)).AddToToolbar(tblBar)
 	'
 	tblBar.AddSpacer
 	'
 	'create toggle buttons
 	tblBar.CreateToggle("imgt3").SetTypeIcon("").SetOffIcon("wxi-close").SetOnIcon("wxi-check").SetLabel("Music").Pop
-	tblBar.CreateToggle("imgt4").SetTypeIconButtonTop("").SetIcon("wxi-sync").SetOnLabel("Wi-Fi On").SetOffLabel("Wi-Fi Off").Pop
+	tblBar.CreateToggle("imgt4").SetTypeIconTop("").SetIcon("wxi-sync").SetOnLabel("Wi-Fi On").SetOffLabel("Wi-Fi Off").Pop
 	tblBar.AddSpacer
 	tblBar.CreateButton("btnImage").SetLabel("Image").SetTypeImage("").SetWidth(150).SetImage("./assets/icons8-save-as-100.png").Pop
-	tblBar.CreateButton("btnImageButton").SetLabel("ImageButton").SetTypeImageButton("").SetImage("./assets/icons8-compose-40.png").SetWidth(40).Pop
+	tblBar.CreateButton("btnImageButton").SetLabel("ImageButton").SetTypeImage("").SetImage("./assets/icons8-compose-40.png").SetWidth(40).Pop
 	tblBar.CreateButton("btnIcon").SetTypeIcon("").SetIcon("wxi-file").SetWidth(200).SetLabel("File Name").Pop
 	'
 	tblBar.AddSpacer

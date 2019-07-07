@@ -82,6 +82,7 @@ Sub SetAutoHeight(b As Boolean) As WixElement
 	Return Me
 End Sub
 
+
 'set reponsive
 Sub SetResponsive(b As Object) As WixElement
 	SetAttr("responsive", b)
@@ -176,6 +177,7 @@ Public Sub Initialize(sID As String) As WixElement
 	Body = ""
 	HTMLAttributes.Initialize
 	SetName(ID)
+	SetProperty("localId", ID)
 	Return Me
 End Sub
 
@@ -709,9 +711,9 @@ Sub CreateLabel(sid As String) As WixLabel
 End Sub
 
 'add a toggle button and define it
-Sub CreateToggle(sid As String) As WixButton
-	Dim btn As WixButton
-	btn.Initialize(sid).SetToggle("")
+Sub CreateToggle(sid As String) As WixToggle
+	Dim btn As WixToggle
+	btn.Initialize(sid)
 	Return btn
 End Sub
 

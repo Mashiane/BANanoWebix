@@ -741,7 +741,6 @@ private Sub GetComponentBuilder() As String
 	sb.Initialize
 	If Prefix.Length > 0 Then
 		sb.Append(Prefix)
-		sb.Append(CRLF)
 	End If
 	sb.Append("<")
 	sb.Append(Tag)
@@ -759,7 +758,6 @@ private Sub GetComponentBuilder() As String
 		sb.Append(Tag)
 		sb.Append(">")
 	End If
-	sb.Append(CRLF)
 	Dim sout As String = sb.tostring
 	sout = sout.Trim
 	Return sout
@@ -953,7 +951,6 @@ private Sub Open() As String
 	sb.Initialize
 	If Prefix.Length > 0 Then
 		sb.Append(Prefix)
-		sb.Append(CRLF)
 	End If
 	sb.Append("<")
 	sb.Append(Tag)
@@ -971,7 +968,6 @@ private Sub Open() As String
 	Dim thoseLoose As String = GetKeys(" ",LooseAttributes)
 	sb.Append(" ").Append(thoseLoose)
 	sb.Append(">")
-	sb.Append(CRLF)
 	Return sb.tostring
 End Sub
 
@@ -1247,7 +1243,6 @@ private Sub Close() As String
 		sb.Append(Tag)
 		sb.Append(">")
 	End If
-	sb.Append(CRLF)
 	Return sb.tostring
 End Sub
 
@@ -1291,7 +1286,8 @@ public Sub ToString As String
 	End If
 	For Each strContent As String In Contents
 		If strContent.Length > 0 Then
-			sb.Append(strContent)
+			strContent = strContent.trim
+			sb.Append(strContent.trim)
 		End If
 	Next
 	sb.Append(Close)

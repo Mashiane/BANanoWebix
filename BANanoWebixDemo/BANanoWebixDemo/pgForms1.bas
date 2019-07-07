@@ -31,11 +31,11 @@ Sub Init(pgContainer As String)
 	tblBar.AddButton(btnBack)
 	'
 	Dim btnIBT As WixButton
-	btnIBT.Initialize("btnIBT").SetWidth(100).SetHeight(80).SetIcon("wxi-download").SetTypeIconButtonTop("").SetLabel("Hide")
+	btnIBT.Initialize("btnIBT").SetWidth(100).SetHeight(80).SetIcon("wxi-download").SetTypeIconTop("").SetLabel("Hide")
 	btnIBT.SetClick( BANano.CallBack(Me, "hideit",Null)  ).AddToToolbar(tblBar)
 	'
 	Dim btnShow As WixButton
-	btnShow.Initialize("btnShow").SetWidth(100).SetHeight(80).SetIcon("wxi-download").SetTypeIconButtonTop("").SetLabel("Show")
+	btnShow.Initialize("btnShow").SetWidth(100).SetHeight(80).SetIcon("wxi-download").SetTypeIconTop("").SetLabel("Show")
 	btnShow.SetClick( BANano.CallBack(Me, "showit",Null)  ).AddToToolbar(tblBar)
 	'
 	R1.AddItem(tblBar.Item)

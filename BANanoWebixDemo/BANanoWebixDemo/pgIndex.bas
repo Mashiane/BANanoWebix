@@ -29,10 +29,10 @@ Sub Init(pgContainer As String)
 	tblBar.Initialize("tblBar")
 	'
 	Dim btnSave As WixButton
-	btnSave.Initialize("btnSave").SetLabel("Save").SetTypeForm("").SetWidth(70).SetClick(BANano.CallBack(Me,"save_row",Null)).AddToToolbar(tblBar) 
+	btnSave.Initialize("btnSave").SetLabel("Save").SetWidth(70).SetClick(BANano.CallBack(Me,"save_row",Null)).AddToToolbar(tblBar) 
 	'
 	Dim btnDelete As WixButton
-	btnDelete.Initialize("btnDelete").SetTypeDanger("").SetLabel("Delete").SetWidth(70).SetClick(BANano.CallBack(Me,"delete_row",Null)).AddToToolbar(tblBar)
+	btnDelete.Initialize("btnDelete").SetLabel("Delete").SetWidth(70).SetClick(BANano.CallBack(Me,"delete_row",Null)).AddToToolbar(tblBar)
 	'
 	Dim btnClear As WixButton
 	btnClear.Initialize("btnClear").SetLabel("Clear").SetWidth(100).SetClick(BANano.CallBack(Me,"clear_form",Null)).AddToToolbar(tblBar)

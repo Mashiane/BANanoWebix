@@ -45,8 +45,8 @@ Sub Init(pgContainer As String)
 	'
 	pg.ui
 	'
-	pg.AddNode("tree", CreateMap("id":7, "value":"Mashy","year":1973))
-	pg.AddChildNode("tree","7", CreateMap("id":8,"value":"Ozzie","year":2003))
+	pg.AddNode("tree", "", "7", "Mashy","","","","",False)
+	pg.AddNode("tree","7", "8", "Ozzie","","","","",False)
 	pg.Refresh("tree")
 	'
 	Dim recid As String

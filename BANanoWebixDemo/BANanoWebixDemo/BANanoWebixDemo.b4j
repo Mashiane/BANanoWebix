@@ -130,6 +130,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.Header.addcssfile("all.min.css")
 	BANano.Header.AddCSSFile("materialdesignicons.min.css")
 	BANano.Header.AddCSSFile("webix.min.css")
+	BANano.Header.AddCSSFile("hint.css")
 	'*themes
 	BANano.Header.AddCSSFile("material.min.css")
 	'BANano.Header.AddCSSFile("flat.min.css")
@@ -137,6 +138,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'BANano.Header.AddCSSFile("contrast.min.css")
 	'** themes
 	BANano.Header.AddJavascriptFile("webix.min.js")
+	BANano.Header.AddJavascriptFile("hint.js")
 	BANano.Header.AddJavascriptFile("data.js")
 	'BANano.TranspilerOptions.MergeAllCSSFiles = True
 	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True

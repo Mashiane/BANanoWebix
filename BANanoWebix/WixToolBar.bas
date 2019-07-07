@@ -55,6 +55,12 @@ Sub SetMinHeight(h As Int) As WixToolBar
 	Return Me
 End Sub
 
+'set height
+Sub SetHeight(h As Int) As WixToolBar
+	ToolBar.SetHeight(h)
+	Return Me
+End Sub
+
 'use a map object
 Sub SetMap(m As Map) As WixToolBar
 	For Each strKey As String In m.Keys
@@ -116,10 +122,22 @@ Sub CreateLabel(sid As String) As WixLabel
 End Sub
 
 'add a toggle button and define it
-Sub CreateToggle(sid As String) As WixButton
-	Dim btn As WixButton
-	btn.Initialize(sid).SetToggle("").SetParent(ToolBar)
+Sub CreateToggle(sid As String) As WixToggle
+	Dim btn As WixToggle
+	btn.Initialize(sid).SetParent(ToolBar)
 	Return btn
+End Sub
+
+Sub CreateAvatar(sid As String, imgURL As String) As WixElement
+	Dim img As UOENowHTML
+	img.Initialize("","img").SetSRC(imgURL,True).SetStyle("border-radius", "25px").SetStyle("width", "42px").SetStyle("height", "42px")
+	img.SetStyle("cursor", "pointer")
+	'
+	Dim html As String = img.html
+	'
+	Dim avatar As WixElement
+	avatar.Initialize(sid).SetWidth(60).SetBorderLess(True).SetTemplate(html)
+	Return avatar
 End Sub
 
 'add a spacer
