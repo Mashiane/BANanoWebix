@@ -147,6 +147,63 @@ Sub SetLabelWidth(w As Int) As WixTextArea
 	Return Me
 End Sub
 
+'set validate
+Sub SetValidateIsNotEmpty(b As Boolean) As WixTextArea   'ignore
+	TextArea.SetAttr("validate","isNotEmpty")
+	Return Me
+End Sub
+
+Sub SetValidateIsNumber(b As Boolean) As WixTextArea   'ignore
+	TextArea.SetAttr("validate","isNumber")
+	Return Me
+End Sub
+
+Sub SetValidateIsEmail(b As Boolean) As WixTextArea   'ignore
+	TextArea.SetAttr("validate","isEmail")
+	Return Me
+End Sub
+
+
+Sub SetValidateEventBlur(b As Boolean) As WixTextArea    'ignore
+	TextArea.SetAttr("validateEvent", "blur")
+	Return Me
+End Sub
+
+Sub SetValidateEventKey(b As Boolean) As WixTextArea     'ignore
+	TextArea.SetAttr("validateEvent", "key")
+	Return Me
+End Sub
+
+'set required
+Sub SetRequired(b As Boolean) As WixTextArea
+	TextArea.SetAttr("required", b)
+	Return Me
+End Sub
+
+
+'set readonly
+Sub SetReadOnly(b As Boolean) As WixTextArea
+	TextArea.SetAttr("readonly",b)
+	Return Me
+End Sub
+
+'set disabled
+Sub SetDisabled(b As Boolean) As WixTextArea
+	TextArea.setattr("disabled",b)
+	Return Me
+End Sub
+
+'set bottom label
+Sub SetBottomLabel(f As Object) As WixTextArea
+	TextArea.SetAttr("bottomLabel", f)
+	Return Me
+End Sub
+
+'set bottom padding
+Sub SetBottomPadding(f As Object) As WixTextArea
+	TextArea.SetAttr("bottomPadding", f)
+	Return Me
+End Sub
 
 'set align right
 Sub SetAlignRight(r As String) As WixTextArea 'ignore

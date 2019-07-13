@@ -22,6 +22,18 @@ Sub SetInvalidMessage(msg As String) As WixText
 	Return Me
 End Sub
 
+'set hidden
+Sub SetHidden(b As Boolean) As WixText
+	Text.SetHidden(b)
+	Return Me
+End Sub
+
+'set localid
+Sub SetLocalID(i As String) As WixText
+	Text.SetLocalID(i)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixText
 	Text.SetName(n)
@@ -119,13 +131,6 @@ Sub SetTypeEmail(r As String) As WixText  'ignore
 	Text.SetType("email")
 	Return Me
 End Sub
-
-'set hidden
-Sub SetHidden(b As Boolean) As WixText
-	Text.SetAttr("hidden",b)
-	Return Me
-End Sub
-
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixText

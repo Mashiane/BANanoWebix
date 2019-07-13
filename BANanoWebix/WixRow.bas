@@ -23,6 +23,19 @@ Sub SetTypeWide As WixRow
 	Return Me
 End Sub
 
+'set the type
+Sub SetType(t As Object) As WixRow
+	Row.SetAttr("type", t)
+	Return Me	
+End Sub
+
+'add rows cells
+Sub AddRowsCells(mCells As List) As WixRow
+	Dim opt As Map = CreateMap()
+	opt.Put("cells", mCells)
+	AddRows(opt)
+	Return Me
+End Sub
 
 ' set padding
 Sub SetPadding(padding As Object) As WixRow
@@ -41,7 +54,6 @@ Sub AddColumns(i As Map) As WixRow
 	Row.AddColumns(i)
 	Return Me
 End Sub
-
 
 'set name
 Sub SetName(n As String) As WixRow
@@ -79,7 +91,6 @@ Sub SetAutoWidth(b As Boolean) As WixRow
 	Row.SetAttr("autowidth", b)
 	Return Me
 End Sub
-
 
 'set auto height
 Sub SetAutoHeight(b As Boolean) As WixRow

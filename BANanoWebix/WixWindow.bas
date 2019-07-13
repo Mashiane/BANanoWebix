@@ -9,7 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Window As WixElement
 	Public ToolBar As WixToolBar
-	Private body As WixElement
+	Private Body As WixElement
 	Public ToolBarID As String
 End Sub
 
@@ -19,7 +19,7 @@ Public Sub Initialize(sid As String) As WixWindow
 	ToolBarID = ID & "tblbar"
 	Window.Initialize(ID).SetView("window")
 	ToolBar.Initialize(ToolBarID) 
-	body.Initialize(ID & "body")
+	Body.Initialize(ID & "body")
 	Return Me
 End Sub
 
@@ -67,8 +67,6 @@ End Sub
 'set full screen
 Sub SetFullScreen(b As Boolean) As WixWindow
 	Window.SetAttr("fullscreen", b)
-	Window.SetAttr("top", 0)
-	Window.SetAttr("left", 0)
 	Return Me
 End Sub
 
@@ -99,16 +97,21 @@ End Sub
 
 'return menu
 Sub Item As Map
-	Window.SetAttr("body", body.Item)
 	Return Window.item
 End Sub
 
 'set template
 Sub SetTemplate(t As String) As WixWindow
-	body.SetTemplate(t)
+	Body.SetTemplate(t)
+	Window.SetAttr("body", Body.Item)
 	Return Me
 End Sub
 
+'set body
+Sub SetBody(b As Map) As WixWindow
+	Window.SetAttr("body", b)
+	Return Me
+End Sub
 
 'set resize
 Sub SetResize(t As Boolean) As WixWindow

@@ -18,6 +18,7 @@ Sub Class_Globals
 	Private ulName As String
 	Private BANano As BANano  'ignore
 	Public EnumWixIcons As WixIcons
+	Public Views As List
 End Sub
 
 'this will also set the extra folder name
@@ -25,6 +26,11 @@ Sub SetAppName(aName As String) As WixPage
 	Dim extraFolder As String = $"http://localhost/${aName}/extras"$
 	SetExtrasFolder(extraFolder)
 	Return Me
+End Sub
+
+Sub MvCount(strMV As String, Delimiter As String) As Int
+	Dim spValues() As String = BANano.Split(Delimiter,strMV)
+	Return spValues.Length
 End Sub
 
 'add item
@@ -54,6 +60,12 @@ Sub Map2Json(mp As Map) As String
 	Dim JSON As BANanoJSONGenerator
 	JSON.Initialize(mp)
 	Return JSON.ToString
+End Sub
+
+Sub Map2JsonPretty(mp As Map) As String
+	Dim JSON As BANanoJSONGenerator
+	JSON.Initialize(mp)
+	Return JSON.ToPrettyString(4)
 End Sub
 
 
@@ -113,7 +125,20 @@ Public Sub Initialize(pgID As String, pgContainer As String) As WixPage
 	EnumLayoutTypes.Initialize  
 	EnumWixIcons.Initialize
 	SetContainer(pgContainer)
+	BuildViews
 	Return Me
+End Sub
+
+Sub BuildViews
+	Views.Initialize
+	Views.Add("")
+	Views.AddAll(Array("textarea","spacer","form","window","accordion","tabview","datatable","text","hint","property","toolbar"))
+	Views.AddAll(Array("icon","button","segmented","tree","fieldset","suggest","forminput","pager","sidebar","switch","checkbox"))
+	Views.AddAll(Array("list","dataview","layout","tabbar","menu","carousel","sidemenu","comments","contextmenu","unitlist"))
+	Views.AddAll(Array("context","chart","multiview","combo","radio","richselect","counter","colorpicker","datepicker","label"))
+	Views.AddAll(Array("resizer","select","search","slider","richtext","dbllist","treetable","popup","iframe","grouplist"))
+	Views.AddAll(Array("google-map","uploader","video","template","scrollview","flexlayout","toggle","row","column"))
+	Views.Sort(True)
 End Sub
 
 'set extras folder
@@ -289,6 +314,11 @@ End Sub
 Sub SetHint(eID As String, sHint As String)
 	eID = eID.tolowercase
 	hints.Put(eID,sHint)
+End Sub
+
+Sub OnKeyPress(eid As String, cb As BANanoObject)
+	eid = eid.tolowercase
+	Dollar.Selector(eid).RunMethod("attachEvent",Array("onKeyPress",cb))
 End Sub
 
 'attach events after page is created
@@ -932,6 +962,10 @@ Sub Show(itm As BANanoObject)
 	itm.RunMethod("show", Null)
 End Sub
 
+'show window
+Sub ShowWindow(itm As BANanoObject)
+	Show(itm)
+End Sub
 
 'show an element
 Sub Hide(itm As BANanoObject)

@@ -27,6 +27,11 @@ Public Sub Initialize(fID As String) As WixForm
 	Return Me
 End Sub
 
+Sub SetBorderless(b As Boolean) As WixForm
+	Form.SetAttr("borderless", b)
+	Return Me
+End Sub
+
 Sub SetComplexData(b As Boolean) As WixForm
 	Form.SetAttr("complexData", b)
 	Return Me
@@ -233,3 +238,60 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+
+'set default view
+Sub SetDefaultView(a As String) As WixForm
+	Form.SetDefaultView(a)
+	Return Me
+End Sub
+
+'set default type
+Sub SetDefaultType(a As String) As WixForm
+	Form.SetDefaultType(a)
+	Return Me
+End Sub
+
+'set default label align
+Sub SetDefaultLabelAlign(a As String) As WixForm
+	Form.SetDefaultLabelAlign(a)
+	Return Me
+End Sub
+
+'set default label width
+Sub SetDefaultLabelWidth(a As Int) As WixForm
+	Form.SetDefaultLabelWidth(a)
+	Return Me
+End Sub
+
+
+'set default label position
+Sub SetDefaultLabelPosition(p As String) As WixForm
+	Form.SetDefaultLabelPosition(p)
+	Return Me
+End Sub
+
+'set default align
+Sub SetDefaultAlign(a As String) As WixForm
+	Form.SetDefaultAlign(a)
+	Return Me
+End Sub
+
+'set default width
+Sub SetDefaultWidth(w As Int) As WixForm
+	Form.SetDefaultWidth(w)
+	Return Me
+End Sub
+
+'set default height
+Sub SetDefaultHeight(h As Int) As WixForm
+	Form.SetDefaultHeight(h)
+	Return Me
+End Sub
+
+
+Sub SetDefaultBottomPadding(w As Int) As WixForm
+	Form.SetDefaultBottomPadding(w)
+	Return Me
+End Sub
+

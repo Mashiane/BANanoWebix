@@ -24,12 +24,161 @@ Sub Class_Globals
 	Private CSSRule As Map
 	Private SingleQuote As List
 	Private ParentID As String
-	Private Text As String
-	Private TextAfter As Boolean
 	Private SBAfter As StringBuilder
 	Private SBBefore As StringBuilder
 	Public IsImportant As Boolean
 End Sub
+
+Sub SetSpan(sText As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize 
+	sb.Append("<span>").Append(sText).Append("</span>")
+	SetText(sb.ToString)
+	Return Me
+End Sub
+
+'set vertical
+Sub SetVertical(b As Boolean) As UOENowHTML   'ignore
+	AddClass("vertical")
+	Return Me
+End Sub
+
+'set dark
+Sub SetDark(b As Boolean) As UOENowHTML   'ignore
+	AddClass("dark")
+	Return Me
+End Sub
+
+'set box colored
+Sub SetBoxColored(b As Boolean) As UOENowHTML  'ignore
+	AddClass("box-colored")
+	Return Me
+End Sub
+
+'set section
+Sub SetSection(b As Boolean) As UOENowHTML   'ignore
+	AddClass("section")
+	Return Me
+End Sub
+
+'set double padded
+Sub SetDoublePadded(b As Boolean) As UOENowHTML   'ignore
+	AddClass("double-padded")
+	Return Me
+End Sub
+
+'wrap element to
+Sub Wrap(wid As String, wrapType As String) As UOENowHTML
+	Dim p As UOENowHTML
+	p.Initialize(wid, wrapType)
+	p.AddContent(HTML)
+	Return p 
+End Sub
+
+'set row
+Sub SetRow(b As Boolean) As UOENowHTML   'ignore
+	AddClass("row")
+	Return Me
+End Sub
+
+'set responsive padding
+Sub SetResponsivePadding(b As Boolean) As UOENowHTML   'ignore
+	AddClass("responsive-padding")
+	Return Me
+End Sub
+
+
+'set responsive margin
+Sub SetResponsiveMargin(b As Boolean) As UOENowHTML   'ignore
+	AddClass("responsive-margin")
+	Return Me
+End Sub
+
+'set inverse
+Sub SetInverse(b As Boolean) As UOENowHTML   'ignore
+	AddClass("inverse")
+	Return Me
+End Sub
+
+'set tertiary
+Sub SetTertiary(b As Boolean) As UOENowHTML   'ignore
+	AddClass("tertiary")
+	Return Me
+End Sub
+
+'set secondary
+Sub SetSecondary(b As Boolean) As UOENowHTML   'ignore
+	AddClass("secondary")
+	Return Me
+End Sub
+
+'set primary
+Sub SetPrimary(b As Boolean) As UOENowHTML  'ignore
+	AddClass("primary")
+	Return Me
+End Sub
+
+
+'set circular
+Sub SetCircular(b As Boolean) As UOENowHTML  'ignore
+	AddClass("circular")
+	Return Me
+End Sub
+
+'set bordered
+Sub SetBordered(b As Boolean) As UOENowHTML   'ignore
+	AddClass("bordered")
+	Return Me
+End Sub
+
+'set shadowed
+Sub SetShadowed(b As Boolean) As UOENowHTML  'ignore
+	AddClass("shadowed")
+	Return Me
+End Sub
+
+'set rounded
+Sub SetRounded(b As Boolean) As UOENowHTML   'ignore
+	AddClass("rounded")
+	Return Me
+End Sub
+
+'set the tooltip
+Sub SetToolTip(tt As String) As UOENowHTML
+	AddClass("tooltip")
+	SetAttr("aria-label", tt)
+	Return Me
+End Sub
+
+Sub SetAttr(attr As String, val As String) As UOENowHTML
+	AddAttribute(attr,val)
+	Return Me
+End Sub
+
+'set role button
+Sub SetRoleButton(b As Boolean) As UOENowHTML   'ignore
+	SetROLE("button")
+	Return Me
+End Sub
+
+'set disabled
+Sub SetDisabled(b As Boolean) As UOENowHTML
+	If b Then AddLooseAttribute("disabled")
+	Return Me
+End Sub
+
+'set small
+Sub SetSmall(b As Boolean) As UOENowHTML
+	AddClassOnCondition(b, "small")
+	Return Me
+End Sub
+
+'set large
+Sub SetLarge(b As Boolean) As UOENowHTML
+	AddClassOnCondition(b, "large")
+	Return Me
+End Sub
+
 
 Sub SetImportant(b As Boolean) As UOENowHTML
 	IsImportant = b
@@ -153,6 +302,26 @@ End Sub
 Sub SetTARGET(sValue As String) As UOENowHTML
 	If sValue.Trim = "" Then Return Me
 	AddAttribute("target",sValue)
+	Return Me
+End Sub
+
+Sub SetTargetBlank(b As Boolean) As UOENowHTML   'ignore
+	SetTARGET("_blank")
+	Return Me
+End Sub
+
+Sub SetTargetSelf(b As Boolean) As UOENowHTML    'ignore
+	SetTARGET("_self")
+	Return Me
+End Sub
+	
+Sub SetTargetParent(b As Boolean) As UOENowHTML   'ignore
+	SetTARGET("_parent")
+	Return Me
+End Sub
+	
+Sub SetTargetTop(b As Boolean) As UOENowHTML    'ignore
+	SetTARGET("_top")
 	Return Me
 End Sub
 
@@ -294,6 +463,13 @@ Sub AddParagraph(sContent As String) As UOENowHTML
 	Return Me
 End Sub
 
+Sub AddMark(sContent As String, sclass As String) As UOENowHTML
+	Dim p As UOENowHTML
+	p.Initialize("","mark").AddClass(sclass)
+	p.AddContent(sContent)
+	AddContent(p.HTML)
+	Return Me
+End Sub
 
 'add a class to the element
 Sub AddLooseAttributeOnFalseCondition(bStatus As Boolean, value As String) As UOENowHTML
@@ -579,11 +755,23 @@ Sub AddContentList(lst As List) As UOENowHTML
 	Return Me
 End Sub
 
-
 'set the text of the element, in most cases you will use AddContent
-Sub SetText(sText As String,bAfter As Boolean) As UOENowHTML
-	Text = sText
-	TextAfter = bAfter
+Sub SetText(sText As String) As UOENowHTML
+	AddContent(sText)
+	Return Me
+End Sub
+
+Sub SetCode(sText As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize 
+	sb.Append("<code>").Append(sText).Append("</code>")
+	AddContent(sb.tostring)
+	Return Me
+End Sub
+
+
+Sub AddText(txt As String) As UOENowHTML
+	AddContent(txt)
 	Return Me
 End Sub
 
@@ -618,6 +806,13 @@ Sub SetReadOnly(bReadOnly As Boolean) As UOENowHTML
 	Return Me
 End Sub
 
+'set max
+Sub SetMax(m As Object) As UOENowHTML
+	SetAttr("max", m)
+	Return Me
+End Sub
+
+
 'set inline
 Sub SetInline(bInline As Boolean) As UOENowHTML
 	Inline = bInline
@@ -638,6 +833,7 @@ End Sub
 
 'Initializes the html builder
 Public Sub Initialize(elID As String, eltag As String) As UOENowHTML
+	elID = CStr(elID)
 	IsImportant = True
 	SBBefore.Initialize 
 	SBAfter.Initialize 
@@ -671,8 +867,16 @@ Public Sub Initialize(elID As String, eltag As String) As UOENowHTML
 	CSSRule.clear
 	SingleQuote.Initialize
 	SingleQuote.clear
-	Text = ""
-	TextAfter = False
+	Return Me
+End Sub
+
+Sub SetSublink1(b As Boolean) As UOENowHTML   'ignore
+	AddClass("sublink-1")
+	Return Me
+End Sub
+
+Sub SetSublink2(b As Boolean) As UOENowHTML  'ignore
+	AddClass("sublink-2")
 	Return Me
 End Sub
 
@@ -849,6 +1053,14 @@ public Sub AddElement(el As UOENowHTML) As UOENowHTML
 		Dim scode As String = el.tostring
 		AddContent(scode)
 	End If
+	Return Me
+End Sub
+
+'add elements
+Sub AddElements(lst As List) As UOENowHTML
+	For Each el As UOENowHTML In lst
+		AddElement(el)
+	Next
 	Return Me
 End Sub
 
@@ -1279,11 +1491,6 @@ public Sub ToString As String
 	sb.Initialize
 	sb.Append(SBBefore)
 	sb.Append(Open)
-	If TextAfter = True Then
-		Contents.Add(Text)
-	Else
-		Contents.InsertAt(0,Text)
-	End If
 	For Each strContent As String In Contents
 		If strContent.Length > 0 Then
 			strContent = strContent.trim
@@ -1299,4 +1506,191 @@ public Sub ToString As String
 	sout = sout & SBAfter.tostring
 	sout = sout.Replace(CRLF,"")
 	Return sout
+End Sub
+
+'add a hyperlink that sends an email
+Sub AddMailTo(emailaddress As String,subject As String,caption As String) As UOENowHTML
+	subject = subject.Replace(" ", "%20")
+	Dim a As UOENowHTML
+	a.Initialize("","a").setHREF($"mailto:${emailaddress}?subject=${subject}"$).AddContent(caption).SetTARGETblank(True)
+	AddContent(a.ToString)
+	Return Me
+End Sub
+
+Sub SetWarning(b As Boolean) As UOENowHTML   'ignore
+	AddClass("warning")
+	Return Me
+End Sub
+
+Sub SetError(b As Boolean) As UOENowHTML  'ignore
+	AddClass("error")
+	Return Me
+End Sub
+
+Sub SetMedia(b As Boolean) As UOENowHTML   'ignore
+	AddClass("media")
+	Return Me
+End Sub
+
+
+Sub AddDiv(divid As String, divContent As String, divClass As String) As UOENowHTML
+	Dim div As UOENowHTML
+	div.Initialize(divid,"div").SetText(divContent).addclass(divClass)
+	AddContent(div.HTML)
+	Return Me
+End Sub
+
+
+'add a bold text
+Sub AddBold(value As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("{B}").Append(value).Append("{/B}")
+	AddContent(sb.ToString)
+	Return Me
+End Sub
+
+'add italic text
+Sub AddItalic(value As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("{I}").Append(value).Append("{/I}")
+	AddContent(sb.ToString)
+	Return Me
+End Sub
+
+'add underlined text
+Sub AddUnderline(value As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("{U}").Append(value).Append("{/U}")
+	AddContent(sb.ToString)
+	Return Me
+End Sub
+
+'add subscript text
+Sub AddSubScript(value As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("{SUB}").Append(value).Append("{/SUB}")
+	AddContent(sb.ToString)
+	Return Me
+End Sub
+
+'add superscript text
+Sub AddSuperScript(value As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("{SUP}").Append(value).Append("{/SUP}")
+	AddContent(sb.ToString)
+	Return Me
+End Sub
+
+Sub AddSub(value As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("<sub>").Append(value).Append("</sub>")
+	AddContent(sb.ToString)
+	Return Me
+End Sub
+
+Sub AddKBD(value As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("<kbd>").Append(value).Append("</kbd>")
+	AddContent(sb.ToString)
+	Return Me
+End Sub
+
+
+Sub AddCode(value As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("<code>").Append(value).Append("</code>")
+	AddContent(sb.ToString)
+	Return Me
+End Sub
+
+Sub AddPre(value As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("<pre>").Append(value).Append("</pre>")
+	AddContent(sb.ToString)
+	Return Me
+End Sub
+
+
+Sub AddSup(value As String) As UOENowHTML
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("<sup>").Append(value).Append("</sup>")
+	AddContent(sb.ToString)
+	Return Me
+End Sub
+
+
+'add a break
+Sub AddBreak(b As Boolean) As UOENowHTML  'ignore
+	AddContent("{BR}")
+	Return Me
+End Sub
+
+'add a hyperlink that opens to blank
+Sub AddLink(href As String,caption As String,Target As String) As UOENowHTML
+	Dim a As UOENowHTML
+	a.Initialize("","a").SetHREF(href).AddContent(caption).SetTARGET(Target)
+	AddElement(a)
+	Return Me
+End Sub
+
+Sub AddAnchor(href As String,caption As String,Target As String) As UOENowHTML
+	AddLink(href,caption,Target)
+	Return Me
+End Sub
+
+
+Sub AddH1(paraText As String) As UOENowHTML
+	AddContent($"<h1>${paraText}</h1>"$)
+	Return Me
+End Sub
+
+Sub AddH2(paraText As String) As UOENowHTML
+	AddContent($"<h2>${paraText}</h2>"$)
+	Return Me
+End Sub
+
+Sub AddH3(paraText As String) As UOENowHTML
+	AddContent($"<h3>${paraText}</h3>"$)
+	Return Me
+End Sub
+
+Sub AddH4(paraText As String) As UOENowHTML
+	AddContent($"<h4>${paraText}</h4>"$)
+	Return Me
+End Sub
+
+Sub AddStrong(paraText As String) As UOENowHTML
+	AddContent($"<strong>${paraText}</strong>"$)
+	Return Me
+End Sub
+
+Sub AddSmall(paraText As String) As UOENowHTML
+	AddContent($"<small>${paraText}</small>"$)
+	Return Me
+End Sub
+
+Sub AddEM(paraText As String) As UOENowHTML
+	AddContent($"<em>${paraText}</em>"$)
+	Return Me
+End Sub
+
+
+Sub AddH5(paraText As String) As UOENowHTML
+	AddContent($"<h5>${paraText}</h5>"$)
+	Return Me
+End Sub
+
+Sub AddH6(paraText As String) As UOENowHTML
+	AddContent($"<h6>${paraText}</h6>"$)
+	Return Me
 End Sub

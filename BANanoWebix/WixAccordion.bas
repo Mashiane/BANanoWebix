@@ -20,6 +20,11 @@ Public Sub Initialize(sid As String) As WixAccordion
 	Return Me
 End Sub
 
+'set scroll
+Sub SetScroll(b As Boolean) As WixAccordion
+	Accordion.SetAttr("scroll", b)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixAccordion

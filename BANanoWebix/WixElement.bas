@@ -26,12 +26,36 @@ Sub Class_Globals
 	Public View As String
 	Public Gravity As Int
 	Public CSS As String
-	Public Header As String
-	Public Body As Object
 	Private Styles As Map
 	Private Cells As List
 	Private elementsConfig As Map
 	Private cols As List
+End Sub
+
+'set hidden
+Sub SetHidden(b As Boolean) As WixElement
+	SetAttr("hidden", b)
+	Return Me
+End Sub
+
+'set local id
+Sub SetLocalID(i As String) As WixElement
+	SetAttr("localId", i)
+	Return Me
+End Sub
+
+'create a column
+Sub CreateColumn(cid As String) As WixColumn
+	Dim c As WixColumn
+	c.Initialize(cid)
+	Return c
+End Sub
+
+'create a row
+Sub CreateRow(rid As String) As WixRow
+	Dim r As WixRow
+	r.Initialize(rid)
+	Return r
 End Sub
 
 'create texbox
@@ -172,12 +196,16 @@ Public Sub Initialize(sID As String) As WixElement
 	Gravity = 0
 	Label.Align = ""
 	Label.Position = ""
-	CSS = ""
-	Header = ""
-	Body = ""
+	CSS = ""            
 	HTMLAttributes.Initialize
 	SetName(ID)
 	SetProperty("localId", ID)
+	Return Me
+End Sub
+
+'set the state
+Sub SetState(s As Object) As WixElement
+	SetAttr("state", s)
 	Return Me
 End Sub
 
@@ -233,6 +261,12 @@ End Sub
 'set default width
 Sub SetDefaultWidth(w As Int) As WixElement
 	elementsConfig.Put("width", w)
+	Return Me
+End Sub
+
+'set default height
+Sub SetDefaultHeight(h As Int) As WixElement
+	elementsConfig.Put("height", h)
 	Return Me
 End Sub
 
@@ -332,14 +366,14 @@ Sub SetData(d As List) As WixElement
 End Sub
 
 'set header
-Sub SetHeader(h As String) As WixElement
-	Header = h
+Sub SetHeader(h As Object) As WixElement
+	SetAttr("header", h)
 	Return Me
 End Sub
 
 'set body
 Sub SetBody(b As Object) As WixElement
-	Body = b
+	SetAttr("body", b)
 	Return Me	
 End Sub
 
@@ -387,7 +421,7 @@ End Sub
 
 'set an attribute
 Sub SetAttr(attrName As String, attrValue As Object) As WixElement
-	SetOnContent(attrName,attrValue)
+	SetProperty(attrName, attrValue)
 	Return Me
 End Sub
 
@@ -405,8 +439,6 @@ Sub Item As Map
 	Next
 	SetOnCondition(Height,"height",Height)
 	SetOnCondition(Width, "width", Width)
-	SetOnContent("body", Body)
-	SetOnContent("header", Header)
 	SetOnContent("container", Container)
 	SetOnContent("type", TypeOf)
 	SetOnContent("view", View)
@@ -1051,5 +1083,6 @@ End Sub
 Sub CreateWindow(sid As String) As WixWindow 
 	Dim itm As WixWindow 
 	itm.Initialize(sid) 
-	Return itm 
+	Return itm
 End Sub
+

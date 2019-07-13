@@ -1,73 +1,72 @@
 ﻿AppType=JavaFX
 Build1=Default,b4j.example
 File1=3.jpg
-File10=colorpicker.png
-File11=combo.png
-File12=comments.png
-File13=context.png
-File14=contextmenu.png
-File15=counter.png
-File16=datasuggest.png
-File17=datatable.png
-File18=datatree.png
-File19=dataview.png
+File10=combo.png
+File11=comments.png
+File12=context.png
+File13=contextmenu.png
+File14=counter.png
+File15=datasuggest.png
+File16=datatable.png
+File17=datatree.png
+File18=dataview.png
+File19=datepicker.png
 File2=accordion.png
-File20=datepicker.png
-File21=daterange.png
-File22=daterangepicker (1).png
-File23=daterangepicker.png
-File24=doublelist.png
-File25=extras.zip
-File26=fieldset.png
-File27=fonts.zip
-File28=form.png
-File29=forminput.png
-File3=alasql.min.js
-File30=googlemap.png
-File31=gridsuggest.png
-File32=grouplist.png
-File33=hint.png
-File34=htmlform.png
-File35=icon.png
-File36=iframe.png
-File37=label.png
-File38=layout.png
-File39=list.png
-File4=button.png
-File40=menu.png
-File41=multiview.png
-File42=pager.png
-File43=popup.png
-File44=portlet.png
-File45=propertysheet.png
-File46=richselect.png
-File47=scrollview.png
-File48=search.png
-File49=segmented.png
-File5=calendar.png
-File50=select.png
-File51=sidebar.png
-File52=sidemenu.png
-File53=slider.png
-File54=suggest.png
-File55=switch.png
-File56=tabbar.png
-File57=tabview.png
-File58=template.png
-File59=text.png
-File6=carousel.png
-File60=textarea.png
-File61=toggle.png
-File62=toolbar.png
-File63=tooltip.png
-File64=treegrid.png
-File65=unitlist.png
-File66=uploader.png
-File67=video.png
-File68=window.png
-File7=chart.png
-File8=checkbox.png
-File9=colorboard.png
+File20=daterange.png
+File21=daterangepicker (1).png
+File22=daterangepicker.png
+File23=doublelist.png
+File24=extras.zip
+File25=fieldset.png
+File26=fonts.zip
+File27=form.png
+File28=forminput.png
+File29=googlemap.png
+File3=button.png
+File30=gridsuggest.png
+File31=grouplist.png
+File32=hint.png
+File33=htmlform.png
+File34=icon.png
+File35=iframe.png
+File36=label.png
+File37=layout.png
+File38=list.png
+File39=menu.png
+File4=calendar.png
+File40=multiview.png
+File41=pager.png
+File42=popup.png
+File43=portlet.png
+File44=propertysheet.png
+File45=richselect.png
+File46=scrollview.png
+File47=search.png
+File48=segmented.png
+File49=select.png
+File5=carousel.png
+File50=sidebar.png
+File51=sidemenu.png
+File52=slider.png
+File53=suggest.png
+File54=switch.png
+File55=tabbar.png
+File56=tabview.png
+File57=template.png
+File58=text.png
+File59=textarea.png
+File6=chart.png
+File60=toggle.png
+File61=toolbar.png
+File62=tooltip.png
+File63=treegrid.png
+File64=unitlist.png
+File65=uploader.png
+File66=video.png
+File67=window.png
+File7=checkbox.png
+File8=colorboard.png
+File9=colorpicker.png
 FileGroup1=Default Group
 FileGroup10=Default Group
 FileGroup11=Default Group
@@ -132,7 +131,6 @@ FileGroup64=Default Group
 FileGroup65=Default Group
 FileGroup66=Default Group
 FileGroup67=Default Group
-FileGroup68=Default Group
 FileGroup7=Default Group
 FileGroup8=Default Group
 FileGroup9=Default Group
@@ -140,37 +138,46 @@ Group=Default Group
 Library1=jcore
 Library2=jfx
 Library3=banano
-Library4=bananowebix
-Library5=bananopostprocessor
+Library4=bananopostprocessor
+Library5=bananowebix
 Module1=pgFormDesigner
-Module10=dDatePicker
-Module11=dIcon
-Module12=dLabel
-Module13=dRadio
-Module14=dRichSelect
-Module15=dSearch
-Module16=dSelect
-Module17=dSegmented
-Module18=dSlider
-Module19=dSwitch
-Module2=dPager
-Module20=dTabBar
-Module21=dText
-Module22=dTextArea
-Module23=dToggle
-Module24=dUploader
-Module25=dFieldSet
-Module26=dSuggest
-Module3=dDBLList
-Module4=dForm
-Module5=dButton
-Module6=dCheckBox
-Module7=dColorPicker
-Module8=dCombo
-Module9=dCounter
-NumberOfFiles=68
+Module10=dCounter
+Module11=dDatePicker
+Module12=dIcon
+Module13=dLabel
+Module14=dRadio
+Module15=dRichSelect
+Module16=dSearch
+Module17=dSelect
+Module18=dSegmented
+Module19=dSlider
+Module2=dButton
+Module20=dSwitch
+Module21=dTabBar
+Module22=dText
+Module23=dTextArea
+Module24=dToggle
+Module25=dUploader
+Module26=dFieldSet
+Module27=dSuggest
+Module28=dColumn
+Module29=WixTabView1
+Module3=dRow
+Module30=elementmenu
+Module31=modSideBar
+Module32=modToolBar
+Module33=modPropertyBag
+Module34=modCenter
+Module35=dDesignerProperty
+Module4=dPager
+Module5=dDBLList
+Module6=dForm
+Module7=dCheckBox
+Module8=dColorPicker
+Module9=dCombo
+NumberOfFiles=67
 NumberOfLibraries=5
-NumberOfModules=26
+NumberOfModules=35
 Version=7.51
 @EndOfDesignText@
  #Region Project Attributes 
@@ -181,7 +188,7 @@ Sub Process_Globals
 	Public AppName As String = "BANanoWebixFormDesigner"
 	Private Publish As String
 	Private BP As BANanoPostProcessor
-	Private SQL As BANanoSQL
+	Public dbName As String
 End Sub
 
 Sub AppStart (Form1 As Form, Args() As String)
@@ -210,6 +217,12 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'BANano.TranspilerOptions.ShowWarningDeadCode = True
 	'BANano.TranspilerOptions.RemoveDeadCode = True
 	BANano.TranspilerOptions.UseServiceWorker = False
+	'php
+	'set php settings
+	BANano.PHP_NAME = "bananowebixfd.php"
+	BANano.PHPHost = $"http://localhost/${AppName}/"$
+	BANano.PHPAddHeader("Access-Control-Allow-Origin: *")
+	'
 	BANano.Build(Publish)
 	'post processor
 	BP.Initialize
@@ -231,20 +244,27 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready()
-	SQL.OpenWait("fd","fd")
+	Dim sqlite As BANanoSQLite
+	sqlite.Initialize
+	dbName = $"${AppName}.db"$
 	'create forms table
 	Dim tbl As Map = CreateMap()
-	tbl.Put("id", BANanoSQLUtils.DB_STRING)
-	tbl.Put("json", BANanoSQLUtils.DB_STRING)
-	Dim qry As String = BANanoSQLUtils.CreateTable("forms", tbl, "id", "")
-	SQL.ExecuteWait(qry,Null)
+	tbl.Put("id", sqlite.DB_STRING)
+	tbl.Put("json", sqlite.DB_STRING)
+	tbl.put("parentid", sqlite.DB_STRING)
+	Dim qry As String = sqlite.CreateTable("forms", tbl, "id")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	
 	'create items table
+	sqlite.Initialize 
 	Dim els As Map = CreateMap()
-	els.Put("id", BANanoSQLUtils.DB_STRING)
-	els.Put("json", BANanoSQLUtils.DB_STRING)
-	els.Put("tabindex", BANanoSQLUtils.DB_INT)
-	els.put("parentid", BANanoSQLUtils.DB_STRING)
-	Dim qry As String = BANanoSQLUtils.CreateTable("items", els, "id", "")
-	SQL.ExecuteWait(qry,Null)
-	pgFormDesigner.initWait
+	els.Put("id", sqlite.DB_STRING)
+	els.Put("json", sqlite.DB_STRING)
+	els.Put("tabindex", sqlite.DB_INT)
+	els.put("parentid", sqlite.DB_STRING)
+	Dim qry As String = sqlite.CreateTable("items", els, "id")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	pgFormDesigner.init
 End Sub
