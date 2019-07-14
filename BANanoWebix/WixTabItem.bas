@@ -27,6 +27,13 @@ Sub SetClose(b As Boolean) As WixTabItem
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixTabItem
+	Dim os As String = h.HTML
+	TabItem.SetTemplate(os)
+	Return Me
+End Sub
+
 'set body
 Sub SetBody(b As WixElement) As WixTabItem
 	Body = b

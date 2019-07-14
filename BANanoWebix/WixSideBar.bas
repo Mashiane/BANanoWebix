@@ -8,7 +8,7 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public SideBar As WixElement
-	private Items As List
+	Private Items As List
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
@@ -127,6 +127,19 @@ Sub Item As Map
 		SetData(data)
 	End If
 	Return SideBar.item
+End Sub
+
+'set template
+Sub SetTemplate(t As String) As WixSideBar
+	SideBar.SetTemplate(t)
+	Return Me
+End Sub
+
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixSideBar
+	Dim os As String = h.HTML
+	SideBar.SetTemplate(os)
+	Return Me
 End Sub
 
 'set collapsed

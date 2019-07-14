@@ -15,11 +15,10 @@ Sub Init(pgContainer As String)
 	
 	Dim acc As WixAccordion
 	acc.Initialize("")
-	acc.SetHorizontal(False)
 		
-	acc.AddItem("","Column 1","Hellow from column 1",200,False)
-	acc.AddItem("","Column 2","Hellow from column 2",300,True)
-	acc.AddItem("","Column 3","Hellow from column 3",0,True)
+	acc.AddItem("","Column 1","Hellow from column 1",False,True)
+	acc.AddItem("","Column 2","Hellow from column 2",True,True)
+	acc.AddItem("","Column 3","Hellow from column 3",True,True)
 	'
 	Dim R1 As WixRow
 	R1.Initialize("R1")

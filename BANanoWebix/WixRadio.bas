@@ -31,6 +31,12 @@ Sub SetMap(m As Map) As WixRadio
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixRadio
+	Dim os As String = h.HTML
+	Radio.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixRadio
 	Radio.SetName(n)
@@ -103,13 +109,13 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixRadio
-	Radio.Value = v
+	Radio.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixRadio
-	Radio.Label.Text = l
+	Radio.SetLabel(l)
 	Return Me
 End Sub
 
@@ -122,19 +128,19 @@ End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixRadio
-	Radio.Label.Align = a
+	Radio.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixRadio
-	Radio.Label.Position = p
+	Radio.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixRadio
-	Radio.Label.Width = w
+	Radio.SetLabelWidth(w)
 	Return Me
 End Sub
 

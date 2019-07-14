@@ -19,7 +19,7 @@ Public Sub Initialize(iID As String) As WixSlider
 	Slider.Initialize(iID).SetView("slider")
 	Minimum = 0
 	Maximum = 100
-	Slider.Value = 10
+	Slider.SetValue(10)
 	Stepper = 1
 	Slider.SetAttr("title", "#value#")
 	Return Me
@@ -34,6 +34,12 @@ Sub SetMap(m As Map) As WixSlider
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixSlider
+	Dim os As String = h.HTML
+	Slider.SetTemplate(os)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixSlider
@@ -123,13 +129,13 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixSlider
-	Slider.Value = v
+	Slider.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixSlider
-	Slider.Label.Text = l
+	Slider.SetLabel(l)
 	Return Me
 End Sub
 
@@ -141,19 +147,19 @@ End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixSlider
-	Slider.Label.Align = a
+	Slider.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixSlider
-	Slider.Label.Position = p
+	Slider.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixSlider
-	Slider.Label.Width = w
+	Slider.SetLabelWidth(w)
 	Return Me
 End Sub
 

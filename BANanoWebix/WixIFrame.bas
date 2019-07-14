@@ -28,6 +28,12 @@ Sub Item As Map
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixIFrame
+	Dim os As String = h.HTML
+	IFrame.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixIFrame
 	IFrame.SetName(n)

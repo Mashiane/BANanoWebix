@@ -24,6 +24,12 @@ Public Sub Initialize(iID As String) As WixCombo
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixCombo
+	Dim os As String = h.HTML
+	Combo.SetTemplate(os)
+	Return Me
+End Sub
+
 'set reponsive
 Sub SetResponsive(b As Object) As WixCombo
 	Combo.SetResponsive(b)
@@ -117,13 +123,13 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixCombo
-	Combo.Value = v
+	Combo.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixCombo
-	Combo.Label.Text = l
+	Combo.SetLabel(l)
 	Return Me
 End Sub
 
@@ -135,19 +141,19 @@ End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixCombo
-	Combo.Label.Align = a
+	Combo.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixCombo
-	Combo.Label.Position = p
+	Combo.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixCombo
-	Combo.Label.Width = w
+	Combo.SetLabelWidth(w)
 	Return Me
 End Sub
 

@@ -17,6 +17,12 @@ Public Sub Initialize(rID As String) As WixRow
 	Return Me 
 End Sub
 
+Sub CreateResizer(rid As String) As WixResizer  
+	Dim res1 As WixResizer
+	res1.Initialize(rid)
+	Return res1
+End Sub
+
 'set type wide
 Sub SetTypeWide As WixRow
 	Row.SetAttr("type", "wide")
@@ -172,6 +178,13 @@ End Sub
 'set width
 Sub SetWidth(w As Object) As WixRow
 	Row.setwidth(w)
+	Return Me
+End Sub
+
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixRow
+	Dim os As String = h.HTML
+	Row.SetTemplate(os)
 	Return Me
 End Sub
 

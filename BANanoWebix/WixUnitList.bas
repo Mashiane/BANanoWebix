@@ -26,6 +26,12 @@ Sub SetItemHeight(h As Object) As WixUnitList
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixUnitList
+	Dim os As String = h.HTML
+	UnitList.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixUnitList
 	UnitList.SetName(n)

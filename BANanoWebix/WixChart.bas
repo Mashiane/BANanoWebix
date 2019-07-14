@@ -30,6 +30,12 @@ Public Sub Initialize(iID As String) As WixChart
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixChart
+	Dim os As String = h.HTML
+	Chart.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixChart
 	Chart.SetName(n)
@@ -453,31 +459,31 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixChart
-	Chart.Value = v
+	Chart.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixChart
-	Chart.Label.Text = l
+	Chart.SetLabel(l)
 	Return Me
 End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixChart
-	Chart.Label.Align = a
+	Chart.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixChart
-	Chart.Label.Position = p
+	Chart.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixChart
-	Chart.Label.Width = w
+	Chart.SetLabelWidth(w)
 	Return Me
 End Sub
 

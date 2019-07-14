@@ -8,7 +8,7 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public ContextMenu As WixElement
-	private Items As List
+	Private Items As List
 	Private sepCount As Int
 End Sub
 
@@ -18,6 +18,13 @@ Public Sub Initialize(sid As String) As WixContextMenu
 	ContextMenu.Initialize(ID).setview("contextmenu")
 	Items.Initialize 
 	sepCount = 0
+	Return Me
+End Sub
+
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixContextMenu
+	Dim os As String = h.HTML
+	ContextMenu.SetTemplate(os)
 	Return Me
 End Sub
 

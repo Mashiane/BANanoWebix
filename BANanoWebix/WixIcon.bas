@@ -9,7 +9,6 @@ Sub Class_Globals
 	Public ID As String
 	Public Icon As WixElement
 	Private onClick As BANanoObject
-	Private IconName As String
 	Public Parent As WixElement
 End Sub
 
@@ -18,7 +17,6 @@ Public Sub Initialize(bID As String) As WixIcon
 	ID = bID.ToLowerCase
 	Icon.Initialize(ID).SetView("icon")
 	onClick = Null
-	IconName = ""
 	Parent = Null
 	Return Me
 End Sub
@@ -28,6 +26,17 @@ Sub Pop
 	Parent.AddColumns(Item)
 End Sub
 
+Sub SetIcon(i As Object) As WixIcon
+	Icon.SetAttr("icon", i)
+	Return Me
+End Sub
+
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixIcon
+	Dim os As String = h.HTML
+	Icon.SetTemplate(os)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixIcon
@@ -106,12 +115,6 @@ Sub AddToToolbar(tblB As WixToolBar)
 	tblB.Toolbar.AddColumns(Item)
 End Sub
 
-'set icon
-Sub SetIcon(i As String) As WixIcon
-	IconName = i
-	Return Me
-End Sub
-
 'set onclick event
 Sub SetClick(e As BANanoObject) As WixIcon
 	onClick = e
@@ -127,7 +130,6 @@ End Sub
 
 'return the item to add
 Sub Item As Map
-	Icon.SetOnContent("icon", IconName)
 	If onClick <> Null Then
 		Icon.SetAttr("click", onClick)
 	End If
@@ -136,13 +138,13 @@ End Sub
 
 'set height
 Sub SetHeight(h As Object) As WixIcon
-	Icon.Height = h
+	Icon.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
 Sub SetWidth(w As Object) As WixIcon
-	Icon.Width = w
+	Icon.SetWidth(w)
 	Return Me
 End Sub
 

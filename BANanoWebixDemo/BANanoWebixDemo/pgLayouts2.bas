@@ -22,9 +22,9 @@ Sub Init(pgContainer As String)
 	acc.Accordion.SetWidth(300)
 	acc.Accordion.SetTypeWide("")
 	acc.SetMulti(True)
-	acc.AddItem("","Babylon 5","Sheridan<br>Delenn<br>Garibaldi<br>G'Kar<br>Londo",0,False)
-	acc.AddItem("","Star Trek","Kirk<br>Sisko<br>Archer<br>Picard<br>Janeway",0,True)
-	acc.AddItem("","Stargate SG-1","O'Neill<br>Danial<br>Carter<br>Teal'c",0,True)
+	acc.AddItem("","Babylon 5","Sheridan<br>Delenn<br>Garibaldi<br>G'Kar<br>Londo",False,False)
+	acc.AddItem("","Star Trek","Kirk<br>Sisko<br>Archer<br>Picard<br>Janeway",True,False)
+	acc.AddItem("","Stargate SG-1","O'Neill<br>Danial<br>Carter<br>Teal'c",True,False)
 	'add the layout to the columns collection of the page
 	acc.Accordion.AddToColumns(R0.Row)
 	'

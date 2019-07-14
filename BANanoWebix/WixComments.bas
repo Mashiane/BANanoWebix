@@ -27,6 +27,12 @@ Public Sub Initialize(sid As String) As WixComments
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixComments
+	Dim os As String = h.HTML
+	Comments.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixComments
 	Comments.SetName(n)

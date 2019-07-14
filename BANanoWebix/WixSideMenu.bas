@@ -38,6 +38,12 @@ Sub AddItem(meID As String, mValue As String, mhref As String, mIcon As String, 
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixSideMenu
+	Dim os As String = h.HTML
+	SideMenu.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixSideMenu
 	SideMenu.SetName(n)

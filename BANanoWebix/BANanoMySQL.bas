@@ -336,6 +336,21 @@ private Sub Join(delimiter As String, lst As List) As String
 	Return sb.ToString
 End Sub
 
+'read
+Sub Read(tblName As String, primaryKey As String, primaryValue As String) As String
+	Dim qw As Map = CreateMap()
+	qw.Put(primaryKey, primaryValue)
+	Dim qry As String = SelectWhere(tblName, Array("*"), qw,Array(primaryKey))
+	Return qry
+End Sub
+
+'exists
+Sub Exists(tblName As String, primaryKey As String, primaryValue As String) As String
+	Dim qw As Map = CreateMap()
+	qw.Put(primaryKey, primaryValue)
+	Dim qry As String = SelectWhere(tblName, Array(primaryKey), qw,Array(primaryKey))
+	Return qry
+End Sub
 
 'return a sql to select record of table where one exists
 Sub SelectWhere(tblName As String, tblfields As List, tblWhere As Map, orderBy As List) As String
@@ -568,14 +583,11 @@ function prepareStatement($conn,$sql, $types, $values) {
 //update the connection settings with your own settings
 function BANanoMySQL($data) {
 	//define these so that they cannot be changed
-	DEFINE ('DB_HOST', 'localhost');
-	DEFINE ('DB_USER', 'root');
-	DEFINE ('DB_PASSWORD', '');
-	DEFINE ('DB_NAME', 'bananomysql2');
+	require_once 'config.php';
 	//set the header
 	header('content-type: application/json; charset=utf-8');
 	//connect To MySQL
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	//we cannot connect Return an error
 	If ($conn->connect_error) {
 		$response = $conn->connect_error;

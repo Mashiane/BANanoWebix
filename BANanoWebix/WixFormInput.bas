@@ -22,6 +22,13 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixFormInput
+	Dim os As String = h.HTML
+	FormInput.SetTemplate(os)
+	Return Me
+End Sub
+
 'use a map object
 Sub SetMap(m As Map) As WixFormInput
 	For Each strKey As String In m.Keys
@@ -89,13 +96,13 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixFormInput
-	FormInput.Value = v
+	FormInput.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixFormInput
-	FormInput.Label.Text = l
+	FormInput.SetLabel(l)
 	Return Me
 End Sub
 
@@ -107,19 +114,19 @@ End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixFormInput
-	FormInput.Label.Align = a
+	FormInput.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixFormInput
-	FormInput.Label.Position = p
+	FormInput.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixFormInput
-	FormInput.Label.Width = w
+	FormInput.SetLabelWidth(w)
 	Return Me
 End Sub
 

@@ -34,6 +34,13 @@ Sub Class_Globals
 	Private Rules As Map
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixDataTable
+	Dim os As String = h.HTML
+	DataTable.SetTemplate(os)
+	Return Me
+End Sub
+
 'set select row
 Sub SetSelectRow(b As Boolean) As WixDataTable  'ignore
 	SetSelect(DT_SELECT_ROW)

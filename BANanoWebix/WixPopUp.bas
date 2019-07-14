@@ -29,6 +29,12 @@ Sub SetMap(m As Map) As WixPopUp
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixPopUp
+	Dim os As String = h.HTML
+	Popup.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixPopUp
 	Popup.SetName(n)

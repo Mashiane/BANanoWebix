@@ -24,6 +24,12 @@ Sub SetValue(v As String) As WixTextArea
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixTextArea
+	Dim os As String = h.HTML
+	TextArea.SetAttr("template", os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixTextArea
 	TextArea.SetName(n)

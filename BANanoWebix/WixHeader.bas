@@ -20,11 +20,16 @@ End Sub
 'initialize the header
 Public Sub Initialize(sID As String) As WixHeader
 	ID = sID.tolowercase
-	Header.Initialize(ID).SetView("template")
-	Header.TypeOf = "header"
+	Header.Initialize(ID).SetView("template").SetType("header")
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixHeader
+	Dim os As String = h.HTML
+	Header.SetTemplate(os)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixHeader

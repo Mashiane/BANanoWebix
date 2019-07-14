@@ -12,7 +12,7 @@ Sub Class_Globals
 	Public DT_SELECT_ROW As String = "row"
 	Public DT_SELECT_CELL As String = "cell"
 	Public DT_SELECT_COLUMN As String = "column"
-	private Items As List
+	Private Items As List
 End Sub
 
 'Initializes the TreeTableTable sheet
@@ -26,6 +26,13 @@ End Sub
 'set name
 Sub SetName(n As String) As WixTreeTable
 	TreeTable.SetName(n)
+	Return Me
+End Sub
+
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixTreeTable
+	Dim os As String = h.HTML
+	TreeTable.SetTemplate(os)
 	Return Me
 End Sub
 

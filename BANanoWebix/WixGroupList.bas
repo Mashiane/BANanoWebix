@@ -8,7 +8,7 @@ Version=7.51
 Sub Class_Globals
 	Public GroupList As WixElement
 	Public ID As String
-	private Items As List
+	Private Items As List
 End Sub
 
 'Initializes GroupList object
@@ -36,6 +36,12 @@ Sub AddItem(parentID As String, meID As String, mValue As String, mhref As Strin
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixGroupList
+	Dim os As String = h.HTML
+	GroupList.SetTemplate(os)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixGroupList

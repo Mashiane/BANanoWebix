@@ -28,6 +28,12 @@ Sub SetShowFirst(b As Boolean) As WixPager
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixPager
+	Dim os As String = h.HTML
+	pager.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixPager
 	Pager.SetName(n)

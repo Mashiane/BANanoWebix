@@ -140,6 +140,22 @@ Sub UpdateAll(tblName As String, tblFields As Map) As String
 	Return res
 End Sub
 
+'read by a field
+Sub Read(tblName As String, primaryKey As String, primaryValue As String) As String
+	Dim qw As Map = CreateMap()
+	qw.Put(primaryKey, primaryValue)
+	Dim qry As String = SelectWhere(tblName, Array("*"), qw,Array(primaryKey))
+	Return qry
+End Sub
+
+
+'exists
+Sub Exists(tblName As String, primaryKey As String, primaryValue As String) As String
+	Dim qw As Map = CreateMap()
+	qw.Put(primaryKey, primaryValue)
+	Dim qry As String = SelectWhere(tblName, Array(primaryKey), qw,Array(primaryKey))
+	Return qry
+End Sub
 
 'return a sql to select record of table where one exists
 Sub SelectWhere(tblName As String, tblfields As List, tblWhere As Map, orderBy As List) As String
@@ -400,6 +416,43 @@ Sub Insert(tblName As String, tblFields As Map) As String
 	Return res
 End Sub
 
+'return a sql insert statement
+Sub InsertReplace(tblName As String, tblFields As Map) As String
+	Dim sb As StringBuilder
+	Dim columns As StringBuilder
+	Dim values As StringBuilder
+	Dim listOfValues As List = GetMapValues(tblFields)
+	Dim listOfTypes As List = GetMapTypes(tblFields)
+	Dim iCnt As Int
+	Dim iTot As Int
+	sb.Initialize
+	columns.Initialize
+	values.Initialize
+	sb.Append($"REPLACE INTO ${EscapeField(tblName)} ("$)
+	iTot = tblFields.Size - 1
+	For iCnt = 0 To iTot
+		Dim col As String = tblFields.GetKeyAt(iCnt)
+		If iCnt > 0 Then
+			columns.Append(", ")
+			values.Append(", ")
+		End If
+		columns.Append(EscapeField(col))
+		values.Append("?")
+	Next
+	sb.Append(columns.ToString)
+	sb.Append(") VALUES (")
+	sb.Append(values.ToString)
+	sb.Append(")")
+	Dim m As Map
+	m.Initialize
+	m.Put("sql", sb.ToString)
+	m.Put("args", listOfValues)
+	m.Put("types", listOfTypes)
+	m.Put("command", "replace")
+	Dim res As String = Map2Json(m)
+	Return res
+End Sub
+
 'join list to multi value string
 private Sub JoinFields(delimiter As String, lst As List) As String
 	Dim i As Int
@@ -569,6 +622,17 @@ function BANanoSQLite($dbname,$data) {
 			}
 			$res->finalize();
 			$output = json_encode(array("response" => "OK", "data" => $rows));
+	  		echo $output;
+			break;
+		case "replace":
+			$stmt = preparesqlite($db, $sql, $types, $values);
+			$db->exec('BEGIN');
+			$res = $stmt->execute();
+			$db->exec('COMMIT');
+			$last_row_id = $db->lastInsertRowID();
+			$res = Array();
+			$res[] = $changes;
+			$output = json_encode(array("response" => "OK", "data" => $res));
 	  		echo $output;
 			break;
 		case "insert":

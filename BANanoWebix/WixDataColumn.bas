@@ -25,6 +25,13 @@ Public Sub Initialize(cID As String) As WixDataColumn
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixDataColumn
+	Dim os As String = h.HTML
+	DataColumn.SetTemplate(os)
+	Return Me
+End Sub
+
 'set reponsive
 Sub SetResponsive(b As Object) As WixDataColumn
 	DataColumn.SetResponsive(b)

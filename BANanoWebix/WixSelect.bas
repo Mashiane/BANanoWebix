@@ -26,6 +26,12 @@ Sub SetStyle(prop As String, val As String) As WixSelect
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixSelect
+	Dim os As String = h.HTML
+	DropDown.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixSelect
 	DropDown.SetName(n)
@@ -99,13 +105,13 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixSelect
-	DropDown.Value = v
+	DropDown.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixSelect
-	DropDown.Label.Text = l
+	DropDown.SetLabel(l)
 	Return Me
 End Sub
 
@@ -117,19 +123,19 @@ End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixSelect
-	DropDown.Label.Align = a
+	DropDown.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixSelect
-	DropDown.Label.Position = p
+	DropDown.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixSelect
-	DropDown.Label.Width = w
+	DropDown.SetLabelWidth(w)
 	Return Me
 End Sub
 

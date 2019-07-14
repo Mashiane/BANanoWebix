@@ -20,6 +20,13 @@ Public Sub Initialize(bID As String) As WixButton
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixButton
+	Dim os As String = h.HTML
+	Button.SetTemplate(os)
+	Return Me
+End Sub
+
 Sub SetBadge(b As Object) As WixButton
 	Button.SetAttr("badge", b)
 	Return Me
@@ -101,7 +108,7 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixButton
-	Button.Value = v
+	Button.SetValue(v)
 	Return Me
 End Sub
 
@@ -172,8 +179,8 @@ End Sub
 
 'set label
 Sub SetLabel(lbl As String) As WixButton
-	Button.Label.Text = lbl
-	Button.value = lbl
+	Button.SetLabel(lbl)
+	Button.Setvalue(lbl)
 	Return Me
 End Sub
 
@@ -209,13 +216,13 @@ End Sub
 
 'set height
 Sub SetHeight(h As Object) As WixButton
-	Button.Height = h
+	Button.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
 Sub SetWidth(w As Object) As WixButton
-	Button.Width = w
+	Button.SetWidth(w)
 	Return Me
 End Sub
 

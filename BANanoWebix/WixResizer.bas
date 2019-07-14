@@ -22,6 +22,13 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixResizer
+	Dim os As String = h.HTML
+	Resizer.SetTemplate(os)
+	Return Me
+End Sub
+
 'return the item
 Sub Item As Map
 	Return Resizer.item

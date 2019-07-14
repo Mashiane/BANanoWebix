@@ -24,6 +24,12 @@ Public Sub Initialize(sid As String) As WixWindow
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixWindow
+	Dim os As String = h.HTML
+	Window.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixWindow
 	Window.SetName(n)

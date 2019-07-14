@@ -30,6 +30,13 @@ Sub AddStep(elID As String, stitle As String, stext As String, sevent As String)
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixHint
+	Dim os As String = h.HTML
+	Hint.SetTemplate(os)
+	Return Me
+End Sub
+
 Sub SetTop(t As Object) As WixHint
 	Hint.SetAttr("top", t)
 	Return Me

@@ -32,6 +32,12 @@ Sub SetMap(m As Map) As WixLayout
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixLayout
+	Dim os As String = h.HTML
+	Layout.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixLayout
 	Layout.SetName(n)

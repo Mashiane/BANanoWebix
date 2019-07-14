@@ -26,6 +26,12 @@ Public Sub Initialize(iID As String) As WixVideo
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixVideo
+	Dim os As String = h.HTML
+	Video.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixVideo
 	Video.SetName(n)
@@ -115,7 +121,7 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixVideo
-	Video.Value = v
+	Video.SetValue(v)
 	Return Me
 End Sub
 

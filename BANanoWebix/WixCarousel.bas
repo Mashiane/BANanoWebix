@@ -21,6 +21,12 @@ Public Sub Initialize(sid As String) As WixCarousel
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixCarousel
+	Dim os As String = h.HTML
+	Carousel.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixCarousel
 	Carousel.SetName(n)

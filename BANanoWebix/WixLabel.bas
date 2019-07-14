@@ -25,6 +25,12 @@ Sub Item As Map
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixLabel
+	Dim os As String = h.HTML
+	Label.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixLabel
 	Label.SetName(n)
@@ -91,7 +97,7 @@ End Sub
 
 'set label
 Sub SetLabel(l As String) As WixLabel
-	Label.Label.Text = l
+	Label.SetLabel(l)
 	Return Me
 End Sub
 

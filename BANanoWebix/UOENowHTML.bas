@@ -209,6 +209,11 @@ Sub SetHeight(h As String) As UOENowHTML
 	Return Me
 End Sub
 
+Sub SetPadding(PaddingBottom As String) As UOENowHTML
+	AddStyleAttribute("padding", MakePx(PaddingBottom))
+	Return Me
+End Sub
+
 Sub SetPaddingBottom(PaddingBottom As String) As UOENowHTML
 	AddStyleAttribute("padding-bottom", MakePx(PaddingBottom))
 	Return Me
@@ -226,6 +231,11 @@ End Sub
 	
 Sub SetPaddingTop(PaddingTop As String) As UOENowHTML
 	AddStyleAttribute("padding-top", MakePx(PaddingTop))
+	Return Me
+End Sub
+
+Sub SetMargin(MarginBottom As String) As UOENowHTML
+	AddStyleAttribute("margin", MakePx(MarginBottom))
 	Return Me
 End Sub
 

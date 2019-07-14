@@ -32,6 +32,12 @@ Sub SetMap(m As Map) As WixRangeSlider
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixRangeSlider
+	Dim os As String = h.HTML
+	RangeSlider.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixRangeSlider
 	RangeSlider.SetName(n)
@@ -83,13 +89,13 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixRangeSlider
-	RangeSlider.Value = v
+	RangeSlider.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixRangeSlider
-	RangeSlider.Label.Text = l
+	RangeSlider.SetLabel(l)
 	Return Me
 End Sub
 
@@ -101,19 +107,19 @@ End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixRangeSlider
-	RangeSlider.Label.Align = a
+	RangeSlider.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixRangeSlider
-	RangeSlider.Label.Position = p
+	RangeSlider.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixRangeSlider
-	RangeSlider.Label.Width = w
+	RangeSlider.SetLabelWidth(w)
 	Return Me
 End Sub
 

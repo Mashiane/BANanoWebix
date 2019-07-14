@@ -181,5 +181,5 @@ Sub Init(pgContainer As String)
 	pg.AddRows(form1.Item)	
 	'draw the user interface
 	pg.ui
-	pg.DisableIT("cnt") 
+	pg.Disable("cnt") 
 End Sub

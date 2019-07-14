@@ -28,6 +28,12 @@ Sub SetMap(m As Map) As WixMultiView
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixMultiView
+	Dim os As String = h.HTML
+	MultiView.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixMultiView
 	MultiView.SetName(n)

@@ -32,6 +32,12 @@ Sub SetMap(m As Map) As WixTabView
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixTabView
+	Dim os As String = h.HTML
+	TabView.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixTabView
 	TabView.SetName(n)

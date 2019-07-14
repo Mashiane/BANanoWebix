@@ -13,8 +13,7 @@ End Sub
 'initialize the input box
 Public Sub Initialize(iID As String) As WixSection
 	ID = iID.tolowercase
-	Section.Initialize(iID)
-	Section.TypeOf = "section"
+	Section.Initialize(iID).SetType("section")
 	Return Me
 End Sub
 
@@ -27,6 +26,12 @@ Sub SetMap(m As Map) As WixSection
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixSection
+	Dim os As String = h.HTML
+	Section.SetTemplate(os)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixSection

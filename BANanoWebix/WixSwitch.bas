@@ -33,6 +33,12 @@ Sub SetMap(m As Map) As WixSwitch
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixSwitch
+	Dim os As String = h.HTML
+	Switch.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixSwitch
 	Switch.SetName(n)
@@ -100,31 +106,31 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixSwitch
-	Switch.Value = v
+	Switch.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixSwitch
-	Switch.Label.Text = l
+	Switch.SetLabel(l)
 	Return Me
 End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixSwitch
-	Switch.Label.Align = a
+	Switch.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixSwitch
-	Switch.Label.Position = p
+	Switch.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixSwitch
-	Switch.Label.Width = w
+	Switch.SetLabelWidth(w)
 	Return Me
 End Sub
 

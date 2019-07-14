@@ -19,11 +19,17 @@ Public Sub Initialize(iID As String) As WixCounter
 	Counter.Initialize(iID).SetView("counter")
 	Minimum = 0
 	Maximum = 100
-	Counter.Value = 10
+	Counter.SetValue(10)
 	Stepper = 1
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixCounter
+	Dim os As String = h.HTML
+	Counter.SetTemplate(os)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixCounter
@@ -93,13 +99,13 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixCounter
-	Counter.Value = v
+	Counter.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixCounter
-	Counter.Label.Text = l
+	Counter.SetLabel(l)
 	Return Me
 End Sub
 
@@ -123,19 +129,19 @@ End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixCounter
-	Counter.Label.Align = a
+	Counter.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixCounter
-	Counter.Label.Position = p
+	Counter.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixCounter
-	Counter.Label.Width = w
+	Counter.SetLabelWidth(w)
 	Return Me
 End Sub
 

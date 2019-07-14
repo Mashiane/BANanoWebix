@@ -20,7 +20,7 @@ Sub getToolBar As WixToolBar
 	tblBar.CreateIcon("clearform").SetIcon("mdi mdi-trash-can").SetTooltip("Clear form").SetClick(BANano.CallBack(pgFormDesigner,"clearform", Null)).pop
 	'
 	tblBar.CreateIcon("help").SetIcon("mdi mdi-help").SetTooltip("Hints").SetClick(BANano.CallBack(pgFormDesigner,"showhints", Null)).pop
-	tblBar.CreateAvatar("avatar", "./assets/3.jpg").SetTooltip("Click here To change settings").AddToColumns(tblBar.ToolBar)
+	'tblBar.CreateAvatar("avatar", "./assets/3.jpg").SetTooltip("Click here To change settings").AddToColumns(tblBar.ToolBar)
 	tblBar.setPadding(3)
 	Return tblBar
 End Sub

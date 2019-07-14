@@ -383,6 +383,22 @@ Sub UpdateAll(tblName As String, tblFields As Map) As AlaSQLResultSet
 	Return m
 End Sub
 
+'read
+Sub Read(tblName As String, primaryKey As String, primaryValue As String) As AlaSQLResultSet
+	Dim qw As Map = CreateMap()
+	qw.Put(primaryKey, primaryValue)
+	Dim qry As AlaSQLResultSet = SelectWhere(tblName, Array("*"), qw,Array(primaryKey))
+	Return qry
+End Sub
+
+
+'exists
+Sub Exists(tblName As String, primaryKey As String, primaryValue As String) As AlaSQLResultSet
+	Dim qw As Map = CreateMap()
+	qw.Put(primaryKey, primaryValue)
+	Dim qry As AlaSQLResultSet = SelectWhere(tblName, Array(primaryKey), qw,Array(primaryKey))
+	Return qry
+End Sub
 
 'return a sql to select record of table where one exists
 Sub SelectWhere(tblName As String, tblfields As List, tblWhere As Map, orderBy As List) As AlaSQLResultSet

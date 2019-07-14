@@ -57,7 +57,7 @@ Sub Init(pgContainer As String)
 	myForm.Form.AddItem(txta.item)
 	'checkbox
 	Dim cb As WixCheckBox
-	cb.Initialize("cb").SetLabel("Checkbox").SetValue(True).SetLabelOnRight(True) 
+	cb.Initialize("cb").SetLabel("Checkbox").SetValue(True).SetLabelRight(True) 
 	myForm.Form.AddItem(cb.item)
 	'
 	Dim cb1 As WixCheckBox

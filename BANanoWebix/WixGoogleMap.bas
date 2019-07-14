@@ -24,6 +24,12 @@ Public Sub Initialize(sid As String) As WixGoogleMap
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixGoogleMap
+	Dim os As String = h.HTML
+	GoogleMap.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixGoogleMap
 	GoogleMap.SetName(n)

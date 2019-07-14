@@ -125,7 +125,7 @@ End Sub
 
 Sub OpenMenu(meid As String)
 	'toggle sidemenu
-	Dim bVisible As Boolean = pg.IsVisible(smUX)
+	Dim bVisible As Boolean = pg.BoIsVisible(smUX)
 	If bVisible Then
 		pg.Hide(smUX)
 	Else
@@ -144,7 +144,7 @@ End Sub
 Sub windowClick(meID As String)
 	Select Case meID
 	Case "icnclose"
-		pg.Close(winUX)
+		pg.BoClose(winUX)
 	Case Else
 		pg.Message(meID)
 	End Select

@@ -102,9 +102,9 @@ End Sub
 
 
 Sub showit()
-	pg.ShowIt("sect")
+	pg.Show("sect")
 End Sub
 
 Sub hideit()
-	pg.HideIt("sect")
+	pg.Hide("sect")
 End Sub

@@ -26,6 +26,13 @@ Sub SetBadge(b As Object) As WixToggle
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixToggle
+	Dim os As String = h.HTML
+	Toggle.SetTemplate(os)
+	Return Me
+End Sub
+
 'set onclick event
 Sub SetClick(e As BANanoObject) As WixToggle
 	Toggle.SetAttr("click", e)
@@ -121,7 +128,7 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixToggle
-	Toggle.Value = v
+	Toggle.SetValue(v)
 	Return Me
 End Sub
 
@@ -168,8 +175,8 @@ End Sub
 
 'set label
 Sub SetLabel(lbl As String) As WixToggle
-	Toggle.Label.Text = lbl
-	Toggle.value = lbl
+	Toggle.SetLabel(lbl)
+	Toggle.Setvalue(lbl)
 	Return Me
 End Sub
 
@@ -198,13 +205,13 @@ End Sub
 
 'set height
 Sub SetHeight(h As Object) As WixToggle
-	Toggle.Height = h
+	Toggle.SetHeight(h)
 	Return Me
 End Sub
 
 'set width
 Sub SetWidth(w As Object) As WixToggle
-	Toggle.Width = w
+	Toggle.SetWidth(w)
 	Return Me
 End Sub
 

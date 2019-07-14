@@ -19,6 +19,12 @@ Public Sub Initialize(sid As String) As WixContext
 	Return Me
 End Sub
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixContext
+	Dim os As String = h.HTML
+	Context.SetTemplate(os)
+	Return Me
+End Sub
+
 'set master
 Sub SetMaster(pID As String) As WixContext
 	Context.SetAttr("master", pID)

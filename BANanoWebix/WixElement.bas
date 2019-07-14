@@ -8,28 +8,21 @@ Version=7.5
 Sub Class_Globals
 	Public ID As String
 	Public Columns As List
-	Public Width As Object
-	Public Height As Object
 	Public Rows As List
 	Private Element As Map
-	Public Value As Object
 	Public Elements As List
 	Private Attributes As Map
-	Public TypeOf As String
-	Public Container As String
-	Public PlaceHolder As String
-	Public Align As String
-	Type LabelType(Text As String, Width As Int, Position As String, Align As String)
-	Public Label As LabelType
-	Public inputWidth As Int
 	Private HTMLAttributes As Map 
-	Public View As String
-	Public Gravity As Int
-	Public CSS As String
 	Private Styles As Map
-	Private Cells As List
+	Public Cells As List
 	Private elementsConfig As Map
-	Private cols As List
+	Public Cols As List
+End Sub
+
+Sub CreateResizer(rid As String) As WixResizer
+	Dim res1 As WixResizer
+	res1.Initialize(rid)
+	Return res1
 End Sub
 
 'set hidden
@@ -107,6 +100,12 @@ Sub SetAutoHeight(b As Boolean) As WixElement
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixElement
+	Dim os As String = h.HTML
+	SetTemplate(os)
+	Return Me
+End Sub
+
 'set reponsive
 Sub SetResponsive(b As Object) As WixElement
 	SetAttr("responsive", b)
@@ -138,6 +137,17 @@ Sub SetScroll(c As Object) As WixElement
 	Return Me
 End Sub
 
+'set scrollY
+Sub SetScrollY(b As Object) As WixElement
+	SetAttr("scrollY", b)
+	Return Me
+End Sub
+
+'set scrollX
+Sub SetScrollX(b As Object) As WixElement
+	SetAttr("scrollX", b)
+	Return Me
+End Sub
 
 'set parent container for element
 Sub SetContainer(c As String) As WixElement
@@ -172,36 +182,19 @@ End Sub
 'initialize the element
 Public Sub Initialize(sID As String) As WixElement
 	ID = sID.ToLowerCase
-	Width = 0
 	Cells.Initialize
-	cols.Initialize  
+	Cols.Initialize  
 	elementsConfig.Initialize 
-	Height = 0
 	Styles.Initialize 
 	Element = CreateMap("id":ID)
-	Value = ""
-	Container = ""
 	Rows.Initialize
 	Elements.Initialize
 	Columns.Initialize
 	Attributes.Initialize
-	PlaceHolder = ""
-	Align = ""
-	TypeOf = ""
-	Container = ""
-	Label.Initialize 
-	Label.Text = ""
-	Label.Width = 0
-	inputWidth = 0
-	Gravity = 0
-	Label.Align = ""
-	Label.Position = ""
-	CSS = ""            
 	HTMLAttributes.Initialize
-	SetName(ID)
-	SetProperty("localId", ID)
 	Return Me
 End Sub
+
 
 'set the state
 Sub SetState(s As Object) As WixElement
@@ -230,6 +223,24 @@ End Sub
 'set default type
 Sub SetDefaultType(a As String) As WixElement
 	elementsConfig.Put("type", a)
+	Return Me
+End Sub
+
+'set default label align
+Sub SetLabelAlign(a As String) As WixElement
+	SetAttr("labelAlign", a)
+	Return Me
+End Sub
+
+'set default label width
+Sub SetLabelWidth(a As Int) As WixElement
+	SetAttr("labelWidth", a)
+	Return Me
+End Sub
+
+'set default label position
+Sub SetLabelPosition(p As String) As WixElement
+	SetAttr("labelPosition", p)
 	Return Me
 End Sub
 
@@ -341,6 +352,13 @@ Sub SetPadding(padding As String) As WixElement
 	Return Me
 End Sub
 
+
+'set placeholder
+Sub SetPlaceHolder(p As String) As WixElement
+	Element.Put("placeHolder", p)
+	Return Me
+End Sub
+
 'set paddingX 
 Sub SetPaddingX(x As String) As WixElement
 	Element.Put("paddingX", x)
@@ -379,49 +397,49 @@ End Sub
 
 'set gravity
 Sub SetGravity(g As Int) As WixElement
-	Gravity = g
+	SetAttr("gravity", g)
 	Return Me
 End Sub
 
 'set view
 Sub SetView(v As String) As WixElement
-	View = v
+	SetAttr("view", v)
 	Return Me
 End Sub
 
 'setvalue
 Sub SetValue(v As String) As WixElement
-	Value = v
+	SetAttr("value", v)
 	Return Me
 End Sub
 
 'set type
 Sub SetType(t As String) As WixElement
-	TypeOf = t
+	SetAttr("type", t)
 	Return Me
 End Sub
 
 'set height
 Sub SetHeight(h As Object) As WixElement
-	Height = h
+	SetAttr("height", h)
 	Return Me
 End Sub
 
 'set width
 Sub SetWidth(w As Object) As WixElement
-	Width = w
+	SetAttr("width", w)
 	Return Me
 End Sub
 
 'set width
 Sub SetCSS(cs As String) As WixElement
-	CSS = cs
+	SetAttr("css", cs)
 	Return Me
 End Sub
 
 'set an attribute
-Sub SetAttr(attrName As String, attrValue As Object) As WixElement
-	SetProperty(attrName, attrValue)
+Sub SetAttr(p As String, v As Object) As WixElement
+	Element.Put(p,v)
 	Return Me
 End Sub
 
@@ -437,26 +455,11 @@ Sub Item As Map
 		Dim strVal As Object = Attributes.Get(attr)
 		Element.Put(attr,strVal)
 	Next
-	SetOnCondition(Height,"height",Height)
-	SetOnCondition(Width, "width", Width)
-	SetOnContent("container", Container)
-	SetOnContent("type", TypeOf)
-	SetOnContent("view", View)
-	SetOnContent("css", CSS)
-	SetOnContent("value", Value)
-	SetOnContent("align", Align)
-	SetOnContent("label", Label.Text)
-	SetOnContent("placeholder", PlaceHolder)
-	SetOnContent("labelPosition", Label.Position)
-	SetOnContent("labelAlign", Label.Align)
-	SetOnCondition(Gravity,"gravity", Gravity)
-	SetOnCondition(Label.Width,"labelWidth", Label.Width)
 	SetOnCondition(Columns.Size,"columns", Columns)
-	SetOnCondition(cols.Size, "cols", cols)
+	SetOnCondition(Cols.Size, "cols", Cols)
 	SetOnCondition(Rows.Size, "rows", Rows)
 	SetOnCondition(Elements.Size, "elements", Elements)
 	SetOnCondition(Cells.Size, "cells", Cells)
-	SetOnCondition(inputWidth,"inputWidth",inputWidth)
 	SetOnCondition(HTMLAttributes.Size, "attributes", HTMLAttributes)
 	SetOnCondition(elementsConfig.Size, "elementsConfig", elementsConfig)
 	SetOnCondition(Styles.Size, "css", Styles)
@@ -471,13 +474,13 @@ End Sub
 
 'set icon
 Sub SetIcon(i As String) As WixElement
-	SetOnContent("icon", i)
+	SetAttr("icon", i)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixElement
-	SetOnContent("label", l)
+	SetAttr("label", l)
 	Return Me
 End Sub
 
@@ -503,7 +506,7 @@ End Sub
 
 'add item to a column
 Sub AddColumns(itm As Map) As WixElement
-	cols.Add(itm)
+	Cols.Add(itm)
 	Return Me
 End Sub
 
@@ -603,21 +606,28 @@ End Sub
 
 'set align right
 Sub SetAlignRight(r As String) As WixElement 'ignore
-	Align = "right"
+	SetAlign("right")
 	Return Me
 End Sub
 
 'set align center
 Sub SetAlignCenter(r As String) As WixElement 'ignore
-	Align = "center" 
+	SetAlign("center") 
 	Return Me
 End Sub
 
 'set align left
 Sub SetAlignLeft(r As String) As WixElement 'ignore
-	Align = "left"
+	SetAlign("left")
 	Return Me
 End Sub
+
+'set align 
+Sub SetAlign(r As String) As WixElement 'ignore
+	SetAttr("align", r)
+	Return Me
+End Sub
+
 
 'add to elements of parent
 Sub AddToElements(prt As WixElement) As WixElement
@@ -628,13 +638,6 @@ End Sub
 'add a column
 Sub AddColumn(wxEL As WixColumn)
 	AddColumns(wxEL.Item)
-End Sub
-
-'update property when not blank
-Sub SetOnContent(Prop As String, PropValue As String) As WixElement
-	If PropValue = "" Then Return Me
-	Element.put(Prop,PropValue)
-	Return Me
 End Sub
 
 'update property when size > 0
@@ -700,31 +703,31 @@ End Sub
 
 'set type icon button
 Sub SetDefaultTypeIconButton(r As String) As WixElement		'ignore
-	TypeOf = "iconButton"
+	SetDefaultType("iconButton")
 	Return Me
 End Sub
 
 'set image button
 Sub SetDefaultTypeImageButton(r As String) As WixElement  'ignore
-	TypeOf =  "imageButton"
+	SetDefaultType("imageButton")
 	Return Me
 End Sub
 
 'button type image	
 Sub SetDefaultTypeImage(r As String) As WixElement  'ignore
-	TypeOf = "image"
+	SetDefaultType("image")
 	Return Me
 End Sub
 
 'button type icon
 Sub SetDefaultTypeIcon(r As String) As WixElement  'ignore
-	TypeOf = "icon"
+	SetDefaultType("icon")
 	Return Me
 End Sub
 
 'button type iconbuttontop
 Sub SetDefaultTypeIconButtonTop(r As String) As WixElement  'ignore
-	TypeOf = "iconButtonTop"
+	SetDefaultType("iconButtonTop")
 	Return Me
 End Sub
 
@@ -932,12 +935,6 @@ End Sub
 
 Sub CreateRangeSlider(sid As String) As WixRangeSlider 
 	Dim itm As WixRangeSlider 
-	itm.Initialize(sid) 
-	Return itm 
-End Sub
-
-Sub CreateResizer(sid As String) As WixResizer 
-	Dim itm As WixResizer 
 	itm.Initialize(sid) 
 	Return itm 
 End Sub

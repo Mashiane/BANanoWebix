@@ -23,6 +23,12 @@ Sub Item As Map
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixColorPicker
+	Dim os As String = h.HTML
+	ColorPicker.SetTemplate(os)
+	Return Me
+End Sub
+
 'set reponsive
 Sub SetResponsive(b As Object) As WixColorPicker
 	ColorPicker.SetResponsive(b)
@@ -85,37 +91,37 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixColorPicker
-	ColorPicker.Value = v
+	ColorPicker.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixColorPicker
-	ColorPicker.Label.Text = l
+	ColorPicker.SetLabel(l)
 	Return Me
 End Sub
 
 'set width
 Sub SetWidth(w As Object) As WixColorPicker
-	ColorPicker.Width = w
+	ColorPicker.SetWidth(w)
 	Return Me
 End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixColorPicker
-	ColorPicker.Label.Align = a
+	ColorPicker.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixColorPicker
-	ColorPicker.Label.Position = p
+	ColorPicker.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixColorPicker
-	ColorPicker.Label.Width = w
+	ColorPicker.SetLabelWidth(w)
 	Return Me
 End Sub
 

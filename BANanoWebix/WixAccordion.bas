@@ -8,15 +8,44 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Accordion As WixElement
-	Private Horizontal As Boolean
 End Sub
 
 'Initializes the accordion
 Public Sub Initialize(sid As String) As WixAccordion
 	ID = sid.tolowercase
-	Accordion.Initialize(ID)
-	Accordion.SetView("accordion")
-	SetHorizontal(True)
+	Accordion.Initialize(ID).SetView("accordion").SetType("wide")
+	Return Me
+End Sub
+
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixAccordion
+	Dim os As String = h.HTML
+	Accordion.SetTemplate(os)
+	Return Me
+End Sub
+
+Sub SetTypeLine(b As Boolean) As WixAccordion   'ignore
+	Accordion.SetTypeLine("")
+	Return Me
+End Sub
+
+Sub SetTypeClean(b As Boolean) As WixAccordion  'ignore
+	Accordion.SetTypeClean("")
+	Return Me
+End Sub
+
+Sub SetTypeWide(b As Boolean) As WixAccordion  'ignore
+	Accordion.SetTypeWide("")
+	Return Me
+End Sub
+
+Sub SetTypeSpace(b As Boolean) As WixAccordion   'ignore
+	Accordion.SetTypeSpace("")
+	Return Me
+End Sub
+
+Sub SetTypeForm(b As Boolean) As WixAccordion   'ignore
+	Accordion.SetTypeForm("")
 	Return Me
 End Sub
 
@@ -45,6 +74,18 @@ Sub SetResponsiveCell(b As Object) As WixAccordion
 End Sub
 
 
+'set width
+Sub SetWidth(w As Int) As WixAccordion
+	Accordion.SetWidth(w)
+	Return Me
+End Sub
+
+'set height
+Sub SetHeight(w As Int) As WixAccordion
+	Accordion.SetHeight(w)
+	Return Me
+End Sub
+
 'set min width
 Sub SetMinWidth(w As Int) As WixAccordion
 	Accordion.SetMinWidth(w)
@@ -57,45 +98,49 @@ Sub SetMinHeight(h As Int) As WixAccordion
 	Return Me
 End Sub
 
-
 'set collapsed
 Sub SetCollapsed(b As Boolean) As WixAccordion
 	Accordion.SetProperty("collapsed", b)
 	Return Me
 End Sub
 
-'set vertical
-Sub SetHorizontal(b As Boolean) As WixAccordion
-	Horizontal = b
-	Return Me	
-End Sub
-
 'set multi
-Sub SetMulti(b As Boolean) As WixAccordion
+Sub SetMulti(b As Object) As WixAccordion
 	Accordion.SetAttr("multi", b)
 	Return Me
 End Sub
+
+Sub SetMultiMixed(b As Object) As WixAccordion
+	SetMulti("mixed")
+	Return Me
+End Sub
+
 
 'return the item
 Sub Item As Map
 	Return Accordion.item
 End Sub
 
-'add an item
-Sub AddItem(iID As String, header As String, body As String, width As Int, bCollapsed As Boolean) As WixElement
-	iID = iID.tolowercase
-	Dim h As WixElement
-	h.Initialize(iID)
-	h.SetHeader(header)
-	h.SetBody(body)
-	h.SetWidth(width)
-	h.SetCollapsed(bCollapsed)
-	If Horizontal = True Then
-		Accordion.AddRows(h.Item)
+Sub AddAccordionItem(ai As WixAccordionItem, bVertical As Boolean) As WixAccordion
+	If bVertical Then
+		Accordion.AddColumns(ai.Item)
 	Else
-		Accordion.AddColumns(h.Item)
+		Accordion.AddRows(ai.Item)
 	End If
-	Return h
+	Return Me
+End Sub
+
+'add an item
+Sub AddItem(iID As String, header As Object, body As Object, bCollapsed As Boolean,bVertical As Boolean) As WixAccordion
+	Dim ai As WixAccordionItem
+	ai.Initialize(iID).SetHeader(header).SetCollapsed(bCollapsed)
+	ai.SetBody(body)
+	If bVertical Then
+		Accordion.AddColumns(ai.Item)
+	Else
+		Accordion.AddRows(ai.Item)
+	End If
+	Return Me
 End Sub
 
 'use a map object

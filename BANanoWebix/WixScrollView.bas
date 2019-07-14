@@ -24,6 +24,12 @@ Public Sub Initialize(sid As String) As WixScrollView
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixScrollView
+	Dim os As String = h.HTML
+	ScrollView.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixScrollView
 	ScrollView.SetName(n)

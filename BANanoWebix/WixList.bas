@@ -29,6 +29,13 @@ Sub AddItem(iKey As String, iValue As String) As WixList
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixList
+	Dim os As String = h.HTML
+	List.SetTemplate(os)
+	Return Me
+End Sub
+
 'use a map object
 Sub SetMap(m As Map) As WixList
 	For Each strKey As String In m.Keys

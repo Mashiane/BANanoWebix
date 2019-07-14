@@ -8,8 +8,6 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public DateTimePicker As WixElement
-	Private TimePicker As Boolean
-	Private Format As String
 End Sub
 
 'Initializes the date picker
@@ -31,6 +29,12 @@ Sub SetStringResult(b As Boolean) As WixDateTimePicker
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixDateTimePicker
+	Dim os As String = h.HTML
+	DateTimePicker.SetTemplate(os)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixDateTimePicker
@@ -99,57 +103,55 @@ End Sub
 
 'return the item to add
 Sub Item As Map
-	DateTimePicker.SetOnContent("format", Format)
-	DateTimePicker.SetAttr("timepicker",TimePicker)
 	Return DateTimePicker.item
 End Sub
 
 'set value
 Sub SetValue(v As String) As WixDateTimePicker
-	DateTimePicker.Value = v
+	DateTimePicker.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixDateTimePicker
-	DateTimePicker.Label.Text = l
+	DateTimePicker.SetLabel(l)
 	Return Me
 End Sub
 
 'set format
-Sub SetFormat(f As String) As WixDateTimePicker
-	Format = f
+Sub SetFormat(f As Object) As WixDateTimePicker
+	DateTimePicker.SetAttr("format", f)
 	Return Me
 End Sub
 
 'set time picker
 Sub SetTimePicker(t As Boolean) As WixDateTimePicker
-	TimePicker = t
+	DateTimePicker.SetAttr("timepicker", t)
 	Return Me
 End Sub
 
 'set width
 Sub SetWidth(w As Object) As WixDateTimePicker
-	DateTimePicker.Width = w
+	DateTimePicker.SetWidth(w)
 	Return Me
 End Sub
 
 
 'set label align
 Sub SetLabelAlign(a As String) As WixDateTimePicker
-	DateTimePicker.Label.Align = a
+	DateTimePicker.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixDateTimePicker
-	DateTimePicker.Label.Position = p
+	DateTimePicker.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixDateTimePicker
-	DateTimePicker.Label.Width = w
+	DateTimePicker.SetLabelWidth(w)
 	Return Me
 End Sub
 

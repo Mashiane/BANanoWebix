@@ -22,6 +22,12 @@ Public Sub Initialize(iID As String) As WixSegmented
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixSegmented
+	Dim os As String = h.HTML
+	Segmented.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixSegmented
 	Segmented.SetName(n)

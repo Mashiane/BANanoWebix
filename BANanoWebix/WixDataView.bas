@@ -24,6 +24,13 @@ Public Sub Initialize(tID As String) As WixDataView
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixDataView
+	Dim os As String = h.HTML
+	DataView.SetTemplate(os)
+	Return Me
+End Sub
+
 'use a map object
 Sub SetMap(m As Map) As WixDataView
 	For Each strKey As String In m.Keys

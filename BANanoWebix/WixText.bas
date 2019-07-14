@@ -28,6 +28,13 @@ Sub SetHidden(b As Boolean) As WixText
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixText
+	Dim os As String = h.HTML
+	Text.SetTemplate(os)
+	Return Me
+End Sub
+
 'set localid
 Sub SetLocalID(i As String) As WixText
 	Text.SetLocalID(i)
@@ -170,19 +177,19 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixText
-	Text.Value = v
+	Text.SetValue(v)
 	Return Me
 End Sub
 
 'set view
 Sub SetView(v As String) As WixText
-	Text.view = v
+	Text.setview(v)
 	Return Me
 End Sub
 
 'set type
 Sub SetType(t As String) As WixText
-	Text.TypeOf = t
+	Text.SetType(t)
 	Return Me	
 End Sub
 
@@ -206,49 +213,49 @@ End Sub
 
 'set the placeholder
 Sub SetPlaceHolder(ph As String) As WixText
-	Text.PlaceHolder = ph
+	Text.SetPlaceHolder(ph)
 	Return Me
 End Sub
 
 'set the label
 Sub SetLabel(lbl As String) As WixText
-	Text.Label.Text = lbl
+	Text.SetLabel(lbl)
 	Return Me
 End Sub
 
 'set the width
 Sub SetWidth(w As Object) As WixText
-	Text.Width = w
+	Text.SetWidth(w)
 	Return Me
 End Sub
 
 'set the height
 Sub SetHeight(h As Object) As WixText
-	Text.Height = h
+	Text.SetHeight(h)
 	Return Me
 End Sub
 
 'set alignment
 Sub SetAlign(a As String) As WixText
-	Text.Align = a
+	Text.SetAlign(a)
 	Return Me
 End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixText
-	Text.Label.Align = a
+	Text.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixText
-	Text.Label.Position = p
+	Text.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixText
-	Text.Label.Width = w
+	Text.SetLabelWidth(w)
 	Return Me
 End Sub
 

@@ -21,11 +21,50 @@ Sub Class_Globals
 	Public Views As List
 End Sub
 
+Sub MvField(sValue As String, iPosition As Int, Delimiter As String) As String
+	If sValue.Length = 0 Then Return ""
+	Dim xPos As Int: xPos = sValue.IndexOf(Delimiter)
+	If xPos = -1 Then Return sValue
+	Dim mValues() As String
+	Dim tValues As Int
+	If sValue.EndsWith(Delimiter) Then sValue = sValue & " "
+	mValues = BANano.Split(Delimiter, sValue)
+	tValues = mValues.Length -1
+	Select Case iPosition
+		Case -1
+			Return mValues(tValues)
+		Case -2
+			Return mValues(tValues - 1)
+		Case -3
+			Dim sb As StringBuilder
+			sb.Initialize
+			Dim startcnt As Int
+			For startcnt = 1 To tValues
+				sb.Append(mValues(startcnt)).append(Delimiter)
+			Next
+			sb.Remove(sb.Length-Delimiter.Length,sb.Length)
+			Return sb.tostring
+		Case Else
+			iPosition = iPosition - 1
+			If iPosition <= -1 Then Return mValues(tValues)
+			If iPosition > tValues Then Return ""
+			Return mValues(iPosition)
+	End Select
+End Sub
+
+
 'this will also set the extra folder name
 Sub SetAppName(aName As String) As WixPage
 	Dim extraFolder As String = $"http://localhost/${aName}/extras"$
 	SetExtrasFolder(extraFolder)
 	Return Me
+End Sub
+
+'set values using json
+Sub SetValuesJSON(t As String, j As String)
+	t = t.ToLowerCase
+	Dim mm As Map = Json2Map(j)
+	SetValues(t,mm)
 End Sub
 
 Sub MvCount(strMV As String, Delimiter As String) As Int
@@ -292,7 +331,7 @@ End Sub
 Sub SetContainer(contID As String) As WixPage
 	contID = contID.tolowercase
 	Dim sKey As String = "#" & contID
-	Page.Container = contID
+	Page.SetContainer(contID)
 	BANano.GetElement(sKey).empty
 	Return Me
 End Sub
@@ -303,11 +342,39 @@ Sub Define(eID As String, properties As Map)
 	Dollar.Selector(eID).RunMethod("define",Array(properties))
 End Sub
 
+'update properties
+Sub Update(eid As String, propertyMap As Map)
+	eid = eid.tolowercase
+	Define(eid, propertyMap)
+	Refresh(eid)
+End Sub
+
+'update a single property
+Sub UpdateProperty(eID As String, prop As String, val As String)
+	eID = eID.tolowercase
+	Dim pv As Map = CreateMap()
+	pv.Put(prop, val)
+	Define(eID, pv)
+	Refresh(eID)
+End Sub
+
 'select a node to a tree
 Sub SelectItem(treeID As String, nodeID As String)
 	treeID = treeID.ToLowerCase
 	nodeID = nodeID.tolowercase
 	Dollar.Selector(treeID).RunMethod("select", Array(nodeID))
+End Sub
+
+'collapse an item
+Sub Collapse(nodeID As String)
+	nodeID = nodeID.tolowercase
+	Dollar.Selector(nodeID).RunMethod("collapse", Null)
+End Sub
+
+'expand an item
+Sub Expand(nodeID As String)
+	nodeID = nodeID.tolowercase
+	Dollar.Selector(nodeID).RunMethod("expand", Null)
 End Sub
 
 'set a hint for input element
@@ -383,6 +450,18 @@ End Sub
 Sub Refresh(eID As String)
 	eID = eID.tolowercase
 	Dollar.Selector(eID).RunMethod("refresh",Null)
+End Sub
+
+'replace
+Sub ReplaceView(config As Map, parentid As String, childid As String)
+	parentid = parentid.ToLowerCase
+	childid = childid.tolowercase
+	'get the parent
+	Dim parent As BANanoObject = Dollar.Selector(parentid)
+	'get the child
+	Dim child As BANanoObject = Dollar.Selector(childid)
+	'run the replace
+	webix.RunMethod("ui", Array(parent,child))
 End Sub
 
 'freeze row
@@ -528,25 +607,25 @@ Sub GetValues(itm As String) As Map
 End Sub
 
 'hide an element
-Sub HideIT(itmID As String)
+Sub Hide(itmID As String)
 	itmID = itmID.ToLowerCase
 	Dollar.Selector(itmID).RunMethod("hide","")
 End Sub
 
 'show an element
-Sub ShowIT(itmID As String)
+Sub Show(itmID As String)
 	itmID = itmID.ToLowerCase
 	Dollar.Selector(itmID).RunMethod("show","")
 End Sub
 
 'enable an element
-Sub EnableIT(itmID As String)
+Sub Enable(itmID As String)
 	itmID = itmID.ToLowerCase
 	Dollar.Selector(itmID).RunMethod("enable","")
 End Sub
 
 'disable an element
-Sub DisableIT(itmID As String)
+Sub Disable(itmID As String)
 	itmID = itmID.ToLowerCase
 	Dollar.Selector(itmID).RunMethod("disable","")
 End Sub
@@ -736,9 +815,9 @@ Sub OnAfterUnSelect(eID As String, cb As BANanoObject)
 End Sub
 
 'serialize all data
-Sub Serialize(eID As String, bAll As Boolean) As List
+Sub Serialize(eID As String) As List
 	eID = eID.ToLowerCase
-	Dim res As List = Dollar.Selector(eID).RunMethod("serialize",Array(bAll)).result
+	Dim res As List = Dollar.Selector(eID).RunMethod("serialize",Array(Null,True))
 	Return res
 End Sub
 
@@ -803,6 +882,22 @@ End Sub
 Sub SetBottomText(eID As String, eText As String)
 	eID = eID.tolowercase
 	Dollar.Selector(eID).RunMethod("setBottomText",Array(eText))
+End Sub
+
+'add a view
+Sub AddView(parentid As String, itm As Map)
+	parentid = parentid.tolowercase
+	Dim bo As BANanoObject = UX(itm)
+	Dim prt As BANanoObject = Dollar.Selector(parentid)
+	prt.RunMethod("addView",Array(bo))
+End Sub
+
+
+'add a view
+Sub RemoveView(parentid As String, childid As String)
+	parentid = parentid.tolowercase
+	childid = childid.tolowercase
+	Dollar.Selector(parentid).RunMethod("removeView",Array(childid))
 End Sub
 
 'Start hint
@@ -958,32 +1053,26 @@ Sub UX(m As Map) As BANanoObject
 End Sub
 
 'show an element
-Sub Show(itm As BANanoObject)
+Sub BOShow(itm As BANanoObject)
 	itm.RunMethod("show", Null)
 End Sub
 
-'show window
-Sub ShowWindow(itm As BANanoObject)
-	Show(itm)
-End Sub
-
 'show an element
-Sub Hide(itm As BANanoObject)
+Sub BOHide(itm As BANanoObject)
 	itm.RunMethod("hide", Null)
 End Sub
 
-
 'Close an element
-Sub Close(itm As BANanoObject)
+Sub BOClose(itm As BANanoObject)
 	itm.RunMethod("close", Null)
 End Sub
 
-
 'is visible
-Sub IsVisible(itm As BANanoObject) As Boolean
+Sub BOIsVisible(itm As BANanoObject) As Boolean
 	Dim res As Boolean = itm.RunMethod("isVisible", Null).result
 	Return res
 End Sub
+
 
 'add context
 Sub AddContext(ctx As WixContext) As BANanoObject

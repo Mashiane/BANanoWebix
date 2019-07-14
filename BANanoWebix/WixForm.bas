@@ -27,6 +27,13 @@ Public Sub Initialize(fID As String) As WixForm
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixForm
+	Dim os As String = h.HTML
+	Form.SetTemplate(os)
+	Return Me
+End Sub
+
 Sub SetBorderless(b As Boolean) As WixForm
 	Form.SetAttr("borderless", b)
 	Return Me
@@ -189,13 +196,13 @@ End Sub
 
 'set width
 Sub SetWidth(w As Object) As WixForm
-	Form.Width = w
+	Form.SetWidth(w)
 	Return Me
 End Sub
 
 'set height
 Sub SetHeight(h As Object) As WixForm
-	Form.Height = h
+	Form.SetHeight(h)
 	Return Me
 End Sub
 

@@ -8,7 +8,6 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public RichSelect As WixElement
-	Private Text As Object
 	Private Options As List
 End Sub
 
@@ -17,7 +16,6 @@ Public Sub Initialize(iID As String) As WixRichSelect
 	ID = iID.tolowercase
 	RichSelect.Initialize(iID).SetView("richselect")
 	Options.Initialize
-	Text = ""
 	Return Me
 End Sub
 
@@ -30,6 +28,12 @@ Sub SetMap(m As Map) As WixRichSelect
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixRichSelect
+	Dim os As String = h.HTML
+	RichSelect.SetTemplate(os)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixRichSelect
@@ -82,14 +86,13 @@ End Sub
 
 'return the item
 Sub Item As Map
-	RichSelect.SetOnContent("text",Text)
 	RichSelect.SetAttr("options", Options)
 	Return RichSelect.item
 End Sub
 
 'set text
 Sub SetText(t As String) As WixRichSelect
-	Text = t
+	RichSelect.SetAttr("text", t)
 	Return Me
 End Sub
 
@@ -110,32 +113,32 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixRichSelect
-	RichSelect.Value = v
+	RichSelect.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixRichSelect
-	RichSelect.Label.Text = l
+	RichSelect.SetLabel(l)
 	Return Me
 End Sub
 
 
 'set label align
 Sub SetLabelAlign(a As String) As WixRichSelect
-	RichSelect.Label.Align = a
+	RichSelect.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixRichSelect
-	RichSelect.Label.Position = p
+	RichSelect.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixRichSelect
-	RichSelect.Label.Width = w
+	RichSelect.SetLabelWidth(w)
 	Return Me
 End Sub
 

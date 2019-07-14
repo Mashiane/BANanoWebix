@@ -24,6 +24,12 @@ Sub AddRows(itm As Map) As WixColumn
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixColumn
+	Dim os As String = h.HTML
+	Column.SetTemplate(os)
+	Return Me
+End Sub
+
 ' set padding
 Sub SetPadding(padding As Object) As WixColumn
 	Column.SetPadding(padding)

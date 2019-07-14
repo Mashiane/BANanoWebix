@@ -18,6 +18,12 @@ Public Sub Initialize(iID As String) As WixSearch
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixSearch
+	Dim os As String = h.HTML
+	Search.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixSearch
 	Search.SetName(n)
@@ -84,13 +90,13 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixSearch
-	Search.Value = v
+	Search.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixSearch
-	Search.Label.Text = l
+	Search.SetLabel(l)
 	Return Me
 End Sub
 
@@ -102,19 +108,19 @@ End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixSearch
-	Search.Label.Align = a
+	Search.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixSearch
-	Search.Label.Position = p
+	Search.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixSearch
-	Search.Label.Width = w
+	Search.SetLabelWidth(w)
 	Return Me
 End Sub
 

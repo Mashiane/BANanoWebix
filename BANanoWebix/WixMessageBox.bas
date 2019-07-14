@@ -25,6 +25,13 @@ Sub SetTitle(t As Object) As WixMessageBox
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixMessageBox
+	Dim os As String = h.HTML
+	MessageBox.SetTemplate(os)
+	Return Me
+End Sub
+
 'set text
 Sub SetText(t As Object) As WixMessageBox
 	MessageBox.SetAttr("text", t)

@@ -23,6 +23,12 @@ Sub Item As Map
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixFlexLayout
+	Dim os As String = h.HTML
+	FlexLayout.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixFlexLayout
 	FlexLayout.SetName(n)

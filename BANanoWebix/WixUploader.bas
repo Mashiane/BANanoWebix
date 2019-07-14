@@ -25,6 +25,12 @@ Sub SetValue(v As String) As WixUploader
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixUploader
+	Dim os As String = h.HTML
+	Uploader.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixUploader
 	Uploader.SetName(n)

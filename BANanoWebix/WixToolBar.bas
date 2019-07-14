@@ -24,6 +24,12 @@ Public Sub Initialize(sID As String) As WixToolBar
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixToolBar
+	Dim os As String = h.HTML
+	ToolBar.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixToolBar
 	ToolBar.SetName(n)

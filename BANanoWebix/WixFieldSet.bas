@@ -23,6 +23,12 @@ Public Sub Initialize(sid As String) As WixFieldSet
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixFieldSet
+	Dim os As String = h.HTML
+	fieldset.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixFieldSet
 	FieldSet.SetName(n)

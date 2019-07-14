@@ -84,27 +84,25 @@ Sub Init()
 	tree.Initialize("tree").SetSelect(True).SetScroll(True).SetWidth(300).SetTypeLineTree(True).SetBorderLess(False)
 	'
 	R2.AddColumns(tree.Item)
-	'add a resizer
-	Dim res1 As WixResizer
-	res1.Initialize("")
-	R2.AddColumns(res1.item)
-	'
-	Dim formholder As WixRow = modCenter.getCenter
-	R2.AddColumns(formholder.Item)
+	R2.CreateResizer("").AddToColumns(R2.Row)
 	
-	'
-	'add a resizer
-	Dim res1 As WixResizer
-	res1.Initialize("")
-	R2.AddColumns(res1.item)
 	'
 	propBag.Initialize("propbag").SetWidth(300).setnamewidth(150).SetScroll(True)
 	Dim frm As WixForm = modPropertyBag.getPropertyBag
 	R2.AddColumns(frm.Item)
-	pg.AddRow(R2)
+	R2.CreateResizer("").AddToColumns(R2.Row)
+	'	
+	Dim formholder As WixRow = modCenter.getCenter
 	
+	R2.AddColumns(formholder.Item)
+	pg.AddRow(R2)
 	'
 	pg.ui
+	'hide some things
+	pg.Hide("testconnect")
+	pg.Hide("propadd")
+	pg.Hide("add_row")
+	pg.Hide("add_column")
 	'
 	'side bar click
 	Dim meid As Map
@@ -122,6 +120,21 @@ Sub Init()
 	pg.StartHint(hints)
 End Sub
 
+Sub add_row
+	sidebar_click("row")
+End Sub
+
+Sub add_column
+	sidebar_click("column")
+End Sub
+
+'test the connection to the database
+Sub testconnect
+	'get the contents of the property bag
+	Dim cm As Map = pg.GetValues("propbag")
+	
+End Sub
+
 'show window to add multiple elements
 Sub multiels
 	'see selected treeitem
@@ -130,7 +143,7 @@ Sub multiels
 		pg.Message_Error("Please select the parent item from the tree first, then select the element you want to add! Remember to click Save in the property bag when done.")
 		Return
 	End If
-	pg.ShowWindow(CreateWindow)
+	pg.boShow(CreateWindow)
 End Sub
 
 Sub showhints
@@ -138,20 +151,21 @@ Sub showhints
 End Sub
 
 Sub refreshapp
-	'
 	ClearPreviewIT
 	ClearCodeIT
 	RefreshTreeWait
 End Sub
 
 Sub ClearPreviewIT
-	Dim opt As Map = CreateMap("template": div.HTML)
+	Dim div As UOENowHTML
+	div.Initialize("previewit","div").SetStyle("width","100%").SetStyle("height","100%")
+	Dim opt As Map = CreateMap("template": div.html)
 	pg.Define("previewit", opt)
 	pg.Refresh("previewit")
 End Sub
 
 Sub ClearCodeIT
-	Dim opt1 As Map = CreateMap("template": code.HTML)
+	Dim opt1 As Map = CreateMap("template": "")
 	pg.Define("codeit", opt1)
 	pg.Refresh("codeit")
 End Sub
@@ -160,6 +174,30 @@ End Sub
 Sub RefreshTreeWait
 	'clear tree
 	pg.ClearAll("tree")
+	'
+	pg.AddNode("tree", "", "connection", "Database", "", pg.EnumWixIcons.Folder,"","",True)
+	'load tables
+	sqlite.Initialize
+	qry = sqlite.SelectAll("tables", Array("key"), Array("key"))
+	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	rs = sqlite.GetResultSet(qry, res)
+	For Each fitem As Map In rs.result
+		Dim key As String = fitem.Get("key")
+		pg.AddNode("tree", "connection", key, key, "", pg.EnumWixIcons.Folder,"","",True)
+	Next
+	'
+	'load fields
+	sqlite.Initialize
+	qry = sqlite.SelectAll("fields", Array("key","tablename"), Array("key"))
+	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	rs = sqlite.GetResultSet(qry, res)
+	For Each fitem As Map In rs.result
+		Dim key As String = fitem.Get("key")
+		Dim tablename As String = fitem.Get("tablename")
+		Dim tblKey As String = $"table.${tablename}"$
+		pg.AddNode("tree", tblKey, key, key, "", pg.EnumWixIcons.Folder,"","",True)
+	Next
+		
 	'load all forms
 	sqlite.Initialize
 	qry = sqlite.SelectAll("forms", Array("id"), Array("id"))
@@ -184,12 +222,137 @@ Sub RefreshTreeWait
 	pg.Refresh("tree")
 End Sub
 
+
+Sub AddPrimaryKey
+	Dim tb As Map = pg.GetValues("propbag")
+	Dim tbname As String = tb.GetDefault("value","")
+	Dim pk As String = tb.GetDefault("primarykey","")
+	Dim ft As String = tb.GetDefault("type","")
+	'
+	Dim k As String = $"field.${tbname}.${pk}"$
+	'
+	Dim nf As Map = CreateMap()
+	nf.Put("key", k)
+	nf.put("id", "field")
+	nf.put("tablename", tbname)
+	nf.Put("value", pk)
+	'
+	Dim jsonm As Map = CreateMap()
+	jsonm.Put("type", ft)
+	jsonm.Put("length", "20")
+	jsonm.put("id", "field")
+	jsonm.put("tablename", tbname)
+	jsonm.Put("value", pk)
+	'
+	Dim json As String = pg.Map2Json(jsonm)
+	nf.Put("json", json)
+	'
+	'replace
+	sqlite.Initialize
+	sqlite.AddStrings(Array("id"))
+	'replace complete record
+	qry = sqlite.InsertReplace("fields", nf)
+	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	'check existence
+	sqlite.initialize
+	sqlite.AddStrings(Array("id"))
+	qry = sqlite.Exists("fields", "key", k)
+	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	rs = sqlite.GetResultSet(qry,res)
+	pg.Message(rs.result.size & " record(s) affected!")
+End Sub
+
+Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.append("'Copy this code to Main.BANano_Ready").Append(CRLF).Append(CRLF)
+	sb.Append("'create the table").Append(CRLF)
+	sb.append("Dim newTable As Map = CreateMap()").Append(CRLF)
+	'
+	For Each fldmap As Map In rsx.result
+		Dim json As String = fldmap.Get("json")
+		Dim fmap As Map = pg.Json2Map(json)
+		Dim fldname As String = fmap.Get("value")
+		Dim fldtype As String = fmap.Get("type")
+		Dim fldLeng As String = fmap.get("length")
+		'
+		sb.Append($"newTable.put("${fldname}","${fldtype}")"$).Append(CRLF)
+	Next
+	sb.append(CRLF)
+	sb.append("'initialize the helper class").Append(CRLF)
+	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
+	sb.append("alaSQL.Initialize").append(CRLF)
+	sb.Append("'generate the create table sql").Append(CRLF)
+	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.CreateTable("${tblName}", newTable, "${priKey}")"$).Append(CRLF)
+	sb.append("'execute the create table command").Append(CRLF)
+	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF).Append(CRLF)
+	'
+	sb.Append("'This code should be copied to your modules for CRUD").Append(CRLF)
+	sb.Append("'CREATE").Append(CRLF)
+	sb.Append("'insert record to table").Append(CRLF)
+	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
+	sb.Append("'initialize the helper class").Append(CRLF)
+	sb.append("alaSQL.Initialize").append(CRLF)
+	sb.Append("'Get values from the form").Append(CRLF)
+	sb.append($"Dim rec As Map = pg.GetValues(formName)"$).Append(CRLF)
+	sb.Append("'save record to the database").Append(CRLF)
+	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.Insert("${tblName}", rec)"$).Append(CRLF)
+	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF).Append(CRLF)
+	'
+	sb.Append("'READ").Append(CRLF)
+	sb.Append("'read record from table").append(CRLF)
+	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
+	sb.Append("'initialize the helper class").Append(CRLF)
+	sb.append("alaSQL.Initialize").append(CRLF)
+	sb.Append("'generate the select where statement").append(CRLF)
+	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.Read("${tblName}", "${priKey}", priValue)"$).Append(CRLF)
+	sb.append($"rs.result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+	sb.Append("'the record was found, set the values to the form").Append(CRLF)
+	sb.Append("If rs.result.size > 0 then").Append(CRLF)
+	sb.Append("Dim rec As Map = rs.result.Get(0)").Append(CRLF)
+	sb.Append("'set returned map to form").append(CRLF)
+	sb.Append($"pg.SetValues(formName, rec)"$).Append(CRLF)
+	sb.Append("End If").Append(CRLF)
+	Return sb.tostring
+End Sub
+
+'add a child
+Sub prop_add
+	Dim cm As Map = pg.GetValues("propbag")
+	Dim pid As String = cm.GetDefault("id","")
+	Dim value As String = cm.GetDefault("value","")
+	Dim tablename As String = cm.GetDefault("tablename","")
+	Select Case pid
+	Case "connection"
+		'add a table
+		sidebar_click("table")
+	Case "table"
+		'add a field
+		sidebar_click("field")
+	Case "field"
+		'add a field
+		Dim k As String = $"table.${tablename}"$
+		'select the table
+		pg.SelectItem("tree", k)
+		sidebar_click("field")
+	Case Else
+		'add a textbox	
+		sidebar_click("text")
+	End Select
+End Sub
+
 'save the item
 Sub prop_saveWait
 	'get the property bag
+	
 	Dim prop As Map = pg.GetValues("propbag")
-	Dim v As String = prop.Get("view")
+	Dim v As String = prop.GetDefault("view","")
 	Dim i As String = prop.Get("id")
+	Dim value As String = prop.GetDefault("value","")
+	Dim tablename As String = prop.GetDefault("tablename","")
+	Dim autoincrement As String = prop.GetDefault("autoincrement","")
+	Dim primarykey As String = prop.GetDefault("primarykey","")
+	
 	'ensure id is always lowercase
 	i = i.tolowercase
 	prop.Put("id", i)
@@ -203,13 +366,83 @@ Sub prop_saveWait
 	json = BANano.ToJson(prop)
 	'
 	Select Case i
+	Case "field"
+		'save a field
+		Dim key As String = $"field.${tablename}.${value}"$
+		sqlite.Initialize
+		sqlite.AddStrings(Array("id"))
+		'new connect record
+		rec = CreateMap()
+		rec.Put("id", i)
+		rec.Put("json", json)
+		rec.Put("key", key)
+		rec.Put("value", value)
+		rec.Put("tablename", tablename)
+		'replace complete record
+		qry = sqlite.InsertReplace("fields", rec)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		'check existence
+		sqlite.initialize
+		sqlite.AddStrings(Array("id"))
+		qry = sqlite.Exists("fields", "key", key)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		pg.Message(rs.result.size & " record(s) affected!")
+	Case "table"
+		Dim key As String = $"table.${value}"$
+		sqlite.Initialize
+		sqlite.AddStrings(Array("id"))
+		'new connect record
+		rec = CreateMap()
+		rec.Put("id", i)
+		rec.Put("json", json)
+		rec.Put("key", key)
+		rec.Put("value", value)
+		'replace complete record
+		qry = sqlite.InsertReplace("tables", rec)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		'check existence
+		sqlite.initialize
+		sqlite.AddStrings(Array("id"))
+		qry = sqlite.Exists("tables", "key", key)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		pg.Message(rs.result.size & " record(s) affected!")
+		'
+		'add primary key
+		AddPrimaryKey
+		'select fields for table
+		sqlite.initialize
+		sqlite.AddStrings(Array("tablename"))
+		qry = sqlite.SelectWhere("fields", Array("json"), CreateMap("tablename":value),Array("value"))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		'generate code
+		Dim tcode As String = CreateTableCode(value,primarykey,rs)
+		SourceCodePreview(tcode)
+	Case "connection"
+		pg.collapse("preview")
+		pg.Expand("code")
+		sqlite.Initialize
+		sqlite.AddStrings(Array("id"))
+		'new connect record
+		rec = CreateMap()
+		rec.Put("id", i)
+		rec.Put("json", json)
+		'replace complete record
+		qry = sqlite.InsertReplace("connect", rec)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		'check existence
+		sqlite.initialize
+		sqlite.AddStrings(Array("id"))
+		qry = sqlite.Exists("connect", "id", "connection")
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		pg.Message(rs.result.size & " record(s) affected!")
+		'generate the code for the connection
+		Dim ccode As String = dConnection.ConnectionCode(prop)
+		SourceCodePreview(ccode)
 	Case "form"
-		'does the record exist, if not add it
-		'preview the item on designer
-		Dim m As Map = CreateView(prop)
-		Dim m1 As Map = SourceCode(m,prop)
-		PreviewCode(m1)
-		
 		sqlite.initialize
 		sqlite.AddStrings(Array("id"))
 		qry = sqlite.SelectWhere("forms", Array("*"), CreateMap("id":i),Array("id"))
@@ -237,6 +470,8 @@ Sub prop_saveWait
 			rs = sqlite.GetResultSet(qry,res)
 			pg.Message_Success(rs.result.size & " record(s) affected!")
 		End If
+		'Dim formView As Map = CreateView(prop)
+		'SourceCodePreview1(formView,prop)
 	Case Else
 		'check if we have parent on tree
 		If p <> "" Then
@@ -249,8 +484,7 @@ Sub prop_saveWait
 	
 		'preview the item on designer	
 		Dim m As Map = CreateView(prop)
-		Dim m1 As Map = SourceCode(m,prop)
-		PreView(m,m1)
+		SourceCodePreview1(m,prop)
 		'save record to db, does it exist
 		sqlite.Initialize 
 		sqlite.AddStrings(Array("id"))
@@ -314,14 +548,49 @@ End Sub
 
 Sub deletepropwait(confirmresult As Boolean)
 	If confirmresult = False Then Return
-	sqlite.initialize
-	sqlite.AddStrings(Array("id"))
-	qry = sqlite.DeleteWhere("items",CreateMap("id":delID))
-	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
-	rs = sqlite.GetResultSet(qry,res)
-	pg.Message_Success(rs.result.size & " record(s) affected!")
-	refreshapp
+	Dim rp As Map = pg.GetValues("propbag")
+	delID = rp.Get("id")
+	Dim value As String = rp.GetDefault("value", "")
+	Dim tablename As String = rp.GetDefault("tablename", "")
+	Dim key As String = $"table.${value}"$
+	Select Case delID
+	Case "field"
+		key = $"field.${tablename}.${value}"$
+		sqlite.initialize
+		sqlite.AddStrings(Array("key"))
+		qry = sqlite.DeleteWhere("fields",CreateMap("key":key))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		pg.Message_Success(rs.result.size & " record(s) affected!")
+		refreshapp
+	Case "table"	
+		'we are deleting a table
+		sqlite.initialize
+		sqlite.AddStrings(Array("id"))
+		qry = sqlite.DeleteWhere("tables",CreateMap("key":key))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		'delete fields
+		sqlite.Initialize
+		sqlite.AddStrings(Array("tablename"))
+		qry = sqlite.DeleteWhere("fields",CreateMap("tablename":value))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		pg.Message_Success(rs.result.size & " record(s) affected!")
+		refreshapp
+	Case Else
+		sqlite.initialize
+		sqlite.AddStrings(Array("id"))
+		qry = sqlite.DeleteWhere("items",CreateMap("id":delID))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		pg.Message_Success(rs.result.size & " record(s) affected!")
+		refreshapp
+	End Select
+	propBag.Clear
+	propBag.Refresh(pg)
 End Sub
+
 
 'create the view object from saved / property bag
 Sub CreateView(properties As Map) As Map
@@ -423,10 +692,10 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 	sb.Append($"${i}.Initialize("${i}")"$).Append("<br>")
 	For Each strKey As String In m.Keys
 		If strKey = "id" Then Continue
-		'If strKey = "container" Then Continue
-		'If strKey = "view" Then Continue
+		If strKey = "container" Then Continue
+		If strKey = "view" Then Continue
 		If strKey = "parentid" Then Continue
-		'If strKey = "localId" Then Continue
+		If strKey = "localId" Then Continue
 		If strKey = "tabindex" Then Continue
 		Dim strVal As Object = m.Get(strKey)
 		Dim k As String = Capitalize(strKey)
@@ -443,7 +712,20 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 	Return sb.tostring
 End Sub
 
-Sub SourceCode(m As Map,original As Map) As Map
+Sub SourceCodePreview(script As String)
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append("<pre>")
+	sb.Append(script)
+	sb.Append("</pre>")
+	'
+	Dim scode As String = sb.tostring 
+	pg.Define("codeit", CreateMap("template":scode))
+	pg.Refresh("codeit")
+End Sub
+
+Sub SourceCodePreview1(m As Map,original As Map)
+	ClearPreviewIT
 	'get the source code of the item
 	Dim elCode As String = SourceCodeItem(m, original)
 	'
@@ -453,31 +735,106 @@ Sub SourceCode(m As Map,original As Map) As Map
 	sb.Append(elCode)
 	sb.Append("</pre>")
 	'
-	Dim eout As WixElement
-	eout.Initialize("")
-	eout.SetAttr("container", "codeit")
+	Dim scode As String = sb.tostring
+	pg.Define("codeit", CreateMap("template":scode))
+	pg.Refresh("codeit")
 	'
-	eout.SetTemplate(sb.ToString)
-	Return eout.Item
-End Sub
-
-'preview the item from saved map / property bag
-Sub PreView(m As Map, m1 As Map)
-	ClearPreviewIT
-	ClearCodeIT
-	'create the view
 	pg.UX(m)
-	pg.UX(m1)
-End Sub
-
-Sub PreviewCode(sc As Map)
-	ClearCodeIT
-	pg.UX(sc)
 End Sub
 
 Sub tree_clickwait(recid As String)
-	Select Case recid
+	ClearPreviewIT
+	ClearCodeIT
+	propBag.Clear
+	propBag.Refresh(pg)
+	pg.Hide("propadd")
+	Dim prefix As String = pg.MvField(recid,1,".")
+	Dim suffix As String = pg.MvField(recid,2,".")
+	pg.Hide("testconnect")
+	pg.Hide("propadd")
+	pg.Hide("add_row")
+	pg.Hide("add_column")
+	Select Case prefix
+	Case "field"
+		pg.Collapse("preview")
+		pg.Show("propadd")
+		pg.Expand("code")
+		pg.show("propdelete")
+		dField.BuildBag(pg,propBag)
+		'
+		sqlite.Initialize
+		sqlite.AddStrings(Array("key"))
+		qry = sqlite.Read("fields","key",recid)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		If rs.result.Size = 0 Then
+		Else
+			rec = rs.result.get(0)
+			json = rec.Get("json")
+			rec = pg.Json2Map(json)
+			pg.SetValues("propbag", rec)
+		End If
+	Case "table"
+		pg.Show("propadd")
+		pg.Collapse("preview")
+		pg.Expand("code")
+		pg.show("propdelete")
+		dTable.BuildBag(pg,propBag)
+		'get the table definition
+		sqlite.Initialize
+		sqlite.AddStrings(Array("key"))
+		qry = sqlite.Read("tables","key",recid)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		If rs.result.Size = 0 Then
+		Else
+			rec = rs.result.get(0)
+			json = rec.Get("json")
+			rec = pg.Json2Map(json)
+			pg.SetValues("propbag", rec)
+			Dim primarykey As String = rec.Get("primarykey")
+			'
+			'select fields for table
+			sqlite.initialize
+			sqlite.AddStrings(Array("tablename"))
+			qry = sqlite.SelectWhere("fields", Array("json"), CreateMap("tablename":suffix),Array("value"))
+			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+			rs = sqlite.GetResultSet(qry,res)
+			'generate code
+			Dim tcode As String = CreateTableCode(suffix,primarykey,rs)
+			SourceCodePreview(tcode)
+		End If		 
+	Case "connection"
+		pg.Show("propadd")
+		pg.collapse("preview")
+		pg.Expand("code")
+		dConnection.BuildBag(pg, propBag)
+		pg.Show("testconnect")
+		pg.Hide("propdelete")
+		'read settings from db
+		sqlite.Initialize
+		'our id field is a string
+		sqlite.AddStrings(Array("id"))
+		qry = sqlite.Read("connect","id","connection")
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		If rs.result.Size = 0 Then
+		Else
+			'read from db and update property bag
+			rec = rs.result.Get(0)
+			json = rec.Get("json")
+			rec = pg.Json2Map(json)
+			pg.SetValues("propbag",rec)
+			'generate the code for the connection
+			Dim ccode As String = dConnection.ConnectionCode(rec)
+			SourceCodePreview(ccode)
+		End If	
 	Case "form"
+		pg.Show("add_row")
+		pg.Show("add_column")
+		pg.Show("propadd")
+		pg.Hide("propdelete")
+		pg.Expand("preview")
 		'we have clicked a form
 		dForm.BuildBag(pg, propBag)
 		' read record from db
@@ -500,10 +857,12 @@ Sub tree_clickwait(recid As String)
 		qry = sqlite.SelectAll("items", Array("*"), Array("id"))
 		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 		rs = sqlite.GetResultSet(qry,res)
-		Dim formView As Map = CreateView(rec)
-		Dim m1 As Map = SourceCode(formView,rec)
-		PreviewCode(m1)
+		'Dim formView As Map = CreateView(rec)
+		'SourceCodePreview1(formView,rec)
 	Case Else
+		pg.Show("propadd")
+		pg.Show("propdelete")
+		pg.Expand("preview")
 		sqlite.Initialize 
 		sqlite.AddStrings(Array("id"))
 		qry = sqlite.SelectWhere("items", Array("*"), CreateMap("id":recid),Array("id"))
@@ -525,46 +884,203 @@ Sub tree_clickwait(recid As String)
 			DrawPropBag(v)
 			pg.SetValues("propbag", rec)
 			Dim m As Map = CreateView(rec)
-			Dim m1 As Map = SourceCode(m,rec)
-			PreView(m,m1)
+			SourceCodePreview1(m,rec)
 		End If
 	End Select
 End Sub
 
+Sub dbhelp
+	Dim dbhint As WixHint
+	dbhint.Initialize("dbhint")
+	dbhint.AddStep("tree","Database","To store data for our forms, we can create a database and tables. Click Database on the tree to do so.","enter")
+	dbhint.AddStep("propform", "Connection", "Specify the database name and select with backend to use either BANanoSQL, BANanoSQLite or BANanoMySQL. Each has different connection options.","enter")
+	dbhint.AddStep("formholder", "Settings", "You will be provided with steps to follow to set up your connection here for each back end type.","enter")
+	dbhint.AddStep("tree", "Tables", "The next step is to add tables to the database, select Database from the tree.","enter")
+	dbhint.AddStep("propadd", "Add Table", "Click here to add a new table and provide its name.","enter")
+	dbhint.AddStep("propsave", "Save Table", "Once you have provided the table details, click on save to store the database, now you are ready to add fields to the table.","enter")
+	dbhint.AddStep("propdelete", "Delete Table", "Should you wish to delete a table, you can select the trash here after selecting the table on the tree.","enter")
+	dbhint.AddStep("tree", "Saved Table", "You have saved the table and now it is listed in the tree, to add fields to it, select the table on the tree.","enter")
+	dbhint.AddStep("propadd", "Add Field", "Click here to add a new field and provide its name and type.","enter")
+	dbhint.AddStep("propsave", "Save Field", "Once you have provided the field details, click on save to store to the database.","enter")
+	dbhint.AddStep("propdelete", "Delete Field", "Should you wish to delete a field, select it on the tree and select the trash here.","enter")
+	dbhint.AddStep("tree", "Saved Fields", "All the fields you have created will now be listed on the tree.","enter")
+	
+	pg.StartHint(dbhint)
+	
+End Sub
+
 'on sidebar click, draw up the property bag
 Sub sidebar_click(meid As String)
+	pg.Collapse("preview")
+	pg.Expand("code")
+	ClearPreviewIT
+	ClearCodeIT
+	propBag.Clear
+	propBag.Refresh(pg)
+	'
+	pg.Hide("testconnect")
+	pg.Hide("propadd")
+	pg.Hide("add_row")
+	pg.Hide("add_column")
+	'
 	Select Case meid
-		Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay"
-	Case "form"
+	Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"
+	Case "downloads"
+	Case "b4xlib"
+	Case "skeletonapp"
+	Case "dbhelp"
+		dbhelp
+	Case "field"
+		pg.show("propadd")
+		pg.Collapse("preview")
+		pg.Expand("code")
+		pg.show("propdelete")
+		'see selected treeitem
+		Dim parentid As String = pg.GetSelectedID("tree")
+		If parentid = "" Then
+			pg.Message_Error("Please select the table to add the field to first!")
+			Return
+		End If
+		Dim prefix As String = pg.MvField(parentid,1,".")
+		Dim suffix As String = pg.MvField(parentid,2,".")
+		Select Case prefix
+		Case "table"	
+			pg.Collapse("preview")
+			pg.Expand("code")
+			pg.show("propdelete")
+			dField.BuildBag(pg,propBag)
+			'get next field id
+			prefix = $"field.${suffix}.field"$
+			Dim startPoint As Int = 0
+			Dim pBoolean As Boolean = True
+			Dim kFind As String = ""
+			Do While pBoolean = True
+				startPoint = startPoint + 1
+				kFind = prefix & pg.cstr(startPoint)
+				sqlite.initialize
+				sqlite.AddStrings(Array("id"))
+				qry = sqlite.Exists("fields", "key", kFind)
+				res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+				rs = sqlite.GetResultSet(qry,res)
+				'not found
+				If rs.result.Size = 0 Then
+					pBoolean = False
+					Exit
+				Else
+					pBoolean = True
+				End If
+			Loop
+			kFind = pg.MvField(kFind,3,".")
+			Dim p As Map = pg.GetValues("propbag")
+			p.Put("tablename", suffix)
+			p.Put("value", kFind)
+			pg.SetValues("propbag",p)
+		Case Else
+			pg.Message_Error("Please select the table to add the field to first!")
+			Return
+		End Select	
+	Case "table"
+		pg.show("propadd")
+		pg.Collapse("preview")
+		pg.Expand("code")
+		pg.show("propdelete")
+		dTable.BuildBag(pg,propBag)
+		'get next field id
+		prefix = $"table.table"$
+		Dim startPoint As Int = 0
+		Dim pBoolean As Boolean = True
+		Dim kFind As String = ""
+		Do While pBoolean = True
+			startPoint = startPoint + 1
+			kFind = prefix & pg.cstr(startPoint)
+			sqlite.initialize
+			sqlite.AddStrings(Array("id"))
+			qry = sqlite.Exists("tables", "key", kFind)
+			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+			rs = sqlite.GetResultSet(qry,res)
+			'not found
+			If rs.result.Size = 0 Then
+				pBoolean = False
+				Exit
+			Else
+				pBoolean = True
+			End If
+		Loop
+		kFind = pg.MvField(kFind,2,".")
+		Dim p As Map = pg.GetValues("propbag")
+		p.Put("value", kFind)
+		pg.SetValues("propbag",p)
+ 	Case "connection"
+		'database connectivity
+		pg.show("propadd")
 		If DrawPropBag(meid) Then
+			pg.Show("testconnect")
+			pg.Hide("propdelete")
+		End If
+	Case "form"
+		pg.Expand("preview")
+		pg.Show("add_row")
+		pg.Show("add_column")
+		pg.Show("propadd")
+		If DrawPropBag(meid) Then
+			pg.Hide("propdelete")
 			rec = pg.GetValues("propbag")
-			Dim m As Map = CreateView(rec)
-			Dim m1 As Map = SourceCode(m,rec)
-			PreView(m,m1)
+			'Dim m As Map = CreateView(rec)
+			'SourceCodePreview1(m,rec)
 		End If
 	Case Else
+		pg.Expand("preview")
+		pg.Show("propadd")
 		'see selected treeitem
 		Dim parentid As String = pg.GetSelectedID("tree")
 		If parentid = "" Then
 			pg.Message_Error("Please select the parent item from the tree first, then select the element you want to add! Remember to click Save in the property bag when done.")
 			Return
 		End If
+		pg.Show("propdelete")
 		If DrawPropBag(meid) Then
 			'update the parentid
-			pg.Define("propbag", CreateMap("parentid":parentid))
-			pg.Refresh("propbag")
 			rec = pg.GetValues("propbag")
+			Dim startPoint As Int = 0
+			Dim pBoolean As Boolean = True
+			Dim kFind As String = ""
+			prefix = meid
+			Do While pBoolean = True
+				startPoint = startPoint + 1
+				kFind = prefix & pg.cstr(startPoint)
+				sqlite.initialize
+				sqlite.AddStrings(Array("id"))
+				qry = sqlite.Exists("items", "id", kFind)
+				res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+				rs = sqlite.GetResultSet(qry,res)
+				'not found
+				If rs.result.Size = 0 Then
+					pBoolean = False
+					Exit
+				Else
+					pBoolean = True
+				End If
+			Loop
+			rec.Put("parentid", parentid)
+			rec.Put("id", kFind)
+			rec.Put("template", kFind)
+			rec.Put("localId", kFind)
+			pg.SetValues("propbag",rec)
+			
 			Dim m As Map = CreateView(rec)
-			Dim m1 As Map = SourceCode(m,rec)
-			PreView(m,m1)
+			SourceCodePreview1(m,rec)
 		End If
 	End Select
 End Sub
 
 Sub DrawPropBag(con As String) As Boolean
 	Select Case con
+		Case "connection"
+			dConnection.BuildBag(pg, propBag)
+			Return True
 		Case "form"
 			dForm.BuildBag(pg, propBag)
+			Return True
 		Case "row"
 			dRow.BuildBag(pg, propBag)
 			Return True
@@ -735,7 +1251,7 @@ Sub addmulti_elementswait
 			pg.Message_Success(rs.result.size & " record(s) affected!")
 		End If
 	Next
-	pg.Close(winux)
+	pg.BoClose(winux)
 	RefreshTreeWait
 End Sub
 
@@ -769,5 +1285,5 @@ Sub TemporalText() As Map
 End Sub
 
 Sub closeWin
-	pg.Close(winux)
+	pg.boClose(winux)
 End Sub

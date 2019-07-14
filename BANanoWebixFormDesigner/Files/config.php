@@ -1,0 +1,6 @@
+<?php
+const DB_HOST = 'localhost';
+const DB_USER = 'user123';
+const DB_PASS = '';
+const DB_NAME = 'test';
+?>

@@ -30,6 +30,12 @@ Sub SetMap(m As Map) As WixTabBar
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixTabBar
+	Dim os As String = h.HTML
+	TabBar.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixTabBar
 	TabBar.SetName(n)

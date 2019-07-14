@@ -32,6 +32,12 @@ Sub SetMap(m As Map) As WixRichText
 End Sub
 
 
+Sub SetTemplateHTML(h As UOENowHTML) As WixRichText
+	Dim os As String = h.HTML
+	RichText.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixRichText
 	RichText.SetName(n)
@@ -88,13 +94,13 @@ End Sub
 
 'set value
 Sub SetValue(v As String) As WixRichText
-	RichText.Value = v
+	RichText.SetValue(v)
 	Return Me
 End Sub
 
 'set label
 Sub SetLabel(l As String) As WixRichText
-	RichText.Label.Text = l
+	RichText.SetLabel(l)
 	Return Me
 End Sub
 
@@ -106,19 +112,19 @@ End Sub
 
 'set label align
 Sub SetLabelAlign(a As String) As WixRichText
-	RichText.Label.Align = a
+	RichText.SetLabelAlign(a)
 	Return Me
 End Sub
 
 'set label position
 Sub SetLabelPosition(p As String) As WixRichText
-	RichText.Label.Position = p
+	RichText.SetLabelPosition(p)
 	Return Me
 End Sub
 
 'set label width
 Sub SetLabelWidth(w As Int) As WixRichText
-	RichText.Label.Width = w
+	RichText.SetLabelWidth(w)
 	Return Me
 End Sub
 

@@ -27,6 +27,13 @@ Sub AddColumns(itm As Map)
 	Template.AddColumns(itm)
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixTemplate
+	Dim os As String = h.HTML
+	Template.SetTemplate(os)
+	Return Me
+End Sub
+
 'set na
 Sub SetName(n As String) As WixTemplate
 	Template.SetName(n)

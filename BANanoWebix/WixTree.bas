@@ -28,6 +28,13 @@ Sub SetScroll(b As Object) As WixTree
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixTree
+	Dim os As String = h.HTML
+	Tree.SetTemplate(os)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixTree
 	Tree.SetName(n)

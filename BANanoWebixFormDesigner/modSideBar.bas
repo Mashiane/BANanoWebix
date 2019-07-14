@@ -10,9 +10,28 @@ End Sub
 
 
 Sub getSideBar As WixSideBar
+	Dim sPhoto As String
+	'Dim img As UOENowHTML
+	'create the template to show the image
+	'img.Initialize("img", "img").SetSRC("./assets/#icon#",True).AddContent(" #value#")
+	'img.AddClass("webix_selected").SetStyle("height","1em").SetStyle("background-position","center center")
+	'img.SetStyle("background-size","contain").SetStyle("background-repeat","no-repeat").SetStyle("background-origin","content-box")
+	'sPhoto = img.HTML
+	
 	Dim sm As WixSideBar
-	sm.Initialize("smp").SetCollapsed(False).SetActiveTitle(True).SetScroll(True).SetSelect(True)	
+	sm.Initialize("smp").SetCollapsed(False).SetActiveTitle(True).SetScroll(True).SetSelect(True)
+	'sm.SetTemplate(sPhoto)
+		
 	'
+	sm.AddItem("","downloads","Downloads","","","","")
+	sm.AddItem("downloads", "b4xlib","B4X Lib","https://github.com/Mashiane/BANanoWebix/raw/master/BANanoWebix.b4xlib","mdi mdi-cloud-download-outline","","_blank")
+	sm.AddItem("downloads", "skeletonapp", "Skeleton App", "./assets/app.zip","mdi mdi-apps", "", "_blank")
+	'
+	sm.AddItem("","db","Database","","","","")
+	sm.AddItem("db", "dbhelp", "Help","","mdi mdi-help-circle-outline","","")
+	sm.AddItem("db", "table","Table","","mdi mdi-selection-ellipse","","")
+	sm.AddItem("db", "field","Field","","mdi mdi-selection-ellipse","","")
+	
 	'sm.AddItem("", "dp", "Data Presentation","","", "","")
 	'sm.AddItem("dp", "datatable", "DataTable","","./assets/datatable.png", "", "")
 '	sm.AddItem("dp", "dataview", "DataView","","", "","")

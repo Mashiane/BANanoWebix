@@ -9,7 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Menu As WixElement
 	Private typeof As Map
-	private Items As List
+	Private Items As List
 	Private sepCount As Int
 End Sub
 
@@ -32,6 +32,12 @@ Sub SetMap(m As Map) As WixMenu
 	Return Me
 End Sub
 
+
+Sub SetTemplateHTML(h As UOENowHTML) As WixMenu
+	Dim os As String = h.HTML
+	Menu.SetTemplate(os)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixMenu
