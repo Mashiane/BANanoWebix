@@ -289,6 +289,13 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF).Append(CRLF)
 	'
 	sb.Append("'This code should be copied to your modules for CRUD").Append(CRLF)
+	'
+	sb.Append("'NEW").Append(CRLF)
+	sb.Append("Sub btnnew_click").Append(CRLF)
+	sb.Append("'clear the contents of the form").Append(CRLF)
+	sb.append($"pg.Clear("form")"$).Append(CRLF)
+	sb.Append("End Sub").Append(CRLF).append(CRLF)
+	'
 	sb.Append("'CREATE").Append(CRLF)
 	sb.Append("Sub btninsert_click").Append(CRLF)
 	sb.Append("'lets validate the form").Append(CRLF)
@@ -302,7 +309,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 	sb.append($"Dim rec As Map = pg.GetValues("form")"$).Append(CRLF)
 	sb.Append("'save record to the database").Append(CRLF)
 	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.Insert("${tblName}", rec)"$).Append(CRLF)
-	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF).Append(CRLF)
+	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
 	sb.Append("End Sub").Append(CRLF).Append(CRLF)
 	'
 	sb.Append("'READ").Append(CRLF)
@@ -322,13 +329,53 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 	sb.Append("'set returned map to form").append(CRLF)
 	sb.Append($"pg.SetValues("form", rec)"$).Append(CRLF)
 	sb.Append("End If").Append(CRLF)
-	sb.append("End Sub").Append(CRLF)
+	sb.append("End Sub").Append(CRLF).Append(CRLF)
+	sb.Append("'UPDATE").Append(CRLF)
+	sb.Append("Sub btnupdate_click").Append(CRLF)
+	sb.Append("'lets validate the form").Append(CRLF)
+	sb.append($"Dim bValid As Boolean = pg.Validate("form")"$).append(CRLF)
+	sb.append("if bValid = False Then Return").Append(CRLF)
+	sb.Append("'Get values from the form").Append(CRLF)
+	sb.append($"Dim rec As Map = pg.GetValues("form")"$).Append(CRLF)
+	sb.Append("'get the primary key").Append(CRLF)
+	sb.append($"Dim priValue As String = pg.GetValue("${priKey}")"$).Append(CRLF)
+	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
+	sb.Append("'initialize the helper class").Append(CRLF)
+	sb.append("alaSQL.Initialize").append(CRLF)
+	sb.Append("'update record in the table").Append(CRLF)
+	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":priValue))"$).Append(CRLF)
+	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+	sb.Append("End Sub").Append(CRLF).Append(CRLF)
+	sb.Append("'DELETE").Append(CRLF)
+	sb.Append("Sub btndelete_click").Append(CRLF)
+	sb.Append("'draw a confirm dialog").Append(CRLF)
+	sb.Append("Dim confirmDelete As Boolean = False").Append(CRLF)
+	sb.append($"Dim cb As BANanoObject = BANano.CallBack(Me,"delete${tblName}",Array(confirmDelete))"$).append(CRLF)
+	sb.Append($"pg.Confirm(cb, "Confirm Delete", "Are you sure that you want to delete this record?")"$).append(CRLF)
+	sb.Append("End Sub").Append(CRLF).Append(CRLF)
 	'
-	sb.Append("'NEW").Append(CRLF)
-	sb.Append("Sub btnnew_click").Append(CRLF)
-	sb.Append("'clear the contents of the form").Append(CRLF)
-	sb.append($"pg.Clear("form")"$).Append(CRLF)
-	sb.Append("End Sub").Append(CRLF).append(CRLF)
+	sb.Append($"Sub Delete${tblName}"$).Append(CRLF)
+	sb.Append("'get the primary key").Append(CRLF)
+	sb.append($"Dim priValue As String = pg.GetValue("${priKey}")"$).Append(CRLF)
+	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
+	sb.Append("'initialize the helper class").Append(CRLF)
+	sb.append("alaSQL.Initialize").append(CRLF)
+	sb.Append("'delete record in the table").Append(CRLF)
+	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.DeleteWhere("${tblName}", CreateMap("${priKey}":priValue))"$).Append(CRLF)
+	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+	sb.Append("End Sub").Append(CRLF).Append(CRLF)
+	
+	
+	sb.Append("'READ ALL").Append(CRLF)
+	sb.Append("Sub btngetall_click").Append(CRLF)
+	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
+	sb.Append("'initialize the helper class").Append(CRLF)
+	sb.append("alaSQL.Initialize").append(CRLF)
+	sb.Append("'select all records record in the table").Append(CRLF)
+	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.SelectAll("${tblName}", array("*"), array("${priKey}"))"$).Append(CRLF)
+	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+	sb.Append("log(rs.Result)").Append(CRLF)
+	sb.Append("End Sub").Append(CRLF).Append(CRLF)
 	Return sb.tostring
 End Sub
 
@@ -693,9 +740,12 @@ Sub Capitalize(t As String) As String
 End Sub
 
 Sub SourceCodeItem(m As Map, original As Map) As String
-	Dim v As String = m.Get("view")
-	Dim i As String = m.Get("id")
+	Dim Q As String = "$"
+	Dim v As String = m.GetDefault("view","")
+	Dim i As String = m.GetDefault("id","")
+	Dim a As String = m.GetDefault("action","")
 	v = pg.CStr(v)
+	If v = "" Then v = "Element"
 	If v = "undefined" Then v = "Element"
 	'
 	Dim sparentid As String = original.Get("parentid")
@@ -707,19 +757,25 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 	sb.Append($"Dim ${i} As Wix${v}"$).Append("<br>")
 	sb.Append($"${i}.Initialize("${i}")"$).Append("<br>")
 	For Each strKey As String In m.Keys
+		Dim strval As Object = m.Get(strKey)
 		If strKey = "id" Then Continue
+		If strKey = "view" Then
+			If v <> "Element"  Then Continue
+		End If
 		If strKey = "container" Then Continue
-		If strKey = "view" Then Continue
 		If strKey = "parentid" Then Continue
-		If strKey = "localId" Then Continue
 		If strKey = "tabindex" Then Continue
-		Dim strVal As Object = m.Get(strKey)
+		If strKey = "action" Then Continue
+		If strKey = "click" Then
+			Dim btn As String = $"btn${a}_click"$
+			strval = $"BANano.CallBack(Me, "${btn}", Null)"$
+		End If
 		Dim k As String = Capitalize(strKey)
-		If GetType(strVal) = "object" Then
-			Dim xval As String = pg.Map2JsonPretty(strVal)
-			sb.Append($"${i}.Set${k}("${xval}")"$).Append("<br>")
+		If GetType(strval) = "object" Then
+			Dim xval As String = pg.Map2Json(strval)
+			sb.Append($"${i}.Set${k}(${q}"${xval}")${q}"$).Append("<br>")
 		Else
-			sb.Append($"${i}.Set${k}("${strVal}")"$).Append("<br>")
+			sb.Append($"${i}.Set${k}("${strval}")"$).Append("<br>")
 		End If
 	Next
 	If sparentid <> "" Then
@@ -854,7 +910,7 @@ Sub tree_clickwait(recid As String)
 		pg.Show("add_column")
 		pg.Show("propadd")
 		pg.Hide("propdelete")
-		pg.Expand("preview")
+		pg.Collapse("preview")
 		'we have clicked a form
 		dForm.BuildBag(pg, propBag)
 		' read record from db
@@ -1045,8 +1101,8 @@ Sub sidebar_click(meid As String)
 		If DrawPropBag(meid) Then
 			pg.Hide("propdelete")
 			rec = pg.GetValues("propbag")
-			'Dim m As Map = CreateView(rec)
-			'SourceCodePreview1(m,rec)
+			Dim m As Map = CreateView(rec)
+			SourceCodePreview1(m,rec)
 		End If
 	Case Else
 		pg.Expand("preview")
@@ -1061,6 +1117,7 @@ Sub sidebar_click(meid As String)
 		If DrawPropBag(meid) Then
 			'update the parentid
 			rec = pg.GetValues("propbag")
+			'get the next available sequence number
 			Dim startPoint As Int = 0
 			Dim pBoolean As Boolean = True
 			Dim kFind As String = ""
@@ -1081,12 +1138,64 @@ Sub sidebar_click(meid As String)
 					pBoolean = True
 				End If
 			Loop
+			'lets find the next available child for the parent
+			'get the tab index of the parent
+			sqlite.Initialize
+			sqlite.AddStrings(Array("id"))
+			qry = sqlite.SelectWhere("items", Array("tabindex"), CreateMap("id":parentid), Array("tabindex"))
+			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+			rs = sqlite.GetResultSet(qry,res)
+			Dim parentTabIndex As String = ""
+			If rs.result.Size > 0 Then
+				Dim tt As Map = rs.result.Get(0)
+				parentTabIndex = tt.GetDefault("tabindex","")
+				parentTabIndex = pg.CStr(parentTabIndex)
+			End If
+			'we create the tabindex
+			sqlite.Initialize 
+			sqlite.AddStrings(Array("parentid"))
+			'select all tabindex for the parent order by tabindex, we will get the last item
+			qry = sqlite.SelectWhere("items", Array("tabindex"), CreateMap("parentid":parentid), Array("tabindex"))
+			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+			rs = sqlite.GetResultSet(qry,res)
+			Dim newtabindex As String = ""
+			If rs.result.Size > 0 Then
+				Dim nitems As Int = rs.result.size - 1
+				Dim ti As Map = rs.result.Get(nitems)
+				Dim cti As String = ti.GetDefault("tabindex","0")
+				cti = pg.CStr(cti)
+				'do we have a dot
+				Dim dotPos As Int = cti.IndexOf(".")
+				If dotPos = -1 Then
+					Dim nti As Int = BANano.parseInt(cti)
+					nti = nti + 1
+					newtabindex = pg.CStr(nti)
+					If parentTabIndex <> "" Then
+						newtabindex = $"${parentTabIndex}.${newtabindex}"$	
+					End If
+				Else
+					'increment the last dot
+					Dim getLast As String = pg.MvField(cti, -1, ".")
+					Dim nti As Int = BANano.parseInt(getLast)
+					nti = nti + 1
+					newtabindex = pg.CStr(nti)
+					If parentTabIndex <> "" Then
+						newtabindex = $"${parentTabIndex}.${newtabindex}"$
+					End If
+				End If
+			Else
+				newtabindex = "1"
+				If parentTabIndex <> "" Then
+					newtabindex = $"${parentTabIndex}.${newtabindex}"$
+				End If
+			End If
+			
+				
 			rec.Put("parentid", parentid)
 			rec.Put("id", kFind)
 			rec.Put("template", kFind)
-			rec.Put("localId", kFind)
+			rec.Put("tabindex", newtabindex)
 			pg.SetValues("propbag",rec)
-			
 			Dim m As Map = CreateView(rec)
 			SourceCodePreview1(m,rec)
 		End If
@@ -1250,7 +1359,6 @@ Sub addmulti_elementswait
 			Dim newctrl As Map = TemporalText
 			newctrl.Put("id", ctrl)
 			newctrl.Put("parentid", parentid)
-			newctrl.Put("localId", ctrl)
 			newctrl.Put("name", ctrl)
 			newctrl.Put("tabindex",tbindex)
 			newctrl.Put("label",ctrl)
@@ -1293,7 +1401,7 @@ End Sub
 Sub TemporalText() As Map
 	Dim t As Map = CreateMap()
 	t.Put("id","text1")
-	t.Put("localId","text1")
+	t.Put("localId","")
 	t.Put("parentid","form")
 	t.Put("addingmethod","AddRows")
 	t.Put("tabindex","0")

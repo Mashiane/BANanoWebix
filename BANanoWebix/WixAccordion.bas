@@ -110,7 +110,7 @@ Sub SetMulti(b As Object) As WixAccordion
 	Return Me
 End Sub
 
-Sub SetMultiMixed(b As Object) As WixAccordion
+Sub SetMultiMixed(b As Object) As WixAccordion   'ignore
 	SetMulti("mixed")
 	Return Me
 End Sub

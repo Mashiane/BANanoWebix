@@ -461,7 +461,7 @@ Sub ReplaceView(config As Map, parentid As String, childid As String)
 	'get the child
 	Dim child As BANanoObject = Dollar.Selector(childid)
 	'run the replace
-	webix.RunMethod("ui", Array(parent,child))
+	webix.RunMethod("ui", Array(config,parent,child))
 End Sub
 
 'freeze row

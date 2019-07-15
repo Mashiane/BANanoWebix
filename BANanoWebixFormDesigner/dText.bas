@@ -31,7 +31,7 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	'
 	Bag.Clear
 	Bag.AddTextBox("id", "ID","text1")
-	Bag.AddTextBox("localId", "Local ID", "text1")
+	Bag.AddTextBox("localId", "Local ID", "")
 	Bag.AddLabel("Parent")
 	Bag.AddTextBox("parentid","Parent", "form")
 	Bag.AddCombo("addingmethod","Adding Method","AddRows", pgFormDesigner.addingmethod)

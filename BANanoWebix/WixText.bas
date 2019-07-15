@@ -265,6 +265,14 @@ Sub SetValidateIsNotEmpty(b As Boolean) As WixText   'ignore
 	Return Me
 End Sub
 
+
+'set validate
+Sub SetValidate(v As Object) As WixText   'ignore
+	Text.SetAttr("validate",v)
+	Return Me
+End Sub
+
+
 Sub SetValidateIsNumber(b As Boolean) As WixText   'ignore
 	Text.SetAttr("validate","isNumber")
 	Return Me
@@ -275,6 +283,10 @@ Sub SetValidateIsEmail(b As Boolean) As WixText   'ignore
 	Return Me
 End Sub
 
+Sub SetValidateEvent(e As Object) As WixText    'ignore
+	Text.SetAttr("validateEvent", e)
+	Return Me
+End Sub
 
 Sub SetValidateEventBlur(b As Boolean) As WixText    'ignore
 	Text.SetAttr("validateEvent", "blur")
