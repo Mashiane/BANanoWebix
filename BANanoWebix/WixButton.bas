@@ -21,6 +21,24 @@ Public Sub Initialize(bID As String) As WixButton
 End Sub
 
 
+'set label align
+Sub SetLabelAlign(a As String) As WixButton
+	Button.SetLabelAlign(a)
+	Return Me
+End Sub
+
+'set label position
+Sub SetLabelPosition(p As String) As WixButton
+	Button.SetLabelPosition(p)
+	Return Me
+End Sub
+
+'set label width
+Sub SetLabelWidth(w As Int) As WixButton
+	Button.SetLabelWidth(w)
+	Return Me
+End Sub
+
 Sub SetTemplateHTML(h As UOENowHTML) As WixButton
 	Dim os As String = h.HTML
 	Button.SetTemplate(os)

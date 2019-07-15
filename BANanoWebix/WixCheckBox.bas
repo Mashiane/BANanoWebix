@@ -17,7 +17,6 @@ Public Sub Initialize(iID As String) As WixCheckBox
 	Return Me
 End Sub
 
-
 Sub SetTemplateHTML(h As UOENowHTML) As WixCheckBox
 	Dim os As String = h.HTML
 	CheckBox.SetTemplate(os)

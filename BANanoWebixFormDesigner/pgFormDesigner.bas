@@ -22,6 +22,7 @@ Sub Process_Globals
 	Public addingmethod As List
 	Public propBag As WixProperty
 	Private winux As BANanoObject
+	Private drawn As BANanoObject
 End Sub
 
 Sub Init()
@@ -289,17 +290,25 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 	'
 	sb.Append("'This code should be copied to your modules for CRUD").Append(CRLF)
 	sb.Append("'CREATE").Append(CRLF)
+	sb.Append("Sub btninsert_click").Append(CRLF)
+	sb.Append("'lets validate the form").Append(CRLF)
+	sb.append($"Dim bValid As Boolean = pg.Validate("form")"$).append(CRLF)
+	sb.append("if bValid = False Then Return").Append(CRLF)
 	sb.Append("'insert record to table").Append(CRLF)
 	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
 	sb.Append("'initialize the helper class").Append(CRLF)
 	sb.append("alaSQL.Initialize").append(CRLF)
 	sb.Append("'Get values from the form").Append(CRLF)
-	sb.append($"Dim rec As Map = pg.GetValues(formName)"$).Append(CRLF)
+	sb.append($"Dim rec As Map = pg.GetValues("form")"$).Append(CRLF)
 	sb.Append("'save record to the database").Append(CRLF)
 	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.Insert("${tblName}", rec)"$).Append(CRLF)
 	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF).Append(CRLF)
+	sb.Append("End Sub").Append(CRLF).Append(CRLF)
 	'
 	sb.Append("'READ").Append(CRLF)
+	sb.Append("Sub btnread_click").append(CRLF)
+	sb.Append("'get the content of the primary key field").Append(CRLF)
+	sb.append($"Dim priValue As String = pg.GetValue("${priKey}")"$).Append(CRLF)
 	sb.Append("'read record from table").append(CRLF)
 	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
 	sb.Append("'initialize the helper class").Append(CRLF)
@@ -311,8 +320,15 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 	sb.Append("If rs.result.size > 0 then").Append(CRLF)
 	sb.Append("Dim rec As Map = rs.result.Get(0)").Append(CRLF)
 	sb.Append("'set returned map to form").append(CRLF)
-	sb.Append($"pg.SetValues(formName, rec)"$).Append(CRLF)
+	sb.Append($"pg.SetValues("form", rec)"$).Append(CRLF)
 	sb.Append("End If").Append(CRLF)
+	sb.append("End Sub").Append(CRLF)
+	'
+	sb.Append("'NEW").Append(CRLF)
+	sb.Append("Sub btnnew_click").Append(CRLF)
+	sb.Append("'clear the contents of the form").Append(CRLF)
+	sb.append($"pg.Clear("form")"$).Append(CRLF)
+	sb.Append("End Sub").Append(CRLF).append(CRLF)
 	Return sb.tostring
 End Sub
 
@@ -470,8 +486,8 @@ Sub prop_saveWait
 			rs = sqlite.GetResultSet(qry,res)
 			pg.Message_Success(rs.result.size & " record(s) affected!")
 		End If
-		'Dim formView As Map = CreateView(prop)
-		'SourceCodePreview1(formView,prop)
+		Dim formView As Map = CreateView(prop)
+		SourceCodePreview1(formView,prop)
 	Case Else
 		'check if we have parent on tree
 		If p <> "" Then
@@ -739,7 +755,11 @@ Sub SourceCodePreview1(m As Map,original As Map)
 	pg.Define("codeit", CreateMap("template":scode))
 	pg.Refresh("codeit")
 	'
-	pg.UX(m)
+	Dim v As String = m.Get("view")
+	Log(v)
+	If v <> "form" Then 
+		drawn = pg.UX(m)
+	End If
 End Sub
 
 Sub tree_clickwait(recid As String)
@@ -857,8 +877,8 @@ Sub tree_clickwait(recid As String)
 		qry = sqlite.SelectAll("items", Array("*"), Array("id"))
 		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 		rs = sqlite.GetResultSet(qry,res)
-		'Dim formView As Map = CreateView(rec)
-		'SourceCodePreview1(formView,rec)
+		Dim formView As Map = CreateView(rec)
+		SourceCodePreview1(formView,rec)
 	Case Else
 		pg.Show("propadd")
 		pg.Show("propdelete")
@@ -1279,7 +1299,7 @@ Sub TemporalText() As Map
 	t.Put("tabindex","0")
 	t.Put("view","text")
 	t.Put("type","text")
-	t.Put("inputAlign","left")
+	t.Put("inputAlign","")
 	t.Put("label","Text 1")
 	Return t
 End Sub

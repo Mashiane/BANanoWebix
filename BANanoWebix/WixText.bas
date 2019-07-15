@@ -298,6 +298,12 @@ Sub SetInputAlignLeft(b As Boolean) As WixText  'ignore
 	Return Me
 End Sub
 
+'Set input align
+Sub SetInputAlign(v As Object) As WixText  'ignore
+	Text.SetAttr("inputAlign", v)
+	Return Me
+End Sub
+
 
 'set align right
 Sub SetAlignRight(r As String) As WixText 'ignore

@@ -1041,7 +1041,7 @@ Sub ShowPopUp(sTemplate As String, height As Int, width As Int, position As Stri
 End Sub
 
 'return ui element from map
-Sub UIObject(m As Map) As BANanoObject
+Sub BOUI(m As Map) As BANanoObject
 	Dim res As BANanoObject = webix.RunMethod("ui", Array(m))
 	Return res
 End Sub
