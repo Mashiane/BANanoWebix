@@ -371,10 +371,44 @@ Sub Collapse(nodeID As String)
 	Dollar.Selector(nodeID).RunMethod("collapse", Null)
 End Sub
 
+
+Sub Back(nodeID As String)
+	nodeID = nodeID.tolowercase
+	Dollar.Selector(nodeID).RunMethod("back", Null)
+End Sub
+
+'call after the ux is rendered
+Sub SetData(eID As String, data As List)
+	eID = eID.tolowercase
+	Define(eID, CreateMap("data":data))
+	Refresh(eID)
+End Sub
+
+Sub RefreshColumns(nodeID As String)
+	nodeID = nodeID.tolowercase
+	Dollar.Selector(nodeID).RunMethod("refreshColumns", Null)
+End Sub
+
+'focus an item
+Sub Focus(nodeID As String)
+	nodeID = nodeID.tolowercase
+	Dollar.Selector(nodeID).RunMethod("focus", Null)
+End Sub
+
 'expand an item
 Sub Expand(nodeID As String)
 	nodeID = nodeID.tolowercase
 	Dollar.Selector(nodeID).RunMethod("expand", Null)
+End Sub
+
+'clear the datatable
+Sub ClearDataTable(d As Int)
+	ClearAll(d)
+End Sub
+
+Sub LoadDataTable(d As String, autoConfig As Boolean, data As List)
+	Define(d, CreateMap("autoConfig":autoConfig,"data":data))
+	Refresh(d)
 End Sub
 
 'set a hint for input element
@@ -387,6 +421,27 @@ Sub OnKeyPress(eid As String, cb As BANanoObject)
 	eid = eid.tolowercase
 	Dollar.Selector(eid).RunMethod("attachEvent",Array("onKeyPress",cb))
 End Sub
+
+Sub OnBeforeLoad(eid As String, cb As BANanoObject)
+	eid = eid.ToLowerCase
+	Dollar.Selector(eid).RunMethod("attachEvent",Array("onKeyPress",cb))
+End Sub
+
+Sub OnAfterLoad(eid As String, cb As BANanoObject)
+	eid = eid.ToLowerCase
+	Dollar.Selector(eid).RunMethod("attachEvent",Array("onAfterLoad",cb))
+End Sub
+
+Sub ShowOverlay(eid As String, msg As Object)
+	eid = eid.ToLowerCase
+	Dollar.Selector(eid).RunMethod("showOverlay",Array(msg))
+End Sub
+
+Sub HideOverlay(eid As String)
+	eid = eid.ToLowerCase
+	Dollar.Selector(eid).RunMethod("hideOverlay",Null)
+End Sub
+
 
 'attach events after page is created
 Sub OnChange(eID As String, cb As BANanoObject)
@@ -862,6 +917,12 @@ Sub ShowItem(listID As String, eID As String)
 	Dollar.Selector(listID).RunMethod("showItem",Array(eID))
 End Sub
 
+'show / hide a batch
+Sub ShowBatch(listID As String, b As Boolean)
+	listID = listID.tolowercase
+	Dollar.Selector(listID).RunMethod("showBatch",Array(b))
+End Sub
+
 'get dirty values
 Sub GetDirtyValues(frmID As String) As Map
 	frmID = frmID.ToLowerCase
@@ -955,6 +1016,15 @@ Sub Bind(frmID As String, datTableID As String)
 	datTableID = datTableID.ToLowerCase
 	Dollar.Selector(frmID).RunMethod("bind",Array(datTableID))
 End Sub
+
+Sub BOBind(frmID As String, datTableID As String)
+	frmID = frmID.ToLowerCase
+	datTableID = datTableID.tolowercase
+	'
+	Dim target As BANanoObject = Dollar.Selector(datTableID)
+	Dollar.Selector(frmID).RunMethod("bind",Array(target))
+End Sub
+
 
 'save the form when a form is bound
 Sub Save(frmID As String)

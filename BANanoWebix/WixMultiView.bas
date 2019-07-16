@@ -18,6 +18,16 @@ Public Sub Initialize(sid As String) As WixMultiView
 	Return Me
 End Sub
 
+Sub AddItem(i As Map) As WixMultiView
+	MultiView.AddCells(i)
+	Return Me
+End Sub
+
+Sub SetVisibleBatch(v As Object) As WixMultiView
+	MultiView.SetAttr("visibleBatch", v)
+	Return Me
+End Sub
+
 'use a map object
 Sub SetMap(m As Map) As WixMultiView
 	For Each strKey As String In m.Keys
@@ -27,6 +37,11 @@ Sub SetMap(m As Map) As WixMultiView
 	Return Me
 End Sub
 
+
+Sub SetPadding(p As Object) As WixMultiView
+	MultiView.SetPadding(p)
+	Return Me
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixMultiView
 	Dim os As String = h.HTML

@@ -25,7 +25,7 @@ End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixFieldSet
 	Dim os As String = h.HTML
-	fieldset.SetTemplate(os)
+	FieldSet.SetTemplate(os)
 	Return Me
 End Sub
 

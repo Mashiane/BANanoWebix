@@ -17,6 +17,7 @@ Sub Class_Globals
 	Public Cells As List
 	Private elementsConfig As Map
 	Public Cols As List
+	Public Rules As Map
 End Sub
 
 Sub CreateResizer(rid As String) As WixResizer
@@ -192,6 +193,7 @@ Public Sub Initialize(sID As String) As WixElement
 	Columns.Initialize
 	Attributes.Initialize
 	HTMLAttributes.Initialize
+	Rules.Initialize
 	Return Me
 End Sub
 
@@ -462,6 +464,7 @@ Sub Item As Map
 	SetOnCondition(Cells.Size, "cells", Cells)
 	SetOnCondition(HTMLAttributes.Size, "attributes", HTMLAttributes)
 	SetOnCondition(elementsConfig.Size, "elementsConfig", elementsConfig)
+	SetOnCondition(rules.Size, "rules", rules)
 	SetOnCondition(Styles.Size, "css", Styles)
 	Return Element
 End Sub
@@ -603,6 +606,12 @@ Sub AddToColumns(prt As WixElement) As WixElement
 	prt.AddColumns(Item)
 	Return Me
 End Sub
+
+Sub AddToCells(prt As WixElement) As WixElement
+	prt.AddCells(Item)
+	Return Me
+End Sub
+
 
 'set align right
 Sub SetAlignRight(r As String) As WixElement 'ignore

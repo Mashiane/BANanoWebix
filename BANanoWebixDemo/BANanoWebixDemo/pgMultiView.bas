@@ -41,29 +41,5 @@ Sub Init(pgContainer As String)
 	'
 	pg.AddRowsSpacer
 	'
-	'add segment
-	Dim sg As WixSegmented
-	sg.Initialize("") 
-	sg.Segmented.SetValue("left")
-	sg.Segmented.SetMultiView(True)
-	sg.AddOption("rick", "Rick","Alcoholic<br>Science Genius<br>Father of Beth")
-	sg.AddOption("morty", "Morty","14 years old<br>Mortiest Morty<br>Sidekick")
-	'
-	pg.AddRows(sg.Item)
-	'IMPORTANT
-	pg.AddRowsCells(sg.Cells)
-	'
-	pg.AddRowsSpacer
-	'
-	Dim tb As WixTabView
-	tb.Initialize("")
-	tb.SetAnimate(True)
-	tb.SetTabBarClose(True)
-	tb.AddTab("","Entry","Some form controls here",CreateMap("css":"entry"))
-	tb.AddTab("","Results","Some results of data entry here",CreateMap("css":"results"))
-	tb.AddTab("", "<span class='webix_icon fa-film'></span>List", "", CreateMap())
-	pg.AddRows(tb.Item)
-	
-	'
 	pg.ui
 End Sub

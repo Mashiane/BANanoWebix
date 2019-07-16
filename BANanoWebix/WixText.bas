@@ -116,6 +116,12 @@ Sub SetTypePassword(r As String) As WixText  'ignore
 	Return Me
 End Sub
 
+Sub SetTypeURL(r As String) As WixText  'ignore
+	Text.SetType("url")
+	Return Me
+End Sub
+
+
 'use a map object
 Sub SetMap(m As Map) As WixText
 	For Each strKey As String In m.Keys
@@ -131,6 +137,16 @@ Sub SetAttr(p As String, v As Object) As WixText  'ignore
 	Return Me
 End Sub
 
+Sub SetTypeNumber(r As String) As WixText  'ignore
+	Text.SetType("number")
+	Return Me
+End Sub
+
+
+Sub SetTypeText(r As String) As WixText  'ignore
+	Text.SetType("text")
+	Return Me
+End Sub
 
 
 'set as email

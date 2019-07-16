@@ -365,6 +365,21 @@ End Sub
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
+	
+Sub SetDataFetch(i As Int) As WixDataTable
+	DataTable.SetAttr("datafetch", i)
+	Return Me
+End Sub
+
+Sub SetLoadAhead(l As Int) As WixDataTable
+	DataTable.SetAttr("loadahead", l)
+	Return Me
+End Sub
+
+Sub SetDataThrottle(d As Int) As WixDataTable
+	DataTable.SetAttr("datathrottle", d)
+	Return Me
+End Sub
 
 'set Data
 Sub SetData(data As List) As WixDataTable

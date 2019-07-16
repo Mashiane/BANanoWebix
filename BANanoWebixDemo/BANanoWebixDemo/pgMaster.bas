@@ -34,6 +34,13 @@ Sub Init
 	sm.AddItem("layouts", "lesson3_2", "Lesson 3.2","","mdi mdi-view-dashboard", "","")
 	'
 	sm.AddItem("", "multiview", "L4 MultiView","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("multiview", "multiview1", "L4.1 MultiView","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("multiview", "multiview2", "L4.2 MultiView","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("multiview", "multiview3", "L4.3 MultiView","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("multiview", "multiview4", "L4.4 MultiView TabBar","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("multiview", "tabview", "L4.5 TabView","","mdi mdi-view-dashboard", "","")
+	
+	
 	sm.AddItem("", "toolbar", "L5 ToolBar","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "dataentry1", "L6 Data Entry","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("dataentry1", "dataentry", "L6 Data Entry","","mdi mdi-view-dashboard", "","")
@@ -175,8 +182,16 @@ Sub itemClick(meID As String)
 		pgLayouts1.init("r2c2_content")
 	Case "lesson3_2"
 		pgLayouts2.init("r2c2_content")
-	Case "multiview"
+	Case "multiview1"
 		pgMultiView.Init("r2c2_content")
+	Case "multiview2"
+		pgMultiView2.Init("r2c2_content")
+	Case "multiview3"
+			pgMultiView3.Init("r2c2_content")
+	Case "multiview4"
+		pgMultiView4.Init("r2c2_content")
+	Case "tabview"
+		pgTabView.Init("r2c2_content")
 	Case "toolbar"
 		pgToolBar.Init("r2c2_content")
 	Case "dataentry"

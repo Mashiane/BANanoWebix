@@ -9,7 +9,6 @@ Sub Class_Globals
 	Public ID As String
 	Public Segmented As WixElement
 	Private Options As List
-	Public Cells As List
 End Sub
 
 'initialize the input box
@@ -17,10 +16,13 @@ Public Sub Initialize(iID As String) As WixSegmented
 	ID = iID.tolowercase
 	Segmented.Initialize(iID).SetView("segmented")
 	Options.Initialize
-	Cells.Initialize 
 	Return Me
 End Sub
 
+Sub SetMultiView(b As Object) As WixSegmented
+	Segmented.SetMultiView(b)
+	Return Me
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixSegmented
 	Dim os As String = h.HTML
@@ -31,6 +33,12 @@ End Sub
 'set name
 Sub SetName(n As String) As WixSegmented
 	Segmented.SetName(n)
+	Return Me
+End Sub
+
+'set name
+Sub SetPadding(p As Object) As WixSegmented
+	Segmented.SetPadding(p)
 	Return Me
 End Sub
 
@@ -100,29 +108,28 @@ Sub SetLabel(l As String) As WixSegmented
 End Sub
 
 'set the value
-Sub SetValue(v As String) As WixSegmented
+Sub SetValue(v As Object) As WixSegmented
 	Segmented.SetValue(v)
 	Return Me
 End Sub
 
 'add an option
-Sub AddOption(oid As String, oTxt As String, childTemplate As String) As WixSegmented
+Sub AddOption(oid As String, oTxt As Object) As WixSegmented
 	Dim opt As Map = CreateMap()
 	opt.put("id",oid)
 	opt.Put("value",oTxt)
 	Options.Add(opt)
-	If childTemplate <> "" Then
-		Dim Cell As Map = CreateMap()
-		Cell.Put("id", oid)
-		Cell.Put("template", childTemplate)
-		Cells.Add(Cell)
-	End If
 	Return Me
 End Sub
 
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
+End Sub
+
+Sub SetOptionWidth(w As Object) As WixSegmented
+	Segmented.SetAttr("optionWidth", w)
+	Return Me
 End Sub
 
 
@@ -138,12 +145,24 @@ Sub SetAlignCenter(r As String) As WixSegmented 'ignore
 	Return Me
 End Sub
 
+Sub SetAlign(a As Object) As WixSegmented 'ignore
+	Segmented.SetAttr("align", a)
+	Return Me
+End Sub
+
+
 'set align left
 Sub SetAlignLeft(r As String) As WixSegmented 'ignore
 	Segmented.SetAlignleft("")
 	Return Me
 End Sub
 
+
+'set onclick event
+Sub SetClick(e As BANanoObject) As WixSegmented
+	Segmented.SetAttr("click", e)
+	Return Me
+End Sub
 
 'add to parent rows
 Sub AddToRows(P As WixElement)

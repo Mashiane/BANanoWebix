@@ -23,9 +23,9 @@ Sub getSideBar As WixSideBar
 	'sm.SetTemplate(sPhoto)
 		
 	'
-	sm.AddItem("","downloads","Downloads","","","","")
-	sm.AddItem("downloads", "b4xlib","B4X Lib","https://github.com/Mashiane/BANanoWebix/raw/master/BANanoWebix.b4xlib","mdi mdi-cloud-download-outline","","_blank")
-	sm.AddItem("downloads", "skeletonapp", "Skeleton App", "./assets/app.zip","mdi mdi-apps", "", "_blank")
+	'sm.AddItem("","downloads","Downloads","","","","")
+	'sm.AddItem("downloads", "b4xlib","B4X Lib","https://github.com/Mashiane/BANanoWebix/raw/master/BANanoWebix.b4xlib","mdi mdi-cloud-download-outline","","_blank")
+	'sm.AddItem("downloads", "skeletonapp", "Skeleton App", "./assets/app.zip","mdi mdi-apps", "", "_blank")
 	'
 	sm.AddItem("","db","Database","","","","")
 	sm.AddItem("db", "dbhelp", "Help","","mdi mdi-help-circle-outline","","")

@@ -23,6 +23,38 @@ Sub SetTypeTime(b As Boolean) As WixDateTimePicker   'ignore
 	Return Me
 End Sub
 
+
+Sub SetPlaceHolder(b As Object) As WixDateTimePicker
+	DateTimePicker.SetPlaceHolder(b)
+	Return Me
+End Sub
+
+Sub SetMultiselect(b As Object) As WixDateTimePicker
+	DateTimePicker.SetAttr("multiselect",b)
+	Return Me
+End Sub
+
+'set time only
+Sub SetTypeMonth(b As Boolean) As WixDateTimePicker   'ignore
+	DateTimePicker.SetProperty("type", "month")
+	Return Me
+End Sub
+
+
+'set time only
+Sub SetTypeYear(b As Boolean) As WixDateTimePicker   'ignore
+	DateTimePicker.SetProperty("type", "year")
+	Return Me
+End Sub
+
+
+'set time only
+Sub SetType(b As Object) As WixDateTimePicker   'ignore
+	DateTimePicker.SetProperty("type", b)
+	Return Me
+End Sub
+
+
 'set string result
 Sub SetStringResult(b As Boolean) As WixDateTimePicker
 	DateTimePicker.SetAttr("stringResult", b)

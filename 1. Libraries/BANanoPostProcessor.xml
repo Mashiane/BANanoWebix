@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
   <doclet-version-NOT-library-version>1.00</doclet-version-NOT-library-version>
-  <b4x_version>7.43</b4x_version>
+  <b4x_version>7.51</b4x_version>
   <dependsOn>jcore</dependsOn>
   <dependsOn>jshell</dependsOn>
   <dependsOn>jsd_ziplibray</dependsOn>
@@ -48,6 +48,12 @@
     </method>
     <method>
       <name DesignerName="CompressResources">_compressresources</name>
+      <returntype>String</returntype>
+    </method>
+    <method>
+      <name DesignerName="CopyConfig">_copyconfig</name>
+      <comment>copy php config file
+</comment>
       <returntype>String</returntype>
     </method>
     <method>
@@ -185,5 +191,5 @@
       <returntype>boolean</returntype>
     </field>
   </class>
-  <version>0.01</version>
+  <version>0.02</version>
 </root>

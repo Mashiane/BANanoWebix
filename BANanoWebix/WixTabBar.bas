@@ -30,6 +30,31 @@ Sub SetMap(m As Map) As WixTabBar
 End Sub
 
 
+'set close
+Sub SetClose(b As Boolean) As WixTabBar
+	TabBar.SetAttr("close", b)
+	Return Me
+End Sub
+
+
+'set options
+Sub SetOptions(o As List) As WixTabBar
+	options = o
+	Return Me
+End Sub
+
+Sub SetType(w As Object) As WixTabBar
+	TabBar.SetAttr("type", w)
+	Return Me
+End Sub
+
+
+Sub SetOptionWidth(w As Object) As WixTabBar
+	TabBar.SetAttr("optionWidth", w)
+	Return Me
+End Sub
+
+
 Sub SetTemplateHTML(h As UOENowHTML) As WixTabBar
 	Dim os As String = h.HTML
 	TabBar.SetTemplate(os)
@@ -67,8 +92,12 @@ Sub SetMinHeight(h As Int) As WixTabBar
 	Return Me
 End Sub
 
-'add item
 Sub AddItem(iID As String, iText As String, iIcon As String)
+	AddOption(iID, iText,iIcon)
+End Sub
+
+'add item
+Sub AddOption(iID As String, iText As String, iIcon As String)
 	iID = iID.tolowercase
 	'
 	Dim icon As UOENowHTML
@@ -128,12 +157,6 @@ End Sub
 'set multi-view
 Sub SetMultiView(b As Boolean) As WixTabBar
 	TabBar.SetAttr("multiview", b)
-	Return Me
-End Sub
-
-'set fitBiggest
-Sub SetFitBiggest(b As Boolean) As WixTabBar
-	TabBar.SetAttr("fitBiggest", b)
 	Return Me
 End Sub
 
