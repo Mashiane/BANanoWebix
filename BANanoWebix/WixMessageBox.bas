@@ -83,6 +83,12 @@ Sub SetCSS(t As Object) As WixMessageBox
 	Return Me
 End Sub
 
+
+Sub SetCSSJSON(json As String) As WixMessageBox
+	MessageBox.SetCSSJSON(json)
+	Return Me
+End Sub
+
 'item
 Sub Item As Map
 	If buttons.Size > 0 Then

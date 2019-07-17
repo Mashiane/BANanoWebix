@@ -98,6 +98,19 @@ Sub SetOptions(opt As List) As WixRadio
 	Return Me
 End Sub
 
+Sub SetOptionsJSON(json As String) As WixRadio
+	Radio.SetOptionsJSON(json)
+	Return Me
+End Sub
+
+Sub SetOptionsMAP(m As Map) As WixRadio
+	For Each mk As String In m.Keys
+		Dim mv As Object = m.Get(mk)
+		AddOption(mk, mv)
+	Next
+	Return Me
+End Sub
+
 'add an option
 Sub AddOption(sID As String, sValue As String) As WixRadio
 	Dim sug As Map = CreateMap()

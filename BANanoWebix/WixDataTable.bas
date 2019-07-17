@@ -76,6 +76,11 @@ Sub SetCSS(c As Object) As WixDataTable
 	Return Me
 End Sub
 
+Sub SetCSSJSON(json As String) As WixDataTable
+	DataTable.SetCSSJSON(json)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixDataTable
 	DataTable.SetName(n)

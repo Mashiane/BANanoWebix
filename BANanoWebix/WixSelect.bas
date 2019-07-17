@@ -103,6 +103,19 @@ Sub AddOption(optID As String, optValue As String) As WixSelect
 	Return Me
 End Sub
 
+Sub SetOptionsJSON(json As String) As WixSelect
+	DropDown.SetOptionsJSON(json)
+	Return Me
+End Sub
+
+Sub SetOptionsMAP(m As Map) As WixSelect
+	For Each mk As String In m.Keys
+		Dim mv As Object = m.Get(mk)
+		AddOption(mk, mv)
+	Next
+	Return Me
+End Sub
+
 'set value
 Sub SetValue(v As String) As WixSelect
 	DropDown.SetValue(v)

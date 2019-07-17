@@ -28,27 +28,35 @@ Sub ConnectionCode(cm As Map) As String
 	Dim username As String = cm.Get("username")
 	Dim password As String = cm.Get("password")
 	Dim host As String = cm.Get("host")
+	
 	'bananosql
 	Dim sb As StringBuilder
 	sb.Initialize
 	Select Case dbtype
 		Case "BANanoSQL"
-			sb.append("'STEP 1: Copy and paste the following code in Process_Globals of each module you will access the Database including Main\r\n\r\n")
-			sb.Append($"Private ${dbname} As BANanoSQL\r\n\r\n"$)
-			sb.append("'STEP 2: On the Initialize sub for your code module, copy and paste the following code before everything else\r\n\r\n")
-			sb.Append($"${dbname}.OpenWait("${dbname}", "${dbname}")\r\n\r\n"$)
-			sb.append("'STEP 3: On Main.BANano_Ready, copy and paste the following code before everything else\r\n\r\n")
-			sb.Append($"${dbname}.OpenWait("${dbname}", "${dbname}")\r\n\r\n"$)
+			sb.append("'STEP 1: Copy and paste the following code in Process_Globals of each module you will access the Database including Main").Append(CRLF).Append(CRLF)
+			sb.Append($"Private ${dbname} As BANanoSQL"$).Append(CRLF).append(CRLF)
+			sb.append("'STEP 2: On the Initialize sub for your code module, copy and paste the following code before everything else").Append(CRLF).Append(CRLF)
+			sb.Append($"${dbname}.OpenWait("${dbname}", "${dbname}")"$).Append(CRLF).append(CRLF)
+			sb.append("'STEP 3: On Main.BANano_Ready, copy and paste the following code before everything else").append(CRLF).Append(CRLF)
+			sb.Append($"${dbname}.OpenWait("${dbname}", "${dbname}")"$).Append(CRLF).Append(CRLF)
 		Case "BANanoSQLite"
-			sb.append("'STEP 1: In Main.AppStart, include the code after initializing BANano\r\n\r\n")
-			sb.append($"BANano.PHP_NAME = "app.php"\r\nBANano.PHPHost = "http://www.yourserver.com/app/"\r\nBANano.PHPAddHeader("Access-Control-Allow-Origin: *")\r\n\r\n"$)
-			sb.append("Ensure you update your .PHPHost to point to the right location of your app.\r\n\r\n")
+			sb.append("'STEP 1: In Main.AppStart, include the code after initializing BANano").Append(CRLF).Append(CRLF)
+			sb.append($"BANano.PHP_NAME = "app.php""$).Append(CRLF)
+			sb.Append($"BANano.PHPHost = "http://www.yourserver.com/app/""$).Append(CRLF)
+			sb.Append($"BANano.PHPAddHeader("Access-Control-Allow-Origin: *")"$).Append(CRLF).Append(CRLF)
+			sb.append("Ensure you update your .PHPHost to point to the right location of your app.").Append(CRLF).Append(CRLF)
 		Case "BANanoMySQL"
-			sb.Append("'STEP 1: Copy the config.php file from the 'assets' folder to your root folder and update it\r\n\r\n")
-			sb.append($"const DB_HOST = '${host}';\r\nconst DB_USER = '${username}';\r\nconst DB_PASS = '${password}';\r\nconst DB_NAME = '${dbname}';\r\n\r\n"$)
-			sb.append("'STEP 2: In Main.AppStart, include the code after initializing BANano\r\n\r\n")
-			sb.append($"BANano.PHP_NAME = "app.php"\r\nBANano.PHPHost = "http://www.yourserver.com/app/"\r\nBANano.PHPAddHeader("Access-Control-Allow-Origin: *")\r\n\r\n"$)
-			sb.append("Ensure you update your .PHPHost to point to the right location of your app.\r\n\r\n")
+			sb.Append("'STEP 1: Copy the config.php file from the 'assets' folder to your root folder and update it").Append(CRLF).append(CRLF)
+			sb.append($"const DB_HOST = '${host}';"$).Append(CRLF)
+			sb.Append($"const DB_USER = '${username}';"$).Append(CRLF)
+			sb.Append($"const DB_PASS = '${password}';"$).append(CRLF)
+			sb.Append($"const DB_NAME = '${dbname}';"$).Append(CRLF).Append(CRLF)
+			sb.append("'STEP 2: In Main.AppStart, include the code after initializing BANano").Append(CRLF).Append(CRLF)
+			sb.append($"BANano.PHP_NAME = "app.php"$).Append(CRLF)
+			sb.append($"BANano.PHPHost = "http://www.yourserver.com/app/"$).append(CRLF)
+			sb.append($"BANano.PHPAddHeader("Access-Control-Allow-Origin: *")"$).Append(CRLF)
+			sb.append("Ensure you update your .PHPHost to point to the right location of your app.").Append(CRLF)
 	End Select
 	Return sb.tostring
 End Sub

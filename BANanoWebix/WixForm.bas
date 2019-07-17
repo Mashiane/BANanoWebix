@@ -24,6 +24,11 @@ Sub AddRow(wxEL As WixRow)
 	AddRows(wxEL.Item)
 End Sub
 
+Sub SetElementsConfigJSON(json As String) As WixForm
+	Form.SetElementsConfigJSON(json)
+	Return Me
+End Sub
+
 Sub SetTemplateHTML(h As UOENowHTML) As WixForm
 	Dim os As String = h.HTML
 	Form.SetTemplate(os)
@@ -126,30 +131,45 @@ Sub SetScroll(b As Object) As WixForm
 	Return Me
 End Sub
 
+
 Sub AddRuleIsEmail(eID As String) As WixForm
 	eID = eID.tolowercase
-	Dim ie As String = webix.GetField("rules").GetField("isEmail").result
+	Dim ie As Object = webix.GetField("rules").GetField("isEmail")
 	Form.Rules.Put(eID, ie)
 	Return Me
 End Sub
 
 Sub AddRuleIsNotEmpty(eID As String) As WixForm
 	eID = eID.tolowercase
-	Dim ie As String = webix.GetField("rules").GetField("isNotEmpty").result
+	Dim ie As Object = webix.GetField("rules").GetField("isNotEmpty")
 	Form.Rules.Put(eID, ie)
 	Return Me
 End Sub
 
 Sub AddRuleIsChecked(eID As String) As WixForm
 	eID = eID.tolowercase
-	Dim ie As String = webix.GetField("rules").GetField("isChecked").result
+	Dim ie As Object = webix.GetField("rules").GetField("isChecked")
 	Form.Rules.Put(eID, ie)
 	Return Me
 End Sub
 
 Sub AddRuleIsNumber(eID As String) As WixForm
 	eID = eID.tolowercase
-	Dim ie As String = webix.GetField("rules").GetField("isNumber").result
+	Dim ie As Object = webix.GetField("rules").GetField("isNumber")
+	Form.Rules.Put(eID, ie)
+	Return Me
+End Sub
+
+Sub AddRuleIsNumberOrBlank(eID As String) As WixForm
+	eID = eID.tolowercase
+	Dim ie As Object = webix.GetField("rules").GetField("isNumberOrBlank")
+	Form.Rules.Put(eID, ie)
+	Return Me
+End Sub
+
+Sub AddRuleIsEmailOrBlank(eID As String) As WixForm
+	eID = eID.tolowercase
+	Dim ie As Object = webix.GetField("rules").GetField("isEmailOrBlank")
 	Form.Rules.Put(eID, ie)
 	Return Me
 End Sub

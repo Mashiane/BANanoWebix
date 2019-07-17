@@ -153,7 +153,7 @@ Module16=dLabel
 Module17=dRadio
 Module18=dRichSelect
 Module19=dSearch
-Module2=dButton
+Module2=modCenter
 Module20=dSelect
 Module21=dSegmented
 Module22=dSlider
@@ -164,15 +164,14 @@ Module26=dTextArea
 Module27=dToggle
 Module28=dUploader
 Module29=dFieldSet
-Module3=modCenter
+Module3=dButton
 Module30=dSuggest
 Module31=dColumn
-Module32=WixTabView1
-Module33=modPropertyBag
-Module34=dDesignerProperty
-Module35=dConnection
-Module36=dTable
-Module37=dField
+Module32=modPropertyBag
+Module33=dDesignerProperty
+Module34=dConnection
+Module35=dTable
+Module36=dField
 Module4=modSideBar
 Module5=modToolBar
 Module6=dRow
@@ -181,7 +180,7 @@ Module8=dDBLList
 Module9=dForm
 NumberOfFiles=68
 NumberOfLibraries=5
-NumberOfModules=37
+NumberOfModules=36
 Version=7.51
 @EndOfDesignText@
  #Region Project Attributes 
@@ -189,7 +188,7 @@ Version=7.51
 #IgnoreWarnings:15
 Sub Process_Globals
 	Public BANano As BANano 'ignore
-	Public AppName As String = "BANanoWebixFormDesigner"
+	Public AppName As String = "FormDesigner"
 	Private Publish As String
 	Private BP As BANanoPostProcessor
 	Public dbName As String
@@ -215,12 +214,19 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.Header.AddJavascriptFile("webix.min.js")
 	BANano.Header.AddCSSFile("hint.css")
 	BANano.Header.AddJavascriptFile("hint.js")
+	'
+	BANano.Header.AddJavascriptFile("Blob.min.js")
+	BANano.Header.AddJavascriptFile("FileSaver.min.js")
+	
+	BANano.Header.AddJavascriptFile("https://togetherjs.com/togetherjs-min.js")
 	'BANano.Header.AddJavascriptFile("data.js")
 	'BANano.TranspilerOptions.MergeAllCSSFiles = True
 	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True
 	'BANano.TranspilerOptions.ShowWarningDeadCode = True
 	'BANano.TranspilerOptions.RemoveDeadCode = True
 	BANano.TranspilerOptions.UseServiceWorker = False
+	BANano.TranspilerOptions.MergeAllCSSFiles = True
+	BANano.TranspilerOptions.MergeAllJavascriptFiles = True
 	'php
 	'set php settings
 	BANano.PHP_NAME = "bananowebixfd.php"
@@ -254,12 +260,13 @@ Sub BANano_Ready()
 	'create forms table
 	Dim tbl As Map = CreateMap()
 	tbl.Put("id", sqlite.DB_STRING)
+	tbl.Put("value", sqlite.DB_STRING)
 	tbl.Put("json", sqlite.DB_STRING)
 	tbl.put("parentid", sqlite.DB_STRING)
 	Dim qry As String = sqlite.CreateTable("forms", tbl, "id")
 	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
-	
+		
 	sqlite.Initialize
 	Dim c As Map = CreateMap()
 	c.Put("id", sqlite.DB_STRING)

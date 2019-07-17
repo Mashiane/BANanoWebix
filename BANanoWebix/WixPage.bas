@@ -21,6 +21,16 @@ Sub Class_Globals
 	Public Views As List
 End Sub
 
+'save text to a file
+Sub SaveText2File(content As String, fileName As String)
+	Dim fc As List
+	fc.Initialize
+	fc.Add(content)
+	Dim blob As BANanoObject
+	blob.Initialize2("Blob",Array(fc, CreateMap("type": "text/plain;charset=utf-8")))
+	BANano.RunJavascriptMethod("saveAs",Array(blob,fileName))
+End Sub
+
 Sub MvField(sValue As String, iPosition As Int, Delimiter As String) As String
 	If sValue.Length = 0 Then Return ""
 	Dim xPos As Int: xPos = sValue.IndexOf(Delimiter)
@@ -165,7 +175,34 @@ Public Sub Initialize(pgID As String, pgContainer As String) As WixPage
 	EnumWixIcons.Initialize
 	SetContainer(pgContainer)
 	BuildViews
+	'
+	Dim inValue As Object
+	webix.GetField("rules").SetField("isNumberOrBlank", BANano.CallBack(Me,"isNumberOrBlank", Array(inValue)))
+	webix.GetField("rules").SetField("isEmailOrBlank", BANano.CallBack(Me,"isEmailOrBlank", Array(inValue)))
 	Return Me
+End Sub
+
+'object values to list
+Sub objectAsArray(inObject As Map) As List
+	Dim lst As List
+	lst.Initialize
+	For Each skey As String In inObject.Keys
+		Dim sval As Object = inObject.Get(skey)
+		lst.Add(sval)
+	Next
+	Return lst
+End Sub
+
+Sub isNumberOrBlank(inValue As Object) As Boolean
+	If inValue = "" Then Return True
+	Dim bValue As Boolean = webix.GetField("rules").RunMethod("isNumber", Array(inValue))
+	Return bValue
+End Sub
+
+Sub isEmailOrBlank(inValue As Object) As Boolean
+	If inValue = "" Then Return True
+	Dim bValue As Boolean = webix.GetField("rules").RunMethod("isEmail", Array(inValue))
+	Return bValue
 End Sub
 
 Sub BuildViews
@@ -393,6 +430,19 @@ End Sub
 Sub Focus(nodeID As String)
 	nodeID = nodeID.tolowercase
 	Dollar.Selector(nodeID).RunMethod("focus", Null)
+End Sub
+
+Sub addCSS(eID As String, css2add As String)
+	eID = eID.tolowercase
+	'get the node
+	Dim node As BANanoObject = getNode(eID)
+	webix.GetField("html").RunMethod("addCss", Array(node, css2add))
+End Sub
+
+Sub getNode(eID As String) As BANanoObject
+	eID = eID.ToLowerCase
+	Dim bo As BANanoObject = Dollar.Selector(eID).RunMethod("getNode", Null)
+	Return bo
 End Sub
 
 'expand an item

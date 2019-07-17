@@ -83,6 +83,19 @@ Sub SetTooltip(tt As String) As WixSegmented
 	Return Me
 End Sub
 
+Sub SetOptionsJSON(json As String) As WixSegmented
+	Segmented.SetOptionsJSON(json)
+	Return Me
+End Sub
+
+Sub SetOptionsMAP(m As Map) As WixSegmented
+	For Each mk As String In m.Keys
+		Dim mv As Object = m.Get(mk)
+		AddOption(mk, mv)
+	Next
+	Return Me
+End Sub
+
 'set style
 Sub SetStyle(prop As String, val As String) As WixSegmented
 	Segmented.SetStyle(prop,val)

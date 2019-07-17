@@ -539,6 +539,11 @@ Sub UpdateAll(tblName As String, tblFields As Map) As String
 End Sub
 
 #if PHP
+
+function GetFile($fileName) {
+	echo file_get_contents($fileName);
+}
+
 function SendEmail($from,$to,$cc,$subject,$msg) { 
 	$msg = str_replace("\n.", "\n..", $msg); 
 	// use wordwrap() if lines are longer than 70 characters 

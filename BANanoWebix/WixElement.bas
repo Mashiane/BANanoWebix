@@ -18,6 +18,45 @@ Sub Class_Globals
 	Private elementsConfig As Map
 	Public Cols As List
 	Public Rules As Map
+	Private options As List
+End Sub
+
+Sub SetElementsConfigJSON(json As String) As WixElement
+	Dim m As Map = Json2Map(json)
+	For Each mk As String In m.Keys
+		Dim mv As Object = m.Get(mk)
+		elementsConfig.Put(mk,mv)
+	Next
+	Return Me
+End Sub
+
+Sub SetOptionsJSON(json As String) As WixElement
+	Dim m As Map = Json2Map(json)
+	For Each mk As String In m.Keys
+		Dim mv As Object = m.Get(mk)
+		Dim opt As Map = CreateMap()
+		opt.Put(mk,mv)
+		options.Add(opt)
+	Next
+	Return Me
+End Sub
+
+
+'add an option
+Sub AddOption(oid As String, oTxt As Object) As WixElement
+	Dim opt As Map = CreateMap()
+	opt.put("id",oid)
+	opt.Put("value",oTxt)
+	options.Add(opt)
+	Return Me
+End Sub
+
+Sub SetOptionsMAP(m As Map) As WixElement
+	For Each mk As String In m.Keys
+		Dim mv As Object = m.Get(mk)
+		AddOption(mk, mv)
+	Next
+	Return Me
 End Sub
 
 Sub CreateResizer(rid As String) As WixResizer
@@ -36,6 +75,24 @@ End Sub
 Sub SetLocalID(i As String) As WixElement
 	SetAttr("localId", i)
 	Return Me
+End Sub
+
+
+'convert a json string to a map
+Sub Json2Map(strJSON As String) As Map
+	Dim json As BANanoJSONParser
+	Dim Map1 As Map
+	Map1.Initialize
+	Map1.clear
+	Try
+		If strJSON.length > 0 Then
+			json.Initialize(strJSON)
+			Map1 = json.NextObject
+		End If
+		Return Map1
+	Catch
+		Return Map1
+	End Try
 End Sub
 
 'create a column
@@ -194,9 +251,14 @@ Public Sub Initialize(sID As String) As WixElement
 	Attributes.Initialize
 	HTMLAttributes.Initialize
 	Rules.Initialize
+	options.Initialize 
 	Return Me
 End Sub
 
+Sub SetOptions(o As List) As WixElement
+	SetAttr("options", o)
+	Return Me
+End Sub
 
 'set the state
 Sub SetState(s As Object) As WixElement
@@ -439,6 +501,15 @@ Sub SetCSS(cs As String) As WixElement
 	Return Me
 End Sub
 
+Sub SetCSSJSON(json As String) As WixElement
+	Dim m As Map = Json2Map(json)
+	For Each mk As String In m.Keys
+		Dim mv As Object = m.Get(mk)
+		SetStyle(mk, mv)
+	Next
+	Return Me
+End Sub
+
 'set an attribute
 Sub SetAttr(p As String, v As Object) As WixElement
 	Element.Put(p,v)
@@ -457,6 +528,7 @@ Sub Item As Map
 		Dim strVal As Object = Attributes.Get(attr)
 		Element.Put(attr,strVal)
 	Next
+	SetOnCondition(options.Size,"options", options)
 	SetOnCondition(Columns.Size,"columns", Columns)
 	SetOnCondition(Cols.Size, "cols", Cols)
 	SetOnCondition(Rows.Size, "rows", Rows)
@@ -464,7 +536,7 @@ Sub Item As Map
 	SetOnCondition(Cells.Size, "cells", Cells)
 	SetOnCondition(HTMLAttributes.Size, "attributes", HTMLAttributes)
 	SetOnCondition(elementsConfig.Size, "elementsConfig", elementsConfig)
-	SetOnCondition(rules.Size, "rules", rules)
+	SetOnCondition(Rules.Size, "rules", Rules)
 	SetOnCondition(Styles.Size, "css", Styles)
 	Return Element
 End Sub

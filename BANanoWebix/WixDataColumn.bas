@@ -217,6 +217,13 @@ Sub SetCSS(c As Object) As WixDataColumn
 	Return Me
 End Sub
 
+
+Sub SetCSSJSON(json As String) As WixDataColumn
+	DataColumn.SetCSSJSON(json)
+	Return Me
+End Sub
+
+
 'set editor inline checkbox
 Sub SetEditorInlineCheckBox(r As String) As WixDataColumn    'ignore
 	SetEditor("inline-checkbox")

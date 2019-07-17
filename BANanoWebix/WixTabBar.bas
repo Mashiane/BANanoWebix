@@ -96,6 +96,21 @@ Sub AddItem(iID As String, iText As String, iIcon As String)
 	AddOption(iID, iText,iIcon)
 End Sub
 
+Sub SetOptionsJSON(json As String) As WixTabBar
+	TabBar.SetOptionsJSON(json)
+	Return Me
+End Sub
+
+
+
+Sub SetOptionsMAP(m As Map) As WixTabBar
+	For Each mk As String In m.Keys
+		Dim mv As Object = m.Get(mk)
+		AddOption(mk, mv,"")
+	Next
+	Return Me
+End Sub
+
 'add item
 Sub AddOption(iID As String, iText As String, iIcon As String)
 	iID = iID.tolowercase

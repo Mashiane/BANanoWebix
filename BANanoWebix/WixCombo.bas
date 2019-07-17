@@ -109,6 +109,19 @@ Sub Item As Map
 	Return Combo.item
 End Sub
 
+Sub SetOptionsJSON(json As String) As WixCombo
+	Combo.SetOptionsJSON(json)
+	Return Me
+End Sub
+
+Sub SetOptionsMAP(m As Map) As WixCombo
+	For Each mk As String In m.Keys
+		Dim mv As Object = m.Get(mk)
+		AddOption(mk, mv)
+	Next
+	Return Me
+End Sub
+
 'add initialization options
 Sub AddOption(optID As String, optValue As String) As WixCombo
 	Options.Add(CreateMap("id":optID,"value":optValue))

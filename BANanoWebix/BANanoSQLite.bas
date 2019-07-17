@@ -529,6 +529,19 @@ Sub DeleteWhere(tblName As String, tblWhere As Map) As String
 	Return res
 End Sub
 
+Sub AddColumn(tblName As String, fldDef As Map) As String
+	Dim fldName As String = fldDef.GetKeyAt(0)
+	Dim fldType As String = fldDef.GetValueAt(0)
+	Dim qry As String = $"ALTER TABLE [${tblName}] ADD COLUMN [${fldName}] ${fldType}"$
+	Dim m As Map
+	m.Initialize
+	m.Put("sql", qry)
+	m.Put("args", Null)
+	m.Put("types", Null)
+	m.Put("command", "addcolumn")
+	Dim res As String = Map2Json(m)
+	Return res
+End Sub
 
 #if PHP
 function preparesqlite($db, $sql, $types, $values) {
