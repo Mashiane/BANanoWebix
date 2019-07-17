@@ -106,7 +106,7 @@ Sub Init
 	pg.ui
 	'
 	Dim meid As Map
-	pg.OnItemClick("sm", BANano.CallBack(Me, "itemClick", Array(meid)))
+	pg.OnAfterSelect("sm", BANano.CallBack(Me, "itemClick", Array(meid)))
 End Sub
 
 

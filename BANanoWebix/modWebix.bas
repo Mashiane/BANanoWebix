@@ -43,5 +43,11 @@ Sub Unflatten(data As List, childname As String) As List
 			mappedArr.Put(parentid, parentElem)
 		End If
 	Next
+	'
+	For Each mk As String In mappedArr.Keys
+		Dim mi As Map = mappedArr.Get(mk)
+		Dim childs As List = mi.Get(childname)
+		If childs.Size = 0 Then mi.Remove(childname)
+	Next
 	Return tree
 End Sub
