@@ -69,6 +69,13 @@ Sub SetMinHeight(h As Int) As WixDataColumn
 	Return Me
 End Sub
 
+'set height
+Sub SetHeight(h As Int) As WixDataColumn
+	DataColumn.SetHeight(h)
+	Return Me
+End Sub
+
+
 'use a map object
 Sub SetMap(m As Map) As WixDataColumn
 	For Each strKey As String In m.Keys
@@ -102,14 +109,19 @@ Sub SetHidden(b As Boolean) As WixDataColumn
 	Return Me
 End Sub
 
+Sub SetAlign(r As Object) As WixDataColumn
+	DataColumn.SetStyle("text-align", r)
+	Return Me
+End Sub
+
 'align right
-Sub AlignRight(b As Boolean) As WixDataColumn   'ignore
+Sub SetAlignRight(b As Boolean) As WixDataColumn   'ignore
 	DataColumn.SetStyle("text-align", "right")
 	Return Me
 End Sub
 
 'align center
-Sub AlignCenter(b As Boolean) As WixDataColumn   'ignore
+Sub SetAlignCenter(b As Boolean) As WixDataColumn   'ignore
 	DataColumn.SetStyle("text-align", "center")
 	Return Me
 End Sub
@@ -281,6 +293,12 @@ End Sub
 'set text filter
 Sub SetTextFilter(b As Boolean) As WixDataColumn     'ignore
 	hdr.Put("content", "textFilter")
+	hasFilter = True
+	Return Me
+End Sub
+
+Sub SetContent(c As Object) As WixDataColumn
+	hdr.Put("content", c)
 	hasFilter = True
 	Return Me
 End Sub

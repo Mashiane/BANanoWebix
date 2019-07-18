@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Property As WixElement
 	Private elements As List
+	Private maps As Map
 End Sub
 
 'Initializes the property sheet
@@ -16,6 +17,7 @@ Public Sub Initialize(eID As String) As WixProperty
 	ID = eID.tolowercase
 	Property.Initialize(ID).SetView("property")
 	elements.Initialize 
+	maps.Initialize 
 	Return Me
 End Sub
 
@@ -40,6 +42,11 @@ Sub SetScroll(c As Object) As WixProperty
 	Return Me
 End Sub
 
+'set the actual key
+Sub SetActual(prop As String, actual As String) As WixProperty
+	maps.Put(prop,actual)
+	Return Me
+End Sub
 
 'set name
 Sub SetName(n As String) As WixProperty
@@ -95,44 +102,54 @@ Sub SetComplexData(b As Boolean) As WixProperty
 End Sub
 
 'add color
-Sub AddColor(eid As String, label As String, value As String)
+Sub AddColor(eid As String, label As String, value As String) As WixProperty
 	elements.Add(El(eid,label, "color", value, Null,Null))
+	Return Me
 End Sub
 
-Sub AddTextBox(eid As String, label As String, value As String)
+Sub AddTextBox(eid As String, label As String, value As String) As WixProperty
 	elements.Add(El(eid, label, "text", value, Null,Null))
+	Return Me
 End Sub
 
-Sub AddLabel(label As String)
+Sub AddLabel(label As String) As WixProperty
 	elements.Add(El("", label, "label", "", Null,Null))
+	Return Me
 End Sub
 
-Sub AddPassword(eid As String, label As String, value As String)
+Sub AddPassword(eid As String, label As String, value As String) As WixProperty
 	elements.Add(El(eid, label, "password", value,  Null, Null))
+	Return Me
 End Sub
 
-Sub AddDate(eid As String, label As String, value As String, format As Object)
+Sub AddDate(eid As String, label As String, value As String, format As Object) As WixProperty
 	elements.Add(El(eid, label, "date", value,  Null, format))
+	Return Me
 End Sub
 
-Sub AddSelect(eid As String, label As String, value As String, options As List)
+Sub AddSelect(eid As String, label As String, value As String, options As List) As WixProperty
 	elements.Add(El(eid, label, "select", value, options, Null))
+	Return Me
 End Sub
 
-Sub AddCombo(eid As String, label As String, value As String, options As List)
+Sub AddCombo(eid As String, label As String, value As String, options As List) As WixProperty
 	elements.Add(El(eid, label, "combo", value, options, Null))
+	Return Me
 End Sub
 
-Sub AddRichSelect(eid As String, label As String, value As String, options As List)
+Sub AddRichSelect(eid As String, label As String, value As String, options As List) As WixProperty
 	elements.Add(El(eid, label, "richselect", value, options, Null))
+	Return Me
 End Sub
 
-Sub AddCheckBox(eid As String, label As String, value As String)
+Sub AddCheckBox(eid As String, label As String, value As String) As WixProperty
 	elements.Add(El(eid, label, "checkbox", value, Null, Null))
+	Return Me
 End Sub
 
-Sub Clear
+Sub Clear As WixProperty
 	elements.clear
+	Return Me
 End Sub
 
 Sub Refresh(pg As WixPage)

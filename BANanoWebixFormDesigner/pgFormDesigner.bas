@@ -24,6 +24,7 @@ Sub Process_Globals
 	Private winux As BANanoObject
 	Private drawn As BANanoObject
 	Private fldWin As BANanoObject
+	Private lastcode As String
 End Sub
 
 Sub Init()
@@ -92,6 +93,7 @@ Sub Init()
 	pg.Hide("add_row")
 	pg.Hide("add_column")
 	pg.Hide("add_fields")
+	pg.Hide("download")
 	'
 	'side bar click
 	Dim meid As Map
@@ -434,6 +436,7 @@ Sub prop_saveWait
 		pg.Message(rs.result.size & " record(s) affected!")
 	Case "table"
 		pg.Collapse("preview")
+		pg.Show("download")
 		Dim key As String = $"table.${value}"$
 		sqlite.Initialize
 		sqlite.AddStrings(Array("id"))
@@ -468,6 +471,7 @@ Sub prop_saveWait
 	Case "connection"
 		pg.collapse("preview")
 		pg.Expand("code")
+		pg.Show("download")
 		sqlite.Initialize
 		sqlite.AddStrings(Array("id"))
 		'new connect record
@@ -489,6 +493,7 @@ Sub prop_saveWait
 		SourceCodePreview(ccode)
 	Case "form"
 		pg.expand("preview")
+		pg.Show("download")
 		sqlite.initialize
 		sqlite.AddStrings(Array("id"))
 		qry = sqlite.SelectWhere("forms", Array("*"), CreateMap("id":i),Array("id"))
@@ -517,6 +522,7 @@ Sub prop_saveWait
 		End If
 		FormCode("form",True)
 	Case Else
+		pg.Show("download")
 		pg.Expand("preview")
 		'check if we have parent on tree
 		If p <> "" Then
@@ -797,6 +803,7 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 End Sub
 
 Sub SourceCodePreview(script As String)
+	lastcode = script
 	script = script.Replace(CRLF,"<br>")
 	Dim sb As StringBuilder
 	sb.Initialize
@@ -821,6 +828,7 @@ Sub tree_clickwait(recid As String)
 	pg.Hide("add_column")
 	pg.Hide("add_fields")
 	pg.Hide("propdelete")
+	pg.Hide("download")
 			
 	Select Case prefix
 	Case "field"
@@ -849,6 +857,7 @@ Sub tree_clickwait(recid As String)
 		pg.Expand("code")
 		pg.show("propdelete")
 		pg.Show("add_fields")
+		pg.Show("download")
 		dTable.BuildBag(pg,propBag)
 		'get the table definition
 		sqlite.Initialize
@@ -879,6 +888,7 @@ Sub tree_clickwait(recid As String)
 		pg.Show("add_fields")
 		pg.collapse("preview")
 		pg.Expand("code")
+		pg.Show("download")
 		dConnection.BuildBag(pg, propBag)
 		'read settings from db
 		sqlite.Initialize
@@ -905,6 +915,7 @@ Sub tree_clickwait(recid As String)
 		pg.Expand("preview")
 		pg.Show("add_fields")
 		pg.Show("propdelete")
+		pg.Show("download")
 		'we have clicked a form
 		dForm.BuildBag(pg, propBag)
 		FormCode("form",True)
@@ -915,6 +926,7 @@ Sub tree_clickwait(recid As String)
 		pg.Expand("preview")
 		pg.Show("add_fields")
 		pg.Show("propdelete")
+		pg.Show("download")
 		sqlite.Initialize 
 		sqlite.AddStrings(Array("id"))
 		qry = sqlite.SelectWhere("items", Array("*"), CreateMap("id":recid),Array("id"))
@@ -1050,10 +1062,16 @@ Sub FormCode(id As String, bShowPropBag As Boolean)
 	End Select
 End Sub
 
+Sub download
+	If lastcode <> "" Then
+		lastcode = lastcode.Replace("<br>", CRLF)
+		pg.SaveText2File(lastcode,"BWFD.txt")
+	End If
+End Sub
+
 Sub collab
 	Dim theObject As Object = Sender
 	Dim isonline As Boolean = BANano.CheckInternetConnectionWait
-	Log(isonline)
 	If isonline Then
 		BANano.RunJavascriptMethod("TogetherJS", Array(theObject))
 	Else
@@ -1095,7 +1113,7 @@ Sub sidebar_click(meid As String)
 	pg.Hide("add_fields")
 	pg.Hide("propadd")
 	pg.Hide("propdelete")
-
+	pg.Hide("download")
 	'
 	Select Case meid
 	Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"

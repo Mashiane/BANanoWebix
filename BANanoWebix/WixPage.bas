@@ -21,6 +21,21 @@ Sub Class_Globals
 	Public Views As List
 End Sub
 
+'update the original prop names of a property bag
+Sub SetActual(original As Map, actual As Map) As Map
+	Dim nmap As Map = CreateMap()
+	For Each mk As String In original.Keys
+		Dim mv As Object = original.Get(mk)
+		If actual.ContainsKey(mk) Then
+			Dim ak As String = actual.Get(mk)
+			nmap.Put(ak,mv)
+		Else
+			nmap.Put(mk,mv)		
+		End If
+	Next
+	Return nmap
+End Sub
+
 'save text to a file
 Sub SaveText2File(content As String, fileName As String)
 	Dim fc As List
