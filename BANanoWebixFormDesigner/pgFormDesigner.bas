@@ -337,7 +337,8 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 	sb.Append($"pg.Confirm(cb, "Confirm Delete", "Are you sure that you want to delete this record?")"$).append(CRLF)
 	sb.Append("End Sub").Append(CRLF).Append(CRLF)
 	'
-	sb.Append($"Sub Delete${tblName}"$).Append(CRLF)
+	sb.Append($"Sub Delete${tblName}(confirmDelete As Boolean)"$).Append(CRLF)
+	sb.append($"if confirmDelete = False Then Return"$).Append(CRLF)
 	sb.Append("'get the primary key").Append(CRLF)
 	sb.append($"Dim priValue As String = pg.GetValue("${priKey}")"$).Append(CRLF)
 	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
@@ -575,7 +576,8 @@ Sub clearform
 	pg.Confirm(cb, "Confirm Delete", "Are you sure that you want to clear this form? You will not be able to undo your changes. Continue?")
 End Sub
 
-Sub clearform1wait
+Sub clearform1wait(confirmresult As Boolean)
+	If confirmresult = False Then Return
 	sqlite.Initialize 
 	sqlite.AddStrings(Array("id"))
 	qry = sqlite.DeleteAll("items")
