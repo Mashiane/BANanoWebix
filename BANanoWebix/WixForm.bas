@@ -298,7 +298,6 @@ Sub SetDefaultHeight(h As Int) As WixForm
 	Return Me
 End Sub
 
-
 Sub SetDefaultBottomPadding(w As Int) As WixForm
 	Form.SetDefaultBottomPadding(w)
 	Return Me

@@ -22,6 +22,29 @@ Sub Class_Globals
 	Type WixSelectedID(row As Object, ID As Object, column As Object)
 End Sub
 
+#if css
+	.status{
+		position:relative;
+		top:-25px;
+		left:25px;
+		font-size:10px !important;
+		text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+	}
+	
+	.yellow{
+	color: #FDBF4C;
+}
+.green{
+	color: #55CD97;
+}
+.blue{
+	color: #1CA1C1;
+}
+.webix_view.form_photo > div{
+	padding:0px;
+}
+#End If
+
 'update the original prop names of a property bag
 Sub SetActual(original As Map, actual As Map) As Map
 	Dim nmap As Map = CreateMap()
@@ -781,10 +804,22 @@ Sub UI()
 	Next
 End Sub
 
-'set to full screen
-Sub SetFullScreen(b As Boolean) As WixPage			'ignore
-	webix.RunMethod("ui", Array("fullScreen"))
-	Return Me
+Sub UIFullScreen
+	webix.GetField("ui").RunMethod("fullScreen",Null)
+End Sub
+
+'resize top level ui elements
+Sub UIResize
+	webix.GetField("ui").RunMethod("resize", Null)
+End Sub
+
+'set to full screen an element
+Sub FullScreen(i As Object) 
+	webix.GetField("fullscreen").RunMethod("set", Array(i))
+End Sub
+
+Sub ExitFullScreen
+	webix.GetField("fullscreen").RunMethod("exit",Null)
 End Sub
 
 'message user
@@ -809,33 +844,36 @@ Sub Message_Success(msg As String)
 End Sub
 
 'message debug
-Sub Message_Debug(msg As String)
+Sub Message_Debug(Msg As String)
 	Dim opt As Map = CreateMap()
-	opt.Put("text", msg)
+	opt.Put("text", Msg)
 	opt.Put("type", "debug")
 	webix.RunMethod("message", Array(opt))
 End Sub
 
-'aler user
-Sub Alert(msg As Object)
-	webix.RunMethod("alert", Array(msg))
+'aler user, create with wixmessagebox
+Sub Alert(Msg As Object)
+	webix.RunMethod("alert", Array(Msg))
 End Sub
 
-Sub Confirm1(msg As Object)
-	webix.RunMethod("confirm", Array(msg))
+'create with wixmessagebox
+Sub Confirm1(Msg As Object)
+	webix.RunMethod("confirm", Array(Msg))
 End Sub
 
-Sub ModalBox(msg As Object)
-	webix.RunMethod("modalbox", Array(msg))
+'create with wixmessagebox
+Sub ModalBox(Msg As Map)
+	webix.RunMethod("modalbox", Array(Msg))
 End Sub
+
 
 
 'show an error message
 Sub ToastError(Text As String)
-	Dim msg As Map = CreateMap()
-	msg.put("type","error")
-	msg.put("text", Text)
-	webix.RunMethod("message", Array(msg))
+	Dim Msg As Map = CreateMap()
+	Msg.put("type","error")
+	Msg.put("text", Text)
+	webix.RunMethod("message", Array(Msg))
 End Sub
 
 'confirm dialog
@@ -998,7 +1036,7 @@ Sub Remove(listID As String, recID As String)
 End Sub
 
 'get the selected item column, row and id
-Sub GetSelectedID(listID As String) As WixSelectedID
+Sub GetWixSelectedID(listID As String) As WixSelectedID
 	listID = listID.tolowercase
 	Dim si As Map = Dollar.Selector(listID).RunMethod("getSelectedId",Null).Result
 	'
@@ -1008,6 +1046,25 @@ Sub GetSelectedID(listID As String) As WixSelectedID
 	sio.row = si.Get("row")
 	sio.id = si.Get("id")
 	Return sio
+End Sub
+
+'stringify
+Sub Stringify(o As Object) As Object
+	Dim res As Object = webix.RunMethod("stringify", Array(o)).result
+	Return res
+End Sub
+
+'execute string
+Sub Exec(s As Object) As BANanoObject
+	Dim res As Object = webix.RunMethod("exec", Array(s)).result
+	Return res
+End Sub
+
+'get the selected item column, row and id
+Sub GetSelectedID(listID As String) As Object
+	listID = listID.tolowercase
+	Dim si As String = Dollar.Selector(listID).RunMethod("getSelectedId",Null).Result
+	Return si
 End Sub
 
 'get the selected item

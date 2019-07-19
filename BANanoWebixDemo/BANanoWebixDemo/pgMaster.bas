@@ -20,7 +20,10 @@ Sub Init
 	Dim tblBar As WixToolBar
 	tblBar.Initialize("tblBar")
 	tblBar.CreateIcon("menuopen").SetIcon("mdi mdi-menu").SetClick(BANano.CallBack(Me, "OpenMenu", Null)).Pop
+	tblBar.CreateElement("logo").SetStyle("background","url(./assets/webix-logo.svg) 2px -7px no-repeat").SetWidth(100).AddToColumns(tblBar.toolbar)
 	tblBar.CreateLabel("heading").SetLabel("BANanoWebix - A Webix Wrapper for BANano").Pop
+	tblBar.CreateAvatar("avatar", "./assets/3.jpg", "green",CreateMap("top":"-4px")).SetTooltip("Click here To change settings").SetWidth(60).SetBorderLess(True).AddToColumns(tblBar.ToolBar)
+	tblBar.CreateIcon("collab").SetIcon("mdi mdi-wechat").SetTooltip("Collaborate").SetClick(BANano.CallBack(Me,"collab",Null)).pop
 	tblBar.setPadding(3)
 	R1.AddRows(tblBar.Item)
 	'
@@ -86,6 +89,7 @@ Sub Init
 	sm.AddItem("", "lesson27", "L27 FlexLayout","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lesson28", "L28 Suggest","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lesson29", "L29 Message Boxes","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "lesson31", "L31 WixImage","","mdi mdi-view-dashboard", "","")
 	'
 	Dim R2 As WixRow
 	R2.Initialize("R2")
@@ -112,6 +116,8 @@ End Sub
 
 Sub itemClick(meID As String)
 	Select Case meID
+	Case "lesson31"
+		pgCarSales.Init("r2c2_content")
 	Case "lesson29"
 		pgMessageBoxes.Init("r2c2_content")
 	Case "form_validation"
@@ -201,4 +207,15 @@ End Sub
 
 Sub OpenMenu()
 	pg.Toggle("sm")
+End Sub
+
+
+Sub collab
+	Dim theObject As Object = Sender
+	Dim isonline As Boolean = BANano.CheckInternetConnectionWait
+	If isonline Then
+		BANano.RunJavascriptMethod("TogetherJS", Array(theObject))
+	Else
+		pg.Message_Debug("You dont appear to be connected to the interweb!")
+	End If
 End Sub

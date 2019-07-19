@@ -8,10 +8,7 @@ Version=7.51
 Sub Process_Globals
 End Sub
 
-Sub getCenter As WixRow
-	Dim formHolder As WixRow
-	formHolder.Initialize("formholder")
-	'	
+Sub getCenter As WixAccordion
 	Dim acc As WixAccordion
 	acc.Initialize("va").SetTypeLine(True).SetMulti(True).SetResponsive(True)
 	'
@@ -23,7 +20,5 @@ Sub getCenter As WixRow
 	'	
 	acc.AddItem("preview","Preview",div.html,False,False)
 	acc.AddItem("code","Source Code",cel.item,False,False)
-	'
-	formHolder.AddRows(acc.Item)
-	Return formHolder
+	Return acc
 End Sub

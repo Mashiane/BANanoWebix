@@ -20,10 +20,14 @@ End Sub
 'initialize the header
 Public Sub Initialize(sID As String) As WixHeader
 	ID = sID.tolowercase
-	Header.Initialize(ID).SetView("template").SetType("header")
+	Header.Initialize(ID).SetType("header")
 	Return Me
 End Sub
 
+Sub SetTemplate(t As Object) As WixHeader
+	Header.SetTemplate(t)
+	Return Me
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixHeader
 	Dim os As String = h.HTML
@@ -64,6 +68,17 @@ Sub SetResponsiveCell(b As Object) As WixHeader
 	Return Me
 End Sub
 
+Sub SetCSS(c As Object) As WixHeader
+	Header.SetCSS(c)
+	Return Me
+End Sub
+
+'set css
+Sub SetStyle(prop As String, val As String) As WixHeader
+	Header.SetStyle(prop,val)
+	Return Me
+End Sub
+
 
 'set min width
 Sub SetMinWidth(w As Int) As WixHeader
@@ -74,6 +89,18 @@ End Sub
 'set minheight
 Sub SetMinHeight(h As Int) As WixHeader
 	Header.SetMinHeight(h)
+	Return Me
+End Sub
+
+'set width
+Sub SetWidth(w As Int) As WixHeader
+	Header.SetWidth(w)
+	Return Me
+End Sub
+
+'set height
+Sub SetHeight(h As Int) As WixHeader
+	Header.SetHeight(h)
 	Return Me
 End Sub
 

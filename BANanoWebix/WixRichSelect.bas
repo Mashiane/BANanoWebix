@@ -29,6 +29,12 @@ Sub SetMap(m As Map) As WixRichSelect
 End Sub
 
 
+'set the placeholder
+Sub SetPlaceHolder(ph As String) As WixRichSelect
+	RichSelect.SetPlaceHolder(ph)
+	Return Me
+End Sub
+
 Sub SetTemplateHTML(h As UOENowHTML) As WixRichSelect
 	Dim os As String = h.HTML
 	RichSelect.SetTemplate(os)

@@ -127,6 +127,13 @@ Sub CreateLabel(sid As String) As WixLabel
 	Return lbl
 End Sub
 
+'add a label
+Sub CreateElement(sid As String) As WixElement
+	Dim lbl As WixElement
+	lbl.Initialize(sid)
+	Return lbl
+End Sub
+
 'add a toggle button and define it
 Sub CreateToggle(sid As String) As WixToggle
 	Dim btn As WixToggle
@@ -134,15 +141,27 @@ Sub CreateToggle(sid As String) As WixToggle
 	Return btn
 End Sub
 
-Sub CreateAvatar(sid As String, imgURL As String) As WixElement
+Sub CreateAvatar(sid As String, imgURL As String, statusColor As String, Styles As Map) As WixElement
 	Dim img As UOENowHTML
-	img.Initialize("","img").SetSRC(imgURL,True).SetStyle("border-radius", "25px").SetStyle("width", "42px").SetStyle("height", "42px")
+	img.Initialize("","img").SetSRC(imgURL,True).SetStyle("border-radius", "25px").SetStyle("width", "35px").SetStyle("height", "35px")
 	img.SetStyle("cursor", "pointer")
 	'
-	Dim html As String = img.html
+	If Styles <> Null Then
+		For Each mk As String In Styles.Keys
+			Dim mv As String = Styles.Get(mk)
+			img.SetStyle(mk,mv)	
+		Next
+	End If
 	'
+	Dim span As UOENowHTML
+	span.Initialize("","span").AddClass("webix_icon mdi mdi-circle status ").AddClass(statusColor)
+	'
+	Dim sb As StringBuilder
+	sb.Initialize 
+	sb.Append(img.HTML).Append(span.HTML)
+	
 	Dim avatar As WixElement
-	avatar.Initialize(sid).SetWidth(60).SetBorderLess(True).SetTemplate(html)
+	avatar.Initialize(sid).SetTemplate(sb.ToString)
 	Return avatar
 End Sub
 

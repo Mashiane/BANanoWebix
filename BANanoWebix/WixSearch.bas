@@ -24,6 +24,13 @@ Sub SetTemplateHTML(h As UOENowHTML) As WixSearch
 	Return Me
 End Sub
 
+
+'set the placeholder
+Sub SetPlaceHolder(ph As String) As WixSearch
+	Search.SetPlaceHolder(ph)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixSearch
 	Search.SetName(n)

@@ -57,7 +57,7 @@ Sub Init(pgContainer As String)
 	e5.Initialize("cnt").SetLabel("Counter")
 	C1.AddRows(e5.Item)
 	'
-	Dim e6 As WixDateTimePicker
+	Dim e6 As WixDatePicker
 	e6.Initialize("").SetLabel("Date Time Picker").SetEditable(True).SetTimePicker(True).SetFormat("%d %M %Y at %H:%i")
 	C1.AddRows(e6.Item)
 	'

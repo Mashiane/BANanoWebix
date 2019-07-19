@@ -24,6 +24,12 @@ Public Sub Initialize(iID As String) As WixCombo
 End Sub
 
 
+'set the placeholder
+Sub SetPlaceHolder(ph As String) As WixCombo
+	Combo.SetPlaceHolder(ph)
+	Return Me
+End Sub
+
 Sub SetTemplateHTML(h As UOENowHTML) As WixCombo
 	Dim os As String = h.HTML
 	Combo.SetTemplate(os)

@@ -32,6 +32,12 @@ Sub SetMap(m As Map) As WixRichText
 End Sub
 
 
+'set the placeholder
+Sub SetPlaceHolder(ph As String) As WixRichText
+	RichText.SetPlaceHolder(ph)
+	Return Me
+End Sub
+
 Sub SetTemplateHTML(h As UOENowHTML) As WixRichText
 	Dim os As String = h.HTML
 	RichText.SetTemplate(os)

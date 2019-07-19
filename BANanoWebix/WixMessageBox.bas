@@ -123,3 +123,9 @@ Sub AddButton(btnText As String) As WixMessageBox
 	buttons.Add(btnText)
 	Return Me
 End Sub
+
+
+'show the modal box
+Sub Show(Page As WixPage)
+	Page.ModalBox(Item)
+End Sub

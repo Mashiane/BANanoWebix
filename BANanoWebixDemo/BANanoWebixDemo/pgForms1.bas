@@ -82,7 +82,7 @@ Sub Init(pgContainer As String)
 	seg.Initialize("seq").SetOptions(fruit)
 	myForm.AddItem(seg.Item)
 	'date picker
-	Dim dt As WixDateTimePicker
+	Dim dt As WixDatePicker
 	dt.Initialize("dt").SetLabel("Date Picker").SetTimePicker(True).SetFormat("%d %M %Y at %H:%i").SetLabelWidth(100)
 	myForm.AddItem(dt.Item)
 	'color picker

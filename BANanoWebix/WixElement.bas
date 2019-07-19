@@ -22,6 +22,18 @@ Sub Class_Globals
 	Private On As Map
 End Sub
 
+Sub CreateMessageBox(mbox As String) As WixMessageBox
+	Dim out As WixMessageBox
+	out.Initialize(mbox)
+	Return out
+End Sub
+
+public Sub RemoveAttr(sData As String) As WixElement
+	sData = sData.tolowercase
+	Element.Remove(sData)
+	Return Me
+End Sub
+
 Sub SetElementsConfigJSON(json As String) As WixElement
 	Dim m As Map = Json2Map(json)
 	For Each mk As String In m.Keys
@@ -254,6 +266,7 @@ Public Sub Initialize(sID As String) As WixElement
 	Rules.Initialize
 	options.Initialize
 	SetLocalID(ID)
+	SetName(ID)
 	On.Initialize
 	Return Me
 End Sub
@@ -1007,8 +1020,8 @@ Sub CreateDataView(sid As String) As WixDataView
 End Sub
 
 
-Sub CreateDateTimePicker(sid As String) As WixDateTimePicker
-	Dim btn As WixDateTimePicker
+Sub CreateDatePicker(sid As String) As WixDatePicker
+	Dim btn As WixDatePicker
 	btn.Initialize(sid)
 	Return btn
 End Sub
@@ -1090,8 +1103,8 @@ Sub CreateMenu(sid As String) As WixMenu
 	Return itm 
 End Sub
 
-Sub CreateMessageBox(sid As String) As WixMessageBox 
-	Dim itm As WixMessageBox 
+Sub CreateImage(sid As String) As WixImage 
+	Dim itm As WixImage
 	itm.Initialize(sid) 
 	Return itm 
 End Sub

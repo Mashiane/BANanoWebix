@@ -11,7 +11,7 @@ End Sub
 
 Sub getToolBar As WixToolBar
 	Dim tblBar As WixToolBar
-	tblBar.Initialize("tblBar").SetHeight(56)
+	tblBar.Initialize("tblBar").SetHeight(58).setPadding(9)
 	tblBar.CreateIcon("menuopen").SetIcon("mdi mdi-menu").SetClick(BANano.CallBack(pgFormDesigner, "OpenMenu", Null)).Pop
 	tblBar.CreateLabel("heading").SetLabel("BANanoWebix - Form Designer").Pop
 	tblBar.AddSpacer
@@ -21,7 +21,5 @@ Sub getToolBar As WixToolBar
 	'
 	tblBar.CreateIcon("help").SetIcon("mdi mdi-help").SetTooltip("Hints").SetClick(BANano.CallBack(pgFormDesigner,"showhints", Null)).pop
 	tblBar.CreateIcon("collab").SetIcon("mdi mdi-wechat").SetTooltip("Collaborate").SetClick(BANano.CallBack(pgFormDesigner,"collab",Null)).pop
-	'tblBar.CreateAvatar("avatar", "./assets/3.jpg").SetTooltip("Click here To change settings").AddToColumns(tblBar.ToolBar)
-	tblBar.setPadding(3)
 	Return tblBar
 End Sub

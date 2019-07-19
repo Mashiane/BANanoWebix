@@ -82,9 +82,11 @@ Sub Init()
 	R2.AddColumns(frm.Item)
 	R2.CreateResizer("").AddToColumns(R2.Row)
 	'	
-	Dim formholder As WixRow = modCenter.getCenter
+	'Dim formholder As  = modCenter.getCenter
+	Dim acc As WixAccordion = modCenter.getCenter
 	
-	R2.AddColumns(formholder.Item)
+	'R2.AddColumns(formholder.Item)
+	R2.AddColumns(acc.item)
 	pg.AddRow(R2)
 	'
 	pg.ui
@@ -398,6 +400,8 @@ Sub prop_saveWait
 	Dim tablename As String = prop.GetDefault("tablename","")
 	Dim autoincrement As String = prop.GetDefault("autoincrement","")
 	Dim primarykey As String = prop.GetDefault("primarykey","")
+	
+	Log(prop)
 	
 	'ensure id is always lowercase
 	i = i.tolowercase
