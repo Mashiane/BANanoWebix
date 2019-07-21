@@ -551,6 +551,12 @@ Sub HideOverlay(eid As String)
 	Dollar.Selector(eid).RunMethod("hideOverlay",Null)
 End Sub
 
+Sub Print(eid As String, options As WixPrint)
+	eid = eid.ToLowerCase
+	Dim bo As BANanoObject = Dollar.Selector(eid)
+	webix.RunMethod("print", Array(bo, options.Item))
+End Sub
+
 
 'attach events after page is created
 Sub OnChange(eID As String, cb As BANanoObject)

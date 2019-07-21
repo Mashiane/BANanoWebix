@@ -121,10 +121,11 @@ Module78=WixWindow
 Module79=UOENowData
 Module8=WixImage
 Module80=WixDatePicker
+Module81=WixPrint
 Module9=WixSegmented
 NumberOfFiles=19
 NumberOfLibraries=3
-NumberOfModules=80
+NumberOfModules=81
 Version=7.51
 @EndOfDesignText@
  #Region Project Attributes 
