@@ -65,6 +65,12 @@ Sub SetWidth(w As Object) As WixImage
 	Return Me
 End Sub
 
+'set container
+Sub SetContainer(w As Object) As WixImage
+	Image.SetContainer(w)
+	Return Me
+End Sub
+
 'set css
 Sub SetStyle(prop As String, val As String) As WixImage
 	Image.SetStyle(prop,val)

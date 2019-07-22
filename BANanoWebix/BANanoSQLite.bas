@@ -362,6 +362,10 @@ public Sub CreateTable(tblName As String, tblFields As Map, PK As String) As Str
 		sb.Append(EscapeField(fldName))
 		sb.Append(" ")
 		sb.Append(fldType)
+		Select Case fldType
+		Case "STRING", "TEXT"
+			sb.Append(" COLLATE NOCASE")
+		End Select
 		If fldName.EqualsIgnoreCase(PK) Then
 			sb.Append(" PRIMARY KEY")
 		End If

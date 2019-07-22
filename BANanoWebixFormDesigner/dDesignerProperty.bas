@@ -12,25 +12,31 @@ End Sub
 Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Dim ft As List
 	ft.Initialize
-	ft.AddAll(Array("","Boolean","Int", "String","Color"))
+	ft.AddAll(Array("","Boolean","Int", "String","Color","Object","List","Map"))
+	'
+	Dim pt As List
+	pt.Initialize 
+	pt.AddAll(Array("","Color","TextBox","Label","Password","Date","Select","Combo","RichSelect","CheckBox"))
 	'
 	Bag.Clear
-	Bag.AddTextBox("Key", "Key","")
-	Bag.AddLabel("Parent")
-	Bag.AddTextBox("parentid","Parent", "form")
-	Bag.AddLabel("Designer Property")
+	Bag.AddTextBox("id", "ID","property")
+	Bag.AddTextBox("name", "Name","")
+	Bag.AddTextBox("parentid","Parent", "wixsomething")
 	Bag.AddTextBox("DisplayName","Display Name", "")
-	Bag.AddCombo("FieldType","Field Type","AddRows", ft)
+	Bag.AddCombo("controltype","Control Type","TextBox", pt)
+	Bag.AddTextBox("tabindex", "Tab Index", "")
+	Bag.AddCombo("FieldType","Field Type","String", ft)
 	Bag.AddTextBox("DefaultValue", "Default Value", "")
 	Bag.AddTextBox("MinRange","Min Range", "0")
 	Bag.AddTextBox("MaxRange", "Max Range", "100")
-	Bag.AddTextBox("List", "List","Sunday|Monday|Tuesday")
+	Bag.AddTextBox("List", "List","")
 	Bag.AddTextBox("Description", "Description","")
-	Bag.AddCheckBox("hasSet", "Can Set", True)
-	Bag.AddCheckBox("hasGet", "Can Get", True)
+	Bag.AddCheckBox("hasSet", "Can Set", "")
+	Bag.AddCheckBox("hasGet", "Can Get", "")
+	
 	Bag.AddLabel("Links")
 	Bag.AddTextBox("attributeName", "Attribute","")
 	Bag.AddTextBox("className", "Class","")
-	Bag.AddCheckBox("conditional", "Conditional", True)
+	Bag.AddCheckBox("conditional", "Conditional", "")
 	Bag.Refresh(Page)
 End Sub

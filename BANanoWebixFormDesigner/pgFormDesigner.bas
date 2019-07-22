@@ -162,6 +162,29 @@ Sub RefreshTreeWait
 	pg.ClearAll("tree")
 	'
 	pg.AddNode("tree", "", "connection", "Database", "", pg.EnumWixIcons.Folder,"","",True)
+	sqlite.Initialize
+	qry = sqlite.SelectAll("wixsomething", Array("name"), Array("name"))
+	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	rs = sqlite.GetResultSet(qry, res)
+	For Each fitem As Map In rs.result
+		Dim name As String = fitem.GetDefault("name","")
+		If name <> "" Then
+			Dim key As String = $"wixsomething.${name}"$
+			pg.AddNode("tree", "", key, key, "", pg.EnumWixIcons.Folder,"","",True)
+			sqlite.Initialize
+			qry = sqlite.SelectWhere("properties", Array("key"), CreateMap("parentid":name), Array("tabindex"))
+			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+			rs = sqlite.GetResultSet(qry, res)
+			For Each pitem As Map In rs.result
+				Dim k As String = pitem.GetDefault("key","")
+				If k <> "" Then
+					Dim skey As String = "property." & pitem.Get("key")
+					Dim pkey As String = $"wixsomething.${name}"$
+					pg.AddNode("tree", pkey, skey, skey, "", pg.EnumWixIcons.Folder,"","",True)
+				End If
+			Next
+		End If
+	Next
 	'load tables
 	sqlite.Initialize
 	qry = sqlite.SelectAll("tables", Array("key"), Array("key"))
@@ -239,6 +262,7 @@ Sub AddPrimaryKey
 	'replace complete record
 	qry = sqlite.InsertReplace("fields", nf)
 	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	rs = sqlite.GetResultSet(qry, res)
 	'check existence
 	sqlite.initialize
 	sqlite.AddStrings(Array("id"))
@@ -371,7 +395,15 @@ Sub prop_add
 	Dim pid As String = cm.GetDefault("id","")
 	Dim value As String = cm.GetDefault("value","")
 	Dim tablename As String = cm.GetDefault("tablename","")
+	Dim sname As String = cm.GetDefault("name","")
 	Select Case pid
+	Case "wixsomething"
+		'get selected treeview
+		sidebar_click("property")
+	Case "property"
+		Dim k As String = $"wixsomething.${sname}"$
+		pg.SelectItem("tree", k)
+		sidebar_click("property")
 	Case "connection"
 		'add a table
 		sidebar_click("table")
@@ -401,8 +433,6 @@ Sub prop_saveWait
 	Dim autoincrement As String = prop.GetDefault("autoincrement","")
 	Dim primarykey As String = prop.GetDefault("primarykey","")
 	
-	Log(prop)
-	
 	'ensure id is always lowercase
 	i = i.tolowercase
 	prop.Put("id", i)
@@ -416,6 +446,44 @@ Sub prop_saveWait
 	json = BANano.ToJson(prop)
 	'
 	Select Case i
+	Case "property"
+		Dim sname As String = prop.GetDefault("name","")
+		If sname = "" Then
+			pg.Message_Error("Please enter the name of the property to add!")
+			Return
+		End If
+		Dim k As String = $"${p}.${sname}"$
+		sqlite.Initialize
+		sqlite.AddStrings(Array("id"))
+		rec = CreateMap()
+		rec.Put("id", i)
+		rec.put("tabindex", idx)
+		rec.Put("parentid", p)
+		rec.Put("json", json)
+		rec.Put("key", k)
+		rec.Put("name", sname)
+		sqlite.Initialize
+		sqlite.AddStrings(Array("id"))
+		Dim qry As String = sqlite.InsertReplace("properties", rec)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry, res)
+	Case "wixsomething"
+		Dim sname As String = prop.GetDefault("name","")
+		If sname = "" Then
+			pg.Message_Error("Please enter the name of the control to create!")
+			Return
+		End If
+		'add to table
+		sqlite.Initialize
+		sqlite.AddStrings(Array("id,name"))
+		'new connect record
+		rec = CreateMap()
+		rec.Put("name", sname)
+		rec.Put("json", json)
+		'replace complete record
+		qry = sqlite.InsertReplace("wixsomething", rec)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry, res)
 	Case "field"
 		pg.Collapse("preview")
 		'save a field
@@ -432,6 +500,7 @@ Sub prop_saveWait
 		'replace complete record
 		qry = sqlite.InsertReplace("fields", rec)
 		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry, res)
 		'check existence
 		sqlite.initialize
 		sqlite.AddStrings(Array("id"))
@@ -454,6 +523,7 @@ Sub prop_saveWait
 		'replace complete record
 		qry = sqlite.InsertReplace("tables", rec)
 		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry, res)
 		'check existence
 		sqlite.initialize
 		sqlite.AddStrings(Array("id"))
@@ -486,6 +556,7 @@ Sub prop_saveWait
 		'replace complete record
 		qry = sqlite.InsertReplace("connect", rec)
 		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry, res)
 		'check existence
 		sqlite.initialize
 		sqlite.AddStrings(Array("id"))
@@ -610,6 +681,29 @@ Sub deletepropwait(confirmresult As Boolean)
 	Dim tablename As String = rp.GetDefault("tablename", "")
 	Dim key As String = $"table.${value}"$
 	Select Case delID
+	Case "property"
+		Dim parentid As String = rp.GetDefault("parentid","")
+		Dim name As String = rp.GetDefault("name","")
+		Dim k As String = $"${parentid}.${name}"$
+		sqlite.Initialize
+		sqlite.AddStrings(Array("id"))
+		qry = sqlite.DeleteWhere("properties",CreateMap("key":k))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		pg.Message_Success(rs.result.size & " record(s) affected!")
+		refreshapp
+	Case "wixsomething"
+		Dim name As String = rp.GetDefault("name","")
+		sqlite.Initialize
+		sqlite.AddStrings(Array("name"))
+		qry = sqlite.DeleteWhere("wixsomething",CreateMap("name":name))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry, res)
+		'
+		qry = sqlite.DeleteWhere("properties",CreateMap("parentid":name))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry, res)
+		refreshapp
 	Case "form"
 		sqlite.Initialize
 		sqlite.AddStrings(Array("id"))
@@ -661,6 +755,7 @@ Sub CreateView(properties As Map) As Map
 	'get the view
 	Dim v As String = properties.Get("view")
 	Dim i As String = properties.Get("id")
+	Dim val As String = properties.getdefault("value","")
 	'
 	Dim view As WixElement
 	view.Initialize(i)
@@ -701,6 +796,16 @@ Sub CreateView(properties As Map) As Map
 		Case Else
 			properties.Put("options", options)
 		End Select
+	Case "image"
+		Dim img As UOENowHTML
+		img.SetImportant(False)
+		img.Initialize("","img")
+		img.SetStyle("width","100%")
+		img.SetStyle("height","100%")
+		view.SetCSS("form_photo")
+		img.SetSRC(val,True)
+		view.SetTemplateHTML(img)
+		properties.Remove("value")
 	End Select
 	
 	'get the contents of the property bag
@@ -710,6 +815,8 @@ Sub CreateView(properties As Map) As Map
 		If cval <> "" Then
 			If pkey = "view" And cval.tolowercase = "row" Then Continue
 			If pkey = "view" And cval.tolowercase = "column" Then Continue
+			If pkey = "view" And cval.tolowercase = "layout" Then Continue
+			If pkey = "view" And cval.tolowercase = "image" Then Continue
 			If pkey = "addingmethod" Then Continue
 			If pkey = "style.color" Then 
 				view.SetStyle("color", cval)
@@ -745,7 +852,7 @@ Sub CreateView(properties As Map) As Map
 	Next
 	'dont do rows and columns, they dont have views
 	Select Case v.ToLowerCase
-	Case "row", "column"
+	Case "row", "column", "layout", "image"
 	Case Else
 		view.SetAttr("view", v.ToLowerCase)
 	End Select
@@ -837,6 +944,56 @@ Sub tree_clickwait(recid As String)
 	pg.Hide("download")
 			
 	Select Case prefix
+	Case "property"
+		Dim itm3 As String = pg.MvField(recid,3,".")
+		pg.Collapse("preview")
+		pg.hide("propadd")
+		pg.Expand("code")
+		pg.show("propdelete")
+		dDesignerProperty.BuildBag(pg,propBag)
+		Dim k As String = $"${suffix}.${itm3}"$
+		sqlite.Initialize
+		sqlite.AddStrings(Array("key"))
+		qry = sqlite.Read("properties","key",k)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		If rs.result.Size = 0 Then
+		Else
+			rec = rs.result.get(0)
+			json = rec.Get("json")
+			rec = pg.Json2Map(json)
+			pg.SetValues("propbag", rec)
+		End If
+	Case "wixsomething"
+		pg.Collapse("preview")
+		pg.Show("propadd")
+		pg.Show("add_fields")
+		pg.Show("propdelete")
+		pg.Show("download")
+	
+		dWixSomething.BuildBag(pg, propBag)
+		sqlite.Initialize
+		sqlite.AddStrings(Array("name"))
+		qry = sqlite.Read("wixsomething","name",suffix)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		Dim ws As Map = Null
+		If rs.result.Size = 0 Then
+		Else
+			rec = rs.result.get(0)
+			ws = rs.result.Get(0)
+			json = rec.Get("json")
+			rec = pg.Json2Map(json)
+			pg.SetValues("propbag", rec)
+		End If
+		'get properties
+		sqlite.Initialize
+		qry = sqlite.SelectWhere("properties", Array("*"), CreateMap("parentid":suffix), Array("tabindex"))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry, res)
+		Dim props As List = rs.result
+		Dim ccode As String = BuildClass(suffix,ws,props)
+		SourceCodePreview(ccode)
 	Case "field"
 		pg.Show("add_fields")
 		pg.Collapse("preview")
@@ -1123,13 +1280,49 @@ Sub sidebar_click(meid As String)
 	'
 	Select Case meid
 	Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"
+	Case "vis"	
 	Case "downloads"
 	Case "b4xlib"
 	Case "skeletonapp"
+	Case "wixsomething"
+		dWixSomething.BuildBag(pg, propBag)
 	Case "dbhelp"
 		pg.Show("propadd")
 		pg.show("propdelete")
 		dbhelp
+	Case "property"
+		pg.show("propadd")
+		pg.Collapse("preview")
+		pg.Expand("code")
+		pg.show("propdelete")
+		'see selected treeitem
+		Dim parentid As String = pg.GetSelectedID("tree")
+		If parentid = "" Then
+			pg.Message_Error("Please select the element to add the property to first!")
+			Return
+		End If
+		dDesignerProperty.BuildBag(pg, propBag) 
+		Dim prefix As String = pg.MvField(parentid,1,".")
+		Dim suffix As String = pg.MvField(parentid,2,".")
+		Select Case prefix
+		Case "wixsomething"
+			'get next field id
+			sqlite.Initialize
+			qry = sqlite.Execute($"select max(tabindex) as nid from properties where parentid = '${suffix}'"$)
+			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+			rs = sqlite.GetResultSet(qry,res)
+			Dim nrec As Map = rs.result.get(0)
+			Dim nid As String = nrec.GetDefault("nid","0")
+			nid = BANano.parseInt(nid) + 1
+			Dim kFind As String = pg.CStr(nid)
+			Dim p As Map = pg.GetValues("propbag")
+			p.Put("parentid", suffix)
+			p.Put("tabindex", kFind)
+			pg.SetValues("propbag",p)
+		Case Else
+			pg.Message_Error("Please select the element to add the property to first!")
+			Return
+		End Select
 	Case "field"
 		pg.show("propadd")
 		pg.Collapse("preview")
@@ -1145,9 +1338,6 @@ Sub sidebar_click(meid As String)
 		Dim suffix As String = pg.MvField(parentid,2,".")
 		Select Case prefix
 		Case "table"	
-			pg.Collapse("preview")
-			pg.Expand("code")
-			pg.show("propdelete")
 			dField.BuildBag(pg,propBag)
 			'get next field id
 			prefix = $"field.${suffix}.field"$
@@ -1319,6 +1509,9 @@ End Sub
 
 Sub DrawPropBag(con As String) As Boolean
 	Select Case con
+		Case "image"
+			dImage.BuildBag(pg, propBag)
+			Return True
 		Case "connection"
 			dConnection.BuildBag(pg, propBag)
 			Return True
@@ -1327,6 +1520,9 @@ Sub DrawPropBag(con As String) As Boolean
 			Return True
 		Case "row"
 			dRow.BuildBag(pg, propBag)
+			Return True
+		Case "layout"
+			dLayout.BuildBag(pg, propBag)
 			Return True
 		Case "column"
 			dColumn.BuildBag(pg, propBag)
@@ -1348,6 +1544,9 @@ Sub DrawPropBag(con As String) As Boolean
 			Return True
 		Case "datepicker"
 			dDatePicker.BuildBag(pg, propBag)
+			Return True
+		Case "calendar"
+			dCalendar.BuildBag(pg, propBag)
 			Return True
 		Case "icon"
 			dIcon.BuildBag(pg, propBag)
@@ -1381,6 +1580,9 @@ Sub DrawPropBag(con As String) As Boolean
 			Return True
 		Case "text"
 			dText.BuildBag(pg, propBag)
+			Return True
+		Case "richtext"
+			dRichText.BuildBag(pg, propBag)
 			Return True
 		Case "textarea"
 			dTextArea.BuildBag(pg, propBag)
@@ -1463,37 +1665,68 @@ Sub btnMulti_click
 	Dim scontrols As String = pg.GetValue("txtmultiplecontrols")
 	scontrols = scontrols.trim
 	'
-	'split the controls so we get each
-	Dim controls() As String = BANano.Split(",", scontrols)
-	Dim tbindex As Int = 0
-	For Each ctrl As String In controls
-		tbindex = tbindex + 1
-		ctrl = ctrl.Trim
-		If ctrl <> "" Then
-			ctrl = ctrl.ToLowerCase
-			Dim newctrl As Map = TemporalText
-			newctrl.Put("id", ctrl)
-			newctrl.Put("parentid", parentid)
-			newctrl.Put("name", ctrl)
-			newctrl.Put("tabindex",tbindex)
-			newctrl.Put("label",ctrl)
-			'convert to json
-			Dim json As String = pg.Map2Json(newctrl)
-			'insert the record to elements
-			'item does not exist
-			sqlite.Initialize
-			sqlite.AddStrings(Array("id"))
-			Dim rec As Map = CreateMap()
-			rec.Put("id", ctrl)
-			rec.put("json", json)
-			rec.Put("tabindex", tbindex)
-			rec.Put("parentid", parentid)
-			qry = sqlite.Insert("items", rec)
-			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
-			rs = sqlite.GetResultSet(qry,res)
-			pg.Message_Success(rs.result.size & " record(s) affected!")
-		End If
-	Next
+	Dim prefix As String = pg.MvField(parentid,1,".")
+	Dim suffix As String = pg.MvField(parentid,2,".")
+	Select Case prefix
+	Case "wixsomething"
+		Dim controls() As String = BANano.Split(",", scontrols)
+		Dim tbindex As Int = 0
+		For Each ctrl As String In controls
+			tbindex = tbindex + 1
+			ctrl = ctrl.Trim
+			If ctrl <> "" Then
+				Dim prop As Map = CreateMap()
+				prop.Put("id", "property")
+				prop.Put("name", ctrl)
+				prop.put("parentid", suffix)
+				prop.put("controltype","TextBox")
+				prop.Put("tabindex", tbindex)
+				prop.Put("FieldType", "String")
+				Dim k As String = $"${suffix}.${ctrl}"$	
+				prop.Put("key", k)
+				json = pg.Map2Json(prop)
+				prop.put("json", json)
+				prop.Remove("controltype")	
+				prop.remove("FieldType")			'
+				sqlite.initialize
+				sqlite.AddStrings(Array("id"))
+				qry = sqlite.InsertReplace("properties", prop)
+				res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+				rs = sqlite.GetResultSet(qry, res)
+			End If
+		Next		
+	Case Else	
+		'split the controls so we get each
+		Dim controls() As String = BANano.Split(",", scontrols)
+		Dim tbindex As Int = 0
+		For Each ctrl As String In controls
+			tbindex = tbindex + 1
+			ctrl = ctrl.Trim
+			If ctrl <> "" Then
+				ctrl = ctrl.ToLowerCase
+				Dim newctrl As Map = TemporalText
+				newctrl.Put("id", ctrl)
+				newctrl.Put("parentid", parentid)
+				newctrl.Put("name", ctrl)
+				newctrl.Put("tabindex",tbindex)
+				newctrl.Put("label",ctrl)
+				'convert to json
+				Dim json As String = pg.Map2Json(newctrl)
+				'insert the record to elements
+				'item does not exist
+				sqlite.Initialize
+				sqlite.AddStrings(Array("id"))
+				Dim rec As Map = CreateMap()
+				rec.Put("id", ctrl)
+				rec.put("json", json)
+				rec.Put("tabindex", tbindex)
+				rec.Put("parentid", parentid)
+				qry = sqlite.Insert("items", rec)
+				res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+				rs = sqlite.GetResultSet(qry,res)
+			End If
+		Next
+	End Select
 	pg.BoClose(winux)
 	RefreshTreeWait
 End Sub
@@ -1634,7 +1867,7 @@ Sub add_fields
 	Select Case prefix
 	Case "table", "connection"
 		pg.boShow(CreateWindowFields)
-	Case "form"
+	Case "form", "wixsomething"
 		pg.BOShow(CreateWindow)
 	End Select
 End Sub
@@ -1683,4 +1916,112 @@ Sub fieldschange()
 		pg.Define("btnMulti1", CreateMap("badge":cCount))
 		pg.Refresh("btnMulti1")
 	End If
+End Sub
+
+Sub BuildClass(somethingName As String, ws As Map, props As List) As String
+	Dim cc As String = Capitalize(somethingName)
+	Dim sb As StringBuilder
+	sb.Initialize
+	sb.Append($"'CREATE A CLASS CALLED Wix${cc}"$).Append(CRLF)
+sb.Append("#IgnoreWarnings:12").append(CRLF)
+sb.Append("Sub Class_Globals").append(CRLF)
+sb.Append("Public ID As String").Append(CRLF)
+sb.Append($"Public ${cc} As WixElement"$).Append(CRLF)
+sb.Append("End Sub").append(CRLF).Append(CRLF)
+	
+	'get the view
+	json = ws.Get("json")
+	rec = pg.Json2Map(json)
+	Dim v As String = rec.Get("view")
+		'
+	sb.Append($"'Initializes the ${somethingName}"$).Append(CRLF)
+	sb.append($"Public Sub Initialize(sid As String) As Wix${cc}"$).Append(CRLF)
+	sb.Append("ID = sid.tolowercase").Append(CRLF)
+	sb.Append($"${cc}.Initialize(ID).SetView("${v}")"$).Append(CRLF)
+	sb.append("Return Me").Append(CRLF)
+	sb.Append("End Sub").append(CRLF).append(CRLF)
+	'
+	sb.Append("'return the item").Append(CRLF)
+	sb.append("Sub Item As Map").Append(CRLF)
+	sb.append($"Return ${cc}.item"$).append(CRLF)
+	sb.append("End Sub").append(CRLF).append(CRLF)
+	'
+	For Each prop As Map In props
+		json = prop.getdefault("json", "")
+		rec = pg.Json2Map(json)
+		Dim sname As String = rec.GetDefault("name","")
+		Dim sFieldType As String = rec.GetDefault("FieldType","")
+		Dim cname As String = Capitalize(sname)
+		'
+		sb.append($"Sub Set${cname}(${sname} As ${sFieldType}) As Wix${cc}"$).append(CRLF)
+		sb.Append($"${cc}.SetAttr("${sname}", ${sname})"$).Append(CRLF)
+		sb.append("Return Me").Append(CRLF)
+		sb.Append("End Sub").Append(CRLF).append(CRLF)
+	Next
+	'
+sb.Append("'add to parent rows").Append(CRLF)
+sb.Append("Sub AddToRows(P As WixElement)").Append(CRLF)
+sb.append("P.AddRows(Item)").Append(CRLF)
+sb.Append("End Sub").Append(CRLF).Append(CRLF)
+
+sb.Append("'add to parent columns").Append(CRLF)
+sb.append("Sub AddToColumns(P As WixElement)").Append(CRLF)
+sb.append("P.AddColumns(Item)").Append(CRLF)
+sb.Append("End Sub").Append(CRLF).Append(CRLF)
+
+sb.Append("'add to parent elements").Append(CRLF)
+sb.Append("Sub AddToElements(P As WixElement)").Append(CRLF)
+sb.append("P.AddElements(Item)").Append(CRLF)
+sb.Append("End Sub").Append(CRLF).Append(CRLF)
+	'
+	'build property bag
+	sb.Append($"'CREATE A CODE MODULE named d${cc}"$).append(CRLF).append(CRLF)
+	sb.Append("Sub Process_Globals").append(CRLF)
+	sb.append("End Sub").Append(CRLF).append(CRLF)
+	'
+	sb.Append("Sub BuildBag(Page As WixPage, Bag As WixProperty)").append(CRLF)
+	sb.append("Bag.Clear").Append(CRLF)
+	'
+	sb.Append($"Bag.AddCombo("addingmethod","Adding Method","AddRows", pgFormDesigner.addingmethod)"$).Append(CRLF)
+	sb.Append($"Bag.AddTextBox("tabindex", "Tab Index", "0")"$).append(CRLF)
+	sb.Append($"Bag.AddLabel("Details")"$).Append(CRLF)
+	sb.append($"Bag.AddCombo("view","View", "Button", Page.Views)"$).Append(CRLF)
+		
+	For Each prop As Map In props
+		json = prop.getdefault("json", "")
+		rec = pg.Json2Map(json)
+		Dim sname As String = rec.GetDefault("name","")
+		Dim scontroltype As String = rec.GetDefault("controltype","")
+		Dim cname As String = Capitalize(sname)
+		Dim sDefaultValue As String = rec.GetDefault("DefaultValue","")
+		Dim sList As String = rec.getdefault("List","")
+		sList = sList.Replace("|", ",")
+		sList = QuoteList(sList, ",")
+		'
+		Select Case scontroltype
+		Case "Combo", "RichSelect", "Select"
+			sb.Append($"Bag.Add${scontroltype}("${sname}", "${cname}", "${sDefaultValue}", array(${sList}))"$).Append(CRLF)
+		Case Else
+			sb.append($"Bag.Add${scontroltype}("${sname}","${cname}", "${sDefaultValue}")"$).Append(CRLF)
+		End Select
+	Next
+	'
+	sb.Append("Bag.Refresh(Page)").Append(CRLF)
+	sb.append("End Sub").append(CRLF).append(CRLF)
+	
+	Return sb.tostring
+End Sub
+
+
+Sub QuoteList(lst As String, delim As String) As String
+	Dim sb As StringBuilder
+	sb.Initialize 
+	Dim spvalues() As String = BANano.Split(delim, lst)
+	For Each sval As String In spvalues
+		Dim oval As String = $""${sval}""$
+		sb.Append(oval).Append(delim)
+	Next
+	Dim xout As String = sb.ToString
+	xout = pg.RemDelim(xout,delim)
+	Return xout
 End Sub

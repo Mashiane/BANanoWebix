@@ -548,7 +548,7 @@ End Sub
 
 'set placeholder
 Sub SetPlaceHolder(p As String) As WixElement
-	Element.Put("placeHolder", p)
+	Element.Put("placeholder", p)
 	Return Me
 End Sub
 

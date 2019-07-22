@@ -42,19 +42,20 @@ Sub getSideBar As WixSideBar
 '	sm.AddItem("dp", "treetable", "TreeTable","","", "","")
 	'sm.AddItem("dp", "unitlist", "UnitList","","", "","")
 '	'
-'	sm.AddItem("", "vis", "Visualization","","", "","")
+	sm.AddItem("", "vis", "Visualization","","", "","")
 '	sm.AddItem("vis", "chart", "Chart","","", "","")
 '	sm.AddItem("vis", "googlemap", "Google Map","","", "","")
 '	sm.AddItem("vis", "iframe", "IFrame","","", "","")
 '	sm.AddItem("vis", "template", "Template","","", "","")
-'	sm.AddItem("vis", "video", "Video","","", "","")
+	'sm.AddItem("vis", "video", "Video","","", "","")
+	sm.AddItem("vis", "image", "Image","","", "","")
 '	'
 	sm.AddItem("", "lay", "Layouts","","", "","")
 '	sm.AddItem("lay", "accordion", "Accordion","","", "","")
 '	sm.AddItem("lay", "carousel", "Carousel","","", "","")
 '	sm.AddItem("lay", "comments", "Comments","","", "","")
 	sm.AddItem("lay", "form", "Form","","mdi mdi-group", "","")
-'	sm.AddItem("lay", "layout", "Layout","","", "","")
+	sm.AddItem("lay", "layout", "Layout","","mdi mdi-selection-ellipse", "","")
 '	sm.AddItem("lay", "multiview", "MultiView","","", "","")
 '	sm.AddItem("lay", "scrollview", "ScrollView","","", "","")
 '	sm.AddItem("lay", "tabview", "TabView","","", "","")
@@ -108,6 +109,7 @@ Sub getSideBar As WixSideBar
 	sm.AddItem("con", "pickers", "Pickers","","mdi mdi-calendar-outline", "","")
 	sm.AddItem("pickers", "colorpicker", "ColorPicker","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("pickers", "datepicker", "DatePicker","","mdi mdi-selection-ellipse", "","")
+	sm.AddItem("pickers", "calendar", "Calendar","","mdi mdi-selection-ellipse", "","")
 	'others
 	sm.AddItem("con", "others", "Others","","mdi mdi-cards-outline", "","")
 	sm.AddItem("others", "icon", "Icon","","mdi mdi-selection-ellipse", "","")
@@ -118,5 +120,7 @@ Sub getSideBar As WixSideBar
 	sm.AddItem("hlp", "suggest", "Suggest","","mdi mdi-selection-ellipse", "","")
 	'sm.AddItem("con", "forminput", "FormInput","","", "","")
 	sm.AddItem("hlp", "pager", "Pager","","mdi mdi-selection-ellipse", "","")
+	sm.AddItem("hlp", "wixsomething", "Wix Something","","mdi mdi-selection-ellipse", "","")
+	sm.AddItem("wixsomething", "property", "Property","","mdi mdi-selection-ellipse", "","")
 	Return sm
 End Sub

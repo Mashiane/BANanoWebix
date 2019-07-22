@@ -60,6 +60,23 @@ Sub SetActual(original As Map, actual As Map) As Map
 	Return nmap
 End Sub
 
+
+'remove the delimiter from stringbuilder
+Sub RemDelim(sValue As String, Delim As String) As String
+	Dim sw As Boolean = sValue.EndsWith(Delim)
+	If sw Then
+		Dim lDelim As Int = Delim.Length
+		Dim nValue As String = sValue
+		sw = nValue.EndsWith(Delim)
+		If sw Then
+			nValue = nValue.SubString2(0, nValue.Length-lDelim)
+		End If
+		Return nValue
+	Else
+		Return sValue
+	End If
+End Sub
+
 Sub SetTemplate(elid As String, lbl As String)
 	elid = elid.tolowercase
 	Define(elid, CreateMap("template":lbl))
@@ -273,6 +290,7 @@ Sub BuildViews
 	Views.AddAll(Array("context","chart","multiview","combo","radio","richselect","counter","colorpicker","datepicker","label"))
 	Views.AddAll(Array("resizer","select","search","slider","richtext","dbllist","treetable","popup","iframe","grouplist"))
 	Views.AddAll(Array("google-map","uploader","video","template","scrollview","flexlayout","toggle","row","column"))
+	Views.AddAll(Array("geochart","calendar","image"))
 	Views.Sort(True)
 End Sub
 
@@ -1107,6 +1125,30 @@ Sub ShowBatch(listID As String, b As Boolean)
 	listID = listID.tolowercase
 	Dollar.Selector(listID).RunMethod("showBatch",Array(b))
 End Sub
+
+Sub SelectDate(eid As String, eDate As String, bShow As Boolean)
+	eid = eid.tolowercase
+	Dollar.Selector(eid).RunMethod("selectDate",Array(eDate, bShow))
+End Sub
+
+'show calendar based on the date
+Sub ShowCalendar(eid As String, eDate As String)
+	eid = eid.tolowercase
+	Dollar.Selector(eid).RunMethod("showCalendar",Array(eDate))
+End Sub
+
+Sub GetSelectedDate(eid As String) As Object
+	eid = eid.tolowercase
+	Dim res As Object = Dollar.Selector(eid).RunMethod("getSelectedDate",Null)
+	Return res
+End Sub
+
+Sub GetVisibleDate(eid As String) As Object
+	eid = eid.tolowercase
+	Dim res As Object = Dollar.Selector(eid).RunMethod("getVisibleDate",Null)
+	Return res
+End Sub
+
 
 'get dirty values
 Sub GetDirtyValues(frmID As String) As Map

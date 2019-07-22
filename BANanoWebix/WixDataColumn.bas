@@ -229,6 +229,18 @@ Sub SetCSS(c As Object) As WixDataColumn
 	Return Me
 End Sub
 
+'set type
+Sub SetType(c As Object) As WixDataColumn
+	DataColumn.SetAttr("type", c)
+	Return Me
+End Sub
+
+'set label
+Sub SetLabel(c As Object) As WixDataColumn
+	DataColumn.SetAttr("label", c)
+	Return Me
+End Sub
+
 
 Sub SetCSSJSON(json As String) As WixDataColumn
 	DataColumn.SetCSSJSON(json)

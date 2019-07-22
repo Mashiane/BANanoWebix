@@ -13,7 +13,7 @@ End Sub
 'initialize the layout
 Public Sub Initialize(sID As String) As WixLayout
 	ID = sID.tolowercase
-	Layout.Initialize(ID).SetView("layout")
+	Layout.Initialize(ID)
 	Return Me
 End Sub
 
@@ -138,4 +138,87 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixLayout
+	Layout.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetContainer(container As String) As WixLayout
+	Layout.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As String) As WixLayout
+	Layout.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As String) As WixLayout
+	Layout.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixLayout
+	Layout.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetHeight(height As String) As WixLayout
+	Layout.SetAttr("height", height)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixLayout
+	Layout.SetAttr("hidden", hidden)
+	Return Me
+End Sub
+
+
+Sub SetIsolate(isolate As Boolean) As WixLayout
+	Layout.SetAttr("isolate", isolate)
+	Return Me
+End Sub
+
+Sub SetMargin(margin As String) As WixLayout
+	Layout.SetAttr("margin", margin)
+	Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As String) As WixLayout
+	Layout.SetAttr("maxHeight", maxHeight)
+	Return Me
+End Sub
+
+
+Sub SetMaxWidth(maxWidth As String) As WixLayout
+Layout.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPadding(padding As String) As WixLayout
+Layout.SetAttr("padding", padding)
+Return Me
+End Sub
+
+Sub SetPaddingX(paddingX As String) As WixLayout
+Layout.SetAttr("paddingX", paddingX)
+Return Me
+End Sub
+
+Sub SetPaddingY(paddingY As String) As WixLayout
+Layout.SetAttr("paddingY", paddingY)
+Return Me
+End Sub
+
+
+Sub SetVisibleBatch(visibleBatch As String) As WixLayout
+Layout.SetAttr("visibleBatch", visibleBatch)
+Return Me
+End Sub
+
+Sub SetWidth(width As String) As WixLayout
+Layout.SetAttr("width", width)
+Return Me
 End Sub
