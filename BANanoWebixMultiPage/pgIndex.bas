@@ -8,9 +8,12 @@ Version=7.51
 Sub Process_Globals
 	Private pg As WixPage
 	Public BANano As BANano
+	Private ourclients As BANanoSQL
 End Sub
 
 Sub Init(pgContainer As String)
+	ourclients.OpenWait("ourclients", "ourclients")
+
 	pg.Initialize("index", pgContainer).SetResponsive(True)
 	'
 	Dim tblBar As WixToolBar

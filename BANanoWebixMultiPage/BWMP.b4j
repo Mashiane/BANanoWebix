@@ -2,16 +2,18 @@
 Build1=Default,b4j.Mashy.BANanoWebixDemo
 File1=1.png
 File2=2.png
-File3=config.php
-File4=extras.zip
-File5=fonts.zip
-File6=upload.php
+File3=alasql.min.js
+File4=config.php
+File5=extras.zip
+File6=fonts.zip
+File7=upload.php
 FileGroup1=Default Group\Images
 FileGroup2=Default Group\Images
 FileGroup3=Default Group
-FileGroup4=Default Group\ZIP
+FileGroup4=Default Group
 FileGroup5=Default Group\ZIP
-FileGroup6=Default Group\PHP
+FileGroup6=Default Group\ZIP
+FileGroup7=Default Group\PHP
 Group=Default Group
 Library1=jcore
 Library2=jfx
@@ -21,7 +23,7 @@ Library5=bananowebix
 Module1=pgIndex
 Module2=modSideMenu
 Module3=modSettings
-NumberOfFiles=6
+NumberOfFiles=7
 NumberOfLibraries=5
 NumberOfModules=3
 Version=7.51
@@ -34,6 +36,7 @@ Sub Process_Globals
 	Public AppName As String = "BWMP"
 	Private Publish As String
 	Private BP As BANanoPostProcessor
+	Private ourclients As BANanoSQL
 End Sub
 
 Sub AppStart (Form1 As Form, Args() As String)
@@ -84,6 +87,33 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready()
+	ourclients.OpenWait("ourclients", "ourclients")
+	Dim newTable As Map = CreateMap()
+	newTable.put("id","INT")
+	newTable.put("value","STRING")
+
+	'initialize the helper class
+	Dim alaSQL As BANanoAlaSQL
+	alaSQL.Initialize
+	'generate the create table sql
+	Dim rs As AlaSQLResultSet = alaSQL.CreateTable("cities", newTable, "id")
+	'execute the create table command
+	rs.Result = ourclients.ExecuteWait(rs.query, rs.args)
+	
+	Dim newTable As Map = CreateMap()
+	newTable.put("color","STRING")
+	newTable.put("id","INT")
+	newTable.put("value","STRING")
+
+	'initialize the helper class
+	Dim alaSQL As BANanoAlaSQL
+	alaSQL.Initialize
+	'generate the create table sql
+	Dim rs As AlaSQLResultSet = alaSQL.CreateTable("positions", newTable, "id")
+	'execute the create table command
+	rs.Result = ourclients.ExecuteWait(rs.query, rs.args)
+
+	
 	'build a page and render it to the body of the page
 	pgIndex.init("body")
 End Sub
