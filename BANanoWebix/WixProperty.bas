@@ -9,7 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Property As WixElement
 	Private elements As List
-	Private maps As Map
+	Public Maps As Map
 End Sub
 
 'Initializes the property sheet
@@ -17,7 +17,7 @@ Public Sub Initialize(eID As String) As WixProperty
 	ID = eID.tolowercase
 	Property.Initialize(ID).SetView("property")
 	elements.Initialize 
-	maps.Initialize 
+	Maps.Initialize 
 	Return Me
 End Sub
 
@@ -44,7 +44,7 @@ End Sub
 
 'set the actual key
 Sub SetActual(prop As String, actual As String) As WixProperty
-	maps.Put(prop,actual)
+	Maps.Put(prop,actual)
 	Return Me
 End Sub
 

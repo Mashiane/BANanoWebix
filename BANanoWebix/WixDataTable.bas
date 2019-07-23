@@ -240,10 +240,18 @@ Sub AddColumns(c As WixDataColumn)
 	DataTable.AddDataColumn(c.Item)
 End Sub
 
+Sub AddDataColumns(c As WixDataColumn)
+	DataTable.AddDataColumn(c.Item)
+End Sub
 
 'set scroll
 Sub SetScroll(b As Object) As WixDataTable
 	DataTable.SetAttr("scroll", b)
+	Return Me
+End Sub
+
+Sub SetScrollXY(b As Object) As WixDataTable   'ignore
+	DataTable.SetAttr("scroll", "xy")
 	Return Me
 End Sub
 
@@ -403,7 +411,170 @@ Sub AddToColumns(P As WixElement)
 	P.AddColumns(Item)
 End Sub
 
+Sub AddToDataColumns(P As WixElement)
+	P.AddDataColumn(Item)
+End Sub
+
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAreaSelect(areaselect As Boolean) As WixDataTable
+	DataTable.SetAttr("areaselect", areaselect)
+	Return Me
+End Sub
+
+
+Sub SetCheckboxRefresh(checkboxRefresh As Boolean) As WixDataTable
+DataTable.SetAttr("checkboxRefresh", checkboxRefresh)
+Return Me
+End Sub
+
+Sub SetClipboard(clipboard As String) As WixDataTable
+DataTable.SetAttr("clipboard", clipboard)
+Return Me
+End Sub
+
+Sub SetDataFeed(dataFeed As String) As WixDataTable
+DataTable.SetAttr("dataFeed", dataFeed)
+Return Me
+End Sub
+
+Sub SetDelimiter(delimiter As Object) As WixDataTable
+DataTable.SetAttr("delimiter", delimiter)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixDataTable
+DataTable.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetDrag(drag As String) As WixDataTable
+DataTable.SetAttr("drag", drag)
+Return Me
+End Sub
+
+Sub SetDragColumn(dragColumn As String) As WixDataTable
+DataTable.SetAttr("dragColumn", dragColumn)
+Return Me
+End Sub
+
+Sub SetDragscroll(dragscroll As String) As WixDataTable
+DataTable.SetAttr("dragscroll", dragscroll)
+Return Me
+End Sub
+
+Sub SetEditMath(editMath As Boolean) As WixDataTable
+DataTable.SetAttr("editMath", editMath)
+Return Me
+End Sub
+
+Sub SetEditValue(editValue As String) As WixDataTable
+DataTable.SetAttr("editValue", editValue)
+Return Me
+End Sub
+
+Sub SetFilterMode(filterMode As String) As WixDataTable
+DataTable.SetAttr("filterMode", filterMode)
+Return Me
+End Sub
+
+Sub SetFixedRowHeight(fixedRowHeight As Boolean) As WixDataTable
+DataTable.SetAttr("fixedRowHeight", fixedRowHeight)
+Return Me
+End Sub
+
+Sub SetFooter(footer As Boolean) As WixDataTable
+DataTable.SetAttr("footer", footer)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As String) As WixDataTable
+DataTable.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHeader(header As Boolean) As WixDataTable
+DataTable.SetAttr("header", header)
+Return Me
+End Sub
+
+Sub SetHeaderRowHeight(headerRowHeight As String) As WixDataTable
+DataTable.SetAttr("headerRowHeight", headerRowHeight)
+Return Me
+End Sub
+
+Sub SetHeaderMenu(headermenu As Boolean) As WixDataTable
+DataTable.SetAttr("headermenu", headermenu)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixDataTable
+DataTable.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetLineValidation(lineValidation As Boolean) As WixDataTable
+DataTable.SetAttr("lineValidation", lineValidation)
+Return Me
+End Sub
+
+Sub SetMath(math As Boolean) As WixDataTable
+DataTable.SetAttr("math", math)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As String) As WixDataTable
+DataTable.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As String) As WixDataTable
+DataTable.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetMinColumnWidth(minColumnWidth As String) As WixDataTable
+DataTable.SetAttr("minColumnWidth", minColumnWidth)
+Return Me
+End Sub
+
+Sub SetMinRowHeight(minRowHeight As String) As WixDataTable
+DataTable.SetAttr("minRowHeight", minRowHeight)
+Return Me
+End Sub
+
+Sub SetPrerender(prerender As Boolean) As WixDataTable
+DataTable.SetAttr("prerender", prerender)
+Return Me
+End Sub
+
+Sub SetRowLineHeight(rowLineHeight As String) As WixDataTable
+DataTable.SetAttr("rowLineHeight", rowLineHeight)
+Return Me
+End Sub
+
+Sub SetSave(save As String) As WixDataTable
+DataTable.SetAttr("save", save)
+Return Me
+End Sub
+
+Sub SetScrollAlignY(scrollAlignY As Boolean) As WixDataTable
+DataTable.SetAttr("scrollAlignY", scrollAlignY)
+Return Me
+End Sub
+
+
+Sub SetType(sType As String) As WixDataTable
+DataTable.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetUndo(undo As Boolean) As WixDataTable
+DataTable.SetAttr("undo", undo)
+Return Me
+End Sub
+
+

@@ -20,7 +20,43 @@ Sub Class_Globals
 	Public Rules As Map
 	Private options As List
 	Private On As Map
+	Public ParentID As String
 End Sub
+
+Sub AddToList(target As List)
+	target.Add(Item)
+End Sub
+
+Sub SetParent(p As Object) As WixElement
+	SetAttr("parentid", p)
+	ParentID = p
+	Return Me
+End Sub
+
+
+Sub SetOpen(o As Object) As WixElement
+	SetAttr("open", o)
+	Return Me
+End Sub
+
+Sub SetHREF(h As Object) As WixElement
+	SetAttr("href", h)
+	Return Me
+End Sub
+
+Sub SetTarget(h As Object) As WixElement
+	SetAttr("target", h)
+	Return Me
+End Sub
+
+Sub SetSideBarImage(i As Object) As WixElement
+	Dim ih As UOENowHTML
+	ih.Initialize("","img").SetImportant(False).SetSRC(i,True).AddClass("sidebar-icon")
+	Dim icon As String = ih.html
+	SetIcon(icon)
+	Return Me
+End Sub
+
 
 Sub CreateMessageBox(mbox As String) As WixMessageBox
 	Dim out As WixMessageBox
@@ -76,6 +112,13 @@ Sub CreateResizer(rid As String) As WixResizer
 	Dim res1 As WixResizer
 	res1.Initialize(rid)
 	Return res1
+End Sub
+
+
+'set badge
+Sub SetBadge(b As Object) As WixElement
+	SetAttr("badge", b)
+	Return Me
 End Sub
 
 'set hidden
@@ -268,6 +311,7 @@ Public Sub Initialize(sID As String) As WixElement
 	SetLocalID(ID)
 	SetName(ID)
 	On.Initialize
+	ParentID = ""
 	Return Me
 End Sub
 
@@ -697,6 +741,13 @@ Sub AddResizerToColumns(s As String) As WixElement   'ignore
 	Return Me
 End Sub
 
+Sub AddColumnsResizer(s As String) As WixElement   'ignore
+	Dim r As WixResizer
+	r.Initialize("")
+	AddColumns(r.Item)
+	Return Me
+End Sub
+
 Sub AddResizerToRows(s As String) As WixElement   'ignore
 	Dim r As WixResizer
 	r.Initialize("")
@@ -791,17 +842,26 @@ Sub AddToRows(prt As WixElement)
 End Sub
 
 'add a spacer to the rows
-Sub AddRowsSpacer()
+Sub AddRowsSpacer(r As String) As WixElement   'ignore
 	Dim s As WixElement
 	s.Initialize("").SetView("spacer")
 	AddRows(s.item)
+	Return Me
+End Sub
+
+Sub AddRowsResizer(s As String) As WixElement   'ignore
+	Dim r As WixResizer
+	r.Initialize("")
+	AddRows(r.Item)
+	Return Me
 End Sub
 
 'add a spacer to the columns
-Sub AddColumnsSpacer()
+Sub AddColumnsSpacer(b As String) As WixElement    'ignore
 	Dim s As WixElement
 	s.Initialize("").SetView("spacer") 
 	AddColumns(s.item)
+	Return Me
 End Sub
 
 'add to columns of parent

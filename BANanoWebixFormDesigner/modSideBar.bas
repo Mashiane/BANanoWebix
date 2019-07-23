@@ -32,9 +32,10 @@ Sub getSideBar As WixSideBar
 	sm.AddItem("db", "table","Table","","mdi mdi-selection-ellipse","","")
 	sm.AddItem("db", "field","Field","","mdi mdi-selection-ellipse","","")
 	
-	'sm.AddItem("", "dp", "Data Presentation","","", "","")
-	'sm.AddItem("dp", "datatable", "DataTable","","./assets/datatable.png", "", "")
-'	sm.AddItem("dp", "dataview", "DataView","","", "","")
+	sm.AddItem("", "dp", "Data Presentation","","", "","")
+	sm.AddItem("dp", "datatable", "Data Table","","mdi mdi-selection-ellipse", "", "")
+	sm.AddItem("datatable", "datacolumn", "Data Column","","mdi mdi-selection-ellipse", "","")
+	'sm.AddItem("dp", "dataview", "DataView","","", "","")
 '	sm.AddItem("dp", "grouplist", "GroupList","","", "","")
 	'sm.AddItem("dp", "list", "List","","", "","")
 '	sm.AddItem("dp", "propertysheet", "Property Sheet","","", "","")
@@ -48,7 +49,7 @@ Sub getSideBar As WixSideBar
 '	sm.AddItem("vis", "iframe", "IFrame","","", "","")
 '	sm.AddItem("vis", "template", "Template","","", "","")
 	'sm.AddItem("vis", "video", "Video","","", "","")
-	sm.AddItem("vis", "image", "Image","","", "","")
+	sm.AddItem("vis", "image", "Image","","mdi mdi-selection-ellipse", "","")
 '	'
 	sm.AddItem("", "lay", "Layouts","","", "","")
 '	sm.AddItem("lay", "accordion", "Accordion","","", "","")

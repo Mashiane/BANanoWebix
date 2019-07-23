@@ -9,7 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public SideMenu As WixElement
 	Private body As WixElement
-	Private data As List
+	Public Items As List
 	Private typeOf As Map
 End Sub
 
@@ -18,7 +18,7 @@ Public Sub Initialize(sid As String) As WixSideMenu
 	ID = sid.tolowercase
 	SideMenu.Initialize(sid).SetView("sidemenu")
 	body.Initialize(ID & "body").SetView("list").SetBorderLess(True).SetScroll(False).SetSelect(True)
-	data.Initialize 
+	Items.Initialize 
 	typeOf.Initialize
 	Return Me
 End Sub
@@ -33,10 +33,15 @@ Sub AddItem(meID As String, mValue As String, mhref As String, mIcon As String, 
 	mitem.Put("badge", badge)
 	mitem.Put("target", target)
 	mitem.Put("icon", mIcon)
-	data.Add(mitem)
+	Items.Add(mitem)
 	Return Me
 End Sub
 
+Sub CreateItem(i As String) As WixElement
+	Dim ii As WixElement
+	ii.Initialize(i)
+	Return ii
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixSideMenu
 	Dim os As String = h.HTML
@@ -95,9 +100,14 @@ End Sub
 'return menu
 Sub Item As Map
 	body.SetAttr("type", typeOf)
-	body.SetData(data)
+	If Items.Size > 0 Then body.SetData(Items)
 	SideMenu.SetAttr("body", body.item)
 	Return SideMenu.item
+End Sub
+
+Sub SetData(data As List) As WixSideMenu
+	body.SetData(data)
+	Return Me
 End Sub
 
 'set template

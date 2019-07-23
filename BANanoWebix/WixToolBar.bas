@@ -167,7 +167,7 @@ End Sub
 
 'add a spacer
 Sub AddSpacer As WixToolBar
-	ToolBar.AddColumnsSpacer
+	ToolBar.AddColumnsSpacer("")
 	Return Me 
 End Sub
 

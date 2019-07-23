@@ -180,6 +180,15 @@ Sub AddNode(treeID As String, parentID As String, meID As String, mValue As Stri
 	Return Me
 End Sub
 
+Sub AddToTree(treeID As String, child As WixElement)
+	If child.ParentID = "" Then
+		Dollar.Selector(treeID).RunMethod("add", Array(child,1))
+	Else
+		Dollar.Selector(treeID).RunMethod("add", Array(child,-1,child.parentID))
+	End If
+End Sub
+
+
 'convert a map to a json string using BANanoJSONGenerator
 Sub Map2Json(mp As Map) As String
 	Dim JSON As BANanoJSONGenerator

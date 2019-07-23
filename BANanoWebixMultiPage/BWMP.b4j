@@ -40,7 +40,7 @@ Sub Process_Globals
 End Sub
 
 Sub AppStart (Form1 As Form, Args() As String)
-	Publish = "C:\xampp\htdocs"
+	Publish = "C:\laragon\www"
 	Dim version As String = DateTime.now
 	Dim appFile As String = $"app${version}.js"$
 	BANano.Initialize("BANano", AppName,1)

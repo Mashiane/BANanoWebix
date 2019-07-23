@@ -197,7 +197,7 @@ Sub RefreshTreeWait
 	'
 	'load fields
 	sqlite.Initialize
-	qry = sqlite.SelectAll("fields", Array("key","tablename"), Array("key"))
+	qry = sqlite.SelectAll("fields", Array("key","tablename"), Array("tabindex"))
 	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 	rs = sqlite.GetResultSet(qry, res)
 	For Each fitem As Map In rs.result
@@ -245,6 +245,7 @@ Sub AddPrimaryKey
 	nf.put("id", "field")
 	nf.put("tablename", tbname)
 	nf.Put("value", pk)
+	nf.put("tabindex", "0")
 	'
 	Dim jsonm As Map = CreateMap()
 	jsonm.Put("type", ft)
@@ -252,6 +253,7 @@ Sub AddPrimaryKey
 	jsonm.put("id", "field")
 	jsonm.put("tablename", tbname)
 	jsonm.Put("value", pk)
+	jsonm.Put("tabindex","0")
 	'
 	Dim json As String = pg.Map2Json(jsonm)
 	nf.Put("json", json)
@@ -396,6 +398,14 @@ Sub prop_add
 	Dim value As String = cm.GetDefault("value","")
 	Dim tablename As String = cm.GetDefault("tablename","")
 	Dim sname As String = cm.GetDefault("name","")
+	Dim pview As String = cm.GetDefault("view","")
+	
+	Select Case pview
+	Case "datatable"
+		sidebar_click("datacolumn")
+		Return
+	End Select
+	
 	Select Case pid
 	Case "wixsomething"
 		'get selected treeview
@@ -432,7 +442,6 @@ Sub prop_saveWait
 	Dim tablename As String = prop.GetDefault("tablename","")
 	Dim autoincrement As String = prop.GetDefault("autoincrement","")
 	Dim primarykey As String = prop.GetDefault("primarykey","")
-	
 	'ensure id is always lowercase
 	i = i.tolowercase
 	prop.Put("id", i)
@@ -497,6 +506,7 @@ Sub prop_saveWait
 		rec.Put("key", key)
 		rec.Put("value", value)
 		rec.Put("tablename", tablename)
+		rec.Put("tabindex", idx)
 		'replace complete record
 		qry = sqlite.InsertReplace("fields", rec)
 		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
@@ -743,6 +753,14 @@ Sub deletepropwait(confirmresult As Boolean)
 		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 		rs = sqlite.GetResultSet(qry,res)
 		pg.Message_Success(rs.result.size & " record(s) affected!")
+		'
+		'delete children
+		sqlite.initialize
+		sqlite.AddStrings(Array("id","parentid"))
+		qry = sqlite.DeleteWhere("items",CreateMap("parentid":delID))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		pg.Message_Success(rs.result.size & " record(s) affected!")
 		refreshapp
 	End Select
 	propBag.Clear
@@ -812,6 +830,73 @@ Sub CreateView(properties As Map) As Map
 	For Each pkey As String In properties.keys
 		Dim pval As String = properties.Get(pkey)
 		Dim cval As String = pg.CStr(pval)
+		
+		'do we have a mapped keys
+		Select Case pkey
+			Case "grid_header_mastercheckbox"
+				pkey = "MasterCheckBox"
+			Case "grid_header_filter"
+				pkey = "Content"
+			Case "grid_header_text"
+				pkey = "HeaderText"
+			Case "grid_header_css"
+				pkey = "HeaderCSS"
+			Case "grid_header_colspan"
+				pkey = "HeaderColSpan"
+			Case "grid_name"
+				pkey = "Name"
+			Case "grid_header"
+				pkey = "Header"
+			Case "grid_fillspace"
+				pkey = "FillSpace"
+			Case "grid_sort"
+				pkey = "Sort"
+			Case "grid_template"
+				pkey = "Template"
+			Case "grid_templatehtml"
+				pkey = "TemplateHTML"
+			Case "grid_checkbox"
+				pkey = "CheckBox"
+			Case "grid_radio"
+				pkey = "Radio"
+			Case "grid_checkvalue"
+				pkey = "CheckValue"
+			Case "grid_uncheckvalue"
+				pkey = "UncheckValue"
+			Case "grid_format"
+				pkey = "Format"
+			Case "grid_suggest"
+				pkey = "Suggest"
+			Case "grid_batch"
+				pkey = "Batch"
+			Case "grid_options"
+				pkey = "options"
+			Case "grid_collection"
+				pkey = "Collection"
+			Case "grid_hidden"
+				pkey = "Hidden"
+			Case "grid_responsive"
+				pkey = "Responsive"
+			Case "grid_align"
+				pkey = "Align"
+			Case "grid_adjust"
+				pkey = "Adjust"
+			Case "grid_editor"
+				pkey = "Editor"
+			Case "grid_css"
+				pkey = "CSS"
+			Case "grid_width"
+				pkey = "Width"
+			Case "grid_height"
+				pkey = "Height"
+			Case "grid_minwidth"
+				pkey = "MinWidth"
+			Case "grid_minheight"
+				pkey = "MinHeight"
+			Case "grid_tooltip"
+				pkey = "ToolTip"
+		End Select
+				
 		If cval <> "" Then
 			If pkey = "view" And cval.tolowercase = "row" Then Continue
 			If pkey = "view" And cval.tolowercase = "column" Then Continue
@@ -852,7 +937,7 @@ Sub CreateView(properties As Map) As Map
 	Next
 	'dont do rows and columns, they dont have views
 	Select Case v.ToLowerCase
-	Case "row", "column", "layout", "image"
+	Case "row", "column", "layout", "image", "datacolumn"
 	Case Else
 		view.SetAttr("view", v.ToLowerCase)
 	End Select
@@ -910,7 +995,12 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 		End If
 	Next
 	If sparentid <> "" Then
-		sb.Append(sparentid).Append(".").Append(saddingmethod).Append("(").Append(i).Append(".Item)")
+		sb.Append(sparentid).Append(".").Append(saddingmethod).Append("(").Append(i)
+		If v = "datacolumn" Then
+		Else
+			sb.Append(".Item")
+		End If
+		sb.Append(")")
 	End If
 	Return sb.tostring
 End Sub
@@ -1039,7 +1129,7 @@ Sub tree_clickwait(recid As String)
 			'select fields for table
 			sqlite.initialize
 			sqlite.AddStrings(Array("tablename"))
-			qry = sqlite.SelectWhere("fields", Array("json"), CreateMap("tablename":suffix),Array("value"))
+			qry = sqlite.SelectWhere("fields", Array("json"), CreateMap("tablename":suffix),Array("tabindex"))
 			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 			rs = sqlite.GetResultSet(qry,res)
 			'generate code
@@ -1110,6 +1200,16 @@ Sub tree_clickwait(recid As String)
 			v = v.ToLowerCase
 			DrawPropBag(v)
 			FormCode(recid,True)
+			Select Case v
+			Case "datatable"
+				pg.hide("add_row")
+				pg.hide("add_column")
+			Case "datacolumn"
+				pg.hide("add_row")
+				pg.hide("add_column")
+				pg.hide("propadd")
+				pg.Hide("add_fields")
+			End Select
 		End If
 	End Select
 End Sub
@@ -1280,7 +1380,7 @@ Sub sidebar_click(meid As String)
 	'
 	Select Case meid
 	Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"
-	Case "vis"	
+	Case "vis", "dp"	
 	Case "downloads"
 	Case "b4xlib"
 	Case "skeletonapp"
@@ -1364,6 +1464,7 @@ Sub sidebar_click(meid As String)
 			Dim p As Map = pg.GetValues("propbag")
 			p.Put("tablename", suffix)
 			p.Put("value", kFind)
+			p.Put("tabindex", startPoint)
 			pg.SetValues("propbag",p)
 		Case Else
 			pg.Message_Error("Please select the table to add the field to first!")
@@ -1509,6 +1610,12 @@ End Sub
 
 Sub DrawPropBag(con As String) As Boolean
 	Select Case con
+		Case "datacolumn"
+			dDataField.BuildBag(pg, propBag)
+			Return True
+		Case "datatable"
+			dDataTable.BuildBag(pg, propBag)
+			Return Me
 		Case "image"
 			dImage.BuildBag(pg, propBag)
 			Return True
@@ -1664,6 +1771,48 @@ Sub btnMulti_click
 	'get the contents of the form
 	Dim scontrols As String = pg.GetValue("txtmultiplecontrols")
 	scontrols = scontrols.trim
+	'check parent view
+	Dim pb As Map = pg.GetValues("propbag")
+	Dim view As String = pb.GetDefault("view","")
+	Select Case view
+	Case "datatable"
+		'add data columns
+		'split the controls so we get each
+		Dim controls() As String = BANano.Split(",", scontrols)
+		Dim tbindex As Int = 0
+		For Each ctrl As String In controls
+			tbindex = tbindex + 1
+			ctrl = ctrl.Trim
+			If ctrl <> "" Then
+				ctrl = ctrl.ToLowerCase
+				Dim newctrl As Map = CreateMap()
+				newctrl.Put("id", ctrl)
+				newctrl.Put("view", "datacolumn")
+				newctrl.Put("parentid", parentid)
+				newctrl.Put("addingmethod","AddDataColumns")
+				newctrl.Put("tabindex",tbindex)
+				newctrl.Put("grid_header",ctrl)
+				'convert to json
+				Dim json As String = pg.Map2Json(newctrl)
+				'insert the record to elements
+				'item does not exist
+				sqlite.Initialize
+				sqlite.AddStrings(Array("id"))
+				Dim rec As Map = CreateMap()
+				rec.Put("id", ctrl)
+				rec.put("json", json)
+				rec.Put("tabindex", tbindex)
+				rec.Put("parentid", parentid)
+				qry = sqlite.Insert("items", rec)
+				res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+				rs = sqlite.GetResultSet(qry,res)
+			End If
+		Next
+		pg.BoClose(winux)
+		RefreshTreeWait
+		Return
+	End Select
+		
 	'
 	Dim prefix As String = pg.MvField(parentid,1,".")
 	Dim suffix As String = pg.MvField(parentid,2,".")
@@ -1783,8 +1932,10 @@ Sub btnMulti1_click
 	Case "table"
 		'add fields
 		'split the controls so we get each
+		Dim tabindex As Int = 0
 		Dim controls() As String = BANano.Split(",", scontrols)
 		For Each ctrl As String In controls
+			tabindex = tabindex + 1
 			ctrl = ctrl.Trim
 			If ctrl <> "" Then
 				ctrl = ctrl.ToLowerCase
@@ -1796,6 +1947,7 @@ Sub btnMulti1_click
 				ntbl.Put("key", k)
 				ntbl.Put("type","STRING")
 				ntbl.Put("length",20)
+				ntbl.Put("tabindex", tabindex)
 				'convert to json
 				Dim json As String = pg.Map2Json(ntbl)
 				'insert the record to elements
@@ -1807,6 +1959,7 @@ Sub btnMulti1_click
 				rec.put("value", ctrl)
 				rec.put("json", json)
 				rec.Put("key", k)
+				rec.Put("tabindex", tabindex)
 				qry = sqlite.Insert("fields", rec)
 				res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 				rs = sqlite.GetResultSet(qry,res)
@@ -1864,6 +2017,13 @@ Sub add_fields
 		Return
 	End If
 	Dim prefix As String = pg.MvField(parentid,1,".")
+	Dim pb As Map = pg.GetValues("propbag")
+	Dim view As String = pb.GetDefault("view","")
+	Select Case view
+	Case "datatable"
+		pg.BOShow(CreateWindow)
+		Return			
+	End Select
 	Select Case prefix
 	Case "table", "connection"
 		pg.boShow(CreateWindowFields)

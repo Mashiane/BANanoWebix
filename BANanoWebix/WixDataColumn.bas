@@ -448,6 +448,11 @@ Sub AddToColumns(P As WixElement)
 	P.AddDataColumn(Item)
 End Sub
 
+Sub AddToDataColumns(P As WixElement)
+	P.AddDataColumn(Item)
+End Sub
+
+
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)

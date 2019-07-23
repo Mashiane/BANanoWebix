@@ -144,51 +144,53 @@ Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
-Module1=dLayout
-Module10=dRichText
-Module11=dRichSelect
-Module12=modToolBar
-Module13=modCenter
-Module14=dButton
-Module15=dRow
-Module16=dPager
-Module17=dDBLList
-Module18=dForm
-Module19=dCheckBox
-Module2=modSideBar
-Module20=dCounter
-Module21=dIcon
-Module22=dLabel
-Module23=dRadio
-Module24=dSelect
-Module25=dSegmented
-Module26=dSlider
-Module27=dSwitch
-Module28=dTabBar
-Module29=dToggle
-Module3=pgFormDesigner
-Module30=dUploader
-Module31=dFieldSet
-Module32=dSuggest
-Module33=dColumn
-Module34=modPropertyBag
-Module35=dDesignerProperty
-Module36=dConnection
-Module37=dTable
-Module38=dField
-Module39=dWixSomething
-Module4=dColorPicker
-Module40=dCalendar
-Module41=dGeoChart
-Module42=dImage
-Module5=dCombo
-Module6=dDatePicker
-Module7=dSearch
-Module8=dText
-Module9=dTextArea
+Module1=dDataTable
+Module10=dSearch
+Module11=dText
+Module12=dTextArea
+Module13=dRichText
+Module14=dRichSelect
+Module15=modToolBar
+Module16=modCenter
+Module17=dButton
+Module18=dRow
+Module19=dPager
+Module2=dCombo
+Module20=dDBLList
+Module21=dForm
+Module22=dCheckBox
+Module23=dCounter
+Module24=dIcon
+Module25=dLabel
+Module26=dRadio
+Module27=dSelect
+Module28=dSegmented
+Module29=dSlider
+Module3=dDataField
+Module30=dSwitch
+Module31=dTabBar
+Module32=dToggle
+Module33=dUploader
+Module34=dFieldSet
+Module35=dSuggest
+Module36=dColumn
+Module37=modPropertyBag
+Module38=dDesignerProperty
+Module39=dConnection
+Module4=pgFormDesigner
+Module40=dTable
+Module41=dWixSomething
+Module42=dCalendar
+Module43=dGeoChart
+Module44=dImage
+Module5=modSideBar
+Module6=dLayout
+Module7=dField
+Module8=dColorPicker
+Module9=dDatePicker
 NumberOfFiles=69
 NumberOfLibraries=5
-NumberOfModules=42
+NumberOfModules=44
 Version=7.51
 @EndOfDesignText@
  #Region Project Attributes 
@@ -204,6 +206,7 @@ End Sub
 
 Sub AppStart (Form1 As Form, Args() As String)
 	Publish = "C:\xampp\htdocs"
+	Publish = "C:\laragon\www"
 	Dim version As String = DateTime.now
 	Dim appFile As String = $"app${version}.js"$
 	BANano.Initialize("BANano", AppName,1)
@@ -322,6 +325,7 @@ Sub BANano_Ready()
 	f.Put("tablename", sqlite.DB_STRING)
 	f.Put("value", sqlite.DB_STRING)
 	f.Put("json", sqlite.DB_STRING)
+	f.Put("tabindex", sqlite.DB_INT)
 	Dim qry As String = sqlite.CreateTable("fields", f, "key")
 	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
