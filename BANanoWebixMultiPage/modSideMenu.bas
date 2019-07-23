@@ -16,7 +16,7 @@ End Sub
 Sub Create(pg As WixPage) As Map
 	Dim meid As String
 	Page = pg
-	sm.Initialize("sm").SetCollapsed(True).SetActiveTitle(True)
+	sm.Initialize("sm").SetCollapsed(False).SetActiveTitle(True)
 	sm.SideBar.OnAfterSelect(BANano.CallBack(Me, "SideMenu_Click", Array(meid)))
 	sm.AddItem("", "clients", "Clients","","mdi mdi-account-group", "","")
 	sm.AddItem("", "settings", "Settings","","mdi mdi-settings", "","")

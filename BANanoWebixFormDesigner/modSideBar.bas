@@ -64,12 +64,12 @@ Sub getSideBar As WixSideBar
 	'sm.AddItem("con", "tabbar", "TabBar","","", "","")
 	
 '	'
-'	sm.AddItem("", "nav", "Navigation","","", "","")
+	sm.AddItem("", "nav", "Navigation","","", "","")
 '	sm.AddItem("nav", "contextmenu", "ContextMenu","","", "","")
 '	sm.AddItem("nav", "menu", "Menu","","", "","")
 '	sm.AddItem("nav", "sidebar", "SideBar","","", "","")
 '	sm.AddItem("nav", "sidemenu", "SideMenu","","", "","")
-'	sm.AddItem("nav", "toolbar", "ToolBar","","", "","")
+	sm.AddItem("nav", "toolbar", "ToolBar","","", "","")
 '	'
 '	sm.AddItem("", "win", "Windows & Popups","","", "","")
 '	sm.AddItem("win", "context", "Context","","", "","")

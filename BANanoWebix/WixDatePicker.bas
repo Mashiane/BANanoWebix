@@ -24,6 +24,49 @@ Sub SetTypeTime(b As Boolean) As WixDatePicker   'ignore
 End Sub
 
 
+Sub SetValidateEvent(e As Object) As WixDatePicker    'ignore
+	DatePicker.SetAttr("validateEvent", e)
+	Return Me
+End Sub
+
+Sub SetValidateEventBlur(b As Boolean) As WixDatePicker    'ignore
+	DatePicker.SetAttr("validateEvent", "blur")
+	Return Me
+End Sub
+
+Sub SetValidateEventKey(b As Boolean) As WixDatePicker     'ignore
+	DatePicker.SetAttr("validateEvent", "key")
+	Return Me
+End Sub
+
+'set validate
+Sub SetValidateIsNotEmpty(b As Boolean) As WixDatePicker   'ignore
+	DatePicker.SetAttr("validate","isNotEmpty")
+	Return Me
+End Sub
+
+
+'set validate
+Sub SetValidate(v As Object) As WixDatePicker   'ignore
+	DatePicker.SetAttr("validate",v)
+	Return Me
+End Sub
+
+
+'set invalid message
+Sub SetInvalidMessage(msg As String) As WixDatePicker
+	DatePicker.SetAttr("invalidMessage", msg)
+	Return Me
+End Sub
+
+
+'set required
+Sub SetRequired(b As Boolean) As WixDatePicker
+	DatePicker.SetAttr("required", b)
+	Return Me
+End Sub
+
+
 Sub SetPlaceHolder(b As Object) As WixDatePicker
 	DatePicker.SetPlaceHolder(b)
 	Return Me

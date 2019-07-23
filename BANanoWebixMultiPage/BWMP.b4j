@@ -20,12 +20,14 @@ Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
-Module1=pgIndex
-Module2=modSideMenu
-Module3=modSettings
+Module1=modSettings
+Module2=pgIndex
+Module3=modSideMenu
+Module4=modCities
+Module5=modPositions
 NumberOfFiles=7
 NumberOfLibraries=5
-NumberOfModules=3
+NumberOfModules=5
 Version=7.51
 @EndOfDesignText@
  #Region Project Attributes 
@@ -52,8 +54,8 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.Header.AddCSSFile("webix.min.css")
 	BANano.Header.AddCSSFile("hint.css")
 	'*themes
-	BANano.Header.AddCSSFile("material.min.css")
-	'BANano.Header.AddCSSFile("flat.min.css")
+	'BANano.Header.AddCSSFile("material.min.css")
+	BANano.Header.AddCSSFile("flat.min.css")
 	'BANano.Header.AddCSSFile("compact.min.css")
 	'BANano.Header.AddCSSFile("contrast.min.css")
 	'** themes

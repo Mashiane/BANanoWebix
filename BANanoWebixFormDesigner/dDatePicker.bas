@@ -20,6 +20,15 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Dim typ As List
 	typ.Initialize 
 	typ.AddAll(Array("time","date"))
+	
+	Dim ve As List
+	ve.Initialize
+	ve.AddAll(Array("","blur", "key"))
+	'
+	Dim v As List
+	v.Initialize
+	v.AddAll(Array("isNotEmpty","isNumber","isEmail"))
+	'
 	'
 	Bag.Clear
 	Bag.AddTextBox("id", "ID","datepicker1")
@@ -49,6 +58,13 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.AddCheckBox("timepicker","Time Picker", "")
 	Bag.AddCombo("type","Type", "date", typ)
 	Bag.AddTextBox("format","Format", "%Y-%m-%d")
+	Bag.AddLabel("Validation")
+	Bag.AddCheckBox("required", "Required", "")
+	Bag.AddCombo("validate", "Validate", "", v)
+	Bag.AddTextBox("invalidMessage", "Invalid Message","")
+	Bag.AddCombo("validateEvent", "Validate Event", "", ve)
+	Bag.AddTextBox("bottomLabel", "Bottom Label", "")
+	Bag.AddTextBox("bottomPadding", "Bottom Padding", "")
 	'Bag.AddLabel("Event")
 	'Bag.AddTextBox("click","On Click","BANano.CallBack(Me,button1_click,Null)")
 	

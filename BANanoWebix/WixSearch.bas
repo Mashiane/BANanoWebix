@@ -31,6 +31,50 @@ Sub SetPlaceHolder(ph As String) As WixSearch
 	Return Me
 End Sub
 
+
+Sub SetValidateEvent(e As Object) As WixSearch    'ignore
+	Search.SetAttr("validateEvent", e)
+	Return Me
+End Sub
+
+Sub SetValidateEventBlur(b As Boolean) As WixSearch    'ignore
+	Search.SetAttr("validateEvent", "blur")
+	Return Me
+End Sub
+
+Sub SetValidateEventKey(b As Boolean) As WixSearch     'ignore
+	Search.SetAttr("validateEvent", "key")
+	Return Me
+End Sub
+
+'set validate
+Sub SetValidateIsNotEmpty(b As Boolean) As WixSearch   'ignore
+	Search.SetAttr("validate","isNotEmpty")
+	Return Me
+End Sub
+
+
+'set validate
+Sub SetValidate(v As Object) As WixSearch   'ignore
+	Search.SetAttr("validate",v)
+	Return Me
+End Sub
+
+
+'set invalid message
+Sub SetInvalidMessage(msg As String) As WixSearch
+	Search.SetAttr("invalidMessage", msg)
+	Return Me
+End Sub
+
+
+'set required
+Sub SetRequired(b As Boolean) As WixSearch
+	Search.SetAttr("required", b)
+	Return Me
+End Sub
+
+
 'set name
 Sub SetName(n As String) As WixSearch
 	Search.SetName(n)
@@ -107,9 +151,16 @@ Sub SetLabel(l As String) As WixSearch
 	Return Me
 End Sub
 
-'set required
-Sub SetRequired(b As Boolean) As WixSearch
-	Search.SetRequired(b)
+
+'set bottom label
+Sub SetBottomLabel(f As Object) As WixSearch
+	Search.SetAttr("bottomLabel", f)
+	Return Me
+End Sub
+
+'set bottom padding
+Sub SetBottomPadding(f As Object) As WixSearch
+	Search.SetAttr("bottomPadding", f)
 	Return Me
 End Sub
 

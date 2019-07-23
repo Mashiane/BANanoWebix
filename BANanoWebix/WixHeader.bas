@@ -55,6 +55,11 @@ Sub SetMap(m As Map) As WixHeader
 	Return Me
 End Sub
 
+Sub SetBorderless(b As Boolean) As WixHeader
+	Header.SetBorderLess(b)
+	Return Me
+End Sub
+
 
 'set reponsive
 Sub SetResponsive(b As Object) As WixHeader

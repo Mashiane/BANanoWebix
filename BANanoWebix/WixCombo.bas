@@ -24,6 +24,49 @@ Public Sub Initialize(iID As String) As WixCombo
 End Sub
 
 
+Sub SetValidateEvent(e As Object) As WixCombo    'ignore
+	Combo.SetAttr("validateEvent", e)
+	Return Me
+End Sub
+
+Sub SetValidateEventBlur(b As Boolean) As WixCombo    'ignore
+	Combo.SetAttr("validateEvent", "blur")
+	Return Me
+End Sub
+
+Sub SetValidateEventKey(b As Boolean) As WixCombo     'ignore
+	Combo.SetAttr("validateEvent", "key")
+	Return Me
+End Sub
+
+'set validate
+Sub SetValidateIsNotEmpty(b As Boolean) As WixCombo   'ignore
+	Combo.SetAttr("validate","isNotEmpty")
+	Return Me
+End Sub
+
+
+'set validate
+Sub SetValidate(v As Object) As WixCombo   'ignore
+	Combo.SetAttr("validate",v)
+	Return Me
+End Sub
+
+
+'set invalid message
+Sub SetInvalidMessage(msg As String) As WixCombo
+	Combo.SetAttr("invalidMessage", msg)
+	Return Me
+End Sub
+
+
+'set required
+Sub SetRequired(b As Boolean) As WixCombo
+	Combo.SetAttr("required", b)
+	Return Me
+End Sub
+
+
 'set the placeholder
 Sub SetPlaceHolder(ph As String) As WixCombo
 	Combo.SetPlaceHolder(ph)
@@ -152,9 +195,16 @@ Sub SetLabel(l As String) As WixCombo
 	Return Me
 End Sub
 
-'set required
-Sub SetRequired(b As Boolean) As WixCombo
-	Combo.SetRequired(b)
+
+'set bottom label
+Sub SetBottomLabel(f As Object) As WixCombo
+	Combo.SetAttr("bottomLabel", f)
+	Return Me
+End Sub
+
+'set bottom padding
+Sub SetBottomPadding(f As Object) As WixCombo
+	Combo.SetAttr("bottomPadding", f)
 	Return Me
 End Sub
 

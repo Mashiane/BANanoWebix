@@ -24,6 +24,19 @@ Sub Class_Globals
 	Type MySQLResultSet(response As String, result As List, command As String, types As List, args As List, query As String)
 End Sub
 
+'return a sql to delete record of table where one exists
+Sub GetMax(tblName As String, fldName As String) As String
+	Dim sb As String = $"SELECT MAX(${fldName}) As ${fldName} FROM ${EscapeField(tblName)}"$
+	Dim m As Map
+	m.Initialize
+	m.Put("sql", sb)
+	m.Put("args", Null)
+	m.Put("types", Null)
+	m.Put("command", "getmax")
+	Dim res As String = Map2Json(m)
+	Return res
+End Sub
+
 'initialize the class, a field named "id" is assumed to be an integer
 Public Sub Initialize() As BANanoMySQL
 	recType.Initialize

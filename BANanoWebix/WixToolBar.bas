@@ -105,6 +105,21 @@ Sub AddButton(btn As WixButton) As WixToolBar
 	Return Me
 End Sub
 
+Sub AddToggle(btn As WixToggle) As WixToolBar
+	ToolBar.AddColumns(btn.item)
+	Return Me
+End Sub
+
+Sub AddLabel(btn As WixLabel) As WixToolBar
+	ToolBar.AddColumns(btn.item)
+	Return Me
+End Sub
+
+Sub AddElement(btn As WixElement) As WixToolBar
+	ToolBar.AddColumns(btn.item)
+	Return Me
+End Sub
+
 'add a button and define it
 Sub CreateButton(sid As String) As WixButton
 	Dim btn As WixButton
@@ -140,6 +155,8 @@ Sub CreateToggle(sid As String) As WixToggle
 	btn.Initialize(sid).SetParent(ToolBar)
 	Return btn
 End Sub
+
+
 
 Sub CreateAvatar(sid As String, imgURL As String, statusColor As String, Styles As Map) As WixElement
 	Dim img As UOENowHTML
@@ -197,4 +214,64 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+Sub SetContainer(container As String) As WixToolBar
+	ToolBar.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixToolBar
+	ToolBar.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As String) As WixToolBar
+	ToolBar.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixToolBar
+ToolBar.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetIsolate(isolate As Boolean) As WixToolBar
+ToolBar.SetAttr("isolate", isolate)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As String) As WixToolBar
+ToolBar.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As String) As WixToolBar
+ToolBar.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPaddingX(paddingX As String) As WixToolBar
+ToolBar.SetAttr("paddingX", paddingX)
+Return Me
+End Sub
+
+Sub SetPaddingY(paddingY As String) As WixToolBar
+ToolBar.SetAttr("paddingY", paddingY)
+Return Me
+End Sub
+
+Sub SetScroll(scroll As String) As WixToolBar
+ToolBar.SetAttr("scroll", scroll)
+Return Me
+End Sub
+
+Sub SetVisibleBatch(visibleBatch As String) As WixToolBar
+ToolBar.SetAttr("visibleBatch", visibleBatch)
+Return Me
+End Sub
+
+Sub SetWidth(width As String) As WixToolBar
+ToolBar.SetAttr("width", width)
+Return Me
 End Sub

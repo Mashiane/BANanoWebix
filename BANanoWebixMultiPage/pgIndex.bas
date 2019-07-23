@@ -37,6 +37,8 @@ Sub Init(pgContainer As String)
 	pg.AddRow(R2) 
 	'
 	pg.UI
+	'
+	pg.Show("mv_settings_positions")
 End Sub
 
 

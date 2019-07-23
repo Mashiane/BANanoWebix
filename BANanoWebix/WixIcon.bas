@@ -128,6 +128,11 @@ Sub SetBadge(b As String) As WixIcon
 End Sub
 
 
+Sub SetHidden(b As Boolean) As WixIcon
+	Icon.SetAttr("hidden", b)
+	Return Me
+End Sub
+
 'return the item to add
 Sub Item As Map
 	If onClick <> Null Then
@@ -148,6 +153,10 @@ Sub SetWidth(w As Object) As WixIcon
 	Return Me
 End Sub
 
+Sub SetAlign(a As Object) As WixIcon
+	Icon.SetAlign(a)
+	Return Me
+End Sub
 
 'set align right
 Sub SetAlignRight(r As String) As WixIcon 'ignore

@@ -23,6 +23,60 @@ Sub Item As Map
 End Sub
 
 
+Sub SetValidateEvent(e As Object) As WixColorPicker    'ignore
+	ColorPicker.SetAttr("validateEvent", e)
+	Return Me
+End Sub
+
+Sub SetValidateEventBlur(b As Boolean) As WixColorPicker    'ignore
+	ColorPicker.SetAttr("validateEvent", "blur")
+	Return Me
+End Sub
+
+Sub SetValidateEventKey(b As Boolean) As WixColorPicker     'ignore
+	ColorPicker.SetAttr("validateEvent", "key")
+	Return Me
+End Sub
+
+'set validate
+Sub SetValidateIsNotEmpty(b As Boolean) As WixColorPicker   'ignore
+	ColorPicker.SetAttr("validate","isNotEmpty")
+	Return Me
+End Sub
+
+
+'set validate
+Sub SetValidate(v As Object) As WixColorPicker   'ignore
+	ColorPicker.SetAttr("validate",v)
+	Return Me
+End Sub
+
+
+'set invalid message
+Sub SetInvalidMessage(msg As String) As WixColorPicker
+	ColorPicker.SetAttr("invalidMessage", msg)
+	Return Me
+End Sub
+
+
+'set required
+Sub SetRequired(b As Boolean) As WixColorPicker
+	ColorPicker.SetAttr("required", b)
+	Return Me
+End Sub
+
+'set readonly
+Sub SetReadOnly(b As Boolean) As WixColorPicker
+	ColorPicker.SetAttr("readonly",b)
+	Return Me
+End Sub
+
+'set disabled
+Sub SetDisabled(b As Boolean) As WixColorPicker
+	ColorPicker.setattr("disabled",b)
+	Return Me
+End Sub
+
 Sub SetTemplateHTML(h As UOENowHTML) As WixColorPicker
 	Dim os As String = h.HTML
 	ColorPicker.SetTemplate(os)

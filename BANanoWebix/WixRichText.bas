@@ -22,6 +22,50 @@ Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
 
+
+Sub SetValidateEvent(e As Object) As WixRichText    'ignore
+	RichText.SetAttr("validateEvent", e)
+	Return Me
+End Sub
+
+Sub SetValidateEventBlur(b As Boolean) As WixRichText    'ignore
+	RichText.SetAttr("validateEvent", "blur")
+	Return Me
+End Sub
+
+Sub SetValidateEventKey(b As Boolean) As WixRichText     'ignore
+	RichText.SetAttr("validateEvent", "key")
+	Return Me
+End Sub
+
+'set validate
+Sub SetValidateIsNotEmpty(b As Boolean) As WixRichText   'ignore
+	RichText.SetAttr("validate","isNotEmpty")
+	Return Me
+End Sub
+
+
+'set validate
+Sub SetValidate(v As Object) As WixRichText   'ignore
+	RichText.SetAttr("validate",v)
+	Return Me
+End Sub
+
+
+'set invalid message
+Sub SetInvalidMessage(msg As String) As WixRichText
+	RichText.SetAttr("invalidMessage", msg)
+	Return Me
+End Sub
+
+
+'set required
+Sub SetRequired(b As Boolean) As WixRichText
+	RichText.SetAttr("required", b)
+	Return Me
+End Sub
+
+
 'use a map object
 Sub SetMap(m As Map) As WixRichText
 	For Each strKey As String In m.Keys
@@ -110,9 +154,16 @@ Sub SetLabel(l As String) As WixRichText
 	Return Me
 End Sub
 
-'set required
-Sub SetRequired(b As Boolean) As WixRichText
-	RichText.SetRequired(b)
+
+'set bottom label
+Sub SetBottomLabel(f As Object) As WixRichText
+	RichText.SetAttr("bottomLabel", f)
+	Return Me
+End Sub
+
+'set bottom padding
+Sub SetBottomPadding(f As Object) As WixRichText
+	RichText.SetAttr("bottomPadding", f)
 	Return Me
 End Sub
 

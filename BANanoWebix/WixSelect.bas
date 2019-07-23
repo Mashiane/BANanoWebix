@@ -32,6 +32,49 @@ Sub SetTemplateHTML(h As UOENowHTML) As WixSelect
 	Return Me
 End Sub
 
+
+Sub SetValidateEvent(e As Object) As WixSelect    'ignore
+	DropDown.SetAttr("validateEvent", e)
+	Return Me
+End Sub
+
+Sub SetValidateEventBlur(b As Boolean) As WixSelect    'ignore
+	DropDown.SetAttr("validateEvent", "blur")
+	Return Me
+End Sub
+
+Sub SetValidateEventKey(b As Boolean) As WixSelect     'ignore
+	DropDown.SetAttr("validateEvent", "key")
+	Return Me
+End Sub
+
+'set validate
+Sub SetValidateIsNotEmpty(b As Boolean) As WixSelect   'ignore
+	DropDown.SetAttr("validate","isNotEmpty")
+	Return Me
+End Sub
+
+
+'set validate
+Sub SetValidate(v As Object) As WixSelect   'ignore
+	DropDown.SetAttr("validate",v)
+	Return Me
+End Sub
+
+
+'set invalid message
+Sub SetInvalidMessage(msg As String) As WixSelect
+	DropDown.SetAttr("invalidMessage", msg)
+	Return Me
+End Sub
+
+
+'set required
+Sub SetRequired(b As Boolean) As WixSelect
+	DropDown.SetAttr("required", b)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixSelect
 	DropDown.SetName(n)
@@ -128,9 +171,16 @@ Sub SetLabel(l As String) As WixSelect
 	Return Me
 End Sub
 
-'set required
-Sub SetRequired(b As Boolean) As WixSelect
-	DropDown.SetRequired(b)
+
+'set bottom label
+Sub SetBottomLabel(f As Object) As WixSelect
+	DropDown.SetAttr("bottomLabel", f)
+	Return Me
+End Sub
+
+'set bottom padding
+Sub SetBottomPadding(f As Object) As WixSelect
+	DropDown.SetAttr("bottomPadding", f)
 	Return Me
 End Sub
 

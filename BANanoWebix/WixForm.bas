@@ -24,6 +24,38 @@ Sub AddRow(wxEL As WixRow)
 	AddRows(wxEL.Item)
 End Sub
 
+'add a spacer to the rows
+Sub AddRowsSpacer(r As String) As WixForm   'ignore
+	Dim s As WixElement
+	s.Initialize("").SetView("spacer")
+	AddRows(s.item)
+	Return Me
+End Sub
+
+Sub AddRowsResizer(s As String) As WixForm   'ignore
+	Dim r As WixResizer
+	r.Initialize("")
+	AddRows(r.Item)
+	Return Me
+End Sub
+
+'add a spacer to the columns
+Sub AddColumnsSpacer(b As String) As WixForm    'ignore
+	Dim s As WixElement
+	s.Initialize("").SetView("spacer")
+	AddColumns(s.item)
+	Return Me
+End Sub
+ 
+
+
+Sub AddColumnsResizer(s As String) As WixForm   'ignore
+	Dim r As WixResizer
+	r.Initialize("")
+	AddColumns(r.Item)
+	Return Me
+End Sub
+
 Sub SetElementsConfigJSON(json As String) As WixForm
 	Form.SetElementsConfigJSON(json)
 	Return Me
@@ -178,11 +210,6 @@ End Sub
 Sub SetTooltip(tt As String) As WixForm
 	Form.SetTooltip(tt)
 	Return Me
-End Sub
-
-'add a spacer To the Columns
-Sub AddColumnsSpacer()
-	AddColumns(CreateMap())
 End Sub
 
 'add a column

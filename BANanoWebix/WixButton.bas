@@ -100,7 +100,6 @@ Sub SetMap(m As Map) As WixButton
 	Return Me
 End Sub
 
-
 'sub SetInputWidth
 Sub SetInputWidth(w As Int) As WixButton
 	Button.SetInputWidth(w)

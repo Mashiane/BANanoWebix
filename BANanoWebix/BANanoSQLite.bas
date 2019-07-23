@@ -63,6 +63,19 @@ Sub DeleteAll(tblName As String) As String
 	Return res
 End Sub
 
+'return a sql to delete record of table where one exists
+Sub GetMax(tblName As String, fldName As String) As String
+	Dim sb As String = $"SELECT MAX(${fldName}) As ${fldName} FROM ${EscapeField(tblName)}"$
+	Dim m As Map
+	m.Initialize
+	m.Put("sql", sb)
+	m.Put("args", Null)
+	m.Put("types", Null)
+	m.Put("command", "getmax")
+	Dim res As String = Map2Json(m)
+	Return res
+End Sub
+
 'convert a map to a json string
 Sub Map2Json(mp As Map) As String
 	Dim JSON As BANanoJSONGenerator

@@ -29,7 +29,7 @@ End Sub
 
 Sub Init()
 	addingmethod.Initialize
-	addingmethod.AddAll(Array("","AddRows","AddColumns","AddElements","AddDataColumns","AddCells"))
+	addingmethod.AddAll(Array("","AddRows","AddColumns","AddElements","AddDataColumns","AddCells","AddButton","AddLabel","AddElement","AddToggle","AddIcon"))
 	'
 	dbName = Main.dbname
 	'create page
@@ -1301,6 +1301,8 @@ Sub FormCode(id As String, bShowPropBag As Boolean)
 			cols.add(view1)
 		Case "AddCells"
 			cells.Add(view1)
+		Case "AddButton", "AddLabel", "AddElement", "AddToggle", "AddIcon"
+			cols.add(view1)
 		End Select
 	Next
 	'
@@ -1380,7 +1382,7 @@ Sub sidebar_click(meid As String)
 	'
 	Select Case meid
 	Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"
-	Case "vis", "dp"	
+	Case "vis", "dp", "nav"	
 	Case "downloads"
 	Case "b4xlib"
 	Case "skeletonapp"
@@ -1610,6 +1612,9 @@ End Sub
 
 Sub DrawPropBag(con As String) As Boolean
 	Select Case con
+		Case "toolbar"
+			dToolBar.BuildBag(pg, propBag)
+			Return True
 		Case "datacolumn"
 			dDataField.BuildBag(pg, propBag)
 			Return True
@@ -2141,11 +2146,12 @@ sb.Append("End Sub").Append(CRLF).Append(CRLF)
 	'
 	sb.Append("Sub BuildBag(Page As WixPage, Bag As WixProperty)").append(CRLF)
 	sb.append("Bag.Clear").Append(CRLF)
-	'
+	sb.Append($"Bag.AddTextBox("id","Id", "layout1")"$).Append(CRLF)
+	sb.Append($"Bag.AddTextBox("parentid","Parentid", "")"$).Append(CRLF)
 	sb.Append($"Bag.AddCombo("addingmethod","Adding Method","AddRows", pgFormDesigner.addingmethod)"$).Append(CRLF)
 	sb.Append($"Bag.AddTextBox("tabindex", "Tab Index", "0")"$).append(CRLF)
 	sb.Append($"Bag.AddLabel("Details")"$).Append(CRLF)
-	sb.append($"Bag.AddCombo("view","View", "Button", Page.Views)"$).Append(CRLF)
+	sb.append($"Bag.AddCombo("view","View", "${somethingName}", Page.Views)"$).Append(CRLF)
 		
 	For Each prop As Map In props
 		json = prop.getdefault("json", "")

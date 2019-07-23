@@ -29,6 +29,49 @@ Sub SetMap(m As Map) As WixRichSelect
 End Sub
 
 
+Sub SetValidateEvent(e As Object) As WixRichSelect    'ignore
+	RichSelect.SetAttr("validateEvent", e)
+	Return Me
+End Sub
+
+Sub SetValidateEventBlur(b As Boolean) As WixRichSelect    'ignore
+	RichSelect.SetAttr("validateEvent", "blur")
+	Return Me
+End Sub
+
+Sub SetValidateEventKey(b As Boolean) As WixRichSelect     'ignore
+	RichSelect.SetAttr("validateEvent", "key")
+	Return Me
+End Sub
+
+'set validate
+Sub SetValidateIsNotEmpty(b As Boolean) As WixRichSelect   'ignore
+	RichSelect.SetAttr("validate","isNotEmpty")
+	Return Me
+End Sub
+
+
+'set validate
+Sub SetValidate(v As Object) As WixRichSelect   'ignore
+	RichSelect.SetAttr("validate",v)
+	Return Me
+End Sub
+
+
+'set invalid message
+Sub SetInvalidMessage(msg As String) As WixRichSelect
+	RichSelect.SetAttr("invalidMessage", msg)
+	Return Me
+End Sub
+
+
+'set required
+Sub SetRequired(b As Boolean) As WixRichSelect
+	RichSelect.SetAttr("required", b)
+	Return Me
+End Sub
+
+
 'set the placeholder
 Sub SetPlaceHolder(ph As String) As WixRichSelect
 	RichSelect.SetPlaceHolder(ph)

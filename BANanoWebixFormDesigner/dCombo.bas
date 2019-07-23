@@ -16,6 +16,14 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Dim pos As List
 	pos.Initialize
 	pos.AddAll(Array("","left","top"))
+	
+	Dim ve As List
+	ve.Initialize
+	ve.AddAll(Array("","blur", "key"))
+	'
+	Dim v As List
+	v.Initialize
+	v.AddAll(Array("isNotEmpty","isNumber","isEmail"))
 	'
 	Bag.Clear
 	Bag.AddTextBox("id", "ID","combo1")
@@ -44,6 +52,13 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.AddLabel("Size")
 	Bag.AddTextBox("width","Width","")
 	Bag.AddTextBox("height","Height","")
+	Bag.AddLabel("Validation")
+	Bag.AddCheckBox("required", "Required", "")
+	Bag.AddCombo("validate", "Validate", "", v)
+	Bag.AddTextBox("invalidMessage", "Invalid Message","")
+	Bag.AddCombo("validateEvent", "Validate Event", "", ve)
+	Bag.AddTextBox("bottomLabel", "Bottom Label", "")
+	Bag.AddTextBox("bottomPadding", "Bottom Padding", "")
 	'Bag.AddLabel("Event")
 	'Bag.AddTextBox("click","On Click","BANano.CallBack(Me,button1_click,Null)")
 	

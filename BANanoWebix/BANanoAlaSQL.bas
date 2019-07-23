@@ -17,8 +17,6 @@ Sub Class_Globals
 	Type AlaSQLResultSet(response As String, result As List, command As String, types As List, args As List, query As String)
 End Sub
 
-
-
 'initialize the class, a field named "id" is assumed to be an integer
 Public Sub Initialize() As BANanoAlaSQL
 	recType.Initialize
@@ -180,6 +178,17 @@ Sub InsertList(tblname As String) As AlaSQLResultSet
 	Return m
 End Sub
 
+'return a sql to delete record of table where one exists
+Sub GetMax(tblName As String, fldName As String) As AlaSQLResultSet
+	Dim sb As String = $"SELECT MAX(${fldName}) As ${fldName} FROM ${EscapeField(tblName)}"$
+	Dim m As AlaSQLResultSet
+	m.Initialize
+	m.query = sb
+	m.args = Null
+	m.types = Null
+	m.command = "getmax"
+	Return m
+End Sub
 
 Sub Execute(strSQL As String) As AlaSQLResultSet
 	Dim m As AlaSQLResultSet
