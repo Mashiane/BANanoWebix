@@ -31,14 +31,15 @@ Sub Init(pgContainer As String)
 	Dim mv As WixMultiView
 	mv.Initialize("mymv")
 	'
-	modSettings.AddToMultiView(mv)
+	modClients.AddToMultiView(pg, mv)
+	modSettings.AddToMultiView(pg, mv)
 	'
 	R2.AddColumns(mv.item)
 	pg.AddRow(R2) 
 	'
 	pg.UI
 	'
-	pg.Show("mv_settings_positions")
+	pg.Show("mv_clients")
 End Sub
 
 

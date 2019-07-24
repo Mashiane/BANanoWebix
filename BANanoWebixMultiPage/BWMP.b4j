@@ -21,13 +21,14 @@ Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
 Module1=modSettings
-Module2=pgIndex
-Module3=modSideMenu
-Module4=modCities
-Module5=modPositions
+Module2=modCities
+Module3=modPositions
+Module4=pgIndex
+Module5=modSideMenu
+Module6=modClients
 NumberOfFiles=7
 NumberOfLibraries=5
-NumberOfModules=5
+NumberOfModules=6
 Version=7.51
 @EndOfDesignText@
  #Region Project Attributes 
@@ -114,7 +115,29 @@ Sub BANano_Ready()
 	Dim rs As AlaSQLResultSet = alaSQL.CreateTable("positions", newTable, "id")
 	'execute the create table command
 	rs.Result = ourclients.ExecuteWait(rs.query, rs.args)
+	'
+	Dim newTable As Map = CreateMap()
+	newTable.put("id","INT")
+	newTable.put("fname","STRING")
+	newTable.put("lname","STRING")
+	newTable.put("position","STRING")
+	newTable.put("email","STRING")
+	newTable.put("city","STRING")
+	newTable.put("address","STRING")
+	newTable.put("birthday","STRING")
+	newTable.put("firstrequest","STRING")
+	newTable.put("phone","STRING")
+	newTable.put("notifications","STRING")
+	newTable.put("photo","STRING")
+	newTable.put("notes","STRING")
 
+	'initialize the helper class
+	Dim alaSQL As BANanoAlaSQL
+	alaSQL.Initialize
+	'generate the create table sql
+	Dim rs As AlaSQLResultSet = alaSQL.CreateTable("clients", newTable, "id")
+	'execute the create table command
+	rs.Result = ourclients.ExecuteWait(rs.query, rs.args)
 	
 	'build a page and render it to the body of the page
 	pgIndex.init("body")

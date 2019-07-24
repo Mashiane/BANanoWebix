@@ -26,13 +26,13 @@ End Sub
 
 'when side menu is clicked
 Sub SideMenu_Click(smid As String)
-	Page.Message(smid)
 	'get the prefix and suffix of the selected item
 	Dim sprefix As String = Page.MvField(smid,1,"_")
 	Select Case sprefix
 	Case "settings"
 		modSettings.SettingsHandler(Page, smid)
 	Case "clients"
+		modClients.ClientHandler(Page, smid)
 	End Select
 End Sub
 

@@ -495,6 +495,16 @@ Sub Collapse(nodeID As String)
 End Sub
 
 
+Sub AddNotSelected(lst As List)
+	Dim q As String = "$"
+	Dim k1 As String = q & "empty"
+	Dim opt As Map = CreateMap()
+	opt.Put("id", k1)
+	opt.Put("value", "-- Not selected --")
+	opt.Put(k1, True)
+	lst.InsertAt(0, opt)
+End Sub
+
 Sub Back(nodeID As String)
 	nodeID = nodeID.tolowercase
 	Dollar.Selector(nodeID).RunMethod("back", Null)
@@ -504,6 +514,19 @@ End Sub
 Sub SetData(eID As String, data As List)
 	eID = eID.tolowercase
 	Define(eID, CreateMap("data":data))
+	Refresh(eID)
+End Sub
+
+'call after the ux is rendered
+Sub SetBadge(eID As String, badge As Object)
+	eID = eID.tolowercase
+	Define(eID, CreateMap("badge":badge))
+	Refresh(eID)
+End Sub
+
+Sub SetOptions(eID As String, data As List)
+	eID = eID.tolowercase
+	Define(eID, CreateMap("options":data))
 	Refresh(eID)
 End Sub
 

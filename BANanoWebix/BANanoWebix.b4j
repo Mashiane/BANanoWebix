@@ -44,23 +44,23 @@ Library2=jfx
 Library3=banano
 Module1=WixForm
 Module10=WixButton
-Module11=WixProperty
+Module11=WixDatePicker
 Module12=WixDataColumn
-Module13=WixDataTable
-Module14=WixTreeTable
-Module15=WixSideBar
-Module16=WixSelect
-Module17=WixSideMenu
-Module18=UOENowHTML
-Module19=WixRichSelect
+Module13=WixPage
+Module14=WixTextArea
+Module15=WixCombo
+Module16=WixRichText
+Module17=WixRichSelect
+Module18=WixSearch
+Module19=WixSelect
 Module2=WixElement
-Module20=WixCombo
-Module21=WixRichText
-Module22=WixSearch
-Module23=WixTextArea
-Module24=WixDatePicker
-Module25=WixImage
-Module26=WixPage
+Module20=WixProperty
+Module21=WixDataTable
+Module22=WixTreeTable
+Module23=WixSideBar
+Module24=WixSideMenu
+Module25=UOENowHTML
+Module26=WixImage
 Module27=WixLayout
 Module28=WixSegmented
 Module29=WixTabBar
@@ -133,7 +133,7 @@ Version=7.51
  #Region Project Attributes 
  	#MergeLibraries: True
 	#LibraryAuthor: Anele Mashy Mbanga
-	#LibraryVersion: 1.16
+	#LibraryVersion: 1.17
 	#LibraryName: BANanoWebix
 #End Region
 
@@ -146,7 +146,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'initialize banano for first use
 	BANano.Initialize("BANano", "BANanoWebix",DateTime.Now)
 	BANano.TranspilerOptions.UseServiceWorker = False
-	BANano.BuildAsB4XLib("1.16")
+	BANano.BuildAsB4XLib("1.17")
 	ExitApplication
 End Sub
 

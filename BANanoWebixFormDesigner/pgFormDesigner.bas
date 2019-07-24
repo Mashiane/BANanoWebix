@@ -77,7 +77,7 @@ Sub Init()
 	R2.CreateResizer("").AddToColumns(R2.Row)
 	
 	'
-	propBag.Initialize("propbag").SetWidth(300).setnamewidth(150).SetScroll(True)
+	propBag.Initialize("propbag").SetWidth(400).setnamewidth(150).SetScroll(True)
 	Dim frm As WixForm = modPropertyBag.getPropertyBag
 	R2.AddColumns(frm.Item)
 	R2.CreateResizer("").AddToColumns(R2.Row)
@@ -275,8 +275,22 @@ Sub AddPrimaryKey
 End Sub
 
 Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+	Dim sbFields As StringBuilder
+	sbFields.Initialize
+	
+	For Each fldmap As Map In rsx.result
+		Dim json As String = fldmap.Get("json")
+		Dim fmap As Map = pg.Json2Map(json)
+		Dim fldname As String = fmap.Get("value")
+		sbFields.Append(fldname).Append(",")
+	Next
+	Dim flds As String = sbFields.ToString
+	flds = pg.RemDelim(flds,",")
+	'
 	Dim sb As StringBuilder
 	sb.Initialize
+	sb.Append("'FIELD NAMES").Append(CRLF)
+	sb.Append(flds).Append(CRLF).Append(CRLF)
 	sb.append("'Copy this code to Main.BANano_Ready").Append(CRLF).Append(CRLF)
 	sb.Append("'create the table").Append(CRLF)
 	sb.append("Dim newTable As Map = CreateMap()").Append(CRLF)
@@ -1780,6 +1794,40 @@ Sub btnMulti_click
 	Dim pb As Map = pg.GetValues("propbag")
 	Dim view As String = pb.GetDefault("view","")
 	Select Case view
+		Case "row", "column"
+			'split the controls so we get each
+			Dim controls() As String = BANano.Split(",", scontrols)
+			Dim tbindex As Int = 0
+			For Each ctrl As String In controls
+				tbindex = tbindex + 1
+				ctrl = ctrl.Trim
+				If ctrl <> "" Then
+					ctrl = ctrl.ToLowerCase
+					Dim newctrl As Map = TemporalText
+					newctrl.Put("id", ctrl)
+					newctrl.Put("parentid", parentid)
+					newctrl.Put("name", ctrl)
+					newctrl.Put("tabindex",tbindex)
+					newctrl.Put("label",Capitalize(ctrl))
+					'convert to json
+					Dim json As String = pg.Map2Json(newctrl)
+					'insert the record to elements
+					'item does not exist
+					sqlite.Initialize
+					sqlite.AddStrings(Array("id"))
+					Dim rec As Map = CreateMap()
+					rec.Put("id", ctrl)
+					rec.put("json", json)
+					rec.Put("tabindex", tbindex)
+					rec.Put("parentid", parentid)
+					qry = sqlite.Insert("items", rec)
+					res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+					rs = sqlite.GetResultSet(qry,res)
+				End If
+			Next
+			pg.BoClose(winux)
+			RefreshTreeWait
+			Return
 	Case "datatable"
 		'add data columns
 		'split the controls so we get each
@@ -1863,7 +1911,7 @@ Sub btnMulti_click
 				newctrl.Put("parentid", parentid)
 				newctrl.Put("name", ctrl)
 				newctrl.Put("tabindex",tbindex)
-				newctrl.Put("label",ctrl)
+				newctrl.Put("label",Capitalize(ctrl))
 				'convert to json
 				Dim json As String = pg.Map2Json(newctrl)
 				'insert the record to elements
@@ -2025,7 +2073,7 @@ Sub add_fields
 	Dim pb As Map = pg.GetValues("propbag")
 	Dim view As String = pb.GetDefault("view","")
 	Select Case view
-	Case "datatable"
+	Case "datatable", "row", "column"
 		pg.BOShow(CreateWindow)
 		Return			
 	End Select

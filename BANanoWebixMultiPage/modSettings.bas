@@ -36,7 +36,8 @@ Sub SettingsHandler(pg As WixPage, menuitem As String)
 End Sub
 
 
-Sub AddToMultiView(mv As WixMultiView)
+Sub AddToMultiView(pg As WixPage, mv As WixMultiView)
+	Page = pg
 	Dim dt1 As WixDataTable = modPositions.CreatePositionsDT
 	Dim frm1 As WixForm = modPositions.CreatePositionsForm
 	'

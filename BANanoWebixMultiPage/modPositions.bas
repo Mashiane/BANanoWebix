@@ -211,6 +211,7 @@ Sub CreatePositionsForm As WixForm
 	id.SetType("text")
 	id.SetLabel("#")
 	id.SetRequired(True)
+	id.SetHidden(True)
 	form.AddRows(id.Item)
 
 	Dim value As WixText

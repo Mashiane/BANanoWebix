@@ -77,6 +77,7 @@ Sub CreateCitiesForm As WixForm
 	id.SetType("text")
 	id.SetLabel("#")
 	id.SetRequired("true")
+	id.SetHidden(True)
 	form.AddRows(id.Item)
 
 	Dim value As WixText

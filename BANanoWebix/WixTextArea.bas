@@ -24,6 +24,13 @@ Sub SetValue(v As String) As WixTextArea
 End Sub
 
 
+'set localid
+Sub SetLocalID(i As String) As WixTextArea
+	TextArea.SetLocalID(i)
+	Return Me
+End Sub
+
+
 Sub SetTemplateHTML(h As UOENowHTML) As WixTextArea
 	Dim os As String = h.HTML
 	TextArea.SetAttr("template", os)

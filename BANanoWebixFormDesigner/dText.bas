@@ -19,7 +19,7 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	'
 	Dim typ As List
 	typ.Initialize 
-	typ.AddAll(Array("","text","password","email","number","url"))
+	typ.AddAll(Array("","text","password","email","number","url","tel"))
 	'
 	Dim ve As List
 	ve.Initialize 
