@@ -8,14 +8,12 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Popup As WixElement
-	Private body As Map
 End Sub
 
 'Initializes the popup
 Public Sub Initialize(sid As String) As WixPopUp
 	ID = sid.ToLowerCase
 	Popup.Initialize(ID).setview("popup")
-	body.Initialize 
 	Return Me 
 End Sub
 
@@ -105,16 +103,15 @@ End Sub
 
 'return the item
 Sub Item As Map
-	Popup.SetAttr("body", body)
 	Return Popup.item
 End Sub
 
-'set template
-Sub SetTemplate(t As String) As WixPopUp
-	body.Put("template", t)
+Sub SetTemplate(t As Object) As WixPopUp
+	Dim b As Map = CreateMap()
+	b.Put("template", t)
+	SetBody(b)
 	Return Me
 End Sub
-
 
 'add to parent rows
 Sub AddToRows(P As WixElement)
@@ -129,4 +126,121 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixPopUp
+	Popup.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutofit(autofit As Boolean) As WixPopUp
+	Popup.SetAttr("autofit", autofit)
+	Return Me
+End Sub
+
+Sub SetAutofocus(autofocus As Boolean) As WixPopUp
+	Popup.SetAttr("autofocus", autofocus)
+	Return Me
+End Sub
+
+Sub SetBody(xbody As Object) As WixPopUp
+	Popup.SetAttr("body", xbody)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixPopUp
+	Popup.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixPopUp
+	Popup.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixPopUp
+	Popup.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixPopUp
+	Popup.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHead(head As Object) As WixPopUp
+	Popup.SetAttr("head", head)
+	Return Me
+End Sub
+
+Sub SetHeadHeight(headHeight As Object) As WixPopUp
+	Popup.SetAttr("headHeight", headHeight)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixPopUp
+Popup.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetLeft(left As Object) As WixPopUp
+Popup.SetAttr("left", left)
+Return Me
+End Sub
+
+Sub SetMaster(master As Object) As WixPopUp
+Popup.SetAttr("master", master)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixPopUp
+Popup.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixPopUp
+Popup.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+
+Sub SetModal(modal As Boolean) As WixPopUp
+Popup.SetAttr("modal", modal)
+Return Me
+End Sub
+
+Sub SetPadding(padding As Object) As WixPopUp
+Popup.SetAttr("padding", padding)
+Return Me
+End Sub
+
+Sub SetPoint(point As Boolean) As WixPopUp
+Popup.SetAttr("point", point)
+Return Me
+End Sub
+
+Sub SetRelative(relative As Object) As WixPopUp
+Popup.SetAttr("relative", relative)
+Return Me
+End Sub
+
+Sub SetResize(resize As Boolean) As WixPopUp
+Popup.SetAttr("resize", resize)
+Return Me
+End Sub
+
+Sub SetToFront(toFront As Boolean) As WixPopUp
+Popup.SetAttr("toFront", toFront)
+Return Me
+End Sub
+
+Sub SetTop(top As Object) As WixPopUp
+Popup.SetAttr("top", top)
+Return Me
+End Sub
+
+Sub SetZindex(zindex As Object) As WixPopUp
+Popup.SetAttr("zindex", zindex)
+Return Me
 End Sub

@@ -125,3 +125,70 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+
+Sub SetBorderless(borderless As Boolean) As WixMultiView
+MultiView.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetCells(cells As Object) As WixMultiView
+MultiView.SetAttr("cells", cells)
+Return Me
+End Sub
+
+Sub SetCols(cols As Object) As WixMultiView
+MultiView.SetAttr("cols", cols)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixMultiView
+MultiView.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixMultiView
+MultiView.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixMultiView
+MultiView.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixMultiView
+MultiView.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixMultiView
+MultiView.SetAttr("height", height)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixMultiView
+MultiView.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+
+Sub SetMaxHeight(maxHeight As Object) As WixMultiView
+MultiView.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixMultiView
+MultiView.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetRows(rows As Object) As WixMultiView
+MultiView.SetAttr("rows", rows)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixMultiView
+MultiView.SetAttr("width", width)
+Return Me
+End Sub

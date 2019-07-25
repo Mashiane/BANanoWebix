@@ -112,3 +112,129 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixContext
+	Context.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutofit(autofit As Boolean) As WixContext
+	Context.SetAttr("autofit", autofit)
+	Return Me
+End Sub
+
+Sub SetAutofocus(autofocus As Boolean) As WixContext
+	Context.SetAttr("autofocus", autofocus)
+	Return Me
+End Sub
+
+Sub SetBody(xbody As Object) As WixContext
+	Context.SetAttr("body", xbody)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixContext
+	Context.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixContext
+	Context.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixContext
+	Context.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixContext
+	Context.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixContext
+	Context.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHead(head As Object) As WixContext
+	Context.SetAttr("head", head)
+	Return Me
+End Sub
+
+Sub SetHeadHeight(headHeight As Object) As WixContext
+	Context.SetAttr("headHeight", headHeight)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixContext
+Context.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetLeft(left As Object) As WixContext
+Context.SetAttr("left", left)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixContext
+Context.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixContext
+Context.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetModal(modal As Boolean) As WixContext
+Context.SetAttr("modal", modal)
+Return Me
+End Sub
+
+Sub SetMove(move As Boolean) As WixContext
+Context.SetAttr("move", move)
+Return Me
+End Sub
+
+Sub SetPadding(padding As Object) As WixContext
+Context.SetAttr("padding", padding)
+Return Me
+End Sub
+
+Sub SetPoint(point As Boolean) As WixContext
+Context.SetAttr("point", point)
+Return Me
+End Sub
+
+Sub SetPosition(position As Object) As WixContext
+Context.SetAttr("position", position)
+Return Me
+End Sub
+
+Sub SetRelative(relative As Object) As WixContext
+Context.SetAttr("relative", relative)
+Return Me
+End Sub
+
+Sub SetResize(resize As Boolean) As WixContext
+Context.SetAttr("resize", resize)
+Return Me
+End Sub
+
+Sub SetToFront(toFront As Boolean) As WixContext
+Context.SetAttr("toFront", toFront)
+Return Me
+End Sub
+
+Sub SetTop(top As Object) As WixContext
+Context.SetAttr("top", top)
+Return Me
+End Sub
+
+Sub SetZIndex(zIndex As Object) As WixContext
+Context.SetAttr("zIndex", zIndex)
+Return Me
+End Sub

@@ -13,6 +13,7 @@ Sub Class_Globals
 	Public const MAP_TYPE_SATELLITE As String = "SATELLITE"
 	Public const MAP_TYPE_HYBRID As String = "HYBRID"
 	Public const MAP_TYPE_TERRAIN As String = "TERRAIN"
+	Private BANano As BANano
 End Sub
 
 'Initializes the Context
@@ -162,6 +163,11 @@ Sub SetCenter(lng As Double, lat As Double) As WixGoogleMap
 	Return Me
 End Sub
 
+Sub SetCenterJSON(json As String) As WixGoogleMap
+	Dim center As List = BANano.FromJson(json)
+	GoogleMap.SetAttr("center", center)
+	Return Me
+End Sub
 
 'add to parent rows
 Sub AddToRows(P As WixElement)
@@ -176,4 +182,95 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixGoogleMap
+	GoogleMap.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixGoogleMap
+GoogleMap.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixGoogleMap
+GoogleMap.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDataFeed(dataFeed As Object) As WixGoogleMap
+GoogleMap.SetAttr("dataFeed", dataFeed)
+Return Me
+End Sub
+
+Sub SetDatathrottle(datathrottle As Object) As WixGoogleMap
+GoogleMap.SetAttr("datathrottle", datathrottle)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixGoogleMap
+GoogleMap.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixGoogleMap
+GoogleMap.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixGoogleMap
+GoogleMap.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHeatmapConfig(heatmapConfig As Object) As WixGoogleMap
+GoogleMap.SetAttr("heatmapConfig", heatmapConfig)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixGoogleMap
+GoogleMap.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetLayerType(layerType As Object) As WixGoogleMap
+GoogleMap.SetAttr("layerType", layerType)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixGoogleMap
+GoogleMap.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixGoogleMap
+GoogleMap.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetReady(ready As Object) As WixGoogleMap
+GoogleMap.SetAttr("ready", ready)
+Return Me
+End Sub
+
+Sub SetRemoveMissed(removeMissed As Boolean) As WixGoogleMap
+GoogleMap.SetAttr("removeMissed", removeMissed)
+Return Me
+End Sub
+
+Sub SetSave(save As Object) As WixGoogleMap
+GoogleMap.SetAttr("save", save)
+Return Me
+End Sub
+
+Sub SetScheme(scheme As Object) As WixGoogleMap
+GoogleMap.SetAttr("scheme", scheme)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixGoogleMap
+GoogleMap.SetAttr("url", url)
+Return Me
 End Sub

@@ -293,3 +293,66 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAlign(align As Object) As WixButton
+	Button.SetAttr("align", align)
+	Return Me
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixButton
+	Button.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+
+Sub SetBorderless(borderless As Boolean) As WixButton
+Button.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+
+Sub SetContainer(container As Object) As WixButton
+Button.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixButton
+Button.SetAttr("css", css)
+Return Me
+End Sub
+
+
+Sub SetGravity(gravity As Object) As WixButton
+Button.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixButton
+Button.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixButton
+Button.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixButton
+Button.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixButton
+Button.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPlaceholder(placeholder As Object) As WixButton
+Button.SetAttr("placeholder", placeholder)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixButton
+Button.SetAttr("type", sType)
+Return Me
+End Sub

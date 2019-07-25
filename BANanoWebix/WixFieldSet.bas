@@ -8,8 +8,7 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public FieldSet As WixElement
-	Private body As Map
-	Private Rows As List
+	Private body As WixElement
 End Sub
 
 'Initializes the FieldSet
@@ -17,11 +16,9 @@ Public Sub Initialize(sid As String) As WixFieldSet
 	ID = sid.tolowercase
 	FieldSet.Initialize(ID)
 	FieldSet.SetView("fieldset")
-	body.Initialize 
-	Rows.Initialize
+	body.Initialize(ID & "body") 
 	Return Me
 End Sub
-
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixFieldSet
 	Dim os As String = h.HTML
@@ -78,14 +75,19 @@ End Sub
 
 'add an element
 Sub AddItem(itm As Map) As WixFieldSet
-	Rows.Add(itm)
+	body.AddRows(itm)
+	Return Me
+End Sub
+
+'add an element
+Sub AddRows(itm As Map) As WixFieldSet
+	body.AddRows(itm)
 	Return Me
 End Sub
 
 'return the item
 Sub Item As Map
-	body.Put("rows", Rows)
-	FieldSet.SetAttr("body", body)
+	FieldSet.SetAttr("body", body.item)
 	Return FieldSet.item
 End Sub
 
@@ -115,4 +117,69 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixFieldSet
+	FieldSet.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetBody(xbody As Object) As WixFieldSet
+	FieldSet.SetAttr("body", xbody)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixFieldSet
+	FieldSet.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixFieldSet
+	FieldSet.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixFieldSet
+	FieldSet.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixFieldSet
+	FieldSet.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixFieldSet
+	FieldSet.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixFieldSet
+FieldSet.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixFieldSet
+FieldSet.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixFieldSet
+FieldSet.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPaddingX(paddingX As Object) As WixFieldSet
+FieldSet.SetAttr("paddingX", paddingX)
+Return Me
+End Sub
+
+Sub SetPaddingY(paddingY As Object) As WixFieldSet
+FieldSet.SetAttr("paddingY", paddingY)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixFieldSet
+FieldSet.SetAttr("width", width)
+Return Me
 End Sub

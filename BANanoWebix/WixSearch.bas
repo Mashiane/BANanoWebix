@@ -215,3 +215,148 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixSearch
+	Search.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAttributes(attributes As Object) As WixSearch
+	Search.SetAttr("attributes", attributes)
+	Return Me
+End Sub
+
+Sub SetAutowidth(autowidth As Boolean) As WixSearch
+	Search.SetAttr("autowidth", autowidth)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixSearch
+	Search.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixSearch
+Search.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixSearch
+Search.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixSearch
+Search.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixSearch
+Search.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetFormat(format As Object) As WixSearch
+Search.SetAttr("format", format)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixSearch
+Search.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixSearch
+Search.SetAttr("height", height)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixSearch
+Search.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixSearch
+Search.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetIcon(icon As Object) As WixSearch
+Search.SetAttr("icon", icon)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixSearch
+Search.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixSearch
+Search.SetAttr("inputWidth", inputWidth)
+Return Me
+End Sub
+
+Sub SetInvalid(invalid As Object) As WixSearch
+Search.SetAttr("invalid", invalid)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixSearch
+Search.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixSearch
+Search.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPattern(pattern As Object) As WixSearch
+Search.SetAttr("pattern", pattern)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixSearch
+Search.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetReadonly(readonly As Boolean) As WixSearch
+Search.SetAttr("readonly", readonly)
+Return Me
+End Sub
+
+Sub SetRelatedAction(relatedAction As Object) As WixSearch
+Search.SetAttr("relatedAction", relatedAction)
+Return Me
+End Sub
+
+Sub SetRelatedView(relatedView As Object) As WixSearch
+Search.SetAttr("relatedView", relatedView)
+Return Me
+End Sub
+
+Sub SetSuggest(suggest As Object) As WixSearch
+Search.SetAttr("suggest", suggest)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixSearch
+Search.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixSearch
+Search.SetAttr("width", width)
+Return Me
+End Sub
+
+Sub SetAlign(align As Object) As WixSearch
+Search.SetAttr("align", align)
+Return Me
+End Sub
+
+Sub SetInputAlign(inputAlign As Object) As WixSearch
+Search.SetAttr("inputAlign", inputAlign)
+Return Me
+End Sub

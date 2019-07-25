@@ -222,3 +222,23 @@ Sub SetWidth(width As String) As WixLayout
 Layout.SetAttr("width", width)
 Return Me
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixLayout
+	Layout.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetCols(cols As Object) As WixLayout
+Layout.SetAttr("cols", cols)
+Return Me
+End Sub
+
+Sub SetMaxHeght(maxHeght As Object) As WixLayout
+Layout.SetAttr("maxHeght", maxHeght)
+Return Me
+End Sub
+
+Sub SetRows(rows As Object) As WixLayout
+Layout.SetAttr("rows", rows)
+Return Me
+End Sub

@@ -191,3 +191,153 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixSegmented
+Segmented.SetAttr("animate", animate)
+Return Me
+End Sub
+
+Sub SetAttributes(attributes As Object) As WixSegmented
+Segmented.SetAttr("attributes", attributes)
+Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixSegmented
+Segmented.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetBottomLabel(bottomLabel As Object) As WixSegmented
+Segmented.SetAttr("bottomLabel", bottomLabel)
+Return Me
+End Sub
+
+Sub SetBottomPadding(bottomPadding As Object) As WixSegmented
+Segmented.SetAttr("bottomPadding", bottomPadding)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixSegmented
+Segmented.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixSegmented
+Segmented.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixSegmented
+Segmented.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetFormat(format As Object) As WixSegmented
+Segmented.SetAttr("format", format)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixSegmented
+Segmented.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixSegmented
+Segmented.SetAttr("height", height)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixSegmented
+Segmented.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixSegmented
+Segmented.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetInputAlign(inputAlign As Object) As WixSegmented
+Segmented.SetAttr("inputAlign", inputAlign)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixSegmented
+Segmented.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixSegmented
+Segmented.SetAttr("inputWidth", inputWidth)
+Return Me
+End Sub
+
+Sub SetInvalidMessage(invalidMessage As Object) As WixSegmented
+Segmented.SetAttr("invalidMessage", invalidMessage)
+Return Me
+End Sub
+
+Sub SetLabelAlign(labelAlign As Object) As WixSegmented
+Segmented.SetAttr("labelAlign", labelAlign)
+Return Me
+End Sub
+
+Sub SetLabelPosition(labelPosition As Object) As WixSegmented
+Segmented.SetAttr("labelPosition", labelPosition)
+Return Me
+End Sub
+
+Sub SetLabelWidth(labelWidth As Object) As WixSegmented
+Segmented.SetAttr("labelWidth", labelWidth)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixSegmented
+Segmented.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixSegmented
+Segmented.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixSegmented
+Segmented.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetRelatedAction(relatedAction As Object) As WixSegmented
+Segmented.SetAttr("relatedAction", relatedAction)
+Return Me
+End Sub
+
+Sub SetRelatedView(relatedView As Object) As WixSegmented
+Segmented.SetAttr("relatedView", relatedView)
+Return Me
+End Sub
+
+Sub SetRequired(required As Boolean) As WixSegmented
+Segmented.SetAttr("required", required)
+Return Me
+End Sub
+
+Sub SetSuggest(suggest As Object) As WixSegmented
+Segmented.SetAttr("suggest", suggest)
+Return Me
+End Sub
+
+Sub SetValidate(validate As Object) As WixSegmented
+Segmented.SetAttr("validate", validate)
+Return Me
+End Sub
+
+Sub SetValidateEvent(validateEvent As Object) As WixSegmented
+Segmented.SetAttr("validateEvent", validateEvent)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixSegmented
+Segmented.SetAttr("width", width)
+Return Me
+End Sub

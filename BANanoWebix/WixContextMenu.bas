@@ -178,3 +178,259 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixContextMenu
+	ContextMenu.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutofit(autofit As Boolean) As WixContextMenu
+	ContextMenu.SetAttr("autofit", autofit)
+	Return Me
+End Sub
+
+Sub SetAutofocus(autofocus As Boolean) As WixContextMenu
+	ContextMenu.SetAttr("autofocus", autofocus)
+	Return Me
+End Sub
+
+Sub SetAutoheight(autoheight As Boolean) As WixContextMenu
+	ContextMenu.SetAttr("autoheight", autoheight)
+	Return Me
+End Sub
+
+
+Sub SetBody(body As Object) As WixContextMenu
+ContextMenu.SetAttr("body", body)
+Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixContextMenu
+ContextMenu.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixContextMenu
+ContextMenu.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetClipboard(clipboard As Object) As WixContextMenu
+ContextMenu.SetAttr("clipboard", clipboard)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixContextMenu
+ContextMenu.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixContextMenu
+ContextMenu.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDatathrottle(datathrottle As Object) As WixContextMenu
+ContextMenu.SetAttr("datathrottle", datathrottle)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixContextMenu
+ContextMenu.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixContextMenu
+ContextMenu.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetDrag(drag As Object) As WixContextMenu
+ContextMenu.SetAttr("drag", drag)
+Return Me
+End Sub
+
+Sub SetDragscroll(dragscroll As Object) As WixContextMenu
+ContextMenu.SetAttr("dragscroll", dragscroll)
+Return Me
+End Sub
+
+Sub SetExternalData(externalData As Object) As WixContextMenu
+ContextMenu.SetAttr("externalData", externalData)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixContextMenu
+ContextMenu.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHead(head As Object) As WixContextMenu
+ContextMenu.SetAttr("head", head)
+Return Me
+End Sub
+
+Sub SetHeadHeight(headHeight As Object) As WixContextMenu
+ContextMenu.SetAttr("headHeight", headHeight)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixContextMenu
+ContextMenu.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetLayout(layout As Object) As WixContextMenu
+ContextMenu.SetAttr("layout", layout)
+Return Me
+End Sub
+
+Sub SetLeft(left As Object) As WixContextMenu
+ContextMenu.SetAttr("left", left)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixContextMenu
+ContextMenu.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixContextMenu
+ContextMenu.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetModal(modal As Boolean) As WixContextMenu
+ContextMenu.SetAttr("modal", modal)
+Return Me
+End Sub
+
+Sub SetMove(move As Boolean) As WixContextMenu
+ContextMenu.SetAttr("move", move)
+Return Me
+End Sub
+
+Sub SetMultiselect(multiselect As Boolean) As WixContextMenu
+ContextMenu.SetAttr("multiselect", multiselect)
+Return Me
+End Sub
+
+Sub SetNavigation(navigation As Boolean) As WixContextMenu
+ContextMenu.SetAttr("navigation", navigation)
+Return Me
+End Sub
+
+Sub SetPadding(padding As Object) As WixContextMenu
+ContextMenu.SetAttr("padding", padding)
+Return Me
+End Sub
+
+Sub SetPager(pager As Object) As WixContextmenu
+Contextmenu.SetAttr("pager", pager)
+Return Me
+End Sub
+
+Sub SetPoint(point As Boolean) As WixContextmenu
+Contextmenu.SetAttr("point", point)
+Return Me
+End Sub
+
+Sub SetPosition(position As Object) As WixContextmenu
+Contextmenu.SetAttr("position", position)
+Return Me
+End Sub
+
+Sub SetReady(ready As Object) As WixContextmenu
+Contextmenu.SetAttr("ready", ready)
+Return Me
+End Sub
+
+Sub SetRelative(relative As Object) As WixContextmenu
+Contextmenu.SetAttr("relative", relative)
+Return Me
+End Sub
+
+Sub SetRemoveMissed(removeMissed As Boolean) As WixContextmenu
+Contextmenu.SetAttr("removeMissed", removeMissed)
+Return Me
+End Sub
+
+Sub SetResize(resize As Boolean) As WixContextmenu
+Contextmenu.SetAttr("resize", resize)
+Return Me
+End Sub
+
+Sub SetRules(rules As Object) As WixContextmenu
+Contextmenu.SetAttr("rules", rules)
+Return Me
+End Sub
+
+Sub SetSave(save As Object) As WixContextMenu
+ContextMenu.SetAttr("save", save)
+Return Me
+End Sub
+
+Sub SetScheme(scheme As Object) As WixContextMenu
+ContextMenu.SetAttr("scheme", scheme)
+Return Me
+End Sub
+
+Sub SetScroll(scroll As Object) As WixContextMenu
+ContextMenu.SetAttr("scroll", scroll)
+Return Me
+End Sub
+
+Sub SetScrollSpeed(scrollSpeed As Object) As WixContextMenu
+ContextMenu.SetAttr("scrollSpeed", scrollSpeed)
+Return Me
+End Sub
+
+Sub SetSubMenuPos(subMenuPos As Object) As WixContextMenu
+ContextMenu.SetAttr("subMenuPos", subMenuPos)
+Return Me
+End Sub
+
+Sub SetSubmenuConfig(submenuConfig As Object) As WixContextMenu
+ContextMenu.SetAttr("submenuConfig", submenuConfig)
+Return Me
+End Sub
+
+Sub SetToFront(toFront As Boolean) As WixContextMenu
+ContextMenu.SetAttr("toFront", toFront)
+Return Me
+End Sub
+
+Sub SetTooltip(tooltip As Object) As WixContextMenu
+ContextMenu.SetAttr("tooltip", tooltip)
+Return Me
+End Sub
+
+Sub SetTop(top As Object) As WixContextMenu
+ContextMenu.SetAttr("top", top)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixContextMenu
+ContextMenu.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixContextMenu
+ContextMenu.SetAttr("url", url)
+Return Me
+End Sub
+
+Sub SetXCount(xCount As Object) As WixContextMenu
+ContextMenu.SetAttr("xCount", xCount)
+Return Me
+End Sub
+
+Sub SetYCount(yCount As Object) As WixContextMenu
+ContextMenu.SetAttr("yCount", yCount)
+Return Me
+End Sub
+
+Sub SetZIndex(zIndex As Object) As WixContextMenu
+ContextMenu.SetAttr("zIndex", zIndex)
+Return Me
+End Sub

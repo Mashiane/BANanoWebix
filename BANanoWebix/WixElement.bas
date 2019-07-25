@@ -315,6 +315,17 @@ Public Sub Initialize(sID As String) As WixElement
 	Return Me
 End Sub
 
+Sub OnMouseMove(cb As BANanoObject) As WixElement
+	On.Put("onMouseMove",cb)
+	Return Me
+End Sub
+
+Sub onMouseOut(cb As BANanoObject) As WixElement
+	On.Put("onMouseOut",cb)
+	Return Me
+End Sub
+
+
 Sub OnKeyPress(cb As BANanoObject) As WixElement
 	On.Put("onKeyPress",cb)
 	Return Me
@@ -407,6 +418,31 @@ End Sub
 
 Sub OnAfterEditStop(cb As BANanoObject) As WixElement
 	On.Put("onAfterEditStop",cb)
+	Return Me
+End Sub
+
+Sub OnContext(cb As BANanoObject) As WixElement
+	On.Put("onContext",cb)
+	Return Me
+End Sub
+
+Sub onAfterCollapse(cb As BANanoObject) As WixElement
+	On.Put("onAfterCollapse",cb)
+	Return Me
+End Sub
+
+Sub onAfterExpand(cb As BANanoObject) As WixElement
+	On.Put("onAfterExpand",cb)
+	Return Me
+End Sub
+
+Sub onLongTouch(cb As BANanoObject) As WixElement
+	On.Put("onLongTouch",cb)
+	Return Me
+End Sub
+
+Sub OnDblClick(cb As BANanoObject) As WixElement
+	On.Put("onDblClick",cb)
 	Return Me
 End Sub
 

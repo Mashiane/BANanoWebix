@@ -149,3 +149,104 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixUploader
+Uploader.SetAttr("animate", animate)
+Return Me
+End Sub
+
+Sub SetAutowidth(autowidth As Boolean) As WixUploader
+Uploader.SetAttr("autowidth", autowidth)
+Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixUploader
+Uploader.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixUploader
+Uploader.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixUploader
+Uploader.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixUploader
+Uploader.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixUploader
+Uploader.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetFormData(formData As Object) As WixUploader
+Uploader.SetAttr("formData", formData)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixUploader
+Uploader.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixUploader
+Uploader.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixUploader
+Uploader.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixUploader
+Uploader.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+
+Sub SetInputWidth(inputWidth As Object) As WixUploader
+Uploader.SetAttr("inputWidth", inputWidth)
+Return Me
+End Sub
+
+Sub SetLabel(label As Object) As WixUploader
+Uploader.SetAttr("label", label)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixUploader
+Uploader.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixUploader
+Uploader.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixUploader
+Uploader.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetTooltip(tooltip As Object) As WixUploader
+Uploader.SetAttr("tooltip", tooltip)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixUploader
+Uploader.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetUrlData(urlData As Object) As WixUploader
+Uploader.SetAttr("urlData", urlData)
+Return Me
+End Sub

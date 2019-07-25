@@ -168,3 +168,113 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixDbllist
+	Dbllist.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixDBLList
+	DBLList.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetButtons(buttons As Object) As WixDBLList
+	DBLList.SetAttr("buttons", buttons)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixDBLList
+	DBLList.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixDBLList
+	DBLList.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixDBLList
+DBLList.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixDBLList
+DBLList.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixDBLList
+DBLList.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixDBLList
+DBLList.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetLabelBottomLeft(labelBottomLeft As Object) As WixDBLList
+DBLList.SetAttr("labelBottomLeft", labelBottomLeft)
+Return Me
+End Sub
+
+Sub SetLabelBottomRight(labelBottomRight As Object) As WixDBLList
+DBLList.SetAttr("labelBottomRight", labelBottomRight)
+Return Me
+End Sub
+
+Sub SetLabelLeft(labelLeft As Object) As WixDBLList
+DBLList.SetAttr("labelLeft", labelLeft)
+Return Me
+End Sub
+
+Sub SetLabelRight(labelRight As Object) As WixDBLList
+DBLList.SetAttr("labelRight", labelRight)
+Return Me
+End Sub
+
+Sub SetList(list As Object) As WixDBLList
+DBLList.SetAttr("list", list)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixDBLList
+DBLList.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixDBLList
+DBLList.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPadding(padding As Object) As WixDBLList
+DBLList.SetAttr("padding", padding)
+Return Me
+End Sub
+
+Sub SetPaddingX(paddingX As Object) As WixDBLList
+DBLList.SetAttr("paddingX", paddingX)
+Return Me
+End Sub
+
+Sub SetPaddingY(paddingY As Object) As WixDBLList
+DBLList.SetAttr("paddingY", paddingY)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixDBLList
+DBLList.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixDBLList
+DBLList.SetAttr("url", url)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixDBLList
+DBLList.SetAttr("width", width)
+Return Me
+End Sub

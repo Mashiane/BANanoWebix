@@ -633,9 +633,9 @@ function BANanoSQLite($dbname,$data) {
 		case "deletewhere":
 			//build the prepared statement
 			$stmt = preparesqlite($db, $sql, $types, $values);
-			//$db->exec('BEGIN');
+			$db->exec('BEGIN');
 			$res = $stmt->execute();
-			//$db->exec('COMMIT');
+			$db->exec('COMMIT');
 			$changes = $db->changes();
 			$res = Array();
 			$res[] = $changes;
@@ -645,9 +645,9 @@ function BANanoSQLite($dbname,$data) {
 	   	case "updatewhere":
 			//build the prepared statement
 			$stmt = preparesqlite($db, $sql, $types, $values);
-			//$db->exec('BEGIN');
+			$db->exec('BEGIN');
 			$res = $stmt->execute();
-			//$db->exec('COMMIT');
+			$db->exec('COMMIT');
 			$changes = $db->changes();
 			$res = Array();
 			$res[] = $changes;
@@ -668,9 +668,9 @@ function BANanoSQLite($dbname,$data) {
 			break;
 		case "replace":
 			$stmt = preparesqlite($db, $sql, $types, $values);
-			//$db->exec('BEGIN');
+			$db->exec('BEGIN');
 			$res = $stmt->execute();
-			//$db->exec('COMMIT');
+			$db->exec('COMMIT');
 			$last_row_id = $db->lastInsertRowID();
 			$res = Array();
 			$res[] = $changes;
@@ -679,9 +679,9 @@ function BANanoSQLite($dbname,$data) {
 			break;
 		case "insert":
 			$stmt = preparesqlite($db, $sql, $types, $values);
-			//$db->exec('BEGIN');
+			$db->exec('BEGIN');
 			$res = $stmt->execute();
-			//$db->exec('COMMIT');
+			$db->exec('COMMIT');
 			$last_row_id = $db->lastInsertRowID();
 			$res = Array();
 			$res[] = $last_row_id;

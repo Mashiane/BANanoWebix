@@ -201,3 +201,88 @@ Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
 
+Sub SetAnimate(animate As Boolean) As WixTemplate
+	Template.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutoheight(autoheight As Boolean) As WixTemplate
+	Template.SetAttr("autoheight", autoheight)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixTemplate
+	Template.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixTemplate
+	Template.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetContent(content As Object) As WixTemplate
+	Template.SetAttr("content", content)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixTemplate
+	Template.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetData(data As Object) As WixTemplate
+	Template.SetAttr("data", data)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixTemplate
+	Template.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixTemplate
+	Template.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixTemplate
+Template.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixTemplate
+Template.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixTemplate
+Template.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetScrollSpeed(scrollSpeed As Object) As WixTemplate
+Template.SetAttr("scrollSpeed", scrollSpeed)
+Return Me
+End Sub
+
+Sub SetSrc(src As Object) As WixTemplate
+Template.SetAttr("src", src)
+Return Me
+End Sub
+
+Sub SetTooltip(tooltip As Object) As WixTemplate
+Template.SetAttr("tooltip", tooltip)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixTemplate
+Template.SetAttr("url", url)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixTemplate
+Template.SetAttr("datatype", datatype)
+Return Me
+End Sub
+

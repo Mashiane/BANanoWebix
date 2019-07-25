@@ -191,3 +191,68 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixIcon
+Icon.SetAttr("animate", animate)
+Return Me
+End Sub
+
+Sub SetAutowidth(autowidth As Boolean) As WixIcon
+Icon.SetAttr("autowidth", autowidth)
+Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixIcon
+Icon.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixIcon
+Icon.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixIcon
+Icon.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixIcon
+Icon.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixIcon
+Icon.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixIcon
+Icon.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixIcon
+Icon.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixIcon
+Icon.SetAttr("inputWidth", inputWidth)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixIcon
+Icon.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixIcon
+Icon.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetValue(value As Object) As WixIcon
+Icon.SetAttr("value", value)
+Return Me
+End Sub

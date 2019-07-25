@@ -9,7 +9,6 @@ Sub Class_Globals
 	Public ID As String
 	Public Window As WixElement
 	Public ToolBar As WixToolBar
-	Private Body As WixElement
 	Public ToolBarID As String
 End Sub
 
@@ -19,14 +18,12 @@ Public Sub Initialize(sid As String) As WixWindow
 	ToolBarID = ID & "tblbar"
 	Window.Initialize(ID).SetView("window")
 	ToolBar.Initialize(ToolBarID) 
-	Body.Initialize(ID & "body")
 	Return Me
 End Sub
 
-
 Sub SetTemplateHTML(h As UOENowHTML) As WixWindow
 	Dim os As String = h.HTML
-	Window.SetTemplate(os)
+	SetTemplate(os)
 	Return Me
 End Sub
 
@@ -107,14 +104,15 @@ Sub Item As Map
 End Sub
 
 'set template
-Sub SetTemplate(t As String) As WixWindow
-	Body.SetTemplate(t)
-	Window.SetAttr("body", Body.Item)
+Sub SetTemplate(t As Object) As WixWindow
+	Dim body As Map = CreateMap()
+	body.Put("template", t)
+	Window.SetAttr("body", body)
 	Return Me
 End Sub
 
 'set body
-Sub SetBody(b As Map) As WixWindow
+Sub SetBody(b As Object) As WixWindow
 	Window.SetAttr("body", b)
 	Return Me
 End Sub
@@ -178,4 +176,101 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixWindow
+	Window.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutofit(autofit As Boolean) As WixWindow
+	Window.SetAttr("autofit", autofit)
+	Return Me
+End Sub
+
+Sub SetAutofocus(autofocus As Boolean) As WixWindow
+	Window.SetAttr("autofocus", autofocus)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixWindow
+Window.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixWindow
+Window.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixWindow
+Window.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixWindow
+Window.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixWindow
+Window.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHeadHeight(headHeight As Object) As WixWindow
+Window.SetAttr("headHeight", headHeight)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixWindow
+Window.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaster(master As Object) As WixWindow
+Window.SetAttr("master", master)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixWindow
+Window.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixWindow
+Window.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPadding(padding As Object) As WixWindow
+Window.SetAttr("padding", padding)
+Return Me
+End Sub
+
+Sub SetPoint(point As Boolean) As WixWindow
+Window.SetAttr("point", point)
+Return Me
+End Sub
+
+
+Sub SetPosition(position As Object) As WixWindow
+Window.SetAttr("position", position)
+Return Me
+End Sub
+
+Sub SetRelative(relative As Object) As WixWindow
+Window.SetAttr("relative", relative)
+Return Me
+End Sub
+
+Sub SetToFront(toFront As Boolean) As WixWindow
+Window.SetAttr("toFront", toFront)
+Return Me
+End Sub
+
+
+Sub SetZindex(zindex As Object) As WixWindow
+Window.SetAttr("zindex", zindex)
+Return Me
 End Sub

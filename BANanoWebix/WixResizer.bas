@@ -58,3 +58,69 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixResizer
+	Resizer.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixResizer
+	Resizer.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixResizer
+	Resizer.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixResizer
+	Resizer.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixResizer
+	Resizer.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixResizer
+	Resizer.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixResizer
+	Resizer.SetAttr("height", height)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixResizer
+	Resizer.SetAttr("hidden", hidden)
+	Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixResizer
+	Resizer.SetAttr("maxHeight", maxHeight)
+	Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixResizer
+	Resizer.SetAttr("maxWidth", maxWidth)
+	Return Me
+End Sub
+
+Sub SetMinHeight(minHeight As Object) As WixResizer
+	Resizer.SetAttr("minHeight", minHeight)
+	Return Me
+End Sub
+
+Sub SetMinWidth(minWidth As Object) As WixResizer
+	Resizer.SetAttr("minWidth", minWidth)
+	Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixResizer
+	Resizer.SetAttr("width", width)
+	Return Me
+End Sub

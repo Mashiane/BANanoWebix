@@ -222,3 +222,89 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixProperty
+	Property.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutoheight(autoheight As Boolean) As WixProperty
+	Property.SetAttr("autoheight", autoheight)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixProperty
+Property.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixProperty
+Property.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixProperty
+Property.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixProperty
+Property.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetEditValue(editValue As Object) As WixProperty
+Property.SetAttr("editValue", editValue)
+Return Me
+End Sub
+
+Sub SetEditable(editable As Boolean) As WixProperty
+Property.SetAttr("editable", editable)
+Return Me
+End Sub
+
+Sub SetEditaction(editaction As Object) As WixProperty
+Property.SetAttr("editaction", editaction)
+Return Me
+End Sub
+
+Sub SetElements(xelements As Object) As WixProperty
+Property.SetAttr("elements", xelements)
+Return Me
+End Sub
+
+Sub SetForm(form As Object) As WixProperty
+Property.SetAttr("form", form)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixProperty
+Property.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixProperty
+Property.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+
+Sub SetMaxHeight(maxHeight As Object) As WixProperty
+Property.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixProperty
+Property.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetScrollSpeed(scrollSpeed As Object) As WixProperty
+Property.SetAttr("scrollSpeed", scrollSpeed)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixProperty
+Property.SetAttr("url", url)
+Return Me
+End Sub

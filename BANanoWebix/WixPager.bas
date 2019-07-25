@@ -30,7 +30,7 @@ End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixPager
 	Dim os As String = h.HTML
-	pager.SetTemplate(os)
+	Pager.SetTemplate(os)
 	Return Me
 End Sub
 
@@ -166,4 +166,75 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+
+Sub SetApiOnly(apiOnly As Object) As WixPager
+Pager.SetAttr("apiOnly", apiOnly)
+Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixPager
+Pager.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixPager
+Pager.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixPager
+Pager.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixPager
+Pager.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixPager
+Pager.SetAttr("height", height)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixPager
+Pager.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetLevel(level As Object) As WixPager
+Pager.SetAttr("level", level)
+Return Me
+End Sub
+
+Sub SetLimit(limit As Object) As WixPager
+Pager.SetAttr("limit", limit)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixPager
+Pager.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixPager
+Pager.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPage(page As Object) As WixPager
+Pager.SetAttr("page", page)
+Return Me
+End Sub
+
+Sub SetTemplate(template As Object) As WixPager
+Pager.SetAttr("template", template)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixPager
+Pager.SetAttr("width", width)
+Return Me
 End Sub

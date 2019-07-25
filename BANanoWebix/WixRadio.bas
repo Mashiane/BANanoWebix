@@ -191,3 +191,166 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixRadio
+	Radio.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAttributes(attributes As Object) As WixRadio
+	Radio.SetAttr("attributes", attributes)
+	Return Me
+End Sub
+
+Sub SetAutowidth(autowidth As Boolean) As WixRadio
+	Radio.SetAttr("autowidth", autowidth)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixRadio
+	Radio.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetBottomLabel(bottomLabel As Object) As WixRadio
+	Radio.SetAttr("bottomLabel", bottomLabel)
+	Return Me
+End Sub
+
+Sub SetBottomPadding(bottomPadding As Object) As WixRadio
+	Radio.SetAttr("bottomPadding", bottomPadding)
+	Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixRadio
+	Radio.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixRadio
+	Radio.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixRadio
+	Radio.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetCustomRadio(customRadio As Boolean) As WixRadio
+	Radio.SetAttr("customRadio", customRadio)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixRadio
+	Radio.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetFormat(format As Object) As WixRadio
+	Radio.SetAttr("format", format)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixRadio
+	Radio.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixRadio
+	Radio.SetAttr("height", height)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixRadio
+	Radio.SetAttr("hidden", hidden)
+	Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixRadio
+	Radio.SetAttr("hotkey", hotkey)
+	Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixRadio
+	Radio.SetAttr("inputHeight", inputHeight)
+	Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixRadio
+	Radio.SetAttr("inputWidth", inputWidth)
+	Return Me
+End Sub
+
+Sub SetInvalidMessage(invalidMessage As Object) As WixRadio
+	Radio.SetAttr("invalidMessage", invalidMessage)
+	Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixRadio
+Radio.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixRadio
+Radio.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetOptionHeight(optionHeight As Object) As WixRadio
+Radio.SetAttr("optionHeight", optionHeight)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixRadio
+Radio.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetRelatedAction(relatedAction As Object) As WixRadio
+Radio.SetAttr("relatedAction", relatedAction)
+Return Me
+End Sub
+
+Sub SetRelatedView(relatedView As Object) As WixRadio
+Radio.SetAttr("relatedView", relatedView)
+Return Me
+End Sub
+
+Sub SetRequired(required As Boolean) As WixRadio
+Radio.SetAttr("required", required)
+Return Me
+End Sub
+
+Sub SetSuggest(suggest As Object) As WixRadio
+Radio.SetAttr("suggest", suggest)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixRadio
+Radio.SetAttr("width", width)
+Return Me
+End Sub
+
+Sub SetAlign(align As Object) As WixRadio
+Radio.SetAttr("align", align)
+Return Me
+End Sub
+
+Sub SetInputAlign(inputAlign As Object) As WixRadio
+Radio.SetAttr("inputAlign", inputAlign)
+Return Me
+End Sub
+
+Sub SetValidate(v As Object) As WixRadio
+Radio.SetAttr("validate", v)
+Return Me
+End Sub
+
+Sub SetValidateEvent(e As Object) As WixRadio
+Radio.SetAttr("validateEvent", e)
+Return Me
+End Sub
+
+
+

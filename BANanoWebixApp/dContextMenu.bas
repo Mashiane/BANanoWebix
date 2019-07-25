@@ -1,0 +1,83 @@
+﻿B4J=true
+Group=Default Group
+ModulesStructureVersion=1
+Type=StaticCode
+Version=7.51
+@EndOfDesignText@
+
+Sub Process_Globals
+End Sub
+
+Sub BuildBag(Page As WixPage, Bag As WixProperty)
+	Bag.Clear
+	Bag.AddTextBox("id","Id", "contextmenu1")
+	Bag.AddTextBox("parentid","Parent", "")
+	Bag.AddCombo("addingmethod","Adding Method","AddRows", pgFD.addingmethod)
+	Bag.AddTextBox("tabindex", "Tab Index", "0")
+	Bag.AddLabel("Details")
+	Bag.AddCombo("view","View", "contextmenu", Page.Views)
+	Bag.AddTextBox("type","Type", "")
+	
+	Bag.AddCheckBox("animate","Animate", "")
+	Bag.AddCheckBox("autofit","Autofit", "")
+	Bag.AddCheckBox("autofocus","Autofocus", "")
+	Bag.AddCheckBox("autoheight","Autoheight", "")
+	Bag.AddCheckBox("autowidth","Autowidth", "")
+	Bag.AddTextBox("body","Body", "")
+	Bag.AddCheckBox("borderless","Borderless", "")
+	Bag.AddTextBox("click","Click", "")
+	Bag.AddTextBox("clipboard","Clipboard", "")
+	Bag.AddTextBox("container","Container", "")
+	Bag.AddTextBox("css","Css", "")
+	Bag.AddTextBox("data","Data", "")
+	Bag.AddTextBox("datathrottle","Datathrottle", "")
+	Bag.AddCombo("datatype", "Datatype", "", Array("","json","xml","jsarray","csv"))
+	Bag.AddCheckBox("disabled","Disabled", "")
+	Bag.AddCombo("drag", "Drag", "", Array("","true","order","move","inner","source","target","false"))
+	Bag.AddCombo("dragscroll", "Dragscroll", "", Array("","x","y","xy","false","true"))
+	Bag.AddTextBox("externalData","ExternalData", "")
+	Bag.AddTextBox("gravity","Gravity", "")
+	Bag.AddTextBox("head","Head", "")
+	Bag.AddTextBox("headHeight","HeadHeight", "")
+	Bag.AddCheckBox("hidden","Hidden", "")
+	Bag.AddCombo("layout", "Layout", "", Array("","x","y"))
+	Bag.AddTextBox("left","Left", "")
+	Bag.AddTextBox("master","Master", "")
+	Bag.AddCheckBox("modal","Modal", "")
+	Bag.AddCheckBox("move","Move", "")
+	Bag.AddCheckBox("multiselect","Multiselect", "")
+	Bag.AddCheckBox("navigation","Navigation", "")
+	Bag.AddTextBox("padding","Padding", "")
+	Bag.AddTextBox("pager","Pager", "")
+	Bag.AddCheckBox("point","Point", "")
+	Bag.AddCombo("position", "Position", "", Array("","center","top","bottom","left","right"))
+	Bag.AddTextBox("ready","Ready", "")
+	Bag.AddCombo("relative", "Relative", "", Array("","left","right"))
+	Bag.AddCheckBox("removeMissed","RemoveMissed", "")
+	Bag.AddCheckBox("resize","Resize", "")
+	Bag.AddTextBox("rules","Rules", "")
+	Bag.AddTextBox("save","Save", "")
+	Bag.AddTextBox("scheme","Scheme", "")
+	Bag.AddCombo("scroll", "Scroll", "", Array("","x","y","xy","auto","false","true"))
+	Bag.AddTextBox("scrollSpeed","ScrollSpeed", "")
+	Bag.AddCheckBox("select","Select", "")
+	Bag.AddTextBox("subMenuPos","SubMenuPos", "")
+	Bag.AddTextBox("submenuConfig","SubmenuConfig", "")
+	Bag.AddTextBox("template","Template", "")
+	Bag.AddCheckBox("toFront","ToFront", "")
+	Bag.AddTextBox("tooltip","Tooltip", "")
+	Bag.AddTextBox("top","Top", "")
+	Bag.AddTextBox("url","Url", "")
+	Bag.AddTextBox("width","Width", "")
+	Bag.AddTextBox("height","Height", "")
+	Bag.AddTextBox("maxHeight","MaxHeight", "")
+	Bag.AddTextBox("maxWidth","MaxWidth", "")
+	Bag.AddTextBox("minHeight","MinHeight", "")
+	Bag.AddTextBox("minWidth","MinWidth", "")
+	
+	Bag.AddTextBox("xCount","XCount", "")
+	Bag.AddTextBox("yCount","YCount", "")
+	Bag.AddTextBox("zIndex","ZIndex", "")
+	Bag.Refresh(Page)
+End Sub
+

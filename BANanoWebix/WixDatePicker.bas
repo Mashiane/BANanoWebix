@@ -264,3 +264,155 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+
+Sub SetAlign(align As Object) As WixDatePicker
+	DatePicker.SetAttr("align", align)
+	Return Me
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixDatePicker
+	DatePicker.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAttributes(attributes As Object) As WixDatePicker
+	DatePicker.SetAttr("attributes", attributes)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixDatePicker
+	DatePicker.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetBottomLabel(bottomLabel As Object) As WixDatePicker
+	DatePicker.SetAttr("bottomLabel", bottomLabel)
+	Return Me
+End Sub
+
+Sub SetBottomPadding(bottomPadding As Object) As WixDatePicker
+	DatePicker.SetAttr("bottomPadding", bottomPadding)
+	Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixDatePicker
+	DatePicker.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixDatePicker
+	DatePicker.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixDatePicker
+	DatePicker.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixDatePicker
+	DatePicker.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixDatePicker
+DatePicker.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixDatePicker
+DatePicker.SetAttr("height", height)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixDatePicker
+DatePicker.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixDatePicker
+DatePicker.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetIcon(icon As Object) As WixDatePicker
+DatePicker.SetAttr("icon", icon)
+Return Me
+End Sub
+
+Sub SetIcons(icons As Object) As WixDatePicker
+DatePicker.SetAttr("icons", icons)
+Return Me
+End Sub
+
+Sub SetInputAlign(inputAlign As Object) As WixDatePicker
+DatePicker.SetAttr("inputAlign", inputAlign)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixDatePicker
+DatePicker.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixDatePicker
+DatePicker.SetAttr("inputWidth", inputWidth)
+Return Me
+End Sub
+
+Sub SetInvalid(invalid As Object) As WixDatePicker
+DatePicker.SetAttr("invalid", invalid)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixDatePicker
+DatePicker.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixDatePicker
+DatePicker.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPoint(point As Boolean) As WixDatePicker
+DatePicker.SetAttr("point", point)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixDatePicker
+DatePicker.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetReadonly(readonly As Boolean) As WixDatePicker
+DatePicker.SetAttr("readonly", readonly)
+Return Me
+End Sub
+
+Sub SetRelatedAction(relatedAction As Object) As WixDatePicker
+DatePicker.SetAttr("relatedAction", relatedAction)
+Return Me
+End Sub
+
+Sub SetRelatedView(relatedView As Object) As WixDatePicker
+DatePicker.SetAttr("relatedView", relatedView)
+Return Me
+End Sub
+
+Sub SetSeparator(separator As Object) As WixDatePicker
+DatePicker.SetAttr("separator", separator)
+Return Me
+End Sub
+
+Sub SetSuggest(suggest As Object) As WixDatePicker
+DatePicker.SetAttr("suggest", suggest)
+Return Me
+End Sub
+
+Sub SetTimeIcon(timeIcon As Object) As WixDatePicker
+DatePicker.SetAttr("timeIcon", timeIcon)
+Return Me
+End Sub
+

@@ -146,3 +146,93 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixLabel
+	Label.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutowidth(autowidth As Boolean) As WixLabel
+	Label.SetAttr("autowidth", autowidth)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixLabel
+	Label.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixLabel
+	Label.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixLabel
+	Label.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixLabel
+	Label.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixLabel
+	Label.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixLabel
+	Label.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixLabel
+	Label.SetAttr("height", height)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixLabel
+	Label.SetAttr("hidden", hidden)
+	Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixLabel
+	Label.SetAttr("hotkey", hotkey)
+	Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixLabel
+	Label.SetAttr("inputHeight", inputHeight)
+	Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixLabel
+	Label.SetAttr("inputWidth", inputWidth)
+	Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixLabel
+Label.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixLabel
+Label.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixLabel
+Label.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetValue(value As Object) As WixLabel
+Label.SetAttr("value", value)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixLabel
+Label.SetAttr("width", width)
+Return Me
+End Sub

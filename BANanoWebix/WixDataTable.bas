@@ -425,6 +425,10 @@ Sub SetAreaSelect(areaselect As Boolean) As WixDataTable
 	Return Me
 End Sub
 
+Sub SetAnimate(animate As Object) As WixDataTable
+	DataTable.SetAttr("animate", animate)
+	Return Me
+End Sub
 
 Sub SetCheckboxRefresh(checkboxRefresh As Boolean) As WixDataTable
 DataTable.SetAttr("checkboxRefresh", checkboxRefresh)

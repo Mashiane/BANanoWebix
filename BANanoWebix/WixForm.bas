@@ -330,3 +330,122 @@ Sub SetDefaultBottomPadding(w As Int) As WixForm
 	Return Me
 End Sub
 
+Sub SetAnimate(animate As Boolean) As WixForm
+	Form.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutoheight(autoheight As Boolean) As WixForm
+	Form.SetAttr("autoheight", autoheight)
+	Return Me
+End Sub
+
+Sub SetCols(cols As Object) As WixForm
+Form.SetAttr("cols", cols)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixForm
+Form.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixForm
+Form.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetData(data As Object) As WixForm
+Form.SetAttr("data", data)
+Return Me
+End Sub
+
+Sub SetDataFeed(dataFeed As Object) As WixForm
+Form.SetAttr("dataFeed", dataFeed)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixForm
+Form.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixForm
+Form.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetElements(elements As Object) As WixForm
+Form.SetAttr("elements", elements)
+Return Me
+End Sub
+
+Sub SetElementsConfig(elementsConfig As Object) As WixForm
+Form.SetAttr("elementsConfig", elementsConfig)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixForm
+Form.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixForm
+Form.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetIsolate(isolate As Boolean) As WixForm
+Form.SetAttr("isolate", isolate)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixForm
+Form.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixForm
+Form.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPaddingX(paddingX As Object) As WixForm
+Form.SetAttr("paddingX", paddingX)
+Return Me
+End Sub
+
+Sub SetPaddingY(paddingY As Object) As WixForm
+Form.SetAttr("paddingY", paddingY)
+Return Me
+End Sub
+
+Sub SetRows(rows As Object) As WixForm
+Form.SetAttr("rows", rows)
+Return Me
+End Sub
+
+Sub SetRules(rules As Object) As WixForm
+Form.SetAttr("rules", rules)
+Return Me
+End Sub
+
+Sub SetScrollSpeed(scrollSpeed As Object) As WixForm
+Form.SetAttr("scrollSpeed", scrollSpeed)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixForm
+Form.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixForm
+Form.SetAttr("url", url)
+Return Me
+End Sub
+
+Sub SetVisibleBatch(visibleBatch As Object) As WixForm
+Form.SetAttr("visibleBatch", visibleBatch)
+Return Me
+End Sub

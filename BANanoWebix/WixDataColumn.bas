@@ -12,6 +12,9 @@ Sub Class_Globals
 	Private title As Object
 	Private Styles As Map
 	Private hasFilter As Boolean
+	Private foot As Map
+	Private hasFooterFilter As Boolean
+	Private Footertitle As Object
 End Sub
 
 'Initializes the data column
@@ -22,6 +25,9 @@ Public Sub Initialize(cID As String) As WixDataColumn
 	title = "" 
 	Styles.Initialize 
 	hasFilter = False
+	foot.Initialize 
+	hasFooterFilter = False
+	Footertitle = ""
 	Return Me
 End Sub
 
@@ -132,6 +138,19 @@ Sub SetAdjust(a As Object) As WixDataColumn
 	Return Me
 End Sub
 
+
+'set live edit
+Sub SetLiveEdit(a As Object) As WixDataColumn
+	DataColumn.SetAttr("liveEdit", a)
+	Return Me
+End Sub
+
+'set math
+Sub SetMath(a As Object) As WixDataColumn
+	DataColumn.SetAttr("math", a)
+	Return Me
+End Sub
+
 'set adjust header
 Sub SetAdjustHeader(b As Boolean) As WixDataColumn  'ignore
 	SetAdjust("header")
@@ -150,6 +169,13 @@ Sub SetHeader(h As Object) As WixDataColumn
 	Return Me
 End Sub
 
+'set the header title after setting other heading props
+Sub SetFooter(h As Object) As WixDataColumn
+	Footertitle = h
+	Return Me
+End Sub
+
+
 'set width
 Sub SetWidth(w As Object) As WixDataColumn
 	DataColumn.SetAttr("width", w)
@@ -162,12 +188,37 @@ Sub SetEditor(e As String) As WixDataColumn
 	Return Me
 End Sub
 
+'set edit action
+Sub SetEditAction(e As String) As WixDataColumn
+	DataColumn.SetAttr("editaction", e)
+	Return Me
+End Sub
+
+'set edit action
+Sub SetEditActionClick(e As Boolean) As WixDataColumn  'ignore
+	DataColumn.SetAttr("editaction", "click")
+	Return Me
+End Sub
+
+'set edit action
+Sub SetEditActionCustom(e As Boolean) As WixDataColumn   'ignore
+	DataColumn.SetAttr("editaction", "custom")
+	Return Me
+End Sub
+
+
+'set edit action
+Sub SetEditActionDblClick(e As Boolean) As WixDataColumn   'ignore
+	DataColumn.SetAttr("editaction", "dblclick")
+	Return Me
+End Sub
+
+
 'set editor popup
 Sub SetEditorPopUp(e As String) As WixDataColumn  'ignore
 	SetEditor("popup")
 	Return Me
 End Sub
-
 
 'set editor color
 Sub SetEditorColor(r As String) As WixDataColumn   'ignore
@@ -303,37 +354,69 @@ Sub SetMasterCheckBox(b As Boolean) As WixDataColumn    'ignore
 End Sub
 
 'set text filter
-Sub SetTextFilter(b As Boolean) As WixDataColumn     'ignore
+Sub SetHeaderTextFilter(b As Boolean) As WixDataColumn     'ignore
 	hdr.Put("content", "textFilter")
 	hasFilter = True
 	Return Me
 End Sub
 
-Sub SetContent(c As Object) As WixDataColumn
+Sub SetFooterTextFilter(b As Boolean) As WixDataColumn     'ignore
+	foot.Put("content", "textFilter")
+	hasFooterFilter = True
+	Return Me
+End Sub
+
+
+Sub SetHeaderContent(c As Object) As WixDataColumn
 	hdr.Put("content", c)
 	hasFilter = True
 	Return Me
 End Sub
 
+Sub SetFooterContent(c As Object) As WixDataColumn
+	foot.Put("content", c)
+	hasFooterFilter = True
+	Return Me
+End Sub
+
+
 'set number filter
-Sub SetNumberFilter(b As Boolean) As WixDataColumn     'ignore
+Sub SetHeaderNumberFilter(b As Boolean) As WixDataColumn     'ignore
 	hdr.Put("content", "numberFilter")
 	hasFilter = True
 	Return Me
 End Sub
 
+Sub SetFooterNumberFilter(b As Boolean) As WixDataColumn     'ignore
+	foot.Put("content", "numberFilter")
+	hasFooterFilter = True
+	Return Me
+End Sub
+
+
 'set date filter
-Sub SetDateFilter(b As Boolean) As WixDataColumn     'ignore
+Sub SetHeaderDateFilter(b As Boolean) As WixDataColumn     'ignore
 	hdr.Put("content", "dateFilter")
 	hasFilter = True
 	Return Me
 End Sub
 
+Sub SetFooterDateFilter(b As Boolean) As WixDataColumn     'ignore
+	foot.Put("content", "dateFilter")
+	hasFooterFilter = True
+	Return Me
+End Sub
 
 'set select filter
-Sub SetSelectFilter(b As Boolean) As WixDataColumn     'ignore
+Sub SetHeaderSelectFilter(b As Boolean) As WixDataColumn     'ignore
 	hdr.Put("content", "selectFilter")
 	hasFilter = True
+	Return Me
+End Sub
+
+Sub SetFooterSelectFilter(b As Boolean) As WixDataColumn     'ignore
+	foot.Put("content", "selectFilter")
+	hasFooterFilter = true
 	Return Me
 End Sub
 
@@ -402,15 +485,76 @@ Sub SetHeaderText(t As Object) As WixDataColumn
 	Return Me
 End Sub
 
+Sub SetFooterText(t As Object) As WixDataColumn
+	foot.Put("text", t)
+	Return Me
+End Sub
+
 'set css
 Sub SetHeaderCSS(c As Object) As WixDataColumn
 	hdr.put("css", c)
 	Return Me
 End Sub
 
+Sub SetFooterCSS(c As Object) As WixDataColumn
+	foot.put("css", c)
+	Return Me
+End Sub
+
+
 'set header colspan
 Sub SetHeaderColSpan(c As Object) As WixDataColumn
 	hdr.Put("colspan", c)
+	Return Me
+End Sub
+
+Sub SetFooterColSpan(c As Object) As WixDataColumn
+	foot.Put("colspan", c)
+	Return Me
+End Sub
+
+
+'set header rowspan
+Sub SetHeaderRowSpan(c As Object) As WixDataColumn
+	hdr.Put("rowspan", c)
+	Return Me
+End Sub
+
+Sub SetFooterRowSpan(c As Object) As WixDataColumn
+	foot.Put("rowspan", c)
+	Return Me
+End Sub
+
+
+Sub SetHeaderRotate(c As Object) As WixDataColumn
+	hdr.Put("rotate", c)
+	Return Me
+End Sub
+
+Sub SetFooterRotate(c As Object) As WixDataColumn
+	foot.Put("rotate", c)
+	Return Me
+End Sub
+
+
+Sub SetHeaderAutoHeight(c As Object) As WixDataColumn
+	hdr.Put("autoheight", c)
+	Return Me
+End Sub
+
+Sub SetFooterAutoHeight(c As Object) As WixDataColumn
+	foot.Put("autoheight", c)
+	Return Me
+End Sub
+
+
+Sub SetHeaderHeight(c As Object) As WixDataColumn
+	hdr.Put("height", c)
+	Return Me
+End Sub
+
+Sub SetFooterHeight(c As Object) As WixDataColumn
+	foot.Put("height", c)
 	Return Me
 End Sub
 
@@ -433,7 +577,21 @@ Sub Item As Map
 	Else
 		DataColumn.SetAttr("header", title)
 	End If
-
+	'
+	If foot.Size > 0 Then
+		Dim lst As List
+		lst.Initialize
+		If hasFooterFilter Then
+			lst.Add(Footertitle)
+			lst.Add(foot)
+		Else
+			lst.Add(foot)
+			lst.Add(Footertitle)
+		End If
+		DataColumn.SetAttr("footer", lst)
+	Else
+		DataColumn.SetAttr("footer", Footertitle)
+	End If
 	Return DataColumn.item
 End Sub
 

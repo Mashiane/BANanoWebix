@@ -58,12 +58,12 @@ Sub SetWidth(width As String) As WixGeoChart
 End Sub
 
 Sub SetAutoHeight(autoHeight As String) As WixGeoChart
-	Geochart.SetAttr("autoHeight", autoHeight)
+	Geochart.SetAttr("autoheight", autoHeight)
 	Return Me
 End Sub
 
 Sub SetAutoWidth(autoWidth As String) As WixGeoChart
-	Geochart.SetAttr("autoWidth", autoWidth)
+	Geochart.SetAttr("autowidth", autoWidth)
 	Return Me
 End Sub
 
@@ -145,4 +145,79 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixGeoChart
+	Geochart.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetChart(schart As Object) As WixGeoChart
+Geochart.SetAttr("chart", schart)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixGeoChart
+Geochart.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDatathrottle(datathrottle As Object) As WixGeoChart
+Geochart.SetAttr("datathrottle", datathrottle)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixGeoChart
+Geochart.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixGeoChart
+Geochart.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixGeoChart
+Geochart.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixGeoChart
+Geochart.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetMinHeight(minHeight As Object) As WixGeoChart
+Geochart.SetAttr("minHeight", minHeight)
+Return Me
+End Sub
+
+Sub SetMinWidth(minWidth As Object) As WixGeoChart
+Geochart.SetAttr("minWidth", minWidth)
+Return Me
+End Sub
+
+Sub SetReady(ready As Object) As WixGeoChart
+Geochart.SetAttr("ready", ready)
+Return Me
+End Sub
+
+Sub SetRemoveMissed(removeMissed As Boolean) As WixGeoChart
+Geochart.SetAttr("removeMissed", removeMissed)
+Return Me
+End Sub
+
+Sub SetSave(save As Object) As WixGeoChart
+Geochart.SetAttr("save", save)
+Return Me
+End Sub
+
+Sub SetScheme(scheme As Object) As WixGeoChart
+Geochart.SetAttr("scheme", scheme)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixGeoChart
+Geochart.SetAttr("url", url)
+Return Me
 End Sub

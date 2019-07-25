@@ -1,0 +1,648 @@
+﻿AppType=JavaFX
+Build1=Default,b4j.example
+File1=1.jpg
+File10=8.jpg
+File100=keely_1.jpg
+File101=label.png
+File102=lacy_1.jpg
+File103=lasonya_1.jpg
+File104=lawanna_1.jpg
+File105=layout.png
+File106=leia.jpg
+File107=libbie_1.jpg
+File108=list.png
+File109=logo.jpg
+File11=9.jpg
+File110=lorena_1.jpg
+File111=marcia_1.jpg
+File112=marcus_1.jpg
+File113=marie.jpg
+File114=mashy.png
+File115=MasterCard.svg
+File116=menu.png
+File117=micaela_1.jpg
+File118=micha_1.jpg
+File119=michael.jpg
+File12=abdul_1.jpg
+File120=mike.jpg
+File121=morgan_yu.jpg
+File122=movie.mp4
+File123=movie.ogv
+File124=multiview.png
+File125=normand_1.jpg
+File126=olivia.jpg
+File127=omega_1.jpg
+File128=pager.png
+File129=paola_1.jpg
+File13=accordion.png
+File130=pat_1.jpg
+File131=PayPal.svg
+File132=popup.png
+File133=portlet.png
+File134=propertysheet.png
+File135=rachell_1.jpg
+File136=richselect.png
+File137=rolando_1.jpg
+File138=ruthanne_1.jpg
+File139=ryan.jpg
+File14=ali_1.jpg
+File140=samantha_1.jpg
+File141=scrollview.png
+File142=search.png
+File143=segmented.png
+File144=select.png
+File145=shaun_1.jpg
+File146=shelly_1.jpg
+File147=sho.jpg
+File148=sidebar.png
+File149=sidemenu.png
+File15=alison_1.jpg
+File150=slider.png
+File151=suggest.png
+File152=switch.png
+File153=tabbar.png
+File154=tabview.png
+File155=template.png
+File156=tesha_1.jpg
+File157=text.png
+File158=textarea.png
+File159=toggle.png
+File16=annika_1.jpg
+File160=tomek.jpg
+File161=tomika_1.jpg
+File162=tommie_1.jpg
+File163=toolbar.png
+File164=tooltip.png
+File165=toshia_1.jpg
+File166=transtar_coral.jpg
+File167=transtar_pytheas.jpg
+File168=transtar_thalos.jpg
+File169=treegrid.png
+File17=avatar.jpg
+File170=typhon_coral.jpg
+File171=typhon_pytheas.jpg
+File172=typhon_thalos.jpg
+File173=tyree_1.jpg
+File174=unitlist.png
+File175=upload.php
+File176=uploader.png
+File177=usher.jpg
+File178=video.png
+File179=vincent_1.jpg
+File18=bell_1.jpg
+File180=Visa.svg
+File181=webix-logo.svg
+File182=whitten.jpg
+File183=window.png
+File184=winslow.jpg
+File185=xavier_1.jpg
+File186=yu.jpg
+File19=bertha_1.jpg
+File2=1.png
+File20=brianna_1.jpg
+File21=button.png
+File22=calendar.png
+File23=camilla_1.jpg
+File24=carousel.png
+File25=cassaundra_1.jpg
+File26=chart.png
+File27=checkbox.png
+File28=colorboard.png
+File29=colorpicker.png
+File3=2.jpg
+File30=combo.png
+File31=comments.png
+File32=config.php
+File33=context.png
+File34=contextmenu.png
+File35=corvo.jpg
+File36=counter.png
+File37=cristin_1.jpg
+File38=cyril_1.jpg
+File39=daisy.jpg
+File4=2.png
+File40=data.js
+File41=datasuggest.png
+File42=datatable.png
+File43=datatree.png
+File44=dataview.png
+File45=datepicker.png
+File46=daterange.png
+File47=daterangepicker (1).png
+File48=daterangepicker.png
+File49=delcie_1.jpg
+File5=3.jpg
+File50=dottie_1.jpg
+File51=doublelist.png
+File52=elenore_1.jpg
+File53=emelda_1.jpg
+File54=emily.jpg
+File55=estrella_1.jpg
+File56=ethelyn_1.jpg
+File57=extras.zip
+File58=fieldset.png
+File59=fonts.zip
+File6=4.jpg
+File60=form.png
+File61=forminput.png
+File62=gita_1.jpg
+File63=glenn.jpg
+File64=googlemap.png
+File65=gridsuggest.png
+File66=grouplist.png
+File67=heike_1.jpg
+File68=hint.png
+File69=htmlform.png
+File7=5.jpg
+File70=icon.png
+File71=icons8-add-row-40.png
+File72=icons8-compose-40.png
+File73=icons8-edit-40.png
+File74=icons8-pencil-40.png
+File75=icons8-save-as-100.png
+File76=icons8-save-close-40.png
+File77=iframe.png
+File78=ilyushin.jpg
+File79=image0001.jpg
+File8=6.jpg
+File80=image0002.jpg
+File81=image0003.jpg
+File82=image0004.jpg
+File83=image0005.jpg
+File84=image0006.jpg
+File85=image001.jpg
+File86=image002.jpg
+File87=image003.jpg
+File88=image004.jpg
+File89=image005.JPG
+File9=7.jpg
+File90=image006.JPG
+File91=isaiah_1.jpg
+File92=james.jpg
+File93=jeanelle_1.jpg
+File94=jeannette_1.jpg
+File95=jesse_1.jpg
+File96=julie.jpg
+File97=kasma_coral.jpg
+File98=kasma_pytheas.jpg
+File99=kasma_thalos.jpg
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup100=Default Group
+FileGroup101=Default Group
+FileGroup102=Default Group
+FileGroup103=Default Group
+FileGroup104=Default Group
+FileGroup105=Default Group
+FileGroup106=Default Group
+FileGroup107=Default Group
+FileGroup108=Default Group
+FileGroup109=Default Group
+FileGroup11=Default Group
+FileGroup110=Default Group
+FileGroup111=Default Group
+FileGroup112=Default Group
+FileGroup113=Default Group
+FileGroup114=Default Group
+FileGroup115=Default Group
+FileGroup116=Default Group
+FileGroup117=Default Group
+FileGroup118=Default Group
+FileGroup119=Default Group
+FileGroup12=Default Group
+FileGroup120=Default Group
+FileGroup121=Default Group
+FileGroup122=Default Group
+FileGroup123=Default Group
+FileGroup124=Default Group
+FileGroup125=Default Group
+FileGroup126=Default Group
+FileGroup127=Default Group
+FileGroup128=Default Group
+FileGroup129=Default Group
+FileGroup13=Default Group
+FileGroup130=Default Group
+FileGroup131=Default Group
+FileGroup132=Default Group
+FileGroup133=Default Group
+FileGroup134=Default Group
+FileGroup135=Default Group
+FileGroup136=Default Group
+FileGroup137=Default Group
+FileGroup138=Default Group
+FileGroup139=Default Group
+FileGroup14=Default Group
+FileGroup140=Default Group
+FileGroup141=Default Group
+FileGroup142=Default Group
+FileGroup143=Default Group
+FileGroup144=Default Group
+FileGroup145=Default Group
+FileGroup146=Default Group
+FileGroup147=Default Group
+FileGroup148=Default Group
+FileGroup149=Default Group
+FileGroup15=Default Group
+FileGroup150=Default Group
+FileGroup151=Default Group
+FileGroup152=Default Group
+FileGroup153=Default Group
+FileGroup154=Default Group
+FileGroup155=Default Group
+FileGroup156=Default Group
+FileGroup157=Default Group
+FileGroup158=Default Group
+FileGroup159=Default Group
+FileGroup16=Default Group
+FileGroup160=Default Group
+FileGroup161=Default Group
+FileGroup162=Default Group
+FileGroup163=Default Group
+FileGroup164=Default Group
+FileGroup165=Default Group
+FileGroup166=Default Group
+FileGroup167=Default Group
+FileGroup168=Default Group
+FileGroup169=Default Group
+FileGroup17=Default Group
+FileGroup170=Default Group
+FileGroup171=Default Group
+FileGroup172=Default Group
+FileGroup173=Default Group
+FileGroup174=Default Group
+FileGroup175=Default Group
+FileGroup176=Default Group
+FileGroup177=Default Group
+FileGroup178=Default Group
+FileGroup179=Default Group
+FileGroup18=Default Group
+FileGroup180=Default Group
+FileGroup181=Default Group
+FileGroup182=Default Group
+FileGroup183=Default Group
+FileGroup184=Default Group
+FileGroup185=Default Group
+FileGroup186=Default Group
+FileGroup19=Default Group
+FileGroup2=Default Group
+FileGroup20=Default Group
+FileGroup21=Default Group
+FileGroup22=Default Group
+FileGroup23=Default Group
+FileGroup24=Default Group
+FileGroup25=Default Group
+FileGroup26=Default Group
+FileGroup27=Default Group
+FileGroup28=Default Group
+FileGroup29=Default Group
+FileGroup3=Default Group
+FileGroup30=Default Group
+FileGroup31=Default Group
+FileGroup32=Default Group
+FileGroup33=Default Group
+FileGroup34=Default Group
+FileGroup35=Default Group
+FileGroup36=Default Group
+FileGroup37=Default Group
+FileGroup38=Default Group
+FileGroup39=Default Group
+FileGroup4=Default Group
+FileGroup40=Default Group
+FileGroup41=Default Group
+FileGroup42=Default Group
+FileGroup43=Default Group
+FileGroup44=Default Group
+FileGroup45=Default Group
+FileGroup46=Default Group
+FileGroup47=Default Group
+FileGroup48=Default Group
+FileGroup49=Default Group
+FileGroup5=Default Group
+FileGroup50=Default Group
+FileGroup51=Default Group
+FileGroup52=Default Group
+FileGroup53=Default Group
+FileGroup54=Default Group
+FileGroup55=Default Group
+FileGroup56=Default Group
+FileGroup57=Default Group
+FileGroup58=Default Group
+FileGroup59=Default Group
+FileGroup6=Default Group
+FileGroup60=Default Group
+FileGroup61=Default Group
+FileGroup62=Default Group
+FileGroup63=Default Group
+FileGroup64=Default Group
+FileGroup65=Default Group
+FileGroup66=Default Group
+FileGroup67=Default Group
+FileGroup68=Default Group
+FileGroup69=Default Group
+FileGroup7=Default Group
+FileGroup70=Default Group
+FileGroup71=Default Group
+FileGroup72=Default Group
+FileGroup73=Default Group
+FileGroup74=Default Group
+FileGroup75=Default Group
+FileGroup76=Default Group
+FileGroup77=Default Group
+FileGroup78=Default Group
+FileGroup79=Default Group
+FileGroup8=Default Group
+FileGroup80=Default Group
+FileGroup81=Default Group
+FileGroup82=Default Group
+FileGroup83=Default Group
+FileGroup84=Default Group
+FileGroup85=Default Group
+FileGroup86=Default Group
+FileGroup87=Default Group
+FileGroup88=Default Group
+FileGroup89=Default Group
+FileGroup9=Default Group
+FileGroup90=Default Group
+FileGroup91=Default Group
+FileGroup92=Default Group
+FileGroup93=Default Group
+FileGroup94=Default Group
+FileGroup95=Default Group
+FileGroup96=Default Group
+FileGroup97=Default Group
+FileGroup98=Default Group
+FileGroup99=Default Group
+Group=Default Group
+Library1=jcore
+Library2=jfx
+Library3=banano
+Library4=bananopostprocessor
+Library5=bananowebix
+Module1=dDBLList
+Module10=dRadio
+Module100=pgTest
+Module101=pgToolBar
+Module102=pgTree
+Module103=pgTreeTable
+Module104=pgUnitList
+Module105=pgUploader1
+Module106=pgUploader2
+Module107=pgUploader3
+Module108=pgVideo
+Module109=pgFD
+Module11=dRichText
+Module12=dIcon
+Module13=dUploader
+Module14=dText
+Module15=dTextArea
+Module16=dSearch
+Module17=dSpacer
+Module18=dField
+Module19=modPropertyBag
+Module2=dFieldSet
+Module20=dButton
+Module21=dDataField
+Module22=dDatePicker
+Module23=dCalendar
+Module24=dToolBar
+Module25=dColorPicker
+Module26=dSelect
+Module27=dCombo
+Module28=dDataTable
+Module29=dRichSelect
+Module3=modSideBar
+Module30=modToolBar
+Module31=modCenter
+Module32=dRow
+Module33=dPager
+Module34=dCheckBox
+Module35=dCounter
+Module36=dLabel
+Module37=dSegmented
+Module38=dSlider
+Module39=dSwitch
+Module4=dForm
+Module40=dTabBar
+Module41=dToggle
+Module42=dSuggest
+Module43=dColumn
+Module44=dDesignerProperty
+Module45=dConnection
+Module46=dTable
+Module47=dWixSomething
+Module48=dGeoChart
+Module49=dImage
+Module5=dMenu
+Module50=dPopUp
+Module51=dWindow
+Module52=dVideo
+Module53=dUnitList
+Module54=dTemplate
+Module55=dSideBar
+Module56=dSideMenu
+Module57=dColorBoard
+Module58=dContext
+Module59=dContextMenu
+Module6=dLayout
+Module60=dDataView
+Module61=dGoogleMap
+Module62=dPropertySheet
+Module63=pgCarSales
+Module64=pgCharts
+Module65=pgComments
+Module66=pgContext
+Module67=pgDataEntry
+Module68=pgDataTable
+Module69=pgDataTable1
+Module7=dList
+Module70=pgDataView
+Module71=pgFlexLayout
+Module72=pgForms
+Module73=pgForms1
+Module74=pgFormValidation
+Module75=pgGoogleMap
+Module76=pgGroupList
+Module77=pgIndex
+Module78=pgLayout
+Module79=pgLayouts
+Module8=dMultiView
+Module80=pgLayouts1
+Module81=pgLayouts2
+Module82=pgLesson8_3
+Module83=pgLesson8_4
+Module84=pgList
+Module85=pgMaster
+Module86=pgMenu
+Module87=pgMessageBoxes
+Module88=pgMultiView
+Module89=pgMultiView2
+Module9=dResizer
+Module90=pgMultiView3
+Module91=pgMultiView4
+Module92=pgPropertySheet
+Module93=pgResponsive
+Module94=pgScrollView
+Module95=pgSideBar
+Module96=pgSuggest
+Module97=pgTabBar
+Module98=pgTabView
+Module99=pgTemplate
+NumberOfFiles=186
+NumberOfLibraries=5
+NumberOfModules=109
+Version=7.51
+@EndOfDesignText@
+ #Region Project Attributes 
+#End Region
+#IgnoreWarnings:15
+Sub Process_Globals
+	Public BANano As BANano 'ignore
+	Public AppName As String = "BANanoWebixApp"
+	Private Publish As String
+	Private BP As BANanoPostProcessor
+	Public dbName As String
+End Sub
+
+Sub AppStart (Form1 As Form, Args() As String)
+	Publish = "C:\xampp\htdocs"
+	Publish = "C:\laragon\www"
+	Dim Version As String = DateTime.now
+	Dim appFile As String = $"app${Version}.js"$
+	BANano.Initialize("BANano", AppName,1)
+	BANano.HTML_NAME = "index.html"
+	BANano.Header.Title = AppName
+	BANano.JAVASCRIPT_NAME = appFile
+	BANano.Header.addcssfile("all.min.css")
+	BANano.Header.AddCSSFile("materialdesignicons.min.css")
+	BANano.Header.AddCSSFile("webix.min.css")
+	'*themes
+	BANano.Header.AddCSSFile("material.min.css")
+	'BANano.Header.AddCSSFile("flat.min.css")
+	'BANano.Header.AddCSSFile("compact.min.css")
+	'BANano.Header.AddCSSFile("contrast.min.css")
+	'** themes
+	BANano.Header.AddJavascriptFile("webix.min.js")
+	BANano.Header.AddCSSFile("hint.css")
+	BANano.Header.AddJavascriptFile("hint.js")
+	'
+	BANano.Header.AddJavascriptFile("data.js")
+	
+	BANano.Header.AddJavascriptFile("Blob.min.js")
+	BANano.Header.AddJavascriptFile("FileSaver.min.js")
+	
+	BANano.Header.AddJavascriptFile("https://togetherjs.com/togetherjs-min.js")
+	'BANano.Header.AddJavascriptFile("data.js")
+	'BANano.TranspilerOptions.MergeAllCSSFiles = True
+	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True
+	'BANano.TranspilerOptions.ShowWarningDeadCode = True
+	'BANano.TranspilerOptions.RemoveDeadCode = True
+	BANano.TranspilerOptions.UseServiceWorker = False
+	BANano.TranspilerOptions.MergeAllCSSFiles = True
+	BANano.TranspilerOptions.MergeAllJavascriptFiles = True
+	'php
+	'set php settings
+	BANano.PHP_NAME = "bananowebixfd.php"
+	BANano.PHPHost = $"http://localhost/${AppName}/"$
+	BANano.PHPAddHeader("Access-Control-Allow-Origin: *")
+	'
+	BANano.Build(Publish)
+	'post processor
+	BP.Initialize
+	BP.PublishPath = Publish
+	BP.ShortName = AppName
+	BP.AssetsPath = BANano.ASSETS_FOLDER
+	BP.ScriptsPath = BANano.SCRIPTS_FOLDER
+	BP.StylesPath = BANano.STYLES_FOLDER
+	BP.ScriptFile = BANano.JAVASCRIPT_NAME
+	BP.UnzipFonts
+	BP.UnzipFile("extras.zip")
+	BP.Open(True)
+	ExitApplication
+End Sub
+
+'Return true to allow the default exceptions handler to handle the uncaught exception.
+Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
+	Return True
+End Sub
+
+Sub BANano_Ready()
+	modSideBar.Version = "1.18"
+	Dim sqlite As BANanoSQLite
+	sqlite.Initialize
+	dbName = $"${AppName}.db"$
+	'create forms table
+	Dim tbl As Map = CreateMap()
+	tbl.Put("id", sqlite.DB_STRING)
+	tbl.Put("value", sqlite.DB_STRING)
+	tbl.Put("json", sqlite.DB_STRING)
+	tbl.put("parentid", sqlite.DB_STRING)
+	Dim qry As String = sqlite.CreateTable("forms", tbl, "id")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	'
+	sqlite.Initialize
+	Dim tbl As Map = CreateMap()
+	tbl.Put("id", sqlite.DB_STRING)
+	tbl.Put("key", sqlite.DB_STRING)
+	tbl.Put("name", sqlite.DB_STRING)
+	tbl.Put("json", sqlite.DB_STRING)
+	tbl.put("parentid", sqlite.DB_STRING)
+	tbl.put("tabindex", sqlite.DB_INT)
+	Dim qry As String = sqlite.CreateTable("properties", tbl, "key")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	'
+	sqlite.Initialize 
+	Dim tbl As Map = CreateMap()
+	tbl.Put("name", sqlite.DB_STRING)
+	tbl.Put("json", sqlite.DB_STRING)
+	Dim qry As String = sqlite.CreateTable("wixsomething", tbl, "name")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	'
+		
+	sqlite.Initialize
+	Dim c As Map = CreateMap()
+	c.Put("id", sqlite.DB_STRING)
+	c.Put("json", sqlite.DB_STRING)
+	Dim qry As String = sqlite.CreateTable("connect", c, "id")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	'
+	sqlite.Initialize
+	Dim c As Map = CreateMap()
+	c.Put("key", sqlite.DB_STRING)
+	c.Put("id", sqlite.DB_STRING)
+	c.Put("value", sqlite.DB_STRING)
+	c.Put("json", sqlite.DB_STRING)
+	Dim qry As String = sqlite.CreateTable("tables", c, "key")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	'
+	'fields
+	sqlite.Initialize
+	Dim f As Map = CreateMap()
+	f.Put("key", sqlite.DB_STRING)
+	f.Put("id", sqlite.DB_STRING)
+	f.Put("tablename", sqlite.DB_STRING)
+	f.Put("value", sqlite.DB_STRING)
+	f.Put("json", sqlite.DB_STRING)
+	f.Put("tabindex", sqlite.DB_INT)
+	Dim qry As String = sqlite.CreateTable("fields", f, "key")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	
+	'create items table
+	sqlite.Initialize 
+	Dim els As Map = CreateMap()
+	els.Put("id", sqlite.DB_STRING)
+	els.Put("json", sqlite.DB_STRING)
+	els.Put("tabindex", sqlite.DB_STRING)
+	els.put("parentid", sqlite.DB_STRING)
+	Dim qry As String = sqlite.CreateTable("items", els, "id")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	'
+	'pgFD.init
+	pgMaster.init
+End Sub

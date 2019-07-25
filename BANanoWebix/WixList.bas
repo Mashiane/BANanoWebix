@@ -202,3 +202,138 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Object) As WixList
+	List.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutowidth(autowidth As Object) As WixList
+List.SetAttr("autowidth", autowidth)
+Return Me
+End Sub
+
+Sub SetClick(click As BANanoObject) As WixList
+List.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixList
+List.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixList
+List.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDataFeed(dataFeed As Object) As WixList
+List.SetAttr("dataFeed", dataFeed)
+Return Me
+End Sub
+
+Sub SetDatafetch(datafetch As Object) As WixList
+List.SetAttr("datafetch", datafetch)
+Return Me
+End Sub
+
+Sub SetDatathrottle(datathrottle As Object) As WixList
+List.SetAttr("datathrottle", datathrottle)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixList
+List.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Object) As WixList
+List.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetDrag(drag As Object) As WixList
+List.SetAttr("drag", drag)
+Return Me
+End Sub
+
+Sub SetDragscroll(dragscroll As Object) As WixList
+List.SetAttr("dragscroll", dragscroll)
+Return Me
+End Sub
+
+Sub SetDynamic(dynamic As Object) As WixList
+List.SetAttr("dynamic", dynamic)
+Return Me
+End Sub
+
+Sub SetExternalData(externalData As Object) As WixList
+List.SetAttr("externalData", externalData)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixList
+List.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Object) As WixList
+List.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetLayout(layout As Object) As WixList
+List.SetAttr("layout", layout)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixList
+List.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixList
+List.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetNavigation(navigation As Object) As WixList
+List.SetAttr("navigation", navigation)
+Return Me
+End Sub
+
+Sub SetRemoveMissed(removeMissed As Object) As WixList
+List.SetAttr("removeMissed", removeMissed)
+Return Me
+End Sub
+
+Sub SetSave(save As Object) As WixList
+List.SetAttr("save", save)
+Return Me
+End Sub
+
+Sub SetScrollSpeed(scrollSpeed As Object) As WixList
+List.SetAttr("scrollSpeed", scrollSpeed)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixList
+List.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixList
+List.SetAttr("url", url)
+Return Me
+End Sub
+
+Sub SetXCount(xCount As Object) As WixList
+List.SetAttr("xCount", xCount)
+Return Me
+End Sub
+
+Sub SetYCount(yCount As Object) As WixList
+List.SetAttr("yCount", yCount)
+Return Me
+End Sub

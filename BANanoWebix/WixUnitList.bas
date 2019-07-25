@@ -142,3 +142,164 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixUnitList
+	UnitList.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutoheight(autoheight As Boolean) As WixUnitList
+	UnitList.SetAttr("autoheight", autoheight)
+	Return Me
+End Sub
+
+Sub SetAutowidth(autowidth As Boolean) As WixUnitList
+	UnitList.SetAttr("autowidth", autowidth)
+	Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixUnitList
+UnitList.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetClipboard(clipboard As Object) As WixUnitList
+UnitList.SetAttr("clipboard", clipboard)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixUnitList
+UnitList.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixUnitList
+UnitList.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDatathrottle(datathrottle As Object) As WixUnitList
+UnitList.SetAttr("datathrottle", datathrottle)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixUnitList
+UnitList.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetExternalData(externalData As Object) As WixUnitList
+UnitList.SetAttr("externalData", externalData)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixUnitList
+UnitList.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+
+Sub SetHidden(hidden As Boolean) As WixUnitList
+UnitList.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixUnitList
+UnitList.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixUnitList
+UnitList.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetMultiselect(multiselect As Boolean) As WixUnitList
+UnitList.SetAttr("multiselect", multiselect)
+Return Me
+End Sub
+
+Sub SetNavigation(navigation As Boolean) As WixUnitList
+UnitList.SetAttr("navigation", navigation)
+Return Me
+End Sub
+
+Sub SetPager(pager As Object) As WixUnitList
+UnitList.SetAttr("pager", pager)
+Return Me
+End Sub
+
+Sub SetReady(ready As Object) As WixUnitList
+UnitList.SetAttr("ready", ready)
+Return Me
+End Sub
+
+Sub SetSave(save As Object) As WixUnitList
+UnitList.SetAttr("save", save)
+Return Me
+End Sub
+
+Sub SetScheme(scheme As Object) As WixUnitList
+UnitList.SetAttr("scheme", scheme)
+Return Me
+End Sub
+
+Sub SetScrollSpeed(scrollSpeed As Object) As WixUnitList
+UnitList.SetAttr("scrollSpeed", scrollSpeed)
+Return Me
+End Sub
+
+Sub SetSelect(bSelect As Boolean) As WixUnitList
+UnitList.SetAttr("select", bSelect)
+Return Me
+End Sub
+
+Sub SetType(bType As Object) As WixUnitList
+UnitList.SetAttr("type", bType)
+Return Me
+End Sub
+
+Sub SetUniteBy(uniteBy As Object) As WixUnitList
+UnitList.SetAttr("uniteBy", uniteBy)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixUnitList
+UnitList.SetAttr("url", url)
+Return Me
+End Sub
+
+Sub SetXCount(xCount As Object) As WixUnitList
+UnitList.SetAttr("xCount", xCount)
+Return Me
+End Sub
+
+Sub SetScroll(scroll As Object) As WixUnitList
+	UnitList.SetAttr("scroll", scroll)
+	Return Me
+End Sub
+
+Sub SetYCount(yCount As Object) As WixUnitList
+UnitList.SetAttr("yCount", yCount)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixUnitList
+UnitList.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDrag(drag As Object) As WixUnitList
+UnitList.SetAttr("drag", drag)
+Return Me
+End Sub
+
+Sub SetDragscroll(dragscroll As Object) As WixUnitList
+UnitList.SetAttr("dragscroll", dragscroll)
+Return Me
+End Sub
+
+Sub SetRemoveMissed(removeMissed As Boolean) As WixUnitList
+UnitList.SetAttr("removeMissed", removeMissed)
+Return Me
+End Sub

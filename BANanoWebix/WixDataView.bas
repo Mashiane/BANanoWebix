@@ -227,3 +227,126 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixDataView
+	DataView.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutoheight(autoheight As Boolean) As WixDataView
+	DataView.SetAttr("autoheight", autoheight)
+	Return Me
+End Sub
+
+
+Sub SetContainer(container As Object) As WixDataView
+DataView.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixDataView
+DataView.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDatafetch(datafetch As Object) As WixDataView
+DataView.SetAttr("datafetch", datafetch)
+Return Me
+End Sub
+
+Sub SetDatathrottle(datathrottle As Object) As WixDataView
+DataView.SetAttr("datathrottle", datathrottle)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixDataView
+DataView.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixDataView
+DataView.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetDrag(drag As Object) As WixDataView
+DataView.SetAttr("drag", drag)
+Return Me
+End Sub
+
+Sub SetDragscroll(dragscroll As Object) As WixDataView
+DataView.SetAttr("dragscroll", dragscroll)
+Return Me
+End Sub
+
+Sub SetExternalData(externalData As Object) As WixDataView
+DataView.SetAttr("externalData", externalData)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixDataView
+DataView.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixDataView
+DataView.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetLoadahead(loadahead As Object) As WixDataView
+DataView.SetAttr("loadahead", loadahead)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixDataView
+DataView.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixDataView
+DataView.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetReady(ready As Object) As WixDataView
+DataView.SetAttr("ready", ready)
+Return Me
+End Sub
+
+Sub SetRemoveMissed(removeMissed As Boolean) As WixDataView
+DataView.SetAttr("removeMissed", removeMissed)
+Return Me
+End Sub
+
+Sub SetRules(rules As Object) As WixDataView
+DataView.SetAttr("rules", rules)
+Return Me
+End Sub
+
+Sub SetSave(save As Object) As WixDataView
+DataView.SetAttr("save", save)
+Return Me
+End Sub
+
+Sub SetScheme(scheme As Object) As WixDataView
+DataView.SetAttr("scheme", scheme)
+Return Me
+End Sub
+
+Sub SetScrollSpeed(scrollSpeed As Object) As WixDataView
+DataView.SetAttr("scrollSpeed", scrollSpeed)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixDataView
+DataView.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixDataView
+DataView.SetAttr("url", url)
+Return Me
+End Sub
+

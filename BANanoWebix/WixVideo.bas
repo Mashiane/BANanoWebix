@@ -146,3 +146,43 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixVideo
+	Video.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixVideo
+Video.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixVideo
+Video.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixVideo
+Video.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixVideo
+Video.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixVideo
+Video.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixVideo
+Video.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixVideo
+Video.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub

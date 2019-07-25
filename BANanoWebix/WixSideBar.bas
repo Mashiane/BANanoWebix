@@ -213,3 +213,150 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAnimate(animate As Boolean) As WixSideBar
+SideBar.SetAttr("animate", animate)
+Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixSideBar
+SideBar.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixSideBar
+SideBar.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetClipboard(clipboard As Object) As WixSideBar
+SideBar.SetAttr("clipboard", clipboard)
+Return Me
+End Sub
+
+
+Sub SetContainer(container As Object) As WixSideBar
+SideBar.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixSideBar
+SideBar.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDataFeed(dataFeed As Object) As WixSideBar
+SideBar.SetAttr("dataFeed", dataFeed)
+Return Me
+End Sub
+
+Sub SetDatathrottle(datathrottle As Object) As WixSideBar
+SideBar.SetAttr("datathrottle", datathrottle)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixSideBar
+SideBar.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixSideBar
+SideBar.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetDrag(drag As Object) As WixSideBar
+SideBar.SetAttr("drag", drag)
+Return Me
+End Sub
+
+Sub SetDragscroll(dragscroll As Object) As WixSideBar
+SideBar.SetAttr("dragscroll", dragscroll)
+Return Me
+End Sub
+
+Sub SetFilterMode(filterMode As Object) As WixSideBar
+SideBar.SetAttr("filterMode", filterMode)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixSideBar
+SideBar.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixSideBar
+SideBar.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixSideBar
+SideBar.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixSideBar
+SideBar.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetMultiselect(multiselect As Boolean) As WixSideBar
+SideBar.SetAttr("multiselect", multiselect)
+Return Me
+End Sub
+
+Sub SetNavigation(navigation As Boolean) As WixSideBar
+SideBar.SetAttr("navigation", navigation)
+Return Me
+End Sub
+
+Sub SetPager(pager As Object) As WixSideBar
+SideBar.SetAttr("pager", pager)
+Return Me
+End Sub
+
+Sub SetReady(ready As Object) As WixSideBar
+SideBar.SetAttr("ready", ready)
+Return Me
+End Sub
+
+Sub SetRemoveMissed(removeMissed As Boolean) As WixSideBar
+SideBar.SetAttr("removeMissed", removeMissed)
+Return Me
+End Sub
+
+Sub SetSave(save As Object) As WixSideBar
+SideBar.SetAttr("save", save)
+Return Me
+End Sub
+
+Sub SetScheme(scheme As Object) As WixSideBar
+SideBar.SetAttr("scheme", scheme)
+Return Me
+End Sub
+
+Sub SetScrollSpeed(scrollSpeed As Object) As WixSideBar
+SideBar.SetAttr("scrollSpeed", scrollSpeed)
+Return Me
+End Sub
+
+
+Sub SetThreeState(threeState As Boolean) As WixSideBar
+SideBar.SetAttr("threeState", threeState)
+Return Me
+End Sub
+
+Sub SetTooltip(tooltip As Object) As WixSideBar
+SideBar.SetAttr("tooltip", tooltip)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixSideBar
+SideBar.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixSideBar
+SideBar.SetAttr("url", url)
+Return Me
+End Sub

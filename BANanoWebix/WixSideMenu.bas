@@ -203,3 +203,130 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixSideMenu
+	SideMenu.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAutofit(autofit As Boolean) As WixSideMenu
+	SideMenu.SetAttr("autofit", autofit)
+	Return Me
+End Sub
+
+Sub SetAutofocus(autofocus As Boolean) As WixSideMenu
+	SideMenu.SetAttr("autofocus", autofocus)
+	Return Me
+End Sub
+
+Sub SetBody(xbody As Object) As WixSideMenu
+	SideMenu.SetAttr("body", xbody)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixSideMenu
+	SideMenu.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixSideMenu
+	SideMenu.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixSideMenu
+	SideMenu.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixSideMenu
+	SideMenu.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixSideMenu
+	SideMenu.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHead(head As Object) As WixSideMenu
+	SideMenu.SetAttr("head", head)
+	Return Me
+End Sub
+
+Sub SetHeadHeight(headHeight As Object) As WixSideMenu
+	SideMenu.SetAttr("headHeight", headHeight)
+	Return Me
+End Sub
+
+Sub SetLeft(left As Object) As WixSideMenu
+SideMenu.SetAttr("left", left)
+Return Me
+End Sub
+
+Sub SetMaster(master As Object) As WixSideMenu
+SideMenu.SetAttr("master", master)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixSideMenu
+SideMenu.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixSideMenu
+SideMenu.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+
+Sub SetModal(modal As Boolean) As WixSideMenu
+SideMenu.SetAttr("modal", modal)
+Return Me
+End Sub
+
+Sub SetMove(move As Boolean) As WixSideMenu
+SideMenu.SetAttr("move", move)
+Return Me
+End Sub
+
+Sub SetPadding(padding As Object) As WixSideMenu
+SideMenu.SetAttr("padding", padding)
+Return Me
+End Sub
+
+Sub SetPoint(point As Boolean) As WixSideMenu
+SideMenu.SetAttr("point", point)
+Return Me
+End Sub
+
+Sub SetRelative(relative As Object) As WixSideMenu
+SideMenu.SetAttr("relative", relative)
+Return Me
+End Sub
+
+Sub SetResize(resize As Boolean) As WixSideMenu
+SideMenu.SetAttr("resize", resize)
+Return Me
+End Sub
+
+Sub SetState(state As Object) As WixSideMenu
+SideMenu.SetAttr("state", state)
+Return Me
+End Sub
+
+Sub SetToFront(toFront As Boolean) As WixSideMenu
+SideMenu.SetAttr("toFront", toFront)
+Return Me
+End Sub
+
+Sub SetTop(top As Object) As WixSideMenu
+SideMenu.SetAttr("top", top)
+Return Me
+End Sub
+
+Sub SetZIndex(zIndex As Object) As WixSideMenu
+SideMenu.SetAttr("zIndex", zIndex)
+Return Me
+End Sub

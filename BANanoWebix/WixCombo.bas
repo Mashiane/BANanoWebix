@@ -266,3 +266,143 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAlign(align As Object) As WixCombo
+	Combo.SetAttr("align", align)
+	Return Me
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixCombo
+	Combo.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAttributes(attributes As Object) As WixCombo
+	Combo.SetAttr("attributes", attributes)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixCombo
+	Combo.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixCombo
+Combo.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixCombo
+Combo.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixCombo
+Combo.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixCombo
+Combo.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetEditable(editable As Boolean) As WixCombo
+Combo.SetAttr("editable", editable)
+Return Me
+End Sub
+
+Sub SetFormat(format As Object) As WixCombo
+Combo.SetAttr("format", format)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixCombo
+Combo.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixCombo
+Combo.SetAttr("height", height)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixCombo
+Combo.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixCombo
+Combo.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetIcon(icon As Object) As WixCombo
+Combo.SetAttr("icon", icon)
+Return Me
+End Sub
+
+Sub SetInputAlign(inputAlign As Object) As WixCombo
+Combo.SetAttr("inputAlign", inputAlign)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixCombo
+Combo.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixCombo
+Combo.SetAttr("inputWidth", inputWidth)
+Return Me
+End Sub
+
+Sub SetInvalid(invalid As Object) As WixCombo
+Combo.SetAttr("invalid", invalid)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixCombo
+Combo.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixCombo
+Combo.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixCombo
+Combo.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetPopupWidth(popupWidth As Object) As WixCombo
+Combo.SetAttr("popupWidth", popupWidth)
+Return Me
+End Sub
+
+Sub SetReadonly(readonly As Boolean) As WixCombo
+Combo.SetAttr("readonly", readonly)
+Return Me
+End Sub
+
+Sub SetRelatedAction(relatedAction As Object) As WixCombo
+Combo.SetAttr("relatedAction", relatedAction)
+Return Me
+End Sub
+
+Sub SetRelatedView(relatedView As Object) As WixCombo
+Combo.SetAttr("relatedView", relatedView)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixCombo
+Combo.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixCombo
+Combo.SetAttr("width", width)
+Return Me
+End Sub

@@ -804,6 +804,26 @@ Sub SetValue(itm As String, value As String)
 	Dollar.Selector(itm).RunMethod("setValue",Array(value))
 End Sub
 
+'get toolbar height
+Sub GetToolBarHeight(itm As String) As Int
+	itm = itm.ToLowerCase
+	Dim hfld As String = "$" & "height"
+	Dim res As Int = Dollar.Selector(itm).GetField(hfld)
+	Return res
+End Sub
+
+Sub SetSideMenuState(toolbar As String, sidemenu As String)
+	toolbar = toolbar.tolowercase
+	sidemenu = sidemenu.tolowercase
+	Dim th As Int = GetToolBarHeight(toolbar)
+	Dim state As BANanoObject = Dollar.Selector(sidemenu).GetField("state")
+	'
+	Dim sh As Int = state.GetField("height")
+	sh = sh - th
+	state.SetField("top", th)
+	state.setfield("height", sh)
+End Sub
+
 'get an item value
 Sub GetValue(itm As String) As String
 	itm = itm.ToLowerCase

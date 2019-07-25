@@ -223,3 +223,55 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixCalendar
+	Calendar.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+
+Sub SetBorderless(borderless As Boolean) As WixCalendar
+Calendar.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixCalendar
+Calendar.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixCalendar
+Calendar.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixCalendar
+Calendar.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixCalendar
+Calendar.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetMinHeight(minHeight As Object) As WixCalendar
+Calendar.SetAttr("minHeight", minHeight)
+Return Me
+End Sub
+
+Sub SetMinWidth(minWidth As Object) As WixCalendar
+Calendar.SetAttr("minWidth", minWidth)
+Return Me
+End Sub
+
+Sub SetNavigation(navigation As Boolean) As WixCalendar
+Calendar.SetAttr("navigation", navigation)
+Return Me
+End Sub
+
+Sub SetTimeIcon(timeIcon As Object) As WixCalendar
+Calendar.SetAttr("timeIcon", timeIcon)
+Return Me
+End Sub

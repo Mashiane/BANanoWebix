@@ -255,3 +255,77 @@ End Sub
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
 End Sub
+
+Sub SetAlign(align As Object) As WixToggle
+	Toggle.SetAttr("align", align)
+	Return Me
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixToggle
+	Toggle.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+
+Sub SetBorderless(borderless As Boolean) As WixToggle
+Toggle.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixToggle
+Toggle.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixToggle
+Toggle.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixToggle
+Toggle.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixToggle
+Toggle.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+
+Sub SetHidden(hidden As Boolean) As WixToggle
+Toggle.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixToggle
+Toggle.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixToggle
+Toggle.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+
+Sub SetMaxHeight(maxHeight As Object) As WixToggle
+Toggle.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixToggle
+Toggle.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixToggle
+Toggle.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixToggle
+Toggle.SetAttr("type", sType)
+Return Me
+End Sub
+
