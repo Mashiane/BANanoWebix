@@ -24,6 +24,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixResizer
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Resizer.SetTemplate(os)
 	Return Me

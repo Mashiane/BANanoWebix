@@ -25,6 +25,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixToolBar
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	ToolBar.SetTemplate(os)
 	Return Me
@@ -273,5 +274,81 @@ End Sub
 
 Sub SetWidth(width As String) As WixToolBar
 ToolBar.SetAttr("width", width)
+Return Me
+End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixToolBar
+	ToolBar.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetCols(cols As Object) As WixToolBar
+ToolBar.SetAttr("cols", cols)
+Return Me
+End Sub
+
+Sub SetComplexData(complexData As Boolean) As WixToolBar
+ToolBar.SetAttr("complexData", complexData)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixToolBar
+ToolBar.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetData(data As Object) As WixToolBar
+ToolBar.SetAttr("data", data)
+Return Me
+End Sub
+
+Sub SetDataFeed(dataFeed As Object) As WixToolBar
+ToolBar.SetAttr("dataFeed", dataFeed)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixToolBar
+ToolBar.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixToolBar
+ToolBar.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetElements(elements As Object) As WixToolBar
+ToolBar.SetAttr("elements", elements)
+Return Me
+End Sub
+
+Sub SetElementsConfig(elementsConfig As Object) As WixToolBar
+ToolBar.SetAttr("elementsConfig", elementsConfig)
+Return Me
+End Sub
+
+Sub SetRows(rows As Object) As WixToolBar
+ToolBar.SetAttr("rows", rows)
+Return Me
+End Sub
+
+Sub SetRules(rules As Object) As WixToolBar
+ToolBar.SetAttr("rules", rules)
+Return Me
+End Sub
+
+Sub SetScrollSpeed(scrollSpeed As Object) As WixToolBar
+ToolBar.SetAttr("scrollSpeed", scrollSpeed)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixToolBar
+ToolBar.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixToolBar
+ToolBar.SetAttr("url", url)
 Return Me
 End Sub

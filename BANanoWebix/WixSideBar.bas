@@ -122,6 +122,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixSideBar
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	SideBar.SetTemplate(os)
 	Return Me

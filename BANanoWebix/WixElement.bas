@@ -215,6 +215,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixElement
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	SetTemplate(os)
 	Return Me
@@ -420,6 +421,13 @@ Sub OnAfterEditStop(cb As BANanoObject) As WixElement
 	On.Put("onAfterEditStop",cb)
 	Return Me
 End Sub
+
+
+Sub onBeforeDrop(cb As BANanoObject) As WixElement
+	On.Put("onBeforeDrop",cb)
+	Return Me
+End Sub
+
 
 Sub OnContext(cb As BANanoObject) As WixElement
 	On.Put("onContext",cb)

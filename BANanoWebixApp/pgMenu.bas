@@ -127,9 +127,9 @@ Sub OpenMenu(meid As String)
 	'toggle sidemenu
 	Dim bVisible As Boolean = pg.BoIsVisible(smUX)
 	If bVisible Then
-		pg.Hide(smUX)
+		pg.BoHide(smUX)
 	Else
-		pg.Show(smUX)
+		pg.BoShow(smUX)
 		'assign event
 		'Dim meid As String
 		'pg.OnAfterSelect("sm", BANano.CallBack(Me, "sideClick", Array(meid)))
@@ -155,7 +155,7 @@ Sub itemClick(meid As String)
 	Case "iframe"
 	Case "win"
 		CreateWindow
-		pg.Show(winUX)
+		pg.BOShow(winUX)
 		'assign event
 		pg.OnItemClick(win.ToolBarID, BANano.CallBack(Me, "windowClick", Array(meid)))
 	Case "mt"

@@ -15,7 +15,7 @@ End Sub
 Public Sub Initialize(sid As String) As WixImage
 	ID = sid.ToLowerCase
 	Image.Initialize(ID).SetView("template") 
-	img.Initialize("","img")
+	img.Initialize("","img").SetImportant(False)
 	img.SetStyle("width","100%")
 	img.SetStyle("height","100%")
 	Image.SetCSS("form_photo")
@@ -104,4 +104,64 @@ Sub Refresh(pg As WixPage)
 	opt.Put("template", t)
 	pg.Define(ID, opt)
 	pg.Refresh(ID)
+End Sub
+
+
+'set min width
+Sub SetMinWidth(w As Int) As WixImage
+	Image.SetMinWidth(w)
+	Return Me
+End Sub
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixImage
+	Image.SetMinHeight(h)
+	Return Me
+End Sub
+
+
+'set tooltip
+Sub SetTooltip(tt As String) As WixImage
+	Image.SetAttr("tooltip", tt)
+	Return Me
+End Sub
+
+'add to form
+Sub AddToForm(frm As WixForm)
+	frm.AddItem(Item)
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixImage
+	Image.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixImage
+Image.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixImage
+Image.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixImage
+Image.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixImage
+Image.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixImage
+Image.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixImage
+Image.SetAttr("maxWidth", maxWidth)
+Return Me
 End Sub

@@ -106,6 +106,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixDatePicker
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	DatePicker.SetTemplate(os)
 	Return Me

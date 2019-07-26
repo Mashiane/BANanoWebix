@@ -38,6 +38,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixGroupList
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	GroupList.SetTemplate(os)
 	Return Me

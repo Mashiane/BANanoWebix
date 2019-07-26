@@ -5,9 +5,10 @@ Type=StaticCode
 Version=7.51
 @EndOfDesignText@
 'Static code module
+#IgnoreWarnings:12
 Sub Process_Globals
 	Private pg As WixPage
-	Private BANano As BANano
+	Private BANano As BANano  'ignore
 	Public div As UOENowHTML
 	Private delID As String
 	Private hints As WixHint
@@ -53,7 +54,7 @@ Sub Init()
 	
 	'hints.AddStep("multi", "Multi Elements", "Select here to add multi elements, you provide the names of the elements separated by a comma","click")
 	hints.AddStep("refresh","Refresh","To refresh the tree, select this option","click")
-	'hints.AddStep("clearform","Clear Form", "To create a new form, first clear any existing form by selecting this option","click")
+	hints.AddStep("clearform1","Trash project", "This empties the project","click")
 	hints.AddStep("help","Hints", "You can access the hints from here too","click")
 	hints.AddStep("collab","Collaborate", "You can collaborate here when the need arises.", "click")
 	'hints.AddStep("avatar","Avatar", "Here is your profile picture, you can click to change the settings","click")
@@ -73,6 +74,7 @@ Sub Init()
 	'add a tree
 	Dim tree As WixTree
 	tree.Initialize("tree").SetSelect(True).SetScroll(True).SetWidth(300).SetTypeLineTree(True).SetBorderLess(False)
+	tree.setdrag(True)
 	'
 	R2.AddColumns(tree.Item)
 	R2.CreateResizer("").AddToColumns(R2.Row)
@@ -91,6 +93,9 @@ Sub Init()
 	pg.AddRow(R2)
 	'
 	pg.ui
+	' register a popup for the property bag
+	pg.RegisterTypePopUp("propbag")
+	'
 	'hide some things
 	pg.Hide("propadd")
 	pg.Hide("add_row")
@@ -98,9 +103,12 @@ Sub Init()
 	pg.Hide("add_fields")
 	pg.Hide("download")
 	'
+	Dim context, e As Object
+	pg.onBeforeDrop("tree", BANano.CallBack(Me,"beforedrop", Array(context,e)))
 	'side bar click
 	Dim meid As Map
 	pg.OnItemClick("smp", BANano.CallBack(Me, "sidebar_click", Array(meid)))
+	pg.OnItemDblClick("smp", BANano.CallBack(Me, "sidebar_dblclick", Array(meid)))
 	'tree click
 	Dim recid As String
 	pg.OnItemClick("tree", BANano.CallBack(Me, "tree_clickwait", Array(recid)))
@@ -112,6 +120,72 @@ Sub Init()
 	'
 	'start hints
 	'pg.StartHint(hints)
+End Sub
+
+'cancel the drag and drop but process everything else
+Sub beforedrop(context As BANanoObject, e As BANanoEvent) As Boolean
+	'get id of source element
+	Dim startfrom As Object = context.GetField("start")
+	'get the target
+	Dim targetto As Object = context.getfield("target")
+	'
+	startfrom = pg.CStr(startfrom)
+	targetto = pg.CStr(targetto)
+	Dim starget As String = targetto
+	Dim sstart As String = startfrom
+	'
+	Select Case startfrom
+	Case "db"
+		'drop the database on the connection
+		If targetto <> "connection" Then Return False
+		pg.SelectItem("tree","connection")
+		tree_clickwait("connection")
+	Case "table"
+		'drop a table on the connection
+		If targetto <> "connection" Then Return False
+		pg.SelectItem("tree","connection")
+		sidebar_click(startfrom)
+	Case "field"
+		'drop a field on the able
+		If starget.StartsWith("table.") Then
+			pg.SelectItem("tree",starget)
+			sidebar_click(startfrom)
+		Else
+			Return False
+		End If
+	Case "form"
+		'dropping a form on the tree
+		If starget = "null" Then
+			sidebar_click("form")
+		End If
+	Case "wixsomething"
+		If starget = "null" Then
+			sidebar_click("wixsomething")
+		End If
+	Case "property"
+		If starget.StartsWith("wixsomething.") Then
+			sidebar_click("property")
+		End If
+	Case Else
+		'dropping a field on the form
+		If sstart.StartsWith("field.table") Then
+			If starget = "form" Then
+				'get the field name
+				Dim fldname As String = pg.MvField(sstart, 3, ".")
+				pg.SelectItem("tree", starget)
+				sidebar_click("text")
+				Dim pb As Map = pg.getvalues("propbag")
+				pb.Put("id", fldname)
+				pb.Put("label", fldname)
+				SaveElement(pb)
+				Return False
+			End If
+		Else
+			pg.SelectItem("tree",starget)
+			sidebar_click(startfrom)
+		End If
+	End Select
+	Return False 
 End Sub
 
 Sub add_row
@@ -673,6 +747,50 @@ Sub prop_saveWait
 	RefreshTreeWait
 End Sub
 
+Sub SaveElement(prop2save As Map)
+	Dim p As String = prop2save.Get("parentid")
+	Dim i As String = prop2save.get("id")
+	Dim idx As String = prop2save.Get("tabindex")
+	'
+	json = BANano.ToJson(prop2save)
+	'save record to db, does it exist
+	sqlite.Initialize
+	sqlite.AddStrings(Array("id"))
+	qry = sqlite.SelectWhere("items", Array("*"), CreateMap("id":i), Array("id"))
+	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	rs = sqlite.GetResultSet(qry,res)
+	rec = CreateMap()
+	rec.Put("json", json)
+	rec.put("parentid", p)
+	rec.Put("tabindex", idx)
+	rec.Put("id", i)
+	If rs.result.Size = 0 Then
+		'item does not exist
+		sqlite.Initialize
+		sqlite.AddStrings(Array("id"))
+		qry = sqlite.Insert("items", rec)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		pg.Message_Success(rs.result.size & " record(s) affected!")
+	Else
+		'item exist, update it
+		sqlite.Initialize
+		sqlite.AddStrings(Array("id"))
+		qry = sqlite.UpdateWhere("items",rec,CreateMap("id":i))
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+		pg.Message_Success(rs.result.size & " record(s) affected!")
+	End If
+	RefreshTreeWait
+End Sub
+
+Sub clearform1
+	Dim confirmresult As Boolean = False
+	Dim cb As BANanoObject = BANano.CallBack(Me,"clearform2wait",Array(confirmresult))
+	pg.Confirm(cb, "Confirm Delete", "Are you sure that you want to trash this project? You will not be able to undo your changes. Continue?")
+End Sub
+
+
 'clear form
 Sub clearform
 	Dim confirmresult As Boolean = False
@@ -690,6 +808,22 @@ Sub clearform1wait(confirmresult As Boolean)
 	pg.Message_Success(rs.result.size & " record(s) affected!")
 	refreshapp
 End Sub
+
+Sub clearform2wait(confirmresult As Boolean)
+	If confirmresult = False Then Return
+	Dim tbls As List
+	tbls.Initialize
+	tbls.AddAll(Array("connect","fields","forms","items","properties","tables","wixsomething"))
+	For Each strtb As String In tbls
+		sqlite.Initialize
+		sqlite.AddStrings(Array("id"))
+		qry = sqlite.DeleteAll(strtb)
+		res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		rs = sqlite.GetResultSet(qry,res)
+	Next
+	refreshapp
+End Sub
+
 
 'delete the property
 Sub prop_delete
@@ -1435,6 +1569,10 @@ Sub dbhelp
 	
 End Sub
 
+Sub sidebar_dblclick(meid As String)
+	sidebar_click(meid)
+End Sub
+
 'on sidebar click, draw up the property bag
 Sub sidebar_click(meid As String)
 	pg.Collapse("preview")
@@ -1685,6 +1823,9 @@ End Sub
 
 Sub DrawPropBag(con As String) As Boolean
 	Select Case con
+		Case "iframe"
+			dIFrame.BuildBag(pg, propBag)
+			Return True
 		Case "google-map"
 			dGoogleMap.BuildBag(pg, propBag)
 			Return True
@@ -1720,6 +1861,9 @@ Sub DrawPropBag(con As String) As Boolean
 			Return True
 		Case "propertysheet","property"
 			dPropertySheet.BuildBag(pg,propBag)
+			Return True
+		Case "tree"
+			dTree.BuildBag(pg, propBag)
 			Return True
 		Case "unitlist"
 			dUnitList.BuildBag(pg, propBag)
@@ -2016,8 +2160,6 @@ Sub btnMulti_click
 					qry = sqlite.InsertReplace("properties", prop)
 					res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 					rs = sqlite.GetResultSet(qry, res)
-					Log(ctrl)
-					Log(rs)
 				End If
 			Next
 		Case Else
@@ -2059,13 +2201,19 @@ End Sub
 Sub FixProperty(key As String, prop As Map)
 	Select Case key
 		Case "animate","autoheight","autowidth","borderless","disabled","dynamic","hidden","multiselect","navigation","autofit","autofocus","close","fullscreen","modal","move","point","resize", _
-			"toFront","controls","apiOnly","directory","autosend", "autoconfig","removemissed","removeMissed","select","required","isolate","responsive","readonly","autoConfig","editable","prerender", _
+			"toFront","controls","apiOnly","directory","autosend", "autoconfig","removemissed","removeMissed","required","isolate","responsive","readonly","autoConfig","editable","prerender", _
 			"scrollx","scrolly","complexdata", "resizerow", "resizecolumn","resizeColumn","resizeRow","scrollX","scrollY","undo","complexData","vertical","multiple"
 			prop.put("controltype","CheckBox")
 			prop.Put("FieldType", "Boolean")
-		Case "collapsed", "stringResult"
+		Case "collapsed", "stringResult","threeState"
 			prop.put("controltype","CheckBox")
 			prop.Put("FieldType", "Boolean")
+		Case "clipboard"
+			prop.put("controltype","Combo")
+			prop.Put("List", "|modify|true|insert|custom")
+		Case "select"
+			prop.put("controltype","Combo")
+			prop.Put("List", "|true|false|multiselect")
 		Case "position"
 			prop.put("controltype","Combo")
 			prop.Put("List", "|center|top|bottom|left|right")

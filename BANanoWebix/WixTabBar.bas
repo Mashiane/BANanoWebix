@@ -56,6 +56,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixTabBar
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	TabBar.SetTemplate(os)
 	Return Me

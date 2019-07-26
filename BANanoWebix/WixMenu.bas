@@ -34,6 +34,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixMenu
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Menu.SetTemplate(os)
 	Return Me

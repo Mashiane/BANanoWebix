@@ -33,6 +33,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixIcon
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Icon.SetTemplate(os)
 	Return Me

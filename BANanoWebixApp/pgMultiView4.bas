@@ -8,7 +8,7 @@ Version=7.51
 #IgnoreWarnings:12
 Sub Process_Globals
 	Private pg As WixPage
-	Private BANano As BANano
+	Private BANano As BANano 'ignore
 End Sub
 
 #if javascript

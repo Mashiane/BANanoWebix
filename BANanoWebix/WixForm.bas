@@ -62,6 +62,7 @@ Sub SetElementsConfigJSON(json As String) As WixForm
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixForm
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Form.SetTemplate(os)
 	Return Me

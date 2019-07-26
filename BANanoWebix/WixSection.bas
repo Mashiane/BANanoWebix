@@ -28,6 +28,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixSection
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Section.SetTemplate(os)
 	Return Me

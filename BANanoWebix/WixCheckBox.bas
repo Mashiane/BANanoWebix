@@ -18,6 +18,7 @@ Public Sub Initialize(iID As String) As WixCheckBox
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixCheckBox
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	CheckBox.SetTemplate(os)
 	Return Me
@@ -173,78 +174,78 @@ Sub AddToElements(P As WixElement)
 End Sub
 
 
-Sub SetAlign(align As Object) As WixCheckbox
-	Checkbox.SetAttr("align", align)
+Sub SetAlign(align As Object) As WixCheckBox
+	CheckBox.SetAttr("align", align)
 	Return Me
 End Sub
 
-Sub SetAnimate(animate As Boolean) As WixCheckbox
-	Checkbox.SetAttr("animate", animate)
+Sub SetAnimate(animate As Boolean) As WixCheckBox
+	CheckBox.SetAttr("animate", animate)
 	Return Me
 End Sub
 
-Sub SetAttributes(attributes As Object) As WixCheckbox
-	Checkbox.SetAttr("attributes", attributes)
+Sub SetAttributes(attributes As Object) As WixCheckBox
+	CheckBox.SetAttr("attributes", attributes)
 	Return Me
 End Sub
 
-Sub SetBorderless(borderless As Boolean) As WixCheckbox
-	Checkbox.SetAttr("borderless", borderless)
+Sub SetBorderless(borderless As Boolean) As WixCheckBox
+	CheckBox.SetAttr("borderless", borderless)
 	Return Me
 End Sub
 
-Sub SetBottomLabel(bottomLabel As Object) As WixCheckbox
-	Checkbox.SetAttr("bottomLabel", bottomLabel)
+Sub SetBottomLabel(bottomLabel As Object) As WixCheckBox
+	CheckBox.SetAttr("bottomLabel", bottomLabel)
 	Return Me
 End Sub
 
-Sub SetBottomPadding(bottomPadding As Object) As WixCheckbox
-	Checkbox.SetAttr("bottomPadding", bottomPadding)
+Sub SetBottomPadding(bottomPadding As Object) As WixCheckBox
+	CheckBox.SetAttr("bottomPadding", bottomPadding)
 	Return Me
 End Sub
 
-Sub SetCheckValue(checkValue As Object) As WixCheckbox
-	Checkbox.SetAttr("checkValue", checkValue)
+Sub SetCheckValue(checkValue As Object) As WixCheckBox
+	CheckBox.SetAttr("checkValue", checkValue)
 	Return Me
 End Sub
 
-Sub SetClick(click As Object) As WixCheckbox
-	Checkbox.SetAttr("click", click)
+Sub SetClick(click As Object) As WixCheckBox
+	CheckBox.SetAttr("click", click)
 	Return Me
 End Sub
 
-Sub SetContainer(container As Object) As WixCheckbox
-	Checkbox.SetAttr("container", container)
+Sub SetContainer(container As Object) As WixCheckBox
+	CheckBox.SetAttr("container", container)
 	Return Me
 End Sub
 
-Sub SetCss(css As Object) As WixCheckbox
-	Checkbox.SetAttr("css", css)
+Sub SetCss(css As Object) As WixCheckBox
+	CheckBox.SetAttr("css", css)
 	Return Me
 End Sub
 
-Sub SetCustomCheckbox(customCheckbox As Object) As WixCheckbox
-	Checkbox.SetAttr("customCheckbox", customCheckbox)
+Sub SetCustomCheckbox(customCheckbox As Object) As WixCheckBox
+	CheckBox.SetAttr("customCheckbox", customCheckbox)
 	Return Me
 End Sub
 
-Sub SetDisabled(disabled As Boolean) As WixCheckbox
-	Checkbox.SetAttr("disabled", disabled)
+Sub SetDisabled(disabled As Boolean) As WixCheckBox
+	CheckBox.SetAttr("disabled", disabled)
 	Return Me
 End Sub
 
-Sub SetFormat(format As Object) As WixCheckbox
-	Checkbox.SetAttr("format", format)
+Sub SetFormat(format As Object) As WixCheckBox
+	CheckBox.SetAttr("format", format)
 	Return Me
 End Sub
 
-Sub SetGravity(gravity As Object) As WixCheckbox
-	Checkbox.SetAttr("gravity", gravity)
+Sub SetGravity(gravity As Object) As WixCheckBox
+	CheckBox.SetAttr("gravity", gravity)
 	Return Me
 End Sub
 
-Sub SetHeight(height As Object) As WixCheckbox
-	Checkbox.SetAttr("height", height)
+Sub SetHeight(height As Object) As WixCheckBox
+	CheckBox.SetAttr("height", height)
 	Return Me
 End Sub
 

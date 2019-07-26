@@ -26,6 +26,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixDataView
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	DataView.SetTemplate(os)
 	Return Me

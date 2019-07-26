@@ -465,6 +465,15 @@ Sub Define(eID As String, properties As Map)
 	Dollar.Selector(eID).RunMethod("define",Array(properties))
 End Sub
 
+
+
+Sub RegisterTypePopUp(eID As String)
+	eID = eID.ToLowerCase
+	Dim p As Map = CreateMap()
+	p.Put("editor", "popup")
+	Dollar.Selector(eID).RunMethod("registerType",Array("popup", p))
+End Sub
+
 'update properties
 Sub Update(eid As String, propertyMap As Map)
 	eid = eid.tolowercase
@@ -576,9 +585,19 @@ Sub SetHint(eID As String, sHint As String)
 	hints.Put(eID,sHint)
 End Sub
 
+Sub OnItemDblClick(eid As String, cb As BANanoObject)
+	eid = eid.tolowercase
+	Dollar.Selector(eid).RunMethod("attachEvent",Array("onItemDblClick",cb))
+End Sub
+
 Sub OnKeyPress(eid As String, cb As BANanoObject)
 	eid = eid.tolowercase
 	Dollar.Selector(eid).RunMethod("attachEvent",Array("onKeyPress",cb))
+End Sub
+
+Sub onBeforeDrop(eid As String, cb As BANanoObject)
+	eid = eid.tolowercase
+	Dollar.Selector(eid).RunMethod("attachEvent",Array("onBeforeDrop",cb))
 End Sub
 
 Sub OnBeforeLoad(eid As String, cb As BANanoObject)
@@ -1112,7 +1131,7 @@ Sub Remove(listID As String, recID As String)
 End Sub
 
 'get the selected item column, row and id
-Sub GetWixSelectedID(listID As String) As WixSelectedID
+private Sub GetWixSelectedID(listID As String) As WixSelectedID
 	listID = listID.tolowercase
 	Dim si As Map = Dollar.Selector(listID).RunMethod("getSelectedId",Null).Result
 	'
@@ -1491,4 +1510,9 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+'delay execution of code
+Sub Delay(milliseconds As Int, cb As BANanoObject)
+	webix.RunMethod("delay",Array(cb,milliseconds))
 End Sub

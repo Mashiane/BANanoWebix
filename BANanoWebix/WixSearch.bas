@@ -19,6 +19,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixSearch
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Search.SetTemplate(os)
 	Return Me

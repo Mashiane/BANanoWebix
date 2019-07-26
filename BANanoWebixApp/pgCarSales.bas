@@ -5,9 +5,10 @@ Type=StaticCode
 Version=7.51
 @EndOfDesignText@
 'Static code module
+#IgnoreWarnings:12
 Sub Process_Globals
 	Private pg As WixPage
-	Private BANano As BANano
+	Private BANano As BANano 'ignore
 	Private dateFormat As Object
 	Dim photo As WixImage
 End Sub
@@ -75,7 +76,6 @@ End Sub
 Sub getCar1
 	
 	Dim fd As Map = pg.GetValues("form")
-	Log(fd)
 	Dim make As String = fd.Get("make")
 	Dim model As String = fd.Get("model")
 	Dim val As String = $"${make}_${model}.jpg"$

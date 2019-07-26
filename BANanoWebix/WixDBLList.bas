@@ -24,6 +24,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixDBLList
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	DBLList.SetTemplate(os)
 	Return Me

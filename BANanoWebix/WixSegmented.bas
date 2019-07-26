@@ -25,6 +25,7 @@ Sub SetMultiView(b As Object) As WixSegmented
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixSegmented
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Segmented.SetTemplate(os)
 	Return Me

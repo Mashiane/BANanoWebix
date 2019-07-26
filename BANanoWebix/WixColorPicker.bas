@@ -78,6 +78,7 @@ Sub SetDisabled(b As Boolean) As WixColorPicker
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixColorPicker
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	ColorPicker.SetTemplate(os)
 	Return Me

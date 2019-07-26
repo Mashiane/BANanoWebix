@@ -33,6 +33,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixDataColumn
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	DataColumn.SetTemplate(os)
 	Return Me

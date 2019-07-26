@@ -28,6 +28,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixComments
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Comments.SetTemplate(os)
 	Return Me

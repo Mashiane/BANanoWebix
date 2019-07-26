@@ -29,6 +29,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixIFrame
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	IFrame.SetTemplate(os)
 	Return Me
@@ -114,4 +115,45 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixIFrame
+	IFrame.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixIFrame
+	IFrame.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixIFrame
+IFrame.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixIFrame
+IFrame.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixIFrame
+IFrame.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixIFrame
+IFrame.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixIFrame
+IFrame.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixIFrame
+IFrame.SetAttr("maxWidth", maxWidth)
+Return Me
 End Sub

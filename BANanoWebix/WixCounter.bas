@@ -26,6 +26,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixCounter
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Counter.SetTemplate(os)
 	Return Me

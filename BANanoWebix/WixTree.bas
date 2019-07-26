@@ -30,6 +30,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixTree
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Tree.SetTemplate(os)
 	Return Me
@@ -183,4 +184,131 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixTree
+	Tree.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixTree
+Tree.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetClipboard(clipboard As Object) As WixTree
+Tree.SetAttr("clipboard", clipboard)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixTree
+Tree.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixTree
+Tree.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDatathrottle(datathrottle As Object) As WixTree
+Tree.SetAttr("datathrottle", datathrottle)
+Return Me
+End Sub
+
+Sub SetDatatype(datatype As Object) As WixTree
+Tree.SetAttr("datatype", datatype)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixTree
+Tree.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetDrag(drag As Object) As WixTree
+Tree.SetAttr("drag", drag)
+Return Me
+End Sub
+
+Sub SetDragscroll(dragscroll As Object) As WixTree
+Tree.SetAttr("dragscroll", dragscroll)
+Return Me
+End Sub
+
+Sub SetFilterMode(filterMode As Object) As WixTree
+Tree.SetAttr("filterMode", filterMode)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixTree
+Tree.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixTree
+Tree.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixTree
+Tree.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixTree
+Tree.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetNavigation(navigation As Boolean) As WixTree
+Tree.SetAttr("navigation", navigation)
+Return Me
+End Sub
+
+Sub SetReady(ready As Object) As WixTree
+Tree.SetAttr("ready", ready)
+Return Me
+End Sub
+
+Sub SetRemoveMissed(removeMissed As Boolean) As WixTree
+Tree.SetAttr("removeMissed", removeMissed)
+Return Me
+End Sub
+
+Sub SetRules(rules As Object) As WixTree
+Tree.SetAttr("rules", rules)
+Return Me
+End Sub
+
+Sub SetSave(save As Object) As WixTree
+Tree.SetAttr("save", save)
+Return Me
+End Sub
+
+Sub SetScheme(xscheme As Object) As WixTree
+Tree.SetAttr("scheme", xscheme)
+Return Me
+End Sub
+
+
+Sub SetScrollSpeed(scrollSpeed As Object) As WixTree
+Tree.SetAttr("scrollSpeed", scrollSpeed)
+Return Me
+End Sub
+
+Sub SetThreeState(threeState As Boolean) As WixTree
+Tree.SetAttr("threeState", threeState)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixTree
+Tree.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetUrl(url As Object) As WixTree
+Tree.SetAttr("url", url)
+Return Me
 End Sub

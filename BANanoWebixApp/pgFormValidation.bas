@@ -7,7 +7,7 @@ Version=7.51
 'Static code module
 Sub Process_Globals
 	Private pg As WixPage
-	Private BANano As BANano
+	Private BANano As BANano 'ignore
 End Sub
 
 Sub Init(pgContainer As String)

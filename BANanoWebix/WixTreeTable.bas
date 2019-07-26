@@ -31,6 +31,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixTreeTable
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	TreeTable.SetTemplate(os)
 	Return Me

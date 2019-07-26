@@ -5,9 +5,10 @@ Type=StaticCode
 Version=7.51
 @EndOfDesignText@
 'Static code module
+#IgnoreWarnings:12
 Sub Process_Globals
     Private pg As WixPage
-    Private BANano As BANano
+	Private BANano As BANano 'ignore
     Dim dt As WixDataTable
     Dim pgr As WixPager
     Dim lista As List

@@ -27,6 +27,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixMessageBox
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	MessageBox.SetTemplate(os)
 	Return Me

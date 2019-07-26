@@ -26,6 +26,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixUploader
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Uploader.SetTemplate(os)
 	Return Me

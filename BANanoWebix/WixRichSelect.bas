@@ -79,6 +79,7 @@ Sub SetPlaceHolder(ph As String) As WixRichSelect
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixRichSelect
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	RichSelect.SetTemplate(os)
 	Return Me
@@ -244,4 +245,145 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+
+Sub SetAlign(align As Object) As WixRichselect
+	Richselect.SetAttr("align", align)
+	Return Me
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixRichselect
+	Richselect.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAttributes(attributes As Object) As WixRichselect
+	Richselect.SetAttr("attributes", attributes)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixRichselect
+	Richselect.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetBottomLabel(bottomLabel As Object) As WixRichselect
+	Richselect.SetAttr("bottomLabel", bottomLabel)
+	Return Me
+End Sub
+
+Sub SetBottomPadding(bottomPadding As Object) As WixRichselect
+	Richselect.SetAttr("bottomPadding", bottomPadding)
+	Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixRichselect
+	Richselect.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixRichselect
+	Richselect.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixRichSelect
+	RichSelect.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixRichSelect
+	RichSelect.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetFormat(format As Object) As WixRichSelect
+	RichSelect.SetAttr("format", format)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixRichSelect
+	RichSelect.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixRichSelect
+	RichSelect.SetAttr("height", height)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixRichSelect
+	RichSelect.SetAttr("hidden", hidden)
+	Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixRichSelect
+	RichSelect.SetAttr("hotkey", hotkey)
+	Return Me
+End Sub
+
+Sub SetIcon(icon As Object) As WixRichSelect
+	RichSelect.SetAttr("icon", icon)
+	Return Me
+End Sub
+
+Sub SetInputAlign(inputAlign As Object) As WixRichSelect
+	RichSelect.SetAttr("inputAlign", inputAlign)
+	Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixRichSelect
+	RichSelect.SetAttr("inputHeight", inputHeight)
+	Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixRichSelect
+	RichSelect.SetAttr("inputWidth", inputWidth)
+	Return Me
+End Sub
+
+Sub SetInvalid(invalid As Object) As WixRichSelect
+	RichSelect.SetAttr("invalid", invalid)
+	Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixRichSelect
+RichSelect.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixRichSelect
+RichSelect.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixRichSelect
+RichSelect.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetPopupWidth(popupWidth As Object) As WixRichSelect
+RichSelect.SetAttr("popupWidth", popupWidth)
+Return Me
+End Sub
+
+Sub SetReadonly(readonly As Boolean) As WixRichSelect
+RichSelect.SetAttr("readonly", readonly)
+Return Me
+End Sub
+
+Sub SetRelatedAction(relatedAction As Object) As WixRichSelect
+RichSelect.SetAttr("relatedAction", relatedAction)
+Return Me
+End Sub
+
+Sub SetRelatedView(relatedView As Object) As WixRichSelect
+RichSelect.SetAttr("relatedView", relatedView)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixRichSelect
+RichSelect.SetAttr("width", width)
+Return Me
 End Sub

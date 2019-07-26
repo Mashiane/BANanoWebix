@@ -32,6 +32,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixTextArea
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	TextArea.SetAttr("template", os)
 	Return Me
@@ -250,4 +251,121 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixTextArea
+TextArea.SetAttr("animate", animate)
+Return Me
+End Sub
+
+Sub SetAttributes(attributes As Object) As WixTextArea
+TextArea.SetAttr("attributes", attributes)
+Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixTextArea
+TextArea.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixTextArea
+TextArea.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixTextArea
+TextArea.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixTextArea
+TextArea.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetFormat(format As Object) As WixTextArea
+TextArea.SetAttr("format", format)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixTextArea
+TextArea.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixTextArea
+TextArea.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixTextArea
+TextArea.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetInputAlign(inputAlign As Object) As WixTextArea
+TextArea.SetAttr("inputAlign", inputAlign)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixTextArea
+TextArea.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixTextArea
+TextArea.SetAttr("inputWidth", inputWidth)
+Return Me
+End Sub
+
+Sub SetInvalid(invalid As Object) As WixTextArea
+TextArea.SetAttr("invalid", invalid)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixTextArea
+TextArea.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixTextArea
+TextArea.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPattern(pattern As Object) As WixTextArea
+TextArea.SetAttr("pattern", pattern)
+Return Me
+End Sub
+
+
+Sub SetPopup(popup As Object) As WixTextArea
+TextArea.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetRelatedAction(relatedAction As Object) As WixTextArea
+TextArea.SetAttr("relatedAction", relatedAction)
+Return Me
+End Sub
+
+Sub SetElatedView(elatedView As Object) As WixTextArea
+TextArea.SetAttr("elatedView", elatedView)
+Return Me
+End Sub
+
+Sub SetSuggest(suggest As Object) As WixTextArea
+TextArea.SetAttr("suggest", suggest)
+Return Me
+End Sub
+
+Sub SetValidate(validate As Object) As WixTextArea
+TextArea.SetAttr("validate", validate)
+Return Me
+End Sub
+
+Sub SetValidateEvent(validateEvent As Object) As WixTextArea
+TextArea.SetAttr("validateEvent", validateEvent)
+Return Me
 End Sub

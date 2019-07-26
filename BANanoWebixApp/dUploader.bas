@@ -20,6 +20,8 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.Clear
 	Bag.AddTextBox("id", "ID","upload")
 	Bag.AddTextBox("localId", "Local ID", "")
+	Bag.AddTextBox("name", "Name","upload")
+	Bag.AddTextBox("value", "Value","")
 	'
 	Bag.AddLabel("Parent")
 	Bag.AddTextBox("parentid","Parent", "form")
@@ -29,8 +31,6 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.AddCombo("type", "Type", "", Array("","htmlbutton","image","imageTop","icon","iconTop"))
 	'
 	Bag.AddLabel("Details")
-	Bag.AddTextBox("value", "Value","")
-	Bag.AddTextBox("name", "Name","upload")
 	Bag.AddTextBox("inputName", "Input Name", "upload")
 	Bag.AddTextBox("tooltip", "Tooltip","")
 	Bag.AddTextBox("batch", "Batch","")

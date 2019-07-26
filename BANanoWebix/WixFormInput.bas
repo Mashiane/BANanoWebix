@@ -24,6 +24,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixFormInput
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	FormInput.SetTemplate(os)
 	Return Me

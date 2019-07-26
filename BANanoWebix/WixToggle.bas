@@ -28,6 +28,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixToggle
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Toggle.SetTemplate(os)
 	Return Me

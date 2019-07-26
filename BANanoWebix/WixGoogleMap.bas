@@ -13,7 +13,7 @@ Sub Class_Globals
 	Public const MAP_TYPE_SATELLITE As String = "SATELLITE"
 	Public const MAP_TYPE_HYBRID As String = "HYBRID"
 	Public const MAP_TYPE_TERRAIN As String = "TERRAIN"
-	Private BANano As BANano
+	Private BANano As BANano  'ignore
 End Sub
 
 'Initializes the Context
@@ -26,6 +26,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixGoogleMap
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	GoogleMap.SetTemplate(os)
 	Return Me

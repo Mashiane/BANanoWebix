@@ -74,6 +74,7 @@ Sub SetPlaceHolder(ph As String) As WixCombo
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixCombo
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Combo.SetTemplate(os)
 	Return Me

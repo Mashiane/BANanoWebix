@@ -25,6 +25,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixColumn
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Column.SetTemplate(os)
 	Return Me
@@ -159,4 +160,148 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+
+'set scroll
+Sub SetScroll(b As Object) As WixColumn
+	Column.SetAttr("scroll", b)
+	Return Me
+End Sub
+
+
+'set type
+Sub SetType(t As String) As WixColumn
+	Column.SetType(t)
+	Return Me
+End Sub
+
+'make clean Column
+Sub SetTypeClean(a As String) As WixColumn   'ignore
+	SetType("clean")
+	Return Me
+End Sub
+
+'make line Column
+Sub SetTypeLine(a As String) As WixColumn   'ignore
+	SetType("line")
+	Return Me
+End Sub
+
+'make wide Column
+Sub SetTypeWide(a As String) As WixColumn   'ignore
+	SetType("wide")
+	Return Me
+End Sub
+
+'make space Column
+Sub SetTypeSpace(a As String) As WixColumn   'ignore
+	SetType("space")
+	Return Me
+End Sub
+
+'make a head Column
+Sub SetTypeHead(a As String) As WixColumn   'ignore
+	SetType("head")
+	Return Me
+End Sub
+
+'make form Column
+Sub SetTypeForm(a As String) As WixColumn   'ignore
+	SetType("form")
+	Return Me
+End Sub
+
+
+Sub SetBorderless(borderless As Boolean) As WixColumn
+	Column.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetContainer(container As String) As WixColumn
+	Column.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As String) As WixColumn
+	Column.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As String) As WixColumn
+	Column.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixColumn
+	Column.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixColumn
+	Column.SetAttr("hidden", hidden)
+	Return Me
+End Sub
+
+
+Sub SetIsolate(isolate As Boolean) As WixColumn
+	Column.SetAttr("isolate", isolate)
+	Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As String) As WixColumn
+	Column.SetAttr("maxHeight", maxHeight)
+	Return Me
+End Sub
+
+
+Sub SetMaxWidth(maxWidth As String) As WixColumn
+Column.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPaddingX(paddingX As String) As WixColumn
+Column.SetAttr("paddingX", paddingX)
+Return Me
+End Sub
+
+Sub SetPaddingY(paddingY As String) As WixColumn
+Column.SetAttr("paddingY", paddingY)
+Return Me
+End Sub
+
+Sub SetBatch(paddingY As String) As WixColumn
+	Column.SetAttr("batch", paddingY)
+	Return Me
+End Sub
+
+'set css
+Sub SetStyle(prop As String, val As String) As WixColumn
+	Column.SetStyle(prop,val)
+	Return Me
+End Sub
+
+Sub SetVisibleBatch(visibleBatch As String) As WixColumn
+Column.SetAttr("visibleBatch", visibleBatch)
+Return Me
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixColumn
+	Column.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetCols(cols As Object) As WixColumn
+Column.SetAttr("cols", cols)
+Return Me
+End Sub
+
+Sub SetMaxHeght(maxHeght As Object) As WixColumn
+Column.SetAttr("maxHeght", maxHeght)
+Return Me
+End Sub
+
+Sub SetRows(rows As Object) As WixColumn
+Column.SetAttr("rows", rows)
+Return Me
 End Sub

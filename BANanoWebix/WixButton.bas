@@ -50,6 +50,7 @@ Sub SetLabelWidth(w As Int) As WixButton
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixButton
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Button.SetTemplate(os)
 	Return Me

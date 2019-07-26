@@ -36,6 +36,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixDataTable
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	DataTable.SetTemplate(os)
 	Return Me

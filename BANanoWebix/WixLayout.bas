@@ -33,6 +33,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixLayout
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Layout.SetTemplate(os)
 	Return Me
@@ -212,6 +213,16 @@ Layout.SetAttr("paddingY", paddingY)
 Return Me
 End Sub
 
+Sub SetBatch(paddingY As String) As WixLayout
+	Layout.SetAttr("batch", paddingY)
+	Return Me
+End Sub
+
+'set css
+Sub SetStyle(prop As String, val As String) As WixLayout
+	Layout.SetStyle(prop,val)
+	Return Me
+End Sub
 
 Sub SetVisibleBatch(visibleBatch As String) As WixLayout
 Layout.SetAttr("visibleBatch", visibleBatch)

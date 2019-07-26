@@ -29,6 +29,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixPortlet
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Portlet.SetTemplate(os)
 	Return Me

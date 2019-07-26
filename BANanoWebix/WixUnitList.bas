@@ -27,6 +27,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixUnitList
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	UnitList.SetTemplate(os)
 	Return Me

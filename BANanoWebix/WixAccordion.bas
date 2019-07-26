@@ -19,6 +19,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixAccordion
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Accordion.SetTemplate(os)
 	Return Me

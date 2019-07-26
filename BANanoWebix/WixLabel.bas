@@ -26,6 +26,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixLabel
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Label.SetTemplate(os)
 	Return Me

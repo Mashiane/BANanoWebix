@@ -30,6 +30,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixText
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Text.SetTemplate(os)
 	Return Me
@@ -366,4 +367,87 @@ Sub AddToElements(parent As WixElement)
 	parent.AddElements(Item)
 End Sub
 
+Sub SetAnimate(animate As Boolean) As WixText
+Text.SetAttr("animate", animate)
+Return Me
+End Sub
 
+Sub SetAttributes(attributes As Object) As WixText
+Text.SetAttr("attributes", attributes)
+Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixText
+Text.SetAttr("borderless", borderless)
+Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixText
+Text.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixText
+Text.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixText
+Text.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixText
+Text.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixText
+Text.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetIcon(icon As Object) As WixText
+Text.SetAttr("icon", icon)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixText
+Text.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixText
+Text.SetAttr("inputWidth", inputWidth)
+Return Me
+End Sub
+
+Sub SetInvalid(invalid As Object) As WixText
+Text.SetAttr("invalid", invalid)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixText
+Text.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixText
+Text.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixText
+Text.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetRelatedAction(relatedAction As Object) As WixText
+Text.SetAttr("relatedAction", relatedAction)
+Return Me
+End Sub
+
+Sub SetRelatedView(relatedView As Object) As WixText
+Text.SetAttr("relatedView", relatedView)
+Return Me
+End Sub

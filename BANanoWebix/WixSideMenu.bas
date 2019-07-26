@@ -44,6 +44,7 @@ Sub CreateItem(i As String) As WixElement
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixSideMenu
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	SideMenu.SetTemplate(os)
 	Return Me

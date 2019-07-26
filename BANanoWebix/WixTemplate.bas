@@ -29,6 +29,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixTemplate
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Template.SetTemplate(os)
 	Return Me

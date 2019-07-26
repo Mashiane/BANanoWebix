@@ -21,6 +21,7 @@ Sub getSideBar As WixSideBar
 	
 	Dim sm As WixSideBar
 	sm.Initialize("smp").SetCollapsed(False).SetActiveTitle(True).SetScroll(True).SetSelect(True)
+	sm.SetDrag(True)
 	'sm.SetTemplate(sPhoto)
 		
 	'
@@ -41,7 +42,7 @@ Sub getSideBar As WixSideBar
 '	sm.AddItem("dp", "grouplist", "GroupList","","", "","")
 	sm.AddItem("dp", "list", "List","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("dp", "propertysheet", "Property Sheet","","mdi mdi-selection-ellipse", "","")
-'	sm.AddItem("dp", "tree", "Tree","","", "","")
+	sm.AddItem("dp", "tree", "Tree","","mdi mdi-selection-ellipse", "","")
 '	sm.AddItem("dp", "treetable", "TreeTable","","", "","")
 	sm.AddItem("dp", "unitlist", "UnitList","","mdi mdi-selection-ellipse", "","")
 '	'
@@ -49,7 +50,7 @@ Sub getSideBar As WixSideBar
 '	sm.AddItem("vis", "chart", "Chart","","", "","")
 	sm.AddItem("vis", "google-map", "Google Map","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("vis", "geochart", "Geochart","","mdi mdi-selection-ellipse", "","")
-'	sm.AddItem("vis", "iframe", "IFrame","","", "","")
+	sm.AddItem("vis", "iframe", "IFrame","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("vis", "template", "Template","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("vis", "video", "Video","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("vis", "image", "Image","","mdi mdi-selection-ellipse", "","")
@@ -59,6 +60,8 @@ Sub getSideBar As WixSideBar
 '	sm.AddItem("lay", "carousel", "Carousel","","", "","")
 '	sm.AddItem("lay", "comments", "Comments","","", "","")
 	sm.AddItem("lay", "form", "Form","","mdi mdi-selection-ellipse", "","")
+	sm.AddItem("lay", "row", "Row","","mdi mdi-table-row-plus-after", "","")
+	sm.AddItem("lay", "column", "Column","","mdi mdi-table-column-plus-after", "","")
 	sm.AddItem("lay", "layout", "Layout","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("lay", "multiview", "MultiView","","mdi mdi-selection-ellipse", "","")
 '	sm.AddItem("lay", "scrollview", "ScrollView","","", "","")
@@ -81,10 +84,6 @@ Sub getSideBar As WixSideBar
 	'
 	'add control elements
 	sm.AddItem("", "con", "Controls","","", "","")
-	sm.AddItem("con", "grid", "Grid","","mdi mdi-grid", "","")
-	sm.AddItem("grid", "row", "Row","","mdi mdi-table-row-plus-after", "","")
-	sm.AddItem("grid", "column", "Column","","mdi mdi-table-column-plus-after", "","")
-	
 	'buttons
 	sm.AddItem("con", "buttons", "Buttons","","mdi mdi-pin", "","")
 	sm.AddItem("buttons", "button", "Button","","mdi mdi-selection-ellipse", "","")

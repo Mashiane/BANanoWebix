@@ -6,7 +6,7 @@ Version=7.51
 @EndOfDesignText@
 'Static code module
 Sub Process_Globals
-	Private BANano As BANano
+	Private BANano As BANano  'ignore
 	Private propBag As WixProperty
 End Sub
 

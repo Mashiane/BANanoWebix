@@ -21,6 +21,7 @@ Public Sub Initialize(sid As String) As WixFieldSet
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixFieldSet
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	FieldSet.SetTemplate(os)
 	Return Me

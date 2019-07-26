@@ -28,6 +28,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixPopUp
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Popup.SetTemplate(os)
 	Return Me

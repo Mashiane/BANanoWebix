@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public Property As WixElement
 	Private elements As List
 	Public Maps As Map
+	Private webix As BANanoObject
 End Sub
 
 'Initializes the property sheet
@@ -18,6 +19,7 @@ Public Sub Initialize(eID As String) As WixProperty
 	Property.Initialize(ID).SetView("property")
 	elements.Initialize 
 	Maps.Initialize 
+	webix.Initialize("webix") 
 	Return Me
 End Sub
 
@@ -111,6 +113,26 @@ Sub AddTextBox(eid As String, label As String, value As String) As WixProperty
 	elements.Add(El(eid, label, "text", value, Null,Null))
 	Return Me
 End Sub
+
+Sub AddPopUp(eid As String, label As String, value As String) As WixProperty
+	Dim ta As WixTextArea
+	ta.Initialize("").SetWidth(300).SetHeight(100)
+	' 
+	Dim pu As WixPopUp
+	pu.Initialize(eid & "pu").SetPoint(True).SetBody(ta.Item)
+	'
+	webix.RunMethod("ui", Array(pu.Item))
+	'
+	Dim opt As Map = CreateMap()
+	opt.Put("id", eid)
+	opt.Put("label", label)
+	opt.Put("type", "popup")
+	opt.Put("popup", eid & "pu")
+	opt.Put("value", value)
+	elements.Add(opt)
+	Return Me
+End Sub
+
 
 Sub AddLabel(label As String) As WixProperty
 	elements.Add(El("", label, "label", "", Null,Null))

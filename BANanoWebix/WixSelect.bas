@@ -27,6 +27,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixSelect
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	DropDown.SetTemplate(os)
 	Return Me
@@ -234,4 +235,134 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+Sub SetAlign(align As Object) As WixSelect
+	DropDown.SetAttr("align", align)
+	Return Me
+End Sub
+
+Sub SetAnimate(animate As Boolean) As WixSelect
+	DropDown.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetAttributes(attributes As Object) As WixSelect
+	DropDown.SetAttr("attributes", attributes)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixSelect
+	DropDown.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetClick(click As Object) As WixSelect
+DropDown.SetAttr("click", click)
+Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixSelect
+DropDown.SetAttr("container", container)
+Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixSelect
+DropDown.SetAttr("css", css)
+Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixSelect
+DropDown.SetAttr("disabled", disabled)
+Return Me
+End Sub
+
+Sub SetFormat(format As Object) As WixSelect
+DropDown.SetAttr("format", format)
+Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixSelect
+DropDown.SetAttr("gravity", gravity)
+Return Me
+End Sub
+
+Sub SetHeight(height As Object) As WixSelect
+DropDown.SetAttr("height", height)
+Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixSelect
+DropDown.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetHotkey(hotkey As Object) As WixSelect
+DropDown.SetAttr("hotkey", hotkey)
+Return Me
+End Sub
+
+Sub SetInputAlign(inputAlign As Object) As WixSelect
+DropDown.SetAttr("inputAlign", inputAlign)
+Return Me
+End Sub
+
+Sub SetInputHeight(inputHeight As Object) As WixSelect
+DropDown.SetAttr("inputHeight", inputHeight)
+Return Me
+End Sub
+
+Sub SetInputWidth(inputWidth As Object) As WixSelect
+DropDown.SetAttr("inputWidth", inputWidth)
+Return Me
+End Sub
+
+Sub SetInvalid(invalid As Object) As WixSelect
+DropDown.SetAttr("invalid", invalid)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixSelect
+DropDown.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixSelect
+DropDown.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPlaceholder(placeholder As Object) As WixSelect
+DropDown.SetAttr("placeholder", placeholder)
+Return Me
+End Sub
+
+Sub SetPopup(popup As Object) As WixSelect
+DropDown.SetAttr("popup", popup)
+Return Me
+End Sub
+
+Sub SetReadonly(readonly As Boolean) As WixSelect
+DropDown.SetAttr("readonly", readonly)
+Return Me
+End Sub
+
+Sub SetRelatedAction(relatedAction As Object) As WixSelect
+DropDown.SetAttr("relatedAction", relatedAction)
+Return Me
+End Sub
+
+Sub SetRelatedView(relatedView As Object) As WixSelect
+DropDown.SetAttr("relatedView", relatedView)
+Return Me
+End Sub
+
+Sub SetSuggest(suggest As Object) As WixSelect
+DropDown.SetAttr("suggest", suggest)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixSelect
+DropDown.SetAttr("width", width)
+Return Me
 End Sub

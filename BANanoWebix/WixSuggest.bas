@@ -35,6 +35,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixSuggest
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Suggest.SetTemplate(os)
 	Return Me

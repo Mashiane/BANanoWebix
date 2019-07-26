@@ -31,6 +31,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixList
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	List.SetTemplate(os)
 	Return Me

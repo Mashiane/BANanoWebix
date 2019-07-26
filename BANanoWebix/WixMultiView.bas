@@ -44,6 +44,7 @@ Sub SetPadding(p As Object) As WixMultiView
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixMultiView
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	MultiView.SetTemplate(os)
 	Return Me

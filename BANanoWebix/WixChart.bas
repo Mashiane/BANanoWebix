@@ -31,6 +31,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixChart
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Chart.SetTemplate(os)
 	Return Me

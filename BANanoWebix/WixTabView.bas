@@ -29,6 +29,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixTabView
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	TabView.SetTemplate(os)
 	Return Me

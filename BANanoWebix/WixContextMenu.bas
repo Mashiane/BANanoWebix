@@ -23,6 +23,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixContextMenu
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	ContextMenu.SetTemplate(os)
 	Return Me

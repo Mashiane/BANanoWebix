@@ -28,6 +28,8 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.Clear
 	Bag.AddTextBox("id", "ID","combo1")
 	Bag.AddTextBox("localId", "Local ID", "")
+	Bag.AddTextBox("name", "Name","")
+	Bag.AddTextBox("value", "Value","")
 	Bag.AddLabel("Parent")
 	Bag.AddTextBox("parentid","Parent", "form")
 	Bag.AddCombo("addingmethod","Adding Method","AddRows", pgFD.addingmethod)
@@ -36,8 +38,6 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.AddCombo("type", "Type", "", Array("","htmlbutton","image","imageTop","icon","iconTop"))
 
 	Bag.AddLabel("Details")
-	Bag.AddTextBox("value", "Value","")
-	Bag.AddTextBox("name", "Name","")
 	Bag.AddCombo("align", "Align", "", Array("","left","center","right"))
 	Bag.AddCombo("inputAlign", "InputAlign", "", Array("","left","right"))
 

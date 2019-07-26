@@ -25,6 +25,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixScrollView
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	ScrollView.SetTemplate(os)
 	Return Me

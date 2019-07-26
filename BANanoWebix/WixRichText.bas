@@ -83,6 +83,7 @@ Sub SetPlaceHolder(ph As String) As WixRichText
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixRichText
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	RichText.SetTemplate(os)
 	Return Me
@@ -217,4 +218,75 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixRichtext
+	Richtext.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixRichtext
+	Richtext.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixRichText
+	RichText.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixRichText
+	RichText.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixRichText
+	RichText.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixRichText
+	RichText.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixRichText
+RichText.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixRichText
+RichText.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixRichText
+RichText.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPadding(padding As Object) As WixRichText
+RichText.SetAttr("padding", padding)
+Return Me
+End Sub
+
+Sub SetPaddingX(paddingX As Object) As WixRichText
+RichText.SetAttr("paddingX", paddingX)
+Return Me
+End Sub
+
+Sub SetPaddingY(paddingY As Object) As WixRichText
+RichText.SetAttr("paddingY", paddingY)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixRichText
+RichText.SetAttr("type", sType)
+Return Me
+End Sub
+
+Sub SetWidth(width As Object) As WixRichText
+RichText.SetAttr("width", width)
+Return Me
 End Sub

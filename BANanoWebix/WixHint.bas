@@ -32,6 +32,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixHint
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Hint.SetTemplate(os)
 	Return Me

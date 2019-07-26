@@ -30,6 +30,7 @@ Sub SetTemplate(t As Object) As WixHeader
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixHeader
+	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Header.SetTemplate(os)
 	Return Me
