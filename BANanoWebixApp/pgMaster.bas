@@ -28,7 +28,7 @@ Sub Init
 	tblBar.CreateElement("logo").SetStyle("background","url(./assets/webix-logo.svg) 2px -7px no-repeat").SetWidth(100).AddToColumns(tblBar.toolbar)
 	tblBar.CreateLabel("heading").SetLabel(shdr).Pop
 	tblBar.CreateAvatar("avatar", "./assets/mashy.png", "green",CreateMap("top":"-4px")).SetWidth(60).SetBorderLess(True).AddToColumns(tblBar.ToolBar)
-	tblBar.CreateIcon("collab").SetIcon("mdi mdi-wechat").SetTooltip("Collaborate").SetClick(BANano.CallBack(Me,"collab",Null)).pop
+	tblBar.CreateIcon("collab").SetIcon("mdi mdi-wechat").SetTooltip("Collaborate").SetClick(BANano.CallBack(Me,"collabwait",Null)).pop
 	tblBar.setPadding(3)
 	R1.AddRows(tblBar.Item)
 	'
@@ -218,7 +218,7 @@ Sub OpenMenu()
 End Sub
 
 
-Sub collab
+Sub collabwait
 	Dim theObject As Object = Sender
 	Dim isonline As Boolean = BANano.CheckInternetConnectionWait
 	If isonline Then

@@ -21,6 +21,6 @@ Sub getToolBar As WixToolBar
 	tblBar.CreateIcon("clearform1").SetIcon("mdi mdi-trash-can").SetTooltip("Trash project").SetClick(BANano.CallBack(pgFD,"clearform", Null)).pop
 	'
 	tblBar.CreateIcon("help").SetIcon("mdi mdi-help").SetTooltip("Hints").SetClick(BANano.CallBack(pgFD,"showhints", Null)).pop
-	tblBar.CreateIcon("collab").SetIcon("mdi mdi-wechat").SetTooltip("Collaborate").SetClick(BANano.CallBack(pgFD,"collab",Null)).pop
+	tblBar.CreateIcon("collab").SetIcon("mdi mdi-wechat").SetTooltip("Collaborate").SetClick(BANano.CallBack(pgFD,"collabwait",Null)).pop
 	Return tblBar
 End Sub

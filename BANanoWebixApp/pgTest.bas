@@ -85,10 +85,10 @@ Sub Cargar(pgContainer As String)
     pg.AddRows(pager)
 	pg.ui
 	'
-	UpdateList1("","")
+	UpdateList1wait("","")
 End Sub
 
-Sub UpdateList1(Desde As String, Hasta As String)
+Sub UpdateList1wait(Desde As String, Hasta As String)
 	'IMPORTANT: clear the contents of the grid
 	pg.clearAll("grilla")
 	If Desde = "" Then Desde = "2019-06-01"
@@ -151,6 +151,6 @@ End Sub
 Sub consultar_datos(e As BANanoEvent)
 	Dim Desde As String = pg.GetValue("dtpdesde")
 	Dim Hasta As String = pg.GetValue("dtpHasta")
-	UpdateList1(Desde,Hasta)
+	UpdateList1wait(Desde,Hasta)
 	Log("Update")
 End Sub

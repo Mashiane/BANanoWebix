@@ -568,7 +568,7 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready()
-	modSideBar.Version = "1.19"
+	modSideBar.Version = "1.20"
 	Dim sqlite As BANanoSQLite
 	sqlite.Initialize
 	dbName = $"${AppName}.db"$
@@ -645,6 +645,6 @@ Sub BANano_Ready()
 	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
 	'
-	'pgFD.init
-	pgMaster.init
+	pgFD.init
+	'pgMaster.init
 End Sub

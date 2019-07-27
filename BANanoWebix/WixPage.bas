@@ -465,8 +465,34 @@ Sub Define(eID As String, properties As Map)
 	Dollar.Selector(eID).RunMethod("define",Array(properties))
 End Sub
 
+'set a progress bar to an element
+Sub SetProgressBar(eid As String, pbdef As WixProgressBar)
+	eid = eid.tolowercase
+	Dim pb As BANanoObject = webix.GetField("ProgressBar")
+	Dim itm As BANanoObject = Dollar.Selector(eid)
+	webix.RunMethod("extend", Array(itm, pb))'
+	itm.RunMethod("showProgress", pbdef.Item)
+End Sub
 
+'unset the progress bar
+Sub UnsetProgressBar(eid As String)
+	eid = eid.ToLowerCase
+	Dollar.Selector(eid).RunMethod("hideProgress",Null)
+End Sub
 
+'get the banano object of the element
+Sub GetElementByID(eid As String) As BANanoObject
+	eid = eid.tolowercase
+	Dim bo As BANanoObject = Dollar.Selector(eid)
+	Return bo
+End Sub
+
+'get the webix app
+Sub GetWebix As BANanoObject
+	Return webix
+End Sub
+
+'run after pageui to add popups to propertybag
 Sub RegisterTypePopUp(eID As String)
 	eID = eID.ToLowerCase
 	Dim p As Map = CreateMap()

@@ -93,8 +93,9 @@ Sub Init()
 	pg.AddRow(R2)
 	'
 	pg.ui
+	'
 	' register a popup for the property bag
-	pg.RegisterTypePopUp("propbag")
+	'pg.RegisterTypePopUp("propbag")
 	'
 	'hide some things
 	pg.Hide("propadd")
@@ -107,7 +108,7 @@ Sub Init()
 	pg.onBeforeDrop("tree", BANano.CallBack(Me,"beforedrop", Array(context,e)))
 	'side bar click
 	Dim meid As Map
-	pg.OnItemClick("smp", BANano.CallBack(Me, "sidebar_click", Array(meid)))
+	pg.OnItemClick("smp", BANano.CallBack(Me, "sidebar_clickwait", Array(meid)))
 	pg.OnItemDblClick("smp", BANano.CallBack(Me, "sidebar_dblclick", Array(meid)))
 	'tree click
 	Dim recid As String
@@ -144,27 +145,27 @@ Sub beforedrop(context As BANanoObject, e As BANanoEvent) As Boolean
 		'drop a table on the connection
 		If targetto <> "connection" Then Return False
 		pg.SelectItem("tree","connection")
-		sidebar_click(startfrom)
+		sidebar_clickwait(startfrom)
 	Case "field"
 		'drop a field on the able
 		If starget.StartsWith("table.") Then
 			pg.SelectItem("tree",starget)
-			sidebar_click(startfrom)
+			sidebar_clickwait(startfrom)
 		Else
 			Return False
 		End If
 	Case "form"
 		'dropping a form on the tree
 		If starget = "null" Then
-			sidebar_click("form")
+			sidebar_clickwait("form")
 		End If
 	Case "wixsomething"
 		If starget = "null" Then
-			sidebar_click("wixsomething")
+			sidebar_clickwait("wixsomething")
 		End If
 	Case "property"
 		If starget.StartsWith("wixsomething.") Then
-			sidebar_click("property")
+			sidebar_clickwait("property")
 		End If
 	Case Else
 		'dropping a field on the form
@@ -173,27 +174,27 @@ Sub beforedrop(context As BANanoObject, e As BANanoEvent) As Boolean
 				'get the field name
 				Dim fldname As String = pg.MvField(sstart, 3, ".")
 				pg.SelectItem("tree", starget)
-				sidebar_click("text")
+				sidebar_clickwait("text")
 				Dim pb As Map = pg.getvalues("propbag")
 				pb.Put("id", fldname)
 				pb.Put("label", fldname)
-				SaveElement(pb)
+				SaveElementWait(pb)
 				Return False
 			End If
 		Else
 			pg.SelectItem("tree",starget)
-			sidebar_click(startfrom)
+			sidebar_clickwait(startfrom)
 		End If
 	End Select
 	Return False 
 End Sub
 
 Sub add_row
-	sidebar_click("row")
+	sidebar_clickwait("row")
 End Sub
 
 Sub add_column
-	sidebar_click("column")
+	sidebar_clickwait("column")
 End Sub
 
 'show window to add multiple elements
@@ -307,7 +308,7 @@ Sub RefreshTreeWait
 End Sub
 
 
-Sub AddPrimaryKey
+Sub AddPrimaryKeyWait
 	Dim tb As Map = pg.GetValues("propbag")
 	Dim tbname As String = tb.GetDefault("value","")
 	Dim pk As String = tb.GetDefault("primarykey","")
@@ -491,38 +492,41 @@ Sub prop_add
 	
 	Select Case pview
 		Case "datatable"
-			sidebar_click("datacolumn")
+			sidebar_clickwait("datacolumn")
 			Return
 	End Select
 	
 	Select Case pid
 		Case "wixsomething"
 			'get selected treeview
-			sidebar_click("property")
+			sidebar_clickwait("property")
 		Case "property"
 			Dim k As String = $"wixsomething.${sname}"$
 			pg.SelectItem("tree", k)
-			sidebar_click("property")
+			sidebar_clickwait("property")
 		Case "connection"
 			'add a table
-			sidebar_click("table")
+			sidebar_clickwait("table")
 		Case "table"
 			'add a field
-			sidebar_click("field")
+			sidebar_clickwait("field")
 		Case "field"
 			'add a field
 			Dim k As String = $"table.${tablename}"$
 			'select the table
 			pg.SelectItem("tree", k)
-			sidebar_click("field")
+			sidebar_clickwait("field")
 		Case Else
 			'add a textbox
-			sidebar_click("text")
+			sidebar_clickwait("text")
 	End Select
 End Sub
 
 'save the item
 Sub prop_saveWait
+	Dim pbx As WixProgressBar
+	pbx.Initialize("").SetDelay(500).SetHide(True).SetTypeIcon("")
+	pg.SetProgressBar("propbag", pbx)
 	'get the property bag
 	Dim prop As Map = pg.GetValues("propbag")
 	Dim v As String = prop.GetDefault("view","")
@@ -636,7 +640,7 @@ Sub prop_saveWait
 			pg.Message(rs.result.size & " record(s) affected!")
 			'
 			'add primary key
-			AddPrimaryKey
+			AddPrimaryKeyWait
 			'select fields for table
 			sqlite.initialize
 			sqlite.AddStrings(Array("tablename"))
@@ -699,7 +703,7 @@ Sub prop_saveWait
 				rs = sqlite.GetResultSet(qry,res)
 				pg.Message_Success(rs.result.size & " record(s) affected!")
 			End If
-			FormCode("form",True)
+			FormCodeWait("form",True)
 		Case Else
 			pg.Show("download")
 			pg.Expand("preview")
@@ -741,13 +745,13 @@ Sub prop_saveWait
 				pg.Message_Success(rs.result.size & " record(s) affected!")
 			End If
 			'preview the item on designer
-			FormCode(i,True)
+			FormCodeWait(i,True)
 	End Select
 	'refresh tree
 	RefreshTreeWait
 End Sub
 
-Sub SaveElement(prop2save As Map)
+Sub SaveElementWait(prop2save As Map)
 	Dim p As String = prop2save.Get("parentid")
 	Dim i As String = prop2save.get("id")
 	Dim idx As String = prop2save.Get("tabindex")
@@ -1222,6 +1226,9 @@ Sub SourceCodePreview(script As String)
 End Sub
 
 Sub tree_clickwait(recid As String)
+	Dim pbx As WixProgressBar
+	pbx.Initialize("").SetDelay(500).SetHide(True).SetTypeIcon("")
+	pg.SetProgressBar("propbag", pbx)
 	ClearPreviewIT
 	ClearCodeIT
 	propBag.Clear
@@ -1373,7 +1380,7 @@ Sub tree_clickwait(recid As String)
 			pg.Show("download")
 			'we have clicked a form
 			dForm.BuildBag(pg, propBag)
-			FormCode("form",True)
+			FormCodeWait("form",True)
 		Case Else
 			pg.Show("add_row")
 			pg.Show("add_column")
@@ -1401,7 +1408,7 @@ Sub tree_clickwait(recid As String)
 				End If
 				v = v.ToLowerCase
 				DrawPropBag(v)
-				FormCode(recid,True)
+				FormCodeWait(recid,True)
 				Select Case v
 					Case "list"
 						pg.hide("add_row")
@@ -1419,7 +1426,7 @@ Sub tree_clickwait(recid As String)
 	End Select
 End Sub
 
-Sub FormCode(id As String, bShowPropBag As Boolean)
+Sub FormCodeWait(id As String, bShowPropBag As Boolean)
 	ClearPreviewIT
 	ClearCodeIT
 	Dim sb As StringBuilder
@@ -1539,7 +1546,7 @@ Sub download
 	End If
 End Sub
 
-Sub collab
+Sub collabwait
 	Dim theObject As Object = Sender
 	Dim isonline As Boolean = BANano.CheckInternetConnectionWait
 	If isonline Then
@@ -1570,11 +1577,11 @@ Sub dbhelp
 End Sub
 
 Sub sidebar_dblclick(meid As String)
-	sidebar_click(meid)
+	sidebar_clickwait(meid)
 End Sub
 
 'on sidebar click, draw up the property bag
-Sub sidebar_click(meid As String)
+Sub sidebar_clickwait(meid As String)
 	pg.Collapse("preview")
 	pg.Expand("code")
 	ClearPreviewIT
@@ -2025,7 +2032,7 @@ Sub CreateWindow As BANanoObject
 	frmx.AddRows(txtArea.Item)
 	'
 	Dim btnSave As WixButton
-	btnSave.Initialize("btnMulti").SetLabel("Apply").SetClick(BANano.callback(Me,"btnMulti_click",Null))
+	btnSave.Initialize("btnMulti").SetLabel("Apply").SetClick(BANano.callback(Me,"btnMulti_clickwait",Null))
 	btnSave.SetBadge("0")
 	frmx.AddRows(btnSave.Item)
 	 
@@ -2037,7 +2044,7 @@ Sub CreateWindow As BANanoObject
 	Return winux
 End Sub
 
-Sub btnMulti_click
+Sub btnMulti_clickwait
 	'see selected treeitem
 	Dim parentid As String = pg.GetSelectedID("tree")
 	If parentid = "" Then
@@ -2256,7 +2263,7 @@ Sub FixProperty(key As String, prop As Map)
 	End Select
 End Sub
 
-Sub btnMulti1_click
+Sub btnMulti1_clickwait
 	'see selected treeitem
 	Dim parentid As String = pg.GetSelectedID("tree")
 	If parentid = "" Then
@@ -2429,7 +2436,7 @@ Sub CreateWindowFields As BANanoObject
 	frmx.AddRows(txtArea.Item)
 	'
 	Dim btnSave As WixButton
-	btnSave.Initialize("btnMulti1").SetLabel("Apply").SetClick(BANano.callback(Me,"btnMulti1_click",Null))
+	btnSave.Initialize("btnMulti1").SetLabel("Apply").SetClick(BANano.callback(Me,"btnMulti1_clickwait",Null))
 	btnSave.SetBadge("0")
 	frmx.AddRows(btnSave.Item)
 	 
