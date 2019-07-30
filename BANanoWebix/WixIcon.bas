@@ -21,6 +21,13 @@ Public Sub Initialize(bID As String) As WixIcon
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixIcon
+	Parent = p
+	Return Me
+End Sub
+
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
@@ -97,12 +104,6 @@ End Sub
 'set style
 Sub SetStyle(prop As String, val As String) As WixIcon
 	Icon.SetStyle(prop,val)
-	Return Me
-End Sub
-
-'set the parent
-Sub SetParent(p As WixElement) As WixIcon
-	Parent = p
 	Return Me
 End Sub
 

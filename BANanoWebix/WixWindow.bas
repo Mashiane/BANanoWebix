@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public Window As WixElement
 	Public ToolBar As WixToolBar
 	Public ToolBarID As String
+	Public Parent As WixElement
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
@@ -18,7 +19,20 @@ Public Sub Initialize(sid As String) As WixWindow
 	ToolBarID = ID & "tblbar"
 	Window.Initialize(ID).SetView("window")
 	ToolBar.Initialize(ToolBarID) 
+	parent = null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixWindow
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixWindow

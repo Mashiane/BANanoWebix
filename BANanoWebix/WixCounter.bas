@@ -11,6 +11,7 @@ Sub Class_Globals
 	Private Minimum As Int
 	Private Maximum As Int
 	Private Stepper As Int
+	Public Parent As WixElement
 End Sub
 
 'initialize the counter
@@ -21,9 +22,21 @@ Public Sub Initialize(iID As String) As WixCounter
 	Maximum = 100
 	Counter.SetValue(10)
 	Stepper = 1
+	parent = null
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixCounter
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixCounter
 	h.SetImportant(False)

@@ -9,6 +9,8 @@ Sub Class_Globals
 	Public ID As String
 	Public UnitList As WixElement
 	Private typeOf As Map
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the unit list
@@ -16,8 +18,16 @@ Public Sub Initialize(eID As String) As WixUnitList
 	ID = eID.tolowercase
 	UnitList.Initialize(ID).SetView("unitlist")
 	typeOf = CreateMap()
+	Parent = Null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixUnitList
+	Parent = p
+	Return Me
+End Sub
+
 
 'set item height
 Sub SetItemHeight(h As Object) As WixUnitList
@@ -25,6 +35,10 @@ Sub SetItemHeight(h As Object) As WixUnitList
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixUnitList
 	h.SetImportant(False)

@@ -14,6 +14,8 @@ Sub Class_Globals
 	Public const MAP_TYPE_HYBRID As String = "HYBRID"
 	Public const MAP_TYPE_TERRAIN As String = "TERRAIN"
 	Private BANano As BANano  'ignore
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the Context
@@ -21,9 +23,21 @@ Public Sub Initialize(sid As String) As WixGoogleMap
 	ID = sid.ToLowerCase
 	GoogleMap.Initialize(ID).setview("google-map")
 	Markers.Initialize
+	parent = null
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixGoogleMap
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixGoogleMap
 	h.SetImportant(False)

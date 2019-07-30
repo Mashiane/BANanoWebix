@@ -11,6 +11,20 @@ Sub Class_Globals
 	Private elements As List
 	Public Maps As Map
 	Private webix As BANanoObject
+	Public Parent As WixElement
+
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixProperty
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'Initializes the property sheet
@@ -20,6 +34,7 @@ Public Sub Initialize(eID As String) As WixProperty
 	elements.Initialize 
 	Maps.Initialize 
 	webix.Initialize("webix") 
+	parent = null
 	Return Me
 End Sub
 

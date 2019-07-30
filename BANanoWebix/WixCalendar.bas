@@ -9,6 +9,8 @@ Sub Class_Globals
 	Public ID As String
 	Public Calendar As WixElement
 	Private On As Map
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the calendar
@@ -16,7 +18,19 @@ Public Sub Initialize(sid As String) As WixCalendar
 ID = sid.tolowercase
 Calendar.Initialize(ID).SetView("calendar")
 On.Initialize 
+	Parent = Null
 Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixCalendar
+	Parent = p
+	Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 Sub OnAfterDateSelect(cb As BANanoObject) As WixCalendar

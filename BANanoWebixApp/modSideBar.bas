@@ -65,9 +65,9 @@ Sub getSideBar As WixSideBar
 	sm.AddItem("lay", "layout", "Layout","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("lay", "multiview", "MultiView","","mdi mdi-selection-ellipse", "","")
 '	sm.AddItem("lay", "scrollview", "ScrollView","","", "","")
-'	sm.AddItem("lay", "tabview", "TabView","","", "","")
+	sm.AddItem("lay", "tabview", "TabView","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("lay", "fieldset", "FieldSet","","mdi mdi-selection-ellipse", "","")
-	'sm.AddItem("con", "tabbar", "TabBar","","", "","")
+	sm.AddItem("lay", "tabbar", "TabBar","","mdi mdi-selection-ellipse", "","")
 	
 '	'
 	sm.AddItem("", "nav", "Navigation","","", "","")

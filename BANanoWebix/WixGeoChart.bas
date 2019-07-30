@@ -9,6 +9,8 @@ Sub Class_Globals
 	Public ID As String
 	Public Geochart As WixElement
 	Private chart As Map
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the geochart
@@ -16,7 +18,20 @@ Public Sub Initialize(sid As String) As WixGeoChart
 	ID = sid.tolowercase
 	Geochart.Initialize(ID).SetView("geochart")
 	chart.Initialize 
+	Parent = Null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixGeoChart
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 

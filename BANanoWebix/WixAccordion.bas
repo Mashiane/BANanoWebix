@@ -8,15 +8,29 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Accordion As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the accordion
 Public Sub Initialize(sid As String) As WixAccordion
 	ID = sid.tolowercase
 	Accordion.Initialize(ID).SetView("accordion").SetType("wide")
+	Parent = Null
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixAccordion
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixAccordion
 	h.SetImportant(False)

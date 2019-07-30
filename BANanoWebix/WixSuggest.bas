@@ -9,19 +9,34 @@ Sub Class_Globals
 	Public ID As String
 	Public Suggest As WixElement
 	Private Items As List
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the element
 Public Sub Initialize(sID As String) As WixSuggest
 	Suggest.Initialize(sID).SetView("suggest")
 	Items.Initialize  
+	parent = null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixSuggest
+	Parent = p
+	Return Me
+End Sub
+
 
 'set data
 Sub SetData(d As List) As WixSuggest
 	Suggest.SetData(d)
 	Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'use a map object

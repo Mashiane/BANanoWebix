@@ -8,18 +8,73 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Layout As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'initialize the layout
 Public Sub Initialize(sID As String) As WixLayout
 	ID = sID.tolowercase
 	Layout.Initialize(ID)
+	Parent = Null
 	Return Me
+End Sub
+
+
+'add resizer
+Sub AddResizerToColumns(s As String) As WixLayout   'ignore
+	Dim r As WixResizer
+	r.Initialize("")
+	AddColumns(r.Item)
+	Return Me
+End Sub
+
+Sub AddColumnsResizer(s As String) As WixLayout   'ignore
+	Dim r As WixResizer
+	r.Initialize("")
+	AddColumns(r.Item)
+	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixLayout
+	Parent = p
+	Return Me
+End Sub
+
+'add a spacer to the rows
+Sub AddRowsSpacer()
+	Dim s As WixElement
+	s.Initialize("").SetView("spacer")
+	AddRows(s.item)
+End Sub
+
+'add a spacer to the columns
+Sub AddColumnsSpacer()
+	Dim s As WixElement
+	s.Initialize("").SetView("spacer")
+	AddColumns(s.item)
+End Sub
+
+
+'add item to a column
+Sub AddColumns(itm As Map)
+	Layout.AddColumns(itm)
+End Sub
+
+'add item to a row
+Sub AddRows(itm As Map)
+	Layout.AddRows(itm)
 End Sub
 
 'return the item
 Sub Item As Map
 	Return Layout.item
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'use a map object

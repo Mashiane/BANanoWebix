@@ -13,6 +13,14 @@ Sub Class_Globals
 	Public DT_SELECT_CELL As String = "cell"
 	Public DT_SELECT_COLUMN As String = "column"
 	Private Items As List
+	Public Parent As WixElement
+
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixTreeTable
+	Parent = p
+	Return Me
 End Sub
 
 'Initializes the TreeTableTable sheet
@@ -20,6 +28,7 @@ Public Sub Initialize(eID As String) As WixTreeTable
 	ID = eID.tolowercase
 	TreeTable.Initialize(ID).SetView("treetable")
 	Items.Initialize
+	parent = null
 	Return Me
 End Sub
 
@@ -29,6 +38,10 @@ Sub SetName(n As String) As WixTreeTable
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixTreeTable
 	h.SetImportant(False)

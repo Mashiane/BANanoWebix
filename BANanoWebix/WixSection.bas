@@ -8,13 +8,28 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Section As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'initialize the input box
 Public Sub Initialize(iID As String) As WixSection
 	ID = iID.tolowercase
 	Section.Initialize(iID).SetType("section")
+	parent = null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixSection
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'use a map object

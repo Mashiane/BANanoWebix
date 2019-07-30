@@ -237,7 +237,7 @@ Sub RefreshTreeWait
 	'clear tree
 	pg.ClearAll("tree")
 	'
-	pg.AddNode("tree", "", "connection", "Database", "", pg.EnumWixIcons.Folder,"","",True)
+	pg.AddNode("tree", "", "connection", "Database", "", pg.EnumWixIcons.Folder,"","",False)
 	sqlite.Initialize
 	qry = sqlite.SelectAll("wixsomething", Array("name"), Array("name"))
 	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
@@ -246,7 +246,7 @@ Sub RefreshTreeWait
 		Dim name As String = fitem.GetDefault("name","")
 		If name <> "" Then
 			Dim key As String = $"wixsomething.${name}"$
-			pg.AddNode("tree", "", key, key, "", pg.EnumWixIcons.Folder,"","",True)
+			pg.AddNode("tree", "", key, key, "", pg.EnumWixIcons.Folder,"","",False)
 			sqlite.Initialize
 			qry = sqlite.SelectWhere("properties", Array("key"), CreateMap("parentid":name), Array("tabindex"))
 			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
@@ -256,7 +256,7 @@ Sub RefreshTreeWait
 				If k <> "" Then
 					Dim skey As String = "property." & pitem.Get("key")
 					Dim pkey As String = $"wixsomething.${name}"$
-					pg.AddNode("tree", pkey, skey, skey, "", pg.EnumWixIcons.Folder,"","",True)
+					pg.AddNode("tree", pkey, skey, skey, "", pg.EnumWixIcons.Folder,"","",False)
 				End If
 			Next
 		End If
@@ -268,7 +268,7 @@ Sub RefreshTreeWait
 	rs = sqlite.GetResultSet(qry, res)
 	For Each fitem As Map In rs.result
 		Dim key As String = fitem.Get("key")
-		pg.AddNode("tree", "connection", key, key, "", pg.EnumWixIcons.Folder,"","",True)
+		pg.AddNode("tree", "connection", key, key, "", pg.EnumWixIcons.Folder,"","",False)
 	Next
 	'
 	'load fields
@@ -280,7 +280,7 @@ Sub RefreshTreeWait
 		Dim key As String = fitem.Get("key")
 		Dim tablename As String = fitem.Get("tablename")
 		Dim tblKey As String = $"table.${tablename}"$
-		pg.AddNode("tree", tblKey, key, key, "", pg.EnumWixIcons.Folder,"","",True)
+		pg.AddNode("tree", tblKey, key, key, "", pg.EnumWixIcons.Folder,"","",False)
 	Next
 		
 	'load all forms
@@ -290,7 +290,7 @@ Sub RefreshTreeWait
 	rs = sqlite.GetResultSet(qry, res)
 	For Each fitem As Map In rs.result
 		Dim fid As String = fitem.Get("id")
-		pg.AddNode("tree", "", fid, fid, "", pg.EnumWixIcons.Folder,"","",True)
+		pg.AddNode("tree", "", fid, fid, "", pg.EnumWixIcons.Folder,"","",False)
 	Next
 	
 	'open items and load to the tree
@@ -302,7 +302,7 @@ Sub RefreshTreeWait
 	For Each item As Map In rs.result
 		Dim itmID As String = item.Get("id")
 		Dim parentid As String = item.Get("parentid")
-		pg.AddNode("tree", parentid, itmID, itmID, "", pg.EnumWixIcons.FileIcon, "", "", True)
+		pg.AddNode("tree", parentid, itmID, itmID, "", pg.EnumWixIcons.FileIcon, "", "", False)
 	Next
 	pg.Refresh("tree")
 End Sub
@@ -1847,6 +1847,9 @@ Sub DrawPropBag(con As String) As Boolean
 			Return True
 		Case "multiview"
 			dMultiView.BuildBag(pg, propBag)
+			Return True
+		Case "tabview"
+			dTabView.BuildBag(pg, propBag)
 			Return True
 		Case "fieldset"
 			dFieldSet.BuildBag(pg, propBag)

@@ -8,14 +8,54 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public TextArea As WixText
+	Public Parent As WixElement
 End Sub
 
 'Initializes the text area
 Public Sub Initialize(tID As String) As WixTextArea
 	TextArea.Initialize(tID)
 	TextArea.SetView("textarea")
+	Parent = Null
 	Return Me	
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixTextArea
+	Parent = p
+	Return Me
+End Sub
+
+Sub OnKeyPress(cb As BANanoObject) As WixTextArea
+	TextArea.OnKeyPress(cb)
+	Return Me
+End Sub
+
+
+Sub OnEnter(cb As BANanoObject) As WixTextArea
+	TextArea.OnEnter(cb)
+	Return Me
+End Sub
+
+Sub OnTimedKeypress(cb As BANanoObject) As WixTextArea
+	TextArea.OnTimedKeyPress(cb)
+	Return Me
+End Sub
+
+Sub OnChange(cb As BANanoObject) As WixTextArea
+	TextArea.OnChange(cb)
+	Return Me
+End Sub
+
+Sub OnFocus(cb As BANanoObject) As WixTextArea
+	TextArea.onfocus(cb)
+	Return Me
+End Sub
+
+Sub OnBlur(cb As BANanoObject) As WixTextArea
+	TextArea.onblur(cb)
+	Return Me
+End Sub
+
 
 'set value
 Sub SetValue(v As String) As WixTextArea
@@ -23,6 +63,11 @@ Sub SetValue(v As String) As WixTextArea
 	Return Me
 End Sub
 
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 'set localid
 Sub SetLocalID(i As String) As WixTextArea

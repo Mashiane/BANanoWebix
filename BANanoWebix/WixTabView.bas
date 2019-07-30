@@ -8,6 +8,8 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public TabView As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the TabView
@@ -15,8 +17,16 @@ Public Sub Initialize(sid As String) As WixTabView
 	ID = sid.tolowercase
 	TabView.Initialize(ID)
 	TabView.SetView("tabview")
+	Parent = Null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixTabView
+	Parent = p
+	Return Me
+End Sub
+
 
 'use a map object
 Sub SetMap(m As Map) As WixTabView
@@ -27,6 +37,10 @@ Sub SetMap(m As Map) As WixTabView
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixTabView
 	h.SetImportant(False)
@@ -122,4 +136,75 @@ End Sub
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
+End Sub
+
+
+Sub SetAnimate(animate As Boolean) As WixTabview
+	Tabview.SetAttr("animate", animate)
+	Return Me
+End Sub
+
+Sub SetBorderless(borderless As Boolean) As WixTabview
+	Tabview.SetAttr("borderless", borderless)
+	Return Me
+End Sub
+
+Sub SetCells(cells As Object) As WixTabview
+	Tabview.SetAttr("cells", cells)
+	Return Me
+End Sub
+
+Sub SetContainer(container As Object) As WixTabView
+	TabView.SetAttr("container", container)
+	Return Me
+End Sub
+
+Sub SetCss(css As Object) As WixTabView
+	TabView.SetAttr("css", css)
+	Return Me
+End Sub
+
+Sub SetDisabled(disabled As Boolean) As WixTabView
+	TabView.SetAttr("disabled", disabled)
+	Return Me
+End Sub
+
+Sub SetGravity(gravity As Object) As WixTabView
+	TabView.SetAttr("gravity", gravity)
+	Return Me
+End Sub
+
+Sub SetHidden(hidden As Boolean) As WixTabView
+TabView.SetAttr("hidden", hidden)
+Return Me
+End Sub
+
+Sub SetMaxHeight(maxHeight As Object) As WixTabView
+TabView.SetAttr("maxHeight", maxHeight)
+Return Me
+End Sub
+
+Sub SetMaxWidth(maxWidth As Object) As WixTabView
+TabView.SetAttr("maxWidth", maxWidth)
+Return Me
+End Sub
+
+Sub SetPadding(padding As Object) As WixTabView
+TabView.SetAttr("padding", padding)
+Return Me
+End Sub
+
+Sub SetPaddingX(paddingX As Object) As WixTabView
+TabView.SetAttr("paddingX", paddingX)
+Return Me
+End Sub
+
+Sub SetPaddingY(paddingY As Object) As WixTabView
+TabView.SetAttr("paddingY", paddingY)
+Return Me
+End Sub
+
+Sub SetType(sType As Object) As WixTabView
+TabView.SetAttr("type", sType)
+Return Me
 End Sub

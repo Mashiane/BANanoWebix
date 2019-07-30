@@ -10,7 +10,16 @@ Sub Class_Globals
 	Public Tree As WixElement
 	Private scheme As Map
 	Private Items As List
+	Public Parent As WixElement
+
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixTree
+	Parent = p
+	Return Me
+End Sub
+
 
 'Initializes the Tree sheet
 Public Sub Initialize(eID As String) As WixTree
@@ -18,6 +27,7 @@ Public Sub Initialize(eID As String) As WixTree
 	Tree.Initialize(ID).SetView("tree")
 	scheme = CreateMap()
 	Items.Initialize
+	Parent = Null
 	Return Me
 End Sub
 
@@ -28,6 +38,10 @@ Sub SetScroll(b As Object) As WixTree
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixTree
 	h.SetImportant(False)

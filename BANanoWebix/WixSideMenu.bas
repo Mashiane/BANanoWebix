@@ -11,6 +11,8 @@ Sub Class_Globals
 	Private body As WixElement
 	Public Items As List
 	Private typeOf As Map
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
@@ -20,7 +22,20 @@ Public Sub Initialize(sid As String) As WixSideMenu
 	body.Initialize(ID & "body").SetView("list").SetBorderLess(True).SetScroll(False).SetSelect(True)
 	Items.Initialize 
 	typeOf.Initialize
+	Parent = Null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixSideMenu
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'add menu item

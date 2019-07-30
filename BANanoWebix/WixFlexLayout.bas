@@ -8,20 +8,34 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public FlexLayout As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'initialize the FlexLayout
 Public Sub Initialize(sID As String) As WixFlexLayout
 	ID = sID.tolowercase
 	FlexLayout.Initialize(ID).SetView("flexlayout")
+	Parent = Null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixFlexLayout
+	Parent = p
+	Return Me
+End Sub
+
 
 'return the item
 Sub Item As Map
 	Return FlexLayout.item
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixFlexLayout
 	h.SetImportant(False)

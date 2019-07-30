@@ -8,13 +8,28 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public RangeSlider As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'initialize the input box
 Public Sub Initialize(iID As String) As WixRangeSlider
 	ID = iID.tolowercase
 	RangeSlider.Initialize(iID).SetView("rangeslider")
+	parent = null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixRangeSlider
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'add to form

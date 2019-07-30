@@ -9,6 +9,8 @@ Sub Class_Globals
 	Public GroupList As WixElement
 	Public ID As String
 	Private Items As List
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes GroupList object
@@ -16,8 +18,21 @@ Public Sub Initialize(lID As String) As WixGroupList
 	ID = lID.tolowercase
 	GroupList.Initialize(ID).SetView("grouplist")
 	Items.Initialize 
+	parent = null
 	Return Me
 End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixGroupList
+	Parent = p
+	Return Me
+End Sub
+
 
 'add item
 Sub AddItem(parentID As String, meID As String, mValue As String, mhref As String, mIcon As String, badge As String, target As String, mOpen As Boolean) As WixGroupList

@@ -8,6 +8,8 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public MultiView As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the MultiView
@@ -15,12 +17,25 @@ Public Sub Initialize(sid As String) As WixMultiView
 	ID = sid.tolowercase
 	MultiView.Initialize(ID)
 	MultiView.SetView("multiview")
+	parent = null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixMultiView
+	Parent = p
+	Return Me
+End Sub
+
 
 Sub AddItem(i As Map) As WixMultiView
 	MultiView.AddCells(i)
 	Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 Sub SetVisibleBatch(v As Object) As WixMultiView

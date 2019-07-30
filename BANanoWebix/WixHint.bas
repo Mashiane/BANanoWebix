@@ -9,6 +9,8 @@ Sub Class_Globals
 	Public ID As String
 	Public Hint As WixElement
 	Private Items As List
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the hint
@@ -16,7 +18,13 @@ Public Sub Initialize(sid As String) As WixHint
 	ID = sid.tolowercase
 	Hint.Initialize(ID).SetView("hint")
 	Items.Initialize 
+	parent = null
 	Return Me 
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 Sub AddStep(elID As String, stitle As String, stext As String, sevent As String) As WixHint

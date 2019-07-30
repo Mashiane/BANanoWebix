@@ -14,6 +14,14 @@ Sub Class_Globals
 	Private xAxis As Map
 	Private Tooltip As Map
 	Private Padding As Map
+	Public Parent As WixElement
+
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixChart
+	Parent = p
+	Return Me
 End Sub
 
 'initialize the input box
@@ -26,9 +34,14 @@ Public Sub Initialize(iID As String) As WixChart
 	xAxis.Initialize 
 	Tooltip.Initialize 
 	Padding.Initialize
+	Parent = Null
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixChart
 	h.SetImportant(False)

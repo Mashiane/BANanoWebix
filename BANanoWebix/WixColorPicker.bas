@@ -8,6 +8,7 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public ColorPicker As WixElement
+	Public Parent As WixElement
 End Sub
 
 'Initializes the date picker
@@ -17,9 +18,21 @@ Public Sub Initialize(bID As String) As WixColorPicker
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixColorPicker
+	Parent = p
+	Return Me
+End Sub
+
+
 'return the item to add
 Sub Item As Map
 	Return ColorPicker.item
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 

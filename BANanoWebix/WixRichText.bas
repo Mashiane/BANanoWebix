@@ -8,14 +8,28 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public RichText As WixElement
+	Public Parent As WixElement
 End Sub
 
 'initialize the input box
 Public Sub Initialize(iID As String) As WixRichText
 	ID = iID.tolowercase
 	RichText.Initialize(iID).SetView("richtext")
+	Parent = Null
 	Return Me
 End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixRichText
+	Parent = p
+	Return Me
+End Sub
+
 
 'add to form
 Sub AddToForm(frm As WixForm)

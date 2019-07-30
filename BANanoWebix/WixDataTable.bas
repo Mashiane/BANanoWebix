@@ -32,8 +32,21 @@ Sub Class_Globals
 	Public DT_ADJUST_HEADER As String = "header"
 	Public DT_ADJUST_TRUE As Boolean = True
 	Private Rules As Map
+	Public Parent As WixElement
+
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixDataTable
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixDataTable
 	h.SetImportant(False)
@@ -233,6 +246,7 @@ Public Sub Initialize(tID As String) As WixDataTable
 	DataTable.Initialize(ID).SetView("datatable")
 	AutoConfig = False
 	Rules.Initialize
+	Parent = Null
 	Return Me
 End Sub
 

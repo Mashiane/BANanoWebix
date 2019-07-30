@@ -8,13 +8,28 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Progressbar As WixElement
+	Public Parent As WixElement
+
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixProgressBar
+	Parent = p
+	Return Me
+End Sub
+
 
 'Initializes the progressbar
 Public Sub Initialize(sid As String) As WixProgressBar
 	ID = sid.tolowercase
 	Progressbar.Initialize(ID)
+	Parent = Null
 	Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'return the item

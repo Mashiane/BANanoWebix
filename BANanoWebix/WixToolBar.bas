@@ -9,6 +9,7 @@ Version=7.5
 Sub Class_Globals
 	Public ID As String
 	Public ToolBar As WixElement
+	Private Parent As WixElement
 End Sub
 
 'add to page
@@ -20,7 +21,20 @@ End Sub
 Public Sub Initialize(sID As String) As WixToolBar
 	ID = sID.tolowercase
 	ToolBar.Initialize(ID).SetView("toolbar")
+	Parent = Null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixToolBar
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 
@@ -129,6 +143,34 @@ Sub CreateButton(sid As String) As WixButton
 	Return btn
 End Sub
 
+Sub CreateText(sid As String) As WixText
+	Dim txt As WixText
+	txt.Initialize(sid)
+	txt.parent = ToolBar
+	Return txt
+End Sub
+
+Sub CreateSearch(s As String) As WixSearch
+	Dim txt As WixSearch
+	txt.Initialize(s)
+	txt.parent = ToolBar
+	Return txt
+End Sub
+
+Sub CreateCombo(c As String) As WixCombo
+	Dim cbo As WixCombo
+	cbo.Initialize(c)
+	cbo.parent = ToolBar
+	Return cbo
+End Sub
+
+Sub CreateRichSelect(rs As String) As WixRichSelect
+	Dim irs As WixRichSelect
+	irs.Initialize(rs)
+	irs.parent = ToolBar
+	Return irs
+End Sub
+
 'add an icon and define it
 Sub CreateIcon(sid As String) As WixIcon
 	Dim btn As WixIcon
@@ -158,6 +200,54 @@ Sub CreateToggle(sid As String) As WixToggle
 End Sub
 
 
+Sub CreateDatePicker(dp As String) As WixDatePicker
+	Dim dpx As WixDatePicker
+	dpx.Initialize(dp).SetParent(ToolBar)
+	Return dpx
+End Sub
+
+Sub CreateImage(img As String) As WixImage
+	Dim imgx As WixImage
+	imgx.Initialize(img).SetParent(ToolBar)
+	Return imgx
+End Sub
+
+Sub CreateUploader(upl As String) As WixUploader
+	Dim uplx As WixUploader
+	uplx.Initialize(upl).SetParent(ToolBar)
+	Return uplx
+End Sub
+
+Sub CreateSwitch(swt As String) As WixSwitch
+	Dim swtx As WixSwitch
+	swtx.Initialize(swt).SetParent(ToolBar)
+	Return swtx
+End Sub
+
+Sub CreateSelect(sel As String) As WixSelect
+	Dim selx As WixSelect
+	selx.Initialize(sel).SetParent(ToolBar)
+	Return selx
+End Sub
+
+
+Sub CreateSegmented(seg As String) As WixSegmented
+	Dim segx As WixSegmented
+	segx.Initialize(seg).SetParent(ToolBar)
+	Return segx
+End Sub
+
+Sub CreateCounter(cnt As String) As WixCounter
+	Dim cntx As WixCounter
+	cntx.Initialize(cnt).SetParent(ToolBar)
+	Return cntx
+End Sub
+
+Sub CreateHeader(hdr As String) As WixHeader
+	Dim hdrx As WixHeader
+	hdrx.Initialize(hdr).SetParent(ToolBar)
+	Return hdrx
+End Sub
 
 Sub CreateAvatar(sid As String, imgURL As String, statusColor As String, Styles As Map) As WixElement
 	Dim img As UOENowHTML
@@ -276,7 +366,6 @@ Sub SetWidth(width As String) As WixToolBar
 ToolBar.SetAttr("width", width)
 Return Me
 End Sub
-
 
 Sub SetAnimate(animate As Boolean) As WixToolBar
 	ToolBar.SetAttr("animate", animate)

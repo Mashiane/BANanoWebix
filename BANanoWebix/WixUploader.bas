@@ -8,6 +8,7 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Uploader As WixElement
+	Public Parent As WixElement
 End Sub
 
 'Initializes the uploader
@@ -16,6 +17,7 @@ Public Sub Initialize(sID As String) As WixUploader
 	Uploader.Initialize(ID).SetView("uploader")
 	SetName("upload")
 	SetInputName("upload")
+	parent = null
 	Return Me
 End Sub
 
@@ -171,6 +173,13 @@ Uploader.SetAttr("click", click)
 Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixUploader
+	Parent = p
+	Return Me
+End Sub
+
+
 Sub SetContainer(container As Object) As WixUploader
 Uploader.SetAttr("container", container)
 Return Me
@@ -179,6 +188,11 @@ End Sub
 Sub SetCss(css As Object) As WixUploader
 Uploader.SetAttr("css", css)
 Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 Sub SetDisabled(disabled As Boolean) As WixUploader

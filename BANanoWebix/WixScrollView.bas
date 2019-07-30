@@ -11,6 +11,8 @@ Sub Class_Globals
 	Private Rows As List
 	Private Columns As List
 	Private body As Map
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the Context
@@ -20,9 +22,21 @@ Public Sub Initialize(sid As String) As WixScrollView
 	Rows.Initialize 
 	Columns.Initialize
 	body.Initialize
+	Parent = Null
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixScrollView
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixScrollView
 	h.SetImportant(False)

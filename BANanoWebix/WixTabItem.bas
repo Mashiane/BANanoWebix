@@ -11,6 +11,8 @@ Sub Class_Globals
 	Private vIcon As String
 	Public Body As WixElement
 	Public TabItem As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
@@ -18,8 +20,16 @@ Public Sub Initialize(sid As String) As WixTabItem
 	ID = sid.ToLowerCase
 	TabItem.Initialize(ID & "tab")
 	Body.Initialize(ID & "body")
+	parent = null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixTabItem
+	Parent = p
+	Return Me
+End Sub
+
 
 'set close
 Sub SetClose(b As Boolean) As WixTabItem
@@ -27,6 +37,10 @@ Sub SetClose(b As Boolean) As WixTabItem
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixTabItem
 	h.SetImportant(False)

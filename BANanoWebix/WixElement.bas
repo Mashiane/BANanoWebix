@@ -79,17 +79,41 @@ Sub SetElementsConfigJSON(json As String) As WixElement
 	Return Me
 End Sub
 
-Sub SetOptionsJSON(json As String) As WixElement
-	Dim m As Map = Json2Map(json)
-	For Each mk As String In m.Keys
-		Dim mv As Object = m.Get(mk)
-		Dim opt As Map = CreateMap()
-		opt.Put(mk,mv)
-		options.Add(opt)
-	Next
-	Return Me
+
+' convert a json string to a list
+Sub Json2List(strValue As String) As List
+	Dim lst As List
+	lst.Initialize
+	lst.clear
+	If strValue.Length = 0 Then
+		Return lst
+	End If
+	Try
+		Dim parser As BANanoJSONParser
+		parser.Initialize(strValue)
+		Return parser.NextArray
+	Catch
+		Return lst
+	End Try
 End Sub
 
+Sub SetOptionsJSON(json As String) As WixElement
+	If json.StartsWith("[") Then
+		Dim lst As List = Json2List(json)
+		For Each rec As Map In lst
+			options.Add(rec)
+		Next
+	Else if json.StartsWith("{") Then	
+		Dim m As Map = Json2Map(json)
+		For Each mk As String In m.Keys
+			Dim mv As Object = m.Get(mk)
+			Dim opt As Map = CreateMap()
+			opt.Put(mk,mv)
+			options.Add(opt)
+		Next
+	End If
+	Return Me
+End Sub
 
 'add an option
 Sub AddOption(oid As String, oTxt As Object) As WixElement
@@ -321,11 +345,20 @@ Sub OnMouseMove(cb As BANanoObject) As WixElement
 	Return Me
 End Sub
 
-Sub onMouseOut(cb As BANanoObject) As WixElement
+Sub OnMouseOut(cb As BANanoObject) As WixElement
 	On.Put("onMouseOut",cb)
 	Return Me
 End Sub
 
+Sub OnBlur(cb As BANanoObject) As WixElement
+	On.Put("onBlur",cb)
+	Return Me
+End Sub
+
+Sub OnFocus(cb As BANanoObject) As WixElement
+	On.Put("onFocus",cb)
+	Return Me
+End Sub
 
 Sub OnKeyPress(cb As BANanoObject) As WixElement
 	On.Put("onKeyPress",cb)

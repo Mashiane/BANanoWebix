@@ -8,13 +8,28 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public IFrame As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the iframe
 Public Sub Initialize(sid As String) As WixIFrame
 	ID = sid.tolowercase
 	IFrame.Initialize(ID).SetView("iframe")
+	parent = null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixIFrame
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 Sub SetContainer(c As String) As WixIFrame

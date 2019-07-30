@@ -15,7 +15,16 @@ Sub Class_Globals
 	Public USER_AWAY As String = "away"
 	Public USER_BUSY As String = "busy"
 	Public USER_NONE As String = "none"
+	Public Parent As WixElement
+
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixComments
+	Parent = p
+	Return Me
+End Sub
+
 
 'Initializes the Comments object
 Public Sub Initialize(sid As String) As WixComments
@@ -23,9 +32,14 @@ Public Sub Initialize(sid As String) As WixComments
 	Comments.Initialize(ID).SetView("comments")
 	Users.Initialize 
 	Data.Initialize
+	Parent = Null
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixComments
 	h.SetImportant(False)

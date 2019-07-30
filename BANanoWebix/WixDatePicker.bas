@@ -8,18 +8,31 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public DatePicker As WixElement
+	Public Parent As WixElement
 End Sub
 
 'Initializes the date picker
 Public Sub Initialize(bID As String) As WixDatePicker
 	ID = bID.ToLowerCase
 	DatePicker.Initialize(ID).SetView("datepicker")
+	Parent = Null
 	Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'set time only
 Sub SetTypeTime(b As Boolean) As WixDatePicker   'ignore
 	DatePicker.SetAttr("type", "time")
+	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixDatePicker
+	Parent = p
 	Return Me
 End Sub
 

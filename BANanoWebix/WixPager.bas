@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Pager As WixElement
 	Private sb As StringBuilder
+	Public Parent As WixElement
 End Sub
 
 'Initializes the pager
@@ -16,7 +17,20 @@ Public Sub Initialize(sID As String) As WixPager
 	ID = sID.tolowercase
 	Pager.Initialize(ID).SetView("pager")
 	sb.Initialize 
+	Parent = Null
 	Return Me 
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixPager
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'show first

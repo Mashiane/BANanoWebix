@@ -8,6 +8,8 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Header As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 
@@ -17,10 +19,23 @@ Sub SetTooltip(tt As String) As WixHeader
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixHeader
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
+
 'initialize the header
 Public Sub Initialize(sID As String) As WixHeader
 	ID = sID.tolowercase
 	Header.Initialize(ID).SetType("header")
+	Parent = Null
 	Return Me
 End Sub
 

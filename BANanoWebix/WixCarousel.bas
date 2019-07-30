@@ -9,6 +9,8 @@ Sub Class_Globals
 	Public ID As String
 	Public Carousel As WixElement
 	Private nav As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the Carousel
@@ -17,9 +19,21 @@ Public Sub Initialize(sid As String) As WixCarousel
 	Carousel.Initialize(ID)
 	Carousel.SetView("carousel")
 	nav.Initialize(ID & "nav")
+	Parent = Null
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixCarousel
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixCarousel
 	h.SetImportant(False)

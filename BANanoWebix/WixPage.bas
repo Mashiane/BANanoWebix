@@ -61,6 +61,64 @@ Sub SetActual(original As Map, actual As Map) As Map
 End Sub
 
 
+Sub InStr(Text As String, sFind As String) As Int
+	Return Text.tolowercase.IndexOf(sFind.tolowercase)
+End Sub
+
+Sub Iconv(oldMap As Map, lst As List)
+	For Each lstv As String In lst
+		Dim mv As String = oldMap.Get(lstv)
+		mv = Val(mv)
+		oldMap.Put(lstv, mv)			
+	Next
+End Sub
+
+'extract all numeric values from a string
+Public Sub Val(value As String) As String
+	value = CStr(value)
+	Try
+		value = value.Trim
+		If value = "" Then value = "0"
+		Dim sout As String = ""
+		Dim mout As String = ""
+		Dim slen As Int = value.Length
+		Dim i As Int = 0
+		For i = 0 To slen - 1
+			mout = value.CharAt(i)
+			If InStr("0123456789.-", mout) <> -1 Then
+				sout = sout & mout
+			End If
+		Next
+		Return sout
+	Catch
+		Return value
+	End Try
+End Sub
+
+
+'convert list of maps to key,value pairs
+Sub List2KeyValues(lst As List, mapvalues As List) As List
+	Return List2IDValue(lst, mapvalues)
+End Sub
+
+'convest list of maps to id & value
+Sub List2IDValue(lst As List, mapValues As List) As List
+	Dim mv1 As String = mapValues.get(0)
+	Dim mv2 As String = mapValues.get(1)
+	Dim nlst As List
+	nlst.initialize
+	For Each dict As Map In lst
+		Dim mk As String = dict.get(mv1)
+		Dim mv As String = dict.get(mv2)
+		Dim nm As Map = CreateMap()
+		nm.Put("id", mk)
+		nm.put("value", mv)
+		nlst.Add(nm)
+	Next
+	Return nlst
+End Sub
+
+
 'remove the delimiter from stringbuilder
 Sub RemDelim(sValue As String, Delim As String) As String
 	Dim sw As Boolean = sValue.EndsWith(Delim)
@@ -445,8 +503,8 @@ Sub SetWidth(w As Object) As WixPage
 End Sub
 
 'set css
-Sub SetStyle(prop As String, val As String) As WixPage
-	Page.SetStyle(prop,val)
+Sub SetStyle(prop As String, sval As String) As WixPage
+	Page.SetStyle(prop,sval)
 	Return Me
 End Sub
 
@@ -463,6 +521,15 @@ End Sub
 Sub Define(eID As String, properties As Map)
 	eID = eID.ToLowerCase
 	Dollar.Selector(eID).RunMethod("define",Array(properties))
+End Sub
+
+Sub GetColumnConfig(eID As String, colID As String) As BANanoObject
+	eID = eID.ToLowerCase
+	colID = colID.tolowercase
+	'get the grid
+	Dim grd As BANanoObject = Dollar.Selector(eID)
+	Dim colDef As BANanoObject = grd.RunMethod("getColumnConfig", Array(colID))
+	Return colDef
 End Sub
 
 'set a progress bar to an element
@@ -487,6 +554,17 @@ Sub GetElementByID(eid As String) As BANanoObject
 	Return bo
 End Sub
 
+'update a data column property
+Sub SetDataColumn(grd As String, colid As String, props As Map)
+	grd = grd.ToLowerCase
+	colid = colid.tolowercase
+	Dim colDef As BANanoObject = GetColumnConfig(grd,colid)
+	For Each mk As String In props.Keys
+		Dim mv As Object = props.Get(mk)
+		colDef.SetField(mk, mv)
+	Next
+End Sub
+
 'get the webix app
 Sub GetWebix As BANanoObject
 	Return webix
@@ -508,10 +586,10 @@ Sub Update(eid As String, propertyMap As Map)
 End Sub
 
 'update a single property
-Sub UpdateProperty(eID As String, prop As String, val As String)
+Sub UpdateProperty(eID As String, prop As String, sval As String)
 	eID = eID.tolowercase
 	Dim pv As Map = CreateMap()
-	pv.Put(prop, val)
+	pv.Put(prop, sval)
 	Define(eID, pv)
 	Refresh(eID)
 End Sub
@@ -697,6 +775,19 @@ Sub OnSelectChange(eID As String, cb As BANanoObject)
 End Sub
 
 
+'add resizer
+Sub AddResizerToColumns(s As String)   'ignore
+	Dim r As WixResizer
+	r.Initialize("")
+	AddColumns(r.Item)
+End Sub
+
+Sub AddColumnsResizer(s As String)   'ignore
+	Dim r As WixResizer
+	r.Initialize("")
+	AddColumns(r.Item)
+End Sub
+
 'add a spacer to the rows
 Sub AddRowsSpacer()
 	Dim s As WixElement
@@ -874,6 +965,8 @@ Sub GetValue(itm As String) As String
 	itm = itm.ToLowerCase
 	Dim res As String
 	res = Dollar.Selector(itm).RunMethod("getValue",Null).result
+	res = CStr(res)
+	res = res.trim
 	Return res
 End Sub
 
@@ -883,11 +976,17 @@ Sub SetValues(itm As String, values As Map)
 	Dollar.Selector(itm).RunMethod("setValues",Array(values))
 End Sub
 
-'get the form values
+'get the form values all trimmed
 Sub GetValues(itm As String) As Map
 	itm = itm.ToLowerCase
 	Dim res As Map
 	res = Dollar.Selector(itm).RunMethod("getValues",Null).result
+	For Each mk As String In res.Keys
+		Dim mv As String = res.GetDefault(mk,"")
+		mv = CStr(mv)
+		mv = mv.trim
+		res.Put(mk, mv)
+	Next
 	Return res
 End Sub
 
@@ -1541,4 +1640,25 @@ End Sub
 'delay execution of code
 Sub Delay(milliseconds As Int, cb As BANanoObject)
 	webix.RunMethod("delay",Array(cb,milliseconds))
+End Sub
+
+Sub DePrefix(target As Map) As Map
+	Dim nm As Map = CreateMap()
+	For Each mk As String In target.Keys
+		Dim mv As Object = target.Get(mk)
+		Dim mk1 As String = MvField(mk,2,"_")
+		nm.Put(mk1,mv)
+	Next
+	Return nm
+End Sub
+
+
+Sub SetPrefix(prefix As String, target As Map) As Map
+	Dim nm As Map = CreateMap()
+	For Each mk As String In target.Keys
+		Dim mv As Object = target.Get(mk)
+		Dim mk1 As String = prefix & "_" & mk
+		nm.Put(mk1,mv)
+	Next
+	Return nm
 End Sub

@@ -11,6 +11,7 @@ Sub Class_Globals
 	Private Options As List
 	Private yCount As Int
 	Private opt As Map
+	Public Parent As WixElement
 End Sub
 
 'initialize the input box
@@ -20,9 +21,21 @@ Public Sub Initialize(iID As String) As WixCombo
 	Options.Initialize
 	yCount = 0
 	opt = CreateMap()
+	Parent = Null
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixCombo
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetValidateEvent(e As Object) As WixCombo    'ignore
 	Combo.SetAttr("validateEvent", e)

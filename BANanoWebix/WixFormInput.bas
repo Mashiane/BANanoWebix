@@ -8,19 +8,34 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public FormInput As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'initialize the input box
 Public Sub Initialize(iID As String) As WixFormInput
 	ID = iID.tolowercase
 	FormInput.Initialize(iID).SetView("forminput")
+	Parent = Null
 	Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixFormInput
+	Parent = p
+	Return Me
+End Sub
+
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixFormInput

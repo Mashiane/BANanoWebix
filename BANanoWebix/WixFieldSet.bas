@@ -9,6 +9,8 @@ Sub Class_Globals
 	Public ID As String
 	Public FieldSet As WixElement
 	Private body As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the FieldSet
@@ -17,7 +19,20 @@ Public Sub Initialize(sid As String) As WixFieldSet
 	FieldSet.Initialize(ID)
 	FieldSet.SetView("fieldset")
 	body.Initialize(ID & "body") 
+	Parent = Null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixFieldSet
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixFieldSet

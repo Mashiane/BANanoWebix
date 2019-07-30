@@ -15,7 +15,16 @@ Sub Class_Globals
 	Private foot As Map
 	Private hasFooterFilter As Boolean
 	Private Footertitle As Object
+	Public Parent As WixElement
+
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixDataColumn
+	Parent = p
+	Return Me
+End Sub
+
 
 'Initializes the data column
 Public Sub Initialize(cID As String) As WixDataColumn
@@ -28,9 +37,14 @@ Public Sub Initialize(cID As String) As WixDataColumn
 	foot.Initialize 
 	hasFooterFilter = False
 	Footertitle = ""
+	Parent = Null
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixDataColumn
 	h.SetImportant(False)

@@ -8,12 +8,14 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Switch As WixElement
+	Public Parent As WixElement
 End Sub
 
 'initialize the input box
 Public Sub Initialize(iID As String) As WixSwitch
 	ID = iID.tolowercase
 	Switch.Initialize(iID).SetView("switch")
+	parent = null
 	Return Me
 End Sub
 
@@ -21,6 +23,19 @@ End Sub
 Sub SetLabelRight(l As String) As WixSwitch
 	Switch.SetAttr("labelRight", l)
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixSwitch
+	Parent = p
+	Return Me
+End Sub
+
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'use a map object

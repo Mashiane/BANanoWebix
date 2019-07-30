@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Video As WixElement
 	Private sources As List
+	Public Parent As WixElement
 End Sub
 
 'set borderless
@@ -17,14 +18,26 @@ Sub SetBorderLess(b As Boolean) As WixVideo
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixVideo
+	Parent = p
+	Return Me
+End Sub
+
+
 'initialize the input box
 Public Sub Initialize(iID As String) As WixVideo
 	ID = iID.tolowercase
 	Video.Initialize(iID).SetView("video")
 	sources.Initialize
+	parent = null
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixVideo
 	Dim os As String = h.HTML

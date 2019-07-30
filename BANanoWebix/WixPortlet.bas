@@ -8,6 +8,7 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Portlet As WixElement
+	Private Parent As WixElement
 End Sub
 
 'Initializes the Portlet
@@ -15,8 +16,22 @@ Public Sub Initialize(sid As String) As WixPortlet
 	ID = sid.tolowercase
 	Portlet.Initialize(ID)
 	Portlet.SetView("portlet")
+	Parent = Null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixPortlet
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
+
 
 'use a map object
 Sub SetMap(m As Map) As WixPortlet

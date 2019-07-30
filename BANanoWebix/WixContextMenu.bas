@@ -10,6 +10,8 @@ Sub Class_Globals
 	Public ContextMenu As WixElement
 	Private Items As List
 	Private sepCount As Int
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the Context
@@ -18,9 +20,21 @@ Public Sub Initialize(sid As String) As WixContextMenu
 	ContextMenu.Initialize(ID).setview("contextmenu")
 	Items.Initialize 
 	sepCount = 0
+	Parent = Null
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixContextMenu
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixContextMenu
 	h.SetImportant(False)

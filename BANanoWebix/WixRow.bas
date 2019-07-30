@@ -8,13 +8,28 @@ Version=7.5
 Sub Class_Globals
 	Public Row As WixElement
 	Public ID As String
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the row.
 Public Sub Initialize(rID As String) As WixRow
 	ID = rID.tolowercase
 	Row.Initialize(ID)
+	Parent = Null
 	Return Me 
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixRow
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 Sub CreateResizer(rid As String) As WixResizer  

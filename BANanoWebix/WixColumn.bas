@@ -8,14 +8,24 @@ Version=7.5
 Sub Class_Globals
 	Public Column As WixElement
 	Public ID As String
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the column.
 Public Sub Initialize(rID As String) As WixColumn
 	ID = rID.tolowercase
 	Column.Initialize(ID)
+	Parent = Null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixColumn
+	Parent = p
+	Return Me
+End Sub
+
 
 'add to rows collection of the column
 Sub AddRows(itm As Map) As WixColumn
@@ -23,6 +33,10 @@ Sub AddRows(itm As Map) As WixColumn
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixColumn
 	h.SetImportant(False)

@@ -11,6 +11,8 @@ Sub Class_Globals
 	Private onClick As BANanoObject
 	Private onDblClick As BANanoObject
 	Private typeOf As Map
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the data table
@@ -21,9 +23,21 @@ Public Sub Initialize(tID As String) As WixDataView
 	onDblClick = Null
 	typeOf = CreateMap()
 	SetMultiSelect(False)
+	Parent = Null
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixDataView
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixDataView
 	h.SetImportant(False)

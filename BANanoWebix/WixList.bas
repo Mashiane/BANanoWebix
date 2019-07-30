@@ -10,14 +10,29 @@ Sub Class_Globals
 	Public ID As String
 	Private typeOf As Map
 	Private Items As List
+	Public Parent As WixElement
+
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixList
+	Parent = p
+	Return Me
+End Sub
+
 
 'Initializes list object
 Public Sub Initialize(lID As String) As WixList
 	ID = lID.tolowercase
 	List.Initialize(ID).SetView("list")
 	Items.Initialize 
+	Parent = Null
 	Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'add an item

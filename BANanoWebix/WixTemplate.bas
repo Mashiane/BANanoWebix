@@ -8,18 +8,32 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Template As WixElement
+	Public Parent As WixElement
 End Sub
 
 'Initializes the Context
 Public Sub Initialize(sid As String) As WixTemplate
 	ID = sid.ToLowerCase
 	Template.Initialize(ID).setview("template")
+	parent = null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixTemplate
+	Parent = p
+	Return Me
+End Sub
+
 
 'return the item
 Sub Item As Map
 	Return Template.item
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'add item to a column

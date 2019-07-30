@@ -9,6 +9,8 @@ Sub Class_Globals
 	Public Form As WixElement
 	Public ID As String
 	Private webix As BANanoObject
+	Public Parent As WixElement
+
 End Sub
 
 'initialize the form
@@ -16,8 +18,21 @@ Public Sub Initialize(fID As String) As WixForm
 	ID = fID.tolowercase
 	Form.Initialize(fID).SetView("form")
 	webix.Initialize("webix") 
+	Parent = Null
 	Return Me
 End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixForm
+	Parent = p
+	Return Me
+End Sub
+
 
 'add a row
 Sub AddRow(wxEL As WixRow)

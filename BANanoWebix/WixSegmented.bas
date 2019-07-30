@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Segmented As WixElement
 	Private Options As List
+	Public Parent As WixElement
 End Sub
 
 'initialize the input box
@@ -16,7 +17,20 @@ Public Sub Initialize(iID As String) As WixSegmented
 	ID = iID.tolowercase
 	Segmented.Initialize(iID).SetView("segmented")
 	Options.Initialize
+	Parent = Null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixSegmented
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 Sub SetMultiView(b As Object) As WixSegmented
@@ -100,6 +114,16 @@ End Sub
 'set style
 Sub SetStyle(prop As String, val As String) As WixSegmented
 	Segmented.SetStyle(prop,val)
+	Return Me
+End Sub
+
+Sub OnItemClick(cb As BANanoObject) As WixSegmented
+	Segmented.OnItemClick(cb)
+	Return Me
+End Sub
+
+Sub OnAfterTabClick(cb As BANanoObject) As WixSegmented
+	Segmented.OnAfterTabClick(cb)
 	Return Me
 End Sub
 

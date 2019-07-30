@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public RichSelect As WixElement
 	Private Options As List
+	Public Parent As WixElement
 End Sub
 
 'initialize the input box
@@ -16,7 +17,20 @@ Public Sub Initialize(iID As String) As WixRichSelect
 	ID = iID.tolowercase
 	RichSelect.Initialize(iID).SetView("richselect")
 	Options.Initialize
+	Parent = Null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixRichSelect
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'use a map object

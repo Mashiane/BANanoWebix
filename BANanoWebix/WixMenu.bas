@@ -11,6 +11,7 @@ Sub Class_Globals
 	Private typeof As Map
 	Private Items As List
 	Private sepCount As Int
+	Public Parent As WixElement
 End Sub
 
 'initialize the menu
@@ -20,7 +21,19 @@ Public Sub Initialize(iID As String) As WixMenu
 	typeof = CreateMap()
 	Items.Initialize
 	sepCount = 0
+	parent = null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixMenu
+	Parent = p
+	Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'use a map object

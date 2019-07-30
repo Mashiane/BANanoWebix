@@ -9,6 +9,8 @@ Sub Class_Globals
 	Public ID As String
 	Public SideBar As WixElement
 	Public Items As List
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
@@ -16,13 +18,26 @@ Public Sub Initialize(sid As String) As WixSideBar
 	ID = sid.tolowercase
 	SideBar.Initialize(sid).SetView("sidebar")
 	Items.Initialize
+	Parent = Null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixSideBar
+	Parent = p
+	Return Me
+End Sub
+
 
 Sub CreateItem(i As String) As WixElement
 	Dim ii As WixElement
 	ii.Initialize(i)
 	Return ii 
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'add item

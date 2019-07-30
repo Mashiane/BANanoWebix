@@ -9,6 +9,8 @@ Sub Class_Globals
 	Public ID As String
 	Public Context As WixElement
 	Private body As Map
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the Context, a popup window you can use
@@ -16,14 +18,27 @@ Public Sub Initialize(sid As String) As WixContext
 	ID = sid.ToLowerCase
 	Context.Initialize(ID).setview("context")
 	body.Initialize 
+	Parent = Null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixContext
+	Parent = p
+	Return Me
+End Sub
+
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixContext
 	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Context.SetTemplate(os)
 	Return Me
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'set master

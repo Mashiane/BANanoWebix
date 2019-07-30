@@ -24,6 +24,10 @@ Sub Item As Map
 	Return Label.item
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixLabel
 	h.SetImportant(False)
@@ -67,21 +71,17 @@ Sub SetMinWidth(w As Int) As WixLabel
 	Return Me
 End Sub
 
-'set minheight
-Sub SetMinHeight(h As Int) As WixLabel
-	Label.SetMinHeight(h)
-	Return Me
-End Sub
-
 'set the parent
 Sub SetParent(p As WixElement) As WixLabel
 	Parent = p
 	Return Me
 End Sub
 
-'add tp columns of parent
-Sub Pop
-	Parent.AddColumns(Item)
+
+'set minheight
+Sub SetMinHeight(h As Int) As WixLabel
+	Label.SetMinHeight(h)
+	Return Me
 End Sub
 
 'set tooltip

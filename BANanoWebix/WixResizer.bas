@@ -8,13 +8,28 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Resizer As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'initialize the input box
 Public Sub Initialize(iID As String) As WixResizer
 	ID = iID.tolowercase
 	Resizer.Initialize(iID).SetView("resizer")
+	Parent = Null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixResizer
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'add to form
@@ -36,8 +51,8 @@ Sub Item As Map
 End Sub
 
 'add as a column iten
-Sub AddToColumns(parent As WixElement)
-	parent.AddColumns(Item)
+Sub AddToColumns(xParent As WixElement)
+	xParent.AddColumns(Item)
 End Sub
 
 'use a map object

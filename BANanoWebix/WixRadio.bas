@@ -10,6 +10,12 @@ Sub Class_Globals
 	Public Radio As WixElement
 	Private Options As List
 	Private Vertical As Boolean
+	Public Parent As WixElement
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'initialize the input box
@@ -18,6 +24,7 @@ Public Sub Initialize(iID As String) As WixRadio
 	Radio.Initialize(iID).SetView("radio")
 	Options.Initialize 
 	Vertical = False
+	Parent = Null
 	Return Me
 End Sub
 
@@ -207,6 +214,13 @@ Sub SetAutowidth(autowidth As Boolean) As WixRadio
 	Radio.SetAttr("autowidth", autowidth)
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixRadio
+	Parent = p
+	Return Me
+End Sub
+
 
 Sub SetBorderless(borderless As Boolean) As WixRadio
 	Radio.SetAttr("borderless", borderless)

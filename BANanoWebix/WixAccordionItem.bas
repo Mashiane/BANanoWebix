@@ -8,15 +8,29 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public AccordionItem As WixElement
+	Public Parent As WixElement
+
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
 Public Sub Initialize(sid As String) As WixAccordionItem
 	ID = sid.ToLowerCase
 	AccordionItem.Initialize(ID).setview("accordionitem")
+	Parent = Null
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixAccordionItem
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixAccordionItem
 	h.SetImportant(False)

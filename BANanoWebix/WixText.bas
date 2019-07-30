@@ -8,11 +8,13 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Text As WixElement
+	Public Parent As WixElement
 End Sub
 
 'Initializes the element
 Public Sub Initialize(tID As String) As WixText
 	Text.Initialize(tID).SetView("text")
+	Parent = Null
 	Return Me
 End Sub
 
@@ -21,6 +23,43 @@ Sub SetInvalidMessage(msg As String) As WixText
 	Text.SetAttr("invalidMessage", msg)
 	Return Me
 End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
+
+Sub OnKeyPress(cb As BANanoObject) As WixText
+	Text.OnKeyPress(cb)
+	Return Me
+End Sub
+
+
+Sub OnEnter(cb As BANanoObject) As WixText
+	Text.OnEnter(cb)
+	Return Me
+End Sub
+
+Sub OnTimedKeypress(cb As BANanoObject) As WixText
+	Text.OnTimedKeyPress(cb)
+	Return Me
+End Sub
+
+Sub OnChange(cb As BANanoObject) As WixText
+	Text.OnChange(cb)
+	Return Me
+End Sub
+
+Sub OnFocus(cb As BANanoObject) As WixText
+	Text.onfocus(cb)
+	Return Me
+End Sub
+
+Sub OnBlur(cb As BANanoObject) As WixText
+	Text.onblur(cb)
+	Return Me
+End Sub
+
 
 'set hidden
 Sub SetHidden(b As Boolean) As WixText
@@ -352,19 +391,26 @@ Sub SetAlignLeft(r As String) As WixText 'ignore
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixText
+	Parent = p
+	Return Me
+End Sub
+
+
 'add to parent rows
-Sub AddToRows(parent As WixElement)
-	parent.AddRows(Item)
+Sub AddToRows(xParent As WixElement)
+	xParent.AddRows(Item)
 End Sub
 
 'add to parent columns
-Sub AddToColumns(parent As WixElement)
-	parent.AddColumns(Item)
+Sub AddToColumns(xParent As WixElement)
+	xParent.AddColumns(Item)
 End Sub
 
 'add to parent elements
-Sub AddToElements(parent As WixElement)
-	parent.AddElements(Item)
+Sub AddToElements(xParent As WixElement)
+	xParent.AddElements(Item)
 End Sub
 
 Sub SetAnimate(animate As Boolean) As WixText

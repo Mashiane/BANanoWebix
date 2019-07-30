@@ -8,18 +8,32 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Spacer As WixElement
+	Public Parent As WixElement
 End Sub
 
 'Initializes the spacer
 Public Sub Initialize(sid As String) As WixSpacer
 	ID = sid.tolowercase
 	Spacer.Initialize(ID).SetView("spacer")
+	parent = null
 	Return Me
 End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixSpacer
+	Parent = p
+	Return Me
+End Sub
+
 
 'return the item
 Sub Item As Map
 	Return Spacer.item
+End Sub
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 Sub SetAnimate(animate As Boolean) As WixSpacer

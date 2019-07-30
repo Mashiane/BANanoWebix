@@ -20,6 +20,10 @@ Public Sub Initialize(bID As String) As WixToggle
 	Return Me
 End Sub
 
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
+End Sub
 
 Sub SetBadge(b As Object) As WixToggle
 	Toggle.SetAttr("badge", b)
@@ -99,6 +103,12 @@ Sub SetStyle(prop As String, val As String) As WixToggle
 	Return Me
 End Sub
 
+'set the parent
+Sub SetParent(p As WixElement) As WixToggle
+	Parent = p
+	Return Me
+End Sub
+
 
 'set off label
 Sub SetOffLabel(l As String) As WixToggle
@@ -110,11 +120,6 @@ End Sub
 Sub SetOnLabel(l As String) As WixToggle
 	Toggle.SetAttr("onLabel", l)
 	Return Me
-End Sub
-
-'add tp columns of parent
-Sub Pop
-	Parent.AddColumns(Item)
 End Sub
 
 'add to form
@@ -136,12 +141,6 @@ End Sub
 'return the item to add
 Sub Item As Map
 	Return Toggle.item
-End Sub
-
-'set the parent
-Sub SetParent(p As WixElement) As WixToggle
-	Parent = p
-	Return Me
 End Sub
 
 'set batch

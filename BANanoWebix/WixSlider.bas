@@ -11,6 +11,7 @@ Sub Class_Globals
 	Private Minimum As Int
 	Private Maximum As Int
 	Private Stepper As Int
+	Public Parent As WixElement
 End Sub
 
 'initialize the input box
@@ -22,7 +23,20 @@ Public Sub Initialize(iID As String) As WixSlider
 	Slider.SetValue(10)
 	Stepper = 1
 	Slider.SetAttr("title", "#value#")
+	parent = null
 	Return Me
+End Sub
+
+'set the parent
+Sub SetParent(p As WixElement) As WixSlider
+	Parent = p
+	Return Me
+End Sub
+
+
+'add tp columns of parent
+Sub Pop
+	Parent.AddColumns(Item)
 End Sub
 
 'use a map object
