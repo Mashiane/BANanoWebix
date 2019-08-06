@@ -16,7 +16,6 @@ Sub Class_Globals
 	Private hasFooterFilter As Boolean
 	Private Footertitle As Object
 	Public Parent As WixElement
-
 End Sub
 
 'set the parent
@@ -238,6 +237,14 @@ End Sub
 'set editor color
 Sub SetEditorColor(r As String) As WixDataColumn   'ignore
 	SetEditor("color")
+	Dim val As String = "#" & ID & "#"
+	Dim ct As UOENowHTML
+	ct.Initialize("","span").SetImportant(False)
+	ct.SetStyle("background-color",val)
+	ct.SetStyle("border-radius", "4px")
+	ct.SetStyle("padding-right","10px")
+	ct.AddContent("&nbsp&nbsp").AddContentAfter(val)
+	SetTemplateHTML(ct)
 	Return Me
 End Sub
 
@@ -431,7 +438,7 @@ End Sub
 
 Sub SetFooterSelectFilter(b As Boolean) As WixDataColumn     'ignore
 	foot.Put("content", "selectFilter")
-	hasFooterFilter = true
+	hasFooterFilter = True
 	Return Me
 End Sub
 

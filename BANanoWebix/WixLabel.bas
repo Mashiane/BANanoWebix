@@ -36,6 +36,11 @@ Sub SetTemplateHTML(h As UOENowHTML) As WixLabel
 	Return Me
 End Sub
 
+Sub SetFormat(f As Object) As WixLabel
+	Label.SetAttr("format",f)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixLabel
 	Label.SetName(n)

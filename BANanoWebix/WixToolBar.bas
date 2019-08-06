@@ -9,7 +9,6 @@ Version=7.5
 Sub Class_Globals
 	Public ID As String
 	Public ToolBar As WixElement
-	Private Parent As WixElement
 End Sub
 
 'add to page
@@ -21,22 +20,8 @@ End Sub
 Public Sub Initialize(sID As String) As WixToolBar
 	ID = sID.tolowercase
 	ToolBar.Initialize(ID).SetView("toolbar")
-	Parent = Null
 	Return Me
 End Sub
-
-'set the parent
-Sub SetParent(p As WixElement) As WixToolBar
-	Parent = p
-	Return Me
-End Sub
-
-
-'add tp columns of parent
-Sub Pop
-	Parent.AddColumns(Item)
-End Sub
-
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixToolBar
 	h.SetImportant(False)

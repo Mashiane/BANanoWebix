@@ -21,7 +21,7 @@ Public Sub Initialize(iID As String) As WixMenu
 	typeof = CreateMap()
 	Items.Initialize
 	sepCount = 0
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
 

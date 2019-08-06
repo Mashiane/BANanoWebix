@@ -15,11 +15,7 @@ Sub Process_Globals
 	Public code As UOENowHTML
 	Private dbName As String
 	Private rec As Map
-	Private qry As String
-	Private res As String
-	Private rs As SQLiteResultSet
 	Private json As String
-	Private sqlite As BANanoSQLite
 	Public addingmethod As List
 	Public propBag As WixProperty
 	Private winux As BANanoObject
@@ -237,7 +233,11 @@ Sub RefreshTreeWait
 	'clear tree
 	pg.ClearAll("tree")
 	'
-	pg.AddNode("tree", "", "connection", "Database", "", pg.EnumWixIcons.Folder,"","",False)
+	pg.AddNode("tree", "", "connection", "Database", "", pg.EnumWixIcons.Folder,"","",True)
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	Dim sqlite As BANanoSQLite
 	sqlite.Initialize
 	qry = sqlite.SelectAll("wixsomething", Array("name"), Array("name"))
 	res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
@@ -246,7 +246,7 @@ Sub RefreshTreeWait
 		Dim name As String = fitem.GetDefault("name","")
 		If name <> "" Then
 			Dim key As String = $"wixsomething.${name}"$
-			pg.AddNode("tree", "", key, key, "", pg.EnumWixIcons.Folder,"","",False)
+			pg.AddNode("tree", "", key, key, "", pg.EnumWixIcons.Folder,"","",True)
 			sqlite.Initialize
 			qry = sqlite.SelectWhere("properties", Array("key"), CreateMap("parentid":name), Array("tabindex"))
 			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
@@ -268,7 +268,7 @@ Sub RefreshTreeWait
 	rs = sqlite.GetResultSet(qry, res)
 	For Each fitem As Map In rs.result
 		Dim key As String = fitem.Get("key")
-		pg.AddNode("tree", "connection", key, key, "", pg.EnumWixIcons.Folder,"","",False)
+		pg.AddNode("tree", "connection", key, key, "", pg.EnumWixIcons.Folder,"","",True)
 	Next
 	'
 	'load fields
@@ -290,7 +290,7 @@ Sub RefreshTreeWait
 	rs = sqlite.GetResultSet(qry, res)
 	For Each fitem As Map In rs.result
 		Dim fid As String = fitem.Get("id")
-		pg.AddNode("tree", "", fid, fid, "", pg.EnumWixIcons.Folder,"","",False)
+		pg.AddNode("tree", "", fid, fid, "", pg.EnumWixIcons.Folder,"","",True)
 	Next
 	
 	'open items and load to the tree
@@ -335,6 +335,10 @@ Sub AddPrimaryKeyWait
 	nf.Put("json", json)
 	'
 	'replace
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	dim sqlite As BANanoSQLite
 	sqlite.Initialize
 	sqlite.AddStrings(Array("id"))
 	'replace complete record
@@ -524,6 +528,10 @@ End Sub
 
 'save the item
 Sub prop_saveWait
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	dim sqlite As BANanoSQLite
 	Dim pbx As WixProgressBar
 	pbx.Initialize("").SetDelay(500).SetHide(True).SetTypeIcon("")
 	pg.SetProgressBar("propbag", pbx)
@@ -747,11 +755,14 @@ Sub prop_saveWait
 			'preview the item on designer
 			FormCodeWait(i,True)
 	End Select
-	'refresh tree
 	RefreshTreeWait
 End Sub
 
 Sub SaveElementWait(prop2save As Map)
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	Dim sqlite As BANanoSQLite
 	Dim p As String = prop2save.Get("parentid")
 	Dim i As String = prop2save.get("id")
 	Dim idx As String = prop2save.Get("tabindex")
@@ -804,6 +815,10 @@ End Sub
 
 Sub clearform1wait(confirmresult As Boolean)
 	If confirmresult = False Then Return
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	Dim sqlite As BANanoSQLite
 	sqlite.Initialize
 	sqlite.AddStrings(Array("id"))
 	qry = sqlite.DeleteAll("items")
@@ -815,6 +830,10 @@ End Sub
 
 Sub clearform2wait(confirmresult As Boolean)
 	If confirmresult = False Then Return
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	Dim sqlite As BANanoSQLite
 	Dim tbls As List
 	tbls.Initialize
 	tbls.AddAll(Array("connect","fields","forms","items","properties","tables","wixsomething"))
@@ -842,6 +861,10 @@ End Sub
 
 Sub deletepropwait(confirmresult As Boolean)
 	If confirmresult = False Then Return
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	Dim sqlite As BANanoSQLite
 	Dim rp As Map = pg.GetValues("propbag")
 	delID = rp.Get("id")
 	Dim value As String = rp.GetDefault("value", "")
@@ -1226,6 +1249,10 @@ Sub SourceCodePreview(script As String)
 End Sub
 
 Sub tree_clickwait(recid As String)
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	Dim sqlite As BANanoSQLite
 	Dim pbx As WixProgressBar
 	pbx.Initialize("").SetDelay(500).SetHide(True).SetTypeIcon("")
 	pg.SetProgressBar("propbag", pbx)
@@ -1241,6 +1268,7 @@ Sub tree_clickwait(recid As String)
 	pg.Hide("add_fields")
 	pg.Hide("propdelete")
 	pg.Hide("download")
+	pg.Hide("propmenu")
 			
 	Select Case prefix
 		Case "property"
@@ -1410,10 +1438,11 @@ Sub tree_clickwait(recid As String)
 				DrawPropBag(v)
 				FormCodeWait(recid,True)
 				Select Case v
-					Case "list"
+					Case "toolbar"
+						pg.Show("propmenu")
 						pg.hide("add_row")
 						pg.hide("add_column")
-					Case "datatable"
+					Case "list", "datatable"
 						pg.hide("add_row")
 						pg.hide("add_column")
 					Case "datacolumn"
@@ -1427,6 +1456,11 @@ Sub tree_clickwait(recid As String)
 End Sub
 
 Sub FormCodeWait(id As String, bShowPropBag As Boolean)
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	Dim sqlite As BANanoSQLite
+	
 	ClearPreviewIT
 	ClearCodeIT
 	Dim sb As StringBuilder
@@ -1582,6 +1616,11 @@ End Sub
 
 'on sidebar click, draw up the property bag
 Sub sidebar_clickwait(meid As String)
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	Dim sqlite As BANanoSQLite
+	
 	pg.Collapse("preview")
 	pg.Expand("code")
 	ClearPreviewIT
@@ -1595,6 +1634,7 @@ Sub sidebar_clickwait(meid As String)
 	pg.Hide("propadd")
 	pg.Hide("propdelete")
 	pg.Hide("download")
+	pg.Hide("propmenu")
 	'
 	Select Case meid
 		Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"
@@ -2048,6 +2088,10 @@ Sub CreateWindow As BANanoObject
 End Sub
 
 Sub btnMulti_clickwait
+	Dim qry As String
+	Dim res As String
+	Dim rs As SQLiteResultSet
+	Dim sqlite As BANanoSQLite
 	'see selected treeitem
 	Dim parentid As String = pg.GetSelectedID("tree")
 	If parentid = "" Then
@@ -2268,6 +2312,8 @@ End Sub
 
 Sub btnMulti1_clickwait
 	'see selected treeitem
+	Dim qry As String, res As String, rs As SQLiteResultSet, sqlite As BANanoSQLite
+	
 	Dim parentid As String = pg.GetSelectedID("tree")
 	If parentid = "" Then
 		pg.Message_Error("Please select the parent item from the tree first!")

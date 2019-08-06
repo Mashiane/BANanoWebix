@@ -57,46 +57,48 @@ File147=sho.jpg
 File148=sidebar.png
 File149=sidemenu.png
 File15=alison_1.jpg
-File150=slider.png
-File151=suggest.png
-File152=switch.png
-File153=tabbar.png
-File154=tabview.png
-File155=template.png
-File156=tesha_1.jpg
-File157=text.png
-File158=textarea.png
-File159=toggle.png
+File150=skin.js
+File151=slider.png
+File152=suggest.png
+File153=switch.png
+File154=tabbar.png
+File155=tabview.png
+File156=template.png
+File157=tesha_1.jpg
+File158=text.png
+File159=textarea.png
 File16=annika_1.jpg
-File160=tomek.jpg
-File161=tomika_1.jpg
-File162=tommie_1.jpg
-File163=toolbar.png
-File164=tooltip.png
-File165=toshia_1.jpg
-File166=transtar_coral.jpg
-File167=transtar_pytheas.jpg
-File168=transtar_thalos.jpg
-File169=treegrid.png
+File160=toggle.png
+File161=tomek.jpg
+File162=tomika_1.jpg
+File163=tommie_1.jpg
+File164=toolbar.png
+File165=tooltip.png
+File166=toshia_1.jpg
+File167=transtar_coral.jpg
+File168=transtar_pytheas.jpg
+File169=transtar_thalos.jpg
 File17=avatar.jpg
-File170=typhon_coral.jpg
-File171=typhon_pytheas.jpg
-File172=typhon_thalos.jpg
-File173=tyree_1.jpg
-File174=unitlist.png
-File175=upload.php
-File176=uploader.png
-File177=usher.jpg
-File178=video.png
-File179=vincent_1.jpg
+File170=treegrid.png
+File171=typhon_coral.jpg
+File172=typhon_pytheas.jpg
+File173=typhon_thalos.jpg
+File174=tyree_1.jpg
+File175=unitlist.png
+File176=upload.php
+File177=uploader.png
+File178=usher.jpg
+File179=video.png
 File18=bell_1.jpg
-File180=Visa.svg
-File181=webix-logo.svg
-File182=whitten.jpg
-File183=window.png
-File184=winslow.jpg
-File185=xavier_1.jpg
-File186=yu.jpg
+File180=vincent_1.jpg
+File181=Visa.svg
+File182=webix.css
+File183=webix-logo.svg
+File184=whitten.jpg
+File185=window.png
+File186=winslow.jpg
+File187=xavier_1.jpg
+File188=yu.jpg
 File19=bertha_1.jpg
 File2=1.png
 File20=brianna_1.jpg
@@ -283,6 +285,8 @@ FileGroup183=Default Group
 FileGroup184=Default Group
 FileGroup185=Default Group
 FileGroup186=Default Group
+FileGroup187=Default Group
+FileGroup188=Default Group
 FileGroup19=Default Group
 FileGroup2=Default Group
 FileGroup20=Default Group
@@ -379,7 +383,7 @@ Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
 Module1=pgFD
-Module10=pgDataEntry
+Module10=modSideBar
 Module100=dVideo
 Module101=dUnitList
 Module102=dTemplate
@@ -390,77 +394,77 @@ Module106=dContext
 Module107=dContextMenu
 Module108=dDataView
 Module109=dGoogleMap
-Module11=pgDataTable
+Module11=pgCharts
 Module110=dPropertySheet
 Module111=dIFrame
 Module112=dTabView
-Module12=dTree
-Module13=pgDataTable1
-Module14=pgDataView
-Module15=pgFlexLayout
-Module16=pgForms
-Module17=pgForms1
-Module18=pgFormValidation
-Module19=pgGoogleMap
-Module2=modCenter
-Module20=pgGroupList
-Module21=pgIndex
-Module22=pgLayout
-Module23=pgLayouts
-Module24=pgLayouts1
-Module25=pgLayouts2
-Module26=pgLesson8_3
-Module27=pgLesson8_4
-Module28=pgList
-Module29=pgMenu
-Module3=modToolBar
-Module30=pgMessageBoxes
-Module31=pgMultiView
-Module32=pgMultiView2
-Module33=pgMultiView3
-Module34=pgMultiView4
-Module35=pgPropertySheet
-Module36=pgResponsive
-Module37=pgScrollView
-Module38=pgSideBar
-Module39=pgSuggest
-Module4=pgCarSales
-Module40=pgTabBar
-Module41=pgTabView
-Module42=pgTemplate
-Module43=pgTest
-Module44=pgToolBar
-Module45=pgTree
-Module46=pgTreeTable
-Module47=pgUnitList
-Module48=pgUploader1
-Module49=pgUploader2
-Module5=pgComments
-Module50=pgUploader3
-Module51=pgVideo
-Module52=dDBLList
-Module53=dFieldSet
-Module54=dForm
-Module55=dMenu
-Module56=dLayout
-Module57=dList
-Module58=dMultiView
-Module59=dResizer
-Module6=pgMaster
-Module60=dRadio
-Module61=dRichText
-Module62=dIcon
-Module63=dUploader
-Module64=dText
-Module65=dTextArea
-Module66=dSearch
-Module67=dSpacer
-Module68=dField
-Module69=modPropertyBag
-Module7=modSideBar
-Module70=dButton
-Module71=dDataField
-Module72=dDatePicker
+Module12=pgContext
+Module13=pgDataEntry
+Module14=pgDataTable
+Module15=dTree
+Module16=pgDataTable1
+Module17=pgDataView
+Module18=pgFlexLayout
+Module19=pgForms
+Module2=dDatePicker
+Module20=pgForms1
+Module21=pgFormValidation
+Module22=pgGoogleMap
+Module23=pgGroupList
+Module24=pgIndex
+Module25=pgLayout
+Module26=pgLayouts
+Module27=pgLayouts1
+Module28=pgLayouts2
+Module29=pgLesson8_3
+Module3=pgMenu
+Module30=pgLesson8_4
+Module31=pgList
+Module32=pgMessageBoxes
+Module33=pgMultiView
+Module34=pgMultiView2
+Module35=pgMultiView3
+Module36=pgMultiView4
+Module37=pgPropertySheet
+Module38=pgResponsive
+Module39=pgScrollView
+Module4=modPropertyBag
+Module40=pgSideBar
+Module41=pgSuggest
+Module42=pgTabBar
+Module43=pgTabView
+Module44=pgTemplate
+Module45=pgTest
+Module46=pgToolBar
+Module47=pgTree
+Module48=pgTreeTable
+Module49=pgUnitList
+Module5=modCenter
+Module50=pgUploader1
+Module51=pgUploader2
+Module52=pgUploader3
+Module53=pgVideo
+Module54=dDBLList
+Module55=dFieldSet
+Module56=dForm
+Module57=dMenu
+Module58=dLayout
+Module59=dList
+Module6=modToolBar
+Module60=dMultiView
+Module61=dResizer
+Module62=dRadio
+Module63=dRichText
+Module64=dIcon
+Module65=dUploader
+Module66=dText
+Module67=dTextArea
+Module68=dSearch
+Module69=dSpacer
+Module7=pgCarSales
+Module70=dField
+Module71=dButton
+Module72=dDataField
 Module73=dCalendar
 Module74=dToolBar
 Module75=dColorPicker
@@ -468,7 +472,7 @@ Module76=dSelect
 Module77=dCombo
 Module78=dDataTable
 Module79=dRichSelect
-Module8=pgCharts
+Module8=pgComments
 Module80=dRow
 Module81=dPager
 Module82=dCheckBox
@@ -479,7 +483,7 @@ Module86=dSlider
 Module87=dSwitch
 Module88=dTabBar
 Module89=dToggle
-Module9=pgContext
+Module9=pgMaster
 Module90=dSuggest
 Module91=dColumn
 Module92=dDesignerProperty
@@ -490,7 +494,7 @@ Module96=dGeoChart
 Module97=dImage
 Module98=dPopUp
 Module99=dWindow
-NumberOfFiles=186
+NumberOfFiles=188
 NumberOfLibraries=5
 NumberOfModules=112
 Version=7.51
@@ -517,16 +521,17 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.JAVASCRIPT_NAME = appFile
 	BANano.Header.addcssfile("all.min.css")
 	BANano.Header.AddCSSFile("materialdesignicons.min.css")
-	BANano.Header.AddCSSFile("webix.min.css")
+	BANano.Header.AddCSSFile("webix.css")
 	'*themes
 	'BANano.Header.AddCSSFile("material.min.css")
 	'BANano.Header.AddCSSFile("flat.min.css")
-	BANano.Header.AddCSSFile("compact.min.css")
+	'BANano.Header.AddCSSFile("compact.min.css")
 	'BANano.Header.AddCSSFile("contrast.min.css")
 	'** themes
 	BANano.Header.AddJavascriptFile("webix.min.js")
 	BANano.Header.AddCSSFile("hint.css")
 	BANano.Header.AddJavascriptFile("hint.js")
+	BANano.Header.AddJavascriptFile("skin.js")
 	'
 	BANano.Header.AddJavascriptFile("data.js")
 	
@@ -569,10 +574,11 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready()
-	modSideBar.Version = "1.20"
+	modSideBar.Version = "1.21"
+	dbName = $"${AppName}.db"$
 	Dim sqlite As BANanoSQLite
 	sqlite.Initialize
-	dbName = $"${AppName}.db"$
+	sqlite.SetDBName(dbName)
 	'create forms table
 	Dim tbl As Map = CreateMap()
 	tbl.Put("id", sqlite.DB_STRING)
@@ -584,6 +590,7 @@ Sub BANano_Ready()
 	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
 	'
 	sqlite.Initialize
+	sqlite.SetDBName(dbName)
 	Dim tbl As Map = CreateMap()
 	tbl.Put("id", sqlite.DB_STRING)
 	tbl.Put("key", sqlite.DB_STRING)
@@ -595,7 +602,8 @@ Sub BANano_Ready()
 	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
 	'
-	sqlite.Initialize 
+	sqlite.Initialize
+	sqlite.SetDBName(dbName)
 	Dim tbl As Map = CreateMap()
 	tbl.Put("name", sqlite.DB_STRING)
 	tbl.Put("json", sqlite.DB_STRING)
@@ -605,6 +613,7 @@ Sub BANano_Ready()
 	'
 		
 	sqlite.Initialize
+	sqlite.SetDBName(dbName)
 	Dim c As Map = CreateMap()
 	c.Put("id", sqlite.DB_STRING)
 	c.Put("json", sqlite.DB_STRING)
@@ -613,6 +622,7 @@ Sub BANano_Ready()
 	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
 	'
 	sqlite.Initialize
+	sqlite.SetDBName(dbName)
 	Dim c As Map = CreateMap()
 	c.Put("key", sqlite.DB_STRING)
 	c.Put("id", sqlite.DB_STRING)
@@ -624,6 +634,7 @@ Sub BANano_Ready()
 	'
 	'fields
 	sqlite.Initialize
+	sqlite.SetDBName(dbName)
 	Dim f As Map = CreateMap()
 	f.Put("key", sqlite.DB_STRING)
 	f.Put("id", sqlite.DB_STRING)
@@ -636,7 +647,8 @@ Sub BANano_Ready()
 	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
 	
 	'create items table
-	sqlite.Initialize 
+	sqlite.Initialize
+	sqlite.SetDBName(dbName)
 	Dim els As Map = CreateMap()
 	els.Put("id", sqlite.DB_STRING)
 	els.Put("json", sqlite.DB_STRING)

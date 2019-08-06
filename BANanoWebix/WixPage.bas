@@ -22,6 +22,59 @@ Sub Class_Globals
 	Type WixSelectedID(row As Object, ID As Object, column As Object)
 End Sub
 
+Sub NumberSuffix(N As Double) As String
+	If N < 0 Then
+		Return "-" & NumberSuffix(-N)
+	End If
+	Dim Suffix() As String = Array As String("", "k", "M", "B", "T")
+	Dim Thousands As Int = 0
+	Do While N >= 1000 And Thousands < Suffix.Length - 1
+		Thousands = Thousands + 1
+		N = N / 1000
+	Loop
+	If Thousands = 0 Then
+		Return NumberFormat2(N, 1, 2, 2, False)
+	End If
+ 
+	Dim MaxDecimalPlaces As Int = 0
+	Do While MaxDecimalPlaces < 5 
+		Dim RelativeError As Double = Abs(N - Round2(N, MaxDecimalPlaces)) / N
+		If RelativeError < 0.007 Then
+			Exit
+		End If
+		MaxDecimalPlaces = MaxDecimalPlaces + 1
+	Loop
+	Return NumberFormat2(N, 1, 0, MaxDecimalPlaces, False) & Suffix(Thousands)
+End Sub
+
+
+Sub GetNextID(rsl As List) As String
+	Dim nextid As Int
+	Dim strid As String
+	
+	If rsl.Size = 0 Then
+		nextid = 0
+	Else
+		Dim nr As Map = rsl.Get(0)
+		Dim ni As String = nr.Getdefault("id","0")
+		nextid = BANano.parseInt(ni)
+	End If
+	nextid = nextid + 1
+	strid = CStr(nextid)
+	Return strid
+End Sub
+
+'sum list of maps property
+Sub SumListOfMapsProperty(lst As List, prop As String) As Double
+	Dim tsum As Double = 0
+	For Each rec As Map In lst
+		Dim propv As String = rec.GetDefault(prop,"0")
+		tsum = tsum + BANano.parseFloat(propv)
+	Next
+	Return tsum
+End Sub
+
+
 #if css
 	.status{
 		position:relative;
@@ -607,6 +660,18 @@ Sub Collapse(nodeID As String)
 	Dollar.Selector(nodeID).RunMethod("collapse", Null)
 End Sub
 
+Sub EditRow(dt As String, rowid As String)
+	dt = dt.tolowercase
+	rowid = CStr(rowid)
+	Dollar.Selector(dt).RunMethod("editRow", Array(rowid))
+End Sub
+
+Sub FocusEditor(dt As String, colid As String)
+	dt = dt.tolowercase
+	colid = CStr(colid)
+	colid = colid.tolowercase
+	Dollar.Selector(dt).RunMethod("focusEditor", Array(colid))
+End Sub
 
 Sub AddNotSelected(lst As List)
 	Dim q As String = "$"
@@ -623,10 +688,45 @@ Sub Back(nodeID As String)
 	Dollar.Selector(nodeID).RunMethod("back", Null)
 End Sub
 
+'open a tree node
+Sub Open(treeID As String, nodeID As String)
+	treeID = treeID.tolowercase
+	nodeID = nodeID.tolowercase
+	Dollar.Selector(treeID).RunMethod("open", Array(nodeID, True))
+End Sub
+
+'close a tree node
+Sub Close(treeID As String, nodeID As String)
+	treeID = treeID.tolowercase
+	nodeID = nodeID.tolowercase
+	Dollar.Selector(treeID).RunMethod("close", Array(nodeID))
+End Sub
+
+
+'close a tree node
+Sub CloseAll(treeID As String)
+	treeID = treeID.tolowercase
+	Dollar.Selector(treeID).RunMethod("closeAll", Null)
+End Sub
+
+
+'close a tree node
+Sub OpenAll(treeID As String)
+	treeID = treeID.tolowercase
+	Dollar.Selector(treeID).RunMethod("openAll", Null)
+End Sub
+
+
 'call after the ux is rendered
 Sub SetData(eID As String, data As List)
 	eID = eID.tolowercase
 	Define(eID, CreateMap("data":data))
+	Refresh(eID)
+End Sub
+
+Sub SetBody(eID As String, data As Object)
+	eID = eID.tolowercase
+	Define(eID, CreateMap("body":data))
 	Refresh(eID)
 End Sub
 
@@ -642,6 +742,13 @@ Sub SetOptions(eID As String, data As List)
 	Define(eID, CreateMap("options":data))
 	Refresh(eID)
 End Sub
+
+Sub SetSuggest(eID As String, data As List)
+	eID = eID.tolowercase
+	Define(eID, CreateMap("suggest":data))
+	Refresh(eID)
+End Sub
+
 
 Sub RefreshColumns(nodeID As String)
 	nodeID = nodeID.tolowercase
@@ -1575,6 +1682,12 @@ End Sub
 
 'add context menu
 Sub AddContextMenu(ctx As WixContextMenu) As BANanoObject
+	Dim ctxUX As BANanoObject = UX(ctx.Item)
+	Return ctxUX
+End Sub
+
+'add popup menu
+Sub AddPopUp(ctx As WixPopUp) As BANanoObject
 	Dim ctxUX As BANanoObject = UX(ctx.Item)
 	Return ctxUX
 End Sub

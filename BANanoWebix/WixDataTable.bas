@@ -32,20 +32,6 @@ Sub Class_Globals
 	Public DT_ADJUST_HEADER As String = "header"
 	Public DT_ADJUST_TRUE As Boolean = True
 	Private Rules As Map
-	Public Parent As WixElement
-
-End Sub
-
-'set the parent
-Sub SetParent(p As WixElement) As WixDataTable
-	Parent = p
-	Return Me
-End Sub
-
-
-'add tp columns of parent
-Sub Pop
-	Parent.AddColumns(Item)
 End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixDataTable
@@ -203,10 +189,50 @@ End Sub
 
 'add edit/trash
 Sub AddEditTrash
-	Dim e As WixDataColumn = CreateColumn("edit").SetHeader("Edit").SetTemplate("{common.editIcon()}").SetWidth(100)
-	Dim d As WixDataColumn = CreateColumn("delete").SetHeader("Delete").SetTemplate("{common.trashIcon()}").SetWidth(100)
+	Dim e As WixDataColumn = CreateColumn("edit").SetTemplate("{common.editIcon()}").SetWidth(80).SetAlignCenter(True)
+	Dim d As WixDataColumn = CreateColumn("delete").SetTemplate("{common.trashIcon()}").SetWidth(80).SetAlignCenter(True)
+	e.SetHeader("Edit")
+	d.SetHeader("Delete")
+	e.DataColumn.SetStyle("cursor", "pointer")
+	d.DataColumn.SetStyle("cursor", "pointer")
 	DataTable.AddDataColumn(e.Item)
 	DataTable.AddDataColumn(d.item)
+End Sub
+
+Sub AddIcon(iconID As String, iconHeader As String, iconName As String) As WixDataTable
+	Dim span As UOENowHTML
+	span.Initialize(iconID & "_icon","span").SetImportant(False).AddClass("webix_icon").AddClass(iconName)
+	iconID = iconID.tolowercase
+	Dim e As WixDataColumn = CreateColumn(iconID).SetWidth(80).SetAlignCenter(True).SetTemplateHTML(span)
+	e.SetHeader(iconHeader)
+	e.DataColumn.SetStyle("cursor", "pointer")
+	DataTable.AddDataColumn(e.Item)
+	Return Me
+End Sub
+
+Sub AddImage(imgID As String, imgHeader As String, imgURL As String, imgWidth As String, imgHeight As String, imgStyles As Map) As WixDataTable
+	imgID = imgID.ToLowerCase
+	Dim img As UOENowHTML
+	img.Initialize(imgID & "_img", "img").SetImportant(False)
+	img.SetStyle("cursor", "pointer")
+	img.SetStyle("width","100%")
+	img.SetStyle("height","100%")
+	If imgStyles <> Null Then
+		For Each mk As String In imgStyles.Keys
+			Dim mv As String = imgStyles.Get(mk)
+			img.SetStyle(mk, mv)
+		Next
+	End If
+	img.SetSRC(imgURL,True)
+	'
+	Dim e As WixDataColumn = CreateColumn(imgID).SetAlignCenter(True).SetTemplateHTML(img)
+	If imgWidth <> "" Then e.SetWidth(imgWidth)
+	If imgHeight <> "" Then e.SetHeight(imgHeight)
+	e.SetHeader(imgHeader)
+	e.DataColumn.SetStyle("cursor", "pointer")
+	e.DataColumn.SetCSS("form_photo")
+	DataTable.AddDataColumn(e.Item)
+	Return Me
 End Sub
 
 'set hover
@@ -246,7 +272,6 @@ Public Sub Initialize(tID As String) As WixDataTable
 	DataTable.Initialize(ID).SetView("datatable")
 	AutoConfig = False
 	Rules.Initialize
-	Parent = Null
 	Return Me
 End Sub
 

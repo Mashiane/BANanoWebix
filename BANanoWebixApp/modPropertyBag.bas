@@ -25,6 +25,7 @@ Sub getPropertyBag As WixForm
 	tbl.CreateIcon("propadd").SetIcon("mdi mdi-plus-circle-outline").SetTooltip("Add").SetClick(BANano.CallBack(pgFD,"prop_add",Null)).Pop
 	tbl.CreateIcon("propsave").SetIcon("mdi mdi-content-save").SetTooltip("Save").SetClick(BANano.CallBack(pgFD,"prop_savewait",Null)).Pop
 	tbl.CreateIcon("propdelete").SetIcon("mdi mdi-delete-outline").SetTooltip("Delete").SetClick(BANano.CallBack(pgFD,"prop_delete",Null)).Pop
+	tbl.CreateIcon("propmenu").SetIcon("mdi mdi-dots-vertical").SetTooltip("Menu").SetClick(BANano.CallBack(pgFD,"prop_menu",Null)).pop
 	'
 	'
 	frm.AddRows(tbl.Item)

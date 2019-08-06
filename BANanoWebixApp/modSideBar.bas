@@ -30,12 +30,12 @@ Sub getSideBar As WixSideBar
 	'sm.AddItem("downloads", "skeletonapp", "Skeleton App", "./assets/app.zip","mdi mdi-apps", "", "_blank")
 	'
 	sm.AddItem("", "demoapp", "Demos","","mdi mdi-language-html5", "","")
-	sm.AddItem("","db","Database","","","","")
+	sm.AddItem("","db","Database","","mdi mdi-folder","","")
 	sm.AddItem("db", "dbhelp", "Help","","mdi mdi-help-circle-outline","","")
 	sm.AddItem("db", "table","Table","","mdi mdi-selection-ellipse","","")
 	sm.AddItem("db", "field","Field","","mdi mdi-selection-ellipse","","")
 	
-	sm.AddItem("", "dp", "Data Presentation","","", "","")
+	sm.AddItem("", "dp", "Data Presentation","","mdi mdi-folder", "","")
 	sm.AddItem("dp", "datatable", "Data Table","","mdi mdi-selection-ellipse", "", "")
 	sm.AddItem("datatable", "datacolumn", "Data Column","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("dp", "dataview", "DataView","","mdi mdi-selection-ellipse", "","")
@@ -46,7 +46,7 @@ Sub getSideBar As WixSideBar
 '	sm.AddItem("dp", "treetable", "TreeTable","","", "","")
 	sm.AddItem("dp", "unitlist", "UnitList","","mdi mdi-selection-ellipse", "","")
 '	'
-	sm.AddItem("", "vis", "Visualization","","", "","")
+	sm.AddItem("", "vis", "Visualization","","mdi mdi-folder", "","")
 '	sm.AddItem("vis", "chart", "Chart","","", "","")
 	sm.AddItem("vis", "google-map", "Google Map","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("vis", "geochart", "Geochart","","mdi mdi-selection-ellipse", "","")
@@ -55,7 +55,7 @@ Sub getSideBar As WixSideBar
 	sm.AddItem("vis", "video", "Video","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("vis", "image", "Image","","mdi mdi-selection-ellipse", "","")
 '	'
-	sm.AddItem("", "lay", "Layouts","","", "","")
+	sm.AddItem("", "lay", "Layouts","","mdi mdi-folder", "","")
 '	sm.AddItem("lay", "accordion", "Accordion","","", "","")
 '	sm.AddItem("lay", "carousel", "Carousel","","", "","")
 '	sm.AddItem("lay", "comments", "Comments","","", "","")
@@ -70,20 +70,20 @@ Sub getSideBar As WixSideBar
 	sm.AddItem("lay", "tabbar", "TabBar","","mdi mdi-selection-ellipse", "","")
 	
 '	'
-	sm.AddItem("", "nav", "Navigation","","", "","")
+	sm.AddItem("", "nav", "Navigation","","mdi mdi-folder", "","")
 	sm.AddItem("nav", "contextmenu", "ContextMenu","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("nav", "menu", "Menu","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("nav", "sidebar", "SideBar","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("nav", "sidemenu", "SideMenu","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("nav", "toolbar", "ToolBar","","mdi mdi-selection-ellipse", "","")
 '	'
-	sm.AddItem("", "win", "Windows & Popups","","", "","")
+	sm.AddItem("", "win", "Windows & Popups","","mdi mdi-folder", "","")
 	sm.AddItem("win", "context", "Context","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("win", "popup", "PopUp","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("win", "window", "Window","","mdi mdi-selection-ellipse", "","")
 	'
 	'add control elements
-	sm.AddItem("", "con", "Controls","","", "","")
+	sm.AddItem("", "con", "Controls","","mdi mdi-folder", "","")
 	'buttons
 	sm.AddItem("con", "buttons", "Buttons","","mdi mdi-pin", "","")
 	sm.AddItem("buttons", "button", "Button","","mdi mdi-selection-ellipse", "","")
@@ -119,14 +119,11 @@ Sub getSideBar As WixSideBar
 	sm.AddItem("others", "icon", "Icon","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("others", "label", "Label","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("others", "uploader", "Uploader","","mdi mdi-selection-ellipse", "","")
-	'
-	sm.AddItem("", "hlp", "Helpers","","", "","")
-	sm.AddItem("hlp", "suggest", "Suggest","","mdi mdi-selection-ellipse", "","")
-	sm.AddItem("hlp", "resizer", "Resizer","","mdi mdi-selection-ellipse", "","")
-	sm.AddItem("hlp", "spacer", "Spacer","","mdi mdi-selection-ellipse", "","")
-	'sm.AddItem("con", "forminput", "FormInput","","", "","")
-	sm.AddItem("hlp", "pager", "Pager","","mdi mdi-selection-ellipse", "","")
-	sm.AddItem("hlp", "wixsomething", "Wix Something","","mdi mdi-selection-ellipse", "","")
+	sm.AddItem("others", "suggest", "Suggest","","mdi mdi-selection-ellipse", "","")
+	sm.AddItem("others", "resizer", "Resizer","","mdi mdi-selection-ellipse", "","")
+	sm.AddItem("others", "spacer", "Spacer","","mdi mdi-selection-ellipse", "","")
+	sm.AddItem("others", "pager", "Pager","","mdi mdi-selection-ellipse", "","")
+	sm.AddItem("others", "wixsomething", "Wix Something","","mdi mdi-selection-ellipse", "","")
 	sm.AddItem("wixsomething", "property", "Property","","mdi mdi-selection-ellipse", "","")
 	Return sm
 End Sub
