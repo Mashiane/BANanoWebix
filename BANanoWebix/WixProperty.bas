@@ -22,6 +22,16 @@ Sub SetParent(p As WixElement) As WixProperty
 End Sub
 
 
+Sub AddNotSelected(lst As List)
+	Dim q As String = "$"
+	Dim k1 As String = q & "empty"
+	Dim opt As Map = CreateMap()
+	opt.Put("id", k1)
+	opt.Put("value", "-- Not selected --")
+	opt.Put(k1, True)
+	lst.InsertAt(0, opt)
+End Sub
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
@@ -34,7 +44,7 @@ Public Sub Initialize(eID As String) As WixProperty
 	elements.Initialize 
 	Maps.Initialize 
 	webix.Initialize("webix") 
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
 
@@ -165,16 +175,19 @@ Sub AddDate(eid As String, label As String, value As String, format As Object) A
 End Sub
 
 Sub AddSelect(eid As String, label As String, value As String, options As List) As WixProperty
+	AddNotSelected(options)
 	elements.Add(El(eid, label, "select", value, options, Null))
 	Return Me
 End Sub
 
 Sub AddCombo(eid As String, label As String, value As String, options As List) As WixProperty
+	AddNotSelected(options)
 	elements.Add(El(eid, label, "combo", value, options, Null))
 	Return Me
 End Sub
 
 Sub AddRichSelect(eid As String, label As String, value As String, options As List) As WixProperty
+	AddNotSelected(options)
 	elements.Add(El(eid, label, "richselect", value, options, Null))
 	Return Me
 End Sub

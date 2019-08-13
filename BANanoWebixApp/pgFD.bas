@@ -22,6 +22,8 @@ Sub Process_Globals
 	Private drawn As BANanoObject
 	Private fldWin As BANanoObject
 	Private lastcode As String
+	Private prjDBName As String
+	Private prjDBType As String
 End Sub
 
 Sub Init()
@@ -338,7 +340,7 @@ Sub AddPrimaryKeyWait
 	Dim qry As String
 	Dim res As String
 	Dim rs As SQLiteResultSet
-	dim sqlite As BANanoSQLite
+	Dim sqlite As BANanoSQLite
 	sqlite.Initialize
 	sqlite.AddStrings(Array("id"))
 	'replace complete record
@@ -354,134 +356,802 @@ Sub AddPrimaryKeyWait
 	pg.Message(rs.result.size & " record(s) affected!")
 End Sub
 
+Sub AddComment(sbx As StringBuilder, comment As String)
+	sbx.Append("'" & comment).Append(CRLF)
+End Sub
+
+Sub LoadOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+	'determine if we have them
+	Dim hasForeign As Boolean = False
+	Dim sets As Map = CreateMap()
+	Dim foreign_table As String
+	Dim foreign_key As String
+	Dim foreign_value As String
+	Dim svalue As String
+	'
+	If rsx.result.Size > 0 Then
+	For Each fldmap As Map In rsx.result
+		Dim json As String = fldmap.Get("json")
+		Dim fldmap As Map = pg.Json2Map(json)
+		foreign_table = fldmap.get("foreign_table")
+		foreign_key = fldmap.Get("foreign_key")
+		foreign_value = fldmap.get("foreign_value")
+		svalue = fldmap.Get("value")
+		
+		'determine if we have fkeys
+		Dim iHas As Int = 0
+		If foreign_table <> "" Then iHas = iHas + 1
+		If foreign_key <> "" Then iHas =iHas + 1
+		If foreign_value <> "" Then iHas = iHas + 1
+		'
+		If iHas = 3 Then 
+			hasForeign = True
+			Dim set As String = $"${foreign_table}.${foreign_key}.${foreign_value}"$
+			sets.Put(svalue, set)
+		End If
+	Next
+	End If
+	'
+	If hasForeign = False Then Return ""
+	'
+	Dim sb As StringBuilder
+	sb.initialize
+	sb.append("Sub LoadOptions").append(CRLF)
+	If prjDBType = "BANanoSQL" Then
+		'AddComment(sb,"***START BANanoSQL***")
+		sb.append($"${prjDBName}.OpenWait("${prjDBName}", "${prjDBName}")
+		Dim alaSQL As BANanoAlaSQL"$).Append(CRLF)
+		'
+		Dim fkeys As Int = 0
+		For Each k As String In sets.Keys
+			Dim v As String = sets.get(k)
+			fkeys = fkeys + 1
+			foreign_table = pg.mvfield(v,1,".")
+			foreign_key = pg.mvfield(v,2,".")
+			foreign_value = pg.mvfield(v,3,".")
+			'
+			sb.Append($"alaSQL.Initialize
+			Dim rs${fkeys} As AlaSQLResultSet = alaSQL.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
+		rs${fkeys}.Result = ${prjDBName}.ExecuteWait(rs${fkeys}.query, rs${fkeys}.args)"$).append(CRLF)
+			'
+			If (foreign_key <> "id") Or (foreign_value <> "value") Then
+				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
+				Page.AddNotSelected(nl${fkeys})
+				Page.SetOptions("${tblName}.${k}", nl${fkeys})"$).Append(CRLF)
+				Continue
+			End If
+			sb.append($"Page.AddNotSelected(rs${fkeys}.Result)
+			Page.SetOptions("${tblName}.${k}", rs${fkeys}.Result)"$).Append(CRLF)
+		Next
+		'AddComment(sb, "***END BANanoSQL***")
+		sb.append(CRLF)
+	End If
+	'
+	If prjDBType = "BANanoSQLite" Then
+		'AddComment(sb,"***START BANanoSQLite***")
+		
+		sb.Append($"Dim sqlite As BANanoSQLite1
+		sqlite.Initialize"$).append(CRLF)
+		sb.Append("sqlite.SetDB(dbName)").append(CRLF)
+		
+		Dim fkeys As Int = 0
+			For Each k As String In sets.Keys
+			Dim v As String = sets.get(k)
+			fkeys = fkeys + 1
+			foreign_table = pg.mvfield(v,1,".")
+			foreign_key = pg.mvfield(v,2,".")
+			foreign_value = pg.mvfield(v,3,".")
+		
+			sb.Append($"Dim rs${fkeys} As SQLiteResultSet1 = sqlite.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
+	rs${fkeys}.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs${fkeys})))"$).Append(CRLF)
+			
+			'
+			If (foreign_key <> "id") Or (foreign_value <> "value") Then
+				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
+				Page.AddNotSelected(nl${fkeys})
+				Page.SetOptions("${tblName}.${k}", nl${fkeys})"$).Append(CRLF)
+				Continue
+			End If
+			sb.append($"Page.AddNotSelected(rs${fkeys}.Result)
+			Page.SetOptions("${tblName}.${k}", rs${fkeys}.Result)"$).Append(CRLF)
+		Next
+		
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If	
+	sb.append("End Sub").append(CRLF)
+	Return sb.tostring
+End Sub
+
+Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+	'determine if we have them
+	Dim hasForeign As Boolean = False
+	Dim sets As Map = CreateMap()
+	Dim foreign_table As String
+	Dim foreign_key As String
+	Dim foreign_value As String
+	Dim svalue As String
+	'
+	If rsx.result.Size > 0 Then
+	For Each fldmap As Map In rsx.result
+		Dim json As String = fldmap.Get("json")
+		Dim fldmap As Map = pg.Json2Map(json)
+		foreign_table = fldmap.get("foreign_table")
+		foreign_key = fldmap.Get("foreign_key")
+		foreign_value = fldmap.get("foreign_value")
+		svalue = fldmap.Get("value")
+		
+		'determine if we have fkeys
+		Dim iHas As Int = 0
+		If foreign_table <> "" Then iHas = iHas + 1
+		If foreign_key <> "" Then iHas =iHas + 1
+		If foreign_value <> "" Then iHas = iHas + 1
+		'
+		If iHas = 3 Then 
+			hasForeign = True
+			Dim set As String = $"${foreign_table}.${foreign_key}.${foreign_value}"$
+			sets.Put(svalue, set)
+		End If
+	Next
+	End If
+	'
+	Dim sb As StringBuilder
+	sb.initialize
+	sb.append("Sub LoadDataTable").append(CRLF)
+	AddComment(sb,"set the progress bar")
+	sb.append($"Dim pbx As WixProgressBar
+	pbx.Initialize("").SetTypeIcon("")
+	Page.SetProgressBar("dt${tblName}", pbx)"$).Append(CRLF)
+	AddComment(sb,"clear the grid")
+	sb.append($"Page.ClearAll("dt${tblName}")"$).Append(CRLF)
+	'
+	If prjDBType = "BANanoSQL" Then
+		'AddComment(sb,"***START BANanoSQL***")
+		sb.append($"${prjDBName}.OpenWait("${prjDBName}", "${prjDBName}")
+		Dim alaSQL As BANanoAlaSQL"$).Append(CRLF)
+		'
+		Dim fkeys As Int = 0
+		For Each k As String In sets.Keys
+			Dim v As String = sets.get(k)
+			fkeys = fkeys + 1
+			foreign_table = pg.mvfield(v,1,".")
+			foreign_key = pg.mvfield(v,2,".")
+			foreign_value = pg.mvfield(v,3,".")
+			'
+			sb.Append($"alaSQL.Initialize
+			Dim rs${fkeys} As AlaSQLResultSet = alaSQL.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
+		rs${fkeys}.Result = ${prjDBName}.ExecuteWait(rs${fkeys}.query, rs${fkeys}.args)"$).append(CRLF)
+			'
+			If (foreign_key <> "id") Or (foreign_value <> "value") Then
+				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
+				Page.SetDataColumn("dt${tblName}", "${k}", CreateMap("options" : nl${fkeys}))"$).Append(CRLF)
+				Continue
+			End If
+			sb.append($"Page.SetDataColumn("dt${tblName}", "${k}", CreateMap("options" : rs${fkeys}.Result))"$).Append(CRLF)
+		Next
+		'AddComment(sb, "***END BANanoSQL***")
+	End If
+	sb.append(CRLF)
+	'
+	If prjDBType = "BANanoSQLite" Then
+		'AddComment(sb,"***START BANanoSQLite***")
+		sb.Append($"Dim sqlite As BANanoSQLite1
+		sqlite.Initialize"$).append(CRLF)
+		sb.append("sqlite.SetDB(dbName)").append(CRLF)
+		
+		Dim fkeys As Int = 0
+			For Each k As String In sets.Keys
+			Dim v As String = sets.get(k)
+			fkeys = fkeys + 1
+			foreign_table = pg.mvfield(v,1,".")
+			foreign_key = pg.mvfield(v,2,".")
+			foreign_value = pg.mvfield(v,3,".")
+		
+			sb.Append($"Dim rs${fkeys} As SQLiteResultSet1 = sqlite.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
+	rs${fkeys}.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs${fkeys})))"$).Append(CRLF)
+			
+			'
+			If (foreign_key <> "id") Or (foreign_value <> "value") Then
+				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
+				Page.SetDataColumn("dt${tblName}", "${k}", CreateMap("options" : nl${fkeys}))"$).Append(CRLF)
+				Continue
+			End If
+			sb.append($"Page.SetDataColumn("dt${tblName}", "${k}", CreateMap("options" : rs${fkeys}.Result))"$).Append(CRLF)
+		Next
+		
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
+	If hasForeign Then
+		sb.append(CRLF)
+		AddComment(sb,"refresh all columns")
+		sb.append($"Page.RefreshColumns("dt${tblName}")"$).Append(CRLF)
+	End If
+	AddComment(sb,"add the data")
+	If prjDBType = "BANanoSQL" Then
+		'AddComment(sb,"***START BANanoSQL***")
+		sb.Append($"alaSQL.Initialize
+		Dim rsd As AlaSQLResultSet = alaSQL.SelectAll("${tblName}", Array("*"), Array("${priKey}"))
+		rsd.Result = ${prjDBName}.ExecuteWait(rsd.query, rsd.args)"$).append(CRLF)
+		'AddComment(sb, "***END BANanoSQL***")
+	End If
+	sb.append(CRLF)
+	
+	If prjDBType = "BANanoSQLite" Then
+		'AddComment(sb,"***START BANanoSQLite***")
+		sb.Append($"sqlite.Initialize
+		sqlite.SetDB(dbName)
+	Dim rsd As SQLiteResultSet1 = sqlite.SelectAll("${tblName}", Array("*"), Array("${priKey}"))
+	rsd.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rsd)))"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
+	sb.append(CRLF)
+	sb.append($"Page.SetData("dt${tblName}", rsd.result)
+	'update the badge
+	Page.SetBadge("badge${tblName}", rsd.result.Size)
+	'remove the progress bar
+	Page.UnsetProgressBar("dt${tblName}")"$).append(CRLF)
+	sb.append("End Sub").append(CRLF)
+	Return sb.tostring
+End Sub
+
+Sub FormCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+	Dim errors As Int = 0
+	Dim sb As StringBuilder
+	sb.initialize
+	'create data table
+	sb.append("Sub CreateForm As WixForm").append(CRLF)
+	sb.append($"dim form${tblName} As WixForm"$).append(CRLF)
+	sb.Append($"form${tblName}.Initialize("form${tblName}")
+	form${tblName}.SetName("form${tblName}")
+	form${tblName}.SetResponsive("true")
+	form${tblName}.SetDefaultLabelWidth("120")
+	form${tblName}.SetDefaultLabelPosition("top")"$).Append(CRLF)
+	AddComment(sb,"add elements")
+	If rsx.result.Size > 0 Then
+	For Each fldmap As Map In rsx.result
+		Dim json As String = fldmap.Get("json")
+		Dim fldmap As Map = pg.Json2Map(json)
+		Dim description As String = fldmap.GetDefault("description","")
+		If description = "" Then errors = errors + 1	
+		Dim fldCode As String = ViewCode(json)
+		sb.Append(fldCode)
+		sb.append(CRLF).Append(CRLF)
+	Next
+	End If
+	If errors > 0 Then
+		pg.Message_Error("FormCode: Description for fields not specified!")
+	End If
+	sb.append($"form${tblName}.AddRowsSpacer("")"$).Append(CRLF)
+	sb.append($"return form${tblName}"$).append(CRLF)
+	sb.append("End Sub").append(CRLF).Append(CRLF)
+	Return sb.tostring
+End Sub
+
+Sub ToolbarCode(tblName As String) As String
+	Dim sb As StringBuilder
+	sb.initialize
+	sb.append($"Sub CreateToolBar As WixToolBar
+	Dim tbl${tblName} As WixToolBar
+	tbl${tblName}.Initialize("tbl${tblName}").SetPadding(10)
+	tbl${tblName}.CreateLabel("lbl${tblName}").SetLabel("${Capitalize(tblName)}").Pop
+	tbl${tblName}.AddSpacer
+	'
+	Dim btnnew${tblName} As WixIcon
+	btnnew${tblName}.Initialize("btnnew${tblName}")
+	btnnew${tblName}.SetIcon("mdi mdi-plus")
+	btnnew${tblName}.SetTooltip("Add a new record")
+	btnnew${tblName}.SetWidth("100")
+	btnnew${tblName}.SetClick(BANano.callback(Me,"btnnew${tblName}_click",Null))
+	tbl${tblName}.AddIcon(btnnew${tblName})
+
+	Dim btncancel${tblName} As WixIcon
+	btncancel${tblName}.Initialize("btncancel${tblName}")
+	btncancel${tblName}.SetIcon("mdi mdi-cancel")
+	btncancel${tblName}.SetTooltip("Cancel new record")
+	btncancel${tblName}.SetWidth("100")
+	btncancel${tblName}.SetClick(BANano.CallBack(Me,"btncancel${tblName}_click",Null))
+	btncancel${tblName}.SetDisabled(True)
+	tbl${tblName}.AddIcon(btncancel${tblName})
+	
+
+	Dim btnsave${tblName} As WixIcon
+	btnsave${tblName}.Initialize("btnsave${tblName}")
+	btnsave${tblName}.SetIcon("mdi mdi-content-save")
+	btnsave${tblName}.SetTooltip("Save the record")
+	btnsave${tblName}.SetWidth("100")
+	btnsave${tblName}.SetClick(BANano.callback(Me,"btnsave${tblName}_click",Null))
+	btnsave${tblName}.SetDisabled(True)
+	tbl${tblName}.AddIcon(btnsave${tblName})
+
+	Dim btndelete${tblName} As WixIcon
+	btndelete${tblName}.Initialize("btndelete${tblName}")
+	btndelete${tblName}.SetIcon("mdi mdi-trash-can")
+	btndelete${tblName}.SetTooltip("Delete record")
+	btndelete${tblName}.SetWidth("100")
+	btndelete${tblName}.SetClick(BANano.callback(Me,"btndelete${tblName}_click",Null))
+	btndelete${tblName}.SetDisabled(True)
+	tbl${tblName}.AddIcon(btndelete${tblName})
+	
+	Dim cb As BANanoObject = BANano.CallBack(Me, "print${tblName}_click", Null)
+	tbl${tblName}.CreateIcon("badge${tblName}").SetIcon("mdi mdi-city").SetWidth(100).SetBadge("0").Pop
+	tbl${tblName}.CreateIcon("print${tblName}").SetIcon("mdi mdi-printer").SetWidth(100).SetTooltip("Print the list of ${tblName}").SetClick(cb).Pop
+	Return tbl${tblName}
+End Sub"$).Append(CRLF).append(CRLF)
+sb.append($"Sub Print${Capitalize(tblName)}_click
+	Dim wp As WixPrint
+	wp.Initialize
+	wp.SetHeader(True)
+	wp.SetFooter(True)
+	wp.SetDocHeader("${Capitalize(tblName)}")
+	wp.SetModeLandScape(true)
+	wp.SetDataAll(True)
+	wp.SetDocFooter("BANanoWebix")
+	wp.SetPaperA4(True)
+	Page.Print("dt${tblName}",wp)
+End Sub"$).Append(CRLF)
+	Return sb.tostring
+End Sub
+
+Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+	Dim errors As Int = 0
+	Dim sb As StringBuilder
+	sb.initialize
+	'create data table
+	sb.append("Sub CreateDataTable As WixDataTable").append(CRLF)
+	sb.append($"dim dt${tblName} As WixDataTable"$).append(CRLF)
+	sb.Append($"dt${tblName}.Initialize("dt${tblName}")
+	dt${tblName}.SetForm("form${tblName}")
+	dt${tblName}.SetResizeColumn("true")
+	dt${tblName}.SetScroll("y")
+	dt${tblName}.SetSelect("row")
+	'dt${tblName}.SetEditable(True)
+	'dt${tblName}.SetEditAction("custom")
+	'dt${tblName}.SetNavigation(True)
+	dt${tblName}.SetHeaderBorders(True)"$).append(CRLF)
+	AddComment(sb,"add columns")
+	If rsx.result.Size > 0 Then
+	For Each fldmap As Map In rsx.result
+		Dim json As String = fldmap.Get("json")
+		Dim fldmap As Map = pg.json2map(json)
+		Dim description As String = fldmap.getdefault("description","")
+		If description = 0 Then errors = errors + 1
+		Dim fldCode As String = FieldCode(json)
+		sb.Append(fldCode)
+		sb.append(CRLF).Append(CRLF)
+	Next
+	End If
+	If errors > 0 Then
+		pg.Message_Error("GridCode: Description for fields not specified!")
+	End If
+	sb.append(CRLF)
+	sb.append($"dt${tblName}.AddEditTrash"$).append(CRLF).Append(CRLF)
+	sb.append($"Dim arguements As Object
+	dt${tblName}.DataTable.OnItemClick(BANano.CallBack(Me,"dt${tblName}_itemclick",Array(arguements)))
+	dt${tblName}.DataTable.OnItemDblClick(BANano.CallBack(Me,"dt${tblName}_dblclick",Array(arguements)))
+	dt${tblName}.DataTable.OnKeyPress(BANano.CallBack(Me,"dt${tblName}_keypress",Array(arguements)))"$).Append(CRLF)
+	sb.Append($"Dim state, editor As Object
+	dt${tblName}.DataTable.OnAfterEditStop(BANano.CallBack(Me,"dt${tblName}_afteredit",Array(state,editor)))"$).append(CRLF)
+	
+	sb.append($"return dt${tblName}"$).append(CRLF)
+	sb.append("End Sub").append(CRLF).Append(CRLF)
+	'double click
+	sb.append($"Sub dt${tblName}_dblclick(arguements As Object)"$).Append(CRLF)
+	sb.append($"Dim item As Map = Page.GetSelectedItem("dt${tblName}",False)
+	Dim did As String = item.Get("${priKey}")
+	Read${tblName}(did)
+	'if grid is editable, uncomment
+	'Page.EditRow("dt${tblName}", did)"$).append(CRLF)
+	sb.append("End Sub").append(CRLF).append(CRLF)
+	
+	'item click
+	sb.append($"Sub dt${tblName}_itemclick(row As Map)"$).append(CRLF)
+	sb.append($"Dim did As String
+	Dim item As Map
+	'
+	Dim rowid As String = row.Get("row")
+	Dim colid As String = row.Get("column")
+	Select Case colid
+	Case "edit"
+		item = Page.GetItem("dt${tblName}", rowid)
+		did = item.Get("${priKey}")
+		Read${tblName}(did)
+		'if grid is editable
+		'Page.EditRow("dt${tblName}", did)
+	Case "delete"	
+		Dim confirmresult As Boolean = False
+		Dim cb As BANanoObject = BANano.CallBack(Me,"dt${tblName}_delete",Array(confirmresult))
+		Page.Confirm(cb, "Confirm Delete", "Are you sure want to delete this ${tblName} record? You will not be able to undo your changes. Continue?")
+	End Select"$).append(CRLF)
+	sb.append("End Sub").Append(CRLF)
+	'key press
+	sb.append($"Sub dt${tblName}_keypress(arguements As Object)"$).append(CRLF)
+	sb.append($"'get the code being selected
+	Dim kCode As Int = BANano.parseInt(arguements)"$).append(CRLF)
+	sb.Append("Select Case kCode").append(CRLF)
+	sb.append("Case 45").append(CRLF)
+	sb.append($"btnnew${tblName}_click"$).append(CRLF)
+	sb.append($"Case 46
+		Dim confirmresult As Boolean = False
+		Dim cb As BANanoObject = BANano.CallBack(Me,"dt${tblName}_delete",Array(confirmresult))
+		Page.Confirm(cb, "Confirm Delete", "Are you sure want to delete this ${tblName} record? You will not be able to undo your changes. Continue?")
+	End Select"$).append(CRLF)	
+	sb.append("End Sub").append(CRLF)
+	sb.append(CRLF)
+	
+	'after edit
+	sb.append($"Sub dt${tblName}_afteredit(state As Object, editor As Object)"$).Append(CRLF)
+	AddComment(sb,"get the current edited item")
+	sb.Append($"Dim item As Map = Page.GetSelectedItem("dt${tblName}",False)"$).append(CRLF)
+	AddComment(sb,"get the id of the record")
+	sb.append($"Dim ${priKey} As String = item.Get("${priKey}")"$).append(CRLF)
+	AddComment(sb,"update record")
+	'
+	If prjDBType = "BANanoSQL" Then
+		'AddComment(sb, "***START BANanoSQL***")
+		sb.append($"'update record
+		${prjDBName}.OpenWait("${prjDBName}", "${prjDBName}")
+		Dim alaSQL As BANanoAlaSQL
+		alaSQL.Initialize
+		Dim rs As AlaSQLResultSet = alaSQL.UpdateWhere("${tblName}", item, CreateMap("${priKey}":${priKey}))
+		rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQL***")
+	End If
+	sb.append(CRLF)
+	If prjDBType = "BANanoSQLite" Then
+		'AddComment(sb, "***START BANanoSQLite***")
+		sb.append($"Dim sqlite As BANanoSQLite1
+	sqlite.Initialize
+	sqlite.SetDB(dbName)
+	Dim rs As SQLiteResultSet1 = sqlite.UpdateWhere("${tblName}", item, CreateMap("${priKey}":${priKey}))
+	rs.Result = BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs))"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
+	sb.append("End Sub").Append(CRLF).Append(CRLF)
+	Return sb.tostring
+End Sub
+
+Sub AddShowPageCode(tblName As String) As String
+	Dim sb As StringBuilder
+	sb.initialize
+	sb.append($"Sub AddPage(pg As WixPage, mv As WixMultiView)
+	Page = pg
+	dbName = Main.dbname
+	Dim a As WixElement
+	a.Initialize("mv_${tblName}").SetTemplate("${Capitalize(tblName)}").SetTypeLine("")
+	'
+	Dim r1 As WixLayout
+	r1.Initialize("r1")
+	r1.AddRows(CreateToolBar.item)
+	a.AddRows(r1.item)
+	'
+	Dim r2 As WixLayout
+	r2.initialize("r2")
+	r2.AddColumns(CreateDataTable.item)
+	r2.AddColumnsResizer("")
+	r2.AddColumns(CreateForm.item)
+	a.AddRows(r2.Item)
+	'
+	mv.AddItem(a.Item)
+	End Sub"$).append(CRLF).Append(CRLF)
+
+sb.Append($"Sub ShowPage(pg As WixPage)
+	Page = pg
+	dbName = Main.dbname
+	pg.Show("mv_${tblName}")
+	LoadDataTable
+	Page.Clear("form${tblName}")
+	Page.ClearValidation("form${tblName}")
+	Page.Enable("btnnew${tblName}")
+	Page.DisableMulti(Array("btncancel${tblName}","btnsave${tblName}","btndelete${tblName}"))
+End Sub"$).append(CRLF)
+	Return sb.tostring
+End Sub
+
+
 Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+	Dim errors As Int = 0
+	Dim none As Int = 0
 	Dim sbFields As StringBuilder
 	sbFields.Initialize
 	
+	Dim dtCode As String = GridCode(tblName,priKey,rsx)
+	Dim loCode As String = LoadOptionsCode(tblName, priKey, rsx)
+	Dim dtLoadCode As String = LoadGridOptionsCode(tblName, priKey, rsx)
+	Dim frmCode As String = FormCode(tblName,priKey, rsx)
+	Dim tblCode As String = ToolbarCode(tblName)
+	Dim asCode As String = AddShowPageCode(tblName)
+	If rsx.result.Size > 0 Then
 	For Each fldmap As Map In rsx.result
 		Dim json As String = fldmap.Get("json")
 		Dim fmap As Map = pg.Json2Map(json)
 		Dim fldname As String = fmap.Get("value")
-		sbFields.Append(fldname).Append(",")
+		Dim isfield As Boolean = fmap.Get("isfield")
+		Dim description As String = fmap.GetDefault("description","")
+		If description = "" Then errors = errors + 1
+		If isfield Then
+			sbFields.Append(fldname).Append(",")
+		Else
+			none = none + 1
+		End If
 	Next
+	End If
+	If none > 0 Then
+		pg.Message_Debug("CreateTable: Warning - some fields are not marked in IsField?")
+	End If
+	If errors > 0 Then
+		pg.Message_Error("CreateTable: Some fields don't have field descriptions!")
+	End If
 	Dim flds As String = sbFields.ToString
 	flds = pg.RemDelim(flds,",")
 	'
 	Dim sb As StringBuilder
 	sb.Initialize
+		
+	sb.append($"Sub CreateTable${tblName}"$).append(CRLF)
 	sb.Append("'FIELD NAMES").Append(CRLF)
 	sb.Append(flds).Append(CRLF).Append(CRLF)
 	sb.append("'Copy this code to Main.BANano_Ready").Append(CRLF).Append(CRLF)
-	sb.Append("'create the table").Append(CRLF)
-	sb.append("Dim newTable As Map = CreateMap()").Append(CRLF)
+	sb.Append("'create the table structure").Append(CRLF)
+	sb.append($"Dim m${tblName} As Map = CreateMap()"$).Append(CRLF)
 	'
+	If rsx.result.Size > 0 Then
 	For Each fldmap As Map In rsx.result
 		Dim json As String = fldmap.Get("json")
 		Dim fmap As Map = pg.Json2Map(json)
 		Dim fldname As String = fmap.Get("value")
 		Dim fldtype As String = fmap.Get("type")
 		Dim fldLeng As String = fmap.get("length")
+		Dim isfield As Boolean = fmap.get("isfield")
 		'
-		sb.Append($"newTable.put("${fldname}","${fldtype}")"$).Append(CRLF)
+		If isfield Then
+			sb.Append($"m${tblName}.put("${fldname}","${fldtype}")"$).Append(CRLF)
+		End If
 	Next
+	End If
 	sb.append(CRLF)
-	sb.append("'initialize the helper class").Append(CRLF)
-	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
-	sb.append("alaSQL.Initialize").append(CRLF)
-	sb.Append("'generate the create table sql").Append(CRLF)
-	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.CreateTable("${tblName}", newTable, "${priKey}")"$).Append(CRLF)
-	sb.append("'execute the create table command").Append(CRLF)
-	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF).Append(CRLF)
+	If prjDBType = "BANanoSQL" Then
+		'sb.append("'***START BANanoSQL***").Append(CRLF)
+		AddComment(sb,"open the database connection")
+		sb.append($"${prjDBName}.OpenWait("${prjDBName}", "${prjDBName}")"$).Append(CRLF)
+		AddComment(sb, "initialize the bananosql helper class")
+		sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
+		sb.append("alaSQL.Initialize").append(CRLF)
+		AddComment(sb,"generate the resultset structure to execute")
+		sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.CreateTable("${tblName}", m${tblName}, "${priKey}")"$).Append(CRLF)
+		AddComment(sb,"execute the resultset structure and get the result")
+		sb.append($"rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+		'sb.append("'***END BANanoSQL***").Append(CRLF).append(CRLF)
+	End If
+	If prjDBType = "BANanoSQLite" Then
+		'sb.append("'***START BANanoSQLite***").append(CRLF)
+		AddComment(sb,"initialize the bananosqlite helper class")
+		sb.append("Dim sqlite As BANanoSQLite1").append(CRLF)
+		sb.append("sqlite.Initialize").append(CRLF)
+		sb.append("sqlite.SetDB(dbName)").append(CRLF)
+		AddComment(sb,"build the query string structure to execute")
+		sb.append($"Dim rs As SQLiteResultSet1 = sqlite.CreateTable("${tblName}", m${tblName}, "${priKey}")"$).Append(CRLF)
+		AddComment(sb, "execute the resultset structure and get the result")
+		sb.append($"rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).append(CRLF)
+		'sb.append("'***END BANanoSQLite***").append(CRLF)
+	End If
+	sb.append("End Sub").Append(CRLF)
 	'
 	sb.Append("'This code should be copied to your modules for CRUD").Append(CRLF)
 	'
 	sb.Append("'NEW").Append(CRLF)
-	sb.Append("Sub btnnew_click").Append(CRLF)
+	sb.Append($"Sub btnnew${tblName}_click"$).Append(CRLF)
+	AddComment(sb,"change mode to adding")
+	sb.append($"Mode = "A""$).append(CRLF)
 	sb.Append("'clear the contents of the form").Append(CRLF)
-	sb.append($"pg.Clear("form")"$).Append(CRLF)
+	sb.append($"Page.Clear("form${tblName}")"$).Append(CRLF)
+	AddComment(sb,"clear form validation, if any")
+	sb.append($"Page.ClearValidation("form${tblName}")"$).append(CRLF)
+	AddComment(sb,"disable new and delete buttons")
+	sb.append($"Page.DisableMulti(array("btnnew${tblName}","btndelete${tblName}"))"$).append(CRLF)
+	AddComment(sb,"enable save, cancel")
+	sb.Append($"Page.EnableMulti(Array("btncancel${tblName}","btnsave${tblName}"))"$).append(CRLF)
+	sb.append("LoadOptions").append(CRLF)
+	If prjDBType = "BANanoSQL" Then
+		'sb.append("'***START BANanoSQL***").append(CRLF)
+		AddComment(sb,"open database connection")
+		sb.append($"${prjDBName}.OpenWait("${prjDBName}", "${prjDBName}")"$).Append(CRLF)
+		AddComment(sb,"initialize bananosql helper class")
+		sb.append($"Dim alaSQL As BANanoAlaSQL
+		alaSQL.Initialize"$).append(CRLF)
+		AddComment(sb,"get the maximum value in the primary field")
+		sb.append($"Dim rs As AlaSQLResultSet = alaSQL.GetMax("${tblName}", "${priKey}")"$).Append(CRLF)
+		sb.Append($"rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+		'sb.append("'***END BANanoSQL***").append(CRLF)
+		AddComment(sb,"increment the max value by 1")
+		sb.append($"Dim nextID As String = alaSQL.GetNextID("${priKey}", rs.result)"$).append(CRLF)
+	End If
+	'
+	If prjDBType = "BANanoSQLite" Then
+		'sb.append("'***START BANanoSQLite***").append(CRLF)
+		AddComment(sb,"initialize the bananosql helper class")
+		sb.append($"Dim sqlite As BANanoSQLite1
+		sqlite.Initialize"$).Append(CRLF)
+		sb.append("sqlite.SetDB(dbName)").append(CRLF)
+		AddComment(sb,"get the maximum value in the primary field")
+		sb.append($"Dim rs As SQLiteResultSet1 = sqlite.GetMax("${tblName}", "${priKey}")"$).append(CRLF)
+		sb.append($"rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
+		AddComment(sb,"increment the max value by 1")
+		sb.append($"Dim nextID As String = sqlite.GetNextID("${priKey}", rs.result)"$).append(CRLF)
+		'sb.append("'***END BANanoSQLite***").append(CRLF)
+	End If
+	'
+	AddComment(sb,"assign the nextID to the form value")
+	sb.append($"Page.SetValue("${tblName}.${priKey}", nextID)"$).append(CRLF)
+	AddComment(sb,"set focus to primary field of form")
+	sb.Append($"Page.Focus("${tblName}.${priKey}")"$).append(CRLF)
 	sb.Append("End Sub").Append(CRLF).append(CRLF)
 	'
-	sb.Append("'CREATE").Append(CRLF)
-	sb.Append("Sub btninsert_click").Append(CRLF)
+	sb.Append("'CREATE/UPDATE").Append(CRLF)
+	sb.Append($"Sub btnsave${tblName}_click"$).Append(CRLF)
+	AddComment(sb," this happens on insert / update an existing record!")
 	sb.Append("'lets validate the form").Append(CRLF)
-	sb.append($"Dim bValid As Boolean = pg.Validate("form")"$).append(CRLF)
+	sb.append($"Dim bValid As Boolean = Page.Validate("form${tblName}")"$).append(CRLF)
 	sb.append("if bValid = False Then Return").Append(CRLF)
-	sb.Append("'insert record to table").Append(CRLF)
-	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
-	sb.Append("'initialize the helper class").Append(CRLF)
-	sb.append("alaSQL.Initialize").append(CRLF)
 	sb.Append("'Get values from the form").Append(CRLF)
-	sb.append($"Dim rec As Map = pg.GetValues("form")"$).Append(CRLF)
-	sb.Append("'save record to the database").Append(CRLF)
-	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.Insert("${tblName}", rec)"$).Append(CRLF)
-	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+	sb.append($"Dim rec As Map = Page.GetValues("form${tblName}")"$).Append(CRLF)
+sb.Append($"Select Case Mode
+Case "A""$).append(CRLF)
+'
+If prjDBType = "BANanoSQL" Then
+	'AddComment(sb, "***START BANanoSQL***")
+	sb.append($"${prjDBName}.OpenWait("${prjDBName}", "${prjDBName}")
+	Dim alaSQL As BANanoAlaSQL
+	alaSQL.Initialize
+	Dim rs As AlaSQLResultSet = alaSQL.Insert("${tblName}", rec)
+	rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+	'AddComment(sb,"***END BANanoSQL***")
+End If
+'
+	If prjDBType = "BANanoSQLite" Then
+	'AddComment(sb, "***START BANanoSQLite***")
+	sb.append($"Dim sqlite As BANanoSQLite1
+	sqlite.Initialize
+	sqlite.SetDB(dbName)
+	Dim rs As SQLiteResultSet1 = sqlite.Insert("${tblName}", rec)
+	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
+	'AddComment(sb, "***END BANanoSQLite***"$)
+End If
+'
+sb.append($"Case "E"
+Dim ${priKey} As String = rec.Get("${priKey}")"$).Append(CRLF)
+'
+If prjDBType = "BANanoSQL" Then
+	'AddComment(sb, "***START BANanoSQL***")
+	sb.append($"${prjDBName}.OpenWait("${prjDBName}", "${prjDBName}")
+	Dim alaSQL As BANanoAlaSQL
+	alaSQL.Initialize
+	Dim rs As AlaSQLResultSet = alaSQL.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":${priKey}))
+	rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).append(CRLF)
+	'AddComment(sb,"***END BANanoSQL***")
+End If
+'
+	If prjDBType = "BANanoSQLite" Then
+		'AddComment(sb, "***START BANanoSQLite***")
+sb.append($"Dim sqlite As BANanoSQLite1
+sqlite.Initialize
+sqlite.SetDB(dbName)
+Dim rs As SQLiteResultSet1 = sqlite.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":${priKey}))
+rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).append(CRLF)
+'AddComment(sb,"***END BANanoSQLite***")
+End If
+'
+sb.append($"End Select"$).append(CRLF)
+'
+	sb.append($"Mode = "E"
+	Page.EnableMulti(Array("btnnew${tblName}","btnsave${tblName}","btndelete${tblName}"))
+	Page.DisableMulti(Array("btncancel${tblName}"))
+	LoadDataTable"$).append(CRLF)
 	sb.Append("End Sub").Append(CRLF).Append(CRLF)
 	'
 	sb.Append("'READ").Append(CRLF)
-	sb.Append("Sub btnread_click").append(CRLF)
-	sb.Append("'get the content of the primary key field").Append(CRLF)
-	sb.append($"Dim priValue As String = pg.GetValue("${priKey}")"$).Append(CRLF)
-	sb.Append("'read record from table").append(CRLF)
-	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
-	sb.Append("'initialize the helper class").Append(CRLF)
-	sb.append("alaSQL.Initialize").append(CRLF)
-	sb.Append("'generate the select where statement").append(CRLF)
-	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.Read("${tblName}", "${priKey}", priValue)"$).Append(CRLF)
-	sb.append($"rs.result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+	sb.Append($"Sub Read${tblName}(${priKey} As String)"$).append(CRLF)
+	sb.append($"Mode = "E"
+	Page.EnableMulti(array("btncancel${tblName}","btnsave${tblName}","btndelete${tblName}"))
+	Page.DisableMulti(Array("btnnew${tblName}"))
+	LoadOptions"$).append(CRLF)
+	If prjDBType = "BANanoSQL" Then
+		'AddComment(sb,"***START BANanoSQL***")
+		sb.append($"${prjDBName}.OpenWait("${prjDBName}", "${prjDBName}")"$).append(CRLF)
+		sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
+		sb.append("alaSQL.Initialize").append(CRLF)
+		sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.Read("${tblName}", "${priKey}", ${priKey})"$).Append(CRLF)
+		sb.append($"rs.result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQL***")
+	End If
+	'
+	If prjDBType = "BANanoSQLite" Then
+		'AddComment(sb,"***START BANanoSQLite***")
+		sb.Append($"Dim sqlite As BANanoSQLite1
+		sqlite.Initialize
+		sqlite.SetDB(dbName)
+		Dim rs As SQLiteResultSet1 = sqlite.Read("${tblName}", "${priKey}", ${priKey})
+		rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQLite***")
+End If
+
+	'
 	sb.Append("'the record was found, set the values to the form").Append(CRLF)
 	sb.Append("If rs.result.size > 0 then").Append(CRLF)
 	sb.Append("Dim rec As Map = rs.result.Get(0)").Append(CRLF)
 	sb.Append("'set returned map to form").append(CRLF)
-	sb.Append($"pg.SetValues("form", rec)"$).Append(CRLF)
+	sb.Append($"Page.SetValues("form${tblName}", rec)"$).Append(CRLF)
+	sb.Append($"Page.Focus("${tblName}.${priKey}")"$).append(CRLF)
 	sb.Append("End If").Append(CRLF)
-	sb.append("End Sub").Append(CRLF).Append(CRLF)
-	sb.Append("'UPDATE").Append(CRLF)
-	sb.Append("Sub btnupdate_click").Append(CRLF)
-	sb.Append("'lets validate the form").Append(CRLF)
-	sb.append($"Dim bValid As Boolean = pg.Validate("form")"$).append(CRLF)
-	sb.append("if bValid = False Then Return").Append(CRLF)
-	sb.Append("'Get values from the form").Append(CRLF)
-	sb.append($"Dim rec As Map = pg.GetValues("form")"$).Append(CRLF)
-	sb.Append("'get the primary key").Append(CRLF)
-	sb.append($"Dim priValue As String = pg.GetValue("${priKey}")"$).Append(CRLF)
-	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
-	sb.Append("'initialize the helper class").Append(CRLF)
-	sb.append("alaSQL.Initialize").append(CRLF)
-	sb.Append("'update record in the table").Append(CRLF)
-	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":priValue))"$).Append(CRLF)
-	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
-	sb.Append("End Sub").Append(CRLF).Append(CRLF)
+	sb.append("End Sub").Append(CRLF).Append(CRLF).Append(CRLF)
+	
 	sb.Append("'DELETE").Append(CRLF)
-	sb.Append("Sub btndelete_click").Append(CRLF)
+	sb.Append($"Sub btndelete${tblName}_click"$).Append(CRLF)
 	sb.Append("'draw a confirm dialog").Append(CRLF)
 	sb.Append("Dim confirmDelete As Boolean = False").Append(CRLF)
 	sb.append($"Dim cb As BANanoObject = BANano.CallBack(Me,"delete${tblName}",Array(confirmDelete))"$).append(CRLF)
-	sb.Append($"pg.Confirm(cb, "Confirm Delete", "Are you sure that you want to delete this record?")"$).append(CRLF)
+	sb.Append($"Page.Confirm(cb, "Confirm Delete", "Are you sure that you want to delete this ${tblName} record?. You will not be able to undo your changes. Continue?")"$).append(CRLF)
 	sb.Append("End Sub").Append(CRLF).Append(CRLF)
 	'
+	sb.Append($"Sub dt${tblName}_delete(confirmDelete As Boolean)"$).Append(CRLF)
+	sb.append($"if confirmDelete = False Then Return"$).Append(CRLF)
+	sb.append($"Dim item As Map = Page.GetSelectedItem("dt${tblName}", False)
+	Dim ${priKey} As String = item.Get("${priKey}")
+	${tblName}_delete(${priKey})"$).append(CRLF)
+	sb.append("End Sub").append(CRLF).append(CRLF)
+	
 	sb.Append($"Sub Delete${tblName}(confirmDelete As Boolean)"$).Append(CRLF)
 	sb.append($"if confirmDelete = False Then Return"$).Append(CRLF)
 	sb.Append("'get the primary key").Append(CRLF)
-	sb.append($"Dim priValue As String = pg.GetValue("${priKey}")"$).Append(CRLF)
-	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
-	sb.Append("'initialize the helper class").Append(CRLF)
-	sb.append("alaSQL.Initialize").append(CRLF)
-	sb.Append("'delete record in the table").Append(CRLF)
-	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.DeleteWhere("${tblName}", CreateMap("${priKey}":priValue))"$).Append(CRLF)
-	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+	sb.append($"Dim ${priKey} As String = Page.GetValue("${tblName}.${priKey}")"$).Append(CRLF)
+	sb.append($"${tblName}_delete(${priKey})"$).append(CRLF)
 	sb.Append("End Sub").Append(CRLF).Append(CRLF)
 	
+	'
+	sb.append($"Sub ${tblName}_delete(did as string)"$).append(CRLF)
+	If prjDBType = "BANanoSQL" Then
+		'AddComment(sb,"***START BANanoSQL***")
+		sb.Append($"${prjDBName}.OpenWait("${prjDBName}", "${prjDBName}")"$).Append(CRLF)
+		sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
+		sb.Append("'initialize the helper class").Append(CRLF)
+		sb.append("alaSQL.Initialize").append(CRLF)
+		sb.Append("'delete record in the table").Append(CRLF)
+		sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.DeleteWhere("${tblName}", CreateMap("${priKey}":did))"$).Append(CRLF)
+		sb.append($"rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQL***")
+	End If
+	'
+	If prjDBType = "BANanoSQLite" Then
+		'AddComment(sb,"***START BANanoSQLite***")
+		sb.Append($"Dim sqlite As BANanoSQLite1
+	sqlite.Initialize
+	sqlite.SetDB(dbName)
+	Dim rs As SQLiteResultSet1 = sqlite.DeleteWhere("${tblName}", CreateMap("${priKey}":did))
+	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
+	sb.append($"Mode = ""
+	Page.EnableMulti(array("btnnew${tblName}"))
+	Page.DisableMulti(Array("btncancel${tblName}","btnsave${tblName}","btndelete${tblName}"))
+	Page.Clear("form${tblName}")
+	Page.ClearValidation("form${tblName}")
+LoadDataTable"$).Append(CRLF).append(CRLF)
+	sb.append("End Sub").append(CRLF).append(CRLF)
 	
-	sb.Append("'READ ALL").Append(CRLF)
-	sb.Append("Sub btngetall_click").Append(CRLF)
-	sb.Append("Dim alaSQL As BANanoAlaSQL").append(CRLF)
-	sb.Append("'initialize the helper class").Append(CRLF)
-	sb.append("alaSQL.Initialize").append(CRLF)
-	sb.Append("'select all records record in the table").Append(CRLF)
-	sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.SelectAll("${tblName}", array("*"), array("${priKey}"))"$).Append(CRLF)
-	sb.append($"rs.Result = db.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
-	sb.Append("log(rs.Result)").Append(CRLF)
-	sb.Append("End Sub").Append(CRLF).Append(CRLF)
+	'
+	sb.append($"Sub btncancel${tblName}_click
+	Mode = ""
+	Page.EnableMulti(array("btnnew${tblName}"))
+	Page.DisableMulti(Array("btncancel${tblName}","btnsave${tblName}","btndelete${tblName}"))
+	Page.Clear("form${tblName}")
+	Page.ClearValidation("form${tblName}")
+	Page.Focus("${tblName}.${priKey}")
+End Sub"$).Append(CRLF).append(CRLF)
+'add grid code
+	sb.append(dtCode).append(CRLF).Append(CRLF)
+	sb.append(loCode).Append(CRLF).append(CRLF)
+	sb.append(dtLoadCode).Append(CRLF).append(CRLF)
+	sb.append(frmCode).Append(CRLF).append(CRLF)
+	sb.append(tblCode).append(CRLF).append(CRLF)
+	sb.append(asCode).append(CRLF).Append(CRLF)
 	Return sb.tostring
 End Sub
 
@@ -528,10 +1198,12 @@ End Sub
 
 'save the item
 Sub prop_saveWait
+	ClearPreviewIT
+	ClearCodeIT
 	Dim qry As String
 	Dim res As String
 	Dim rs As SQLiteResultSet
-	dim sqlite As BANanoSQLite
+	Dim sqlite As BANanoSQLite
 	Dim pbx As WixProgressBar
 	pbx.Initialize("").SetDelay(500).SetHide(True).SetTypeIcon("")
 	pg.SetProgressBar("propbag", pbx)
@@ -599,7 +1271,18 @@ Sub prop_saveWait
 			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 			rs = sqlite.GetResultSet(qry, res)
 		Case "field"
-			pg.Collapse("preview")
+			sqlite.Initialize
+			sqlite.AddStrings(Array("id"))
+			qry = sqlite.Read("connect","id","connection")
+			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+			rs = sqlite.GetResultSet(qry,res)
+			Dim dbrec As Map = rs.result.get(0)
+			Dim xjson As String = dbrec.get("json")
+			dbrec = pg.json2map(xjson)
+			prjDBType = dbrec.GetDefault("dbtype","")
+			prjDBName =  dbrec.GetDefault("dbname","")
+		
+			pg.Expand("preview")
 			'save a field
 			Dim key As String = $"field.${tablename}.${value}"$
 			sqlite.Initialize
@@ -616,6 +1299,10 @@ Sub prop_saveWait
 			qry = sqlite.InsertReplace("fields", rec)
 			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 			rs = sqlite.GetResultSet(qry, res)
+			'generate code
+			Dim fCode As String = FieldCode(json)
+			Dim vCode As String = ViewCode(json)
+			SourceCodePreview(fCode & "<br><br>" & vCode)
 			'check existence
 			sqlite.initialize
 			sqlite.AddStrings(Array("id"))
@@ -647,6 +1334,17 @@ Sub prop_saveWait
 			rs = sqlite.GetResultSet(qry,res)
 			pg.Message(rs.result.size & " record(s) affected!")
 			'
+			sqlite.Initialize
+			sqlite.AddStrings(Array("id"))
+			qry = sqlite.Read("connect","id","connection")
+			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+			rs = sqlite.GetResultSet(qry,res)
+			Dim dbrec As Map = rs.result.get(0)
+			Dim xjson As String = dbrec.get("json")
+			dbrec = pg.json2map(xjson)
+			prjDBType = dbrec.GetDefault("dbtype","")
+			prjDBName =  dbrec.GetDefault("dbname","")
+			
 			'add primary key
 			AddPrimaryKeyWait
 			'select fields for table
@@ -756,6 +1454,107 @@ Sub prop_saveWait
 			FormCodeWait(i,True)
 	End Select
 	RefreshTreeWait
+End Sub
+
+Sub FieldCode(sjson As String) As String
+	If sjson = "" Then Return ""
+	Dim props As Map = pg.Json2Map(sjson)
+	Dim sdescription As String = props.get("description")
+	Dim sid As String = props.get("value")
+	Dim sshowongrid As String = props.Get("showongrid")
+	Dim stablename As String = props.get("tablename")
+	If sshowongrid = "0" Or sshowongrid = False Then Return ""
+	'
+	props.Put("id", sid)
+	props.Put("view", "datacolumn")
+	props.put("grid_name", sid)
+	props.Put("parentid", "dt" & stablename)
+	props.put("addingmethod", "AddDataColumns")
+	props.Put("grid_header", sdescription)
+	'remove irrelevant properties
+	props.remove("length")
+	props.Remove("description")
+	props.Remove("showonform")
+	props.remove("tabindex")
+	props.remove("type")
+	props.remove("value")
+	props.remove("name")
+	props.remove("tablename")
+	props.remove("showongrid")
+	props.remove("isfield")
+	props.remove("optionsid")
+	props.remove("optionstext")
+	props.Remove("key")
+	For Each k As String In props.Keys
+		If k.startswith("form_") Then 
+			props.remove(k)
+		End If
+	Next
+	For Each k As String In props.Keys
+		If k.StartsWith("foreign_") Then
+			props.Remove(k)
+		End If
+	Next
+	'create data column view
+	Dim view As Map = CreateView(props)
+	view.remove("Name")
+	view.remove("localId")
+	view.Remove("name")
+	Dim sc As String = SourceCodeItem(view,props)
+	Return sc
+End Sub
+
+Sub ViewCode(sjson As String) As String
+	If sjson = "" Then Return ""
+	Dim props As Map = pg.Json2Map(sjson)
+	Dim sdescription As String = props.get("description")
+	Dim sid As String = props.get("value")
+	Dim sshowonform As String = props.Get("showonform")
+	Dim stablename As String = props.get("tablename")
+	If sshowonform = "0" Or sshowonform = False Then Return ""
+	Dim sview As String = props.get("view")
+	Select Case sview
+	Case "combo", "richselect", "radio", "select", "segmented", "tabbar","dbllist","suggest"
+	Case Else
+		props.remove("optionsid")
+		props.remove("optionstext")
+	End Select
+	props.Remove("key")
+	'
+	For Each k As String In props.Keys
+		If k.StartsWith("foreign_") Then
+			props.Remove(k)
+		End If
+	Next
+	For Each k As String In props.Keys
+		If k.startswith("grid_") Then
+			props.remove(k)
+		End If
+	Next
+	props.Put("id", $"${stablename}.${sid}"$)
+	props.Put("parentid", "form" & stablename)
+	props.Put("label", sdescription)
+	'remove irrelevant 
+	props.remove("isfield")
+	props.remove("type")
+	props.remove("length")
+	props.Remove("description")
+	props.Remove("showonform")
+	props.remove("tabindex")
+	props.remove("value")
+	props.remove("tablename")
+	props.remove("showongrid")
+	props.remove("showonform")
+	props.Put("name", sid)
+	'create data column view
+	Dim view As Map = CreateView(props)
+	view.Put("container", "previewit")
+	view.remove("Name")
+	view.remove("localId")
+	view.Put("name", sid)
+	Dim sc As String = SourceCodeItem(view,props)
+	drawn = pg.UX(view)
+	Return sc
 End Sub
 
 Sub SaveElementWait(prop2save As Map)
@@ -1027,6 +1826,11 @@ Sub CreateView(properties As Map) As Map
 	For Each pkey As String In properties.keys
 		Dim pval As String = properties.Get(pkey)
 		Dim cval As String = pg.CStr(pval)
+		If cval = "$empty" Then Continue
+		
+		If pkey.StartsWith("form_") Then
+			pkey = pg.MvField(pkey,2,"_")
+		End If
 		
 		'do we have a mapped keys
 		Select Case pkey
@@ -1094,6 +1898,8 @@ Sub CreateView(properties As Map) As Map
 				pkey = "UncheckValue"
 			Case "grid_format"
 				pkey = "Format"
+			Case "grid_numberformat"
+				pkey = "NumberFormat"
 			Case "grid_suggest"
 				pkey = "Suggest"
 			Case "grid_batch"
@@ -1186,6 +1992,10 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 	Dim v As String = m.GetDefault("view","")
 	Dim i As String = m.GetDefault("id","")
 	Dim a As String = m.GetDefault("action","")
+	Dim xi As String = i
+	If i.IndexOf(".") > 0 Then
+		xi = pg.MvField(i,2,".") 
+	End If
 	v = pg.CStr(v)
 	If v = "" Then v = "Element"
 	If v = "undefined" Then v = "Element"
@@ -1199,8 +2009,8 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 	'
 	Dim sb As StringBuilder
 	sb.Initialize
-	sb.Append($"Dim ${i} As Wix${v}"$).Append("<br>")
-	sb.Append($"${i}.Initialize("${i}")"$).Append("<br>")
+	sb.Append($"Dim ${xi} As Wix${v}"$).Append("<br>")
+	sb.Append($"${xi}.Initialize("${i}")"$).Append("<br>")
 	For Each strKey As String In m.Keys
 		Dim strval As Object = m.Get(strKey)
 		If strKey = "id" Then Continue
@@ -1218,13 +2028,13 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 		Dim k As String = Capitalize(strKey)
 		If GetType(strval) = "object" Then
 			Dim xval As String = pg.Map2Json(strval)
-			sb.Append($"${i}.Set${k}JSON(${q}"${xval}"${q})"$).Append("<br>")
+			sb.Append($"${xi}.Set${k}JSON(${q}"${xval}"${q})"$).Append("<br>")
 		Else
-			sb.Append($"${i}.Set${k}("${strval}")"$).Append("<br>")
+			sb.Append($"${xi}.Set${k}("${strval}")"$).Append("<br>")
 		End If
 	Next
 	If sparentid <> "" Then
-		sb.Append(sparentid).Append(".").Append(saddingmethod).Append("(").Append(i)
+		sb.Append(sparentid).Append(".").Append(saddingmethod).Append("(").Append(xi)
 		If v = "datacolumn" Then
 		Else
 			sb.Append(".Item")
@@ -1323,12 +2133,23 @@ Sub tree_clickwait(recid As String)
 			SourceCodePreview(ccode)
 		Case "field"
 			pg.Show("add_fields")
-			pg.Collapse("preview")
+			pg.Expand("preview")
 			pg.Show("propadd")
 			pg.Expand("code")
 			pg.show("propdelete")
 			dField.BuildBag(pg,propBag)
 			'
+			sqlite.Initialize
+			sqlite.AddStrings(Array("id"))
+			qry = sqlite.Read("connect","id","connection")
+			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+			rs = sqlite.GetResultSet(qry,res)
+			Dim dbrec As Map = rs.result.get(0)
+			Dim xjson As String = dbrec.get("json")
+			dbrec = pg.json2map(xjson)
+			prjDBType = dbrec.GetDefault("dbtype","")
+			prjDBName =  dbrec.GetDefault("dbname","")
+			
 			sqlite.Initialize
 			sqlite.AddStrings(Array("key"))
 			qry = sqlite.Read("fields","key",recid)
@@ -1340,6 +2161,10 @@ Sub tree_clickwait(recid As String)
 				json = rec.Get("json")
 				rec = pg.Json2Map(json)
 				pg.SetValues("propbag", rec)
+				'generate code
+				Dim fCode As String = FieldCode(json)
+				Dim vCode As String = ViewCode(json)
+				SourceCodePreview(fCode & "<br><br>" & vCode)
 			End If
 		Case "table"
 			pg.Show("propadd")
@@ -1349,6 +2174,18 @@ Sub tree_clickwait(recid As String)
 			pg.Show("add_fields")
 			pg.Show("download")
 			dTable.BuildBag(pg,propBag)
+			
+			sqlite.Initialize
+			sqlite.AddStrings(Array("id"))
+			qry = sqlite.Read("connect","id","connection")
+			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+			rs = sqlite.GetResultSet(qry,res)
+			Dim dbrec As Map = rs.result.get(0)
+			Dim xjson As String = dbrec.get("json")
+			dbrec = pg.json2map(xjson)
+			prjDBType = dbrec.GetDefault("dbtype","")
+			prjDBName =  dbrec.GetDefault("dbname","")
+			
 			'get the table definition
 			sqlite.Initialize
 			sqlite.AddStrings(Array("key"))
@@ -1362,7 +2199,7 @@ Sub tree_clickwait(recid As String)
 				rec = pg.Json2Map(json)
 				pg.SetValues("propbag", rec)
 				Dim primarykey As String = rec.Get("primarykey")
-				'
+				
 				'select fields for table
 				sqlite.initialize
 				sqlite.AddStrings(Array("tablename"))
@@ -1460,9 +2297,6 @@ Sub FormCodeWait(id As String, bShowPropBag As Boolean)
 	Dim res As String
 	Dim rs As SQLiteResultSet
 	Dim sqlite As BANanoSQLite
-	
-	ClearPreviewIT
-	ClearCodeIT
 	Dim sb As StringBuilder
 	sb.Initialize
 	rec.initialize
@@ -1480,6 +2314,7 @@ Sub FormCodeWait(id As String, bShowPropBag As Boolean)
 				rec = rs.result.Get(0)
 				json = rec.Get("json")
 				rec = pg.Json2Map(json)
+				Dim sname As String = rec.Get("name")
 			End If
 		Case Else
 			sqlite.Initialize
@@ -1522,7 +2357,14 @@ Sub FormCodeWait(id As String, bShowPropBag As Boolean)
 	cells.Initialize
 	
 	rec.Put("container", "previewit")
+	If id = "form" Then
+		rec.Put("id", sname)
+	End If
 	Dim view As Map = CreateView(rec)
+	If id = "form" Then
+		view.remove("LocalId")
+		view.remove("localId")
+	End If
 	Dim sc As String = SourceCodeItem(view,Null)
 	'
 	sb.append(sc).Append(CRLF).Append(CRLF)
@@ -1685,7 +2527,7 @@ Sub sidebar_clickwait(meid As String)
 			End Select
 		Case "field"
 			pg.show("propadd")
-			pg.Collapse("preview")
+			pg.Expand("preview")
 			pg.Expand("code")
 			pg.show("propdelete")
 			'see selected treeitem
@@ -1725,6 +2567,12 @@ Sub sidebar_clickwait(meid As String)
 					p.Put("tablename", suffix)
 					p.Put("value", kFind)
 					p.Put("tabindex", startPoint)
+					p.Put("showonform", True)
+					p.Put("view", "text")
+					p.put("addingmethod","AddRows")
+					p.Put("form_type", "text")
+					p.Put("optionsid","1,2,3")
+					p.Put("optionstext", "One,Two,Three")
 					pg.SetValues("propbag",p)
 				Case Else
 					pg.Message_Error("Please select the table to add the field to first!")
@@ -2380,6 +3228,13 @@ Sub btnMulti1_clickwait
 					ntbl.Put("type","STRING")
 					ntbl.Put("length",20)
 					ntbl.Put("tabindex", tabindex)
+					ntbl.Put("isfield", True)
+					ntbl.Put("showonform", True)
+					ntbl.Put("view", "text")
+					ntbl.put("addingmethod","AddRows")
+					ntbl.Put("form_type", "text")
+					ntbl.Put("optionsid","1,2,3")
+					ntbl.Put("optionstext", "One,Two,Three")
 					'convert to json
 					Dim json As String = pg.Map2Json(ntbl)
 					'insert the record to elements

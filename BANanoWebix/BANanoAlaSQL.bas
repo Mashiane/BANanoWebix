@@ -15,14 +15,41 @@ Sub Class_Globals
 	Public const DB_FLOAT As String = "FLOAT"
 	Private recType As Map
 	Type AlaSQLResultSet(response As String, result As List, command As String, types As List, args As List, query As String)
+	Private BANano As BANano  'ignore
 End Sub
 
 'initialize the class, a field named "id" is assumed to be an integer
 Public Sub Initialize() As BANanoAlaSQL
 	recType.Initialize
-	AddIntegers(Array("id"))
 	Return Me
 End Sub
+
+Sub ResetTypes As BANanoAlaSQL
+	recType.Initialize
+	Return Me
+End Sub
+
+Sub GetNextID(fld As String, rsl As List) As String
+	Dim nextid As Int
+	Dim strid As String
+	
+	If rsl.Size = 0 Then
+		nextid = 0
+	Else
+		Dim nr As Map = rsl.Get(0)
+		Dim ni As String = nr.Getdefault(fld,"0")
+		nextid = BANano.parseInt(ni)
+	End If
+	nextid = nextid + 1
+	strid = CStr(nextid)
+	Return strid
+End Sub
+
+
+Sub CStr(o As Object) As String
+	Return "" & o
+End Sub
+
 
 'specify strings field types, this is default for all strings
 Sub AddStrings(fieldNames As List) As BANanoAlaSQL
@@ -174,7 +201,7 @@ Sub InsertList(tblname As String) As AlaSQLResultSet
 	m.query = sSQL
 	m.args = Null
 	m.types = Null
-	m.command = "inserts"
+	m.command = "insert"
 	Return m
 End Sub
 
@@ -302,7 +329,7 @@ Sub UpdateWhere(tblName As String, tblfields As Map, tblWhere As Map) As AlaSQLR
 	m.query = sb.tostring
 	m.args = listOfValues
 	m.types = listOfTypes
-	m.command = "updatewhere"
+	m.command = "update"
 	Return m
 End Sub
 
@@ -328,7 +355,7 @@ Sub DeleteWhere(tblName As String, tblWhere As Map) As AlaSQLResultSet
 	m.query = sb.tostring
 	m.args = listOfValues
 	m.types = listOfTypes
-	m.command = "deletewhere"
+	m.command = "delete"
 	Return m
 End Sub
 
@@ -460,7 +487,7 @@ Sub SelectWhere(tblName As String, tblfields As List, tblWhere As Map, orderBy A
 	m.query = sb.tostring
 	m.args = listOfValues
 	m.types = listOfTypes
-	m.command = "selectwhere"
+	m.command = "select"
 	Return m
 End Sub
 

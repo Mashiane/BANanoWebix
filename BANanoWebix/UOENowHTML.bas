@@ -29,6 +29,30 @@ Sub Class_Globals
 	Public IsImportant As Boolean
 End Sub
 
+Sub AddClasses(clsList As List) As UOENowHTML
+	For Each c As String In clsList
+		AddClass(c)
+	Next
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As UOENowHTML
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As UOENowHTML
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
+
 Sub SetSpan(sText As String) As UOENowHTML
 	Dim sb As StringBuilder
 	sb.Initialize 

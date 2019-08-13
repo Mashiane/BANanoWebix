@@ -14,19 +14,18 @@ Sub Class_Globals
 	Public const DB_BLOB As String = "BLOB"
 	Private recType As Map
 	Type SQLiteResultSet(response As String, result As List, command As String, types As List, args As List, query As String)
-	Private dbName As String
 	Private BANano As BANano  'ignore
 End Sub
 
 'initialize the class, a field named "id" is assumed to be an integer
 Public Sub Initialize As BANanoSQLite
 	recType.Initialize
-	AddIntegers(Array("id"))
 	Return Me
 End Sub
 
-Sub SetDBName(db As String) As BANanoSQLite
-	dbName = db
+
+Sub ResetTypes As BANanoSQLite
+	recType.Initialize
 	Return Me
 End Sub
 
@@ -618,7 +617,7 @@ function BANanoSQLite($dbname,$data) {
   		die($output);
 	}
 	//data Is json, set it As a php variable
-	$data = json_decode($data, True);
+	$data = json_decode($data, true);
 	//get the command To execute
 	$command = $data["command"];
 	$sql = $data["sql"];
@@ -643,9 +642,10 @@ function BANanoSQLite($dbname,$data) {
 			$res = $stmt->execute();
 			$db->exec('COMMIT');
 			$changes = $db->changes();
-			$res = Array();
-			$res[] = $changes;
-			$output = json_encode(array("response" => "OK", "data" => $res));
+			$res->finalize();
+			$rows = Array();
+			$rows[] = $changes;
+			$output = json_encode(array("response" => "OK", "data" => $rows));
 	  		echo $output;
 			break;
 	   	case "updatewhere":
@@ -655,9 +655,10 @@ function BANanoSQLite($dbname,$data) {
 			$res = $stmt->execute();
 			$db->exec('COMMIT');
 			$changes = $db->changes();
-			$res = Array();
-			$res[] = $changes;
-			$output = json_encode(array("response" => "OK", "data" => $res));
+			$res->finalize();
+			$rows = Array();
+			$rows[] = $changes;
+			$output = json_encode(array("response" => "OK", "data" => $rows));
 	  		echo $output;
 			break;
 		case "selectwhere":
@@ -677,10 +678,11 @@ function BANanoSQLite($dbname,$data) {
 			$db->exec('BEGIN');
 			$res = $stmt->execute();
 			$db->exec('COMMIT');
-			$last_row_id = $db->lastInsertRowID();
-			$res = Array();
-			$res[] = $changes;
-			$output = json_encode(array("response" => "OK", "data" => $res));
+			$changes = $db->changes();
+			$res->finalize();
+			$rows = Array();
+			$rows[] = $changes;
+			$output = json_encode(array("response" => "OK", "data" => $rows));
 	  		echo $output;
 			break;
 		case "insert":
@@ -689,9 +691,10 @@ function BANanoSQLite($dbname,$data) {
 			$res = $stmt->execute();
 			$db->exec('COMMIT');
 			$last_row_id = $db->lastInsertRowID();
-			$res = Array();
-			$res[] = $last_row_id;
-			$output = json_encode(array("response" => "OK", "data" => $res));
+			$res->finalize();
+			$rows = Array();
+			$rows[] = $last_row_id;
+			$output = json_encode(array("response" => "OK", "data" => $rows));
 	  		echo $output;
 			break;
 		default:
@@ -708,100 +711,4 @@ function BANanoSQLite($dbname,$data) {
 	}
 	$db->close();
 }
-
-function BANanoSQLite1($dbname,$data,$command,$sql,$args,$types) {
-   	$db;
-	//set the header
-	header('content-type: application/json; charset=utf-8');
-   	$db = new SQLite3($dbname, SQLITE3_OPEN_CREATE | SQLITE3_OPEN_READWRITE);
-	if(!$db) {
-  		$response = $db->lastErrorMsg();
-  		$output = json_encode(Array("response" => $response));
-  		die($output);
-	}
-	switch($command){
-		Case "select":
-		    $stmt = preparesqlite($db, $sql, $types, $args);
-			$res = $stmt->execute();
-			$rows = Array();
-			while($row = $res->fetchArray(1)) {
-				$rows[] = $row;
-			}
-			$res->finalize();
-			$output = json_encode(array("response" => "OK", "data" => $rows));
-	  		echo $output;
-			break;
-		case "deletewhere":
-			//build the prepared statement
-			$stmt = preparesqlite($db, $sql, $types, $args);
-			$db->exec('BEGIN');
-			$res = $stmt->execute();
-			$db->exec('COMMIT');
-			$changes = $db->changes();
-			$res = Array();
-			$res[] = $changes;
-			$output = json_encode(array("response" => "OK", "data" => $res));
-	  		echo $output;
-			break;
-	   	case "updatewhere":
-			//build the prepared statement
-			$stmt = preparesqlite($db, $sql, $types, $args);
-			$db->exec('BEGIN');
-			$res = $stmt->execute();
-			$db->exec('COMMIT');
-			$changes = $db->changes();
-			$res = Array();
-			$res[] = $changes;
-			$output = json_encode(array("response" => "OK", "data" => $res));
-	  		echo $output;
-			break;
-		case "selectwhere":
-			//build the prepared statement
-			$stmt = preparesqlite($db, $sql, $types, $args);
-			$res = $stmt->execute();
-			$rows = Array();
-			while($row = $res->fetchArray(1)) {
-				$rows[] = $row;
-			}
-			$res->finalize();
-			$output = json_encode(array("response" => "OK", "data" => $rows));
-	  		echo $output;
-			break;
-		case "replace":
-			$stmt = preparesqlite($db, $sql, $types, $args);
-			$db->exec('BEGIN');
-			$res = $stmt->execute();
-			$db->exec('COMMIT');
-			$last_row_id = $db->lastInsertRowID();
-			$res = Array();
-			$res[] = $changes;
-			$output = json_encode(array("response" => "OK", "data" => $res));
-	  		echo $output;
-			break;
-		case "insert":
-			$stmt = preparesqlite($db, $sql, $types, $args);
-			$db->exec('BEGIN');
-			$res = $stmt->execute();
-			$db->exec('COMMIT');
-			$last_row_id = $db->lastInsertRowID();
-			$res = Array();
-			$res[] = $last_row_id;
-			$output = json_encode(array("response" => "OK", "data" => $res));
-	  		echo $output;
-			break;
-		default:
-		    $stmt = preparesqlite($db, $sql, $types, $args);
-			$res = $stmt->execute();
-			$rows = Array();
-			while($row = $res->fetchArray(1)) {
-				$rows[] = $row;
-			}
-			$res->finalize();
-			$output = json_encode(array("response" => "OK", "data" => $rows));
-	  		echo $output;
-			break;
-	}
-	$db->close();
-}
-
 #End If

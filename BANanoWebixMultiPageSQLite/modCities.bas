@@ -193,7 +193,6 @@ End Sub
 Sub btnnewcity_click
 	Page.Hide("btnnewcity")
 	Page.ShowMulti(Array("btncancelcity","btnsavecity","btndeletecity"))
-	
 	'clear the form
 	Mode = "A"
 	Page.Clear("formcities")

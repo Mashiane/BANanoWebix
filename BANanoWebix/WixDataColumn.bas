@@ -375,6 +375,14 @@ Sub SetMasterCheckBox(b As Boolean) As WixDataColumn    'ignore
 	Return Me
 End Sub
 
+'set sum column
+Sub SetHeaderSummColumn(b As Boolean) As WixDataColumn     'ignore
+	hdr.Put("content", "summColumn")
+	hasFilter = True
+	Return Me
+End Sub
+
+
 'set text filter
 Sub SetHeaderTextFilter(b As Boolean) As WixDataColumn     'ignore
 	hdr.Put("content", "textFilter")
@@ -401,6 +409,12 @@ Sub SetFooterContent(c As Object) As WixDataColumn
 	Return Me
 End Sub
 
+'set sum column
+Sub SetFooterSummColumn(b As Boolean) As WixDataColumn     'ignore
+	foot.Put("content", "summColumn")
+	hasFooterFilter = True
+	Return Me
+End Sub
 
 'set number filter
 Sub SetHeaderNumberFilter(b As Boolean) As WixDataColumn     'ignore

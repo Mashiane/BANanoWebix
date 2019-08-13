@@ -22,6 +22,12 @@ Sub Class_Globals
 	Public DB_REAL As String = "REAL"
 	Public DB_DATE As String = "DATE"
 	Type MySQLResultSet(response As String, result As List, command As String, types As List, args As List, query As String)
+	Private BANano As BANano   'ignore
+End Sub
+
+Sub ResetTypes As BANanoMySQL
+	recType.Initialize
+	Return Me
 End Sub
 
 'return a sql to delete record of table where one exists
@@ -37,12 +43,35 @@ Sub GetMax(tblName As String, fldName As String) As String
 	Return res
 End Sub
 
+
+Sub GetNextID(fld As String, rsl As List) As String
+	Dim nextid As Int
+	Dim strid As String
+	
+	If rsl.Size = 0 Then
+		nextid = 0
+	Else
+		Dim nr As Map = rsl.Get(0)
+		Dim ni As String = nr.GetDefault(fld,"0")
+		nextid = BANano.parseInt(ni)
+	End If
+	nextid = nextid + 1
+	strid = CStr(nextid)
+	Return strid
+End Sub
+
+
+Sub CStr(o As Object) As String
+	Return "" & o
+End Sub
+
+
 'initialize the class, a field named "id" is assumed to be an integer
 Public Sub Initialize() As BANanoMySQL
 	recType.Initialize
-	AddIntegers(Array("id"))
 	Return Me
 End Sub
+
 
 'execute the query and wait
 Sub GetResultSet(query As String, res As String) As MySQLResultSet
@@ -587,33 +616,37 @@ function SendEmail($from,$to,$cc,$subject,$msg) {
 function prepareStatement($conn,$sql, $types, $values) {
 	//paramater types to execute
 	/* Bind parameters. Types: s = string, i = integer, d = double,  b = blob */
-	$a_params = array();
-	$param_type = '';
-	$n = count($types);
-	for($i = 0; $i < $n; $i++) {
-		$param_type .= $types[$i];
+	if(is_array($types)){
+		$a_params = array();
+		$param_type = '';
+		$n = count($types);
+		for($i = 0; $i < $n; $i++) {
+			$param_type .= $types[$i];
+		}
+		$a_params[] = & $param_type;
+		//values to execute
+		for($i = 0; $i < $n; $i++) {
+			$a_params[] = & $values[$i];
+		}
+		/* Prepare statement */
+		$stmt = $conn->prepare($sql);
+		if($stmt === false) {
+			$response = $conn->error;
+			$output = json_encode(array("response" => $response));
+    		die($output);
+		}
+		/* use call_user_func_array, as $stmt->bind_param('s', $param); does not accept params array */
+		call_user_func_array(array($stmt, 'bind_param'), $a_params);
+	} else {
+		$stmt = $conn->prepare($sql);
 	}
-	$a_params[] = & $param_type;
-	//values to execute
-	for($i = 0; $i < $n; $i++) {
-		$a_params[] = & $values[$i];
-	}
-	/* Prepare statement */
-	$stmt = $conn->prepare($sql);
-	if($stmt === false) {
-		$response = $conn->error;
-		$output = json_encode(array("response" => $response));
-    	die($output);
-	}
-	/* use call_user_func_array, as $stmt->bind_param('s', $param); does not accept params array */
-	call_user_func_array(array($stmt, 'bind_param'), $a_params);
 	return $stmt;
 }
 
 //update the connection settings with your own settings
 function BANanoMySQL($data) {
 	//define these so that they cannot be changed
-	require_once 'config.php';
+	require_once './assets/config.php';
 	//set the header
 	header('content-type: application/json; charset=utf-8');
 	//connect To MySQL
