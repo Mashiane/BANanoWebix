@@ -354,6 +354,7 @@ public Sub CreateTable(tblName As String, tblFields As Map, PK As String) As SQL
 	For fldCnt = 0 To fldTot
 		fldName = tblFields.GetKeyAt(fldCnt)
 		fldType = tblFields.Get(fldName)
+		fldType = fldType.Replace("STRING", "TEXT")
 		If fldCnt > 0 Then
 			sb.Append(", ")
 		End If

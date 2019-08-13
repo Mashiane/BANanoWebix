@@ -191,6 +191,7 @@ public Sub CreateTable(tblName As String, tblFields As Map, PK As String, Auto A
 	For fldCnt = 0 To fldTot
 		fldName = tblFields.GetKeyAt(fldCnt)
 		fldType = tblFields.Get(fldName)
+		fldType = fldType.Replace("STRING", "TEXT")
 		If fldCnt > 0 Then
 			sb.Append(", ")
 		End If
@@ -614,16 +615,6 @@ function prepareStatement1($conn, $query, $types, $args) {
 		for($i = 0; $i < $n; $i++) {
 			$a_params[] = & $args[$i];
 		}
-		/* Prepare statement */
-		$stmt = $conn->prepare($query);
-		if($stmt === false) {
-			$response = $conn->error;
-			$rows = Array();
-			$rows[] = $response;
-			$output = json_encode($rows);
-    		die($output);
-		}
-		/* use call_user_func_array, as $stmt->bind_param('s', $param); does not accept params array */
 		call_user_func_array(array($stmt, 'bind_param'), $a_params);
 	}
 	return $stmt;

@@ -265,6 +265,6 @@ ModuleClosedNodes86=
 ModuleClosedNodes87=
 ModuleClosedNodes88=
 ModuleClosedNodes9=
-NavigationStack=BANanoMySQL1,DropDataBase,154,0,BANanoMySQL1,Initialize,62,0,BANanoMySQL1,Json2Map,72,0,BANanoMySQL1,GetNextID,42,0,BANanoMySQL1,Class_Globals,10,0,BANanoSQLite,Initialize,16,0,BANanoSQLite,ResetTypes,22,0,BANanoSQLite1,SetDB,22,0,BANanoSQLite1,ResetTypes,30,0,BANanoSQLite1,Initialize,17,0,Main,Application_Error,23,0
+NavigationStack=BANanoMySQL1,Build,520,0,BANanoMySQL1,ResetTypes,21,0,BANanoMySQL1,Initialize,62,0,BANanoMySQL1,AddStrings,92,0,BANanoMySQL1,AddIntegers,100,0,BANanoMySQL1,AddDoubles,108,0,BANanoMySQL1,AddBlobs,116,0,BANanoMySQL1,UpdateAll,615,0,BANanoMySQL,UpdateAll,657,0,BANanoMySQL1,CreateTable,196,0,Main,AppStart,18,0
 SelectedBuild=0
 VisibleModules=

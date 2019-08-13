@@ -457,7 +457,39 @@ Sub LoadOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 		Next
 		
 		'AddComment(sb,"***END BANanoSQLite***")
-	End If	
+	End If
+	
+	'
+	If prjDBType = "BANanoMySQL" Then
+		'AddComment(sb,"***START BANanoMySQL***")
+		
+		sb.Append($"Dim mysql As BANanoMySQL1
+		mysql.Initialize"$).append(CRLF)
+		
+		Dim fkeys As Int = 0
+		For Each k As String In sets.Keys
+			Dim v As String = sets.get(k)
+			fkeys = fkeys + 1
+			foreign_table = pg.mvfield(v,1,".")
+			foreign_key = pg.mvfield(v,2,".")
+			foreign_value = pg.mvfield(v,3,".")
+		
+			sb.Append($"Dim rs${fkeys} As MySQLResultSet1 = mysql.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
+	rs${fkeys}.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs${fkeys})))"$).Append(CRLF)
+			
+			'
+			If (foreign_key <> "id") Or (foreign_value <> "value") Then
+				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
+				Page.AddNotSelected(nl${fkeys})
+				Page.SetOptions("${tblName}.${k}", nl${fkeys})"$).Append(CRLF)
+				Continue
+			End If
+			sb.append($"Page.AddNotSelected(rs${fkeys}.Result)
+			Page.SetOptions("${tblName}.${k}", rs${fkeys}.Result)"$).Append(CRLF)
+		Next
+		
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
 	sb.append("End Sub").append(CRLF)
 	Return sb.tostring
 End Sub
@@ -560,6 +592,35 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 		
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
+	
+	If prjDBType = "BANanoMySQL" Then
+		'AddComment(sb,"***START BANanoMySQL***")
+		sb.Append($"Dim mysql As BANanoMySQL1
+		mysql.Initialize"$).append(CRLF)
+		
+		Dim fkeys As Int = 0
+		For Each k As String In sets.Keys
+			Dim v As String = sets.get(k)
+			fkeys = fkeys + 1
+			foreign_table = pg.mvfield(v,1,".")
+			foreign_key = pg.mvfield(v,2,".")
+			foreign_value = pg.mvfield(v,3,".")
+		
+			sb.Append($"Dim rs${fkeys} As MySQLResultSet1 = mysql.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
+	rs${fkeys}.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs${fkeys})))"$).Append(CRLF)
+			
+			'
+			If (foreign_key <> "id") Or (foreign_value <> "value") Then
+				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
+				Page.SetDataColumn("dt${tblName}", "${k}", CreateMap("options" : nl${fkeys}))"$).Append(CRLF)
+				Continue
+			End If
+			sb.append($"Page.SetDataColumn("dt${tblName}", "${k}", CreateMap("options" : rs${fkeys}.Result))"$).Append(CRLF)
+		Next
+		
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
+	
 	If hasForeign Then
 		sb.append(CRLF)
 		AddComment(sb,"refresh all columns")
@@ -583,6 +644,16 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 	rsd.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rsd)))"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
+	'
+	If prjDBType = "BANanoMySQL" Then
+		'AddComment(sb,"***START BANanoMySQL***")
+		sb.Append($"mysql.Initialize
+		Dim rsd As MySQLResultSet1 = mysql.SelectAll("${tblName}", Array("*"), Array("${priKey}"))
+	rsd.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rsd)))"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
+	
+	
 	sb.append(CRLF)
 	sb.append($"Page.SetData("dt${tblName}", rsd.result)
 	'update the badge
@@ -805,6 +876,17 @@ Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As Str
 	rs.Result = BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs))"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
+	'
+	If prjDBType = "BANanoMySQL" Then
+		'AddComment(sb, "***START BANanoMySQL***")
+		sb.append($"Dim mysql As BANanoMySQL1
+	mysql.Initialize
+	Dim rs As MySQLResultSet1 = mysql.UpdateWhere("${tblName}", item, CreateMap("${priKey}":${priKey}))
+	rs.Result = BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs))"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
+	
+	
 	sb.append("End Sub").Append(CRLF).Append(CRLF)
 	Return sb.tostring
 End Sub
@@ -933,6 +1015,20 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 		sb.append($"rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).append(CRLF)
 		'sb.append("'***END BANanoSQLite***").append(CRLF)
 	End If
+	'
+	If prjDBType = "BANanoMySQL" Then
+		'sb.append("'***START BANanoMySQL***").append(CRLF)
+		AddComment(sb,"initialize the bananomysql helper class")
+		sb.append("Dim mysql As BANanoMySQL1").append(CRLF)
+		sb.append("mysql.Initialize").append(CRLF)
+		AddComment(sb,"build the query string structure to execute")
+		sb.append($"Dim rs As MySQLResultSet1 = mysql.CreateTable("${tblName}", m${tblName}, "${priKey}", "")"$).Append(CRLF)
+		AddComment(sb, "execute the resultset structure and get the result")
+		sb.append($"rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).append(CRLF)
+		'sb.append("'***END BANanoSQLite***").append(CRLF)
+	End If
+	
+	
 	sb.append("End Sub").Append(CRLF)
 	'
 	sb.Append("'This code should be copied to your modules for CRUD").Append(CRLF)
@@ -979,6 +1075,21 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 		'sb.append("'***END BANanoSQLite***").append(CRLF)
 	End If
 	'
+	If prjDBType = "BANanoMySQL" Then
+		'sb.append("'***START BANanoMySQL***").append(CRLF)
+		AddComment(sb,"initialize the bananosql helper class")
+		sb.append($"Dim mysql As BANanoMySQL1
+		mysql.Initialize"$).Append(CRLF)
+		AddComment(sb,"get the maximum value in the primary field")
+		sb.append($"Dim rs As MySQLResultSet1 = mysql.GetMax("${tblName}", "${priKey}")"$).append(CRLF)
+		sb.append($"rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
+		AddComment(sb,"increment the max value by 1")
+		sb.append($"Dim nextID As String = mysql.GetNextID("${priKey}", rs.result)"$).append(CRLF)
+		'sb.append("'***END BANanoSQLite***").append(CRLF)
+	End If
+	
+	
+	'
 	AddComment(sb,"assign the nextID to the form value")
 	sb.append($"Page.SetValue("${tblName}.${priKey}", nextID)"$).append(CRLF)
 	AddComment(sb,"set focus to primary field of form")
@@ -1014,7 +1125,18 @@ End If
 	Dim rs As SQLiteResultSet1 = sqlite.Insert("${tblName}", rec)
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
 	'AddComment(sb, "***END BANanoSQLite***"$)
-End If
+	End If
+	'
+	If prjDBType = "BANanoMySQL" Then
+		'AddComment(sb, "***START BANanoMySQL***")
+		sb.append($"Dim mysql As BANanoMySQL1
+	mysql.Initialize
+	Dim rs As MySQLResultSet1 = mysql.Insert("${tblName}", rec)
+	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
+		'AddComment(sb, "***END BANanoSQLite***"$)
+	End If
+
+
 '
 sb.append($"Case "E"
 Dim ${priKey} As String = rec.Get("${priKey}")"$).Append(CRLF)
@@ -1037,8 +1159,18 @@ sqlite.SetDB(dbName)
 Dim rs As SQLiteResultSet1 = sqlite.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":${priKey}))
 rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).append(CRLF)
 'AddComment(sb,"***END BANanoSQLite***")
-End If
+	End If
+	'
+	If prjDBType = "BANanoMySQL" Then
+		'AddComment(sb, "***START BANanoSQLite***")
+		sb.append($"Dim mysql As BANanoMySQL1
+mysql.Initialize
+Dim rs As MySQLResultSet1 = mysql.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":${priKey}))
+rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).append(CRLF)
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
 '
+
 sb.append($"End Select"$).append(CRLF)
 '
 	sb.append($"Mode = "E"
@@ -1071,7 +1203,17 @@ sb.append($"End Select"$).append(CRLF)
 		Dim rs As SQLiteResultSet1 = sqlite.Read("${tblName}", "${priKey}", ${priKey})
 		rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
-End If
+	End If
+	'
+	If prjDBType = "BANanoMySQL" Then
+		'AddComment(sb,"***START BANanoMySQL***")
+		sb.Append($"Dim mysql As BANanoMySQL1
+		mysql.Initialize
+		Dim rs As MySQLResultSet1 = mysql.Read("${tblName}", "${priKey}", ${priKey})
+		rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
+
 
 	'
 	sb.Append("'the record was found, set the values to the form").Append(CRLF)
@@ -1128,6 +1270,17 @@ End If
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
+	'
+	If prjDBType = "BANanoMySQL" Then
+		'AddComment(sb,"***START BANanoMySQL***")
+		sb.Append($"Dim mysql As BANanoMySQL1
+	mysql.Initialize
+	Dim rs As MySQLResultSet1 = mysql.DeleteWhere("${tblName}", CreateMap("${priKey}":did))
+	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQLite***")
+	End If
+	
+	
 	sb.append($"Mode = ""
 	Page.EnableMulti(array("btnnew${tblName}"))
 	Page.DisableMulti(Array("btncancel${tblName}","btnsave${tblName}","btndelete${tblName}"))
@@ -2030,7 +2183,11 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 			Dim xval As String = pg.Map2Json(strval)
 			sb.Append($"${xi}.Set${k}JSON(${q}"${xval}"${q})"$).Append("<br>")
 		Else
-			sb.Append($"${xi}.Set${k}("${strval}")"$).Append("<br>")
+			If strval = "True" Or strval = "False" Or strval = "true" Or strval = "false" Then
+				sb.Append($"${xi}.Set${k}(${strval})"$).Append("<br>")
+			Else
+				sb.Append($"${xi}.Set${k}("${strval}")"$).Append("<br>")
+			End If
 		End If
 	Next
 	If sparentid <> "" Then

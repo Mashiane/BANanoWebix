@@ -614,8 +614,7 @@ function SendEmail($from,$to,$cc,$subject,$msg) {
 } 
 
 function prepareStatement($conn,$sql, $types, $values) {
-	//paramater types to execute
-	/* Bind parameters. Types: s = string, i = integer, d = double,  b = blob */
+	$stmt = $conn->prepare($sql);
 	if(is_array($types)){
 		$a_params = array();
 		$param_type = '';
@@ -628,17 +627,7 @@ function prepareStatement($conn,$sql, $types, $values) {
 		for($i = 0; $i < $n; $i++) {
 			$a_params[] = & $values[$i];
 		}
-		/* Prepare statement */
-		$stmt = $conn->prepare($sql);
-		if($stmt === false) {
-			$response = $conn->error;
-			$output = json_encode(array("response" => $response));
-    		die($output);
-		}
-		/* use call_user_func_array, as $stmt->bind_param('s', $param); does not accept params array */
 		call_user_func_array(array($stmt, 'bind_param'), $a_params);
-	} else {
-		$stmt = $conn->prepare($sql);
 	}
 	return $stmt;
 }
