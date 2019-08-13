@@ -337,6 +337,6 @@ ModuleClosedNodes96=
 ModuleClosedNodes97=
 ModuleClosedNodes98=
 ModuleClosedNodes99=
-NavigationStack=pgFD,CreateTableCode,1013,6,pgFD,BuildClass,3550,0,pgFD,SourceCodeItem,2195,6,pgFD,FieldCode,1649,0,pgFD,ToolbarCode,702,0,pgFD,FormCode,679,3,pgFD,prop_saveWait,1450,0,pgFD,ViewCode,1653,0,pgFD,tree_clickwait,2316,0,Main,AppStart,47,0,Main,BANano_Ready,78,0
+NavigationStack=pgFD,BuildClass,3550,0,pgFD,SourceCodeItem,2195,6,pgFD,FieldCode,1649,0,pgFD,ToolbarCode,702,0,pgFD,FormCode,679,3,pgFD,prop_saveWait,1450,0,pgFD,ViewCode,1653,0,pgFD,tree_clickwait,2316,0,Main,BANano_Ready,78,0,Main,AppStart,68,0
 SelectedBuild=0
 VisibleModules=
