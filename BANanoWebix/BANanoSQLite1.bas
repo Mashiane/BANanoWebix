@@ -12,6 +12,9 @@ Sub Class_Globals
 	Public const DB_REAL As String = "REAL"
 	Public const DB_DATE As String = "DATE"
 	Public const DB_BLOB As String = "BLOB"
+	Public const DB_INT As String = "INTEGER"
+	Public const DB_INT As String = "TEXT"
+	
 	Private recType As Map
 	Type SQLiteResultSet1(result As List, command As String, types As List, args As List, query As String)
 	Private BANano As BANano  'ignore
@@ -34,6 +37,44 @@ Sub ResetTypes As BANanoSQLite1
 	Return Me
 End Sub
 
+'query table structure
+Sub Pragma(tblName As String) As SQLiteResultSet1
+	Dim sb As String = $"PRAGMA table_info('${tblName}')"$
+	Dim gr As SQLiteResultSet1
+	gr.Initialize
+	gr.query = sb
+	gr.args = Null
+	gr.command = "pragma"
+	gr.types = Null
+	gr.result = Null
+	Return gr
+End Sub
+
+'query table foreign keys
+Sub ForeignKeys(tblName As String) As SQLiteResultSet1
+	Dim sb As String = $"PRAGMA foreign_key_list('${tblName}')"$
+	Dim gr As SQLiteResultSet1
+	gr.Initialize
+	gr.query = sb
+	gr.args = Null
+	gr.command = "foreignkeys"
+	gr.types = Null
+	gr.result = Null
+	Return gr
+End Sub
+
+'query table structure
+Sub TableNames() As SQLiteResultSet1
+	Dim sb As String = $"SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%'"$
+	Dim gr As SQLiteResultSet1
+	gr.Initialize
+	gr.query = sb
+	gr.args = Null
+	gr.command = "tables"
+	gr.types = Null
+	gr.result = Null
+	Return gr
+End Sub
 
 'return a sql to delete record of table where one exists
 Sub DeleteAll(tblName As String) As SQLiteResultSet1
@@ -342,7 +383,7 @@ Private Sub EscapeField(f As String) As String
 End Sub
 
 'return a sql command to create the table
-public Sub CreateTable(tblName As String, tblFields As Map, PK As String) As SQLiteResultSet1
+public Sub CreateTable(tblName As String, tblFields As Map, PK As String, Auto As String) As SQLiteResultSet1
 	Dim fldName As String
 	Dim fldType As String
 	Dim fldTot As Int
@@ -367,6 +408,9 @@ public Sub CreateTable(tblName As String, tblFields As Map, PK As String) As SQL
 		End Select
 		If fldName.EqualsIgnoreCase(PK) Then
 			sb.Append(" PRIMARY KEY")
+		End If
+		If fldName.EqualsIgnoreCase(Auto) Then
+			sb.Append(" AUTOINCREMENT")
 		End If
 	Next
 	sb.Append(")")

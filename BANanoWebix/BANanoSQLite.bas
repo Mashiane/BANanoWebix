@@ -12,6 +12,8 @@ Sub Class_Globals
 	Public const DB_REAL As String = "REAL"
 	Public const DB_DATE As String = "DATE"
 	Public const DB_BLOB As String = "BLOB"
+	Public const DB_INT As String = "INTEGER"
+	Public const DB_INT As String = "TEXT"
 	Private recType As Map
 	Type SQLiteResultSet(response As String, result As List, command As String, types As List, args As List, query As String)
 	Private BANano As BANano  'ignore

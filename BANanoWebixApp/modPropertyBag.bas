@@ -21,6 +21,7 @@ Sub getPropertyBag As WixForm
 	tbl.CreateIcon("add_column").SetIcon("mdi mdi-table-column-plus-after").SetTooltip("Add Column").SetClick(BANano.CallBack(pgFD,"add_column",Null)).Pop
 	tbl.CreateIcon("add_fields").SetIcon("mdi mdi-table-of-contents").SetTooltip("Add multiple fields").SetClick(BANano.CallBack(pgFD,"add_fields",Null)).Pop
 	tbl.CreateIcon("download").SetIcon("mdi mdi-cloud-download-outline").SetTooltip("Download source code").SetClick(BANano.CallBack(pgFD,"download",Null)).Pop
+	tbl.CreateIcon("import").SetIcon("mdi mdi-database-import").SetTooltip("Import database to schema").SetClick(BANano.CallBack(pgFD,"importdb",Null)).Pop
 	tbl.AddSpacer
 	tbl.CreateIcon("propadd").SetIcon("mdi mdi-plus-circle-outline").SetTooltip("Add").SetClick(BANano.CallBack(pgFD,"prop_add",Null)).Pop
 	tbl.CreateIcon("propsave").SetIcon("mdi mdi-content-save").SetTooltip("Save").SetClick(BANano.CallBack(pgFD,"prop_savewait",Null)).Pop

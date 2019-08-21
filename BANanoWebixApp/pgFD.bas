@@ -24,6 +24,8 @@ Sub Process_Globals
 	Private lastcode As String
 	Private prjDBName As String
 	Private prjDBType As String
+	Private upload As WixUploader
+	Public fu As BANanoObject
 End Sub
 
 Sub Init()
@@ -90,7 +92,15 @@ Sub Init()
 	R2.AddColumns(acc.item)
 	pg.AddRow(R2)
 	'
+	'create an uploader and add it to the page in run-time
+	upload.Initialize("upload").SetApiOnly(True)
+	upload.SetUpload("./assets/upload.php")
+	Dim ffile As BANanoObject
+	upload.Uploader.OnFileUpload(BANano.CallBack(Me, "onFileUpload", Array(ffile)))
+	upload.Uploader.OnFileUploadError(BANano.CallBack(Me, "onFileUploadError", Array(ffile)))
+	'
 	pg.ui
+	fu = pg.AddUploader(upload)
 	'
 	' register a popup for the property bag
 	'pg.RegisterTypePopUp("propbag")
@@ -101,6 +111,7 @@ Sub Init()
 	pg.Hide("add_column")
 	pg.Hide("add_fields")
 	pg.Hide("download")
+	pg.Hide("import")
 	'
 	Dim context, e As Object
 	pg.onBeforeDrop("tree", BANano.CallBack(Me,"beforedrop", Array(context,e)))
@@ -119,6 +130,180 @@ Sub Init()
 	'
 	'start hints
 	'pg.StartHint(hints)
+End Sub
+
+Sub importdb
+	'when a photo is selected, show file dialog
+	pg.FileDialog("upload", Null)
+End Sub
+
+
+Sub onFileUpload(ffile As BANanoObject)
+	'get the status
+	Dim status As String = ffile.GetField("status").Result
+	Select Case status
+	Case "success", "server"
+		'get the file name
+		Dim fname As String = ffile.GetField("name").Result
+		ImportSQLite(fname)
+	Case Else
+		pg.Alert("Error during file upload!")
+	End Select
+End Sub
+
+Sub ImportSQLite(dbNameHere As String)
+	'process on the current db
+	Dim currDB As BANanoSQLite1
+	currDB.initialize
+	currDB.SetDB(dbName)
+	
+	'file is imported to assets folder
+	Dim fname As String = $"./assets/${dbNameHere}"$
+	Dim pbx As WixProgressBar
+	pbx.Initialize("").SetTypeIcon("")
+	pg.SetProgressBar("propbag", pbx)
+	'
+	Dim mytables As List
+	mytables.initialize
+	Dim myfields As List
+	myfields.initialize
+	
+	'open the db and read tables
+	Dim sqlite As BANanoSQLite1
+	sqlite.Initialize
+	sqlite.SetDb(fname)
+	'get table names
+	Dim tblNames As SQLiteResultSet1 = sqlite.TableNames
+	tblNames.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(tblNames)))
+	'loop through each table
+	For Each tblMap As Map In tblNames.result
+		Dim sname As String = tblMap.Get("name")
+		'
+		Dim data As Map = CreateMap()
+		Dim tKey As String = $"table.${sname}"$
+		data.put("key", tKey)
+		data.put("id", "table")
+		data.put("value", sname)
+		'define table entry
+		Dim jsonm As Map = CreateMap()
+		jsonm.put("id", "table")
+		jsonm.Put("value", sname)
+		jsonm.put("description", sname)
+		jsonm.put("primarykey", "")
+		jsonm.Put("type", "")
+		jsonm.Put("autoincrement","")
+		data.put("json",jsonm)
+		'get the foreign keys for the table
+		Dim foreignM As Map = CreateMap()
+		Dim foreigns As SQLiteResultSet1 = sqlite.ForeignKeys(sname)
+		foreigns.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(foreigns)))
+		If foreigns.result.size > 0 Then
+			For Each foreignr As Map In foreigns.result
+				'the field in this table
+				Dim sfrom As String = foreignr.Get("from")
+				'foreign table
+				Dim ftable As String = foreignr.Get("table")
+				'foreign key
+				Dim fkey As String = foreignr.get("to")
+				'
+				Dim sfield As String = $"field.${sname}.${sfrom}"$
+				'create the constraint
+				Dim constraint As Map = CreateMap()
+				constraint.Put("foreign_table",ftable)
+				constraint.put("foreign_key",fkey)
+				'save the constraint for later retrieval
+				foreignM.Put(sfield, constraint)
+			Next
+		End If
+		'get the table field details per table
+		Dim tblFields As SQLiteResultSet1 = sqlite.Pragma(sname)
+		tblFields.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(tblFields)))
+		'
+		Dim fields As List
+		fields.initialize
+		'loop through each field and get properties
+		For Each fldmap As Map In tblFields.result
+			Dim cid As String = fldmap.get("cid")
+			Dim fname As String = fldmap.get("name")
+			Dim pk As String = fldmap.get("pk")
+			Dim ftype As String = fldmap.Get("type")
+			ftype = ftype.ToUpperCase
+			If pk = "1" Then
+				jsonm.Put("primarykey", fname)
+				jsonm.put("type", ftype)
+			End If
+			'add to fields
+			Dim fld As Map = CreateMap()
+			Dim fkey As String = $"field.${sname}.${fname}"$
+			fld.put("key", fkey)
+			fld.Put("id", "field")
+			fld.put("tablename", sname)
+			fld.Put("value", fname)
+			fld.Put("tabindex", cid)
+			'
+			Dim fldj As Map = CreateMap()
+			fldj.Put("type",ftype)
+			fldj.put("length","20")
+			fldj.put("id","field")
+			fldj.Put("tablename", sname)
+			fldj.put("value",fname)
+			fldj.put("tabindex", cid)
+			fldj.Put("description",fname)
+			fldj.put("isfield",True)
+			fldj.Put("key",fkey)
+			fldj.Put("showonform",True)
+			fldj.put("view","text")
+			fldj.put("addingmethod","AddRows")
+			fldj.put("form_type","text")
+			fldj.Put("optionsid","1,2,3")
+			fldj.put("optionstext","One,Two,Three")
+			'
+			fldj.put("showongrid", True)
+			fldj.put("grid_header_filter","textFilter")
+			fldj.Put("grid_sort",ftype)
+			fldj.Put("grid_adjust",True)
+			'check foreign keys
+			If foreignM.ContainsKey(fkey) Then
+				Dim fkrec As Map = foreignM.Get(fkey)
+				Dim foreign_table As String = fkrec.get("foreign_table")
+				Dim foreign_key As String = fkrec.get("foreign_key")
+				fldj.Put("foreign_key", foreign_key)
+				fldj.Put("foreign_table", foreign_table)
+			End If
+			'convert to json
+			Dim strJSON As String = BANano.ToJson(fldj)
+			fld.put("json", strJSON)
+			'
+			myfields.Add(fld)
+		Next
+		'update json
+		Dim savedJSON As Map = data.get("json")
+		Dim sJSON As String = BANano.ToJson(savedJSON)
+		data.put("json",sJSON)
+		mytables.Add(data)
+	Next
+	'add tables and fields to database
+	For Each tblMap As Map In mytables
+		currDB.ResetTypes
+		currDB.AddStrings(Array("key","id","value", "json"))
+		Dim newTBL As SQLiteResultSet1 = currDB.insert("tables", tblMap)
+		newTBL.Result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", currDB.Build(newTBL)))
+	Next
+	'add fields to the database
+	For Each fldmap As Map In myfields
+		currDB.ResetTypes
+		currDB.AddStrings(Array("key","id","tablename","value","json","tabindex"))
+		Dim newFLD As SQLiteResultSet1 = currDB.insert("fields", fldmap)
+		newFLD.Result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", currDB.Build(newFLD)))
+	Next
+	
+	'for each table read fields	
+	refreshapp
+	pg.UnsetProgressBar("propbag")
+End Sub
+
+Sub OnFileUploadError(ffile As BANanoObject)
+	pg.Alert("Error during file upload!")
 End Sub
 
 'cancel the drag and drop but process everything else
@@ -332,6 +517,20 @@ Sub AddPrimaryKeyWait
 	jsonm.put("tablename", tbname)
 	jsonm.Put("value", pk)
 	jsonm.Put("tabindex","0")
+	jsonm.put("description", pk)
+	jsonm.put("isfield",True)
+	jsonm.Put("id", "field")
+	jsonm.Put("key", k)
+	jsonm.Put("showonform", True)
+	jsonm.Put("view", "text")
+	jsonm.put("addingmethod","AddRows")
+	jsonm.Put("form_type", "text")
+	jsonm.Put("optionsid","1,2,3")
+	jsonm.Put("optionstext", "One,Two,Three")
+	jsonm.put("showongrid", True)
+	jsonm.put("grid_header_filter","textFilter")
+	jsonm.Put("grid_sort",ft)
+	jsonm.Put("grid_adjust",True)
 	'
 	Dim json As String = pg.Map2Json(jsonm)
 	nf.Put("json", json)
@@ -360,7 +559,7 @@ Sub AddComment(sbx As StringBuilder, comment As String)
 	sbx.Append("'" & comment).Append(CRLF)
 End Sub
 
-Sub LoadOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+Sub LoadOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDescription As String) As String
 	'determine if we have them
 	Dim hasForeign As Boolean = False
 	Dim sets As Map = CreateMap()
@@ -494,7 +693,7 @@ Sub LoadOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 	Return sb.tostring
 End Sub
 
-Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet, tblDescription As String) As String
 	'determine if we have them
 	Dim hasForeign As Boolean = False
 	Dim sets As Map = CreateMap()
@@ -664,7 +863,7 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 	Return sb.tostring
 End Sub
 
-Sub FormCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+Sub FormCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDescription As String) As String
 	Dim errors As Int = 0
 	Dim sb As StringBuilder
 	sb.initialize
@@ -697,13 +896,13 @@ Sub FormCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As Str
 	Return sb.tostring
 End Sub
 
-Sub ToolbarCode(tblName As String) As String
+Sub ToolbarCode(tblName As String,tblDescription As String) As String
 	Dim sb As StringBuilder
 	sb.initialize
 	sb.append($"Sub CreateToolBar As WixToolBar
 	Dim tbl${tblName} As WixToolBar
 	tbl${tblName}.Initialize("tbl${tblName}").SetPadding(10)
-	tbl${tblName}.CreateLabel("lbl${tblName}").SetLabel("${Capitalize(tblName)}").Pop
+	tbl${tblName}.CreateLabel("lbl${tblName}").SetLabel("${Capitalize(tblDescription)}").Pop
 	tbl${tblName}.AddSpacer
 	'
 	Dim btnnew${tblName} As WixIcon
@@ -743,8 +942,11 @@ Sub ToolbarCode(tblName As String) As String
 	tbl${tblName}.AddIcon(btndelete${tblName})
 	
 	Dim cb As BANanoObject = BANano.CallBack(Me, "print${tblName}_click", Null)
-	tbl${tblName}.CreateIcon("badge${tblName}").SetIcon("mdi mdi-city").SetWidth(100).SetBadge("0").Pop
+	Dim ex As BANanoObject = BANano.CallBack(Me, "export${tblName}_click", Null)
+	
+	tbl${tblName}.CreateIcon("badge${tblName}").SetIcon("mdi mdi-folder-multiple").SetWidth(100).SetBadge("0").Pop
 	tbl${tblName}.CreateIcon("print${tblName}").SetIcon("mdi mdi-printer").SetWidth(100).SetTooltip("Print the list of ${tblName}").SetClick(cb).Pop
+	tbl${tblName}.CreateIcon("export${tblName}").SetIcon("mdi mdi-file-excel").SetWidth(100).SetTooltip("Export to MS Excel").SetClick(ex).Pop
 	Return tbl${tblName}
 End Sub"$).Append(CRLF).append(CRLF)
 sb.append($"Sub Print${Capitalize(tblName)}_click
@@ -752,17 +954,20 @@ sb.append($"Sub Print${Capitalize(tblName)}_click
 	wp.Initialize
 	wp.SetHeader(True)
 	wp.SetFooter(True)
-	wp.SetDocHeader("${Capitalize(tblName)}")
+	wp.SetDocHeader("${Capitalize(tblDescription)}")
 	wp.SetModeLandScape(true)
 	wp.SetDataAll(True)
 	wp.SetDocFooter("BANanoWebix")
 	wp.SetPaperA4(True)
 	Page.Print("dt${tblName}",wp)
-End Sub"$).Append(CRLF)
+End Sub"$).Append(CRLF).Append(CRLF)
+sb.Append($"Sub Export${Capitalize(tblName)}_click
+	Page.Export2Excel("dt${tblName}")
+End Sub"$).Append(CRLF).Append(CRLF)
 	Return sb.tostring
 End Sub
 
-Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDescription As String) As String
 	Dim errors As Int = 0
 	Dim sb As StringBuilder
 	sb.initialize
@@ -799,8 +1004,8 @@ Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As Str
 	dt${tblName}.DataTable.OnItemClick(BANano.CallBack(Me,"dt${tblName}_itemclick",Array(arguements)))
 	dt${tblName}.DataTable.OnItemDblClick(BANano.CallBack(Me,"dt${tblName}_dblclick",Array(arguements)))
 	dt${tblName}.DataTable.OnKeyPress(BANano.CallBack(Me,"dt${tblName}_keypress",Array(arguements)))"$).Append(CRLF)
-	sb.Append($"Dim state, editor As Object
-	dt${tblName}.DataTable.OnAfterEditStop(BANano.CallBack(Me,"dt${tblName}_afteredit",Array(state,editor)))"$).append(CRLF)
+	sb.Append($"'Dim state, editor As Object
+	'dt${tblName}.DataTable.OnAfterEditStop(BANano.CallBack(Me,"dt${tblName}_afteredit",Array(state,editor)))"$).append(CRLF)
 	
 	sb.append($"return dt${tblName}"$).append(CRLF)
 	sb.append("End Sub").append(CRLF).Append(CRLF)
@@ -830,7 +1035,7 @@ Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As Str
 	Case "delete"	
 		Dim confirmresult As Boolean = False
 		Dim cb As BANanoObject = BANano.CallBack(Me,"dt${tblName}_delete",Array(confirmresult))
-		Page.Confirm(cb, "Confirm Delete", "Are you sure want to delete this ${tblName} record? You will not be able to undo your changes. Continue?")
+		Page.Confirm(cb, "Confirm Delete", "Are you sure want to delete this ${tblDescription} record? You will not be able to undo your changes. Continue?")
 	End Select"$).append(CRLF)
 	sb.append("End Sub").Append(CRLF)
 	'key press
@@ -843,7 +1048,7 @@ Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As Str
 	sb.append($"Case 46
 		Dim confirmresult As Boolean = False
 		Dim cb As BANanoObject = BANano.CallBack(Me,"dt${tblName}_delete",Array(confirmresult))
-		Page.Confirm(cb, "Confirm Delete", "Are you sure want to delete this ${tblName} record? You will not be able to undo your changes. Continue?")
+		Page.Confirm(cb, "Confirm Delete", "Are you sure want to delete this ${tblDescription} record? You will not be able to undo your changes. Continue?")
 	End Select"$).append(CRLF)	
 	sb.append("End Sub").append(CRLF)
 	sb.append(CRLF)
@@ -891,14 +1096,14 @@ Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As Str
 	Return sb.tostring
 End Sub
 
-Sub AddShowPageCode(tblName As String) As String
+Sub AddShowPageCode(tblName As String,tblDescription As String) As String
 	Dim sb As StringBuilder
 	sb.initialize
 	sb.append($"Sub AddPage(pg As WixPage, mv As WixMultiView)
 	Page = pg
 	dbName = Main.dbname
 	Dim a As WixElement
-	a.Initialize("mv_${tblName}").SetTemplate("${Capitalize(tblName)}").SetTypeLine("")
+	a.Initialize("mv_${tblName}").SetTemplate("${Capitalize(tblDescription)}").SetTypeLine("")
 	'
 	Dim r1 As WixLayout
 	r1.Initialize("r1")
@@ -929,18 +1134,18 @@ End Sub"$).append(CRLF)
 End Sub
 
 
-Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet) As String
+Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDescription As String) As String
 	Dim errors As Int = 0
 	Dim none As Int = 0
 	Dim sbFields As StringBuilder
 	sbFields.Initialize
 	
-	Dim dtCode As String = GridCode(tblName,priKey,rsx)
-	Dim loCode As String = LoadOptionsCode(tblName, priKey, rsx)
-	Dim dtLoadCode As String = LoadGridOptionsCode(tblName, priKey, rsx)
-	Dim frmCode As String = FormCode(tblName,priKey, rsx)
-	Dim tblCode As String = ToolbarCode(tblName)
-	Dim asCode As String = AddShowPageCode(tblName)
+	Dim dtCode As String = GridCode(tblName,priKey,rsx,tblDescription)
+	Dim loCode As String = LoadOptionsCode(tblName, priKey, rsx,tblDescription)
+	Dim dtLoadCode As String = LoadGridOptionsCode(tblName, priKey, rsx,tblDescription)
+	Dim frmCode As String = FormCode(tblName,priKey, rsx,tblDescription)
+	Dim tblCode As String = ToolbarCode(tblName,tblDescription)
+	Dim asCode As String = AddShowPageCode(tblName,tblDescription)
 	If rsx.result.Size > 0 Then
 	For Each fldmap As Map In rsx.result
 		Dim json As String = fldmap.Get("json")
@@ -1010,7 +1215,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet)
 		sb.append("sqlite.Initialize").append(CRLF)
 		sb.append("sqlite.SetDB(dbName)").append(CRLF)
 		AddComment(sb,"build the query string structure to execute")
-		sb.append($"Dim rs As SQLiteResultSet1 = sqlite.CreateTable("${tblName}", m${tblName}, "${priKey}")"$).Append(CRLF)
+		sb.append($"Dim rs As SQLiteResultSet1 = sqlite.CreateTable("${tblName}", m${tblName}, "${priKey}", "")"$).Append(CRLF)
 		AddComment(sb, "execute the resultset structure and get the result")
 		sb.append($"rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).append(CRLF)
 		'sb.append("'***END BANanoSQLite***").append(CRLF)
@@ -1368,6 +1573,7 @@ Sub prop_saveWait
 	Dim tablename As String = prop.GetDefault("tablename","")
 	Dim autoincrement As String = prop.GetDefault("autoincrement","")
 	Dim primarykey As String = prop.GetDefault("primarykey","")
+	Dim sdescription As String = prop.GetDefault("description","")
 	'ensure id is always lowercase
 	i = i.tolowercase
 	prop.Put("id", i)
@@ -1424,6 +1630,10 @@ Sub prop_saveWait
 			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 			rs = sqlite.GetResultSet(qry, res)
 		Case "field"
+			If sdescription = "" Then
+				pg.Message_Error("Description of the field not specified!")
+				Return
+			End If
 			sqlite.Initialize
 			sqlite.AddStrings(Array("id"))
 			qry = sqlite.Read("connect","id","connection")
@@ -1475,6 +1685,8 @@ Sub prop_saveWait
 			rec.Put("json", json)
 			rec.Put("key", key)
 			rec.Put("value", value)
+			Dim tblrec As Map = pg.json2map(json)
+			Dim tblDescription As String = tblrec.get("description")
 			'replace complete record
 			qry = sqlite.InsertReplace("tables", rec)
 			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
@@ -1507,12 +1719,15 @@ Sub prop_saveWait
 			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 			rs = sqlite.GetResultSet(qry,res)
 			'generate code
-			Dim tcode As String = CreateTableCode(value,primarykey,rs)
+			Dim tcode As String = CreateTableCode(value,primarykey,rs,tblDescription)
 			SourceCodePreview(tcode)
+			RefreshTreeWait
+			Return
 		Case "connection"
 			pg.collapse("preview")
 			pg.Expand("code")
 			pg.Show("download")
+			pg.Show("import")
 			sqlite.Initialize
 			sqlite.AddStrings(Array("id"))
 			'new connect record
@@ -2023,6 +2238,8 @@ Sub CreateView(properties As Map) As Map
 				pkey = "MasterCheckBox"
 			Case "grid_header_filter"
 				pkey = "HeaderContent"
+			Case "grid_keepsequence"
+				pkey = "KeepSequence"
 			Case "grid_header_text"
 				pkey = "HeaderText"
 			Case "grid_header_css"
@@ -2236,6 +2453,7 @@ Sub tree_clickwait(recid As String)
 	pg.Hide("propdelete")
 	pg.Hide("download")
 	pg.Hide("propmenu")
+	pg.Hide("import")
 			
 	Select Case prefix
 		Case "property"
@@ -2356,7 +2574,8 @@ Sub tree_clickwait(recid As String)
 				rec = pg.Json2Map(json)
 				pg.SetValues("propbag", rec)
 				Dim primarykey As String = rec.Get("primarykey")
-				
+				Dim description As String = rec.get("description")
+				If description = "" Then description = suffix
 				'select fields for table
 				sqlite.initialize
 				sqlite.AddStrings(Array("tablename"))
@@ -2364,7 +2583,7 @@ Sub tree_clickwait(recid As String)
 				res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 				rs = sqlite.GetResultSet(qry,res)
 				'generate code
-				Dim tcode As String = CreateTableCode(suffix,primarykey,rs)
+				Dim tcode As String = CreateTableCode(suffix,primarykey,rs,description)
 				SourceCodePreview(tcode)
 			End If
 		Case "connection"
@@ -2373,6 +2592,7 @@ Sub tree_clickwait(recid As String)
 			pg.collapse("preview")
 			pg.Expand("code")
 			pg.Show("download")
+			pg.Show("import")
 			dConnection.BuildBag(pg, propBag)
 			'read settings from db
 			sqlite.Initialize
@@ -2634,6 +2854,7 @@ Sub sidebar_clickwait(meid As String)
 	pg.Hide("propdelete")
 	pg.Hide("download")
 	pg.Hide("propmenu")
+	pg.hide("import")
 	'
 	Select Case meid
 		Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"
@@ -2730,6 +2951,10 @@ Sub sidebar_clickwait(meid As String)
 					p.Put("form_type", "text")
 					p.Put("optionsid","1,2,3")
 					p.Put("optionstext", "One,Two,Three")
+					p.put("showongrid", True)
+					p.put("grid_header_filter","textFilter")
+					p.Put("grid_sort","string")
+					p.Put("grid_adjust",True)
 					pg.SetValues("propbag",p)
 				Case Else
 					pg.Message_Error("Please select the table to add the field to first!")
@@ -3392,6 +3617,10 @@ Sub btnMulti1_clickwait
 					ntbl.Put("form_type", "text")
 					ntbl.Put("optionsid","1,2,3")
 					ntbl.Put("optionstext", "One,Two,Three")
+					ntbl.put("showongrid", True)
+					ntbl.put("grid_header_filter","textFilter")
+					ntbl.Put("grid_sort","string")
+					ntbl.Put("grid_adjust",True)
 					'convert to json
 					Dim json As String = pg.Map2Json(ntbl)
 					'insert the record to elements

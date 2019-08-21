@@ -10,15 +10,16 @@ End Sub
 
 
 Sub BuildBag(Page As WixPage, Bag As WixProperty)
-	Dim types As List
-	types.Initialize
-	types.AddAll(Array("BOOL", "INT", "STRING", "BLOB"))
+	Dim fldtypes As List
+	fldtypes.Initialize
+	fldtypes.AddAll(Array("BOOL", "INT", "INTEGER", "TEXT", "STRING", "REAL", "DATE", "BLOB", "FLOAT"))
 	
 	Bag.Clear
 	Bag.AddTextBox("id", "ID","table")
 	Bag.AddTextBox("value", "Table Name","table1")
+	Bag.AddTextBox("description", "Description","")
 	Bag.AddTextBox("primarykey", "Primary Field", "id")
-	Bag.AddCombo("type", "Field Type","INT", types)
+	Bag.AddCombo("type", "Field Type","INT", fldtypes)
 	Bag.AddCheckBox("autoincrement", "Auto Increment", False)
 	Bag.Refresh(Page)
 End Sub

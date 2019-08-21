@@ -16,6 +16,7 @@ Sub Class_Globals
 	Private hasFooterFilter As Boolean
 	Private Footertitle As Object
 	Public Parent As WixElement
+	Private keepSequence As Boolean
 End Sub
 
 'set the parent
@@ -24,6 +25,11 @@ Sub SetParent(p As WixElement) As WixDataColumn
 	Return Me
 End Sub
 
+'keep sequence of headings
+Sub SetKeepSequence(b As Boolean) As WixDataColumn
+	keepSequence = b
+	Return Me
+End Sub
 
 'Initializes the data column
 Public Sub Initialize(cID As String) As WixDataColumn
@@ -36,6 +42,7 @@ Public Sub Initialize(cID As String) As WixDataColumn
 	foot.Initialize 
 	hasFooterFilter = False
 	Footertitle = ""
+	keepSequence = False
 	Parent = Null
 	Return Me
 End Sub
@@ -606,8 +613,13 @@ Sub Item As Map
 			lst.Add(title)
 			lst.Add(hdr)
 		Else
-			lst.Add(hdr)
-			lst.Add(title)
+			If keepSequence = False Then
+				lst.Add(hdr)
+				lst.Add(title)
+			Else
+				lst.Add(title)
+				lst.Add(hdr)
+			End If
 		End If
 		DataColumn.SetAttr("header", lst)
 	Else

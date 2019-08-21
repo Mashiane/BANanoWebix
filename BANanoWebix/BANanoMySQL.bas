@@ -21,6 +21,8 @@ Sub Class_Globals
 	Public DB_BOOL As String = "BOOL"
 	Public DB_REAL As String = "REAL"
 	Public DB_DATE As String = "DATE"
+	Public const DB_INT As String = "INTEGER"
+	Public const DB_INT As String = "TEXT"
 	Type MySQLResultSet(response As String, result As List, command As String, types As List, args As List, query As String)
 	Private BANano As BANano   'ignore
 End Sub

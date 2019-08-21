@@ -379,7 +379,7 @@ Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
 Module1=pgFD
-Module10=dDatePicker
+Module10=pgLesson8_4
 Module100=dVideo
 Module101=dUnitList
 Module102=dTemplate
@@ -390,63 +390,63 @@ Module106=dContext
 Module107=dContextMenu
 Module108=dDataView
 Module109=dGoogleMap
-Module11=pgMenu
+Module11=dConnection
 Module110=dPropertySheet
 Module111=dIFrame
 Module112=dTabView
-Module12=modPropertyBag
-Module13=modCenter
-Module14=modToolBar
-Module15=pgCarSales
-Module16=pgComments
-Module17=pgMaster
-Module18=pgCharts
-Module19=pgContext
-Module2=pgIndex
-Module20=pgDataEntry
-Module21=pgDataTable
-Module22=dTree
-Module23=pgDataView
-Module24=pgFlexLayout
-Module25=pgForms
-Module26=pgForms1
-Module27=pgFormValidation
-Module28=pgGoogleMap
-Module29=pgGroupList
+Module12=dDatePicker
+Module13=pgMenu
+Module14=modCenter
+Module15=modToolBar
+Module16=pgCarSales
+Module17=pgComments
+Module18=pgMaster
+Module19=pgCharts
+Module2=modPropertyBag
+Module20=pgContext
+Module21=pgDataEntry
+Module22=pgDataTable
+Module23=dTree
+Module24=pgDataView
+Module25=pgFlexLayout
+Module26=pgForms
+Module27=pgForms1
+Module28=pgFormValidation
+Module29=pgGoogleMap
 Module3=dField
-Module30=pgLayout
-Module31=pgLayouts
-Module32=pgLayouts1
-Module33=pgLayouts2
-Module34=pgLesson8_3
-Module35=pgList
-Module36=pgMessageBoxes
-Module37=pgMultiView
-Module38=pgMultiView2
-Module39=pgMultiView3
-Module4=modSideBar
-Module40=pgMultiView4
-Module41=pgPropertySheet
-Module42=pgResponsive
-Module43=pgScrollView
-Module44=pgSideBar
-Module45=pgSuggest
-Module46=pgTabBar
-Module47=pgTabView
-Module48=pgTemplate
-Module49=pgTest
-Module5=pgDataTable1
-Module50=pgToolBar
-Module51=pgTree
-Module52=pgUnitList
-Module53=pgUploader1
-Module54=pgUploader2
-Module55=pgUploader3
-Module56=pgVideo
-Module57=dDBLList
+Module30=pgGroupList
+Module31=pgLayout
+Module32=pgLayouts
+Module33=pgLayouts1
+Module34=pgLayouts2
+Module35=pgLesson8_3
+Module36=pgList
+Module37=pgMessageBoxes
+Module38=pgMultiView
+Module39=pgMultiView2
+Module4=dDBLList
+Module40=pgMultiView3
+Module41=pgMultiView4
+Module42=pgPropertySheet
+Module43=pgResponsive
+Module44=pgScrollView
+Module45=pgSideBar
+Module46=pgSuggest
+Module47=pgTabBar
+Module48=pgTabView
+Module49=pgTemplate
+Module5=pgIndex
+Module50=pgTest
+Module51=pgToolBar
+Module52=pgTree
+Module53=pgUnitList
+Module54=pgUploader1
+Module55=pgUploader2
+Module56=pgUploader3
+Module57=pgVideo
 Module58=dFieldSet
 Module59=dForm
-Module6=pgTreeTable
+Module6=modSideBar
 Module60=dMenu
 Module61=dLayout
 Module62=dList
@@ -457,7 +457,7 @@ Module66=dRichText
 Module67=dIcon
 Module68=dUploader
 Module69=dText
-Module7=dDataField
+Module7=pgDataTable1
 Module70=dTextArea
 Module71=dSearch
 Module72=dSpacer
@@ -468,7 +468,7 @@ Module76=dColorPicker
 Module77=dSelect
 Module78=dCombo
 Module79=dDataTable
-Module8=pgLesson8_4
+Module8=pgTreeTable
 Module80=dRichSelect
 Module81=dRow
 Module82=dPager
@@ -479,7 +479,7 @@ Module86=dSegmented
 Module87=dSlider
 Module88=dSwitch
 Module89=dTabBar
-Module9=dConnection
+Module9=dDataField
 Module90=dToggle
 Module91=dSuggest
 Module92=dColumn
@@ -518,7 +518,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.Header.addcssfile("all.min.css")
 	BANano.Header.AddCSSFile("materialdesignicons.min.css")
 	'
-	BANano.Header.AddCSSFile("contrast.css")
+	BANano.Header.AddCSSFile("contrast.min.css")
 	'*themes
 	'BANano.Header.AddCSSFile("material.min.css")
 	'BANano.Header.AddCSSFile("flat.min.css")
@@ -572,7 +572,7 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready()
-	modSideBar.Version = "2.15"
+	modSideBar.Version = "2.16"
 	dbName = $"${AppName}.db"$
 	Dim sqlite As BANanoSQLite
 	sqlite.Initialize
@@ -648,7 +648,7 @@ Sub BANano_Ready()
 	Dim qry As String = sqlite.CreateTable("items", els, "id")
 	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
-	'
+
 	pgFD.init
 	'pgMaster.init
 End Sub

@@ -200,6 +200,22 @@ Sub SetLabel(elid As String, lbl As String)
 	Refresh(elid)
 End Sub
 
+'set multiple labels using a map
+Sub SetLabelMulti(kv As Map)
+	For Each k As String In kv.Keys
+		Dim v As String = kv.Get(k)
+		SetLabel(k,v)
+	Next
+End Sub
+
+'set values multi
+Sub SetValueMulti(kv As Map)
+	For Each k As String In kv.Keys
+		Dim v As String = kv.Get(k)
+		SetValue(k,v)
+	Next
+End Sub
+
 'create message box
 Sub MsgBox(msgid As String) As WixMessageBox
 	msgid = msgid.tolowercase
@@ -607,6 +623,24 @@ Sub GetElementByID(eid As String) As BANanoObject
 	Return bo
 End Sub
 
+'update the column header for the data table
+Sub SetDataColumnHeaderText(grd As String, colid As String, pos As Int, text As String)
+	'update the column configuration
+	Dim bo As BANanoObject = GetColumnConfig(grd, colid)
+	Dim headers As List = bo.GetField("header").Result
+	Dim hdr1 As Map = headers.Get(pos)
+	hdr1.Put("text", text)
+	bo.SetField("header", headers)
+End Sub
+
+'update the column header for the data table
+Sub SetDataColumnHeaderTextMulti(grd As String, pos As Int, textMap As Map)
+	For Each k As String In textMap.Keys
+		Dim v As String = textMap.Get(k)
+		SetDataColumnHeaderText(grd, k, pos, v)
+	Next
+End Sub
+
 'update a data column property
 Sub SetDataColumn(grd As String, colid As String, props As Map)
 	grd = grd.ToLowerCase
@@ -821,6 +855,14 @@ Sub OnAfterLoad(eid As String, cb As BANanoObject)
 	Dollar.Selector(eid).RunMethod("attachEvent",Array("onAfterLoad",cb))
 End Sub
 
+'check existence of an object
+Sub ViewExists(eid As String) As Boolean
+	eid = eid.ToLowerCase
+	Dim bHas As Boolean = Dollar.Selector(eid).RunMethod("exists",Null).result
+	Return bHas
+End Sub
+
+
 Sub ShowOverlay(eid As String, msg As Object)
 	eid = eid.ToLowerCase
 	Dollar.Selector(eid).RunMethod("showOverlay",Array(msg))
@@ -1008,7 +1050,7 @@ End Sub
 Sub SetMap(m As Map) As WixPage
 	For Each strKey As String In m.Keys
 		Dim strVal As String = m.Get(strKey)
-		Page.SetAttr(strKey,	strVal)
+		Page.SetAttr(strKey, strVal)
 	Next
 	Return Me
 End Sub
@@ -1286,6 +1328,18 @@ Sub GetMarker(listID As String, recordID As String) As Map
 	values.Remove(mKey)
 	Return values
 End Sub
+
+Sub OnAfterFileAdd(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onAfterFileAdd",cb))
+End Sub
+
+
+Sub OnBeforeFileAdd(eID As String, cb As BANanoObject)
+	eID = eID.tolowercase
+	Dollar.Selector(eID).RunMethod("attachEvent",Array("onBeforeFileAdd",cb))
+End Sub
+
 
 Sub OnUploadComplete(eID As String, cb As BANanoObject)
 	eID = eID.tolowercase

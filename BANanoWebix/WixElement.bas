@@ -417,6 +417,16 @@ Sub OnUploadComplete(cb As BANanoObject) As WixElement
 	Return Me
 End Sub
 
+Sub OnAfterFileAdd(cb As BANanoObject) As WixElement
+	On.put("onAfterFileAdd",cb)
+	Return Me
+End Sub
+
+Sub OnBeforeFileAdd(cb As BANanoObject) As WixElement
+	On.Put("onBeforeFileAdd",cb)
+	Return Me
+End Sub
+
 Sub OnFileUploadError(cb As BANanoObject) As WixElement
 	On.Put("onFileUploadError",cb)
 	Return Me
