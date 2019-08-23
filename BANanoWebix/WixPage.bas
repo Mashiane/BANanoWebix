@@ -22,6 +22,26 @@ Sub Class_Globals
 	Type WixSelectedID(row As Object, ID As Object, column As Object)
 End Sub
 
+
+Sub JSONValues2LowerCase(sJSON As String, props As List) As String
+	'convert json to map
+	Dim jmap As Map = Json2Map(sJSON)
+	MapValues2LowerCase(jmap, props)
+	Dim nJSON As String = Map2Json(jmap)
+	Return nJSON
+End Sub
+
+'convert map values to lowercase
+Sub MapValues2LowerCase(m As Map, props As List)
+	For Each prop As String In props
+		If m.ContainsKey(prop) Then
+			Dim v As String = m.GetDefault(prop,"")
+			v = v.tolowercase
+			m.Put(prop,v)
+		End If
+	Next
+End Sub
+
 Sub NumberSuffix(N As Double) As String
 	If N < 0 Then
 		Return "-" & NumberSuffix(-N)
@@ -148,6 +168,27 @@ Public Sub Val(value As String) As String
 	End Try
 End Sub
 
+Public Sub Alpha(value As String) As String
+	value = CStr(value)
+	Try
+		value = value.Trim
+		If value = "" Then value = ""
+		Dim sout As String = ""
+		Dim mout As String = ""
+		Dim slen As Int = value.Length
+		Dim i As Int = 0
+		For i = 0 To slen - 1
+			mout = value.CharAt(i)
+			If InStr("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", mout) <> -1 Then
+				sout = sout & mout
+			End If
+		Next
+		Return sout
+	Catch
+		Return value
+	End Try
+End Sub
+
 
 'convert list of maps to key,value pairs
 Sub List2KeyValues(lst As List, mapvalues As List) As List
@@ -214,6 +255,27 @@ Sub SetValueMulti(kv As Map)
 		Dim v As String = kv.Get(k)
 		SetValue(k,v)
 	Next
+End Sub
+
+'set an error
+Sub Error(sTitle As String, sMessage As String)
+	Dim ae As WixMessageBox
+	ae.Initialize("").SetTypeAlertError(True).SetTitle(sTitle).SetText(sMessage)
+	Alert(ae.Item)
+End Sub
+
+'set a warning
+Sub Warn(sTitle As String, sMessage As String)
+	Dim ae As WixMessageBox
+	ae.Initialize("").SetTypeAlertWarning(True).SetTitle(sTitle).SetText(sMessage)
+	Alert(ae.Item)
+End Sub
+
+'set inform
+Sub Inform(sTitle As String, sMessage As String)
+	Dim ae As WixMessageBox
+	ae.Initialize("").SetTitle(sTitle).SetText(sMessage)
+	Alert(ae.Item)
 End Sub
 
 'create message box
@@ -1235,8 +1297,6 @@ Sub ModalBox(Msg As Map)
 	webix.RunMethod("modalbox", Array(Msg))
 End Sub
 
-
-
 'show an error message
 Sub ToastError(Text As String)
 	Dim Msg As Map = CreateMap()
@@ -1305,7 +1365,6 @@ Sub UpdateItem(ownerID As String, recID As String, recData As Map)
 	ownerID = CStr(ownerID)
 	recID = CStr(recID)
 	ownerID = ownerID.ToLowerCase
-	recID = recID.tolowercase
 	Dollar.Selector(ownerID).RunMethod("updateItem",Array(recID, recData))
 End Sub
 
@@ -1314,7 +1373,6 @@ Sub GetItem(listID As String, recordID As String) As Map
 	listID = CStr(listID)
 	recordID = CStr(recordID)
 	listID = listID.ToLowerCase
-	recordID = recordID.tolowercase
 	Dim values As Map = Dollar.Selector(listID).RunMethod("getItem",Array(recordID)).Result
 	Return values
 End Sub
@@ -1466,6 +1524,7 @@ End Sub
 'get the selected item
 Sub Exists(listID As String, eID As String) As Object
 	listID = listID.tolowercase
+	eID = eID.tolowercase
 	Dim recID As String = Dollar.Selector(listID).RunMethod("exists",Array(eID)).Result
 	Return recID
 End Sub
@@ -1474,6 +1533,7 @@ End Sub
 Sub ShowItem(listID As String, eID As String)
 	eID = CStr(eID)
 	listID = listID.tolowercase
+	eID = eID.tolowercase
 	Dollar.Selector(listID).RunMethod("showItem",Array(eID))
 End Sub
 

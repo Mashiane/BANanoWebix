@@ -337,6 +337,6 @@ ModuleClosedNodes96=
 ModuleClosedNodes97=
 ModuleClosedNodes98=
 ModuleClosedNodes99=
-NavigationStack=pgFD,sidebar_clickwait,2894,3,pgFD,onFileUpload,134,0,pgFD,btnMulti1_clickwait,3558,6,pgFD,refreshapp,381,0,pgFD,OnFileUploadError,290,0,dField,Process_Globals,3,0,dTable,BuildBag,19,0,dField,BuildBag,7,4,pgFD,beforedrop,306,0,pgFD,ImportSQLite,295,6
+NavigationStack=pgFD,FieldCode,2015,0,pgFD,ViewCode,2046,6,pgFD,AddShowPageCode,1255,0,pgFD,CreateTableCode,1289,6,pgFD,LoadOptionsCode,707,6,pgFD,LoadGridOptionsCode,838,2,pgFD,FormCode,997,0,Main,AppStart,21,0,pgFD,ImportSQLite,287,6,dField,BuildBag,68,0
 SelectedBuild=0
 VisibleModules=

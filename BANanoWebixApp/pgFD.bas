@@ -22,6 +22,7 @@ Sub Process_Globals
 	Private drawn As BANanoObject
 	Private fldWin As BANanoObject
 	Private lastcode As String
+	Private lastTable As String
 	Private prjDBName As String
 	Private prjDBType As String
 	Private upload As WixUploader
@@ -42,21 +43,21 @@ Sub Init()
 	Dim tblBar As WixToolBar = modToolBar.getToolBar
 	pg.AddToolBar(tblBar)
 	
-	hints.Initialize("hints")
-	hints.AddStep("heading","Welcome","Welcome to the BANanoWebix - Form Designer","click")
-	hints.AddStep("menuopen","Side Bar","You can toggle the side bar menu to access elements that you can design","click")
-	hints.AddStep("smp","Side Bar", "This lists all elements that you can design with the BANanoWebix-FD. First you need to create a form. To create a form, select Layouts and select Form, this will add the form properties on the bag.","click")
-	hints.AddStep("propform","Property", "The form details will appear here, update the settings you need for the form","click")
-	hints.AddStep("propsave","Save Form/Element", "After you have updated the properties of the design element you are working with, select Save here to save the element's properties for later updating.","click")
-	hints.AddStep("propdelete","Delete Design", "You can delete a saved design element by selecting this option. You are unable to undo changes if you delete","click")
-	hints.AddStep("tree","Tree", "After you save your element in the property bag, it will be listed under the parent element you chose for it here and you can select and update its properties again if you want.","click")
-	hints.AddStep("formholder","Preview & Source Code", "The result of your design element during design will be shown here & the source code to use in your BANanoWebix project","click")
+	'hints.Initialize("hints")
+	'hints.AddStep("heading","Welcome","Welcome to the BANanoWebix - Form Designer","click")
+	'hints.AddStep("menuopen","Side Bar","You can toggle the side bar menu to access elements that you can design","click")
+	'hints.AddStep("smp","Side Bar", "This lists all elements that you can design with the BANanoWebix-FD. First you need to create a form. To create a form, select Layouts and select Form, this will add the form properties on the bag.","click")
+	'hints.AddStep("propform","Property", "The form details will appear here, update the settings you need for the form","click")
+	'hints.AddStep("propsave","Save Form/Element", "After you have updated the properties of the design element you are working with, select Save here to save the element's properties for later updating.","click")
+	'hints.AddStep("propdelete","Delete Design", "You can delete a saved design element by selecting this option. You are unable to undo changes if you delete","click")
+	'hints.AddStep("tree","Tree", "After you save your element in the property bag, it will be listed under the parent element you chose for it here and you can select and update its properties again if you want.","click")
+	'hints.AddStep("formholder","Preview & Source Code", "The result of your design element during design will be shown here & the source code to use in your BANanoWebix project","click")
 	
 	'hints.AddStep("multi", "Multi Elements", "Select here to add multi elements, you provide the names of the elements separated by a comma","click")
-	hints.AddStep("refresh","Refresh","To refresh the tree, select this option","click")
-	hints.AddStep("clearform1","Trash project", "This empties the project","click")
-	hints.AddStep("help","Hints", "You can access the hints from here too","click")
-	hints.AddStep("collab","Collaborate", "You can collaborate here when the need arises.", "click")
+	'hints.AddStep("refresh","Refresh","To refresh the tree, select this option","click")
+	'hints.AddStep("clearform1","Trash project", "This empties the project","click")
+	'hints.AddStep("help","Hints", "You can access the hints from here too","click")
+	'hints.AddStep("collab","Collaborate", "You can collaborate here when the need arises.", "click")
 	'hints.AddStep("avatar","Avatar", "Here is your profile picture, you can click to change the settings","click")
 	
 	
@@ -112,6 +113,7 @@ Sub Init()
 	pg.Hide("add_fields")
 	pg.Hide("download")
 	pg.Hide("import")
+	pg.hide("cleardb")
 	'
 	Dim context, e As Object
 	pg.onBeforeDrop("tree", BANano.CallBack(Me,"beforedrop", Array(context,e)))
@@ -132,7 +134,42 @@ Sub Init()
 	'pg.StartHint(hints)
 End Sub
 
+Sub cleardb
+	Dim confirmresult As Boolean = False
+	Dim cb As BANanoObject = BANano.CallBack(Me,"cleardatabase",Array(confirmresult))
+	pg.Confirm(cb, "Confirm Delete", "Are you sure that you want to clear the database? You will not be able to undo your changes. Continue?")
+End Sub
+
+'clear database
+Sub cleardatabase(confirmresult As Boolean)
+	If confirmresult = False Then Return
+	'
+	Dim stables As List
+	stables.initialize
+	stables.addall(Array("fields", "forms", "items", "properties", "tables", "wixsomething"))
+	For Each tblName As String In stables
+		Dim sqlite As BANanoSQLite
+		sqlite.Initialize
+		Dim qry As String = sqlite.DeleteAll(tblName)
+		Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+		sqlite.GetResultSet(qry, res)
+	Next
+	RefreshTreeWait
+End Sub
+
 Sub importdb
+	'is the database connection saved
+	Dim sqlite As BANanoSQLite
+	sqlite.Initialize
+	sqlite.AddStrings(Array("id"))
+	Dim qry As String = sqlite.Exists("connect", "id", "connection")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	If rs.result.Size = 0 Then
+		pg.Warn("Database Error", "The database properties have not been saved!")
+		Return
+	End If
+	
 	'when a photo is selected, show file dialog
 	pg.FileDialog("upload", Null)
 End Sub
@@ -200,20 +237,26 @@ Sub ImportSQLite(dbNameHere As String)
 		If foreigns.result.size > 0 Then
 			For Each foreignr As Map In foreigns.result
 				'the field in this table
-				Dim sfrom As String = foreignr.Get("from")
+				Dim sfrom As String = foreignr.GetDefault("from","")
 				'foreign table
-				Dim ftable As String = foreignr.Get("table")
+				Dim ftable As String = foreignr.GetDefault("table","")
 				'foreign key
-				Dim fkey As String = foreignr.get("to")
+				Dim fkey As String = foreignr.GetDefault("to","")
 				'
-				Dim sfield As String = $"field.${sname}.${sfrom}"$
-				'create the constraint
-				Dim constraint As Map = CreateMap()
-				constraint.Put("foreign_table",ftable)
-				constraint.put("foreign_key",fkey)
-				'save the constraint for later retrieval
-				foreignM.Put(sfield, constraint)
-			Next
+				If sfrom = "undefined" Then sfrom = ""
+				If ftable = "undefined" Then ftable = ""
+				If fkey = "undefined" Then fkey = ""
+				'
+				If sfrom <> "" Then
+					Dim sfield As String = $"field.${sname}.${sfrom}"$
+					'create the constraint
+					Dim constraint As Map = CreateMap()
+					constraint.Put("foreign_table",ftable)
+					constraint.put("foreign_key",fkey)
+					'save the constraint for later retrieval
+					foreignM.Put(sfield, constraint)
+				End If
+			Next	
 		End If
 		'get the table field details per table
 		Dim tblFields As SQLiteResultSet1 = sqlite.Pragma(sname)
@@ -228,6 +271,61 @@ Sub ImportSQLite(dbNameHere As String)
 			Dim pk As String = fldmap.get("pk")
 			Dim ftype As String = fldmap.Get("type")
 			ftype = ftype.ToUpperCase
+			Dim form_format As String = ""
+			Dim grid_align As String = ""
+			Dim grid_format As String = ""
+			Dim grid_numberformat As String = ""
+			Dim grid_sort As String = "string"
+			Dim view As String = "text"
+			Dim form_editable As Boolean = False
+			Dim form_stringResult As Boolean = False
+			Dim showongrid As Boolean = True
+			Dim slength As String = pg.val(ftype)
+			ftype = pg.Alpha(ftype)
+			Select Case ftype
+			Case "DOUBLE"
+				form_format = "1,111.00"
+				grid_align = "right"
+				grid_format = "1,111.00"
+				grid_numberformat = "1,111.00"
+				ftype = "REAL"
+				grid_sort = "int"
+			Case "SMALLINT"
+				grid_sort = "int"
+				ftype = "INT"
+			Case "INTEGER"
+				grid_sort = "int"
+				ftype = "INT"
+			Case "INT"
+				grid_sort = "int"
+				ftype = "INT"
+			Case "TINYINT"
+				grid_sort = "int"
+				ftype = "INT"
+			Case "LONGTEXT"
+				ftype = "STRING"
+				grid_sort = "string"
+				view = "textarea"
+				showongrid = ""
+			Case "BOOL"
+				ftype = "INT"
+				view = "switch"
+				grid_sort = "int"
+			Case "BOOLEAN"
+				ftype = "INT"
+				view = "switch"
+				grid_sort = "int"
+			Case "VARCHAR"
+				ftype = "STRING"
+			Case "DATETIME"
+				ftype = "STRING"
+				view = "datepicker"
+				grid_sort = "string"
+				form_format = "%Y-%m-%d"
+				grid_format = "%Y-%m-%d"
+				form_editable = True
+				form_stringResult = True
+			End Select
 			If pk = "1" Then
 				jsonm.Put("primarykey", fname)
 				jsonm.put("type", ftype)
@@ -243,7 +341,12 @@ Sub ImportSQLite(dbNameHere As String)
 			'
 			Dim fldj As Map = CreateMap()
 			fldj.Put("type",ftype)
-			fldj.put("length","20")
+			fldj.Put("view", view)
+			fldj.put("form_format", form_format)
+			fldj.put("grid_align", grid_align)
+			fldj.Put("grid_format", grid_format)
+			fldj.Put("grid_numberformat", grid_numberformat)
+			fldj.put("length",slength)
 			fldj.put("id","field")
 			fldj.Put("tablename", sname)
 			fldj.put("value",fname)
@@ -252,21 +355,30 @@ Sub ImportSQLite(dbNameHere As String)
 			fldj.put("isfield",True)
 			fldj.Put("key",fkey)
 			fldj.Put("showonform",True)
-			fldj.put("view","text")
 			fldj.put("addingmethod","AddRows")
 			fldj.put("form_type","text")
-			fldj.Put("optionsid","1,2,3")
-			fldj.put("optionstext","One,Two,Three")
+			Select Case view
+			Case "combo", "richselect", "radio", "select", "segmented", "tabbar","dbllist","suggest"
+				fldj.Put("optionsid","1,2,3")
+				fldj.put("optionstext","One,Two,Three")
+			Case "datepicker"
+				fldj.Put("form_editable", form_editable)
+				fldj.put("form_stringResult", form_stringResult)
+			End Select
 			'
-			fldj.put("showongrid", True)
+			fldj.put("showongrid", showongrid)
 			fldj.put("grid_header_filter","textFilter")
-			fldj.Put("grid_sort",ftype)
+			fldj.Put("grid_sort", grid_sort)
 			fldj.Put("grid_adjust",True)
 			'check foreign keys
 			If foreignM.ContainsKey(fkey) Then
 				Dim fkrec As Map = foreignM.Get(fkey)
-				Dim foreign_table As String = fkrec.get("foreign_table")
-				Dim foreign_key As String = fkrec.get("foreign_key")
+				Dim foreign_table As String = fkrec.getdefault("foreign_table","")
+				Dim foreign_key As String = fkrec.getdefault("foreign_key","")
+				'
+				foreign_table = foreign_table.replace("undefined","")
+				foreign_key = foreign_key.replace("undefined","")
+				'
 				fldj.Put("foreign_key", foreign_key)
 				fldj.Put("foreign_table", foreign_table)
 			End If
@@ -284,6 +396,12 @@ Sub ImportSQLite(dbNameHere As String)
 	Next
 	'add tables and fields to database
 	For Each tblMap As Map In mytables
+		'ensure that everything else is lowercase
+		pg.MapValues2LowerCase(tblMap, Array("key","value"))
+		Dim sJSON As String = tblMap.Get("json")
+		sJSON = pg.JSONValues2LowerCase(sJSON, Array("value","primarykey"))
+		tblMap.Put("json", sJSON)
+		
 		currDB.ResetTypes
 		currDB.AddStrings(Array("key","id","value", "json"))
 		Dim newTBL As SQLiteResultSet1 = currDB.insert("tables", tblMap)
@@ -291,6 +409,12 @@ Sub ImportSQLite(dbNameHere As String)
 	Next
 	'add fields to the database
 	For Each fldmap As Map In myfields
+		'ensure stuff Is lowercase
+		pg.MapValues2LowerCase(fldmap, Array("key","value","tablename"))
+		Dim sJSON As String = fldmap.Get("json")
+		sJSON = pg.JSONValues2LowerCase(sJSON, Array("tablename","value","key","primarykey","foreign_key","foreign_table","foreign_value"))
+		fldmap.Put("json", sJSON)
+		
 		currDB.ResetTypes
 		currDB.AddStrings(Array("key","id","tablename","value","json","tabindex"))
 		Dim newFLD As SQLiteResultSet1 = currDB.insert("fields", fldmap)
@@ -300,7 +424,10 @@ Sub ImportSQLite(dbNameHere As String)
 	'for each table read fields	
 	refreshapp
 	pg.UnsetProgressBar("propbag")
+	pg.Inform("Database", "The database as been imported!")
 End Sub
+
+
 
 Sub OnFileUploadError(ffile As BANanoObject)
 	pg.Alert("Error during file upload!")
@@ -433,7 +560,7 @@ Sub RefreshTreeWait
 		Dim name As String = fitem.GetDefault("name","")
 		If name <> "" Then
 			Dim key As String = $"wixsomething.${name}"$
-			pg.AddNode("tree", "", key, key, "", pg.EnumWixIcons.Folder,"","",True)
+			pg.AddNode("tree", "", key, key, "", pg.EnumWixIcons.Folder,"","",False)
 			sqlite.Initialize
 			qry = sqlite.SelectWhere("properties", Array("key"), CreateMap("parentid":name), Array("tabindex"))
 			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
@@ -455,7 +582,7 @@ Sub RefreshTreeWait
 	rs = sqlite.GetResultSet(qry, res)
 	For Each fitem As Map In rs.result
 		Dim key As String = fitem.Get("key")
-		pg.AddNode("tree", "connection", key, key, "", pg.EnumWixIcons.Folder,"","",True)
+		pg.AddNode("tree", "connection", key, key, "", pg.EnumWixIcons.Folder,"","",False)
 	Next
 	'
 	'load fields
@@ -477,7 +604,7 @@ Sub RefreshTreeWait
 	rs = sqlite.GetResultSet(qry, res)
 	For Each fitem As Map In rs.result
 		Dim fid As String = fitem.Get("id")
-		pg.AddNode("tree", "", fid, fid, "", pg.EnumWixIcons.Folder,"","",True)
+		pg.AddNode("tree", "", fid, fid, "", pg.EnumWixIcons.Folder,"","",False)
 	Next
 	
 	'open items and load to the tree
@@ -572,11 +699,15 @@ Sub LoadOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 	For Each fldmap As Map In rsx.result
 		Dim json As String = fldmap.Get("json")
 		Dim fldmap As Map = pg.Json2Map(json)
-		foreign_table = fldmap.get("foreign_table")
-		foreign_key = fldmap.Get("foreign_key")
-		foreign_value = fldmap.get("foreign_value")
+		foreign_table = fldmap.getdefault("foreign_table","")
+		foreign_key = fldmap.getdefault("foreign_key","")
+		foreign_value = fldmap.getdefault("foreign_value","")
 		svalue = fldmap.Get("value")
-		
+		'
+		foreign_table = foreign_table.replace("undefined","")
+		foreign_key = foreign_key.replace("undefined","")
+		foreign_value = foreign_value.replace("undefined","")
+			
 		'determine if we have fkeys
 		Dim iHas As Int = 0
 		If foreign_table <> "" Then iHas = iHas + 1
@@ -706,17 +837,21 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 	For Each fldmap As Map In rsx.result
 		Dim json As String = fldmap.Get("json")
 		Dim fldmap As Map = pg.Json2Map(json)
-		foreign_table = fldmap.get("foreign_table")
-		foreign_key = fldmap.Get("foreign_key")
-		foreign_value = fldmap.get("foreign_value")
+		foreign_table = fldmap.getdefault("foreign_table","")
+		foreign_key = fldmap.Getdefault("foreign_key","")
+		foreign_value = fldmap.getdefault("foreign_value","")
 		svalue = fldmap.Get("value")
+		
+		foreign_table = foreign_table.replace("undefined","")
+		foreign_key = foreign_key.replace("undefined","")
+		foreign_value = foreign_value.replace("undefined","")
 		
 		'determine if we have fkeys
 		Dim iHas As Int = 0
 		If foreign_table <> "" Then iHas = iHas + 1
 		If foreign_key <> "" Then iHas =iHas + 1
 		If foreign_value <> "" Then iHas = iHas + 1
-		'
+			'
 		If iHas = 3 Then 
 			hasForeign = True
 			Dim set As String = $"${foreign_table}.${foreign_key}.${foreign_value}"$
@@ -871,6 +1006,8 @@ Sub FormCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDesc
 	sb.append("Sub CreateForm As WixForm").append(CRLF)
 	sb.append($"dim form${tblName} As WixForm"$).append(CRLF)
 	sb.Append($"form${tblName}.Initialize("form${tblName}")
+	form${tblName}.SetWidth(700)
+	form${tblName}.SetScroll("y")
 	form${tblName}.SetName("form${tblName}")
 	form${tblName}.SetResponsive("true")
 	form${tblName}.SetDefaultLabelWidth("120")
@@ -1135,10 +1272,65 @@ End Sub
 
 
 Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDescription As String) As String
+	Dim focusOn As String = ""
 	Dim errors As Int = 0
 	Dim none As Int = 0
+	Dim xlinks As Int = 0
 	Dim sbFields As StringBuilder
 	sbFields.Initialize
+	
+	If rsx.result.Size > 0 Then
+		For Each fldmap As Map In rsx.result
+			Dim json As String = fldmap.Get("json")
+			Dim fmap As Map = pg.Json2Map(json)
+			Dim fldname As String = fmap.Get("value")
+			Dim isfield As Boolean = fmap.Get("isfield")
+			Dim description As String = fmap.GetDefault("description","")
+			Dim setfocus As Boolean = fmap.GetDefault("setfocus",False)
+			If setfocus Then
+				focusOn = fldname	
+			End If
+			If description = "" Then errors = errors + 1
+			If isfield Then
+				sbFields.Append(fldname).Append(",")
+			Else
+				none = none + 1
+			End If
+			'
+			'check foreign links
+			Dim foreign_table As String = fmap.getdefault("foreign_table","")
+			Dim foreign_key As String = fmap.getdefault("foreign_key","")
+			Dim foreign_value As String = fmap.getdefault("foreign_value","")
+			'
+			foreign_table = foreign_table.replace("undefined","")
+			foreign_key = foreign_key.replace("undefined","")
+			foreign_value = foreign_value.replace("undefined","")
+			'
+			Dim mlink As Int = 0
+			If foreign_table <> "" Then mlink = mlink + 1
+			If foreign_key <> "" Then mlink = mlink + 1
+			If foreign_value <> "" Then mlink = mlink + 1
+			'
+			If (mlink > 0) And (mlink < 3) Then
+				xlinks = xlinks + 1
+			End If
+		Next
+	End If
+	If none > 0 Then
+		pg.Message_Debug("CreateTable: Warning - some fields are not marked in IsField?")
+	End If
+	If xlinks > 0 Then
+		pg.Error("Foreign Link", "CreateTable: Some fields don't have proper foreign links defined!, please fix this")
+		Return ""
+	End If
+	If errors > 0 Then
+		pg.Error("Field Descriptions", "CreateTable: Some fields don't have field descriptions! please fix this")
+		Return ""
+	End If
+	If focusOn = "" Then
+		pg.Error("Focus Field", "CreateTable: You have not specified the field to focus on, please fix this!")
+		Return ""
+	End If
 	
 	Dim dtCode As String = GridCode(tblName,priKey,rsx,tblDescription)
 	Dim loCode As String = LoadOptionsCode(tblName, priKey, rsx,tblDescription)
@@ -1146,37 +1338,39 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 	Dim frmCode As String = FormCode(tblName,priKey, rsx,tblDescription)
 	Dim tblCode As String = ToolbarCode(tblName,tblDescription)
 	Dim asCode As String = AddShowPageCode(tblName,tblDescription)
-	If rsx.result.Size > 0 Then
-	For Each fldmap As Map In rsx.result
-		Dim json As String = fldmap.Get("json")
-		Dim fmap As Map = pg.Json2Map(json)
-		Dim fldname As String = fmap.Get("value")
-		Dim isfield As Boolean = fmap.Get("isfield")
-		Dim description As String = fmap.GetDefault("description","")
-		If description = "" Then errors = errors + 1
-		If isfield Then
-			sbFields.Append(fldname).Append(",")
-		Else
-			none = none + 1
-		End If
-	Next
-	End If
-	If none > 0 Then
-		pg.Message_Debug("CreateTable: Warning - some fields are not marked in IsField?")
-	End If
-	If errors > 0 Then
-		pg.Message_Error("CreateTable: Some fields don't have field descriptions!")
-	End If
+	
+	
+	
 	Dim flds As String = sbFields.ToString
 	flds = pg.RemDelim(flds,",")
 	'
 	Dim sb As StringBuilder
 	sb.Initialize
+	sb.append($"Sub Process_Globals
+	'
+	'adding the page on multiview
+	${tblName}.AddPage(pg, mv)
+	'showing the page on button /side bar click
+	${tblName}.ShowPage(Page)
+	'
+	Private Page As WixPage
+	Private Mode As String
+	Private BANano As BANano"$).append(CRLF)
+	'
+	If prjDBType = "BANanoSQL" Then
+		sb.append($"Private ${prjDBName} As BANanoSQL"$).append(CRLF)
+	End If
+	If prjDBType = "BANanoSQLite" Then
+		sb.append($"Private dbName As String"$).append(CRLF)
+	End If
+	sb.append("End Sub").append(CRLF).append(CRLF)
+	
 		
-	sb.append($"Sub CreateTable${tblName}"$).append(CRLF)
+	sb.append($"Sub CreateTable"$).append(CRLF)
 	sb.Append("'FIELD NAMES").Append(CRLF)
-	sb.Append(flds).Append(CRLF).Append(CRLF)
-	sb.append("'Copy this code to Main.BANano_Ready").Append(CRLF).Append(CRLF)
+	sb.Append("'" & flds).Append(CRLF).Append(CRLF)
+	sb.append("'Call this code in Main.BANano_Ready").Append(CRLF)
+	sb.append("dbName = Main.dbname").append(CRLF)
 	sb.Append("'create the table structure").Append(CRLF)
 	sb.append($"Dim m${tblName} As Map = CreateMap()"$).Append(CRLF)
 	'
@@ -1298,7 +1492,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 	AddComment(sb,"assign the nextID to the form value")
 	sb.append($"Page.SetValue("${tblName}.${priKey}", nextID)"$).append(CRLF)
 	AddComment(sb,"set focus to primary field of form")
-	sb.Append($"Page.Focus("${tblName}.${priKey}")"$).append(CRLF)
+	sb.Append($"Page.Focus("${tblName}.${focusOn}")"$).append(CRLF)
 	sb.Append("End Sub").Append(CRLF).append(CRLF)
 	'
 	sb.Append("'CREATE/UPDATE").Append(CRLF)
@@ -1426,7 +1620,7 @@ sb.append($"End Select"$).append(CRLF)
 	sb.Append("Dim rec As Map = rs.result.Get(0)").Append(CRLF)
 	sb.Append("'set returned map to form").append(CRLF)
 	sb.Append($"Page.SetValues("form${tblName}", rec)"$).Append(CRLF)
-	sb.Append($"Page.Focus("${tblName}.${priKey}")"$).append(CRLF)
+	sb.Append($"Page.Focus("${tblName}.${focusOn}")"$).append(CRLF)
 	sb.Append("End If").Append(CRLF)
 	sb.append("End Sub").Append(CRLF).Append(CRLF).Append(CRLF)
 	
@@ -1499,9 +1693,10 @@ LoadDataTable"$).Append(CRLF).append(CRLF)
 	Mode = ""
 	Page.EnableMulti(array("btnnew${tblName}"))
 	Page.DisableMulti(Array("btncancel${tblName}","btnsave${tblName}","btndelete${tblName}"))
+	LoadDataTable
 	Page.Clear("form${tblName}")
 	Page.ClearValidation("form${tblName}")
-	Page.Focus("${tblName}.${priKey}")
+	Page.Focus("${tblName}.${focusOn}")
 End Sub"$).Append(CRLF).append(CRLF)
 'add grid code
 	sb.append(dtCode).append(CRLF).Append(CRLF)
@@ -1728,6 +1923,7 @@ Sub prop_saveWait
 			pg.Expand("code")
 			pg.Show("download")
 			pg.Show("import")
+			pg.Show("cleardb")
 			sqlite.Initialize
 			sqlite.AddStrings(Array("id"))
 			'new connect record
@@ -1850,6 +2046,7 @@ Sub FieldCode(sjson As String) As String
 	props.remove("tablename")
 	props.remove("showongrid")
 	props.remove("isfield")
+	props.remove("setfocus")
 	props.remove("optionsid")
 	props.remove("optionstext")
 	props.Remove("key")
@@ -1904,6 +2101,7 @@ Sub ViewCode(sjson As String) As String
 	props.Put("label", sdescription)
 	'remove irrelevant 
 	props.remove("isfield")
+	props.remove("setfocus")
 	props.remove("type")
 	props.remove("length")
 	props.Remove("description")
@@ -2454,7 +2652,8 @@ Sub tree_clickwait(recid As String)
 	pg.Hide("download")
 	pg.Hide("propmenu")
 	pg.Hide("import")
-			
+	pg.Hide("cleardb")
+	lastTable = ""
 	Select Case prefix
 		Case "property"
 			Dim itm3 As String = pg.MvField(recid,3,".")
@@ -2567,6 +2766,7 @@ Sub tree_clickwait(recid As String)
 			qry = sqlite.Read("tables","key",recid)
 			res = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
 			rs = sqlite.GetResultSet(qry,res)
+			lastTable = suffix
 			If rs.result.Size = 0 Then
 			Else
 				rec = rs.result.get(0)
@@ -2593,6 +2793,7 @@ Sub tree_clickwait(recid As String)
 			pg.Expand("code")
 			pg.Show("download")
 			pg.Show("import")
+			pg.Show("cleardb")
 			dConnection.BuildBag(pg, propBag)
 			'read settings from db
 			sqlite.Initialize
@@ -2795,7 +2996,13 @@ End Sub
 Sub download
 	If lastcode <> "" Then
 		lastcode = lastcode.Replace("<br>", CRLF)
-		pg.SaveText2File(lastcode,"BWFD.txt")
+		Dim fName As String
+		If lastTable = "" Then
+			fName = "BWFD.txt"
+		Else
+			fName = lastTable & ".txt"
+		End If
+		pg.SaveText2File(lastcode,fName)
 	End If
 End Sub
 
@@ -2809,25 +3016,25 @@ Sub collabwait
 	End If
 End Sub
 
-Sub dbhelp
-	Dim dbhint As WixHint
-	dbhint.Initialize("dbhint")
-	dbhint.AddStep("tree","Database","To store data for our forms, we can create a database and tables. Click Database on the tree to do so.","enter")
-	dbhint.AddStep("propform", "Connection", "Specify the database name and select with backend to use either BANanoSQL, BANanoSQLite or BANanoMySQL. Each has different connection options.","enter")
-	dbhint.AddStep("formholder", "Settings", "You will be provided with steps to follow to set up your connection here for each back end type.","enter")
-	dbhint.AddStep("tree", "Tables", "The next step is to add tables to the database, select Database from the tree.","enter")
-	dbhint.AddStep("propadd", "Add Table", "Click here to add a new table and provide its name.","enter")
-	dbhint.AddStep("propsave", "Save Table", "Once you have provided the table details, click on save to store the database, now you are ready to add fields to the table.","enter")
-	dbhint.AddStep("propdelete", "Delete Table", "Should you wish to delete a table, you can select the trash here after selecting the table on the tree.","enter")
-	dbhint.AddStep("tree", "Saved Table", "You have saved the table and now it is listed in the tree, to add fields to it, select the table on the tree.","enter")
-	dbhint.AddStep("propadd", "Add Field", "Click here to add a new field and provide its name and type.","enter")
-	dbhint.AddStep("propsave", "Save Field", "Once you have provided the field details, click on save to store to the database.","enter")
-	dbhint.AddStep("propdelete", "Delete Field", "Should you wish to delete a field, select it on the tree and select the trash here.","enter")
-	dbhint.AddStep("tree", "Saved Fields", "All the fields you have created will now be listed on the tree.","enter")
-	
-	pg.StartHint(dbhint)
-	
-End Sub
+'Sub dbhelp
+'	Dim dbhint As WixHint
+'	dbhint.Initialize("dbhint")
+'	dbhint.AddStep("tree","Database","To store data for our forms, we can create a database and tables. Click Database on the tree to do so.","enter")
+'	dbhint.AddStep("propform", "Connection", "Specify the database name and select with backend to use either BANanoSQL, BANanoSQLite or BANanoMySQL. Each has different connection options.","enter")
+'	dbhint.AddStep("formholder", "Settings", "You will be provided with steps to follow to set up your connection here for each back end type.","enter")
+'	dbhint.AddStep("tree", "Tables", "The next step is to add tables to the database, select Database from the tree.","enter")
+'	dbhint.AddStep("propadd", "Add Table", "Click here to add a new table and provide its name.","enter")
+'	dbhint.AddStep("propsave", "Save Table", "Once you have provided the table details, click on save to store the database, now you are ready to add fields to the table.","enter")
+'	dbhint.AddStep("propdelete", "Delete Table", "Should you wish to delete a table, you can select the trash here after selecting the table on the tree.","enter")
+'	dbhint.AddStep("tree", "Saved Table", "You have saved the table and now it is listed in the tree, to add fields to it, select the table on the tree.","enter")
+'	dbhint.AddStep("propadd", "Add Field", "Click here to add a new field and provide its name and type.","enter")
+'	dbhint.AddStep("propsave", "Save Field", "Once you have provided the field details, click on save to store to the database.","enter")
+'	dbhint.AddStep("propdelete", "Delete Field", "Should you wish to delete a field, select it on the tree and select the trash here.","enter")
+'	dbhint.AddStep("tree", "Saved Fields", "All the fields you have created will now be listed on the tree.","enter")
+'	
+'	pg.StartHint(dbhint)
+'	
+'End Sub
 
 Sub sidebar_dblclick(meid As String)
 	sidebar_clickwait(meid)
@@ -2855,6 +3062,7 @@ Sub sidebar_clickwait(meid As String)
 	pg.Hide("download")
 	pg.Hide("propmenu")
 	pg.hide("import")
+	pg.hide("cleardb")
 	'
 	Select Case meid
 		Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"
@@ -2869,7 +3077,7 @@ Sub sidebar_clickwait(meid As String)
 		Case "dbhelp"
 			pg.Show("propadd")
 			pg.show("propdelete")
-			dbhelp
+			'dbhelp
 		Case "property"
 			pg.show("propadd")
 			pg.Collapse("preview")

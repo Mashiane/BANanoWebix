@@ -378,7 +378,7 @@ Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
-Module1=pgFD
+Module1=dField
 Module10=pgLesson8_4
 Module100=dVideo
 Module101=dUnitList
@@ -402,7 +402,7 @@ Module16=pgCarSales
 Module17=pgComments
 Module18=pgMaster
 Module19=pgCharts
-Module2=modPropertyBag
+Module2=pgFD
 Module20=pgContext
 Module21=pgDataEntry
 Module22=pgDataTable
@@ -413,7 +413,7 @@ Module26=pgForms
 Module27=pgForms1
 Module28=pgFormValidation
 Module29=pgGoogleMap
-Module3=dField
+Module3=modPropertyBag
 Module30=pgGroupList
 Module31=pgLayout
 Module32=pgLayouts
@@ -572,7 +572,7 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready()
-	modSideBar.Version = "2.16"
+	modSideBar.Version = "2.17"
 	dbName = $"${AppName}.db"$
 	Dim sqlite As BANanoSQLite
 	sqlite.Initialize
