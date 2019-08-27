@@ -337,6 +337,6 @@ ModuleClosedNodes96=
 ModuleClosedNodes97=
 ModuleClosedNodes98=
 ModuleClosedNodes99=
-NavigationStack=pgFD,FieldCode,2015,0,pgFD,ViewCode,2046,6,pgFD,AddShowPageCode,1255,0,pgFD,CreateTableCode,1289,6,pgFD,LoadOptionsCode,707,6,pgFD,LoadGridOptionsCode,838,2,pgFD,FormCode,997,0,Main,AppStart,21,0,pgFD,ImportSQLite,287,6,dField,BuildBag,68,0
+NavigationStack=dField,BuildBag,4,0,pgFD,ImportSQLite,412,0,pgFD,LoadOptionsCode,780,0,pgFD,LoadGridOptionsCode,982,1,pgFD,GridCode,1226,1,pgFD,CreateTableCode,1749,6,Main,BANano_Ready,77,0,Main,Application_Error,73,0,Main,Process_Globals,7,0,Main,AppStart,25,0
 SelectedBuild=0
 VisibleModules=

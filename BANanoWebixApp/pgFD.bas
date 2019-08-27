@@ -27,6 +27,16 @@ Sub Process_Globals
 	Private prjDBType As String
 	Private upload As WixUploader
 	Public fu As BANanoObject
+	Private blobs As List
+	Private integers As List
+	Private strings As List
+	Private doubles As List
+	Private booleans As List
+	Private sblobs As String
+	Private sintegers As String
+	Private sstrings As String
+	Private sdoubles As String
+	Private sbooleans As String
 End Sub
 
 Sub Init()
@@ -225,7 +235,7 @@ Sub ImportSQLite(dbNameHere As String)
 		Dim jsonm As Map = CreateMap()
 		jsonm.put("id", "table")
 		jsonm.Put("value", sname)
-		jsonm.put("description", sname)
+		jsonm.put("description", Capitalize(sname))
 		jsonm.put("primarykey", "")
 		jsonm.Put("type", "")
 		jsonm.Put("autoincrement","")
@@ -315,7 +325,7 @@ Sub ImportSQLite(dbNameHere As String)
 				ftype = "INT"
 				view = "switch"
 				grid_sort = "int"
-			Case "VARCHAR"
+			Case "VARCHAR", "NVARCHAR"
 				ftype = "STRING"
 			Case "DATETIME"
 				ftype = "STRING"
@@ -330,6 +340,8 @@ Sub ImportSQLite(dbNameHere As String)
 				jsonm.Put("primarykey", fname)
 				jsonm.put("type", ftype)
 			End If
+			cid = pg.cstr(cid)
+			cid = pg.PadRight(cid,2,"0")
 			'add to fields
 			Dim fld As Map = CreateMap()
 			Dim fkey As String = $"field.${sname}.${fname}"$
@@ -351,7 +363,7 @@ Sub ImportSQLite(dbNameHere As String)
 			fldj.Put("tablename", sname)
 			fldj.put("value",fname)
 			fldj.put("tabindex", cid)
-			fldj.Put("description",fname)
+			fldj.Put("description",Capitalize(fname))
 			fldj.put("isfield",True)
 			fldj.Put("key",fkey)
 			fldj.Put("showonform",True)
@@ -1214,6 +1226,10 @@ Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDesc
 		sb.append($"Dim sqlite As BANanoSQLite1
 	sqlite.Initialize
 	sqlite.SetDB(dbName)
+	sqlite.AddIntegers(Array(${sintegers}))
+	sqlite.AddDoubles(Array(${sdoubles}))
+	sqlite.AddBooleans(Array(${sbooleans}))
+	sqlite.AddBlobs(Array(${sblobs}))
 	Dim rs As SQLiteResultSet1 = sqlite.UpdateWhere("${tblName}", item, CreateMap("${priKey}":${priKey}))
 	rs.Result = BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs))"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
@@ -1223,6 +1239,10 @@ Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDesc
 		'AddComment(sb, "***START BANanoMySQL***")
 		sb.append($"Dim mysql As BANanoMySQL1
 	mysql.Initialize
+	mysql.AddIntegers(Array(${sintegers}))
+	mysql.AddDoubles(Array(${sdoubles}))
+	mysql.AddBooleans(Array(${sbooleans}))
+	mysql.AddBlobs(Array(${sblobs}))
 	Dim rs As MySQLResultSet1 = mysql.UpdateWhere("${tblName}", item, CreateMap("${priKey}":${priKey}))
 	rs.Result = BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs))"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
@@ -1272,6 +1292,18 @@ End Sub
 
 
 Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDescription As String) As String
+	blobs.initialize
+	integers.initialize
+	strings.initialize
+	doubles.initialize
+	booleans.initialize
+	'
+	sblobs = ""
+	sintegers = ""
+	sstrings = ""
+	sdoubles = ""
+	sbooleans = ""
+	
 	Dim focusOn As String = ""
 	Dim errors As Int = 0
 	Dim none As Int = 0
@@ -1287,6 +1319,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 			Dim isfield As Boolean = fmap.Get("isfield")
 			Dim description As String = fmap.GetDefault("description","")
 			Dim setfocus As Boolean = fmap.GetDefault("setfocus",False)
+			Dim stype As String = fmap.getdefault("type", "TEXT")
 			If setfocus Then
 				focusOn = fldname	
 			End If
@@ -1314,8 +1347,35 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 			If (mlink > 0) And (mlink < 3) Then
 				xlinks = xlinks + 1
 			End If
+			
+			'determine field types
+			Select Case stype
+			Case "BOOL", "BOOLEAN"
+				booleans.add(fldname)
+			Case "INT","INTEGER"
+				integers.add(fldname)
+			Case "STRING","TEXT","DATE"
+				strings.Add(fldname)
+			Case "REAL","FLOAT"
+				doubles.add(fldname)
+			Case "BLOB"
+				blobs.add(fldname)
+			End Select
 		Next
 	End If
+	'
+	sbooleans = pg.List2ArrayVariable(booleans)
+	sintegers = pg.List2ArrayVariable(integers)
+	sstrings = pg.List2ArrayVariable(strings)
+	sdoubles = pg.List2ArrayVariable(doubles)
+	sblobs = pg.List2ArrayVariable(blobs)
+	'
+	Log(sbooleans)
+	Log(sintegers)
+	Log(sstrings)
+	Log(sdoubles)
+	Log(sblobs)
+	'
 	If none > 0 Then
 		pg.Message_Debug("CreateTable: Warning - some fields are not marked in IsField?")
 	End If
@@ -1379,7 +1439,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 		Dim json As String = fldmap.Get("json")
 		Dim fmap As Map = pg.Json2Map(json)
 		Dim fldname As String = fmap.Get("value")
-		Dim fldtype As String = fmap.Get("type")
+		Dim fldtype As String = fmap.Getdefault("type","TEXT")
 		Dim fldLeng As String = fmap.get("length")
 		Dim isfield As Boolean = fmap.get("isfield")
 		'
@@ -1521,6 +1581,10 @@ End If
 	sb.append($"Dim sqlite As BANanoSQLite1
 	sqlite.Initialize
 	sqlite.SetDB(dbName)
+	sqlite.AddIntegers(Array(${sintegers}))
+	sqlite.AddDoubles(Array(${sdoubles}))
+	sqlite.AddBooleans(Array(${sbooleans}))
+	sqlite.AddBlobs(Array(${sblobs}))
 	Dim rs As SQLiteResultSet1 = sqlite.Insert("${tblName}", rec)
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
 	'AddComment(sb, "***END BANanoSQLite***"$)
@@ -1530,6 +1594,10 @@ End If
 		'AddComment(sb, "***START BANanoMySQL***")
 		sb.append($"Dim mysql As BANanoMySQL1
 	mysql.Initialize
+	mysql.AddIntegers(Array(${sintegers}))
+	mysql.AddDoubles(Array(${sdoubles}))
+	mysql.AddBooleans(Array(${sbooleans}))
+	mysql.AddBlobs(Array(${sblobs}))
 	Dim rs As MySQLResultSet1 = mysql.Insert("${tblName}", rec)
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
 		'AddComment(sb, "***END BANanoSQLite***"$)
@@ -1555,6 +1623,10 @@ End If
 sb.append($"Dim sqlite As BANanoSQLite1
 sqlite.Initialize
 sqlite.SetDB(dbName)
+sqlite.AddIntegers(Array(${sintegers}))
+sqlite.AddDoubles(Array(${sdoubles}))
+sqlite.AddBooleans(Array(${sbooleans}))
+sqlite.AddBlobs(Array(${sblobs}))
 Dim rs As SQLiteResultSet1 = sqlite.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":${priKey}))
 rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).append(CRLF)
 'AddComment(sb,"***END BANanoSQLite***")
@@ -1564,6 +1636,10 @@ rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Bui
 		'AddComment(sb, "***START BANanoSQLite***")
 		sb.append($"Dim mysql As BANanoMySQL1
 mysql.Initialize
+mysql.AddIntegers(Array(${sintegers}))
+mysql.AddDoubles(Array(${sdoubles}))
+mysql.AddBooleans(Array(${sbooleans}))
+mysql.AddBlobs(Array(${sblobs}))
 Dim rs As MySQLResultSet1 = mysql.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":${priKey}))
 rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
@@ -1599,6 +1675,10 @@ sb.append($"End Select"$).append(CRLF)
 		sb.Append($"Dim sqlite As BANanoSQLite1
 		sqlite.Initialize
 		sqlite.SetDB(dbName)
+		sqlite.AddIntegers(Array(${sintegers}))
+	sqlite.AddDoubles(Array(${sdoubles}))
+	sqlite.AddBooleans(Array(${sbooleans}))
+	sqlite.AddBlobs(Array(${sblobs}))
 		Dim rs As SQLiteResultSet1 = sqlite.Read("${tblName}", "${priKey}", ${priKey})
 		rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
@@ -1608,6 +1688,10 @@ sb.append($"End Select"$).append(CRLF)
 		'AddComment(sb,"***START BANanoMySQL***")
 		sb.Append($"Dim mysql As BANanoMySQL1
 		mysql.Initialize
+		mysql.AddIntegers(Array(${sintegers}))
+	mysql.AddDoubles(Array(${sdoubles}))
+	mysql.AddBooleans(Array(${sbooleans}))
+	mysql.AddBlobs(Array(${sblobs}))
 		Dim rs As MySQLResultSet1 = mysql.Read("${tblName}", "${priKey}", ${priKey})
 		rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
@@ -1665,6 +1749,10 @@ sb.append($"End Select"$).append(CRLF)
 		sb.Append($"Dim sqlite As BANanoSQLite1
 	sqlite.Initialize
 	sqlite.SetDB(dbName)
+	sqlite.AddIntegers(Array(${sintegers}))
+	sqlite.AddDoubles(Array(${sdoubles}))
+	sqlite.AddBooleans(Array(${sbooleans}))
+	sqlite.AddBlobs(Array(${sblobs}))
 	Dim rs As SQLiteResultSet1 = sqlite.DeleteWhere("${tblName}", CreateMap("${priKey}":did))
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
@@ -1674,6 +1762,10 @@ sb.append($"End Select"$).append(CRLF)
 		'AddComment(sb,"***START BANanoMySQL***")
 		sb.Append($"Dim mysql As BANanoMySQL1
 	mysql.Initialize
+	mysql.AddIntegers(Array(${sintegers}))
+	mysql.AddDoubles(Array(${sdoubles}))
+	mysql.AddBooleans(Array(${sbooleans}))
+	mysql.AddBlobs(Array(${sblobs}))
 	Dim rs As MySQLResultSet1 = mysql.DeleteWhere("${tblName}", CreateMap("${priKey}":did))
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")

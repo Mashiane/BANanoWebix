@@ -8,9 +8,8 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public FieldSet As WixElement
-	Private body As WixElement
+	Public Body As WixElement
 	Public Parent As WixElement
-
 End Sub
 
 'Initializes the FieldSet
@@ -18,7 +17,7 @@ Public Sub Initialize(sid As String) As WixFieldSet
 	ID = sid.tolowercase
 	FieldSet.Initialize(ID)
 	FieldSet.SetView("fieldset")
-	body.Initialize(ID & "body") 
+	Body.Initialize(ID & "body") 
 	Parent = Null
 	Return Me
 End Sub
@@ -91,19 +90,19 @@ End Sub
 
 'add an element
 Sub AddItem(itm As Map) As WixFieldSet
-	body.AddRows(itm)
+	Body.AddRows(itm)
 	Return Me
 End Sub
 
 'add an element
 Sub AddRows(itm As Map) As WixFieldSet
-	body.AddRows(itm)
+	Body.AddRows(itm)
 	Return Me
 End Sub
 
 'return the item
 Sub Item As Map
-	FieldSet.SetAttr("body", body.item)
+	FieldSet.SetAttr("body", Body.item)
 	Return FieldSet.item
 End Sub
 

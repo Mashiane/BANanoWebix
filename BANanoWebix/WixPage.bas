@@ -23,6 +23,268 @@ Sub Class_Globals
 End Sub
 
 
+'convert map keys to a list
+Sub MapKeys2List(m As Map) As List
+	Dim lst As List
+	lst.Initialize
+	For Each k As String In m.Keys
+		lst.Add(k)
+	Next
+	Return lst
+End Sub
+
+'convert map keys to a list
+Sub MapValues2List(m As Map) As List
+	Dim lst As List
+	lst.Initialize
+	For Each k As String In m.values
+		lst.Add(k)
+	Next
+	Return lst
+End Sub
+
+
+'rsa id to date of birth
+Sub RSAIDNumber2DateOfBirth(rsaID As String) As String
+	'south african id
+	If rsaID.length = 13 Then
+		Dim yymmdd As String = LeftString(rsaID, 6)
+		Dim yy As String = LeftString(yymmdd,2)
+		Dim mm As String = MidString(yymmdd,3,2)
+		Dim dd As String = RightString(yymmdd,2)
+		yymmdd = $"19${yy}-${mm}-${dd}"$
+		Return yymmdd
+	Else
+		Return ""
+	End If
+End Sub
+
+Public Sub YearNow() As String
+	Dim lNow As Long
+	Dim dt As String
+	lNow = DateTime.Now
+	DateTime.DateFormat = "yyyy"
+	dt = DateTime.Date(lNow)
+	Return dt
+End Sub
+
+'Description: Return the current system date in long format
+'Tags: date, long format
+Public Sub DateTimeNow() As String
+	Dim lNow As Long
+	Dim dt As String
+	lNow = DateTime.Now
+	DateTime.DateFormat = "yyyy-MM-dd HH:mm"
+	dt = DateTime.Date(lNow)
+	Return dt
+End Sub
+
+Sub DateAdd(mDate As String, HowManyDays As Int) As String
+    Dim ConvertDate, NewDateDay As Long
+    ConvertDate = DateTime.DateParse(mDate)
+    NewDateDay = DateTime.Add(ConvertDate, 0, 0, HowManyDays)
+    Return DateTime.Date(NewDateDay)
+End Sub
+
+Sub Age(birthDay As String) As Int
+	DateTime.DateFormat = "yyyy-MM-dd"
+	Dim tDay As String = DateTime.Date(DateTime.Now)
+	Dim cDay As String = DateTime.Date(DateTime.DateParse(birthDay))
+	Dim aDays As Int = DateDiff(tDay, cDay)
+	Dim aYears As Int = aDays / 365.25
+	Return BANano.parseInt(aYears)
+End Sub
+
+Sub DateDiff(CurrentDate As String, OtherDate As String) As Int
+    Dim CurrDate As Long
+	Dim OthDate As Long
+	CurrDate = DateTime.DateParse(CurrentDate)
+    OthDate = DateTime.DateParse(OtherDate)
+    Return (CurrDate-OthDate) / DateTime.TicksPerDay
+End Sub
+
+Sub MakeMoney(sValue As String) As String
+	If sValue.Length = 0 Then Return "0.00"
+	If sValue = "null" Then sValue = "0.00"
+	sValue = sValue.Replace(",","")
+	sValue = Val(sValue)
+	If sValue = "0" Then sValue = "000"
+	sValue = Round2(sValue,2)
+	Return NumberFormat2(sValue, 1, 2, 2, True)
+End Sub
+
+Sub Percentage(sValue As String) As String
+	If sValue = "" Then sValue = "0.00"
+	If sValue.Length = 0 Then Return "0.00"
+	If sValue = "null" Then sValue = "0.00"
+	sValue = sValue.Replace(",","")
+	sValue = Val(sValue)
+	If sValue = "0" Then sValue = "0.00"
+	sValue = Round2(sValue,2)
+	sValue = sValue & "%"
+	Return sValue
+End Sub
+
+Sub MidString(Text As String, Start As Int, lLength As Int) As String
+	Return Text.SubString2(Start-1,Start+lLength-1)
+End Sub
+
+Sub MidString2(Text As String, Start As Int) As String
+	Return Text.SubString(Start-1)
+End Sub
+
+Sub RightString(Text As String, lLength As Long) As String
+	If lLength>Text.Length Then lLength=Text.Length
+	Return Text.SubString(Text.Length-lLength)
+End Sub
+
+Sub LeftString(Text As String, lLength As Long)As String
+	If lLength>Text.Length Then lLength=Text.Length
+	Return Text.SubString2(0, lLength)
+End Sub
+
+Sub ReplaceString(Text As String, sFind As String, sReplaceWith As String) As String
+	Return Text.Replace(sFind, sReplaceWith)
+End Sub
+
+Sub LongDate(sDate As String) As String
+	If sDate.Length = 0 Then Return ""
+	Try
+		DateTime.DateFormat = "yyyy-MM-dd"
+		Dim dt As Long = DateTime.DateParse(sDate)
+		DateTime.DateFormat = "EEEE, dd MMMM yyyy"
+		Return DateTime.Date(dt)
+	Catch
+		Return ""
+	End Try
+End Sub
+
+Sub LongDateTime(sDate As String) As String
+	If sDate.Length = 0 Then Return ""
+	Try
+		DateTime.DateFormat = "yyyy-MM-dd HH:mm"
+		Dim dt As Long = DateTime.DateParse(sDate)
+		DateTime.DateFormat = "EEEE, dd MMMM yyyy HH:mm"
+		Return DateTime.Date(dt)
+	Catch
+		Return ""
+	End Try
+End Sub
+
+private Sub TrimString(strValue As String) As String
+	Return strValue.trim
+End Sub
+
+Sub LCase(Text As String) As String
+	Return Text.ToLowerCase
+End Sub
+
+Sub Space(HM As Int) As String
+	Dim RS As String = ""
+	Do While Len(RS) < HM
+		RS = RS & " "
+	Loop
+	Return RS
+End Sub
+
+Public Sub InQuotes(sValue As String) As String
+	Return QUOTE & sValue & QUOTE
+End Sub
+
+Sub ProperCase(myStr As String) As String
+	Try
+		If myStr.trim.length = 0 Then Return ""
+		Dim x As String
+		Dim j, k As Int
+		myStr = myStr.tolowercase
+		x = myStr.ToUpperCase.CharAt(0)
+		myStr = x & myStr.SubString2(1, myStr.Length)
+		For j = 1 To myStr.Length
+			k = myStr.IndexOf2(" ", j + 1)
+			If k = -1 Then Exit
+			x = myStr.ToUpperCase.CharAt(k + 1)
+			myStr = myStr.SubString2(0, k + 1) & x & myStr.SubString2(k + 2, myStr.Length)
+		Next
+		Return myStr
+	Catch
+		Return myStr
+	End Try
+End Sub
+
+Public Sub CDbl(value As String) As Double
+	Try
+		value = value.Trim
+		If value = "" Then value = "0"
+		value = value.Replace(",","")
+		Dim out As Double = NumberFormat2(value,0,2,2,False)
+		Return out
+	Catch
+		Return value
+	End Try
+End Sub
+
+
+Sub ProjectDays(sDays As String) As String
+	Try
+		sDays = sDays.trim
+		If sDays = "" Then sDays = "0"
+		sDays = sDays.Replace(",","")
+		sDays = NumberFormat2(sDays,0,0,0,True)
+		Return sDays & " Dys"
+	Catch
+		Return "0 Dys"
+	End Try
+End Sub
+
+Sub ProjectDate(sDate As String) As String
+	If sDate.Length = 0 Then Return ""
+	Try
+		DateTime.DateFormat = "yyyy-MM-dd"
+		Dim dt As Long = DateTime.DateParse(sDate)
+		DateTime.DateFormat = "dd-MMM-yyyy, EEE"
+		Return DateTime.Date(dt)
+	Catch
+		Return ""
+	End Try
+End Sub
+
+Sub FormatFileSize(Bytes As Float) As String
+	Try
+		Private Unit() As String = Array As String(" Byte", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB")
+		If Bytes = 0 Then
+			Return "0 Bytes"
+		Else
+			Private Po, Si As Double
+			Private I As Int
+			Bytes = Abs(Bytes)
+			I = Floor(Logarithm(Bytes, 1024))
+			Po = Power(1024, I)
+			Si = Bytes / Po
+			Return NumberFormat(Si, 1, 3) & Unit(I)
+		End If
+	Catch
+		Return "0 Bytes"
+	End Try
+End Sub
+
+Sub InStrRev(value As String, search As String) As Long
+	Return value.LastIndexOf(search) + 1
+End Sub
+
+'get the length of the string
+Sub Len(Text As String) As Int
+	Return Text.Length
+End Sub
+
+Sub PadRight(Value As String, MaxLen As Int, PadChar As String) As String
+	Dim intOrdNoLen As Int = Len(Value)
+	Dim i As Int
+	For i = 1 To (MaxLen - intOrdNoLen) Step 1
+		Value = PadChar & Value
+	Next
+	Return Value
+End Sub
+
 Sub JSONValues2LowerCase(sJSON As String, props As List) As String
 	'convert json to map
 	Dim jmap As Map = Json2Map(sJSON)
@@ -210,6 +472,25 @@ Sub List2IDValue(lst As List, mapValues As List) As List
 		nlst.Add(nm)
 	Next
 	Return nlst
+End Sub
+
+Sub List2ArrayVariable(lst As List) As String
+	If lst.Size = 0 Then
+		Return $""""$
+	End If
+	Dim i As Int
+	Dim sb As StringBuilder
+	Dim fld As String
+	sb.Initialize
+	fld = lst.Get(0)
+	fld = $""${fld}""$
+	sb.Append(fld)
+	For i = 1 To lst.size - 1
+		Dim fld As String = lst.Get(i)
+		fld = $""${fld}""$
+		sb.Append(",").Append(fld)
+	Next
+	Return sb.ToString
 End Sub
 
 
@@ -1225,6 +1506,15 @@ Sub Disable(itmID As String)
 	Dollar.Selector(itmID).RunMethod("disable","")
 End Sub
 
+'enable disable element
+Sub EnableDisable(itmID As String, bVal As Boolean)
+	If bVal Then 
+		Enable(itmID)
+	Else
+		Disable(itmID)
+	End If
+End Sub
+
 'render the page UX
 Sub UI()
 	webix.RunMethod("ui",Array(Page.item))
@@ -1879,6 +2169,50 @@ Sub DePrefix(target As Map) As Map
 	Return nm
 End Sub
 
+Sub Pad(Value As String, MaxLen As Int, PadChar As String, right As Boolean) As String
+	Dim  intOrdNoLen As Int = Value.Length
+	Dim i As Int
+	For i = 1 To (MaxLen - intOrdNoLen) Step 1
+		If right Then
+			Value =  Value & PadChar
+		Else
+			Value = PadChar & Value
+		End If
+	Next
+	Return Value
+End Sub
+
+Sub CLng(o As Object) As Long
+	Return Floor(o)
+End Sub
+
+Sub CInt(o As Object) As Int
+	Return Floor(o)
+End Sub
+
+Sub GetFileParentPath(Path As String) As String
+	Dim Path1 As String
+	Dim L As Int
+	If Path = "/" Then
+		Return "/"
+	End If
+	L = Path.LastIndexOf("/")
+	If L = Path.Length - 1 Then
+		'Strip the last slash
+		Path1 = Path.SubString2(0,L)
+	Else
+		Path1 = Path
+	End If
+	L = Path.LastIndexOf("/")
+	If L = 0 Then
+		L = 1
+	End If
+	Return Path1.SubString2(0,L)
+End Sub
+
+Sub GetFileExt(FullPath As String) As String
+	Return FullPath.SubString(FullPath.LastIndexOf(".")+1)
+End Sub
 
 Sub SetPrefix(prefix As String, target As Map) As Map
 	Dim nm As Map = CreateMap()
@@ -1888,4 +2222,175 @@ Sub SetPrefix(prefix As String, target As Map) As Map
 		nm.Put(mk1,mv)
 	Next
 	Return nm
+End Sub
+
+Sub LongDateTimeToday() As String
+	DateTime.DateFormat = "yyyy-MM-dd"
+	Dim dt As Long = DateTime.now
+	DateTime.DateFormat = "EEEE, dd MMMM yyyy, HH:mm"
+	Return DateTime.Date(dt)
+End Sub
+
+public Sub AfterTodayRG(dVariance As Long) As String
+	If dVariance <= 0 Then
+		Return "./assets/green.png"
+	else if dVariance > 0 Then
+		Return "./assets/red.png"
+	Else
+		Return "./assets/gray.png"
+	End If
+End Sub
+
+
+Public Sub ProgressRAG(dVariance As Double) As String
+	If dVariance < 0 Then
+		Return "./assets/red.png"
+	else if dVariance > 0 Then
+		Return "./assets/green.png"
+	else if dVariance = 0 Then
+		Return "./assets/orange.png"
+	Else
+		Return "./assets/gray.png"
+	End If
+End Sub
+
+
+Public Sub ExpectedRAG(dValue As Double) As String
+	If dValue = 0 Then
+		Return "./assets/orange.png"
+	else if dValue > 0 Then
+		Return "./assets/red.png"
+	else if dValue < 0 Then
+		Return "./assets/green.png"
+	Else
+		Return "./assets/red.png"
+	End If
+End Sub
+
+Public Sub ExpenditureRAG(dVariance As Double) As String
+	If dVariance > 0 Then
+		Return "./assets/green.png"
+	else if dVariance < 0 Then
+		Return "./assets/red.png"
+	else if dVariance = 0 Then
+		Return "./assets/orange.png"
+	Else
+		Return "./assets/gray.png"
+	End If
+End Sub
+
+Public Sub PriorityRAG(dValue As Int) As String
+	Select Case dValue
+		Case 0
+			Return "./assets/green.png"
+		Case 1
+			Return "./assets/orange.png"
+		Case 2
+			Return "./assets/red.png"
+		Case Else
+			Return "./assets/gray.png"
+	End Select
+End Sub
+
+Public Sub RAG(dValue As Int) As String
+	Select Case dValue
+		Case 0
+			Return "./assets/red.png"
+		Case 1
+			Return "./assets/orange.png"
+		Case 2
+			Return "./assets/green.png"
+		Case Else
+			Return "./assets/gray.png"
+	End Select
+End Sub
+
+Public Sub GAR(dValue As Int) As String
+	Select Case dValue
+		Case 0
+			Return "./assets/green.png"
+		Case 1
+			Return "./assets/orange.png"
+		Case 2
+			Return "./assets/red.png"
+		Case Else
+			Return "./assets/gray.png"
+	End Select
+End Sub
+
+Public Sub StatusRAG(dValue As Int) As String
+	Select Case dValue
+		Case 0
+			Return "./assets/red.png"
+		Case 1
+			Return "./assets/orange.png"
+		Case 2
+			Return "./assets/green.png"
+		Case Else
+			Return "./assets/gray.png"
+	End Select
+End Sub
+
+Public Sub FaceRAG(dValue As Int) As String
+	Select Case dValue
+		Case 0
+			Return "./assets/sadface.png"
+		Case 1
+			Return "./assets/neutralface.png"
+		Case 2
+			Return "./assets/happyface.png"
+		Case Else
+			Return "./assets/sadface.png"
+	End Select
+End Sub
+
+Public Sub FaceRG(dValue As Int) As String
+	Select Case dValue
+		Case 0
+			Return "./assets/sadface.png"
+		Case 1
+			Return "./assets/happyface.png"
+		Case Else
+			Return "./assets/sadface.png"
+	End Select
+End Sub
+
+Public Sub FaceRG1(dValue As Int) As String
+	Select Case dValue
+		Case 1
+			Return "./assets/sadface.png"
+		Case 0
+			Return "./assets/happyface.png"
+		Case Else
+			Return "./assets/sadface.png"
+	End Select
+End Sub
+
+Public Sub FaceDone(dValue As Int) As String
+	Select Case dValue
+		Case 100
+			Return "./assets/happyface.png"
+		Case Else
+			Return "./assets/sadface.png"
+	End Select
+End Sub
+
+Public Sub ProgressStatus(dValue As Int) As Int
+	Select Case dValue
+		Case 100
+			Return 1
+		Case Else
+			Return 0
+	End Select
+End Sub
+
+Public Sub StatusRG(dValue As Int) As String
+	Select Case dValue
+		Case 0
+			Return "./assets/red.png"
+		Case 1
+			Return "./assets/green.png"
+		Case Else
+			Return "./assets/red.png"
+	End Select
 End Sub

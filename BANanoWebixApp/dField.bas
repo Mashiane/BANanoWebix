@@ -30,6 +30,7 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.AddTextBox("length", "Field Length","20")
 	Bag.AddCheckBox("isfield", "Is Field",True)
 	Bag.AddCheckBox("setfocus", "Set Focus",False)
+	Bag.AddTextBox("tabindex","Tab Index", "0")
 	Bag.AddLabel("Foreign")
 	Bag.AddTextBox("foreign_table","Foreign Table","")
 	Bag.AddTextBox("foreign_key","Foreign Key","")
@@ -93,6 +94,5 @@ Bag.AddTextBox("grid_minwidth","Min Width", "").SetActual("grid_minwidth","MinWi
 
 	Bag.AddLabel("Parent Table")
 	Bag.AddTextBox("tablename", "Table Name", "table")
-	Bag.AddTextBox("tabindex","Tab Index", "0")
 	Bag.Refresh(Page)
 End Sub

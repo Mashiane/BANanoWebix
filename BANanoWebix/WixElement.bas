@@ -380,6 +380,12 @@ Sub OnChange(cb As BANanoObject) As WixElement
 	Return Me
 End Sub
 
+Sub onLongTouch(cb As BANanoObject) As WixElement
+	On.Put("onLongTouch",cb)
+	Return Me
+End Sub
+
+
 Sub OnEnter(cb As BANanoObject) As WixElement
 	On.Put("onEnter",cb)
 	Return Me
@@ -484,11 +490,6 @@ End Sub
 
 Sub onAfterExpand(cb As BANanoObject) As WixElement
 	On.Put("onAfterExpand",cb)
-	Return Me
-End Sub
-
-Sub onLongTouch(cb As BANanoObject) As WixElement
-	On.Put("onLongTouch",cb)
 	Return Me
 End Sub
 

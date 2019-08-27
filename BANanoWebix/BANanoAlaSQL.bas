@@ -281,14 +281,16 @@ private Sub GetMapTypes(sourceMap As Map) As List
 				listOfTypes.add("s")
 			Case "VARCHAR(50)", "VARCHAR(100)", "VARCHAR(255)"
 				listOfTypes.add("s")
-			Case "STRING","VARCHAR","TEXT","DATE","DATETIME"
+			Case "STRING","VARCHAR","TEXT","DATE","DATETIME","NVARCHAR"
 				listOfTypes.add("s")
-			Case "INTEGER", "INT", "BOOL"
+			Case "INTEGER", "INT", "BOOL","BOOLEAN"
 				listOfTypes.add("i")
 			Case "BLOB"
 				listOfTypes.add("b")
 			Case "REAL","FLOAT","DOUBLE"
 				listOfTypes.add("d")
+			Case Else
+				listOfTypes.add("s")
 		End Select
 	Next
 	Return listOfTypes
