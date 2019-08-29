@@ -22,6 +22,21 @@ Sub Class_Globals
 	Type WixSelectedID(row As Object, ID As Object, column As Object)
 End Sub
 
+'join list to mv string
+Sub Join(delimiter As String, lst As List) As String
+	Dim i As Int
+	Dim sb As StringBuilder
+	Dim fld As String
+	sb.Initialize
+	fld = lst.Get(0)
+	sb.Append(fld)
+	For i = 1 To lst.size - 1
+		Dim fld As String = lst.Get(i)
+		sb.Append(delimiter).Append(fld)
+	Next
+	Return sb.ToString
+End Sub
+
 
 'convert map keys to a list
 Sub MapKeys2List(m As Map) As List
@@ -96,11 +111,14 @@ Sub Age(birthDay As String) As Int
 End Sub
 
 Sub DateDiff(CurrentDate As String, OtherDate As String) As Int
+	DateTime.DateFormat = "yyyy-MM-dd"
+	
     Dim CurrDate As Long
 	Dim OthDate As Long
 	CurrDate = DateTime.DateParse(CurrentDate)
     OthDate = DateTime.DateParse(OtherDate)
-    Return (CurrDate-OthDate) / DateTime.TicksPerDay
+	'
+	Return (CurrDate-OthDate) / DateTime.TicksPerDay
 End Sub
 
 Sub MakeMoney(sValue As String) As String
@@ -579,7 +597,8 @@ End Sub
 
 Sub MvField(sValue As String, iPosition As Int, Delimiter As String) As String
 	If sValue.Length = 0 Then Return ""
-	Dim xPos As Int: xPos = sValue.IndexOf(Delimiter)
+	Dim xPos As Int
+	xPos = sValue.IndexOf(Delimiter)
 	If xPos = -1 Then Return sValue
 	Dim mValues() As String
 	Dim tValues As Int
