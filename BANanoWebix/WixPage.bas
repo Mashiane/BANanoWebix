@@ -22,6 +22,46 @@ Sub Class_Globals
 	Type WixSelectedID(row As Object, ID As Object, column As Object)
 End Sub
 
+#if javascript
+	function getPivotDataTable(pivot) {
+		var dt = $$(pivot).$$("data");
+		return dt
+	}
+#end if
+
+'get the pivot table data
+Sub GetPivotDataTable(pivotName As String) As BANanoObject
+	Dim dt As BANanoObject = BANano.RunJavascriptMethod("getPivotDataTable", Array(pivotName))
+	Return dt
+End Sub
+
+'get datatable item
+Sub DataTableGetItem(dt As BANanoObject, itemID As Map) As Map
+	Dim gItem As Map = dt.RunMethod("getItem", Array(itemID)).result
+	Return gItem
+End Sub
+
+'get item from datasource
+Sub DataSourceGetItem(ds As BANanoObject, itemID As String) As Map
+	Dim rec As Map = ds.RunMethod("getItem", Array(itemID)).result
+	Return rec
+End Sub
+
+'get the wixitem
+Sub GetWixElement(eID As String) As BANanoObject
+	eID = eID.ToLowerCase
+	'select the item
+	Dim itm As BANanoObject = Dollar.Selector(eID)
+	Return itm
+End Sub
+
+'get data of an item
+Sub GetDataSource(elID As String) As BANanoObject
+	Dim bo As BANanoObject = GetWixElement(elID)
+	Dim Data As BANanoObject = bo.GetField("data")
+	Return Data
+End Sub
+
 'join list to mv string
 Sub Join(delimiter As String, lst As List) As String
 	Dim i As Int
@@ -733,8 +773,6 @@ Sub Json2List(strValue As String) As List
 		Return lst
 	End Try
 End Sub
-
-
 
 'initialize the page and empty the page '#body' element
 Public Sub Initialize(pgID As String, pgContainer As String) As WixPage

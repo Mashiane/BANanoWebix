@@ -42,7 +42,7 @@ Group=Default Group
 Library1=jcore
 Library2=jfx
 Library3=banano
-Module1=BANanoMySQL1
+Module1=WixPage
 Module10=WixFieldSet
 Module11=UOENowData
 Module12=WixButton
@@ -53,7 +53,7 @@ Module16=WixPopUp
 Module17=WixDataTable
 Module18=WixToolBar
 Module19=WixLabel
-Module2=WixPage
+Module2=BANanoMySQL1
 Module20=WixImage
 Module21=WixTree
 Module22=WixText
@@ -138,7 +138,7 @@ Version=7.51
  #Region Project Attributes 
  	#MergeLibraries: True
 	#LibraryAuthor: Anele Mashy Mbanga
-	#LibraryVersion: 2.20
+	#LibraryVersion: 2.21
 	#LibraryName: BANanoWebix
 #End Region
 
@@ -151,7 +151,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'initialize banano for first use
 	BANano.Initialize("BANano", "BANanoWebix",DateTime.Now)
 	BANano.TranspilerOptions.UseServiceWorker = False
-	BANano.BuildAsB4XLib("2.20")
+	BANano.BuildAsB4XLib("2.21")
 	ExitApplication
 End Sub
 

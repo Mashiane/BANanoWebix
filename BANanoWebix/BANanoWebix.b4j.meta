@@ -265,6 +265,6 @@ ModuleClosedNodes86=
 ModuleClosedNodes87=
 ModuleClosedNodes88=
 ModuleClosedNodes9=
-NavigationStack=WixPage,SetAppName,631,0,UOENowHTML,MvFieldFrom,1146,0,UOENowHTML,MvField,1373,0,WixPage,MvField,609,0,WixPage,Age,101,0,WixPage,DateDiff,114,0,WixPage,DePrefix,2178,0,UOENowHTML,ApplyStyle,362,0,UOENowHTML,SetSRC,655,0,UOENowHTML,ToStyle,1136,0,UOENowHTML,BuildStyle,1125,0
+NavigationStack=WixPage,MapValues2List,75,0,WixPage,Class_Globals,1,0,WixPage,GetPivotDataTable,31,0,WixPage,GetDataSource,48,0,WixPage,GetWixElement,43,0,WixPage,Join,55,0,WixPage,DataTableGetItem,38,6,WixPage,DataSourceGetItem,42,6
 SelectedBuild=0
 VisibleModules=
