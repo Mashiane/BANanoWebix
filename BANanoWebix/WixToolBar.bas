@@ -30,6 +30,12 @@ Sub SetTemplateHTML(h As UOENowHTML) As WixToolBar
 	Return Me
 End Sub
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixToolBar
+	ToolBar.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 'set name
 Sub SetName(n As String) As WixToolBar
 	ToolBar.SetName(n)

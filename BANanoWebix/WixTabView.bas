@@ -28,6 +28,14 @@ Sub SetParent(p As WixElement) As WixTabView
 End Sub
 
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixTabView
+	TabView.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'use a map object
 Sub SetMap(m As Map) As WixTabView
 	For Each strKey As String In m.Keys

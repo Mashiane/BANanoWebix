@@ -27,6 +27,13 @@ Sub SetParent(p As WixElement) As WixFlexLayout
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixFlexLayout
+	FlexLayout.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'return the item
 Sub Item As Map
 	Return FlexLayout.item

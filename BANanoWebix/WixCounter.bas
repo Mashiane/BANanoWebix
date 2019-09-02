@@ -22,9 +22,17 @@ Public Sub Initialize(iID As String) As WixCounter
 	Maximum = 100
 	Counter.SetValue(10)
 	Stepper = 1
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixCounter
+	Counter.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 
 'set the parent
 Sub SetParent(p As WixElement) As WixCounter
@@ -95,13 +103,6 @@ End Sub
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
 End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixCounter
-	Counter.SetStyle(prop,val)
-	Return Me
-End Sub
-
 
 'return the item
 Sub Item As Map

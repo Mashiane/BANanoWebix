@@ -26,6 +26,12 @@ Sub SetParent(p As WixElement) As WixColorBoard
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixColorBoard
+	Colorboard.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)

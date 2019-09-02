@@ -26,6 +26,14 @@ Public Sub Initialize(sid As String) As WixSideMenu
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixSideMenu
+	SideMenu.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixSideMenu
 	Parent = p

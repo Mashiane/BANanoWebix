@@ -20,6 +20,14 @@ Public Sub Initialize(iID As String) As WixResizer
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixResizer
+	Resizer.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixResizer
 	Parent = p

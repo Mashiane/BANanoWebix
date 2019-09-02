@@ -20,6 +20,14 @@ Public Sub Initialize(iID As String) As WixFormInput
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixFormInput
+	FormInput.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
@@ -95,12 +103,6 @@ End Sub
 'set tooltip
 Sub SetTooltip(tt As String) As WixFormInput
 	FormInput.SetTooltip(tt)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixFormInput
-	FormInput.SetStyle(prop,val)
 	Return Me
 End Sub
 

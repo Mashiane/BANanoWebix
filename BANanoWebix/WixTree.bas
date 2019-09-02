@@ -32,6 +32,14 @@ Public Sub Initialize(eID As String) As WixTree
 End Sub
 
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixTree
+	Tree.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set scroll
 Sub SetScroll(b As Object) As WixTree
 	Tree.SetAttr("scroll", b)
@@ -134,12 +142,6 @@ End Sub
 'set the data
 Sub SetData(data As List) As WixTree
 	Tree.SetData(data)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixTree
-	Tree.SetStyle(prop,val)
 	Return Me
 End Sub
 

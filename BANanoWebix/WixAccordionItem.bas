@@ -27,6 +27,12 @@ Sub SetParent(p As WixElement) As WixAccordionItem
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixAccordionItem
+	AccordionItem.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)

@@ -24,6 +24,14 @@ Sub Pop
 	Parent.AddColumns(Item)
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixRichText
+	RichText.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixRichText
 	Parent = p
@@ -137,12 +145,6 @@ End Sub
 'set tooltip
 Sub SetTooltip(tt As String) As WixRichText
 	RichText.SetTooltip(tt)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixRichText
-	RichText.SetStyle(prop,val)
 	Return Me
 End Sub
 

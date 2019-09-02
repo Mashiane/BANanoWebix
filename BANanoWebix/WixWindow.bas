@@ -19,9 +19,17 @@ Public Sub Initialize(sid As String) As WixWindow
 	ToolBarID = ID & "tblbar"
 	Window.Initialize(ID).SetView("window")
 	ToolBar.Initialize(ToolBarID) 
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixWindow
+	Window.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 
 'set the parent
 Sub SetParent(p As WixElement) As WixWindow

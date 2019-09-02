@@ -21,6 +21,14 @@ Public Sub Initialize(iID As String) As WixSegmented
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixSegmented
+	Segmented.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixSegmented
 	Parent = p
@@ -108,12 +116,6 @@ Sub SetOptionsMAP(m As Map) As WixSegmented
 		Dim mv As Object = m.Get(mk)
 		AddOption(mk, mv)
 	Next
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixSegmented
-	Segmented.SetStyle(prop,val)
 	Return Me
 End Sub
 

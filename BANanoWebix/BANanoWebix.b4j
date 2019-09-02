@@ -2,16 +2,23 @@
 Build1=Default,b4j.Mashy.BANanoWebix
 File1=1.png
 File10=fonts.zip
-File11=hint.css
-File12=hint.js
-File13=license.txt
-File14=material.min.css
-File15=materialdesignicons.min.css
-File16=skin.js
-File17=upload.php
-File18=webix.min.css
-File19=webix.min.js
+File11=gray.png
+File12=green.png
+File13=happyface.png
+File14=hint.css
+File15=hint.js
+File16=license.txt
+File17=material.min.css
+File18=materialdesignicons.min.css
+File19=neutralface.png
 File2=2.png
+File20=orange.png
+File21=red.png
+File22=sadface.png
+File23=skin.js
+File24=upload.php
+File25=webix.min.css
+File26=webix.min.js
 File3=all.min.css
 File4=Blob.min.js
 File5=config.php
@@ -21,16 +28,23 @@ File8=FileSaver.min.js
 File9=flat.min.css
 FileGroup1=Assets
 FileGroup10=Assets
-FileGroup11=Styles
-FileGroup12=Scripts
+FileGroup11=Default Group
+FileGroup12=Default Group
 FileGroup13=Default Group
 FileGroup14=Styles
-FileGroup15=Styles
+FileGroup15=Scripts
 FileGroup16=Default Group
-FileGroup17=Assets
-FileGroup18=Default Group
+FileGroup17=Styles
+FileGroup18=Styles
 FileGroup19=Default Group
 FileGroup2=Assets
+FileGroup20=Default Group
+FileGroup21=Default Group
+FileGroup22=Default Group
+FileGroup23=Default Group
+FileGroup24=Assets
+FileGroup25=Default Group
+FileGroup26=Default Group
 FileGroup3=Styles
 FileGroup4=Default Group
 FileGroup5=Default Group
@@ -130,7 +144,7 @@ Module86=WixGeoChart
 Module87=WixSpacer
 Module88=WixProgressBar
 Module9=WixMessageBox
-NumberOfFiles=19
+NumberOfFiles=26
 NumberOfLibraries=3
 NumberOfModules=88
 Version=7.51
@@ -138,7 +152,7 @@ Version=7.51
  #Region Project Attributes 
  	#MergeLibraries: True
 	#LibraryAuthor: Anele Mashy Mbanga
-	#LibraryVersion: 2.21
+	#LibraryVersion: 2.23
 	#LibraryName: BANanoWebix
 #End Region
 
@@ -151,7 +165,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'initialize banano for first use
 	BANano.Initialize("BANano", "BANanoWebix",DateTime.Now)
 	BANano.TranspilerOptions.UseServiceWorker = False
-	BANano.BuildAsB4XLib("2.21")
+	BANano.BuildAsB4XLib("2.23")
 	ExitApplication
 End Sub
 

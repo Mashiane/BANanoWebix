@@ -28,6 +28,13 @@ Sub SetParent(p As WixElement) As WixPager
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixPager
+	Pager.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)

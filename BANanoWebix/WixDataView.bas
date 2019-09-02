@@ -34,6 +34,13 @@ Sub SetParent(p As WixElement) As WixDataView
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixDataView
+	DataView.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
@@ -176,13 +183,6 @@ End Sub
 'set borderless
 Sub SetBorderLess(b As Boolean) As WixDataView
 	DataView.SetAttr("borderless", b)
-	Return Me
-End Sub
-
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixDataView
-	DataView.SetStyle(prop,val)
 	Return Me
 End Sub
 

@@ -21,6 +21,14 @@ Public Sub Initialize(iID As String) As WixRichSelect
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixRichSelect
+	RichSelect.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixRichSelect
 	Parent = p
@@ -135,13 +143,6 @@ Sub SetTooltip(tt As String) As WixRichSelect
 	RichSelect.SetTooltip(tt)
 	Return Me
 End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixRichSelect
-	RichSelect.SetStyle(prop,val)
-	Return Me
-End Sub
-
 
 'add to form
 Sub AddToForm(frm As WixForm)

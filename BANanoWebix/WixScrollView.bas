@@ -26,6 +26,14 @@ Public Sub Initialize(sid As String) As WixScrollView
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixScrollView
+	ScrollView.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixScrollView
 	Parent = p
@@ -121,12 +129,6 @@ Sub Item As Map
 	If Columns.Size > 0 Then body.Put("columns", Columns)
 	ScrollView.SetAttr("body", body)
 	Return ScrollView.item
-End Sub
-
-'set css
-Sub SetStyle(prop As String, val As String) As WixScrollView
-	ScrollView.SetStyle(prop,val)
-	Return Me
 End Sub
 
 'set height

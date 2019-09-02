@@ -20,6 +20,14 @@ Public Sub Initialize(iID As String) As WixDBLList
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixDBLList
+	DBLList.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
@@ -96,11 +104,6 @@ Sub Item As Map
 	Return DBLList.item
 End Sub
 
-'set style
-Sub SetStyle(prop As String, val As String) As WixDBLList
-	DBLList.SetStyle(prop,val)
-	Return Me
-End Sub
 
 'set height
 Sub SetHeight(h As Object) As WixDBLList

@@ -23,6 +23,14 @@ Public Sub Initialize(sid As String) As WixCarousel
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixCarousel
+	Carousel.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixCarousel
 	Parent = p

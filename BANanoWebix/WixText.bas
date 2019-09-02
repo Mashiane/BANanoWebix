@@ -24,6 +24,15 @@ Sub SetInvalidMessage(msg As String) As WixText
 	Return Me
 End Sub
 
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixText
+	Text.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
@@ -201,12 +210,6 @@ Sub SetTooltip(tt As String) As WixText
 	Return Me
 End Sub
 
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixText
-	Text.SetStyle(prop,val)
-	Return Me
-End Sub
 
 'set readonly
 Sub SetReadOnly(b As Boolean) As WixText

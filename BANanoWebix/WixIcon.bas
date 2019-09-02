@@ -21,6 +21,14 @@ Public Sub Initialize(bID As String) As WixIcon
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixIcon
+	Icon.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixIcon
 	Parent = p
@@ -98,12 +106,6 @@ End Sub
 Sub SetPopUp(popupID As String) As WixIcon
 	popupID = popupID.ToLowerCase
 	Icon.SetAttr("popup", popupID)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixIcon
-	Icon.SetStyle(prop,val)
 	Return Me
 End Sub
 

@@ -25,12 +25,20 @@ Sub SetParent(p As WixElement) As WixVideo
 End Sub
 
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixVideo
+	Video.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'initialize the input box
 Public Sub Initialize(iID As String) As WixVideo
 	ID = iID.tolowercase
 	Video.Initialize(iID).SetView("video")
 	sources.Initialize
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
 
@@ -88,12 +96,6 @@ End Sub
 'set tooltip
 Sub SetTooltip(tt As String) As WixVideo
 	Video.SetAttr("tooltip", tt)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixVideo
-	Video.SetStyle(prop,val)
 	Return Me
 End Sub
 

@@ -28,15 +28,16 @@ Sub SetParent(p As WixElement) As WixSelect
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixSelect
+	DropDown.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixSelect
-	DropDown.SetStyle(prop,val)
-	Return Me
 End Sub
 
 

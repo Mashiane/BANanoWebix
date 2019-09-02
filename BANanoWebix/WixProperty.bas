@@ -22,6 +22,13 @@ Sub SetParent(p As WixElement) As WixProperty
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixProperty
+	Property.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 Sub AddNotSelected(lst As List)
 	Dim q As String = "$"
 	Dim k1 As String = q & "empty"
@@ -217,12 +224,6 @@ End Sub
 'set the data
 Sub SetData(data As List) As WixProperty
 	Property.SetData(data)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixProperty
-	Property.SetStyle(prop,val)
 	Return Me
 End Sub
 

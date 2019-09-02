@@ -28,9 +28,18 @@ Public Sub Initialize(eID As String) As WixTreeTable
 	ID = eID.tolowercase
 	TreeTable.Initialize(ID).SetView("treetable")
 	Items.Initialize
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
+
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixTreeTable
+	TreeTable.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 
 'set name
 Sub SetName(n As String) As WixTreeTable
@@ -120,12 +129,6 @@ End Sub
 'set the data
 Sub SetData(data As List) As WixTreeTable
 	TreeTable.SetData(data)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixTreeTable
-	TreeTable.SetStyle(prop,val)
 	Return Me
 End Sub
 

@@ -16,9 +16,17 @@ End Sub
 Public Sub Initialize(iID As String) As WixRangeSlider
 	ID = iID.tolowercase
 	RangeSlider.Initialize(iID).SetView("rangeslider")
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixRangeSlider
+	RangeSlider.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 
 'set the parent
 Sub SetParent(p As WixElement) As WixRangeSlider
@@ -94,12 +102,6 @@ End Sub
 'return the item
 Sub Item As Map
 	Return RangeSlider.item
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixRangeSlider
-	RangeSlider.SetStyle(prop,val)
-	Return Me
 End Sub
 
 

@@ -18,12 +18,20 @@ Sub Class_Globals
 
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixGoogleMap
+	GoogleMap.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'Initializes the Context
 Public Sub Initialize(sid As String) As WixGoogleMap
 	ID = sid.ToLowerCase
 	GoogleMap.Initialize(ID).setview("google-map")
 	Markers.Initialize
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
 
@@ -105,12 +113,6 @@ End Sub
 Sub Item As Map
 	GoogleMap.SetData(Markers)
 	Return GoogleMap.item
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixGoogleMap
-	GoogleMap.SetStyle(prop,val)
-	Return Me
 End Sub
 
 

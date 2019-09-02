@@ -19,6 +19,14 @@ Public Sub Initialize(sid As String) As WixMessageBox
 	Return Me 
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixMessageBox
+	MessageBox.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set title
 Sub SetTitle(t As Object) As WixMessageBox
 	MessageBox.SetAttr("title", t)

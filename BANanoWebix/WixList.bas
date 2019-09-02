@@ -21,6 +21,13 @@ Sub SetParent(p As WixElement) As WixList
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixList
+	List.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'Initializes list object
 Public Sub Initialize(lID As String) As WixList
 	ID = lID.tolowercase

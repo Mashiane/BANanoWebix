@@ -19,6 +19,13 @@ Sub SetParent(p As WixElement) As WixProgressBar
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixProgressBar
+	Progressbar.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'Initializes the progressbar
 Public Sub Initialize(sid As String) As WixProgressBar
 	ID = sid.tolowercase

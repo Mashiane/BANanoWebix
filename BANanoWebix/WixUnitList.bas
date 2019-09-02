@@ -29,6 +29,14 @@ Sub SetParent(p As WixElement) As WixUnitList
 End Sub
 
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixUnitList
+	UnitList.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set item height
 Sub SetItemHeight(h As Object) As WixUnitList
 	typeOf.Put("height", h)
@@ -102,12 +110,6 @@ End Sub
 'set the data
 Sub SetData(data As List) As WixUnitList
 	UnitList.SetData(data)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixUnitList
-	UnitList.SetStyle(prop,val)
 	Return Me
 End Sub
 

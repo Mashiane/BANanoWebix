@@ -29,6 +29,13 @@ Sub SetParent(p As WixElement) As WixFieldSet
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixFieldSet
+	FieldSet.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)

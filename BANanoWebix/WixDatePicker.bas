@@ -19,6 +19,13 @@ Public Sub Initialize(bID As String) As WixDatePicker
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixDatePicker
+	DatePicker.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
@@ -181,12 +188,6 @@ End Sub
 'add to form
 Sub AddToForm(frm As WixForm)
 	frm.AddItem(Item)
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixDatePicker
-	DatePicker.SetStyle(prop,val)
-	Return Me
 End Sub
 
 

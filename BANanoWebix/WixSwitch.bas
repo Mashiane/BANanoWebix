@@ -15,9 +15,17 @@ End Sub
 Public Sub Initialize(iID As String) As WixSwitch
 	ID = iID.tolowercase
 	Switch.Initialize(iID).SetView("switch")
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixSwitch
+	Switch.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 
 'set label right
 Sub SetLabelRight(l As String) As WixSwitch
@@ -112,12 +120,6 @@ End Sub
 'return the item
 Sub Item As Map
 	Return Switch.item
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixSwitch
-	Switch.SetStyle(prop,val)
-	Return Me
 End Sub
 
 'set value

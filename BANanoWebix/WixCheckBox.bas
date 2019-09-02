@@ -26,6 +26,13 @@ Sub SetParent(p As WixElement) As WixCheckBox
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixCheckBox
+	CheckBox.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
@@ -113,12 +120,6 @@ End Sub
 'return the item
 Sub Item As Map
 	Return CheckBox.item
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixCheckBox
-	CheckBox.SetStyle(prop,val)
-	Return Me
 End Sub
 
 'set value

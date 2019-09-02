@@ -34,6 +34,14 @@ Sub Class_Globals
 	Private Rules As Map
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixDataTable
+	DataTable.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 Sub SetTemplateHTML(h As UOENowHTML) As WixDataTable
 	h.SetImportant(False)
 	Dim os As String = h.HTML
@@ -368,12 +376,6 @@ Sub SetBorderLess(b As Boolean) As WixDataTable
 	Return Me
 End Sub
 
-
-'set style to update css property
-Sub SetStyle(prop As String, val As String) As WixDataTable
-	DataTable.SetStyle(prop,val)
-	Return Me
-End Sub
 
 'set editable
 Sub SetEditable(b As Boolean) As WixDataTable

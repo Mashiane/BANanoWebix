@@ -13,6 +13,13 @@ Sub Class_Globals
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixHeader
+	Header.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set tooltip
 Sub SetTooltip(tt As String) As WixHeader
 	Header.SetTooltip(tt)
@@ -91,12 +98,6 @@ End Sub
 
 Sub SetCSS(c As Object) As WixHeader
 	Header.SetCSS(c)
-	Return Me
-End Sub
-
-'set css
-Sub SetStyle(prop As String, val As String) As WixHeader
-	Header.SetStyle(prop,val)
 	Return Me
 End Sub
 

@@ -265,6 +265,6 @@ ModuleClosedNodes86=
 ModuleClosedNodes87=
 ModuleClosedNodes88=
 ModuleClosedNodes9=
-NavigationStack=WixPage,MapValues2List,75,0,WixPage,Class_Globals,1,0,WixPage,GetPivotDataTable,31,0,WixPage,GetDataSource,48,0,WixPage,GetWixElement,43,0,WixPage,Join,55,0,WixPage,DataTableGetItem,38,6,WixPage,DataSourceGetItem,42,6
+NavigationStack=WixGroupList,SetMap,102,0,WixSlider,SetTooltip,113,0,WixSwitch,Item,117,0,WixTemplate,SetType,162,0,WixUnitList,SetData,108,0,WixProperty,SetData,222,0,WixVideo,SetTooltip,94,0,WixPopUp,SetParent,21,0,WixPopUp,SetMap,29,0,WixRangeSlider,Item,99,0,Main,AppStart,18,0
 SelectedBuild=0
 VisibleModules=

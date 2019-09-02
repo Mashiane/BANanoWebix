@@ -31,6 +31,15 @@ Sub OnKeyPress(cb As BANanoObject) As WixTextArea
 End Sub
 
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixTextArea
+	TextArea.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
+
 Sub OnEnter(cb As BANanoObject) As WixTextArea
 	TextArea.OnEnter(cb)
 	Return Me
@@ -132,12 +141,6 @@ End Sub
 'set tooltip
 Sub SetTooltip(tt As String) As WixTextArea
 	TextArea.SetTooltip(tt)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixTextArea
-	TextArea.SetStyle(prop,val)
 	Return Me
 End Sub
 

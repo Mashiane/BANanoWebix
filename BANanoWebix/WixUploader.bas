@@ -17,7 +17,7 @@ Public Sub Initialize(sID As String) As WixUploader
 	Uploader.Initialize(ID).SetView("uploader")
 	SetName("upload")
 	SetInputName("upload")
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
 
@@ -33,6 +33,15 @@ Sub SetTemplateHTML(h As UOENowHTML) As WixUploader
 	Uploader.SetTemplate(os)
 	Return Me
 End Sub
+
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixUploader
+	Uploader.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 
 'set name
 Sub SetName(n As String) As WixUploader

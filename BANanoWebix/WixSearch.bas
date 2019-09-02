@@ -19,6 +19,14 @@ Public Sub Initialize(iID As String) As WixSearch
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixSearch
+	Search.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixSearch
 	Parent = p
@@ -138,12 +146,6 @@ End Sub
 'set tooltip
 Sub SetTooltip(tt As String) As WixSearch
 	Search.SetTooltip(tt)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixSearch
-	Search.SetStyle(prop,val)
 	Return Me
 End Sub
 

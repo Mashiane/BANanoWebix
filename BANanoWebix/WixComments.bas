@@ -89,6 +89,13 @@ Sub SetMap(m As Map) As WixComments
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixComments
+	Comments.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add a comment
 Sub AddComment(cID As String, uID As String, cDate As String, cText As String)
 	Dim comment As Map = CreateMap()

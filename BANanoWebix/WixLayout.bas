@@ -21,6 +21,13 @@ Public Sub Initialize(sID As String) As WixLayout
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixLayout
+	Layout.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add resizer
 Sub AddResizerToColumns(s As String) As WixLayout   'ignore
 	Dim r As WixResizer
@@ -273,11 +280,6 @@ Sub SetBatch(paddingY As String) As WixLayout
 	Return Me
 End Sub
 
-'set css
-Sub SetStyle(prop As String, val As String) As WixLayout
-	Layout.SetStyle(prop,val)
-	Return Me
-End Sub
 
 Sub SetVisibleBatch(visibleBatch As String) As WixLayout
 Layout.SetAttr("visibleBatch", visibleBatch)

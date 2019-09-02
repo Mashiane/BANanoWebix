@@ -17,9 +17,17 @@ Public Sub Initialize(sid As String) As WixMultiView
 	ID = sid.tolowercase
 	MultiView.Initialize(ID)
 	MultiView.SetView("multiview")
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixMultiView
+	MultiView.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 
 'set the parent
 Sub SetParent(p As WixElement) As WixMultiView

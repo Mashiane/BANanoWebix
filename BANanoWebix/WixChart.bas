@@ -38,6 +38,14 @@ Public Sub Initialize(iID As String) As WixChart
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixChart
+	Chart.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
@@ -439,12 +447,6 @@ Sub Item As Map
 		Chart.SetAttr("tooltip", Tooltip)
 	End If
 	Return Chart.item
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixChart
-	Chart.SetStyle(prop,val)
-	Return Me
 End Sub
 
 'set height

@@ -25,6 +25,7 @@ Sub SetParent(p As WixElement) As WixPopUp
 	Return Me
 End Sub
 
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)

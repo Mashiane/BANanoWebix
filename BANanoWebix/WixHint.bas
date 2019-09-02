@@ -13,12 +13,20 @@ Sub Class_Globals
 
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixHint
+	Hint.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'Initializes the hint
 Public Sub Initialize(sid As String) As WixHint
 	ID = sid.tolowercase
 	Hint.Initialize(ID).SetView("hint")
 	Items.Initialize 
-	parent = null
+	Parent = Null
 	Return Me 
 End Sub
 

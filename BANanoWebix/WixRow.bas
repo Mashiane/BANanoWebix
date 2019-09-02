@@ -20,6 +20,14 @@ Public Sub Initialize(rID As String) As WixRow
 	Return Me 
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixRow
+	Row.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixRow
 	Parent = p
@@ -345,12 +353,6 @@ End Sub
 
 Sub SetBatch(paddingY As String) As WixRow
 	Row.SetAttr("batch", paddingY)
-	Return Me
-End Sub
-
-'set css
-Sub SetStyle(prop As String, val As String) As WixRow
-	Row.SetStyle(prop,val)
 	Return Me
 End Sub
 

@@ -31,6 +31,14 @@ Sub SetBadge(b As Object) As WixToggle
 End Sub
 
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixToggle
+	Toggle.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 Sub SetTemplateHTML(h As UOENowHTML) As WixToggle
 	h.SetImportant(False)
 	Dim os As String = h.HTML
@@ -94,12 +102,6 @@ End Sub
 'set tooltip
 Sub SetTooltip(tt As String) As WixToggle
 	Toggle.SetAttr("tooltip", tt)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixToggle
-	Toggle.SetStyle(prop,val)
 	Return Me
 End Sub
 

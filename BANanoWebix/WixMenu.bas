@@ -14,6 +14,14 @@ Sub Class_Globals
 	Public Parent As WixElement
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixMenu
+	Menu.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'initialize the menu
 Public Sub Initialize(iID As String) As WixMenu
 	ID = iID.tolowercase

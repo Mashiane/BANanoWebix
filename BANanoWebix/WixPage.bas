@@ -29,6 +29,20 @@ End Sub
 	}
 #end if
 
+'get datasource serialize
+Sub DataSourceSerialize(ds As BANanoObject) As Object
+	Dim res As Object = ds.RunMethod("serialize", Array(True)).Result
+	Return res
+End Sub
+
+
+'get datasource pull
+Sub DataSourceGetData(ds As BANanoObject) As List
+	Dim res As List = ds.GetField("pull").Result
+	Return res
+End Sub
+
+
 'get the pivot table data
 Sub GetPivotDataTable(pivotName As String) As BANanoObject
 	Dim dt As BANanoObject = BANano.RunJavascriptMethod("getPivotDataTable", Array(pivotName))
@@ -1807,10 +1821,11 @@ Sub OnAfterUnSelect(eID As String, cb As BANanoObject)
 	Dollar.Selector(eID).RunMethod("attachEvent",Array("onAfterUnSelect",cb))
 End Sub
 
+
 'serialize all data
 Sub Serialize(eID As String) As List
 	eID = eID.ToLowerCase
-	Dim res As List = Dollar.Selector(eID).RunMethod("serialize",Array(Null,True))
+	Dim res As List = Dollar.Selector(eID).RunMethod("serialize",Array(True)).result
 	Return res
 End Sub
 

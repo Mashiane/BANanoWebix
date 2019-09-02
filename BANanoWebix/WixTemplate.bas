@@ -15,9 +15,18 @@ End Sub
 Public Sub Initialize(sid As String) As WixTemplate
 	ID = sid.ToLowerCase
 	Template.Initialize(ID).setview("template")
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
+
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixTemplate
+	Template.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 
 'set the parent
 Sub SetParent(p As WixElement) As WixTemplate
@@ -155,12 +164,6 @@ End Sub
 'set type
 Sub SetType(t As String) As WixTemplate
 	Template.SetType(t)
-	Return Me
-End Sub
-
-'set css
-Sub SetStyle(prop As String, val As String) As WixTemplate
-	Template.SetStyle(prop,val)
 	Return Me
 End Sub
 

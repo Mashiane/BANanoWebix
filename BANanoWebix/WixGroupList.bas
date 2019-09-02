@@ -18,7 +18,7 @@ Public Sub Initialize(lID As String) As WixGroupList
 	ID = lID.tolowercase
 	GroupList.Initialize(ID).SetView("grouplist")
 	Items.Initialize 
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
 
@@ -30,6 +30,13 @@ End Sub
 'set the parent
 Sub SetParent(p As WixElement) As WixGroupList
 	Parent = p
+	Return Me
+End Sub
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixGroupList
+	GroupList.SetStyle(prop,sval)
 	Return Me
 End Sub
 
@@ -99,12 +106,6 @@ Sub SetMap(m As Map) As WixGroupList
 	Return Me
 End Sub
 
-
-'set style to update css property
-Sub SetStyle(prop As String, val As String) As WixGroupList
-	GroupList.SetStyle(prop,val)
-	Return Me
-End Sub
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixGroupList

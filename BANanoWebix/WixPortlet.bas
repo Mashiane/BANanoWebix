@@ -27,6 +27,13 @@ Sub SetParent(p As WixElement) As WixPortlet
 End Sub
 
 
+'set css
+Sub SetStyle(prop As String, sval As String) As WixPortlet
+	Portlet.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)

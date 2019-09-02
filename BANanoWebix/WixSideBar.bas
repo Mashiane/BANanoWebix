@@ -22,6 +22,14 @@ Public Sub Initialize(sid As String) As WixSideBar
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixSideBar
+	SideBar.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixSideBar
 	Parent = p

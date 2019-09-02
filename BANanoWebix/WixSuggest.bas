@@ -17,9 +17,17 @@ End Sub
 Public Sub Initialize(sID As String) As WixSuggest
 	Suggest.Initialize(sID).SetView("suggest")
 	Items.Initialize  
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixSuggest
+	Suggest.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 
 'set the parent
 Sub SetParent(p As WixElement) As WixSuggest

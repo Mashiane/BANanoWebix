@@ -19,6 +19,14 @@ Public Sub Initialize(iID As String) As WixLabel
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixLabel
+	Label.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'return the item
 Sub Item As Map
 	Return Label.item
@@ -92,12 +100,6 @@ End Sub
 'set tooltip
 Sub SetTooltip(tt As String) As WixLabel
 	Label.SetTooltip(tt)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixLabel
-	Label.SetStyle(prop,val)
 	Return Me
 End Sub
 

@@ -18,6 +18,14 @@ Sub Pop
 	Parent.AddColumns(Item)
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixRadio
+	radio.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'initialize the input box
 Public Sub Initialize(iID As String) As WixRadio
 	ID = iID.tolowercase
@@ -87,12 +95,6 @@ Sub Item As Map
 	Radio.SetAttr("options", Options)
 	Radio.SetAttr("vertical", Vertical)
 	Return Radio.item
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixRadio
-	Radio.SetStyle(prop,val)
-	Return Me
 End Sub
 
 'add to form

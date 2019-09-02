@@ -24,6 +24,14 @@ Public Sub Initialize(sid As String) As WixImage
 	Return Me
 End Sub
 
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixImage
+	Image.SetStyle(prop,sval)
+	Return Me
+End Sub
+
+
 'set the parent
 Sub SetParent(p As WixElement) As WixImage
 	Parent = p
@@ -82,12 +90,6 @@ End Sub
 'set container
 Sub SetContainer(w As Object) As WixImage
 	Image.SetContainer(w)
-	Return Me
-End Sub
-
-'set css
-Sub SetStyle(prop As String, val As String) As WixImage
-	Image.SetStyle(prop,val)
 	Return Me
 End Sub
 

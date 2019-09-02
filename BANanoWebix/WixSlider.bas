@@ -23,9 +23,17 @@ Public Sub Initialize(iID As String) As WixSlider
 	Slider.SetValue(10)
 	Stepper = 1
 	Slider.SetAttr("title", "#value#")
-	parent = null
+	Parent = Null
 	Return Me
 End Sub
+
+
+'set css
+Sub SetStyle(prop As String, sval As String) As WixSlider
+	Slider.SetStyle(prop,sval)
+	Return Me
+End Sub
+
 
 'set the parent
 Sub SetParent(p As WixElement) As WixSlider
@@ -107,12 +115,6 @@ End Sub
 'set tooltip
 Sub SetTooltip(tt As String) As WixSlider
 	Slider.SetTooltip(tt)
-	Return Me
-End Sub
-
-'set style
-Sub SetStyle(prop As String, val As String) As WixSlider
-	Slider.SetStyle(prop,val)
 	Return Me
 End Sub
 
