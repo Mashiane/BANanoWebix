@@ -2086,6 +2086,16 @@ Sub Export2Excel(eID As String)
 	webix.RunMethod("toExcel", Array(itm, opt))
 End Sub
 
+'export element to excel with options
+Sub Export2ExcelOptions(eID As String, options As Map)
+	eID = eID.ToLowerCase
+	'select the item
+	Dim itm As BANanoObject = Dollar.Selector(eID)
+	'execute the stuff
+	webix.RunMethod("toExcel", Array(itm, options))
+End Sub
+
+
 'export element to pdf
 Sub Export2PDF(eID As String)
 	eID = eID.ToLowerCase

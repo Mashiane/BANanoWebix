@@ -124,6 +124,7 @@ Sub Init()
 	pg.Hide("download")
 	pg.Hide("import")
 	pg.hide("cleardb")
+	pg.hide("foreignkeys")
 	'
 	Dim context, e As Object
 	pg.onBeforeDrop("tree", BANano.CallBack(Me,"beforedrop", Array(context,e)))
@@ -165,6 +166,71 @@ Sub cleardatabase(confirmresult As Boolean)
 		sqlite.GetResultSet(qry, res)
 	Next
 	RefreshTreeWait
+End Sub
+
+Sub foreignkeyregister
+	'generate a foreign key register
+	'select all fields
+	Dim sqlite As BANanoSQLite1
+	sqlite.Initialize
+	sqlite.SetDB(dbName)
+	'
+	Dim structure As StringBuilder
+	structure.initialize
+	Dim sLine As String = ""
+	'
+	Dim tables As SQLiteResultSet1 = sqlite.SelectAll("tables", Array("*"), Array("value"))
+	tables.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(tables)))
+	sLine = "TableName,PrimaryKey,FieldType,PrimaryKey"
+	structure.append("Tables").append(CRLF)
+	structure.append(sLine).append(CRLF)
+	For Each tbl As Map In tables.result
+		Dim svalue As String = tbl.Get("value")
+		Dim sjson As String = tbl.Get("json")
+		Dim tmap As Map = pg.Json2Map(sjson)
+		Dim sprimarykey As String = tmap.GetDefault("primarykey","")
+		Dim stype As String = tmap.GetDefault("type","")
+		Dim sautoincrement As String = tmap.GetDefault("autoincrement","")
+		
+		Dim tLine As List
+		tLine.initialize
+		tLine.AddAll(Array(svalue,sprimarykey,stype,sautoincrement))
+		sLine = pg.Join(",",  tLine)
+		structure.Append(sLine).append(CRLF)
+	Next
+	structure.append(CRLF)
+	structure.append("Fields").append(CRLF)
+	
+	Dim fields As SQLiteResultSet1 = sqlite.SelectAll("fields",Array("*"), Array("key"))
+	fields.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(fields)))
+	sLine = $"Key,TableName,FieldName,FieldType,FieldLength,TabIndex,View,ForeignTable,ForeignField,ForeignDisplayField"$
+	structure.append(sLine).append(CRLF)
+	
+	For Each fld As Map In fields.result
+		Dim skey As String = fld.Get("key")
+		Dim stablename As String = fld.Get("tablename")
+		Dim sjson As String = fld.get("json")
+		Dim svalue As String = fld.get("value")
+		'convert json to map
+		Dim jmap As Map = pg.Json2Map(sjson)
+		Dim stype As String = jmap.GetDefault("type","")
+		Dim sforeign_table As String = jmap.getdefault("foreign_table","")
+		Dim sforeign_key As String = jmap.getdefault("foreign_key","")
+		Dim sforeign_value As String = jmap.getdefault("foreign_value","")
+		Dim stype As String = jmap.get("type")
+		Dim sview As String = jmap.get("view")
+		Dim slength As String = jmap.get("length")
+		Dim stabindex As String = jmap.get("tabindex")
+		'
+		Dim lField As List
+		lField.Initialize
+		lField.AddAll(Array(skey,stablename,svalue,stype,slength,stabindex,sview,sforeign_table,sforeign_key,sforeign_value))
+		sLine = pg.Join(",",lField)
+		structure.Append(sLine).append(CRLF)
+	Next
+	'download the file
+	Dim fName As String = "structure.csv"
+	pg.SaveText2File(structure,fName)
 End Sub
 
 Sub importdb
@@ -292,24 +358,25 @@ Sub ImportSQLite(dbNameHere As String)
 			Dim showongrid As Boolean = True
 			Dim slength As String = pg.val(ftype)
 			ftype = pg.Alpha(ftype)
+			If ftype = "DECIMAL" Then ftype = "DOUBLE"
+			If ftype = "SMALLINT" Then ftype = "INT"
+			If ftype = "INTEGER" Then ftype = "INT"
+			If ftype = "TINYINT" Then ftype = "INT"
+			If ftype = "BOOLEAN" Then ftype = "BOOL"
+			If ftype = "VARCHAR" Then ftype = "STRING"
+			If ftype = "VARCHAR" Then ftype = "STRING"
+			If ftype = "NCHAR" Then ftype = "STRING"
+			If ftype = "TEXT" Then ftype = "STRING"
+			
 			Select Case ftype
-			Case "DOUBLE"
+				Case "DOUBLE"
 				form_format = "1,111.00"
 				grid_align = "right"
 				grid_format = "1,111.00"
 				grid_numberformat = "1,111.00"
 				ftype = "REAL"
 				grid_sort = "int"
-			Case "SMALLINT"
-				grid_sort = "int"
-				ftype = "INT"
-			Case "INTEGER"
-				grid_sort = "int"
-				ftype = "INT"
 			Case "INT"
-				grid_sort = "int"
-				ftype = "INT"
-			Case "TINYINT"
 				grid_sort = "int"
 				ftype = "INT"
 			Case "LONGTEXT"
@@ -318,10 +385,6 @@ Sub ImportSQLite(dbNameHere As String)
 				view = "textarea"
 				showongrid = ""
 			Case "BOOL"
-				ftype = "INT"
-				view = "switch"
-				grid_sort = "int"
-			Case "BOOLEAN"
 				ftype = "INT"
 				view = "switch"
 				grid_sort = "int"
@@ -2016,6 +2079,7 @@ Sub prop_saveWait
 			pg.Show("download")
 			pg.Show("import")
 			pg.Show("cleardb")
+			pg.show("foreignkeys")
 			sqlite.Initialize
 			sqlite.AddStrings(Array("id"))
 			'new connect record
@@ -2745,6 +2809,7 @@ Sub tree_clickwait(recid As String)
 	pg.Hide("propmenu")
 	pg.Hide("import")
 	pg.Hide("cleardb")
+	pg.Hide("foreignkeys")
 	lastTable = ""
 	Select Case prefix
 		Case "property"
@@ -2886,6 +2951,7 @@ Sub tree_clickwait(recid As String)
 			pg.Show("download")
 			pg.Show("import")
 			pg.Show("cleardb")
+			pg.Show("foreignkeys")
 			dConnection.BuildBag(pg, propBag)
 			'read settings from db
 			sqlite.Initialize
@@ -3155,6 +3221,7 @@ Sub sidebar_clickwait(meid As String)
 	pg.Hide("propmenu")
 	pg.hide("import")
 	pg.hide("cleardb")
+	pg.Hide("foreignkeys")
 	'
 	Select Case meid
 		Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"

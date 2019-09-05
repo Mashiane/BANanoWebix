@@ -23,6 +23,7 @@ Sub getPropertyBag As WixForm
 	tbl.CreateIcon("download").SetIcon("mdi mdi-cloud-download-outline").SetTooltip("Download source code").SetClick(BANano.CallBack(pgFD,"download",Null)).Pop
 	tbl.CreateIcon("cleardb").SetIcon("mdi mdi-database-remove").SetTooltip("Clear the database").SetClick(BANano.CallBack(pgFD,"cleardb",Null)).Pop
 	tbl.CreateIcon("import").SetIcon("mdi mdi-database-import").SetTooltip("Import database to schema").SetClick(BANano.CallBack(pgFD,"importdb",Null)).Pop
+	tbl.CreateIcon("foreignkeys").SetIcon("mdi mdi-key-outline").SetTooltip("Foreign Keys Register").SetClick(BANano.CallBack(pgFD,"foreignkeyregister",Null)).Pop
 	tbl.AddSpacer
 	tbl.CreateIcon("propadd").SetIcon("mdi mdi-plus-circle-outline").SetTooltip("Add").SetClick(BANano.CallBack(pgFD,"prop_add",Null)).Pop
 	tbl.CreateIcon("propsave").SetIcon("mdi mdi-content-save").SetTooltip("Save").SetClick(BANano.CallBack(pgFD,"prop_savewait",Null)).Pop

@@ -89,9 +89,26 @@ Sub Init(pgContainer As String)
 End Sub
 
 Sub export_excel(e As BANanoEvent)
-	pg.Export2Excel("grida")
+	Dim opt As WixExport
+	opt.Initialize(pg) 
+	opt.Name = "My Films"
+	opt.filename = "myfilms"
+	opt.SetIgnore(Array("year", "rank"))
+	pg.Export2ExcelOptions("grida", opt.ExportOptions)
 End Sub
 
+Sub export_excel1(e As BANanoEvent)
+	Dim opt As WixExport
+	opt.Initialize(pg) 
+	opt.Name = "My Films"
+	opt.filename = "myfilms"
+	opt.AddColumn("id", "#", 0, "", "", "number")
+	opt.AddColumn("title", "Title", 0, "", "", "string")
+	opt.AddColumn("votes", "Votes", 0, "#,##0.000", "", "number")
+	opt.AddColumn("rating", "Rating", 0, "0.00", "", "number")
+	pg.Export2ExcelOptions("grida", opt.ExportOptions)
+End Sub
+	
 
 Sub export_pdf(e As BANanoEvent)
 	pg.Export2pdf("grida")

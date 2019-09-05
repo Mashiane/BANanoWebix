@@ -143,16 +143,17 @@ Module85=WixPrint
 Module86=WixGeoChart
 Module87=WixSpacer
 Module88=WixProgressBar
+Module89=WixExport
 Module9=WixMessageBox
 NumberOfFiles=26
 NumberOfLibraries=3
-NumberOfModules=88
-Version=7.51
+NumberOfModules=89
+Version=7.78
 @EndOfDesignText@
  #Region Project Attributes 
  	#MergeLibraries: True
 	#LibraryAuthor: Anele Mashy Mbanga
-	#LibraryVersion: 2.23
+	#LibraryVersion: 2.24
 	#LibraryName: BANanoWebix
 #End Region
 
@@ -165,7 +166,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'initialize banano for first use
 	BANano.Initialize("BANano", "BANanoWebix",DateTime.Now)
 	BANano.TranspilerOptions.UseServiceWorker = False
-	BANano.BuildAsB4XLib("2.23")
+	BANano.BuildAsB4XLib("2.24")
 	ExitApplication
 End Sub
 
