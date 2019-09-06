@@ -37,6 +37,7 @@ Sub Process_Globals
 	Private sstrings As String
 	Private sdoubles As String
 	Private sbooleans As String
+	Private uploading As String
 End Sub
 
 Sub Init()
@@ -92,7 +93,7 @@ Sub Init()
 	
 	'
 	propBag.Initialize("propbag").SetWidth(400).setnamewidth(150).SetScroll(True)
-	Dim frm As WixForm = modPropertyBag.getPropertyBag
+	Dim frm As WixForm = modPropertyBag.getPropertyBag(pg)
 	R2.AddColumns(frm.Item)
 	R2.CreateResizer("").AddToColumns(R2.Row)
 	'
@@ -122,9 +123,6 @@ Sub Init()
 	pg.Hide("add_column")
 	pg.Hide("add_fields")
 	pg.Hide("download")
-	pg.Hide("import")
-	pg.hide("cleardb")
-	pg.hide("foreignkeys")
 	'
 	Dim context, e As Object
 	pg.onBeforeDrop("tree", BANano.CallBack(Me,"beforedrop", Array(context,e)))
@@ -143,6 +141,21 @@ Sub Init()
 	'
 	'start hints
 	'pg.StartHint(hints)
+End Sub
+
+Sub databaseMenu(arguements As String)
+	Select Case arguements
+	Case "cleardb"
+		cleardb
+	Case "importdb"
+		importdb
+	Case "foreignkeyregister"
+		foreignkeyregister
+	Case "importfd"
+		importfd
+	Case "importfk"
+		importfk
+	End Select
 End Sub
 
 Sub cleardb
@@ -233,6 +246,41 @@ Sub foreignkeyregister
 	pg.SaveText2File(structure,fName)
 End Sub
 
+Sub importfk
+	'is the database connection saved
+	Dim sqlite As BANanoSQLite
+	sqlite.Initialize
+	sqlite.AddStrings(Array("id"))
+	Dim qry As String = sqlite.Exists("connect", "id", "connection")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	If rs.result.Size = 0 Then
+		pg.Warn("Database Error", "The database properties have not been saved!")
+		Return
+	End If
+	uploading = "fk"
+	'when a photo is selected, show file dialog
+	pg.FileDialog("upload", Null)
+End Sub
+
+
+Sub importfd
+	'is the database connection saved
+	Dim sqlite As BANanoSQLite
+	sqlite.Initialize
+	sqlite.AddStrings(Array("id"))
+	Dim qry As String = sqlite.Exists("connect", "id", "connection")
+	Dim res As String = BANano.CallInlinePHPWait("BANanoSQLite", CreateMap("dbname": dbName, "data": qry))
+	Dim rs As SQLiteResultSet = sqlite.GetResultSet(qry,res)
+	If rs.result.Size = 0 Then
+		pg.Warn("Database Error", "The database properties have not been saved!")
+		Return
+	End If
+	uploading = "fd"
+	'when a photo is selected, show file dialog
+	pg.FileDialog("upload", Null)
+End Sub
+
 Sub importdb
 	'is the database connection saved
 	Dim sqlite As BANanoSQLite
@@ -245,7 +293,7 @@ Sub importdb
 		pg.Warn("Database Error", "The database properties have not been saved!")
 		Return
 	End If
-	
+	uploading = "db"
 	'when a photo is selected, show file dialog
 	pg.FileDialog("upload", Null)
 End Sub
@@ -258,11 +306,120 @@ Sub onFileUpload(ffile As BANanoObject)
 	Case "success", "server"
 		'get the file name
 		Dim fname As String = ffile.GetField("name").Result
-		ImportSQLite(fname)
+		Select Case uploading
+		Case "db"
+			ImportSQLite(fname)
+		Case "fd"
+			'field descriptions
+			ImportFieldDescriptions(fname)
+		Case "fk"
+			ImportForeignKeys(fname)
+		End Select	
 	Case Else
 		pg.Alert("Error during file upload!")
 	End Select
 End Sub
+
+Sub ImportFieldDescriptions(dbNameHere As String)
+	'process on the current db
+	Dim currDB As BANanoSQLite1
+	currDB.initialize
+	currDB.SetDB(dbName)
+	
+	'file is imported to assets folder
+	Dim fname As String = $"./assets/${dbNameHere}"$
+	'
+	Dim pbx As WixProgressBar
+	pbx.Initialize("").SetTypeIcon("")
+	pg.SetProgressBar("propbag", pbx)
+	'read the file contents
+	Dim fileContents As String = BANano.callinlinephpwait("ReadTextFile", CreateMap("sPath":fname))
+	Dim lines() As String = BANano.split(CRLF, fileContents)
+	Dim lineTot As Int = lines.Length - 1
+	Dim lineCnt As Int = 0
+	For lineCnt = 1 To lineTot
+		Dim strLine As String = lines(lineCnt)
+		strLine = strLine.trim
+		If strLine.Length = 0 Then Continue
+		'
+		Dim tblName As String = pg.MvField(strLine,1,",")
+		Dim fldName As String = pg.MvField(strLine,2,",")
+		Dim fldDesc As String = pg.MvField(strLine,3,",")
+		'
+		Dim fldKey As String = $"field.${tblName}.${fldName}"$
+		fldKey = fldKey.tolowercase
+		'
+		'find it such a field exists
+		'get table names
+		Dim fld As SQLiteResultSet1 = currDB.Read("fields","key",fldKey)
+		fld.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", currDB.Build(fld)))
+		If fld.result.size > 0 Then
+			Dim dbrec As Map = fld.result.get(0)
+			Dim xjson As String = dbrec.get("json")
+			Dim jsonm As Map = pg.json2map(xjson)
+			jsonm.Put("description", fldDesc)
+			xjson = pg.Map2Json(jsonm)
+			'
+			Dim fldu As SQLiteResultSet1 = currDB.UpdateWhere("fields", CreateMap("json":xjson), CreateMap("key": fldKey))
+			fldu.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", currDB.Build(fldu)))
+		End If
+	Next
+	
+	pg.UnsetProgressBar("propbag")
+	pg.Inform("Field Descriptions", "The field descriptions have been imported!")
+End Sub
+
+Sub ImportForeignKeys(dbNameHere As String)
+	'process on the current db
+	Dim currDB As BANanoSQLite1
+	currDB.initialize
+	currDB.SetDB(dbName)
+	
+	'file is imported to assets folder
+	Dim fname As String = $"./assets/${dbNameHere}"$
+	'
+	Dim pbx As WixProgressBar
+	pbx.Initialize("").SetTypeIcon("")
+	pg.SetProgressBar("propbag", pbx)
+	'read the file contents
+	Dim fileContents As String = BANano.callinlinephpwait("ReadTextFile", CreateMap("sPath":fname))
+	Dim lines() As String = BANano.split(CRLF, fileContents)
+	Dim lineTot As Int = lines.Length - 1
+	Dim lineCnt As Int = 0
+	For lineCnt = 1 To lineTot
+		Dim strLine As String = lines(lineCnt)
+		strLine = strLine.trim
+		If strLine.Length = 0 Then Continue
+		'
+		Dim tblName As String = pg.MvField(strLine,1,",")
+		Dim fldName As String = pg.MvField(strLine,2,",")
+		Dim fldDesc As String = pg.MvField(strLine,3,",")
+		'
+		Dim fldKey As String = $"field.${tblName}.${fldName}"$
+		fldKey = fldKey.tolowercase
+		'
+		'find it such a field exists
+		'get table names
+		Dim fld As SQLiteResultSet1 = currDB.Read("fields","key",fldKey)
+		fld.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", currDB.Build(fld)))
+		If fld.result.size > 0 Then
+			Dim dbrec As Map = fld.result.get(0)
+			Dim xjson As String = dbrec.get("json")
+			Dim jsonm As Map = pg.json2map(xjson)
+			jsonm.Put("description", fldDesc)
+			xjson = pg.Map2Json(jsonm)
+			'
+			Dim fldu As SQLiteResultSet1 = currDB.UpdateWhere("fields", CreateMap("json":xjson), CreateMap("key": fldKey))
+			fldu.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", currDB.Build(fldu)))
+		End If
+	Next
+	
+	pg.UnsetProgressBar("propbag")
+	pg.Inform("Field Descriptions", "The field descriptions have been imported!")
+End Sub
+
+
+
 
 Sub ImportSQLite(dbNameHere As String)
 	'process on the current db
@@ -2077,9 +2234,6 @@ Sub prop_saveWait
 			pg.collapse("preview")
 			pg.Expand("code")
 			pg.Show("download")
-			pg.Show("import")
-			pg.Show("cleardb")
-			pg.show("foreignkeys")
 			sqlite.Initialize
 			sqlite.AddStrings(Array("id"))
 			'new connect record
@@ -2807,9 +2961,6 @@ Sub tree_clickwait(recid As String)
 	pg.Hide("propdelete")
 	pg.Hide("download")
 	pg.Hide("propmenu")
-	pg.Hide("import")
-	pg.Hide("cleardb")
-	pg.Hide("foreignkeys")
 	lastTable = ""
 	Select Case prefix
 		Case "property"
@@ -2949,9 +3100,6 @@ Sub tree_clickwait(recid As String)
 			pg.collapse("preview")
 			pg.Expand("code")
 			pg.Show("download")
-			pg.Show("import")
-			pg.Show("cleardb")
-			pg.Show("foreignkeys")
 			dConnection.BuildBag(pg, propBag)
 			'read settings from db
 			sqlite.Initialize
@@ -3219,9 +3367,6 @@ Sub sidebar_clickwait(meid As String)
 	pg.Hide("propdelete")
 	pg.Hide("download")
 	pg.Hide("propmenu")
-	pg.hide("import")
-	pg.hide("cleardb")
-	pg.Hide("foreignkeys")
 	'
 	Select Case meid
 		Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"

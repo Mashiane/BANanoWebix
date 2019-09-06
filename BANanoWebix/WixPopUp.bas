@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Popup As WixElement
 	Public Parent As WixElement
+	Public Menu As WixMenu
 End Sub
 
 'Initializes the popup
@@ -16,6 +17,7 @@ Public Sub Initialize(sid As String) As WixPopUp
 	ID = sid.ToLowerCase
 	Popup.Initialize(ID).setview("popup")
 	Parent = Null
+	Menu.Initialize($"${ID}-menu"$) 
 	Return Me 
 End Sub
 
@@ -24,7 +26,6 @@ Sub SetParent(p As WixElement) As WixPopUp
 	Parent = p
 	Return Me
 End Sub
-
 
 'add tp columns of parent
 Sub Pop
@@ -118,6 +119,13 @@ End Sub
 
 'return the item
 Sub Item As Map
+	If Menu.HasContent Then
+		Menu.setautoheight(True)
+		Menu.SetSelect(True)
+		Popup.SetAttr("head", "Submenu")
+		Menu.SetLayout("y")
+		SetBody(Menu.Item)
+	End If
 	Return Popup.item
 End Sub
 

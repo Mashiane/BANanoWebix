@@ -10,7 +10,7 @@ Sub Process_Globals
 	Private propBag As WixProperty
 End Sub
 
-Sub getPropertyBag As WixForm
+Sub getPropertyBag(Page As WixPage) As WixForm
 	propBag = pgFD.propBag
 	Dim frm As WixForm
 	frm.Initialize("propform")
@@ -21,9 +21,18 @@ Sub getPropertyBag As WixForm
 	tbl.CreateIcon("add_column").SetIcon("mdi mdi-table-column-plus-after").SetTooltip("Add Column").SetClick(BANano.CallBack(pgFD,"add_column",Null)).Pop
 	tbl.CreateIcon("add_fields").SetIcon("mdi mdi-table-of-contents").SetTooltip("Add multiple fields").SetClick(BANano.CallBack(pgFD,"add_fields",Null)).Pop
 	tbl.CreateIcon("download").SetIcon("mdi mdi-cloud-download-outline").SetTooltip("Download source code").SetClick(BANano.CallBack(pgFD,"download",Null)).Pop
-	tbl.CreateIcon("cleardb").SetIcon("mdi mdi-database-remove").SetTooltip("Clear the database").SetClick(BANano.CallBack(pgFD,"cleardb",Null)).Pop
-	tbl.CreateIcon("import").SetIcon("mdi mdi-database-import").SetTooltip("Import database to schema").SetClick(BANano.CallBack(pgFD,"importdb",Null)).Pop
-	tbl.CreateIcon("foreignkeys").SetIcon("mdi mdi-key-outline").SetTooltip("Foreign Keys Register").SetClick(BANano.CallBack(pgFD,"foreignkeyregister",Null)).Pop
+	
+	Dim pmenu As WixPopUp
+	pmenu.Initialize("db_popup")
+	pmenu.Menu.OnItemClick(pgFD, "databaseMenu")
+	pmenu.Menu.AddItem("", "cleardb", "Clear the database","","mdi mdi-database-remove","","")
+	pmenu.Menu.AddItem("", "importdb", "Import database to schema","", "mdi mdi-database-import","","")
+	pmenu.Menu.AddItem("", "foreignkeyregister", "Foreign Keys Register","", "mdi mdi-key-outline", "", "")
+	pmenu.Menu.AddItem("", "importfd", "Import field descriptions", "", "mdi mdi-folder-key-network-outline","","")
+	pmenu.Menu.AddItem("", "importfk", "Import foreign keys","","mdi mdi-key-outline","","")
+	Page.UX(pmenu.item)
+	
+	tbl.CreateIcon("db").SetIcon("mdi mdi-database").SetTooltip("Database Operations").SetPopUp("db_popup").pop
 	tbl.AddSpacer
 	tbl.CreateIcon("propadd").SetIcon("mdi mdi-plus-circle-outline").SetTooltip("Add").SetClick(BANano.CallBack(pgFD,"prop_add",Null)).Pop
 	tbl.CreateIcon("propsave").SetIcon("mdi mdi-content-save").SetTooltip("Save").SetClick(BANano.CallBack(pgFD,"prop_savewait",Null)).Pop

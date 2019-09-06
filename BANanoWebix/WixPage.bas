@@ -854,7 +854,7 @@ End Sub
 'set locale
 Sub SetLocale(locale As String) As WixPage
 	Dim i18n As BANanoObject = webix.GetField("i18n")
-	i18n.RunMethod("setLocale", Array(locale))
+	i18n.SetField("setLocale", Array(locale))
 	Return Me
 End Sub
 
@@ -1247,6 +1247,12 @@ End Sub
 Sub OnItemDblClick(eid As String, cb As BANanoObject)
 	eid = eid.tolowercase
 	Dollar.Selector(eid).RunMethod("attachEvent",Array("onItemDblClick",cb))
+End Sub
+
+'attach an event to a bananoobject
+Sub OnItemDblClickBO(bo As BANanoObject, module As Object, methodName As String, params As List)
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, params)
+	bo.RunMethod("attachEvent",Array("onItemDblClick", cb))
 End Sub
 
 Sub OnKeyPress(eid As String, cb As BANanoObject)
@@ -1791,6 +1797,11 @@ End Sub
 Sub OnItemClick(eID As String, cb As BANanoObject)
 	eID = eID.tolowercase
 	Dollar.Selector(eID).RunMethod("attachEvent",Array("onItemClick",cb))
+End Sub
+
+Sub OnItemClickBO(bo As BANanoObject, module As Object, methodName As String, params As List)
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, params)
+	bo.RunMethod("attachEvent",Array("onItemClick",cb))
 End Sub
 
 Sub OnAfterEditStart(eID As String, cb As BANanoObject)

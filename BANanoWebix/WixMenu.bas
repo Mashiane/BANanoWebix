@@ -12,12 +12,15 @@ Sub Class_Globals
 	Private Items As List
 	Private sepCount As Int
 	Public Parent As WixElement
+	Public HasContent As Boolean
+	Private BANano As BANano  'ignore
 End Sub
 
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixMenu
 	Menu.SetStyle(prop,sval)
+	HasContent = True
 	Return Me
 End Sub
 
@@ -30,12 +33,14 @@ Public Sub Initialize(iID As String) As WixMenu
 	Items.Initialize
 	sepCount = 0
 	Parent = Null
+	HasContent = False
 	Return Me
 End Sub
 
 'set the parent
 Sub SetParent(p As WixElement) As WixMenu
 	Parent = p
+	HasContent = True
 	Return Me
 End Sub
 
@@ -46,6 +51,7 @@ End Sub
 
 'use a map object
 Sub SetMap(m As Map) As WixMenu
+	HasContent = True
 	For Each strKey As String In m.Keys
 		Dim strVal As String = m.Get(strKey)
 		Menu.SetAttr(strKey,	strVal)
@@ -55,6 +61,7 @@ End Sub
 
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixMenu
+	HasContent = True
 	h.SetImportant(False)
 	Dim os As String = h.HTML
 	Menu.SetTemplate(os)
@@ -63,18 +70,21 @@ End Sub
 
 'set name
 Sub SetName(n As String) As WixMenu
+	HasContent = True
 	Menu.SetName(n)
 	Return Me
 End Sub
 
 'set reponsive
 Sub SetResponsive(b As Object) As WixMenu
+	HasContent = True
 	Menu.SetResponsive(b)
 	Return Me
 End Sub
 
 'set reponsivecell
 Sub SetResponsiveCell(b As Object) As WixMenu
+	HasContent = True
 	Menu.SetResponsiveCell(b)
 	Return Me
 End Sub
@@ -82,60 +92,70 @@ End Sub
 
 'set min width
 Sub SetMinWidth(w As Int) As WixMenu
+	HasContent = True
 	Menu.SetMinWidth(w)
 	Return Me
 End Sub
 
 'set minheight
 Sub SetMinHeight(h As Int) As WixMenu
+	HasContent = True
 	Menu.SetMinHeight(h)
 	Return Me
 End Sub
 
 ' set menu pos right
 Sub SetSubMenuPosRight(r As String) As WixMenu   'ignore
+	HasContent = True
 	Menu.SetAttr("subMenuPos", "right")
 	Return Me
 End Sub
 
 'set item subsign
 Sub SetItemSubSign(b As Boolean) As WixMenu
+	HasContent = True
 	typeof.Put("subsign", b)
 	Return Me
 End Sub
 
 'set tooltip
 Sub SetTooltip(tt As String) As WixMenu
+	HasContent = True
 	Menu.SetTooltip(tt)
 	Return Me
 End Sub
 
 'set height
 Sub SetHeight(h As Object) As WixMenu
+	HasContent = True
 	Menu.SetAttr("height", h)
 	Return Me
 End Sub
 
 'set width
 Sub SetWidth(w As Object) As WixMenu
+	HasContent = True
 	Menu.SetAttr("width", w)
 	Return Me
 End Sub
 
 'set layout y
 Sub SetLayoutY(r As String) As WixMenu  'ignore
+	HasContent = True
 	Menu.SetAttr("layout", "y")
 	Return Me
 End Sub
 
 'set auto width
 Sub SetAutoWidth(b As Boolean) As WixMenu
+	HasContent = True
 	Menu.SetAttr("autowidth", b)
 	Return Me
 End Sub
 
 'add item
 Sub AddItem(parentID As String, meID As String, mValue As String, mhref As String, mIcon As String, badge As String, target As String) As WixMenu
+	HasContent = True
 	parentID = parentID.tolowercase
 	meID = meID.tolowercase
 	Dim mitem As Map = CreateMap()
@@ -151,6 +171,7 @@ Sub AddItem(parentID As String, meID As String, mValue As String, mhref As Strin
 End Sub
 
 Sub AddSeparator(parentID As String) As WixMenu
+	HasContent = True
 	parentID = parentID.tolowercase
 	sepCount = sepCount + 1
 	sepCount = sepCount & ""
@@ -180,11 +201,13 @@ End Sub
 
 'set select
 Sub SetSelect(b As Object) As WixMenu
-	Menu.SetAttr("select", b) 
+	HasContent = True
+	Menu.SetAttr("select", b)
 	Return Me
 End Sub
 
 Sub SetData(d As List) As WixMenu
+	HasContent = True
 	Menu.SetAttr("data", d)
 	Return Me
 End Sub
@@ -206,157 +229,195 @@ Sub AddToElements(P As WixElement)
 End Sub
 
 Sub SetAnimate(animate As Boolean) As WixMenu
+	HasContent = True
 	Menu.SetAttr("animate", animate)
 	Return Me
 End Sub
 
 Sub SetAutoheight(autoheight As Boolean) As WixMenu
+	HasContent = True
 	Menu.SetAttr("autoheight", autoheight)
 	Return Me
 End Sub
 
 Sub SetBorderless(borderless As Boolean) As WixMenu
-Menu.SetAttr("borderless", borderless)
+	HasContent = True
+	Menu.SetAttr("borderless", borderless)
 Return Me
 End Sub
 
+Sub OnItemClick(module As Object, methodName As String) As WixMenu
+	Dim menuID As String
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(menuID))
+	Menu.OnItemClick(cb)
+	Return Me
+End Sub
+
 Sub SetClick(click As Object) As WixMenu
-Menu.SetAttr("click", click)
+	HasContent = True
+	Menu.SetAttr("click", click)
 Return Me
 End Sub
 
 Sub SetClipboard(clipboard As Object) As WixMenu
-Menu.SetAttr("clipboard", clipboard)
+	HasContent = True
+	Menu.SetAttr("clipboard", clipboard)
 Return Me
 End Sub
 
 Sub SetContainer(container As Object) As WixMenu
-Menu.SetAttr("container", container)
+	HasContent = True
+	Menu.SetAttr("container", container)
 Return Me
 End Sub
 
 Sub SetCss(css As Object) As WixMenu
-Menu.SetAttr("css", css)
+	HasContent = True
+	Menu.SetAttr("css", css)
 Return Me
 End Sub
 
 Sub SetDatathrottle(datathrottle As Object) As WixMenu
-Menu.SetAttr("datathrottle", datathrottle)
+	HasContent = True
+	Menu.SetAttr("datathrottle", datathrottle)
 Return Me
 End Sub
 
 Sub SetDisabled(disabled As Boolean) As WixMenu
-Menu.SetAttr("disabled", disabled)
+	HasContent = True
+	Menu.SetAttr("disabled", disabled)
 Return Me
 End Sub
 
 Sub SetExternalData(externalData As Object) As WixMenu
-Menu.SetAttr("externalData", externalData)
+	HasContent = True
+	Menu.SetAttr("externalData", externalData)
 Return Me
 End Sub
 
 Sub SetGravity(gravity As Object) As WixMenu
-Menu.SetAttr("gravity", gravity)
+	HasContent = True
+	Menu.SetAttr("gravity", gravity)
 Return Me
 End Sub
 
 Sub SetHidden(hidden As Boolean) As WixMenu
-Menu.SetAttr("hidden", hidden)
+	HasContent = True
+	Menu.SetAttr("hidden", hidden)
 Return Me
 End Sub
 
 Sub SetLayout(layout As Object) As WixMenu
-Menu.SetAttr("layout", layout)
+	HasContent = True
+	Menu.SetAttr("layout", layout)
 Return Me
 End Sub
 
 Sub SetMaxHeight(maxHeight As Object) As WixMenu
-Menu.SetAttr("maxHeight", maxHeight)
+	HasContent = True
+	Menu.SetAttr("maxHeight", maxHeight)
 Return Me
 End Sub
 
 Sub SetMaxWidth(maxWidth As Object) As WixMenu
-Menu.SetAttr("maxWidth", maxWidth)
+	HasContent = True
+	Menu.SetAttr("maxWidth", maxWidth)
 Return Me
 End Sub
 
 Sub SetMultiselect(multiselect As Boolean) As WixMenu
-Menu.SetAttr("multiselect", multiselect)
+	HasContent = True
+	Menu.SetAttr("multiselect", multiselect)
 Return Me
 End Sub
 
 Sub SetNavigation(navigation As Boolean) As WixMenu
+	HasContent = True
 Menu.SetAttr("navigation", navigation)
 Return Me
 End Sub
 
 Sub SetPager(pager As Object) As WixMenu
-Menu.SetAttr("pager", pager)
+	HasContent = True
+	Menu.SetAttr("pager", pager)
 Return Me
 End Sub
 
 Sub SetReady(ready As Object) As WixMenu
-Menu.SetAttr("ready", ready)
+	HasContent = True
+	Menu.SetAttr("ready", ready)
 Return Me
 End Sub
 
 Sub SetRemoveMissed(removeMissed As Boolean) As WixMenu
-Menu.SetAttr("removeMissed", removeMissed)
+	HasContent = True
+	Menu.SetAttr("removeMissed", removeMissed)
 Return Me
 End Sub
 
 Sub SetSave(save As Object) As WixMenu
-Menu.SetAttr("save", save)
+	HasContent = True
+	Menu.SetAttr("save", save)
 Return Me
 End Sub
 
 Sub SetScheme(scheme As Object) As WixMenu
-Menu.SetAttr("scheme", scheme)
+	HasContent = True
+	Menu.SetAttr("scheme", scheme)
 Return Me
 End Sub
 
 Sub SetScrollSpeed(scrollSpeed As Object) As WixMenu
-Menu.SetAttr("scrollSpeed", scrollSpeed)
+	HasContent = True
+	Menu.SetAttr("scrollSpeed", scrollSpeed)
 Return Me
 End Sub
 
 Sub SetScroll(scroll As Object) As WixMenu
-Menu.SetAttr("scroll", scroll)
+	HasContent = True
+	Menu.SetAttr("scroll", scroll)
 Return Me
 End Sub
 
 
 Sub SetSubMenuPos(subMenuPos As Object) As WixMenu
-Menu.SetAttr("subMenuPos", subMenuPos)
+	HasContent = True
+	Menu.SetAttr("subMenuPos", subMenuPos)
 Return Me
 End Sub
 
 Sub SetSubmenuConfig(submenuConfig As Object) As WixMenu
-Menu.SetAttr("submenuConfig", submenuConfig)
+	HasContent = True
+	Menu.SetAttr("submenuConfig", submenuConfig)
 Return Me
 End Sub
 
 Sub SetTemplate(template As Object) As WixMenu
-Menu.SetAttr("template", template)
+	HasContent = True
+	Menu.SetAttr("template", template)
 Return Me
 End Sub
 
 Sub SetType(sType As Boolean) As WixMenu
-Menu.SetAttr("type", sType)
+	HasContent = True
+	Menu.SetAttr("type", sType)
 Return Me
 End Sub
 
 Sub SetUrl(url As Object) As WixMenu
-Menu.SetAttr("url", url)
+	HasContent = True
+	Menu.SetAttr("url", url)
 Return Me
 End Sub
 
 Sub SetXCount(xCount As Object) As WixMenu
-Menu.SetAttr("xCount", xCount)
+	HasContent = True
+	Menu.SetAttr("xCount", xCount)
 Return Me
 End Sub
 
 Sub SetYCount(yCount As Object) As WixMenu
-Menu.SetAttr("yCount", yCount)
+	HasContent = True
+	Menu.SetAttr("yCount", yCount)
 Return Me
 End Sub
