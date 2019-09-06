@@ -378,7 +378,7 @@ Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
-Module1=modPropertyBag
+Module1=pgFD
 Module10=dDataField
 Module100=dVideo
 Module101=dUnitList
@@ -402,7 +402,7 @@ Module16=modToolBar
 Module17=pgCarSales
 Module18=pgComments
 Module19=pgMaster
-Module2=pgFD
+Module2=dField
 Module20=pgCharts
 Module21=pgContext
 Module22=pgDataEntry
@@ -413,7 +413,7 @@ Module26=pgFlexLayout
 Module27=pgForms
 Module28=pgForms1
 Module29=pgFormValidation
-Module3=pgLesson8_3
+Module3=modPropertyBag
 Module30=pgGoogleMap
 Module31=pgGroupList
 Module32=pgLayout
@@ -424,7 +424,7 @@ Module36=pgList
 Module37=pgMessageBoxes
 Module38=pgMultiView
 Module39=pgMultiView2
-Module4=dField
+Module4=pgLesson8_3
 Module40=pgMultiView3
 Module41=pgMultiView4
 Module42=pgPropertySheet
@@ -571,15 +571,9 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 	Return True
 End Sub
 
-#if php
-	function ReadTextFile($sPath){
-		$file = file_get_contents($sPath);
-		echo $file;
-	} 
-#End If
 
 Sub BANano_Ready()
-	modSideBar.Version = "2.23"
+	modSideBar.Version = "2.25"
 	dbName = $"${AppName}.db"$
 	Dim sqlite As BANanoSQLite
 	sqlite.Initialize

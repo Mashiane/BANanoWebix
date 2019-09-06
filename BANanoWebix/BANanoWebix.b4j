@@ -153,7 +153,7 @@ Version=7.78
  #Region Project Attributes 
  	#MergeLibraries: True
 	#LibraryAuthor: Anele Mashy Mbanga
-	#LibraryVersion: 2.24
+	#LibraryVersion: 2.25
 	#LibraryName: BANanoWebix
 #End Region
 
@@ -166,7 +166,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'initialize banano for first use
 	BANano.Initialize("BANano", "BANanoWebix",DateTime.Now)
 	BANano.TranspilerOptions.UseServiceWorker = False
-	BANano.BuildAsB4XLib("2.24")
+	BANano.BuildAsB4XLib("2.25")
 	ExitApplication
 End Sub
 

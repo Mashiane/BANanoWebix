@@ -854,7 +854,7 @@ End Sub
 'set locale
 Sub SetLocale(locale As String) As WixPage
 	Dim i18n As BANanoObject = webix.GetField("i18n")
-	i18n.SetField("setLocale", Array(locale))
+	i18n.RunMethod("setLocale", Array(locale))
 	Return Me
 End Sub
 

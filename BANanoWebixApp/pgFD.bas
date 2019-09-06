@@ -48,7 +48,6 @@ Sub Init()
 	dbName = Main.dbname
 	'create page
 	pg.Initialize("wp", "body").SetTypeSpace("").SetResponsive(True).SetAppName(Main.AppName)
-	
 	' create the toolbar for the page
 	'
 	Dim tblBar As WixToolBar = modToolBar.getToolBar
@@ -216,7 +215,7 @@ Sub foreignkeyregister
 	
 	Dim fields As SQLiteResultSet1 = sqlite.SelectAll("fields",Array("*"), Array("key"))
 	fields.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(fields)))
-	sLine = $"Key,TableName,FieldName,FieldType,FieldLength,TabIndex,View,ForeignTable,ForeignField,ForeignDisplayField"$
+	sLine = $"Key,TableName,FieldName,Description,FieldType,FieldLength,TabIndex,View,ForeignTable,ForeignField,ForeignDisplayField"$
 	structure.append(sLine).append(CRLF)
 	
 	For Each fld As Map In fields.result
@@ -234,10 +233,11 @@ Sub foreignkeyregister
 		Dim sview As String = jmap.get("view")
 		Dim slength As String = jmap.get("length")
 		Dim stabindex As String = jmap.get("tabindex")
+		Dim sdescription As String = jmap.Get("description")
 		'
 		Dim lField As List
 		lField.Initialize
-		lField.AddAll(Array(skey,stablename,svalue,stype,slength,stabindex,sview,sforeign_table,sforeign_key,sforeign_value))
+		lField.AddAll(Array(skey,stablename,svalue,sdescription,stype,slength,stabindex,sview,sforeign_table,sforeign_key,sforeign_value))
 		sLine = pg.Join(",",lField)
 		structure.Append(sLine).append(CRLF)
 	Next
@@ -333,7 +333,7 @@ Sub ImportFieldDescriptions(dbNameHere As String)
 	pbx.Initialize("").SetTypeIcon("")
 	pg.SetProgressBar("propbag", pbx)
 	'read the file contents
-	Dim fileContents As String = BANano.callinlinephpwait("ReadTextFile", CreateMap("sPath":fname))
+	Dim fileContents As String = BANano.callinlinephpwait("GetFile", CreateMap("fileName":fname))
 	Dim lines() As String = BANano.split(CRLF, fileContents)
 	Dim lineTot As Int = lines.Length - 1
 	Dim lineCnt As Int = 0
@@ -382,7 +382,7 @@ Sub ImportForeignKeys(dbNameHere As String)
 	pbx.Initialize("").SetTypeIcon("")
 	pg.SetProgressBar("propbag", pbx)
 	'read the file contents
-	Dim fileContents As String = BANano.callinlinephpwait("ReadTextFile", CreateMap("sPath":fname))
+	Dim fileContents As String = BANano.callinlinephpwait("GetFile", CreateMap("fileName":fname))
 	Dim lines() As String = BANano.split(CRLF, fileContents)
 	Dim lineTot As Int = lines.Length - 1
 	Dim lineCnt As Int = 0
@@ -393,7 +393,9 @@ Sub ImportForeignKeys(dbNameHere As String)
 		'
 		Dim tblName As String = pg.MvField(strLine,1,",")
 		Dim fldName As String = pg.MvField(strLine,2,",")
-		Dim fldDesc As String = pg.MvField(strLine,3,",")
+		Dim foreTBL As String = pg.MvField(strLine,3,",")
+		Dim foreFLD As String = pg.MvField(strLine,4,",")
+		Dim foreDSP As String = pg.MvField(strLine,5,",")
 		'
 		Dim fldKey As String = $"field.${tblName}.${fldName}"$
 		fldKey = fldKey.tolowercase
@@ -406,7 +408,11 @@ Sub ImportForeignKeys(dbNameHere As String)
 			Dim dbrec As Map = fld.result.get(0)
 			Dim xjson As String = dbrec.get("json")
 			Dim jsonm As Map = pg.json2map(xjson)
-			jsonm.Put("description", fldDesc)
+			
+			jsonm.Put("foreign_table",foreTBL)
+			jsonm.Put("foreign_key",foreFLD)
+			jsonm.Put("foreign_value",foreDSP)
+			jsonm.put("view", "select")
 			xjson = pg.Map2Json(jsonm)
 			'
 			Dim fldu As SQLiteResultSet1 = currDB.UpdateWhere("fields", CreateMap("json":xjson), CreateMap("key": fldKey))
@@ -415,7 +421,7 @@ Sub ImportForeignKeys(dbNameHere As String)
 	Next
 	
 	pg.UnsetProgressBar("propbag")
-	pg.Inform("Field Descriptions", "The field descriptions have been imported!")
+	pg.Inform("Field Foreign Keys", "The field foreign keys have been imported!")
 End Sub
 
 
@@ -1186,6 +1192,9 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 		
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
+	'
+	'process switches and checkboxes
+	
 	
 	If hasForeign Then
 		sb.append(CRLF)
