@@ -346,6 +346,10 @@ Sub ImportFieldDescriptions(dbNameHere As String)
 		Dim fldName As String = pg.MvField(strLine,2,",")
 		Dim fldDesc As String = pg.MvField(strLine,3,",")
 		'
+		tblName = tblName.trim
+		fldName = fldName.trim
+		fldDesc = fldDesc.trim
+		'
 		Dim fldKey As String = $"field.${tblName}.${fldName}"$
 		fldKey = fldKey.tolowercase
 		'
@@ -397,6 +401,12 @@ Sub ImportForeignKeys(dbNameHere As String)
 		Dim foreFLD As String = pg.MvField(strLine,4,",")
 		Dim foreDSP As String = pg.MvField(strLine,5,",")
 		'
+		tblName = tblName.trim
+		fldName = fldName.trim
+		foreTBL = foreTBL.trim
+		foreFLD = foreFLD.Trim
+		foreDSP = foreDSP.trim
+		'
 		Dim fldKey As String = $"field.${tblName}.${fldName}"$
 		fldKey = fldKey.tolowercase
 		'
@@ -417,6 +427,48 @@ Sub ImportForeignKeys(dbNameHere As String)
 			'
 			Dim fldu As SQLiteResultSet1 = currDB.UpdateWhere("fields", CreateMap("json":xjson), CreateMap("key": fldKey))
 			fldu.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", currDB.Build(fldu)))
+		End If
+	Next
+	'
+	'STORE ALL FIELD DESCRIPTIONS
+	Dim allfields As Map = CreateMap()
+	Dim flds As SQLiteResultSet1 = currDB.SelectAll("fields",Array("*"), Array("id"))
+	flds.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", currDB.Build(flds)))
+	For Each fldx As Map In flds.result
+		Dim fKey As String = fldx.Get("key")
+		Dim xjson As String = fldx.get("json")
+		Dim jsonm As Map = pg.json2map(xjson)
+		Dim sdescription As String = jsonm.GetDefault("description","")
+		allfields.Put(fKey, sdescription)
+	Next
+	'
+	'fix the description of foreign key tables
+	Dim flds As SQLiteResultSet1 = currDB.SelectAll("fields",Array("*"), Array("id"))
+	flds.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", currDB.Build(flds)))
+	For Each fldx As Map In flds.result
+		Dim fKey As String = fldx.Get("key")
+		Dim xjson As String = fldx.get("json")
+		Dim jsonm As Map = pg.json2map(xjson)
+		Dim sforeign_table As String = jsonm.GetDefault("foreign_table","")
+		Dim sforeign_value As String = jsonm.GetDefault("foreign_value","")
+		'
+		Dim fTot As Int = 0
+		If sforeign_value.length > 0 Then fTot = fTot + 1
+		If sforeign_table.length > 0 Then fTot = fTot + 1
+		'
+		If fTot = 2 Then
+			'get the decription
+			Dim otherKey As String = $"field.${sforeign_table}.${sforeign_value}"$
+			otherKey = otherKey.tolowercase
+			'get the description
+			If allfields.ContainsKey(otherKey) Then
+				Dim sdescription As String = allfields.Get(otherKey)
+				jsonm.Put("description", sdescription)
+				xjson = pg.Map2Json(jsonm)
+				'update the db
+				Dim fldu As SQLiteResultSet1 = currDB.UpdateWhere("fields", CreateMap("json":xjson), CreateMap("key": fKey))
+				fldu.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", currDB.Build(fldu)))
+			End If
 		End If
 	Next
 	
@@ -1247,7 +1299,7 @@ Sub FormCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDesc
 	sb.append("Sub CreateForm As WixForm").append(CRLF)
 	sb.append($"dim form${tblName} As WixForm"$).append(CRLF)
 	sb.Append($"form${tblName}.Initialize("form${tblName}")
-	form${tblName}.SetWidth(700)
+	form${tblName}.SetWidth(500)
 	form${tblName}.SetScroll("y")
 	form${tblName}.SetName("form${tblName}")
 	form${tblName}.SetResponsive("true")
@@ -1340,7 +1392,12 @@ sb.append($"Sub Print${Capitalize(tblName)}_click
 	Page.Print("dt${tblName}",wp)
 End Sub"$).Append(CRLF).Append(CRLF)
 sb.Append($"Sub Export${Capitalize(tblName)}_click
-	Page.Export2Excel("dt${tblName}")
+Dim export As WixExport
+export.Initialize(Page)
+export.Name = Page.Capitalize("${tblName}")
+export.filename = "${tblName}"
+export.SetIgnore(Array("edit", "delete"))  
+Page.Export2ExcelOptions("dt${tblName}", export.ExportOptions) 
 End Sub"$).Append(CRLF).Append(CRLF)
 	Return sb.tostring
 End Sub
@@ -1357,6 +1414,8 @@ Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDesc
 	dt${tblName}.SetResizeColumn("true")
 	dt${tblName}.SetScroll("y")
 	dt${tblName}.SetSelect("row")
+	'set the pager to use
+	dt${tblName}.SetPager("pgr${tblName}")
 	'dt${tblName}.SetEditable(True)
 	'dt${tblName}.SetEditAction("custom")
 	'dt${tblName}.SetNavigation(True)
@@ -1491,6 +1550,20 @@ Sub AddShowPageCode(tblName As String,tblDescription As String) As String
 	Dim a As WixElement
 	a.Initialize("mv_${tblName}").SetTemplate("${Capitalize(tblDescription)}").SetTypeLine("")
 	'
+	Dim pager As WixPager
+	pager.Initialize("pgr${tblName}")
+	pager.SetSize(20)
+	pager.SetShowFirst(True)
+	pager.SetShowPrev(True)
+	pager.SetShowNext(True)
+	pager.SetShowLast(True)
+	pager.SetAnimate(True)
+	'
+	Dim r2c1 As WixLayout
+	r2c1.Initialize("r2c1")
+	r2c1.AddRows(CreateDataTable.item)
+	r2c1.AddRows(pager.item)
+		
 	Dim r1 As WixLayout
 	r1.Initialize("r1")
 	r1.AddRows(CreateToolBar.item)
@@ -1498,7 +1571,7 @@ Sub AddShowPageCode(tblName As String,tblDescription As String) As String
 	'
 	Dim r2 As WixLayout
 	r2.initialize("r2")
-	r2.AddColumns(CreateDataTable.item)
+	r2.AddColumns(r2c1.item)
 	r2.AddColumnsResizer("")
 	r2.AddColumns(CreateForm.item)
 	a.AddRows(r2.Item)
@@ -1635,7 +1708,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 	'
 	Dim sb As StringBuilder
 	sb.Initialize
-	sb.append($"Sub Process_Globals
+	sb.append($"#IgnoreWarnings:12\r\nSub Process_Globals
 	'
 	'adding the page on multiview
 	${tblName}.AddPage(pg, mv)
@@ -1644,7 +1717,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 	'
 	Private Page As WixPage
 	Private Mode As String
-	Private BANano As BANano"$).append(CRLF)
+	Private BANano As BANano    'ignore"$).append(CRLF)
 	'
 	If prjDBType = "BANanoSQL" Then
 		sb.append($"Private ${prjDBName} As BANanoSQL"$).append(CRLF)

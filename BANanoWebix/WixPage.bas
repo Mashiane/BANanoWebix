@@ -29,6 +29,15 @@ End Sub
 	}
 #end if
 
+
+Sub Capitalize(t As String) As String
+	Dim s , r , o As String
+	s = t.SubString2(0,1)
+	r = t.SubString2(1, t.Length)
+	o = s.ToUpperCase & r
+	Return o
+End Sub
+
 'get datasource serialize
 Sub DataSourceSerialize(ds As BANanoObject) As Object
 	Dim res As Object = ds.RunMethod("serialize", Array(True)).Result

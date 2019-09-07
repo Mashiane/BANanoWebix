@@ -9,7 +9,7 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Comments As WixElement
-	Private Users As List
+	Private CommentUsers As List
 	Private Data As List
 	Public USER_ACTIVE As String = "active"
 	Public USER_AWAY As String = "away"
@@ -30,7 +30,7 @@ End Sub
 Public Sub Initialize(sid As String) As WixComments
 	ID = sid.tolowercase
 	Comments.Initialize(ID).SetView("comments")
-	Users.Initialize 
+	CommentUsers.Initialize
 	Data.Initialize
 	Parent = Null
 	Return Me
@@ -114,7 +114,7 @@ Sub AddUser(uID As String, uName As String, uImage As String, uStatus As String)
 	u.Put("value", uName)
 	u.Put("image", uImage)
 	u.Put("status", uStatus)
-	Users.Add(u)
+	CommentUsers.Add(u)
 End Sub
 
 'set more

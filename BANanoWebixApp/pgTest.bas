@@ -18,7 +18,6 @@ Sub Cargar(pgContainer As String)
     'initialize the page and set the container to hold the widgets
     'add a header and set its label
     pg.Initialize("", pgContainer).SetResponsive(True)
-    pg.SetLocale("es-ES")
     
     Dim Formulario As WixForm
     Formulario.Initialize("Formulario").SetWidth(BANano.Window.InnerWidth-300)
