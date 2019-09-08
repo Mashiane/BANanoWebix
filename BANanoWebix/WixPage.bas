@@ -58,6 +58,12 @@ Sub GetPivotDataTable(pivotName As String) As BANanoObject
 	Return dt
 End Sub
 
+'pivot table collapseall
+Sub PivotTableCloseAll(pivotName As String)
+	Dim pvt As BANanoObject = GetPivotDataTable(pivotName)
+	pvt.RunMethod("closeAll", Null)
+End Sub
+
 'get datatable item
 Sub DataTableGetItem(dt As BANanoObject, itemID As Map) As Map
 	Dim gItem As Map = dt.RunMethod("getItem", Array(itemID)).result
