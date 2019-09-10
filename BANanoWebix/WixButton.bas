@@ -348,12 +348,18 @@ Button.SetAttr("maxWidth", maxWidth)
 Return Me
 End Sub
 
-Sub SetPlaceholder(placeholder As Object) As WixButton
-Button.SetAttr("placeholder", placeholder)
-Return Me
-End Sub
-
 Sub SetType(sType As Object) As WixButton
 Button.SetAttr("type", sType)
 Return Me
+End Sub
+
+Sub SetFAB(b As Boolean)
+	Button.SetStyle("border-radius","60px")
+	Button.SetStyle("font-size","60px")
+	Button.SetStyle("line-height","47px")
+	Button.SetWidth(60)
+	Button.SetHeight(60)
+	Button.SetStyle("position","fixed")
+	Button.SetStyle("bottom","1rem")
+	Button.SetStyle("right","1rem")
 End Sub

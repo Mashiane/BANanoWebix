@@ -16,7 +16,7 @@ Sub getCenter As WixAccordion
 	div.Initialize("previewit","div").SetStyle("width","100%").SetStyle("height","100%")
 	'
 	Dim cel As WixElement
-	cel.Initialize("codeit").SetTemplate("No Code").SetScroll("y")
+	cel.Initialize("codeit").SetTemplate("No Code").SetScroll("y").SetView("template")
 	'	
 	acc.AddItem("preview","Preview",div.html,False,False)
 	acc.AddItem("code","Source Code",cel.item,False,False)

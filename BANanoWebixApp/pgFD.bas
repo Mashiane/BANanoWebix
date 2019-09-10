@@ -1391,13 +1391,14 @@ sb.append($"Sub Print${Capitalize(tblName)}_click
 	wp.SetPaperA4(True)
 	Page.Print("dt${tblName}",wp)
 End Sub"$).Append(CRLF).Append(CRLF)
-sb.Append($"Sub Export${Capitalize(tblName)}_click
-Dim export As WixExport
-export.Initialize(Page)
-export.Name = Page.Capitalize("${tblName}")
-export.filename = "${tblName}"
-export.SetIgnore(Array("edit", "delete"))  
-Page.Export2ExcelOptions("dt${tblName}", export.ExportOptions) 
+
+	sb.Append($"Sub Export${Capitalize(tblName)}_click
+Dim ex As WixExport
+ex.Initialize(Page)
+ex.Name = Page.Capitalize("${tblName}")
+ex.filename = "${tblName}"
+ex.SetIgnore(Array("edit", "delete"))  
+Page.Export2ExcelOptions("dt${tblName}", ex.ExportOptions) 
 End Sub"$).Append(CRLF).Append(CRLF)
 	Return sb.tostring
 End Sub
@@ -1672,11 +1673,11 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 	sdoubles = pg.List2ArrayVariable(doubles)
 	sblobs = pg.List2ArrayVariable(blobs)
 	'
-	Log(sbooleans)
-	Log(sintegers)
-	Log(sstrings)
-	Log(sdoubles)
-	Log(sblobs)
+	'Log(sbooleans)
+	'Log(sintegers)
+	'Log(sstrings)
+	'Log(sdoubles)
+	'Log(sblobs)
 	'
 	If none > 0 Then
 		pg.Message_Debug("CreateTable: Warning - some fields are not marked in IsField?")
@@ -1708,7 +1709,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 	'
 	Dim sb As StringBuilder
 	sb.Initialize
-	sb.append($"#IgnoreWarnings:12\r\nSub Process_Globals
+	sb.append($"Sub Process_Globals
 	'
 	'adding the page on multiview
 	${tblName}.AddPage(pg, mv)
@@ -3011,15 +3012,21 @@ End Sub
 Sub SourceCodePreview(script As String)
 	lastcode = script
 	script = script.Replace(CRLF,"<br>")
-	Dim sb As StringBuilder
-	sb.Initialize
-	sb.Append("<pre>")
-	sb.Append(script)
-	sb.Append("</pre>")
+	Try
+		Dim sb As StringBuilder
+		sb.Initialize
+		sb.Append("<pre>")
+		sb.Append(script)
+		sb.Append("</pre>")
 	'
-	Dim scode As String = sb.tostring
-	pg.Define("codeit", CreateMap("template":scode))
-	pg.Refresh("codeit")
+		Dim scode As String = sb.tostring
+		Dim opt1 As Map = CreateMap("template": scode)
+				 
+		pg.Define("codeit", opt1)
+		pg.Refresh("codeit")
+	Catch
+		Log(LastException)
+	End Try
 End Sub
 
 Sub tree_clickwait(recid As String)

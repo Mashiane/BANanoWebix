@@ -142,7 +142,6 @@ Sub UpdateList()
             mFila.Put(Columnas(j), Celdas(j))
         Next
         lista.Add(mFila)
-		Log(mFila)
 	Next
 	fetch.End
 End Sub

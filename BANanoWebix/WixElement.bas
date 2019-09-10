@@ -23,6 +23,26 @@ Sub Class_Globals
 	Public ParentID As String
 End Sub
 
+Sub SetLeft(r As Object) As WixElement
+	SetAttr("left", r)
+	Return Me
+End Sub
+
+Sub SetTop(r As Object) As WixElement
+	SetAttr("top", r)
+	Return Me
+End Sub
+
+Sub SetRight(r As Object) As WixElement
+	SetAttr("right", r)
+	Return Me
+End Sub
+
+Sub SetBottom(r As Object) As WixElement
+	SetAttr("bottom", r)
+	Return Me
+End Sub
+
 Sub AddToList(target As List)
 	target.Add(Item)
 End Sub
@@ -32,7 +52,6 @@ Sub SetParent(p As Object) As WixElement
 	ParentID = p
 	Return Me
 End Sub
-
 
 Sub SetOpen(o As Object) As WixElement
 	SetAttr("open", o)

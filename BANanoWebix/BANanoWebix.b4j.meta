@@ -268,6 +268,6 @@ ModuleClosedNodes87=
 ModuleClosedNodes88=
 ModuleClosedNodes89=
 ModuleClosedNodes9=
-NavigationStack=WixPage,GetWixElement,76,0,Main,AppStart,17,0,Main,Application_Error,23,0,WixPage,SetLocale,863,0,WixPage,objectAsArray,826,0,WixPage,Capitalize,26,0,WixPage,Class_Globals,9,0,WixPage,BuildViews,854,0,WixPage,SetExtrasFolder,859,0
+NavigationStack=WixElement,SetHREF,56,0,WixElement,SetElementsConfigJSON,95,0,WixElement,SetSideBarImage,69,0,Main,Application_Error,23,0,WixButton,SetLabelPosition,28,0,WixButton,SetMaxHeight,336,0,WixButton,SetInputHeight,333,0,WixButton,SetType,348,0,WixButton,SetFAB,350,6,WixButton,SetMaxWidth,342,0,Main,AppStart,12,0
 SelectedBuild=0
 VisibleModules=
