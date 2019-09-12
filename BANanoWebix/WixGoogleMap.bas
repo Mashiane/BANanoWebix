@@ -18,6 +18,34 @@ Sub Class_Globals
 
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixGoogleMap
+	GoogleMap.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixGoogleMap
+	GoogleMap.SetMargin(margin)
+	Return Me
+End Sub
+
+
+Sub SetAttributes(m As Map) As WixGoogleMap
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		GoogleMap.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixGoogleMap
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		GoogleMap.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixGoogleMap

@@ -25,12 +25,40 @@ Public Sub Initialize(iID As String) As WixCombo
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixCombo
+	Combo.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixCombo
+	Combo.SetMargin(margin)
+	Return Me
+End Sub
+
 'set the parent
 Sub SetParent(p As WixElement) As WixCombo
 	Parent = p
 	Return Me
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixCombo
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Combo.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixCombo
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Combo.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'add tp columns of parent
 Sub Pop
@@ -288,11 +316,6 @@ End Sub
 
 Sub SetAnimate(animate As Boolean) As WixCombo
 	Combo.SetAttr("animate", animate)
-	Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixCombo
-	Combo.SetAttr("attributes", attributes)
 	Return Me
 End Sub
 

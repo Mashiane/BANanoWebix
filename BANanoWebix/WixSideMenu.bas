@@ -26,6 +26,21 @@ Public Sub Initialize(sid As String) As WixSideMenu
 	Return Me
 End Sub
 
+Sub SetAttributes(m As Map) As WixSideMenu
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		SideMenu.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixSideMenu
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		SideMenu.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixSideMenu

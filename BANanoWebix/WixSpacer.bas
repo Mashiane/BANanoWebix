@@ -26,6 +26,33 @@ Sub SetStyle(prop As String, sval As String) As WixSpacer
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixSpacer
+	Spacer.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixSpacer
+	Spacer.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixSpacer
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Spacer.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixSpacer
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Spacer.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set the parent
 Sub SetParent(p As WixElement) As WixSpacer

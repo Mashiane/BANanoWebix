@@ -24,14 +24,14 @@ Module1=pgIndex
 NumberOfFiles=7
 NumberOfLibraries=5
 NumberOfModules=1
-Version=7.51
+Version=7.8
 @EndOfDesignText@
  #Region Project Attributes 
 #End Region
 #IgnoreWarnings:15
 Sub Process_Globals
 	Public BANano As BANano 'ignore
-	Public AppName As String = "BANanoWebixApp"
+	Public AppName As String = "BANanoWebixDemo"
 	Private Publish As String
 	Private BP As BANanoPostProcessor
 	Private db As BANanoSQL

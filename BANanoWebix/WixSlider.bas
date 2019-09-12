@@ -27,6 +27,33 @@ Public Sub Initialize(iID As String) As WixSlider
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixSlider
+	Slider.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixSlider
+	Slider.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixSlider
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Slider.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixSlider
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Slider.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixSlider
@@ -221,11 +248,6 @@ End Sub
 
 Sub SetAnimate(animate As Boolean) As WixSlider
 	Slider.SetAttr("animate", animate)
-	Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixSlider
-	Slider.SetAttr("attributes", attributes)
 	Return Me
 End Sub
 

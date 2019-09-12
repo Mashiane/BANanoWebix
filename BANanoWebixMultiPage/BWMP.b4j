@@ -20,8 +20,8 @@ Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
-Module1=modSettings
-Module2=modCities
+Module1=modCities
+Module2=modSettings
 Module3=modPositions
 Module4=pgIndex
 Module5=modSideMenu
@@ -29,7 +29,7 @@ Module6=modClients
 NumberOfFiles=7
 NumberOfLibraries=5
 NumberOfModules=6
-Version=7.51
+Version=7.8
 @EndOfDesignText@
  #Region Project Attributes 
 #End Region

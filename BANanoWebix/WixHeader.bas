@@ -20,6 +20,22 @@ Sub SetStyle(prop As String, sval As String) As WixHeader
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixHeader
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Header.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixHeader
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Header.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'set tooltip
 Sub SetTooltip(tt As String) As WixHeader
 	Header.SetTooltip(tt)
@@ -48,6 +64,17 @@ End Sub
 
 Sub SetTemplate(t As Object) As WixHeader
 	Header.SetTemplate(t)
+	Return Me
+End Sub
+'set padding
+Sub SetPadding(padding As Object) As WixHeader
+	Header.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixHeader
+	Header.SetMargin(margin)
 	Return Me
 End Sub
 
@@ -101,6 +128,35 @@ Sub SetCSS(c As Object) As WixHeader
 	Return Me
 End Sub
 
+
+'set align right
+Sub SetAlignRight(r As String) As WixHeader 'ignore
+	Header.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixHeader 'ignore
+	Header.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixHeader 'ignore
+	Header.SetAlignleft("")
+	Return Me
+End Sub
+
+'set align
+Sub SetAlign(r As Object) As WixHeader 'ignore
+	Header.SetAlign(r)
+	Return Me
+End Sub
+
+Sub SetValue(value As Object) As WixHeader
+	Header.SetAttr("value", value)
+	Return Me
+End Sub
 
 'set min width
 Sub SetMinWidth(w As Int) As WixHeader

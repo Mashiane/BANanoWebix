@@ -20,6 +20,22 @@ Public Sub Initialize(iID As String) As WixLabel
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixLabel
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Label.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixLabel
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Label.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'set css
 Sub SetStyle(prop As String, sval As String) As WixLabel
 	Label.SetStyle(prop,sval)
@@ -100,6 +116,25 @@ End Sub
 'set tooltip
 Sub SetTooltip(tt As String) As WixLabel
 	Label.SetTooltip(tt)
+	Return Me
+End Sub
+
+
+'set template
+Sub SetTemplate(t As Object) As WixLabel
+	Label.SetTemplate(t)
+	Return Me
+End Sub
+
+'set padding
+Sub SetPadding(padding As Object) As WixLabel
+	Label.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixLabel
+	Label.SetMargin(margin)
 	Return Me
 End Sub
 

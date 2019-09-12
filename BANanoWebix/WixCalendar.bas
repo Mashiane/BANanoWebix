@@ -19,9 +19,36 @@ ID = sid.tolowercase
 Calendar.Initialize(ID).SetView("calendar")
 On.Initialize 
 	Parent = Null
-Return Me
+	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixCalendar
+	Calendar.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixCalendar
+	Calendar.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixCalendar
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Calendar.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixCalendar
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Calendar.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixCalendar

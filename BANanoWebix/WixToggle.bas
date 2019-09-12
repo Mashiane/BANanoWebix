@@ -20,6 +20,18 @@ Public Sub Initialize(bID As String) As WixToggle
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixToggle
+	Toggle.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixToggle
+	Toggle.SetMargin(margin)
+	Return Me
+End Sub
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)
@@ -31,6 +43,21 @@ Sub SetBadge(b As Object) As WixToggle
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixToggle
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Toggle.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixToggle
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Toggle.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixToggle

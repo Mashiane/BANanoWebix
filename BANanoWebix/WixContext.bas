@@ -29,6 +29,21 @@ Sub SetStyle(prop As String, sval As String) As WixContext
 	Return Me
 End Sub
 
+Sub SetAttributes(m As Map) As WixContext
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Context.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixContext
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Context.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set the parent
 Sub SetParent(p As WixElement) As WixContext

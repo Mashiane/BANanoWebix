@@ -19,6 +19,33 @@ Public Sub Initialize(iID As String) As WixSearch
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixSearch
+	Search.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixSearch
+	Search.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixSearch
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Search.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixSearch
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Search.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixSearch
@@ -234,11 +261,6 @@ End Sub
 
 Sub SetAnimate(animate As Boolean) As WixSearch
 	Search.SetAttr("animate", animate)
-	Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixSearch
-	Search.SetAttr("attributes", attributes)
 	Return Me
 End Sub
 

@@ -23,6 +23,23 @@ Sub Class_Globals
 	Public ParentID As String
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixElement
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixElement
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 Sub SetLeft(r As Object) As WixElement
 	SetAttr("left", r)
 	Return Me

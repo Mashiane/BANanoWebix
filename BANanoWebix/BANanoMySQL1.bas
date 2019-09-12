@@ -395,6 +395,7 @@ private Sub Join(delimiter As String, lst As List) As String
 	Return sb.ToString
 End Sub
 
+
 'read
 Sub Read(tblName As String, primaryKey As String, primaryValue As String) As MySQLResultSet1
 	Dim qw As Map = CreateMap()

@@ -20,6 +20,33 @@ Public Sub Initialize(iID As String) As WixResizer
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixResizer
+	Resizer.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixResizer
+	Resizer.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixResizer
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Resizer.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixResizer
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Resizer.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixResizer

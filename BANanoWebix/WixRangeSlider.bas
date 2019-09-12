@@ -20,6 +20,33 @@ Public Sub Initialize(iID As String) As WixRangeSlider
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixRangeSlider
+	RangeSlider.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixRangeSlider
+	RangeSlider.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixRangeSlider
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		RangeSlider.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixRangeSlider
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		RangeSlider.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixRangeSlider

@@ -22,6 +22,22 @@ Public Sub Initialize(sID As String) As WixSuggest
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixSuggest
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Suggest.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixSuggest
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Suggest.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'set css
 Sub SetStyle(prop As String, sval As String) As WixSuggest
 	Suggest.SetStyle(prop,sval)

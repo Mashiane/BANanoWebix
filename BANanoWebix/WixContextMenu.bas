@@ -30,6 +30,21 @@ Sub SetParent(p As WixElement) As WixContextMenu
 	Return Me
 End Sub
 
+Sub SetAttributes(m As Map) As WixContextMenu
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		ContextMenu.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixContextMenu
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		ContextMenu.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixContextMenu

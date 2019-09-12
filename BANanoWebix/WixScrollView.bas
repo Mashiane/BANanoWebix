@@ -26,6 +26,33 @@ Public Sub Initialize(sid As String) As WixScrollView
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixScrollView
+	ScrollView.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixScrollView
+	ScrollView.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixScrollView
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		ScrollView.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixScrollView
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		ScrollView.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixScrollView

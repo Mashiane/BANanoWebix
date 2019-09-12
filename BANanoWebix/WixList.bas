@@ -20,6 +20,33 @@ Sub SetParent(p As WixElement) As WixList
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixList
+	List.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixList
+	List.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixList
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		List.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixList
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		List.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixList

@@ -18,6 +18,29 @@ Sub Class_Globals
 
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixChart
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Chart.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixChart
+	Chart.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixChart
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Chart.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'set the parent
 Sub SetParent(p As WixElement) As WixChart
 	Parent = p

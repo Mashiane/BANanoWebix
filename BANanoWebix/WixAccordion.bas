@@ -20,6 +20,35 @@ Public Sub Initialize(sid As String) As WixAccordion
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixAccordion
+	Accordion.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixAccordion
+	Accordion.SetMargin(margin)
+	Return Me
+End Sub
+
+
+Sub SetAttributes(m As Map) As WixAccordion
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Accordion.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixAccordion
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Accordion.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'set the parent
 Sub SetParent(p As WixElement) As WixAccordion
 	Parent = p

@@ -18,7 +18,24 @@ Public Sub Initialize(sid As String) As WixPopUp
 	Popup.Initialize(ID).setview("popup")
 	Parent = Null
 	Menu.Initialize($"${ID}-menu"$) 
-	Return Me 
+	Return Me
+End Sub
+
+
+Sub SetAttributes(m As Map) As WixPopUp
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Popup.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixPopUp
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Popup.SetStyle(k,v)
+	Next
+	Return Me
 End Sub
 
 'set the parent
@@ -235,7 +252,13 @@ End Sub
 
 Sub SetPadding(padding As Object) As WixPopUp
 Popup.SetAttr("padding", padding)
-Return Me
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixPopUp
+	Popup.SetMargin(margin)
+	Return Me
 End Sub
 
 Sub SetPoint(point As Boolean) As WixPopUp

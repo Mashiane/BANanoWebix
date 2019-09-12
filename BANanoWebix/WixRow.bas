@@ -17,9 +17,24 @@ Public Sub Initialize(rID As String) As WixRow
 	ID = rID.tolowercase
 	Row.Initialize(ID)
 	Parent = Null
-	Return Me 
+	Return Me
 End Sub
 
+Sub SetAttributes(m As Map) As WixRow
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Row.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixRow
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Row.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixRow

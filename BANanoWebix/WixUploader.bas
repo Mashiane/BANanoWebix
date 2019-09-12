@@ -26,6 +26,17 @@ Sub SetValue(v As String) As WixUploader
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixUploader
+	Uploader.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixUploader
+	Uploader.SetMargin(margin)
+	Return Me
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixUploader
 	h.SetImportant(False)
@@ -34,6 +45,22 @@ Sub SetTemplateHTML(h As UOENowHTML) As WixUploader
 	Return Me
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixUploader
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Uploader.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixUploader
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Uploader.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 
 'set css

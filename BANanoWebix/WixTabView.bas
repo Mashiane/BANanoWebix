@@ -27,7 +27,21 @@ Sub SetParent(p As WixElement) As WixTabView
 	Return Me
 End Sub
 
+Sub SetAttributes(m As Map) As WixTabView
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		TabView.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
 
+Sub SetStyles(m As Map) As WixTabView
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		TabView.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixTabView
@@ -147,18 +161,18 @@ Sub AddToElements(P As WixElement)
 End Sub
 
 
-Sub SetAnimate(animate As Boolean) As WixTabview
-	Tabview.SetAttr("animate", animate)
+Sub SetAnimate(animate As Boolean) As WixTabView
+	TabView.SetAttr("animate", animate)
 	Return Me
 End Sub
 
-Sub SetBorderless(borderless As Boolean) As WixTabview
-	Tabview.SetAttr("borderless", borderless)
+Sub SetBorderless(borderless As Boolean) As WixTabView
+	TabView.SetAttr("borderless", borderless)
 	Return Me
 End Sub
 
-Sub SetCells(cells As Object) As WixTabview
-	Tabview.SetAttr("cells", cells)
+Sub SetCells(cells As Object) As WixTabView
+	TabView.SetAttr("cells", cells)
 	Return Me
 End Sub
 

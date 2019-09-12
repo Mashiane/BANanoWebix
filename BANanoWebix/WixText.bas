@@ -24,7 +24,33 @@ Sub SetInvalidMessage(msg As String) As WixText
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixText
+	Text.SetPadding(padding)
+	Return Me
+End Sub
 
+'set padding
+Sub SetMargin(margin As Object) As WixText
+	Text.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixText
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Text.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixText
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Text.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixText
@@ -418,11 +444,6 @@ End Sub
 
 Sub SetAnimate(animate As Boolean) As WixText
 Text.SetAttr("animate", animate)
-Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixText
-Text.SetAttr("attributes", attributes)
 Return Me
 End Sub
 

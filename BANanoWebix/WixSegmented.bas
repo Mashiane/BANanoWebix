@@ -21,6 +21,23 @@ Public Sub Initialize(iID As String) As WixSegmented
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixSegmented
+	Segmented.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixSegmented
+	Segmented.SetMargin(margin)
+	Return Me
+End Sub
+
+'set readonly
+Sub SetReadonly(readonly As Boolean) As WixSegmented
+	Segmented.SetAttr("readonly", readonly)
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixSegmented
@@ -59,11 +76,6 @@ Sub SetName(n As String) As WixSegmented
 	Return Me
 End Sub
 
-'set name
-Sub SetPadding(p As Object) As WixSegmented
-	Segmented.SetPadding(p)
-	Return Me
-End Sub
 
 'use a map object
 Sub SetMap(m As Map) As WixSegmented

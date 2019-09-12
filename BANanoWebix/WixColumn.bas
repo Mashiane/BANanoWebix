@@ -26,6 +26,33 @@ Sub SetParent(p As WixElement) As WixColumn
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixColumn
+	Column.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixColumn
+	Column.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixColumn
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Column.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixColumn
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Column.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'add to rows collection of the column
 Sub AddRows(itm As Map) As WixColumn
@@ -45,12 +72,6 @@ Sub SetTemplateHTML(h As UOENowHTML) As WixColumn
 	Return Me
 End Sub
 
-' set padding
-Sub SetPadding(padding As Object) As WixColumn
-	Column.SetPadding(padding)
-	Return Me
-End Sub
-
 
 Sub AddResizerToRows(s As String) As WixColumn   'ignore
 	Column.AddResizerToRows(s)
@@ -58,13 +79,6 @@ End Sub
 
 Sub AddResizerToColumns(s As String) As WixColumn   'ignore
 	Column.AddResizerToColumns(s)
-End Sub
-
-
-' set margin
-Sub SetMargin(margin As Object) As WixColumn
-	Column.SetMargin(margin)
-	Return Me
 End Sub
 
 

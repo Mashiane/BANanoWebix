@@ -1,0 +1,101 @@
+﻿AppType=JavaFX
+Build1=Default,b4j.Mashy.BANanoWebixDemo
+File1=1.png
+File2=2.png
+File3=config.php
+File4=extras.zip
+File5=fonts.zip
+File6=jstoast.css
+File7=jstoast.js
+File8=pexels-photo-2879991.jpeg
+File9=upload.php
+FileGroup1=Default Group\Images
+FileGroup2=Default Group\Images
+FileGroup3=Default Group
+FileGroup4=Default Group\ZIP
+FileGroup5=Default Group\ZIP
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group\PHP
+Group=Default Group
+Library1=jcore
+Library2=jfx
+Library3=banano
+Library4=bananopostprocessor
+Library5=bananowebix
+Library6=json
+Library7=jrandomaccessfile
+Module1=modSideBar
+Module2=pgIndex
+Module3=modArchivi
+Module4=modClient
+NumberOfFiles=9
+NumberOfLibraries=7
+NumberOfModules=4
+Version=7.8
+@EndOfDesignText@
+ #Region Project Attributes 
+#End Region
+#IgnoreWarnings:15
+Sub Process_Globals
+	Public BANano As BANano 'ignore
+	Public AppName As String = "ResponsiveForm"
+	Private Publish As String
+	Private BP As BANanoPostProcessor
+End Sub
+
+Sub AppStart (Form1 As Form, Args() As String)
+	Publish = "C:\xampp\htdocs"
+	Publish = "c:\laragon\www"
+	Dim version As String = DateTime.now
+	Dim appFile As String = $"app${version}.js"$
+	BANano.Initialize("BANano", AppName,1)
+	BANano.HTML_NAME = "index.html"
+	BANano.Header.Title = AppName
+	BANano.JAVASCRIPT_NAME = appFile
+	'BANano.Header.addcssfile("all.min.css")
+	BANano.Header.AddCSSFile("materialdesignicons.min.css")
+	BANano.Header.AddCSSFile("webix.min.css")
+	BANano.Header.AddCSSFile("hint.css")
+	'BANano.Header.AddCSSFile("jstoast.css")
+	'*themes
+	BANano.Header.AddCSSFile("material.min.css")
+	'BANano.Header.AddCSSFile("flat.min.css")
+	'BANano.Header.AddCSSFile("compact.min.css")
+	'BANano.Header.AddCSSFile("contrast.min.css")
+	'** themes
+	BANano.Header.AddJavascriptFile("webix.min.js")
+	BANano.Header.AddJavascriptFile("hint.js")
+	'BANano.Header.AddJavascriptFile("jstoast.js")
+	'BANano.TranspilerOptions.MergeAllCSSFiles = True
+	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True
+	'BANano.TranspilerOptions.ShowWarningDeadCode = True
+	'BANano.TranspilerOptions.RemoveDeadCode = True
+	BANano.TranspilerOptions.UseServiceWorker = False 
+	BANano.Build(Publish)
+	'post processor
+	BP.Initialize
+	BP.PublishPath = Publish
+	BP.ShortName = AppName
+	BP.AssetsPath = BANano.ASSETS_FOLDER
+	BP.ScriptsPath = BANano.SCRIPTS_FOLDER
+	BP.StylesPath = BANano.STYLES_FOLDER
+	BP.ScriptFile = BANano.JAVASCRIPT_NAME
+	BP.UnzipFonts
+	BP.UnzipFile("extras.zip")
+	BP.CopyConfig
+	BP.Open(True)
+	ExitApplication
+End Sub
+
+'Return true to allow the default exceptions handler to handle the uncaught exception.
+Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
+	Return True
+End Sub
+
+Sub BANano_Ready()
+	'build a page and render it to the body of the page
+
+	pgIndex.init("body")
+End Sub

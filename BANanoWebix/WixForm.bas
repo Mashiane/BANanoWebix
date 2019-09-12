@@ -22,6 +22,17 @@ Public Sub Initialize(fID As String) As WixForm
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixForm
+	Form.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixForm
+	Form.SetMargin(margin)
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixForm
@@ -29,6 +40,22 @@ Sub SetStyle(prop As String, sval As String) As WixForm
 	Return Me
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixForm
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Form.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixForm
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Form.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'add tp columns of parent
 Sub Pop
@@ -98,18 +125,6 @@ End Sub
 
 Sub SetComplexData(b As Boolean) As WixForm
 	Form.SetAttr("complexData", b)
-	Return Me
-End Sub
-
-' set padding
-Sub SetPadding(padding As Object) As WixForm
-	Form.SetPadding(padding)
-	Return Me
-End Sub
-
-' set margin
-Sub SetMargin(margin As Object) As WixForm
-	Form.SetMargin(margin)
 	Return Me
 End Sub
 

@@ -20,6 +20,33 @@ Sub SetStyle(prop As String, sval As String) As WixHint
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixHint
+	Hint.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixHint
+	Hint.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixHint
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Hint.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixHint
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Hint.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'Initializes the hint
 Public Sub Initialize(sid As String) As WixHint

@@ -21,6 +21,22 @@ Public Sub Initialize(iID As String) As WixDBLList
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixDBLList
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		DBLList.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixDBLList
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		DBLList.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'set css
 Sub SetStyle(prop As String, sval As String) As WixDBLList
 	DBLList.SetStyle(prop,sval)

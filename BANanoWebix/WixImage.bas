@@ -24,6 +24,64 @@ Public Sub Initialize(sid As String) As WixImage
 	Return Me
 End Sub
 
+'set align
+Sub SetAlign(r As Object) As WixImage 'ignore
+	Image.SetAlign(r)
+	Return Me
+End Sub
+
+
+'set padding
+Sub SetPadding(padding As Object) As WixImage
+	Image.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixImage
+	Image.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixImage
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Image.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixImage
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Image.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
+'set align right
+Sub SetAlignRight(r As String) As WixImage 'ignore
+	Image.setAlignright("")
+	Return Me
+End Sub
+
+'set align center
+Sub SetAlignCenter(r As String) As WixImage 'ignore
+	Image.setAligncenter("")
+	Return Me
+End Sub
+
+'set align left
+Sub SetAlignLeft(r As String) As WixImage 'ignore
+	Image.SetAlignleft("")
+	Return Me
+End Sub
+
+'set auto width
+Sub SetAutoWidth(b As Boolean) As WixImage 'ignore
+	Image.SetAutoWidth(b)
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixImage
@@ -63,6 +121,22 @@ End Sub
 
 Sub SetImageAttr(p As String, v As String) As WixImage     'ignore
 	img.SetAttr(p,v)
+	Return Me
+End Sub
+
+Sub SetImageAttributes(m As Map) As WixImage
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		SetImageAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetImageStyles(m As Map) As WixImage
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		SetImageStyle(k,v)
+	Next
 	Return Me
 End Sub
 

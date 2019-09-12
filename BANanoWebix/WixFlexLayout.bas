@@ -27,6 +27,23 @@ Sub SetParent(p As WixElement) As WixFlexLayout
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixFlexLayout
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		FlexLayout.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixFlexLayout
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		FlexLayout.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
+
 'set css
 Sub SetStyle(prop As String, sval As String) As WixFlexLayout
 	FlexLayout.SetStyle(prop,sval)

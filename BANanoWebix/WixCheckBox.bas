@@ -25,6 +25,33 @@ Sub SetParent(p As WixElement) As WixCheckBox
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixCheckBox
+	CheckBox.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixCheckBox
+	CheckBox.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixCheckBox
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		CheckBox.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixCheckBox
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		CheckBox.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixCheckBox
@@ -199,10 +226,6 @@ Sub SetAnimate(animate As Boolean) As WixCheckBox
 	Return Me
 End Sub
 
-Sub SetAttributes(attributes As Object) As WixCheckBox
-	CheckBox.SetAttr("attributes", attributes)
-	Return Me
-End Sub
 
 Sub SetBorderless(borderless As Boolean) As WixCheckBox
 	CheckBox.SetAttr("borderless", borderless)

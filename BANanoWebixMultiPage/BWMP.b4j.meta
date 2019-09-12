@@ -21,4 +21,4 @@ ModuleClosedNodes5=
 ModuleClosedNodes6=
 NavigationStack=modClients,LoadClients,435,6,modClients,CreateClientsDT,449,0,modClients,dtclients_dblclick,99,0,modClients,RefreshOptions,101,6,modSideMenu,SideMenu_Click,22,0,modCities,CreateCitiesForm,88,0,Main,Process_Globals,8,0,Main,AppStart,45,1,Main,Application_Error,60,0,Main,BANano_Ready,67,0
 SelectedBuild=0
-VisibleModules=2
+VisibleModules=1

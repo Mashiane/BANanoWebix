@@ -18,6 +18,33 @@ Sub SetParent(p As WixElement) As WixProgressBar
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixProgressBar
+	Progressbar.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixProgressBar
+	Progressbar.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixProgressBar
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Progressbar.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixProgressBar
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Progressbar.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixProgressBar

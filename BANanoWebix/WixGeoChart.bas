@@ -22,6 +22,33 @@ Public Sub Initialize(sid As String) As WixGeoChart
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixGeoChart
+	Geochart.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixGeoChart
+	Geochart.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixGeoChart
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Geochart.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixGeoChart
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Geochart.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixGeoChart

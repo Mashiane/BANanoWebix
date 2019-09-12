@@ -18,10 +18,37 @@ Sub Pop
 	Parent.AddColumns(Item)
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixRadio
+	Radio.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixRadio
+	Radio.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixRadio
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Radio.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixRadio
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Radio.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixRadio
-	radio.SetStyle(prop,sval)
+	Radio.SetStyle(prop,sval)
 	Return Me
 End Sub
 
@@ -204,11 +231,6 @@ End Sub
 
 Sub SetAnimate(animate As Boolean) As WixRadio
 	Radio.SetAttr("animate", animate)
-	Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixRadio
-	Radio.SetAttr("attributes", attributes)
 	Return Me
 End Sub
 

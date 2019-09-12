@@ -20,6 +20,33 @@ Public Sub Initialize(iID As String) As WixFormInput
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixFormInput
+	FormInput.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixFormInput
+	FormInput.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixFormInput
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		FormInput.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixFormInput
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		FormInput.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixFormInput

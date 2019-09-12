@@ -25,12 +25,39 @@ Sub SetParent(p As WixElement) As WixTextArea
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixTextArea
+	TextArea.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixTextArea
+	TextArea.SetMargin(margin)
+	Return Me
+End Sub
+
 Sub OnKeyPress(cb As BANanoObject) As WixTextArea
 	TextArea.OnKeyPress(cb)
 	Return Me
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixTextArea
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		TextArea.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixTextArea
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		TextArea.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixTextArea
@@ -304,11 +331,6 @@ End Sub
 
 Sub SetAnimate(animate As Boolean) As WixTextArea
 TextArea.SetAttr("animate", animate)
-Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixTextArea
-TextArea.SetAttr("attributes", attributes)
 Return Me
 End Sub
 

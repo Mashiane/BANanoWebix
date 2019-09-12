@@ -423,6 +423,8 @@ Sub ImportForeignKeys(dbNameHere As String)
 			jsonm.Put("foreign_key",foreFLD)
 			jsonm.Put("foreign_value",foreDSP)
 			jsonm.put("view", "select")
+			jsonm.Put("optionsid", "1,2,3")
+			jsonm.put("optionstext", "One,Two,Three")
 			xjson = pg.Map2Json(jsonm)
 			'
 			Dim fldu As SQLiteResultSet1 = currDB.UpdateWhere("fields", CreateMap("json":xjson), CreateMap("key": fldKey))
@@ -3909,9 +3911,8 @@ Sub CreateWindow As BANanoObject
 	btnSave.Initialize("btnMulti").SetLabel("Apply").SetClick(BANano.callback(Me,"btnMulti_clickwait",Null))
 	btnSave.SetBadge("0")
 	frmx.AddRows(btnSave.Item)
-	 
+	
 	win.setbody(frmx.Item)
-	'win.SetFullScreen(True)
 	winux = pg.AddWindow(win)
 	'detect change event
 	pg.OnKeyPress("txtmultiplecontrols", BANano.callback(Me, "multichange", Null))

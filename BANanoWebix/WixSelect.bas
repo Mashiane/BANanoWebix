@@ -21,12 +21,40 @@ Public Sub Initialize(iID As String) As WixSelect
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixSelect
+	DropDown.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixSelect
+	DropDown.SetMargin(margin)
+	Return Me
+End Sub
+
 'set the parent
 Sub SetParent(p As WixElement) As WixSelect
 	Parent = p
 	Return Me
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixSelect
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		DropDown.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixSelect
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		DropDown.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixSelect
@@ -259,11 +287,6 @@ End Sub
 
 Sub SetAnimate(animate As Boolean) As WixSelect
 	DropDown.SetAttr("animate", animate)
-	Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixSelect
-	DropDown.SetAttr("attributes", attributes)
 	Return Me
 End Sub
 

@@ -24,6 +24,33 @@ Sub SetParent(p As WixElement) As WixColorPicker
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixColorPicker
+	ColorPicker.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixColorPicker
+	ColorPicker.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixColorPicker
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		ColorPicker.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixColorPicker
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		ColorPicker.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'return the item to add
 Sub Item As Map
@@ -229,33 +256,28 @@ Sub AddToElements(P As WixElement)
 End Sub
 
 
-Sub SetAlign(align As Object) As WixColorpicker
-	Colorpicker.SetAttr("align", align)
+Sub SetAlign(align As Object) As WixColorPicker
+	ColorPicker.SetAttr("align", align)
 	Return Me
 End Sub
 
-Sub SetAnimate(animate As Boolean) As WixColorpicker
-	Colorpicker.SetAttr("animate", animate)
+Sub SetAnimate(animate As Boolean) As WixColorPicker
+	ColorPicker.SetAttr("animate", animate)
 	Return Me
 End Sub
 
-Sub SetAttributes(attributes As Object) As WixColorpicker
-	Colorpicker.SetAttr("attributes", attributes)
+Sub SetAutowidth(autowidth As Boolean) As WixColorPicker
+	ColorPicker.SetAttr("autowidth", autowidth)
 	Return Me
 End Sub
 
-Sub SetAutowidth(autowidth As Boolean) As WixColorpicker
-	Colorpicker.SetAttr("autowidth", autowidth)
+Sub SetBorderless(borderless As Boolean) As WixColorPicker
+	ColorPicker.SetAttr("borderless", borderless)
 	Return Me
 End Sub
 
-Sub SetBorderless(borderless As Boolean) As WixColorpicker
-	Colorpicker.SetAttr("borderless", borderless)
-	Return Me
-End Sub
-
-Sub SetBottomLabel(bottomLabel As Object) As WixColorpicker
-	Colorpicker.SetAttr("bottomLabel", bottomLabel)
+Sub SetBottomLabel(bottomLabel As Object) As WixColorPicker
+	ColorPicker.SetAttr("bottomLabel", bottomLabel)
 	Return Me
 End Sub
 

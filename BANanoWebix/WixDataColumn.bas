@@ -31,6 +31,33 @@ Sub SetKeepSequence(b As Boolean) As WixDataColumn
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixDataColumn
+	DataColumn.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixDataColumn
+	DataColumn.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixDataColumn
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		DataColumn.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixDataColumn
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		DataColumn.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 'Initializes the data column
 Public Sub Initialize(cID As String) As WixDataColumn
 	ID = cID.tolowercase

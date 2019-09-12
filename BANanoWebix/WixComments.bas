@@ -25,6 +25,33 @@ Sub SetParent(p As WixElement) As WixComments
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixComments
+	Comments.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixComments
+	Comments.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixComments
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Comments.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixComments
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Comments.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'Initializes the Comments object
 Public Sub Initialize(sid As String) As WixComments

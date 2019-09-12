@@ -20,12 +20,40 @@ Public Sub Initialize(iID As String) As WixSection
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixSection
+	Section.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixSection
+	Section.SetMargin(margin)
+	Return Me
+End Sub
+
 'set the parent
 Sub SetParent(p As WixElement) As WixSection
 	Parent = p
 	Return Me
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixSection
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Section.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixSection
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Section.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixSection

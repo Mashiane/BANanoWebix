@@ -21,6 +21,22 @@ Public Sub Initialize(sID As String) As WixLayout
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixLayout
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Layout.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixLayout
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Layout.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'set css
 Sub SetStyle(prop As String, sval As String) As WixLayout
 	Layout.SetStyle(prop,sval)

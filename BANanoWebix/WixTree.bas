@@ -20,6 +20,17 @@ Sub SetParent(p As WixElement) As WixTree
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixTree
+	Tree.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixTree
+	Tree.SetMargin(margin)
+	Return Me
+End Sub
 
 'Initializes the Tree sheet
 Public Sub Initialize(eID As String) As WixTree
@@ -32,6 +43,21 @@ Public Sub Initialize(eID As String) As WixTree
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixTree
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Tree.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixTree
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Tree.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixTree

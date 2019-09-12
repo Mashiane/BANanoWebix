@@ -22,6 +22,17 @@ Public Sub Initialize(sid As String) As WixSideBar
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixSideBar
+	SideBar.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixSideBar
+	SideBar.SetMargin(margin)
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixSideBar
@@ -29,6 +40,22 @@ Sub SetStyle(prop As String, sval As String) As WixSideBar
 	Return Me
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixSideBar
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		SideBar.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixSideBar
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		SideBar.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set the parent
 Sub SetParent(p As WixElement) As WixSideBar

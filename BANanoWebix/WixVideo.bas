@@ -24,7 +24,33 @@ Sub SetParent(p As WixElement) As WixVideo
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixVideo
+	Video.SetPadding(padding)
+	Return Me
+End Sub
 
+'set padding
+Sub SetMargin(margin As Object) As WixVideo
+	Video.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixVideo
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Video.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixVideo
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Video.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixVideo

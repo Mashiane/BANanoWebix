@@ -24,6 +24,21 @@ Sub Pop
 	Parent.AddColumns(Item)
 End Sub
 
+Sub SetAttributes(m As Map) As WixRichText
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		RichText.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixRichText
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		RichText.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixRichText
@@ -242,8 +257,8 @@ Sub SetAnimate(animate As Boolean) As WixRichtext
 	Return Me
 End Sub
 
-Sub SetBorderless(borderless As Boolean) As WixRichtext
-	Richtext.SetAttr("borderless", borderless)
+Sub SetBorderless(borderless As Boolean) As WixRichText
+	RichText.SetAttr("borderless", borderless)
 	Return Me
 End Sub
 

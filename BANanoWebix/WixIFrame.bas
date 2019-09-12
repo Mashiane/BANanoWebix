@@ -13,6 +13,34 @@ Sub Class_Globals
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixIFrame
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		IFrame.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixIFrame
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		IFrame.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
+'set padding
+Sub SetPadding(padding As Object) As WixIFrame
+	IFrame.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixIFrame
+	IFrame.SetMargin(margin)
+	Return Me
+End Sub
+
 'set css
 Sub SetStyle(prop As String, sval As String) As WixIFrame
 	IFrame.SetStyle(prop,sval)

@@ -29,6 +29,22 @@ Sub SetParent(p As WixElement) As WixUnitList
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixUnitList
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		UnitList.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixUnitList
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		UnitList.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixUnitList

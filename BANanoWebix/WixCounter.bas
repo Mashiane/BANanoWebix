@@ -27,6 +27,34 @@ Public Sub Initialize(iID As String) As WixCounter
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixCounter
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Counter.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+'set padding
+Sub SetPadding(padding As Object) As WixCounter
+	Counter.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixCounter
+	Counter.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixCounter
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Counter.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'set css
 Sub SetStyle(prop As String, sval As String) As WixCounter
 	Counter.SetStyle(prop,sval)
@@ -202,11 +230,6 @@ End Sub
 
 Sub SetAnimate(animate As Boolean) As WixCounter
 	Counter.SetAttr("animate", animate)
-	Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixCounter
-	Counter.SetAttr("attributes", attributes)
 	Return Me
 End Sub
 

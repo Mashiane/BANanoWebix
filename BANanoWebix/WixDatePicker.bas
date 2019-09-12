@@ -20,6 +20,34 @@ Public Sub Initialize(bID As String) As WixDatePicker
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixDatePicker
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		DatePicker.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixDatePicker
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		DatePicker.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
+'set padding
+Sub SetPadding(padding As Object) As WixDatePicker
+	DatePicker.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixDatePicker
+	DatePicker.SetMargin(margin)
+	Return Me
+End Sub
+
 'set css
 Sub SetStyle(prop As String, sval As String) As WixDatePicker
 	DatePicker.SetStyle(prop,sval)
@@ -288,11 +316,6 @@ End Sub
 
 Sub SetAnimate(animate As Boolean) As WixDatePicker
 	DatePicker.SetAttr("animate", animate)
-	Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixDatePicker
-	DatePicker.SetAttr("attributes", attributes)
 	Return Me
 End Sub
 

@@ -35,6 +35,22 @@ Sub Class_Globals
 End Sub
 
 
+Sub SetAttributes(m As Map) As WixDataTable
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		DataTable.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixDataTable
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		DataTable.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'set css
 Sub SetStyle(prop As String, sval As String) As WixDataTable
 	DataTable.SetStyle(prop,sval)
@@ -240,6 +256,18 @@ Sub AddImage(imgID As String, imgHeader As String, imgURL As String, imgWidth As
 	e.DataColumn.SetStyle("cursor", "pointer")
 	e.DataColumn.SetCSS("form_photo")
 	DataTable.AddDataColumn(e.Item)
+	Return Me
+End Sub
+
+'set padding
+Sub SetPadding(padding As Object) As WixDataTable
+	DataTable.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixDataTable
+	DataTable.SetMargin(margin)
 	Return Me
 End Sub
 

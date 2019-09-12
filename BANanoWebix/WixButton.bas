@@ -157,6 +157,18 @@ Sub SetParent(p As WixElement) As WixButton
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixButton
+	Button.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixButton
+	Button.SetMargin(margin)
+	Return Me
+End Sub
+
 'set batch
 Sub SetBatch(b As Int) As WixButton
 	Button.SetBatch(b)
@@ -254,6 +266,22 @@ Sub SetWidth(w As Object) As WixButton
 	Return Me
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixButton
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Button.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixButton
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Button.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set align right
 Sub SetAlignRight(r As String) As WixButton 'ignore
@@ -353,7 +381,7 @@ Button.SetAttr("type", sType)
 Return Me
 End Sub
 
-Sub SetFAB(b As Boolean)
+Sub SetFAB(b As Boolean)   'ignore
 	Button.SetStyle("border-radius","60px")
 	Button.SetStyle("font-size","60px")
 	Button.SetStyle("line-height","47px")

@@ -19,6 +19,33 @@ Public Sub Initialize(iID As String) As WixSwitch
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixSwitch
+	Switch.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixSwitch
+	Switch.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixSwitch
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Switch.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixSwitch
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Switch.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixSwitch
@@ -195,11 +222,6 @@ End Sub
 
 Sub SetAnimate(animate As Boolean) As WixSwitch
 	Switch.SetAttr("animate", animate)
-	Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixSwitch
-	Switch.SetAttr("attributes", attributes)
 	Return Me
 End Sub
 

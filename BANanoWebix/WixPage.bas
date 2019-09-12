@@ -30,6 +30,51 @@ End Sub
 #end if
 
 
+Sub SetAttributes(m As Map) As WixPage
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Page.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixPage
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Page.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
+
+'join list to mv string
+Sub JoinNonBlanks(delimiter As String, lst As List) As String
+	'ensure we have non blanks
+	Dim nl As List
+	nl.Initialize
+	For Each str As String In lst
+		str = str.Trim
+		If str.Length > 0 Then
+			nl.Add(str)
+		End If
+	Next
+	If nl.Size = 0 Then Return ""
+	'
+	Dim i As Int
+	Dim sb As StringBuilder
+	Dim fld As String
+	sb.Initialize
+	fld = nl.Get(0)
+	sb.Append(fld)
+	For i = 1 To nl.size - 1
+		Dim fld As String = nl.Get(i)
+		sb.Append(delimiter).Append(fld)
+	Next
+	Return sb.ToString
+End Sub
+
+
+
 Sub Capitalize(t As String) As String
 	Dim s , r , o As String
 	s = t.SubString2(0,1)
@@ -104,6 +149,28 @@ Sub Join(delimiter As String, lst As List) As String
 		sb.Append(delimiter).Append(fld)
 	Next
 	Return sb.ToString
+End Sub
+
+'join maps
+Sub JoinMaps(lst As List) As Map
+	Dim nm As Map = CreateMap()
+	For Each mr As Map In lst
+		For Each k As String In mr.Keys
+			Dim v As Object = mr.Get(k)
+			nm.Put(k, v)
+		Next
+	Next
+	Return nm
+End Sub
+
+'join lists
+Sub JoinLists(lst As List) As List
+	Dim nl As List
+	nl.Initialize 
+	For Each lo As Object In lst
+		nl.Add(lo)
+	Next
+	Return nl
 End Sub
 
 

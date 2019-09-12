@@ -16,9 +16,36 @@ Public Sub Initialize(sid As String) As WixMessageBox
 	ID = sid.ToLowerCase
 	MessageBox.Initialize(ID)
 	buttons.Initialize 
-	Return Me 
+	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixMessageBox
+	MessageBox.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixMessageBox
+	MessageBox.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixMessageBox
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		MessageBox.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixMessageBox
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		MessageBox.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixMessageBox

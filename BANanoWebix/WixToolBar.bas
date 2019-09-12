@@ -30,6 +30,23 @@ Sub SetTemplateHTML(h As UOENowHTML) As WixToolBar
 	Return Me
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixToolBar
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		ToolBar.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixToolBar
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		ToolBar.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'set css
 Sub SetStyle(prop As String, sval As String) As WixToolBar
 	ToolBar.SetStyle(prop,sval)
@@ -234,6 +251,18 @@ Sub CreateCounter(cnt As String) As WixCounter
 	Return cntx
 End Sub
 
+'set padding x
+Sub SetPaddingX(x As Object) As WixToolBar
+	ToolBar.SetAttr("paddingX", x)
+	Return Me
+End Sub
+
+'set padding y
+Sub SetPaddingY(x As Object) As WixToolBar
+	ToolBar.SetAttr("paddingY", x)
+	Return Me
+End Sub
+
 Sub CreateHeader(hdr As String) As WixHeader
 	Dim hdrx As WixHeader
 	hdrx.Initialize(hdr).SetParent(ToolBar)
@@ -293,6 +322,11 @@ Sub AddToColumns(P As WixElement)
 	P.AddColumns(Item)
 End Sub
 
+Sub AddColumns(m As Map) As WixToolBar
+	ToolBar.AddColumns(m)	
+	Return Me
+End Sub
+
 'add to parent elements
 Sub AddToElements(P As WixElement)
 	P.AddElements(Item)
@@ -330,16 +364,6 @@ End Sub
 
 Sub SetMaxWidth(maxWidth As String) As WixToolBar
 ToolBar.SetAttr("maxWidth", maxWidth)
-Return Me
-End Sub
-
-Sub SetPaddingX(paddingX As String) As WixToolBar
-ToolBar.SetAttr("paddingX", paddingX)
-Return Me
-End Sub
-
-Sub SetPaddingY(paddingY As String) As WixToolBar
-ToolBar.SetAttr("paddingY", paddingY)
 Return Me
 End Sub
 

@@ -21,6 +21,33 @@ Public Sub Initialize(iID As String) As WixRichSelect
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixRichSelect
+	RichSelect.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixRichSelect
+	RichSelect.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixRichSelect
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		RichSelect.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixRichSelect
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		RichSelect.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixRichSelect
@@ -263,43 +290,38 @@ Sub AddToElements(P As WixElement)
 End Sub
 
 
-Sub SetAlign(align As Object) As WixRichselect
-	Richselect.SetAttr("align", align)
+Sub SetAlign(align As Object) As WixRichSelect
+	RichSelect.SetAttr("align", align)
 	Return Me
 End Sub
 
-Sub SetAnimate(animate As Boolean) As WixRichselect
-	Richselect.SetAttr("animate", animate)
+Sub SetAnimate(animate As Boolean) As WixRichSelect
+	RichSelect.SetAttr("animate", animate)
 	Return Me
 End Sub
 
-Sub SetAttributes(attributes As Object) As WixRichselect
-	Richselect.SetAttr("attributes", attributes)
+Sub SetBorderless(borderless As Boolean) As WixRichSelect
+	RichSelect.SetAttr("borderless", borderless)
 	Return Me
 End Sub
 
-Sub SetBorderless(borderless As Boolean) As WixRichselect
-	Richselect.SetAttr("borderless", borderless)
+Sub SetBottomLabel(bottomLabel As Object) As WixRichSelect
+	RichSelect.SetAttr("bottomLabel", bottomLabel)
 	Return Me
 End Sub
 
-Sub SetBottomLabel(bottomLabel As Object) As WixRichselect
-	Richselect.SetAttr("bottomLabel", bottomLabel)
+Sub SetBottomPadding(bottomPadding As Object) As WixRichSelect
+	RichSelect.SetAttr("bottomPadding", bottomPadding)
 	Return Me
 End Sub
 
-Sub SetBottomPadding(bottomPadding As Object) As WixRichselect
-	Richselect.SetAttr("bottomPadding", bottomPadding)
+Sub SetClick(click As Object) As WixRichSelect
+	RichSelect.SetAttr("click", click)
 	Return Me
 End Sub
 
-Sub SetClick(click As Object) As WixRichselect
-	Richselect.SetAttr("click", click)
-	Return Me
-End Sub
-
-Sub SetContainer(container As Object) As WixRichselect
-	Richselect.SetAttr("container", container)
+Sub SetContainer(container As Object) As WixRichSelect
+	RichSelect.SetAttr("container", container)
 	Return Me
 End Sub
 

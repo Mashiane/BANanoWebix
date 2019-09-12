@@ -30,6 +30,15 @@ Sub SetPaperA4(b As Boolean) As WixPrint   'ignore
 	Return Me
 End Sub
 
+
+Sub SetAttributes(m As Map) As WixPrint
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		Print.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
 Sub SetPaperLetter(b As Boolean) As WixPrint    'ignore
 	SetPaper("letter")
 	Return Me

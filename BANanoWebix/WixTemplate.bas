@@ -19,6 +19,17 @@ Public Sub Initialize(sid As String) As WixTemplate
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixTemplate
+	Template.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixTemplate
+	Template.SetMargin(margin)
+	Return Me
+End Sub
 
 
 'set css

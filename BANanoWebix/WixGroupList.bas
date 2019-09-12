@@ -22,6 +22,34 @@ Public Sub Initialize(lID As String) As WixGroupList
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixGroupList
+	GroupList.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixGroupList
+	GroupList.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixGroupList
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		GroupList.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixGroupList
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		GroupList.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
+
 'add tp columns of parent
 Sub Pop
 	Parent.AddColumns(Item)

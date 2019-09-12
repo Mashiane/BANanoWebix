@@ -23,6 +23,33 @@ Public Sub Initialize(sid As String) As WixTabBar
 	Return Me
 End Sub
 
+'set padding
+Sub SetPadding(padding As Object) As WixTabBar
+	TabBar.SetPadding(padding)
+	Return Me
+End Sub
+
+'set padding
+Sub SetMargin(margin As Object) As WixTabBar
+	TabBar.SetMargin(margin)
+	Return Me
+End Sub
+
+Sub SetAttributes(m As Map) As WixTabBar
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		TabBar.SetAttr(k,v)
+	Next
+	Return Me
+End Sub
+
+Sub SetStyles(m As Map) As WixTabBar
+	For Each k As String In m.Keys
+		Dim v As String = m.Get(k)
+		TabBar.SetStyle(k,v)
+	Next
+	Return Me
+End Sub
 
 'set css
 Sub SetStyle(prop As String, sval As String) As WixTabBar
@@ -234,11 +261,6 @@ End Sub
 Sub SetAlign(align As Object) As WixTabBar
 	TabBar.SetAttr("align", align)
 	Return Me
-End Sub
-
-Sub SetAttributes(attributes As Object) As WixTabBar
-TabBar.SetAttr("attributes", attributes)
-Return Me
 End Sub
 
 Sub SetBorderless(borderless As Boolean) As WixTabBar
