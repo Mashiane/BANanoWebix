@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Text As WixElement
 	Public Parent As WixElement
+	Private BAnano As BANano
 End Sub
 
 'Initializes the element
@@ -455,6 +456,13 @@ End Sub
 Sub SetClick(click As Object) As WixText
 Text.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixText
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BAnano.CallBack(module, methodName, Array(e))
+	Text.SetClick(cb)
+	Return Me
 End Sub
 
 Sub SetContainer(container As Object) As WixText

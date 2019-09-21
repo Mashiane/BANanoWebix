@@ -56,62 +56,62 @@ Group=Default Group
 Library1=jcore
 Library2=jfx
 Library3=banano
-Module1=BANanoMySQL1
-Module10=WixPopUp
-Module11=WixMenu
-Module12=UOENowData
-Module13=WixDataColumn
-Module14=UOENowHTML
-Module15=BANanoSQLite
-Module16=BANanoSQLite1
-Module17=BANanoAlaSQL
-Module18=BANanoMySQL
-Module19=WixMessageBox
-Module2=WixPage
-Module20=WixFieldSet
-Module21=WixList
-Module22=WixToolBar
-Module23=WixLabel
-Module24=WixImage
-Module25=WixTree
-Module26=WixText
-Module27=WixTextArea
-Module28=WixIcon
-Module29=WixPortlet
-Module3=WixSelect
-Module30=WixToggle
-Module31=WixAccordion
-Module32=WixAccordionItem
-Module33=WixCalendar
-Module34=WixCarousel
-Module35=WixChart
-Module36=WixForm
-Module37=WixColumn
-Module38=WixRow
-Module39=WixScrollView
-Module4=WixSegmented
-Module40=WixResizer
-Module41=WixCheckBox
-Module42=WixColorBoard
-Module43=WixColorPicker
-Module44=WixCombo
-Module45=WixContext
-Module46=WixContextMenu
-Module47=WixCounter
-Module48=WixDataView
-Module49=WixDatePicker
-Module5=WixButton
-Module50=WixDBLList
-Module51=WixFlexLayout
-Module52=WixFormInput
-Module53=WixRadio
-Module54=WixTabBar
-Module55=WixTabView
-Module56=WixSearch
-Module57=WixPager
+Module1=WixPage
+Module10=WixForm
+Module11=WixSelect
+Module12=WixSegmented
+Module13=WixButton
+Module14=WixExport
+Module15=WixComments
+Module16=UOENowData
+Module17=WixDataColumn
+Module18=UOENowHTML
+Module19=BANanoSQLite
+Module2=WixDataTable
+Module20=BANanoSQLite1
+Module21=BANanoAlaSQL
+Module22=BANanoMySQL
+Module23=WixMessageBox
+Module24=WixFieldSet
+Module25=WixLabel
+Module26=WixImage
+Module27=WixTree
+Module28=WixText
+Module29=WixTextArea
+Module3=WixToolBar
+Module30=WixIcon
+Module31=WixPortlet
+Module32=WixToggle
+Module33=WixAccordion
+Module34=WixAccordionItem
+Module35=WixCalendar
+Module36=WixCarousel
+Module37=WixChart
+Module38=WixColumn
+Module39=WixRow
+Module4=WixPager
+Module40=WixScrollView
+Module41=WixResizer
+Module42=WixCheckBox
+Module43=WixColorBoard
+Module44=WixColorPicker
+Module45=WixCombo
+Module46=WixContext
+Module47=WixContextMenu
+Module48=WixCounter
+Module49=WixDataView
+Module5=WixElement
+Module50=WixDatePicker
+Module51=WixDBLList
+Module52=WixFlexLayout
+Module53=WixFormInput
+Module54=WixRadio
+Module55=WixTabBar
+Module56=WixTabView
+Module57=WixSearch
 Module58=WixHeader
 Module59=WixRichText
-Module6=WixDataTable
+Module6=WixPopUp
 Module60=WixRichSelect
 Module61=WixTreeTable
 Module62=WixSideBar
@@ -122,7 +122,7 @@ Module66=WixGoogleMap
 Module67=WixGroupList
 Module68=WixHint
 Module69=WixIFrame
-Module7=WixElement
+Module7=WixList
 Module70=WixRangeSlider
 Module71=WixSection
 Module72=WixSlider
@@ -133,7 +133,7 @@ Module76=WixTemplate
 Module77=WixUnitList
 Module78=WixUploader
 Module79=WixProperty
-Module8=WixExport
+Module8=WixMenu
 Module80=modWebix
 Module81=WixButtonTypes
 Module82=WixIcons
@@ -144,7 +144,7 @@ Module86=WixPrint
 Module87=WixGeoChart
 Module88=WixSpacer
 Module89=WixProgressBar
-Module9=WixComments
+Module9=BANanoMySQL1
 NumberOfFiles=26
 NumberOfLibraries=3
 NumberOfModules=89
@@ -153,11 +153,11 @@ Version=7.8
  #Region Project Attributes 
  	#MergeLibraries: True
 	#LibraryAuthor: Anele Mashy Mbanga
-	#LibraryVersion: 2.28
+	#LibraryVersion: 2.30
 	#LibraryName: BANanoWebix
 #End Region
 
-#IgnoreWarnings:15
+#IgnoreWarnings:15,11
 Sub Process_Globals
 	Public BANano As BANano 'ignore
 End Sub
@@ -166,7 +166,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'initialize banano for first use
 	BANano.Initialize("BANano", "BANanoWebix",DateTime.Now)
 	BANano.TranspilerOptions.UseServiceWorker = False
-	BANano.BuildAsB4XLib("2.28")
+	BANano.BuildAsB4XLib("2.30")
 	ExitApplication
 End Sub
 

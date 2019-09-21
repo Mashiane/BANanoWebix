@@ -145,6 +145,7 @@ Sub windowClick(meID As String)
 	Select Case meID
 	Case "icnclose"
 		pg.BoClose(winUX)
+		pg.destroy("myWindow")
 	Case Else
 		pg.Message(meID)
 	End Select
@@ -156,6 +157,7 @@ Sub itemClick(meid As String)
 	Case "win"
 		CreateWindow
 		pg.BOShow(winUX)
+		pg.Destroy("myWindow")
 		'assign event
 		pg.OnItemClick(win.ToolBarID, BANano.CallBack(Me, "windowClick", Array(meid)))
 	Case "mt"

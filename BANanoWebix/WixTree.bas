@@ -11,7 +11,7 @@ Sub Class_Globals
 	Private scheme As Map
 	Private Items As List
 	Public Parent As WixElement
-
+	Private Banano As BANano
 End Sub
 
 'set the parent
@@ -237,6 +237,13 @@ End Sub
 Sub SetClick(click As Object) As WixTree
 Tree.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixTree
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = Banano.CallBack(module, methodName, Array(e))
+	Tree.SetClick(cb)
+	Return Me
 End Sub
 
 Sub SetClipboard(clipboard As Object) As WixTree

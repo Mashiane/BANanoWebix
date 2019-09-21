@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public DatePicker As WixElement
 	Public Parent As WixElement
+	Private BANano As BANano
 End Sub
 
 'Initializes the date picker
@@ -336,6 +337,13 @@ End Sub
 
 Sub SetClick(click As Object) As WixDatePicker
 	DatePicker.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixDatePicker
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	DatePicker.SetClick(cb)
 	Return Me
 End Sub
 

@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public Popup As WixElement
 	Public Parent As WixElement
 	Public Menu As WixMenu
+	Public List As WixList
 End Sub
 
 'Initializes the popup
@@ -18,6 +19,7 @@ Public Sub Initialize(sid As String) As WixPopUp
 	Popup.Initialize(ID).setview("popup")
 	Parent = Null
 	Menu.Initialize($"${ID}-menu"$) 
+	List.Initialize($"${ID}-list"$)
 	Return Me
 End Sub
 
@@ -141,7 +143,17 @@ Sub Item As Map
 		Menu.SetSelect(True)
 		Popup.SetAttr("head", "Submenu")
 		Menu.SetLayout("y")
+		Menu.SetBorderless(True)
 		SetBody(Menu.Item)
+	End If
+	If List.HasContent Then
+		List.SetAutoHeight(True)
+		List.SetSelect(True)
+		Popup.SetAttr("head", "Submenu")
+		List.SetMultiSelect(False)
+		List.SetBorderLess(True)
+		List.SetLayout("y")
+		SetBody(List.Item)
 	End If
 	Return Popup.item
 End Sub

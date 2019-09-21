@@ -11,7 +11,7 @@ Sub Class_Globals
 	Private Items As List
 	Private sepCount As Int
 	Public Parent As WixElement
-
+	Private BANano As BANano
 End Sub
 
 'Initializes the Context
@@ -251,6 +251,14 @@ Sub SetClick(click As Object) As WixContextMenu
 ContextMenu.SetAttr("click", click)
 Return Me
 End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixContextMenu
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	ContextMenu.SetClick(cb)
+	Return Me
+End Sub
+
 
 Sub SetClipboard(clipboard As Object) As WixContextMenu
 ContextMenu.SetAttr("clipboard", clipboard)

@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Label As WixElement
 	Public Parent As WixElement
+	Private BANano As BANano
 End Sub
 
 'initialize the input box
@@ -209,6 +210,14 @@ Sub SetClick(click As Object) As WixLabel
 	Label.SetAttr("click", click)
 	Return Me
 End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixLabel
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	Label.SetClick(cb)
+	Return Me
+End Sub
+
 
 Sub SetContainer(container As Object) As WixLabel
 	Label.SetAttr("container", container)

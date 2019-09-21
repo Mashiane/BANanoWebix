@@ -12,6 +12,7 @@ Sub Class_Globals
 	Private yCount As Int
 	Private opt As Map
 	Public Parent As WixElement
+	Private BANano As BANano
 End Sub
 
 'initialize the input box
@@ -327,6 +328,13 @@ End Sub
 Sub SetClick(click As Object) As WixCombo
 Combo.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixCombo
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	Combo.SetClick(cb)
+	Return Me
 End Sub
 
 Sub SetContainer(container As Object) As WixCombo

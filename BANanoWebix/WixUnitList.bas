@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public UnitList As WixElement
 	Private typeOf As Map
 	Public Parent As WixElement
-
+	Private banano As BANano
 End Sub
 
 'Initializes the unit list
@@ -194,6 +194,13 @@ End Sub
 Sub SetClick(click As Object) As WixUnitList
 UnitList.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixUnitList
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = banano.CallBack(module, methodName, Array(e))
+	UnitList.SetClick(cb)
+	Return Me
 End Sub
 
 Sub SetClipboard(clipboard As Object) As WixUnitList

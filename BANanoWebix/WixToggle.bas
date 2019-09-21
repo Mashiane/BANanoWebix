@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Toggle As WixElement
 	Public Parent As WixElement
+	Private BANano As BANano
 End Sub
 
 'Initializes the Toggle
@@ -76,6 +77,13 @@ End Sub
 'set onclick event
 Sub SetClick(e As BANanoObject) As WixToggle
 	Toggle.SetAttr("click", e)
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixToggle
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	Toggle.SetClick(cb)
 	Return Me
 End Sub
 

@@ -12,6 +12,7 @@ Sub Class_Globals
 	Private Maximum As Int
 	Private Stepper As Int
 	Public Parent As WixElement
+	Private Banano As BANano
 End Sub
 
 'initialize the input box
@@ -268,6 +269,13 @@ End Sub
 
 Sub SetClick(click As Object) As WixSlider
 	Slider.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixSlider
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = Banano.CallBack(module, methodName, Array(e))
+	Slider.SetClick(cb)
 	Return Me
 End Sub
 

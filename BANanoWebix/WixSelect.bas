@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public DropDown As WixElement
 	Private Options As List
 	Public Parent As WixElement
+	Private BANano As BANano
 End Sub
 
 'initialize the input box
@@ -298,6 +299,13 @@ End Sub
 Sub SetClick(click As Object) As WixSelect
 DropDown.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixSelect
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	DropDown.SetClick(cb)
+	Return Me
 End Sub
 
 Sub SetContainer(container As Object) As WixSelect

@@ -24,15 +24,16 @@ Sub getPropertyBag(Page As WixPage) As WixForm
 	
 	Dim pmenu As WixPopUp
 	pmenu.Initialize("db_popup")
-	pmenu.Menu.OnItemClick(pgFD, "databaseMenu")
-	pmenu.Menu.AddItem("", "cleardb", "Clear the database","","mdi mdi-database-remove","","")
-	pmenu.Menu.AddItem("", "importdb", "Import database to schema","", "mdi mdi-database-import","","")
-	pmenu.Menu.AddItem("", "foreignkeyregister", "Foreign Keys Register","", "mdi mdi-key-outline", "", "")
-	pmenu.Menu.AddItem("", "importfd", "Import field descriptions", "", "mdi mdi-folder-key-network-outline","","")
-	pmenu.Menu.AddItem("", "importfk", "Import foreign keys","","mdi mdi-key-outline","","")
+	pmenu.List.OnItemClick(pgFD, "databaseMenu")
+	pmenu.List.AddItemIcon("cleardb", "Clear the database", "mdi mdi-database-remove")
+	pmenu.List.AddItemIcon("importdb", "Import database to schema","mdi mdi-database-import")
+	pmenu.List.AddItemIcon("foreignkeyregister", "Foreign Keys Register","mdi mdi-key-outline")
+	pmenu.List.AddItemIcon("importfd", "Import field descriptions", "mdi mdi-folder-key-network-outline")
+	pmenu.List.AddItemIcon("importfk", "Import foreign keys","mdi mdi-key-outline")
 	Page.UX(pmenu.item)
+	tbl.CreateIcon("dbops").SetIcon("mdi mdi-database").SetTooltip("Database Operations").SetPopUp("db_popup").pop
+	tbl.CreateIcon("tblprops").SetIcon("mdi mdi-file-table").SetTooltip("Table Schema").SetOnClick(pgFD, "tblprops_click").pop
 	
-	tbl.CreateIcon("db").SetIcon("mdi mdi-database").SetTooltip("Database Operations").SetPopUp("db_popup").pop
 	tbl.AddSpacer
 	tbl.CreateIcon("propadd").SetIcon("mdi mdi-plus-circle-outline").SetTooltip("Add").SetClick(BANano.CallBack(pgFD,"prop_add",Null)).Pop
 	tbl.CreateIcon("propsave").SetIcon("mdi mdi-content-save").SetTooltip("Save").SetClick(BANano.CallBack(pgFD,"prop_savewait",Null)).Pop

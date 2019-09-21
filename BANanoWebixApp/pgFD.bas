@@ -122,6 +122,8 @@ Sub Init()
 	pg.Hide("add_column")
 	pg.Hide("add_fields")
 	pg.Hide("download")
+	pg.Hide("dbops")
+	pg.Hide("tblprops")
 	'
 	Dim context, e As Object
 	pg.onBeforeDrop("tree", BANano.CallBack(Me,"beforedrop", Array(context,e)))
@@ -143,6 +145,8 @@ Sub Init()
 End Sub
 
 Sub databaseMenu(arguements As String)
+	'hide the popup
+	pg.Hide("db_popup")
 	Select Case arguements
 	Case "cleardb"
 		cleardb
@@ -182,6 +186,7 @@ End Sub
 
 Sub foreignkeyregister
 	'generate a foreign key register
+	UpdateForeignLinks
 	'select all fields
 	Dim sqlite As BANanoSQLite1
 	sqlite.Initialize
@@ -615,6 +620,8 @@ Sub ImportSQLite(dbNameHere As String)
 				grid_format = "%Y-%m-%d"
 				form_editable = True
 				form_stringResult = True
+			Case Else
+				ftype = "STRING"
 			End Select
 			If pk = "1" Then
 				jsonm.Put("primarykey", fname)
@@ -1035,6 +1042,7 @@ Sub LoadOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 			sb.Append($"alaSQL.Initialize
 			Dim rs${fkeys} As AlaSQLResultSet = alaSQL.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
 		rs${fkeys}.Result = ${prjDBName}.ExecuteWait(rs${fkeys}.query, rs${fkeys}.args)"$).append(CRLF)
+			sb.Append($"'rs${fkeys}.result = Page.MapKeysLowerCaseList(rs${fkeys}.result)"$).Append(CRLF)
 			'
 			If (foreign_key <> "id") Or (foreign_value <> "value") Then
 				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
@@ -1066,7 +1074,7 @@ Sub LoadOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 		
 			sb.Append($"Dim rs${fkeys} As SQLiteResultSet1 = sqlite.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
 	rs${fkeys}.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs${fkeys})))"$).Append(CRLF)
-			
+			sb.Append($"'rs${fkeys}.result = Page.MapKeysLowerCaseList(rs${fkeys}.result)"$).append(CRLF)
 			'
 			If (foreign_key <> "id") Or (foreign_value <> "value") Then
 				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
@@ -1098,7 +1106,7 @@ Sub LoadOptionsCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 		
 			sb.Append($"Dim rs${fkeys} As MySQLResultSet1 = mysql.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
 	rs${fkeys}.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs${fkeys})))"$).Append(CRLF)
-			
+			sb.Append($"'rs${fkeys}.result = Page.MapKeysLowerCaseList(rs${fkeys}.result)"$).Append(CRLF)
 			'
 			If (foreign_key <> "id") Or (foreign_value <> "value") Then
 				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
@@ -1178,6 +1186,7 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 			sb.Append($"alaSQL.Initialize
 			Dim rs${fkeys} As AlaSQLResultSet = alaSQL.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
 		rs${fkeys}.Result = ${prjDBName}.ExecuteWait(rs${fkeys}.query, rs${fkeys}.args)"$).append(CRLF)
+			sb.Append($"'rs${fkeys}.result = Page.MapKeysLowerCaseList(rs${fkeys}.result)"$).Append(CRLF)
 			'
 			If (foreign_key <> "id") Or (foreign_value <> "value") Then
 				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
@@ -1206,7 +1215,7 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 		
 			sb.Append($"Dim rs${fkeys} As SQLiteResultSet1 = sqlite.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
 	rs${fkeys}.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs${fkeys})))"$).Append(CRLF)
-			
+			sb.Append($"'rs${fkeys}.result = Page.MapKeysLowerCaseList(rs${fkeys}.result)"$).Append(CRLF)
 			'
 			If (foreign_key <> "id") Or (foreign_value <> "value") Then
 				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
@@ -1234,7 +1243,7 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 		
 			sb.Append($"Dim rs${fkeys} As MySQLResultSet1 = mysql.SelectAll("${foreign_table}", Array("${foreign_key}", "${foreign_value}"), Array("${foreign_value}"))
 	rs${fkeys}.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs${fkeys})))"$).Append(CRLF)
-			
+			sb.Append($"'rs${fkeys}.result = Page.MapKeysLowerCaseList(rs${fkeys}.result)"$).Append(CRLF)
 			'
 			If (foreign_key <> "id") Or (foreign_value <> "value") Then
 				sb.append($"Dim nl${fkeys} As List = Page.List2KeyValues(rs${fkeys}.result, Array("${foreign_key}", "${foreign_value}"))
@@ -1261,6 +1270,7 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 		sb.Append($"alaSQL.Initialize
 		Dim rsd As AlaSQLResultSet = alaSQL.SelectAll("${tblName}", Array("*"), Array("${priKey}"))
 		rsd.Result = ${prjDBName}.ExecuteWait(rsd.query, rsd.args)"$).append(CRLF)
+		sb.Append($"'rsd.result = Page.MapKeysLowerCaseList(rsd.result)"$).Append(CRLF)
 		'AddComment(sb, "***END BANanoSQL***")
 	End If
 	sb.append(CRLF)
@@ -1271,6 +1281,7 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 		sqlite.SetDB(dbName)
 	Dim rsd As SQLiteResultSet1 = sqlite.SelectAll("${tblName}", Array("*"), Array("${priKey}"))
 	rsd.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rsd)))"$).Append(CRLF)
+		sb.Append($"'rsd.result = Page.MapKeysLowerCaseList(rsd.result)"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
 	'
@@ -1279,6 +1290,7 @@ Sub LoadGridOptionsCode(tblName As String, priKey As String, rsx As SQLiteResult
 		sb.Append($"mysql.Initialize
 		Dim rsd As MySQLResultSet1 = mysql.SelectAll("${tblName}", Array("*"), Array("${priKey}"))
 	rsd.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rsd)))"$).Append(CRLF)
+		sb.Append($"'rsd.result = Page.MapKeysLowerCaseList(rsd.result)"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
 	
@@ -1509,6 +1521,7 @@ Sub GridCode(tblName As String, priKey As String, rsx As SQLiteResultSet,tblDesc
 		alaSQL.Initialize
 		Dim rs As AlaSQLResultSet = alaSQL.UpdateWhere("${tblName}", item, CreateMap("${priKey}":${priKey}))
 		rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQL***")
 	End If
 	sb.append(CRLF)
@@ -1613,6 +1626,8 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 	Dim errors As Int = 0
 	Dim none As Int = 0
 	Dim xlinks As Int = 0
+	Dim linkNames As List
+	linkNames.initialize
 	Dim sbFields As StringBuilder
 	sbFields.Initialize
 	
@@ -1651,6 +1666,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 			'
 			If (mlink > 0) And (mlink < 3) Then
 				xlinks = xlinks + 1
+				linkNames.add(fldname)
 			End If
 			
 			'determine field types
@@ -1685,7 +1701,8 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 		pg.Message_Debug("CreateTable: Warning - some fields are not marked in IsField?")
 	End If
 	If xlinks > 0 Then
-		pg.Error("Foreign Link", "CreateTable: Some fields don't have proper foreign links defined!, please fix this")
+		Dim allLinks As String = pg.List2Json(linkNames)
+		pg.Error("Foreign Link", "CreateTable: Some fields don't have proper foreign links defined!, please fix this" & CRLF & CRLF & allLinks)
 		Return ""
 	End If
 	If errors > 0 Then
@@ -1765,6 +1782,8 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 		sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.CreateTable("${tblName}", m${tblName}, "${priKey}")"$).Append(CRLF)
 		AddComment(sb,"execute the resultset structure and get the result")
 		sb.append($"rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
+			
 		'sb.append("'***END BANanoSQL***").Append(CRLF).append(CRLF)
 	End If
 	If prjDBType = "BANanoSQLite" Then
@@ -1777,6 +1796,8 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 		sb.append($"Dim rs As SQLiteResultSet1 = sqlite.CreateTable("${tblName}", m${tblName}, "${priKey}", "")"$).Append(CRLF)
 		AddComment(sb, "execute the resultset structure and get the result")
 		sb.append($"rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
+			
 		'sb.append("'***END BANanoSQLite***").append(CRLF)
 	End If
 	'
@@ -1789,6 +1810,8 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 		sb.append($"Dim rs As MySQLResultSet1 = mysql.CreateTable("${tblName}", m${tblName}, "${priKey}", "")"$).Append(CRLF)
 		AddComment(sb, "execute the resultset structure and get the result")
 		sb.append($"rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
+			
 		'sb.append("'***END BANanoSQLite***").append(CRLF)
 	End If
 	
@@ -1820,6 +1843,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 		AddComment(sb,"get the maximum value in the primary field")
 		sb.append($"Dim rs As AlaSQLResultSet = alaSQL.GetMax("${tblName}", "${priKey}")"$).Append(CRLF)
 		sb.Append($"rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		'sb.append("'***END BANanoSQL***").append(CRLF)
 		AddComment(sb,"increment the max value by 1")
 		sb.append($"Dim nextID As String = alaSQL.GetNextID("${priKey}", rs.result)"$).append(CRLF)
@@ -1834,6 +1858,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 		AddComment(sb,"get the maximum value in the primary field")
 		sb.append($"Dim rs As SQLiteResultSet1 = sqlite.GetMax("${tblName}", "${priKey}")"$).append(CRLF)
 		sb.append($"rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		AddComment(sb,"increment the max value by 1")
 		sb.append($"Dim nextID As String = sqlite.GetNextID("${priKey}", rs.result)"$).append(CRLF)
 		'sb.append("'***END BANanoSQLite***").append(CRLF)
@@ -1847,6 +1872,7 @@ Sub CreateTableCode(tblName As String, priKey As String, rsx As SQLiteResultSet,
 		AddComment(sb,"get the maximum value in the primary field")
 		sb.append($"Dim rs As MySQLResultSet1 = mysql.GetMax("${tblName}", "${priKey}")"$).append(CRLF)
 		sb.append($"rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		AddComment(sb,"increment the max value by 1")
 		sb.append($"Dim nextID As String = mysql.GetNextID("${priKey}", rs.result)"$).append(CRLF)
 		'sb.append("'***END BANanoSQLite***").append(CRLF)
@@ -1878,6 +1904,7 @@ If prjDBType = "BANanoSQL" Then
 	alaSQL.Initialize
 	Dim rs As AlaSQLResultSet = alaSQL.Insert("${tblName}", rec)
 	rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+	sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 	'AddComment(sb,"***END BANanoSQL***")
 End If
 '
@@ -1892,6 +1919,7 @@ End If
 	sqlite.AddBlobs(Array(${sblobs}))
 	Dim rs As SQLiteResultSet1 = sqlite.Insert("${tblName}", rec)
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
+	sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 	'AddComment(sb, "***END BANanoSQLite***"$)
 	End If
 	'
@@ -1905,7 +1933,8 @@ End If
 	mysql.AddBlobs(Array(${sblobs}))
 	Dim rs As MySQLResultSet1 = mysql.Insert("${tblName}", rec)
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
-		'AddComment(sb, "***END BANanoSQLite***"$)
+	sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
+	'AddComment(sb, "***END BANanoSQLite***"$)
 	End If
 
 
@@ -1920,6 +1949,7 @@ If prjDBType = "BANanoSQL" Then
 	alaSQL.Initialize
 	Dim rs As AlaSQLResultSet = alaSQL.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":${priKey}))
 	rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).append(CRLF)
+	sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 	'AddComment(sb,"***END BANanoSQL***")
 End If
 '
@@ -1934,7 +1964,8 @@ sqlite.AddBooleans(Array(${sbooleans}))
 sqlite.AddBlobs(Array(${sblobs}))
 Dim rs As SQLiteResultSet1 = sqlite.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":${priKey}))
 rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).append(CRLF)
-'AddComment(sb,"***END BANanoSQLite***")
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
+		'AddComment(sb,"***END BANanoSQLite***")
 	End If
 	'
 	If prjDBType = "BANanoMySQL" Then
@@ -1947,6 +1978,7 @@ mysql.AddBooleans(Array(${sbooleans}))
 mysql.AddBlobs(Array(${sblobs}))
 Dim rs As MySQLResultSet1 = mysql.UpdateWhere("${tblName}", rec, CreateMap("${priKey}":${priKey}))
 rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
 '
@@ -1972,6 +2004,7 @@ sb.append($"End Select"$).append(CRLF)
 		sb.append("alaSQL.Initialize").append(CRLF)
 		sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.Read("${tblName}", "${priKey}", ${priKey})"$).Append(CRLF)
 		sb.append($"rs.result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQL***")
 	End If
 	'
@@ -1986,6 +2019,7 @@ sb.append($"End Select"$).append(CRLF)
 	sqlite.AddBlobs(Array(${sblobs}))
 		Dim rs As SQLiteResultSet1 = sqlite.Read("${tblName}", "${priKey}", ${priKey})
 		rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
 	'
@@ -1999,6 +2033,7 @@ sb.append($"End Select"$).append(CRLF)
 	mysql.AddBlobs(Array(${sblobs}))
 		Dim rs As MySQLResultSet1 = mysql.Read("${tblName}", "${priKey}", ${priKey})
 		rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
 
@@ -2046,6 +2081,7 @@ sb.append($"End Select"$).append(CRLF)
 		sb.Append("'delete record in the table").Append(CRLF)
 		sb.Append($"Dim rs As AlaSQLResultSet = alaSQL.DeleteWhere("${tblName}", CreateMap("${priKey}":did))"$).Append(CRLF)
 		sb.append($"rs.Result = ${prjDBName}.ExecuteWait(rs.query, rs.args)"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQL***")
 	End If
 	'
@@ -2060,6 +2096,7 @@ sb.append($"End Select"$).append(CRLF)
 	sqlite.AddBlobs(Array(${sblobs}))
 	Dim rs As SQLiteResultSet1 = sqlite.DeleteWhere("${tblName}", CreateMap("${priKey}":did))
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
 	'
@@ -2073,6 +2110,7 @@ sb.append($"End Select"$).append(CRLF)
 	mysql.AddBlobs(Array(${sblobs}))
 	Dim rs As MySQLResultSet1 = mysql.DeleteWhere("${tblName}", CreateMap("${priKey}":did))
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoMySQL1", mysql.Build(rs)))"$).Append(CRLF)
+		sb.Append($"'rs.result = Page.MapKeysLowerCaseList(rs.result)"$).Append(CRLF)
 		'AddComment(sb,"***END BANanoSQLite***")
 	End If
 	
@@ -2423,6 +2461,7 @@ Sub FieldCode(sjson As String) As String
 	Dim sshowongrid As String = props.Get("showongrid")
 	Dim stablename As String = props.get("tablename")
 	If sshowongrid = "0" Or sshowongrid = False Then Return ""
+	Dim fview As String = props.Get("view")
 	'
 	props.Put("id", sid)
 	props.Put("view", "datacolumn")
@@ -2430,6 +2469,7 @@ Sub FieldCode(sjson As String) As String
 	props.Put("parentid", "dt" & stablename)
 	props.put("addingmethod", "AddDataColumns")
 	props.Put("grid_header", sdescription)
+	props.put("fview", fview)
 	'remove irrelevant properties
 	props.remove("length")
 	props.Remove("description")
@@ -2473,6 +2513,20 @@ Sub ViewCode(sjson As String) As String
 	Dim stablename As String = props.get("tablename")
 	If sshowonform = "0" Or sshowonform = False Then Return ""
 	Dim sview As String = props.get("view")
+	'
+	Dim bools As List
+	bools.initialize
+	bools.addall(Array("isfield","setfocus","showonform","form_borderless","form_readonly","form_disabled","form_hidden"))
+	bools.addall(Array("form_editable","form_stringResult","form_required","showongrid","grid_keepsequence","grid_hidden","grid_fillspace"))
+	'
+	For Each bv As String In bools
+		Dim bk As String = props.getdefault(bv,"0")
+		If bk = "" Then bk = "false"
+		If bk = "0" Then bk = "false"
+		If bk = "1" Then bk = "true"
+		If bk = "true" Then props.put(bv, bk)
+	Next
+	
 	Select Case sview
 	Case "combo", "richselect", "radio", "select", "segmented", "tabbar","dbllist","suggest"
 	Case Else
@@ -2729,8 +2783,8 @@ Sub CreateView(properties As Map) As Map
 	'
 	Select Case v
 		Case "combo", "richselect", "radio", "select", "segmented", "tabbar","dbllist","suggest"
-			optionsid = properties.Get("optionsid")
-			optionstext = properties.Get("optionstext")
+			optionsid = properties.GetDefault("optionsid","1,2,3")
+			optionstext = properties.GetDefault("optionstext","One,Two,Three")
 			
 			ids = BANano.Split(",",optionsid)
 			texts = BANano.Split(",", optionstext)
@@ -2788,6 +2842,7 @@ Sub CreateView(properties As Map) As Map
 		Dim pval As String = properties.Get(pkey)
 		Dim cval As String = pg.CStr(pval)
 		If cval = "$empty" Then Continue
+		If pkey = "fview" Then Continue
 		
 		If pkey.StartsWith("form_") Then
 			pkey = pg.MvField(pkey,2,"_")
@@ -2955,6 +3010,7 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 	Dim v As String = m.GetDefault("view","")
 	Dim i As String = m.GetDefault("id","")
 	Dim a As String = m.GetDefault("action","")
+	Dim fv As String = m.getdefault("fview","")
 	Dim xi As String = i
 	If i.IndexOf(".") > 0 Then
 		xi = pg.MvField(i,2,".") 
@@ -2970,6 +3026,7 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 		sparentid = original.GetDefault("parentid","")
 	End If
 	'
+	m.Remove("fview")
 	Dim sb As StringBuilder
 	sb.Initialize
 	sb.Append($"Dim ${xi} As Wix${v}"$).Append("<br>")
@@ -2980,10 +3037,16 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 		If strKey = "view" Then
 			If v <> "Element"  Then Continue
 		End If
+		If strKey = "type" And strval = "text" Then Continue
 		If strKey = "container" Then Continue
 		If strKey = "parentid" Then Continue
 		If strKey = "tabindex" Then Continue
 		If strKey = "action" Then Continue
+		If fv = "datepicker" Or fv = "Format" Then
+			If strKey = "format" Then
+				strval = $"Page.DateToStr("${strval}")"$
+			End If
+		End If
 		If strKey = "click" Then
 			Dim btn As String = $"btn${a}_click"$
 			strval = $"BANano.CallBack(Me, "${btn}", Null)"$
@@ -2996,7 +3059,12 @@ Sub SourceCodeItem(m As Map, original As Map) As String
 			If strval = "True" Or strval = "False" Or strval = "true" Or strval = "false" Then
 				sb.Append($"${xi}.Set${k}(${strval})"$).Append("<br>")
 			Else
-				sb.Append($"${xi}.Set${k}("${strval}")"$).Append("<br>")
+				Dim xval As String = "" & strval
+				If xval.IndexOf("DateToStr") > 0 Then
+					sb.Append($"${xi}.Set${k}(${strval})"$).Append("<br>")
+				Else
+					sb.Append($"${xi}.Set${k}("${strval}")"$).Append("<br>")
+				End If
 			End If
 		End If
 	Next
@@ -3052,6 +3120,8 @@ Sub tree_clickwait(recid As String)
 	pg.Hide("propdelete")
 	pg.Hide("download")
 	pg.Hide("propmenu")
+	pg.Hide("dbops")
+	pg.Hide("tblprops")
 	lastTable = ""
 	Select Case prefix
 		Case "property"
@@ -3112,6 +3182,8 @@ Sub tree_clickwait(recid As String)
 			pg.show("propdelete")
 			dField.BuildBag(pg,propBag)
 			'
+			'PropertyBagToTable(propBag.elements)
+			
 			sqlite.Initialize
 			sqlite.AddStrings(Array("id"))
 			qry = sqlite.Read("connect","id","connection")
@@ -3146,6 +3218,7 @@ Sub tree_clickwait(recid As String)
 			pg.show("propdelete")
 			pg.Show("add_fields")
 			pg.Show("download")
+			pg.show("tblprops")
 			dTable.BuildBag(pg,propBag)
 			
 			sqlite.Initialize
@@ -3191,6 +3264,7 @@ Sub tree_clickwait(recid As String)
 			pg.collapse("preview")
 			pg.Expand("code")
 			pg.Show("download")
+			pg.Show("dbops")
 			dConnection.BuildBag(pg, propBag)
 			'read settings from db
 			sqlite.Initialize
@@ -3266,6 +3340,939 @@ Sub tree_clickwait(recid As String)
 			End If
 	End Select
 End Sub
+
+Sub PropertyBagToTable(records As List)
+	Dim bjq As BANanoJSONQuery
+	bjq.Initialize(records)
+	'remove the ones with labels
+	Dim resx As List
+	resx = bjq.Where("{'type.$ne': 'label'}").All
+	'table creation
+	Dim dt As StringBuilder
+	dt.Initialize
+	' 
+	Dim sbTable As StringBuilder
+	sbTable.initialize
+	sbTable.append($"sqlite.Initialize
+	'create forms table
+	Dim tbl As Map = CreateMap()"$).append(CRLF)
+	
+	For Each rec As Map In resx
+		Dim sid As String = rec.get("id")
+		Dim slabel As String = rec.Get("label")
+		Dim stype As String = rec.Get("type")
+		Dim svalue As String = rec.get("value")
+		'
+		Select Case stype
+			Case "color", "text", "select", "popup", "password", "date", "combo", "richselect"
+			sbTable.append($"tbl.Put("${sid}", sqlite.DB_STRING)"$).append(CRLF)
+		Case "checkbox" , "toggle"
+			sbTable.append($"tbl.Put("${sid}", sqlite.DB_BOOL)"$).append(CRLF)
+		End Select
+		'
+		'datatable creation
+	dt.append($"Dim f${sid} As WixDataColumn
+	f${sid}.Initialize("${sid}")
+	f${sid}.SetHeaderContent("textFilter")
+	f${sid}.SetSort("string")
+	f${sid}.SetAdjust("true")
+	f${sid}.SetHeader("${slabel}")
+	f${sid}.SetEditor("${stype}")"$).Append(CRLF)
+	
+	Select Case stype
+	Case "checkbox", "toggle"
+		dt.Append($"f${sid}.SetCheckBox(true)"$).append(CRLF)
+		dt.append($"f${sid}.SetUncheckValue(false)"$).append(CRLF)
+	Case "select", "combo", "richselect"
+		dt.append($"f${sid}.SetOptions()"$).append(CRLF)
+	End Select
+	dt.append($"dtfieldsgrid.AddDataColumns(f${sid})"$).Append(CRLF)
+	dt.append(CRLF)
+	dt.append(CRLF)
+	Next
+	
+	'datatable creation
+	Dim sbDT As StringBuilder
+	sbDT.initialize
+	sbDT.append($"Sub CreateFieldsGridDataTable As WixDataTable
+	Dim dtfieldsgrid As WixDataTable
+	dtfieldsgrid.Initialize("dtfieldsgrid")
+	dtfieldsgrid.SetResizeColumn("true")
+	dtfieldsgrid.SetScroll("xy")
+	dtfieldsgrid.SetSelect("row")
+	dtfieldsgrid.SetEditable(True)
+	dtfieldsgrid.SetHeaderBorders(True)"$).append(CRLF)
+	'
+	sbDT.Append(dt.tostring)
+	'
+	Log(sbDT.tostring)
+	
+	
+	'Log(sbTable.ToString)
+
+End Sub
+
+Sub tblprops_click(e As BANanoEvent)
+	CreateFieldsGridWindow
+	pg.show("tblpropswin")
+	TableSchema(lastTable)
+End Sub
+
+Sub closeDef(e As BANanoEvent)
+	pg.WorkingOnIt("dtfieldsgrid")
+	UpdateForeignLinks
+	pg.DoneWorking("dtfieldsgrid")
+	pg.Hide("tblpropswin")
+	'destroy
+	pg.Destroy("tblpropswin")
+End Sub
+
+Sub UpdateForeignLinks
+	Dim sqlite As BANanoSQLite1
+	sqlite.Initialize
+	sqlite.SetDB(dbName)
+	
+	'STORE ALL FIELD DESCRIPTIONS
+	Dim allfields As Map = CreateMap()
+	Dim flds As SQLiteResultSet1 = sqlite.SelectAll("fields",Array("*"), Array("id"))
+	flds.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(flds)))
+	For Each fldx As Map In flds.result
+		Dim fKey As String = fldx.Get("key")
+		Dim xjson As String = fldx.get("json")
+		Dim jsonm As Map = pg.json2map(xjson)
+		Dim sdescription As String = jsonm.GetDefault("description","")
+		allfields.Put(fKey, sdescription)
+	Next
+	'
+	'fix the description of foreign key tables
+	Dim flds As SQLiteResultSet1 = sqlite.SelectAll("fields",Array("*"), Array("id"))
+	flds.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(flds)))
+	For Each fldx As Map In flds.result
+		Dim fKey As String = fldx.Get("key")
+		Dim xjson As String = fldx.get("json")
+		Dim jsonm As Map = pg.json2map(xjson)
+		Dim sforeign_table As String = jsonm.GetDefault("foreign_table","")
+		Dim sforeign_value As String = jsonm.GetDefault("foreign_value","")
+		'
+		Dim fTot As Int = 0
+		If sforeign_value.length > 0 Then fTot = fTot + 1
+		If sforeign_table.length > 0 Then fTot = fTot + 1
+		'
+		If fTot = 2 Then
+			'get the decription
+			Dim otherKey As String = $"field.${sforeign_table}.${sforeign_value}"$
+			otherKey = otherKey.tolowercase
+			'get the description
+			If allfields.ContainsKey(otherKey) Then
+				Dim sdescription As String = allfields.Get(otherKey)
+				jsonm.Put("description", sdescription)
+				xjson = pg.Map2Json(jsonm)
+				'update the db
+				Dim fldu As SQLiteResultSet1 = sqlite.UpdateWhere("fields", CreateMap("json":xjson), CreateMap("key": fKey))
+				fldu.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(fldu)))
+			End If
+		End If
+	Next
+End Sub
+
+Sub TableSchema(tblName As String)
+	pg.WorkingOnIt("dtfieldsgrid")
+	'
+	UpdateForeignLinks
+	'
+	Dim sqlite As BANanoSQLite1
+	sqlite.Initialize
+	sqlite.SetDB(dbName)
+	'clear the grid
+	pg.ClearAll("dtfieldsgrid")
+	'clear the table
+	Dim ctb As SQLiteResultSet1 = sqlite.DeleteAll(tblName)
+	'get all fields for this table
+	Dim fields As SQLiteResultSet1 = sqlite.SelectWhere("fields", Array("*"), CreateMap("tablename":tblName), Array("tabindex"))
+	fields.result = BANano.FromJson(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(fields)))
+	'
+	Dim nl As List
+	nl.Initialize 
+	
+	For Each fld As Map In fields.result
+		Dim skey As String = fld.Get("key")
+		Dim sjson As String = fld.get("json")
+		'convert json to map
+		Dim jmap As Map = pg.Json2Map(sjson)
+		jmap.put("id", skey)
+		nl.Add(jmap)
+	Next
+	pg.SetData("dtfieldsgrid", nl)
+	pg.DoneWorking("dtfieldsgrid")
+End Sub
+
+Sub CreateFieldsGridWindow
+	Dim win As WixWindow
+	win.Initialize("tblpropswin")
+	win.SetFullScreen(True) 
+	win.SetModal(True)
+	win.ToolBar.SetPadding(10)
+	win.ToolBar.CreateLabel("lbl").SetLabel(lastTable).Pop
+	win.ToolBar.AddSpacer
+	win.toolbar.CreatePager("pgfields").SetSize(20).SetShowFirst(True).SetShowPrev(True).SetShowNext(True).SetShowLast(True).SetAnimate(True).pop
+	win.toolbar.CreateIcon("fldrefresh").SetIcon("mdi mdi-database-refresh").SetOnClick(Me, "refreshDef").pop
+	win.ToolBar.CreateIcon("icnclose").SetIcon("mdi mdi-close").SetOnClick(Me,"closeDef").pop
+	'replace normal header
+	win.SetToolBar(True)
+	
+	Dim dt As WixDataTable = CreateFieldsGridDataTable
+	dt.SetPadding(20)
+	win.setbody(dt.Item)
+	pg.AddWindow(win)
+	'build the records and display on the grid
+End Sub
+
+Sub refreshDef(e As BANanoEvent)
+	TableSchema(lastTable)
+End Sub
+
+Sub field_edit(rowid As Object, rowdata As Map, rowold As Map)
+	'get the id
+	pg.workingonit("dtfieldsgrid")
+	Dim sid As String = rowdata.get("id")
+	rowdata.put("key", sid)
+	rowdata.Put("id", "field")
+	'
+	Dim bools As List
+	bools.initialize
+	bools.addall(Array("isfield","setfocus","showonform","form_borderless","form_readonly","form_disabled","form_hidden"))
+	bools.addall(Array("form_editable","form_stringResult","form_required","showongrid","grid_keepsequence","grid_hidden","grid_fillspace"))
+	'
+	For Each bv As String In bools
+		Dim bk As String = rowdata.getdefault(bv,"0")
+		If bk = "" Then bk = "false"
+		If bk = "0" Then bk = "false"
+		If bk = "1" Then bk = "true"
+		If bk = "true" Then rowdata.put(bv, bk)
+	Next
+	'try and fix foreign keys
+	Dim sforeign_table As String = rowdata.getdefault("foreign_table","")
+	Dim sforeign_key As String = rowdata.getdefault("foreign_key","")
+	Dim sforeign_value As String = rowdata.getdefault("foreign_value","")
+	Dim stabindex As String = rowdata.GetDefault("tabindex","")
+	'
+	Dim fTot As Int = 0
+	If sforeign_value.length > 0 Then fTot = fTot + 1
+	If sforeign_table.length > 0 Then fTot = fTot + 1
+	If sforeign_key.length > 0 Then fTot = fTot + 1
+	'
+	If fTot >= 2 Then
+		rowdata.put("view", "select")
+		rowdata.Put("optionsid", "1,2,3")
+		rowdata.put("optionstext", "One,Two,Three")
+		rowdata.Put("type", "INT")
+	End If
+	'
+	Dim sjson As String = pg.Map2Json(rowdata)
+	Dim rec As Map = CreateMap()
+	rec.Put("key", sid)
+	rec.put("json", sjson)
+	rec.put("tabindex", stabindex)
+	'
+	Dim sqlite As BANanoSQLite1
+	sqlite.Initialize
+	sqlite.SetDB(dbName)
+	Dim rs As SQLiteResultSet1 = sqlite.UpdateWhere("fields", rec, CreateMap("key":sid))
+	rs.Result = BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs))
+	pg.DoneWorking("dtfieldsgrid")
+End Sub
+
+Sub CreateFieldsGridDataTable As WixDataTable 
+	Dim fldtypes As List
+	fldtypes.Initialize
+	fldtypes.AddAll(Array("BOOL", "INT", "INTEGER", "TEXT", "STRING", "REAL", "DATE", "BLOB", "FLOAT"))
+	'
+	Dim formtypes As List
+	formtypes.initialize
+	formtypes.AddAll(Array("","time","date","htmlbutton","image","imageTop","icon","iconTop", "text","password","email","number","url","tel", "month","year"))
+	'
+	Dim formatOptions As List
+	formatOptions.addall(Array("","1,111.00","111", "11", "%d-%m-%Y" , "%Y-%m-%d","%D, %j %M %Y, %H:%i","%D, %j %M %Y"))
+	'
+	Dim falign As List
+	falign.initialize
+	falign.addall(Array("","left","center","right"))
+	'
+	Dim fleftright As List
+	fleftright.initialize
+	fleftright.addall(Array("","left","right"))
+	'
+	Dim flefttop As List
+	flefttop.initialize
+	flefttop.addall(Array("","left","top"))
+		
+	
+	Dim dtfieldsgrid As WixDataTable 
+	dtfieldsgrid.Initialize("dtfieldsgrid") 
+	dtfieldsgrid.SetResizeColumn("true") 
+	dtfieldsgrid.SetScroll("xy") 
+	dtfieldsgrid.SetSelect("row") 
+	dtfieldsgrid.SetEditable(True)
+	dtfieldsgrid.SetHeaderBorders(True)
+	dtfieldsgrid.SetEditAction("click")
+	dtfieldsgrid.SetColumnsToFreeze(3)
+	dtfieldsgrid.SetPager("pgfields")
+	'
+	Dim rowid As Object
+	Dim rowdata As Map
+	Dim rowold As Map
+	dtfieldsgrid.OnDataUpdate(Me, "field_edit", rowid, rowdata, rowold)
+	'
+	Dim id As WixDataColumn 
+	id.Initialize("id") 
+	id.SetHeaderContent("textFilter") 
+	id.SetSort("string") 
+	id.SetAdjust("true") 
+	id.SetHeader("#")
+	id.sethidden(True)
+	dtfieldsgrid.AddDataColumns(id)
+		
+	Dim fvalue As WixDataColumn 
+	fvalue.Initialize("value") 
+	fvalue.SetHeaderContent("textFilter") 
+	fvalue.SetSort("string") 
+	fvalue.SetAdjust("true") 
+	fvalue.SetHeader("Field") 
+	'fvalue.SetEditor("text")
+	dtfieldsgrid.AddDataColumns(fvalue)
+	
+	Dim description As WixDataColumn 
+	description.Initialize("description") 
+	description.SetHeaderContent("textFilter") 
+	description.SetSort("string") 
+	description.SetAdjust("true") 
+	description.SetHeader("Description") 
+	description.SetEditor("text")
+	dtfieldsgrid.AddDataColumns(description)
+	
+	Dim fType As WixDataColumn 
+	fType.Initialize("type") 
+	fType.SetHeaderContent("textFilter") 
+	fType.SetSort("string") 
+	fType.SetAdjust("true") 
+	fType.SetHeader("Field Type") 
+	fType.SetEditor("combo")
+	fType.SetOptions(fldtypes)
+	dtfieldsgrid.AddDataColumns(fType)
+	
+
+	'Dim flength As WixDataColumn 
+	'flength.Initialize("length") 
+	'flength.SetHeaderContent("textFilter") 
+	'flength.SetSort("string") 
+	'flength.SetAdjust("true") 
+	'flength.SetHeader("Field Length") 
+	'flength.SetEditor("text")
+	'dtfieldsgrid.AddDataColumns(flength)
+	
+	Dim isfield As WixDataColumn 
+	isfield.Initialize("isfield") 
+	isfield.SetHeaderContent("textFilter") 
+	isfield.SetSort("string") 
+	isfield.SetAdjust("true") 
+	isfield.SetHeader("Is Field") 
+	isfield.SetEditor("checkbox")
+	isfield.SetCheckBox(True)
+	isfield.SetUncheckValue(False)
+	dtfieldsgrid.AddDataColumns(isfield)
+	
+	Dim setfocus As WixDataColumn 
+	setfocus.Initialize("setfocus") 
+	setfocus.SetHeaderContent("textFilter") 
+	setfocus.SetSort("string") 
+	setfocus.SetAdjust("true") 
+	setfocus.SetHeader("Focus") 
+	setfocus.SetEditor("checkbox")
+	setfocus.SetCheckBox(True)
+	setfocus.SetUncheckValue(False)
+	dtfieldsgrid.AddDataColumns(setfocus)
+
+	Dim tabindex As WixDataColumn 
+	tabindex.Initialize("tabindex") 
+	tabindex.SetHeaderContent("textFilter") 
+	tabindex.SetSort("string") 
+	tabindex.SetAdjust("true") 
+	tabindex.SetHeader("Index") 
+	tabindex.SetEditor("text")
+	dtfieldsgrid.AddDataColumns(tabindex)
+
+	Dim foreign_table As WixDataColumn 
+	foreign_table.Initialize("foreign_table") 
+	foreign_table.SetHeaderContent("textFilter") 
+	foreign_table.SetSort("string") 
+	foreign_table.SetAdjust("true") 
+	foreign_table.SetHeader("Foreign Table") 
+	foreign_table.SetEditor("text")
+	dtfieldsgrid.AddDataColumns(foreign_table)
+
+	Dim foreign_key As WixDataColumn 
+	foreign_key.Initialize("foreign_key") 
+	foreign_key.SetHeaderContent("textFilter") 
+	foreign_key.SetSort("string") 
+	foreign_key.SetAdjust("true") 
+	foreign_key.SetHeader("Foreign Key") 
+	foreign_key.SetEditor("text")
+	dtfieldsgrid.AddDataColumns(foreign_key)
+
+	Dim foreign_value As WixDataColumn 
+	foreign_value.Initialize("foreign_value") 
+	foreign_value.SetHeaderContent("textFilter") 
+	foreign_value.SetSort("string") 
+	foreign_value.SetAdjust("true") 
+	foreign_value.SetHeader("Foreign Value") 
+	foreign_value.SetEditor("text")
+	dtfieldsgrid.AddDataColumns(foreign_value)
+
+	Dim showonform As WixDataColumn 
+	showonform.Initialize("showonform") 
+	showonform.SetHeaderContent("textFilter") 
+	showonform.SetSort("string") 
+	showonform.SetAdjust("true") 
+	showonform.SetHeader("On Form") 
+	showonform.SetEditor("checkbox")
+	showonform.SetCheckBox(True)
+	showonform.SetUncheckValue(False)
+	dtfieldsgrid.AddDataColumns(showonform)
+
+	Dim fview As WixDataColumn 
+	fview.Initialize("view") 
+	fview.SetHeaderContent("textFilter") 
+	fview.SetSort("string") 
+	fview.SetAdjust("true") 
+	fview.SetHeader("View Type") 
+	fview.SetEditor("combo")
+	fview.SetOptions(pg.views)
+	dtfieldsgrid.AddDataColumns(fview)
+
+	Dim form_type As WixDataColumn 
+	form_type.Initialize("form_type") 
+	form_type.SetHeaderContent("textFilter") 
+	form_type.SetSort("string") 
+	form_type.SetAdjust("true") 
+	form_type.SetHeader("Input Type") 
+	form_type.SetEditor("combo")
+	form_type.SetOptions(formtypes)
+	dtfieldsgrid.AddDataColumns(form_type)
+
+	Dim optionsid As WixDataColumn 
+	optionsid.Initialize("optionsid") 
+	optionsid.SetHeaderContent("textFilter") 
+	optionsid.SetSort("string") 
+	optionsid.SetAdjust("true") 
+	optionsid.SetHeader("Keys") 
+	optionsid.SetEditor("popup")
+	dtfieldsgrid.AddDataColumns(optionsid)
+
+	Dim optionstext As WixDataColumn 
+	optionstext.Initialize("optionstext") 
+	optionstext.SetHeaderContent("textFilter") 
+	optionstext.SetSort("string") 
+	optionstext.SetAdjust("true") 
+	optionstext.SetHeader("Values") 
+	optionstext.SetEditor("popup")
+	dtfieldsgrid.AddDataColumns(optionstext)
+
+	Dim fform_css As WixDataColumn 
+	fform_css.Initialize("form_css") 
+	fform_css.SetHeaderContent("textFilter") 
+	fform_css.SetSort("string") 
+	fform_css.SetAdjust("true") 
+	fform_css.SetHeader("Css") 
+	fform_css.SetEditor("text")
+	dtfieldsgrid.AddDataColumns(fform_css)
+
+
+	Dim fform_align As WixDataColumn 
+	fform_align.Initialize("form_align") 
+	fform_align.SetHeaderContent("textFilter") 
+	fform_align.SetSort("string") 
+	fform_align.SetAdjust("true") 
+	fform_align.SetHeader("Align") 
+	fform_align.SetEditor("combo")
+	fform_align.SetOptions(falign)
+	dtfieldsgrid.AddDataColumns(fform_align)
+
+
+	Dim fform_inputAlign As WixDataColumn 
+	fform_inputAlign.Initialize("form_inputAlign") 
+	fform_inputAlign.SetHeaderContent("textFilter") 
+	fform_inputAlign.SetSort("string") 
+	fform_inputAlign.SetAdjust("true") 
+	fform_inputAlign.SetHeader("Input Align") 
+	fform_inputAlign.SetEditor("combo")
+	fform_inputAlign.SetOptions(fleftright)
+	dtfieldsgrid.AddDataColumns(fform_inputAlign)
+
+	Dim fform_borderless As WixDataColumn 
+	fform_borderless.Initialize("form_borderless") 
+	fform_borderless.SetHeaderContent("textFilter") 
+	fform_borderless.SetSort("string") 
+	fform_borderless.SetAdjust("true") 
+	fform_borderless.SetHeader("Borderless") 
+	fform_borderless.SetEditor("checkbox")
+	fform_borderless.SetCheckBox(True)
+	fform_borderless.SetUncheckValue(False)
+	dtfieldsgrid.AddDataColumns(fform_borderless)
+
+
+	Dim fform_readonly As WixDataColumn 
+	fform_readonly.Initialize("form_readonly") 
+	fform_readonly.SetHeaderContent("textFilter") 
+	fform_readonly.SetSort("string") 
+	fform_readonly.SetAdjust("true") 
+	fform_readonly.SetHeader("Read Only") 
+	fform_readonly.SetEditor("checkbox")
+	fform_readonly.SetCheckBox(True)
+	fform_readonly.SetUncheckValue(False)
+	dtfieldsgrid.AddDataColumns(fform_readonly)
+
+
+	Dim fform_disabled As WixDataColumn 
+	fform_disabled.Initialize("form_disabled") 
+	fform_disabled.SetHeaderContent("textFilter") 
+	fform_disabled.SetSort("string") 
+	fform_disabled.SetAdjust("true") 
+	fform_disabled.SetHeader("Disabled") 
+	fform_disabled.SetEditor("checkbox")
+	fform_disabled.SetCheckBox(True)
+	fform_disabled.SetUncheckValue(False)
+	dtfieldsgrid.AddDataColumns(fform_disabled)
+
+
+	Dim fform_tooltip As WixDataColumn 
+	fform_tooltip.Initialize("form_tooltip") 
+	fform_tooltip.SetHeaderContent("textFilter") 
+	fform_tooltip.SetSort("string") 
+	fform_tooltip.SetAdjust("true") 
+	fform_tooltip.SetHeader("Tooltip") 
+	fform_tooltip.SetEditor("text")
+	dtfieldsgrid.AddDataColumns(fform_tooltip)
+
+
+	Dim fform_format As WixDataColumn 
+	fform_format.Initialize("form_format") 
+	fform_format.SetHeaderContent("textFilter") 
+	fform_format.SetSort("string") 
+	fform_format.SetAdjust("true") 
+	fform_format.SetHeader("Format") 
+	fform_format.SetEditor("combo")
+	fform_format.SetOptions(formatOptions)
+dtfieldsgrid.AddDataColumns(fform_format)
+
+
+Dim fform_gravity As WixDataColumn 
+	fform_gravity.Initialize("form_gravity") 
+	fform_gravity.SetHeaderContent("textFilter") 
+	fform_gravity.SetSort("string") 
+	fform_gravity.SetAdjust("true") 
+	fform_gravity.SetHeader("Gravity") 
+	fform_gravity.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_gravity)
+
+
+Dim fform_hidden As WixDataColumn 
+	fform_hidden.Initialize("form_hidden") 
+	fform_hidden.SetHeaderContent("textFilter") 
+	fform_hidden.SetSort("string") 
+	fform_hidden.SetAdjust("true") 
+	fform_hidden.SetHeader("Hidden") 
+	fform_hidden.SetEditor("checkbox")
+fform_hidden.SetCheckBox(True)
+fform_hidden.SetUncheckValue(False)
+dtfieldsgrid.AddDataColumns(fform_hidden)
+
+
+Dim fform_labelAlign As WixDataColumn 
+	fform_labelAlign.Initialize("form_labelAlign") 
+	fform_labelAlign.SetHeaderContent("textFilter") 
+	fform_labelAlign.SetSort("string") 
+	fform_labelAlign.SetAdjust("true") 
+	fform_labelAlign.SetHeader("Label Align") 
+	fform_labelAlign.SetEditor("combo")
+fform_labelAlign.SetOptions(falign)
+dtfieldsgrid.AddDataColumns(fform_labelAlign)
+
+
+Dim fform_labelPosition As WixDataColumn 
+	fform_labelPosition.Initialize("form_labelPosition") 
+	fform_labelPosition.SetHeaderContent("textFilter") 
+	fform_labelPosition.SetSort("string") 
+	fform_labelPosition.SetAdjust("true") 
+	fform_labelPosition.SetHeader("Label Position") 
+	fform_labelPosition.SetEditor("combo")
+fform_labelPosition.SetOptions(flefttop)
+dtfieldsgrid.AddDataColumns(fform_labelPosition)
+
+
+Dim fform_labelRight As WixDataColumn 
+	fform_labelRight.Initialize("form_labelRight") 
+	fform_labelRight.SetHeaderContent("textFilter") 
+	fform_labelRight.SetSort("string") 
+	fform_labelRight.SetAdjust("true") 
+	fform_labelRight.SetHeader("Label Right") 
+	fform_labelRight.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_labelRight)
+
+
+Dim fform_offLabel As WixDataColumn 
+	fform_offLabel.Initialize("form_offLabel") 
+	fform_offLabel.SetHeaderContent("textFilter") 
+	fform_offLabel.SetSort("string") 
+	fform_offLabel.SetAdjust("true") 
+	fform_offLabel.SetHeader("Off Label") 
+	fform_offLabel.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_offLabel)
+
+
+Dim fform_uncheckValue As WixDataColumn 
+	fform_uncheckValue.Initialize("form_uncheckValue") 
+	fform_uncheckValue.SetHeaderContent("textFilter") 
+	fform_uncheckValue.SetSort("string") 
+	fform_uncheckValue.SetAdjust("true") 
+	fform_uncheckValue.SetHeader("Un Check Value") 
+	fform_uncheckValue.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_uncheckValue)
+
+
+Dim fform_onLabel As WixDataColumn 
+	fform_onLabel.Initialize("form_onLabel") 
+	fform_onLabel.SetHeaderContent("textFilter") 
+	fform_onLabel.SetSort("string") 
+	fform_onLabel.SetAdjust("true") 
+	fform_onLabel.SetHeader("On Label") 
+	fform_onLabel.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_onLabel)
+
+
+Dim fform_checkValue As WixDataColumn 
+	fform_checkValue.Initialize("form_checkValue") 
+	fform_checkValue.SetHeaderContent("textFilter") 
+	fform_checkValue.SetSort("string") 
+	fform_checkValue.SetAdjust("true") 
+	fform_checkValue.SetHeader("Check Value") 
+	fform_checkValue.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_checkValue)
+
+
+Dim fform_batch As WixDataColumn 
+	fform_batch.Initialize("form_batch") 
+	fform_batch.SetHeaderContent("textFilter") 
+	fform_batch.SetSort("string") 
+	fform_batch.SetAdjust("true") 
+	fform_batch.SetHeader("Batch") 
+	fform_batch.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_batch)
+
+
+Dim fform_width As WixDataColumn 
+	fform_width.Initialize("form_width") 
+	fform_width.SetHeaderContent("textFilter") 
+	fform_width.SetSort("string") 
+	fform_width.SetAdjust("true") 
+	fform_width.SetHeader("Width") 
+	fform_width.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_width)
+
+
+Dim fform_height As WixDataColumn 
+	fform_height.Initialize("form_height") 
+	fform_height.SetHeaderContent("textFilter") 
+	fform_height.SetSort("string") 
+	fform_height.SetAdjust("true") 
+	fform_height.SetHeader("Height") 
+	fform_height.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_height)
+
+
+Dim fform_inputWidth As WixDataColumn 
+	fform_inputWidth.Initialize("form_inputWidth") 
+	fform_inputWidth.SetHeaderContent("textFilter") 
+	fform_inputWidth.SetSort("string") 
+	fform_inputWidth.SetAdjust("true") 
+	fform_inputWidth.SetHeader("Input Width") 
+	fform_inputWidth.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_inputWidth)
+
+
+Dim fform_editable As WixDataColumn 
+	fform_editable.Initialize("form_editable") 
+	fform_editable.SetHeaderContent("textFilter") 
+	fform_editable.SetSort("string") 
+	fform_editable.SetAdjust("true") 
+	fform_editable.SetHeader("Date Editable") 
+	fform_editable.SetEditor("checkbox")
+fform_editable.SetCheckBox(True)
+fform_editable.SetUncheckValue(False)
+dtfieldsgrid.AddDataColumns(fform_editable)
+
+
+Dim fform_stringResult As WixDataColumn 
+	fform_stringResult.Initialize("form_stringResult") 
+	fform_stringResult.SetHeaderContent("textFilter") 
+	fform_stringResult.SetSort("string") 
+	fform_stringResult.SetAdjust("true") 
+	fform_stringResult.SetHeader("Date String Result") 
+	fform_stringResult.SetEditor("checkbox")
+fform_stringResult.SetCheckBox(True)
+fform_stringResult.SetUncheckValue(False)
+dtfieldsgrid.AddDataColumns(fform_stringResult)
+
+
+Dim fform_required As WixDataColumn 
+	fform_required.Initialize("form_required") 
+	fform_required.SetHeaderContent("textFilter") 
+	fform_required.SetSort("string") 
+	fform_required.SetAdjust("true") 
+	fform_required.SetHeader("Required") 
+	fform_required.SetEditor("checkbox")
+fform_required.SetCheckBox(True)
+fform_required.SetUncheckValue(False)
+dtfieldsgrid.AddDataColumns(fform_required)
+
+
+Dim fform_validate As WixDataColumn 
+	fform_validate.Initialize("form_validate") 
+	fform_validate.SetHeaderContent("textFilter") 
+	fform_validate.SetSort("string") 
+	fform_validate.SetAdjust("true") 
+	fform_validate.SetHeader("Validate") 
+	fform_validate.SetEditor("combo")
+	fform_validate.SetOptions(Array("","isNotEmpty","isNumber","isEmail"))
+dtfieldsgrid.AddDataColumns(fform_validate)
+
+
+Dim fform_validateEvent As WixDataColumn 
+	fform_validateEvent.Initialize("form_validateEvent") 
+	fform_validateEvent.SetHeaderContent("textFilter") 
+	fform_validateEvent.SetSort("string") 
+	fform_validateEvent.SetAdjust("true") 
+	fform_validateEvent.SetHeader("Validate Event") 
+	fform_validateEvent.SetEditor("combo")
+	fform_validateEvent.SetOptions(Array("","blur","key"))
+	dtfieldsgrid.AddDataColumns(fform_validateEvent)
+
+Dim fform_bottomLabel As WixDataColumn 
+	fform_bottomLabel.Initialize("form_bottomLabel") 
+	fform_bottomLabel.SetHeaderContent("textFilter") 
+	fform_bottomLabel.SetSort("string") 
+	fform_bottomLabel.SetAdjust("true") 
+	fform_bottomLabel.SetHeader("Bottom Label") 
+	fform_bottomLabel.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_bottomLabel)
+
+
+Dim fform_bottomPadding As WixDataColumn 
+	fform_bottomPadding.Initialize("form_bottomPadding") 
+	fform_bottomPadding.SetHeaderContent("textFilter") 
+	fform_bottomPadding.SetSort("string") 
+	fform_bottomPadding.SetAdjust("true") 
+	fform_bottomPadding.SetHeader("Bottom Padding") 
+	fform_bottomPadding.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_bottomPadding)
+
+
+Dim fform_invalidMessage As WixDataColumn 
+	fform_invalidMessage.Initialize("form_invalidMessage") 
+	fform_invalidMessage.SetHeaderContent("textFilter") 
+	fform_invalidMessage.SetSort("string") 
+	fform_invalidMessage.SetAdjust("true") 
+	fform_invalidMessage.SetHeader("Invalid Message") 
+	fform_invalidMessage.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fform_invalidMessage)
+
+
+Dim fshowongrid As WixDataColumn 
+	fshowongrid.Initialize("showongrid") 
+	fshowongrid.SetHeaderContent("textFilter") 
+	fshowongrid.SetSort("string") 
+	fshowongrid.SetAdjust("true") 
+	fshowongrid.SetHeader("On Grid") 
+	fshowongrid.SetEditor("checkbox")
+fshowongrid.SetCheckBox(True)
+fshowongrid.SetUncheckValue(False)
+dtfieldsgrid.AddDataColumns(fshowongrid)
+
+
+Dim fgrid_header As WixDataColumn 
+	fgrid_header.Initialize("grid_header") 
+	fgrid_header.SetHeaderContent("textFilter") 
+	fgrid_header.SetSort("string") 
+	fgrid_header.SetAdjust("true") 
+	fgrid_header.SetHeader("Grid.Header Title") 
+	fgrid_header.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fgrid_header)
+
+
+Dim fgrid_header_text As WixDataColumn 
+	fgrid_header_text.Initialize("grid_header_text") 
+	fgrid_header_text.SetHeaderContent("textFilter") 
+	fgrid_header_text.SetSort("string") 
+	fgrid_header_text.SetAdjust("true") 
+	fgrid_header_text.SetHeader("Grid.Header Text") 
+	fgrid_header_text.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fgrid_header_text)
+
+
+Dim fgrid_keepsequence As WixDataColumn 
+	fgrid_keepsequence.Initialize("grid_keepsequence") 
+	fgrid_keepsequence.SetHeaderContent("textFilter") 
+	fgrid_keepsequence.SetSort("string") 
+	fgrid_keepsequence.SetAdjust("true") 
+	fgrid_keepsequence.SetHeader("Grid.Keep Sequence") 
+	fgrid_keepsequence.SetEditor("checkbox")
+fgrid_keepsequence.SetCheckBox(True)
+fgrid_keepsequence.SetUncheckValue(False)
+dtfieldsgrid.AddDataColumns(fgrid_keepsequence)
+
+
+Dim fgrid_header_css As WixDataColumn 
+	fgrid_header_css.Initialize("grid_header_css") 
+	fgrid_header_css.SetHeaderContent("textFilter") 
+	fgrid_header_css.SetSort("string") 
+	fgrid_header_css.SetAdjust("true") 
+	fgrid_header_css.SetHeader("Grid.Header CSS") 
+	fgrid_header_css.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fgrid_header_css)
+
+
+Dim fgrid_header_colspan As WixDataColumn 
+	fgrid_header_colspan.Initialize("grid_header_colspan") 
+	fgrid_header_colspan.SetHeaderContent("textFilter") 
+	fgrid_header_colspan.SetSort("string") 
+	fgrid_header_colspan.SetAdjust("true") 
+	fgrid_header_colspan.SetHeader("Grid.Col Span") 
+	fgrid_header_colspan.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fgrid_header_colspan)
+
+
+Dim fgrid_header_rowspan As WixDataColumn 
+	fgrid_header_rowspan.Initialize("grid_header_rowspan") 
+	fgrid_header_rowspan.SetHeaderContent("textFilter") 
+	fgrid_header_rowspan.SetSort("string") 
+	fgrid_header_rowspan.SetAdjust("true") 
+	fgrid_header_rowspan.SetHeader("Grid.Row Span") 
+	fgrid_header_rowspan.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fgrid_header_rowspan)
+
+
+Dim fgrid_header_filter As WixDataColumn 
+	fgrid_header_filter.Initialize("grid_header_filter") 
+	fgrid_header_filter.SetHeaderContent("textFilter") 
+	fgrid_header_filter.SetSort("string") 
+	fgrid_header_filter.SetAdjust("true") 
+	fgrid_header_filter.SetHeader("Grid.Filter") 
+	fgrid_header_filter.SetEditor("combo")
+	fgrid_header_filter.SetOptions(Array("","textFilter","numberFilter","dateFilter","selectFilter","summColumn"))
+dtfieldsgrid.AddDataColumns(fgrid_header_filter)
+
+
+Dim fgrid_hidden As WixDataColumn 
+	fgrid_hidden.Initialize("grid_hidden") 
+	fgrid_hidden.SetHeaderContent("textFilter") 
+	fgrid_hidden.SetSort("string") 
+	fgrid_hidden.SetAdjust("true") 
+	fgrid_hidden.SetHeader("Grid.Hidden") 
+	fgrid_hidden.SetEditor("checkbox")
+fgrid_hidden.SetCheckBox(True)
+fgrid_hidden.SetUncheckValue(False)
+dtfieldsgrid.AddDataColumns(fgrid_hidden)
+
+
+Dim fgrid_sort As WixDataColumn 
+	fgrid_sort.Initialize("grid_sort") 
+	fgrid_sort.SetHeaderContent("textFilter") 
+	fgrid_sort.SetSort("string") 
+	fgrid_sort.SetAdjust("true") 
+	fgrid_sort.SetHeader("Grid.Sort") 
+	fgrid_sort.SetEditor("combo")
+	fgrid_sort.SetOptions(Array("","int","string","string-strict","text","server","raw"))
+dtfieldsgrid.AddDataColumns(fgrid_sort)
+
+
+Dim fgrid_adjust As WixDataColumn 
+	fgrid_adjust.Initialize("grid_adjust") 
+	fgrid_adjust.SetHeaderContent("textFilter") 
+	fgrid_adjust.SetSort("string") 
+	fgrid_adjust.SetAdjust("true") 
+	fgrid_adjust.SetHeader("Grid.Adjust") 
+	fgrid_adjust.SetEditor("combo")
+	fgrid_adjust.SetOptions(Array("","true","data","header"))
+dtfieldsgrid.AddDataColumns(fgrid_adjust)
+
+
+Dim fgrid_fillspace As WixDataColumn 
+	fgrid_fillspace.Initialize("grid_fillspace") 
+	fgrid_fillspace.SetHeaderContent("textFilter") 
+	fgrid_fillspace.SetSort("string") 
+	fgrid_fillspace.SetAdjust("true") 
+	fgrid_fillspace.SetHeader("Grid.Fill Space") 
+	fgrid_fillspace.SetEditor("checkbox")
+fgrid_fillspace.SetCheckBox(True)
+fgrid_fillspace.SetUncheckValue(False)
+dtfieldsgrid.AddDataColumns(fgrid_fillspace)
+
+
+Dim fgrid_align As WixDataColumn 
+	fgrid_align.Initialize("grid_align") 
+	fgrid_align.SetHeaderContent("textFilter") 
+	fgrid_align.SetSort("string") 
+	fgrid_align.SetAdjust("true") 
+	fgrid_align.SetHeader("Grid.Align") 
+	fgrid_align.SetEditor("combo")
+	fgrid_align.SetOptions(Array("","right","center"))
+dtfieldsgrid.AddDataColumns(fgrid_align)
+
+
+Dim fgrid_editor As WixDataColumn 
+	fgrid_editor.Initialize("grid_editor") 
+	fgrid_editor.SetHeaderContent("textFilter") 
+	fgrid_editor.SetSort("string") 
+	fgrid_editor.SetAdjust("true") 
+	fgrid_editor.SetHeader("Grid.Editor") 
+	fgrid_editor.SetEditor("combo")
+	fgrid_editor.SetOptions(Array("","text","date","color","popup","password","inline-text","select","combo","richselect","checkbox","inline-checkbox"))
+dtfieldsgrid.AddDataColumns(fgrid_editor)
+
+
+Dim fgrid_format As WixDataColumn 
+	fgrid_format.Initialize("grid_format") 
+	fgrid_format.SetHeaderContent("textFilter") 
+	fgrid_format.SetSort("string") 
+	fgrid_format.SetAdjust("true") 
+	fgrid_format.SetHeader("Grid.Format") 
+	fgrid_format.SetEditor("combo")
+	fgrid_format.SetOptions(formatOptions)
+dtfieldsgrid.AddDataColumns(fgrid_format)
+
+
+Dim fgrid_numberformat As WixDataColumn 
+	fgrid_numberformat.Initialize("grid_numberformat") 
+	fgrid_numberformat.SetHeaderContent("textFilter") 
+	fgrid_numberformat.SetSort("string") 
+	fgrid_numberformat.SetAdjust("true") 
+	fgrid_numberformat.SetHeader("Grid.Number Format") 
+	fgrid_numberformat.SetEditor("combo")
+	fgrid_numberformat.SetOptions(formatOptions)
+dtfieldsgrid.AddDataColumns(fgrid_numberformat)
+
+
+Dim fgrid_minwidth As WixDataColumn 
+	fgrid_minwidth.Initialize("grid_minwidth") 
+	fgrid_minwidth.SetHeaderContent("textFilter") 
+	fgrid_minwidth.SetSort("string") 
+	fgrid_minwidth.SetAdjust("true") 
+	fgrid_minwidth.SetHeader("Grid.Min Width") 
+	fgrid_minwidth.SetEditor("text")
+dtfieldsgrid.AddDataColumns(fgrid_minwidth)
+
+	Return dtfieldsgrid
+End Sub
+
 
 Sub FormCodeWait(id As String, bShowPropBag As Boolean)
 	Dim qry As String
@@ -3458,6 +4465,8 @@ Sub sidebar_clickwait(meid As String)
 	pg.Hide("propdelete")
 	pg.Hide("download")
 	pg.Hide("propmenu")
+	pg.Hide("dbops")
+	pg.Hide("tblprops")
 	'
 	Select Case meid
 		Case "con", "hlp", "buttons", "txts", "sels", "choices", "pickers","others","grid", "lay","db"
@@ -3975,6 +4984,7 @@ Sub btnMulti_clickwait
 				End If
 			Next
 			pg.BoClose(winux)
+			pg.Destroy("myWindow")
 			RefreshTreeWait
 			Return
 		Case "datatable"
@@ -4011,6 +5021,7 @@ Sub btnMulti_clickwait
 				End If
 			Next
 			pg.BoClose(winux)
+			pg.destroy("myWindow")
 			RefreshTreeWait
 			Return
 	End Select
@@ -4081,6 +5092,7 @@ Sub btnMulti_clickwait
 			Next
 	End Select
 	pg.BoClose(winux)
+	pg.Destroy("myWindow")
 	RefreshTreeWait
 End Sub
 
@@ -4242,6 +5254,7 @@ Sub btnMulti1_clickwait
 			Next
 	End Select
 	pg.BoClose(fldWin)
+	pg.destroy("fldWindow")
 	RefreshTreeWait
 End Sub
 
@@ -4277,10 +5290,12 @@ End Sub
 
 Sub closeWin
 	pg.boClose(winux)
+	pg.Destroy("myWindow")
 End Sub
 
 Sub closeWin1
 	pg.boClose(fldWin)
+	pg.Destroy("fldWindow")
 End Sub
 
 

@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public TextArea As WixText
 	Public Parent As WixElement
+	Private BANano As BANano
 End Sub
 
 'Initializes the text area
@@ -342,6 +343,13 @@ End Sub
 Sub SetClick(click As Object) As WixTextArea
 TextArea.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixTextArea
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	TextArea.SetClick(cb)
+	Return Me
 End Sub
 
 Sub SetContainer(container As Object) As WixTextArea

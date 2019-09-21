@@ -11,6 +11,7 @@ Sub Class_Globals
 	Private Options As List
 	Private Vertical As Boolean
 	Public Parent As WixElement
+	Private BANano As BANano
 End Sub
 
 'add tp columns of parent
@@ -263,6 +264,13 @@ End Sub
 
 Sub SetClick(click As Object) As WixRadio
 	Radio.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixRadio
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	Radio.SetClick(cb)
 	Return Me
 End Sub
 

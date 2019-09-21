@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Uploader As WixElement
 	Public Parent As WixElement
+	Private banano As BANano
 End Sub
 
 'Initializes the uploader
@@ -207,6 +208,13 @@ End Sub
 Sub SetClick(click As Object) As WixUploader
 Uploader.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixUploader
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	Uploader.SetClick(cb)
+	Return Me
 End Sub
 
 'set the parent

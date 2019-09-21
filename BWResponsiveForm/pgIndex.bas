@@ -18,7 +18,6 @@ Sub Init(pgContainer As String)
 	Dim tblBar As WixToolBar
 	tblBar.Initialize("tblBar")
 	tblBar.SetHeight(100)
-	tblBar.SetStyle("background-color", "#FF57AB5C")
 	tblBar.SetStyles(CreateMap("background": "#ffffff !important"))
 	tblBar.CreateIcon("menuopen").SetIcon("mdi mdi-menu").SetStyles(CreateMap("background": "#eeeeee")).SetClick(BANano.CallBack(Me, "OpenMenu", Null)).Pop
 	tblBar.CreateHeader("heading").SetBorderless(True).SetTemplate("My Webix App").SetStyles(CreateMap("height":"100%","vertical-align":"middle !important","font-size": "32px !important")).Pop

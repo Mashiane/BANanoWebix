@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Button As WixElement
 	Public Parent As WixElement
+	Private Banano As BANano
 End Sub
 
 'Initializes the button
@@ -143,6 +144,13 @@ End Sub
 'set onclick event
 Sub SetClick(e As BANanoObject) As WixButton
 	Button.SetAttr("click", e)
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixButton
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	Button.SetClick(cb)
 	Return Me
 End Sub
 

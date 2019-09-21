@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public Icon As WixElement
 	Private onClick As BANanoObject
 	Public Parent As WixElement
+	Private BANano As BANano   'ignore
 End Sub
 
 'Initializes the button
@@ -149,6 +150,13 @@ End Sub
 'set onclick event
 Sub SetClick(e As BANanoObject) As WixIcon
 	onClick = e
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixIcon
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	Icon.SetClick(cb)
 	Return Me
 End Sub
 

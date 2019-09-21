@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public CheckBox As WixElement
 	Public Parent As WixElement
+	Private BANano As BANano
 End Sub
 
 'initialize the input box
@@ -249,6 +250,13 @@ End Sub
 
 Sub SetClick(click As Object) As WixCheckBox
 	CheckBox.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixCheckBox
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	CheckBox.SetClick(cb)
 	Return Me
 End Sub
 

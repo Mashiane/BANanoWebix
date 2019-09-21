@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public SideBar As WixElement
 	Public Items As List
 	Public Parent As WixElement
-
+	Private banano As BANano
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.
@@ -278,6 +278,13 @@ End Sub
 Sub SetClick(click As Object) As WixSideBar
 SideBar.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixSideBar
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	SideBar.SetClick(cb)
+	Return Me
 End Sub
 
 Sub SetClipboard(clipboard As Object) As WixSideBar

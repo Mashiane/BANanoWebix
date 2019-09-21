@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public TabBar As WixElement
 	Private options As List
 	Public Parent As WixElement
-
+	Private BANano As BANano
 End Sub
 
 'Initializes the TabBar
@@ -286,6 +286,13 @@ End Sub
 Sub SetClick(click As Object) As WixTabBar
 TabBar.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixTabBar
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	TabBar.SetClick(cb)
+	Return Me
 End Sub
 
 Sub SetContainer(container As Object) As WixTabBar

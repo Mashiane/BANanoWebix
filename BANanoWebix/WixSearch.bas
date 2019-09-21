@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Search As WixElement
 	Public Parent As WixElement
+	Private BANano As BANano
 End Sub
 
 'initialize the input box
@@ -277,6 +278,13 @@ End Sub
 Sub SetClick(click As Object) As WixSearch
 Search.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixSearch
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	Search.SetClick(cb)
+	Return Me
 End Sub
 
 Sub SetContainer(container As Object) As WixSearch

@@ -29,6 +29,27 @@ End Sub
 	}
 #end if
 
+'lowercase map keys
+Sub MapKeysLowerCaseSingle(m As Map) As Map
+	Dim nm As Map = CreateMap()
+	For Each k As String In m.Keys
+		Dim v As Object = m.Get(k)
+		k = k.tolowercase
+		nm.Put(k, v)
+	Next
+	Return nm
+End Sub
+
+'convert a list of map records to lowerase
+Sub MapKeysLowerCaseList(lst As List) As List
+	Dim nl As List
+	nl.Initialize 
+	For Each rec As Map In lst
+		rec = MapKeysLowerCaseSingle(rec)
+		nl.Add(rec)
+	Next
+	Return nl
+End Sub
 
 Sub SetAttributes(m As Map) As WixPage
 	For Each k As String In m.Keys
@@ -933,6 +954,18 @@ Sub SetExtrasFolder(fld As String) As WixPage
 	Return Me
 End Sub
 
+'set progress bar
+Sub WorkingOnIt(elid As String)
+	Dim pbx As WixProgressBar
+	pbx.Initialize("").SetTypeIcon("")
+	SetProgressBar(elid, pbx)
+End Sub
+
+'hide progress bar
+Sub DoneWorking(elid As String)
+	UnsetProgressBar(elid)
+End Sub
+
 'set locale
 Sub SetLocale(locale As String) As WixPage
 	Dim i18n As BANanoObject = webix.GetField("i18n")
@@ -1641,6 +1674,16 @@ Sub GetValues(itm As String) As Map
 	Return res
 End Sub
 
+'destroy
+Sub Destroy(elID As String)
+	elID = elID.ToLowerCase
+	Try
+		Dollar.Selector(elID).RunMethod("destructor","")
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
 'hide an element
 Sub Hide(itmID As String)
 	itmID = itmID.ToLowerCase
@@ -1895,7 +1938,6 @@ Sub OnAfterEditStop(eID As String, cb As BANanoObject)
 	eID = eID.tolowercase
 	Dollar.Selector(eID).RunMethod("attachEvent",Array("onAfterEditStop",cb))
 End Sub
-
 
 Sub OnClick(eID As String, cb As BANanoObject)
 	eID = eID.tolowercase

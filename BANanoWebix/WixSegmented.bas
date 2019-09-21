@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public Segmented As WixElement
 	Private Options As List
 	Public Parent As WixElement
+	Private BAnano As BANano
 End Sub
 
 'initialize the input box
@@ -213,6 +214,13 @@ End Sub
 'set onclick event
 Sub SetClick(e As BANanoObject) As WixSegmented
 	Segmented.SetAttr("click", e)
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixSegmented
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	Segmented.SetClick(cb)
 	Return Me
 End Sub
 

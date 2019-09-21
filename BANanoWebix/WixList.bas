@@ -11,7 +11,16 @@ Sub Class_Globals
 	Private typeOf As Map
 	Private Items As List
 	Public Parent As WixElement
+	Public HasContent As Boolean
+	Private HasIcon As String
+	Private BANano As BANano  'ignore
+End Sub
 
+Sub OnItemClick(module As Object, methodName As String) As WixList
+	Dim menuID As String
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(menuID))
+	List.OnItemClick(cb)
+	Return Me
 End Sub
 
 'set the parent
@@ -61,6 +70,8 @@ Public Sub Initialize(lID As String) As WixList
 	List.Initialize(ID).SetView("list")
 	Items.Initialize 
 	Parent = Null
+	HasContent = False
+	HasIcon = False
 	Return Me
 End Sub
 
@@ -71,6 +82,7 @@ End Sub
 
 'add an item
 Sub AddItem(iKey As String, iValue As String) As WixList
+	HasContent = True
 	Dim m As Map = CreateMap()
 	m.Put("id", iKey)
 	m.Put("value", iValue)
@@ -78,6 +90,18 @@ Sub AddItem(iKey As String, iValue As String) As WixList
 	Return Me
 End Sub
 
+'add item
+Sub AddItemIcon(iKey As String, iValue As String, iIcon As String) As WixList
+	HasContent = True
+	HasIcon = True
+	iKey = iKey.tolowercase
+	Dim mitem As Map = CreateMap()
+	mitem.Put("id", iKey)
+	mitem.Put("value", iValue)
+	mitem.Put("icon", iIcon)
+	Items.Add(mitem)
+	Return Me
+End Sub
 
 Sub SetTemplateHTML(h As UOENowHTML) As WixList
 	h.SetImportant(False)
@@ -195,6 +219,9 @@ End Sub
 
 'return the object
 Sub Item As Map
+	If HasIcon Then
+		SetTemplate($"<span class='webix_icon mdi mdi-#icon#'></span> #value# "$)
+	End If
 	If Items.Size > 0 Then
 		SetData(Items)
 	End If
@@ -266,6 +293,13 @@ End Sub
 Sub SetClick(click As BANanoObject) As WixList
 List.SetAttr("click", click)
 Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixList
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	List.SetClick(cb)
+	Return Me
 End Sub
 
 Sub SetContainer(container As Object) As WixList

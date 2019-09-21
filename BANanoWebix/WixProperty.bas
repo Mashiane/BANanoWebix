@@ -8,11 +8,10 @@ Version=7.51
 Sub Class_Globals
 	Public ID As String
 	Public Property As WixElement
-	Private elements As List
+	Public elements As List
 	Public Maps As Map
 	Private webix As BANanoObject
 	Public Parent As WixElement
-
 End Sub
 
 'set the parent

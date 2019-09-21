@@ -226,6 +226,12 @@ Sub CreateUploader(upl As String) As WixUploader
 	Return uplx
 End Sub
 
+Sub CreatePager(pgr As String) As WixPager
+	Dim pgx As WixPager
+	pgx.Initialize(pgr).SetParent(ToolBar)
+	Return pgx 
+End Sub
+
 Sub CreateSwitch(swt As String) As WixSwitch
 	Dim swtx As WixSwitch
 	swtx.Initialize(swt).SetParent(ToolBar)

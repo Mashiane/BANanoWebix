@@ -287,6 +287,13 @@ Sub SetClick(click As Object) As WixMenu
 Return Me
 End Sub
 
+Sub SetOnClick(module As Object, methodName As String) As WixMenu
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	Menu.SetClick(cb)
+	Return Me
+End Sub
+
 Sub SetClipboard(clipboard As Object) As WixMenu
 	HasContent = True
 	Menu.SetAttr("clipboard", clipboard)

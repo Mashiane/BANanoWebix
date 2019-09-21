@@ -10,6 +10,7 @@ Sub Class_Globals
 	Public RichSelect As WixElement
 	Private Options As List
 	Public Parent As WixElement
+	Private Banano As BANano
 End Sub
 
 'initialize the input box
@@ -317,6 +318,13 @@ End Sub
 
 Sub SetClick(click As Object) As WixRichSelect
 	RichSelect.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixRichSelect
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = Banano.CallBack(module, methodName, Array(e))
+	RichSelect.SetClick(cb)
 	Return Me
 End Sub
 

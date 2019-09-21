@@ -24,6 +24,13 @@ Sub Class_Globals
 End Sub
 
 
+Sub VerticalAlign(b As Boolean) As WixElement   'ignore
+	SetStyle("height", "inherit")
+	SetStyle("display","flex")
+	SetStyle("align-items","center")
+	Return Me
+End Sub
+
 Sub SetAttributes(m As Map) As WixElement
 	For Each k As String In m.Keys
 		Dim v As String = m.Get(k)
@@ -507,6 +514,10 @@ Sub OnAfterEditStop(cb As BANanoObject) As WixElement
 	Return Me
 End Sub
 
+Sub OnDataUpdate(cb As BANanoObject) As WixElement
+	On.Put("onDataUpdate",cb)
+	Return Me
+End Sub
 
 Sub onBeforeDrop(cb As BANanoObject) As WixElement
 	On.Put("onBeforeDrop",cb)

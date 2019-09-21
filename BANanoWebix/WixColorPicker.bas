@@ -9,6 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public ColorPicker As WixElement
 	Public Parent As WixElement
+	Private BANano As BANano
 End Sub
 
 'Initializes the date picker
@@ -288,6 +289,13 @@ End Sub
 
 Sub SetClick(click As Object) As WixColorPicker
 	ColorPicker.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixColorPicker
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	ColorPicker.SetClick(cb)
 	Return Me
 End Sub
 

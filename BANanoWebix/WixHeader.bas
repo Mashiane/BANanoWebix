@@ -19,6 +19,12 @@ Sub SetStyle(prop As String, sval As String) As WixHeader
 	Return Me
 End Sub
 
+Sub VerticalAlign(b As Boolean) As WixHeader   'ignore
+	SetStyle("height", "inherit")
+	SetStyle("display","flex")
+	SetStyle("align-items","center")
+	Return Me
+End Sub
 
 Sub SetAttributes(m As Map) As WixHeader
 	For Each k As String In m.Keys

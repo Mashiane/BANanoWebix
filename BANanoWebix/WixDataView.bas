@@ -12,7 +12,7 @@ Sub Class_Globals
 	Private onDblClick As BANanoObject
 	Private typeOf As Map
 	Public Parent As WixElement
-
+	Private BANano As BANano
 End Sub
 
 'Initializes the data table
@@ -161,6 +161,13 @@ End Sub
 'set onclick event
 Sub SetClick(e As BANanoObject) As WixDataView
 	onClick = e
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixDataView
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, Array(e))
+	DataView.SetClick(cb)
 	Return Me
 End Sub
 

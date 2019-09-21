@@ -12,6 +12,7 @@ Sub Class_Globals
 	Private Maximum As Int
 	Private Stepper As Int
 	Public Parent As WixElement
+	Private BANAno As BANano
 End Sub
 
 'initialize the counter
@@ -250,6 +251,13 @@ End Sub
 
 Sub SetClick(click As Object) As WixCounter
 	Counter.SetAttr("click", click)
+	Return Me
+End Sub
+
+Sub SetOnClick(module As Object, methodName As String) As WixCounter
+	Dim e As BANanoEvent
+	Dim cb As BANanoObject = BANAno.CallBack(module, methodName, Array(e))
+	Counter.SetClick(cb)
 	Return Me
 End Sub
 

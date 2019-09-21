@@ -32,8 +32,20 @@ Sub Class_Globals
 	Public DT_ADJUST_HEADER As String = "header"
 	Public DT_ADJUST_TRUE As Boolean = True
 	Private Rules As Map
+	Private BANano As BANano
 End Sub
 
+Sub OnAfterEditStop(module As Object, methodName As String, state As Object, editor As Object)
+	DataTable.OnAfterEditStop(BANano.CallBack(module,methodName,Array(state,editor)))
+End Sub
+
+Sub OnCheck(module As Object, methodName As String, row As Object, column As Object, state As Object)
+	DataTable.OnCheck(BANano.CallBack(module,methodName,Array(row, column, state)))
+End Sub
+
+Sub OnDataUpdate(module As Object, methodName As String, rowid As Object, rowdata As Object, rowold As Object)
+	DataTable.OnDataUpdate(BANano.CallBack(module,methodName,Array(rowid, rowdata, rowold)))
+End Sub
 
 Sub SetAttributes(m As Map) As WixDataTable
 	For Each k As String In m.Keys
@@ -377,6 +389,20 @@ End Sub
 'set rows to freeze
 Sub SetTopSplit(r As Int) As WixDataTable
 	DataTable.SetAttr("topSplit", r)
+	Return Me
+End Sub
+
+
+'set columns to freeze
+Sub SetRowsToFreeze(numx As Int) As WixDataTable
+	SetTopSplit(numx)
+	Return Me
+End Sub
+
+
+'set columns to freeze
+Sub SetColumnsToFreeze(numx As Int) As WixDataTable
+	SetLeftSplit(numx)
 	Return Me
 End Sub
 

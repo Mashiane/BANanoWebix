@@ -19,7 +19,7 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	'
 	'
 	Dim formatOptions As List
-	formatOptions.addall(Array("","1,111.00","111", "11", "%d-%m-%Y" , "%Y-%m-%d"))
+	formatOptions.addall(Array("","1,111.00","111", "11", "%d-%m-%Y" , "%Y-%m-%d","%D, %j %M %Y, %H:%i","%D, %j %M %Y"))
 	
 	'
 	Bag.Clear
@@ -37,9 +37,9 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.AddTextBox("foreign_value","Foreign Value","")
 	Bag.AddLabel("Form")
 	Bag.AddCheckBox("showonform", "On Form","")
-	Bag.AddCombo("view","View", "text", Page.Views)
+	Bag.AddCombo("view","View Type", "text", Page.Views)
 	Bag.AddCombo("addingmethod","Adding Method","AddRows", pgFD.addingmethod)
-	Bag.AddCombo("form_type","View Type", "text", formtypes)
+	Bag.AddCombo("form_type","Input Type", "text", formtypes)
 	Bag.AddTextBox("form_value","Value", "")
 	Bag.AddTextBox("optionsid","Options IDs", "1,2,3")
 	Bag.AddTextBox("optionstext","Options Values", "One,Two,Three")
@@ -90,7 +90,7 @@ Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.AddCombo("grid_editor","Editor", "", Array("","text","date","color","popup","password","inline-text","select","combo","richselect","checkbox","inline-checkbox")).SetActual("grid_editor","Editor")
 	Bag.AddCombo("grid_format","Format","",formatOptions).SetActual("grid_format","Format")
 	Bag.AddCombo("grid_numberformat","NumberFormat","",formatOptions).SetActual("grid_numberformat","NumberFormat")
-Bag.AddTextBox("grid_minwidth","Min Width", "").SetActual("grid_minwidth","MinWidth")
+	Bag.AddTextBox("grid_minwidth","Min Width", "").SetActual("grid_minwidth","MinWidth")
 
 	Bag.AddLabel("Parent Table")
 	Bag.AddTextBox("tablename", "Table Name", "table")
