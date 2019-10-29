@@ -11,7 +11,7 @@ End Sub
 Sub BuildBag(Page As WixPage, Bag As WixProperty)
 	Bag.Clear
 	Bag.AddTextBox("id", "ID","connection")
-	Bag.AddCombo("dbtype","Database Type","BANanoSQL", Array("","BANanoSQL", "BANanoSQLite", "BANanoMySQL"))
+	Bag.AddCombo("dbtype","Database Type","BANanoSQL", Array("","BANanoSQL", "BANanoSQLite", "BANanoMySQL", "BANanoMSSQL"))
 	Bag.AddTextBox("dbname","Database Name", "db")
 	Bag.AddTextBox("language","Language", "en")
 	Bag.AddTextBox("host", "Host", "localhost")
@@ -47,13 +47,13 @@ Sub ConnectionCode(cm As Map) As String
 			sb.Append($"BANano.PHPHost = "http://www.yourserver.com/app/""$).Append(CRLF)
 			sb.Append($"BANano.PHPAddHeader("Access-Control-Allow-Origin: *")"$).Append(CRLF).Append(CRLF)
 			sb.append("Ensure you update your .PHPHost to point to the right location of your app.").Append(CRLF).Append(CRLF)
-		Case "BANanoMySQL"
-			sb.Append("'STEP 1: Copy the config.php file from the 'assets' folder to your root folder and update it").Append(CRLF).append(CRLF)
+		Case "BANanoMySQL", "BANanoMSSQL"
+			sb.Append("'STEP 1: Update the config.php file on the 'assets' with your connection details.").Append(CRLF).append(CRLF)
 			sb.append($"const DB_HOST = '${host}';"$).Append(CRLF)
 			sb.Append($"const DB_USER = '${username}';"$).Append(CRLF)
 			sb.Append($"const DB_PASS = '${password}';"$).append(CRLF)
 			sb.Append($"const DB_NAME = '${dbname}';"$).Append(CRLF).Append(CRLF)
-			sb.append("'STEP 2: In Main.AppStart, include the code after initializing BANano").Append(CRLF).Append(CRLF)
+			sb.append("'STEP 2: In Main.AppStart, include the code after initializing BANano. Update 'app' to be your WebApp Name").Append(CRLF).Append(CRLF)
 			sb.append($"BANano.PHP_NAME = "app.php"$).Append(CRLF)
 			sb.append($"BANano.PHPHost = "http://www.yourserver.com/app/"$).append(CRLF)
 			sb.append($"BANano.PHPAddHeader("Access-Control-Allow-Origin: *")"$).Append(CRLF)

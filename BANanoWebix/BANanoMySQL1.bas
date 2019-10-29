@@ -23,10 +23,12 @@ Sub Class_Globals
 	Public DB_DATE As String = "DATE"
 	Type MySQLResultSet1(result As List, command As String, types As List, args As List, query As String)
 	Private BANano As BANano   'ignore
+	Public MethodName As String
 End Sub
 
 Sub ResetTypes As BANanoMySQL1
 	recType.Initialize
+	MethodName = "BANanoMySQL1"
 	Return Me
 End Sub
 
@@ -623,12 +625,10 @@ function prepareStatement1($conn, $query, $types, $args) {
 	return $stmt;
 }
 
-function BANanoMySQL1($command, $query, $args, $types)
-{
-    //define these so that they cannot be changed
-    require_once './assets/config.php';
-    //set the header
-    header('content-type: application/json; charset=utf-8');
+function BANanoMySQL1($command, $query, $args, $types) {
+	header('Access-Control-Allow-Origin: *');
+	header('content-type: application/json; charset=utf-8');
+	require_once './assets/config.php';
     //connect To MySQL
     $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     //we cannot connect Return an error

@@ -978,10 +978,38 @@ End Sub
 '"%m/%d/%y"
 '"%M %y"
 '"W:%W %D"
-Sub DateToStr(f As String) As Object
+Sub DateToStr(f As Object) As Object
 	Dim df As BANanoObject = webix.GetField("Date")
 	Dim df1 As Object = df.RunMethod("dateToStr", Array(f)).result
 	Return df1
+End Sub
+
+Sub DateToStrBO(f As Object) As BANanoObject
+	Dim f1 As BANanoObject = webix.GetField("Date").RunMethod("dateToStr", Array(f))
+	Return f1
+End Sub
+
+Sub DateFormatStrBO(f As Object) As BANanoObject
+	Dim f1 As BANanoObject = webix.GetField("i18n").RunMethod("dateFormatStr", Array(f))
+	Return f1
+End Sub
+
+Sub NewDate(year As Int, month As Int, day As Int) As BANanoObject
+	Dim dd As BANanoObject
+	dd.Initialize2("Date", Array(year, month, day))
+	Return dd
+End Sub
+
+Sub NewDateTime(year As Int, month As Int, day As Int, hour As Int, minute As Int) As BANanoObject
+	Dim dd As BANanoObject
+	dd.Initialize2("Date", Array(year, month, day, hour, minute))
+	Return dd
+End Sub
+
+
+Sub IsHoliday As BANanoObject
+	Dim df As BANanoObject = webix.GetField("Date").GetField("isHoliday")
+	Return df
 End Sub
 
 'current locale date format
@@ -1006,6 +1034,36 @@ End Sub
 Sub LongPriceFormat(r As Boolean) As Object   'ignore
 	Dim df As Object = webix.GetField("i18n").GetField("priceFormat").Result
 	Return df
+End Sub
+
+Sub ParseTimeFormatStr(theDate As Object) As Object   'ignore
+	Dim df As Object = webix.GetField("i18n").RunMethod("parseTimeFormatStr", Array(theDate))
+	Return df
+End Sub
+
+Sub SetDateFormat(df As String)
+	webix.getfield("i18n").SetField("dateFormat", df)
+End Sub
+
+Sub SetFullDateFormat(df As String)
+	webix.getfield("i18n").SetField("fullDateFormat", df)
+End Sub
+
+Sub SetParseFormat(df As String)
+	webix.getfield("i18n").SetField("parseFormat", df)
+End Sub
+
+Sub SetParseTimeFormat (df As String)
+	webix.getfield("i18n").SetField("parseTimeFormat", df)
+End Sub
+
+
+Sub SetTimeFormat (df As String)
+	webix.getfield("i18n").SetField("timeFormat", df)
+End Sub
+
+Sub UpdateLocale
+	webix.GetField("i18n").RunMethod("setLocale", Null)
 End Sub
 
 'set reponsive
@@ -2040,13 +2098,18 @@ Sub ShowBatch(listID As String, b As Boolean)
 	Dollar.Selector(listID).RunMethod("showBatch",Array(b))
 End Sub
 
-Sub SelectDate(eid As String, eDate As String, bShow As Boolean)
+Sub SelectDate(eid As String, eDate As Object, bShow As Boolean)
 	eid = eid.tolowercase
 	Dollar.Selector(eid).RunMethod("selectDate",Array(eDate, bShow))
 End Sub
 
+Sub SelectDates(eid As String, dates As List)
+	eid = eid.tolowercase
+	Dollar.Selector(eid).RunMethod("selectDate", dates)
+End Sub
+
 'show calendar based on the date
-Sub ShowCalendar(eid As String, eDate As String)
+Sub ShowCalendar(eid As String, eDate As Object)
 	eid = eid.tolowercase
 	Dollar.Selector(eid).RunMethod("showCalendar",Array(eDate))
 End Sub

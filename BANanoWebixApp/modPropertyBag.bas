@@ -30,9 +30,11 @@ Sub getPropertyBag(Page As WixPage) As WixForm
 	pmenu.List.AddItemIcon("foreignkeyregister", "Foreign Keys Register","mdi mdi-key-outline")
 	pmenu.List.AddItemIcon("importfd", "Import field descriptions", "mdi mdi-folder-key-network-outline")
 	pmenu.List.AddItemIcon("importfk", "Import foreign keys","mdi mdi-key-outline")
+	pmenu.List.AddItemIcon("localize", "Localize","mdi mdi-view-stream")
 	Page.UX(pmenu.item)
 	tbl.CreateIcon("dbops").SetIcon("mdi mdi-database").SetTooltip("Database Operations").SetPopUp("db_popup").pop
 	tbl.CreateIcon("tblprops").SetIcon("mdi mdi-file-table").SetTooltip("Table Schema").SetOnClick(pgFD, "tblprops_click").pop
+	tbl.CreateIcon("tblmobile").SetIcon("mdi mdi-file-alert-outline").SetTooltip("Vue Mobile").SetOnClick(pgFD, "tblmobile_click").pop
 	
 	tbl.AddSpacer
 	tbl.CreateIcon("propadd").SetIcon("mdi mdi-plus-circle-outline").SetTooltip("Add").SetClick(BANano.CallBack(pgFD,"prop_add",Null)).Pop

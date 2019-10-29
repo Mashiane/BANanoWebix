@@ -96,6 +96,7 @@ Sub Init
 	sm.AddItem("", "lesson28", "L28 Suggest","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lesson29", "L29 Message Boxes","","mdi mdi-view-dashboard", "","")
 	sm.AddItem("", "lesson31", "L31 WixImage","","mdi mdi-view-dashboard", "","")
+	sm.AddItem("", "lesson32", "L32 WixCalendar","","mdi mdi-view-dashboard", "","")
 	'
 	Dim R2 As WixRow
 	R2.Initialize("R2")
@@ -124,6 +125,8 @@ Sub itemClick(meID As String)
 	Select Case meID
 	Case "formbuilder"
 		pgFD.init
+	Case "lesson32"
+		pgCalendar.Init("r2c2_content")
 	Case "lesson31"
 		pgCarSales.Init("r2c2_content")
 	Case "lesson29"

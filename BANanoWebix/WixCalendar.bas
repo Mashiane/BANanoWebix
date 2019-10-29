@@ -100,6 +100,11 @@ Sub Item As Map
 	Return Calendar.item
 End Sub
 
+Sub SetValue(value As Object) As WixCalendar
+	Calendar.SetValue(value)
+	Return Me
+End Sub
+
 Sub SetDate(sdate As Object) As WixCalendar
 	Calendar.SetAttr("date", sdate)
 	Return Me

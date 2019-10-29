@@ -19,11 +19,13 @@ Sub Class_Globals
 	Type SQLiteResultSet1(result As List, command As String, types As List, args As List, query As String)
 	Private BANano As BANano  'ignore
 	Private dbName As String
+	Public MethodName As String
 End Sub
 
 'initialize the class, a field named "id" is assumed to be an integer
 Public Sub Initialize As BANanoSQLite1
 	recType.Initialize
+	MethodName = "BANanoSQLite1"
 	Return Me
 End Sub
 
@@ -591,6 +593,10 @@ End Sub
 
 Sub Build(rslt As SQLiteResultSet1) As Map
 	Dim b As Map = CreateMap()
+	If dbName = "" Then
+		Log("BANanoSQLite1.Build: The database name has not been set!")
+		Return b
+	End If
 	b.Put("dbname", dbName)
 	b.Put("command", rslt.command)
 	b.Put("query", rslt.query)
@@ -598,7 +604,6 @@ Sub Build(rslt As SQLiteResultSet1) As Map
 	b.Put("types", rslt.types)
 	Return b
 End Sub
-
 
 Sub GetNextID(fld As String, rsl As List) As String
 	Dim nextid As Int

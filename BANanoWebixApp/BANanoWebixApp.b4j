@@ -378,121 +378,122 @@ Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
-Module1=pgFD
-Module10=pgContext
-Module100=dVideo
-Module101=dUnitList
-Module102=dTemplate
-Module103=dSideBar
-Module104=dSideMenu
-Module105=dColorBoard
-Module106=dContext
-Module107=dContextMenu
-Module108=dDataView
-Module109=dGoogleMap
-Module11=pgLayout
-Module110=dPropertySheet
-Module111=dIFrame
-Module112=dTabView
-Module12=pgUnitList
-Module13=pgMenu
-Module14=modPropertyBag
-Module15=dDBLList
-Module16=pgIndex
-Module17=modSideBar
-Module18=pgDataTable1
-Module19=pgTreeTable
-Module2=dConnection
-Module20=dDataField
-Module21=pgLesson8_4
-Module22=dDatePicker
-Module23=modToolBar
-Module24=pgCarSales
-Module25=pgComments
-Module26=pgMaster
-Module27=pgCharts
-Module28=pgDataEntry
-Module29=pgDataTable
-Module3=dField
-Module30=dTree
-Module31=pgDataView
-Module32=pgFlexLayout
-Module33=pgForms
-Module34=pgForms1
-Module35=pgGoogleMap
-Module36=pgGroupList
-Module37=pgLayouts
-Module38=pgList
-Module39=pgMessageBoxes
-Module4=pgLayouts1
-Module40=pgMultiView
-Module41=pgMultiView2
-Module42=pgMultiView3
-Module43=pgMultiView4
-Module44=pgPropertySheet
-Module45=pgResponsive
-Module46=pgScrollView
-Module47=pgSideBar
-Module48=pgSuggest
-Module49=pgTabBar
-Module5=pgLayouts2
-Module50=pgTabView
-Module51=pgTemplate
-Module52=pgToolBar
-Module53=pgTree
-Module54=pgUploader1
-Module55=pgUploader2
-Module56=pgUploader3
-Module57=pgVideo
-Module58=dFieldSet
-Module59=dForm
-Module6=modCenter
-Module60=dMenu
-Module61=dLayout
-Module62=dList
-Module63=dMultiView
-Module64=dResizer
-Module65=dRadio
-Module66=dRichText
-Module67=dIcon
-Module68=dUploader
-Module69=dText
-Module7=pgTest
-Module70=dTextArea
-Module71=dSearch
-Module72=dSpacer
-Module73=dButton
-Module74=dCalendar
-Module75=dToolBar
-Module76=dColorPicker
-Module77=dSelect
-Module78=dCombo
-Module79=dDataTable
-Module8=pgFormValidation
-Module80=dRichSelect
-Module81=dRow
-Module82=dPager
-Module83=dCheckBox
-Module84=dCounter
-Module85=dLabel
-Module86=dSegmented
-Module87=dSlider
-Module88=dSwitch
-Module89=dTabBar
-Module9=pgLesson8_3
-Module90=dToggle
-Module91=dSuggest
-Module92=dColumn
-Module93=dDesignerProperty
-Module94=dTable
-Module95=dWixSomething
-Module96=dGeoChart
-Module97=dImage
-Module98=dPopUp
-Module99=dWindow
+Module1=pgCalendar
+Module10=pgLesson8_3
+Module100=dWindow
+Module101=dVideo
+Module102=dUnitList
+Module103=dTemplate
+Module104=dSideBar
+Module105=dSideMenu
+Module106=dColorBoard
+Module107=dContext
+Module108=dContextMenu
+Module109=dDataView
+Module11=pgContext
+Module110=dGoogleMap
+Module111=dPropertySheet
+Module112=dIFrame
+Module113=dTabView
+Module12=pgLayout
+Module13=pgUnitList
+Module14=pgMenu
+Module15=modPropertyBag
+Module16=dDBLList
+Module17=pgIndex
+Module18=modSideBar
+Module19=pgDataTable1
+Module2=pgFD
+Module20=pgTreeTable
+Module21=dDataField
+Module22=pgLesson8_4
+Module23=dDatePicker
+Module24=modToolBar
+Module25=pgCarSales
+Module26=pgComments
+Module27=pgMaster
+Module28=pgCharts
+Module29=pgDataEntry
+Module3=dConnection
+Module30=pgDataTable
+Module31=dTree
+Module32=pgDataView
+Module33=pgFlexLayout
+Module34=pgForms
+Module35=pgForms1
+Module36=pgGoogleMap
+Module37=pgGroupList
+Module38=pgLayouts
+Module39=pgList
+Module4=dField
+Module40=pgMessageBoxes
+Module41=pgMultiView
+Module42=pgMultiView2
+Module43=pgMultiView3
+Module44=pgMultiView4
+Module45=pgPropertySheet
+Module46=pgResponsive
+Module47=pgScrollView
+Module48=pgSideBar
+Module49=pgSuggest
+Module5=pgLayouts1
+Module50=pgTabBar
+Module51=pgTabView
+Module52=pgTemplate
+Module53=pgToolBar
+Module54=pgTree
+Module55=pgUploader1
+Module56=pgUploader2
+Module57=pgUploader3
+Module58=pgVideo
+Module59=dFieldSet
+Module6=pgLayouts2
+Module60=dForm
+Module61=dMenu
+Module62=dLayout
+Module63=dList
+Module64=dMultiView
+Module65=dResizer
+Module66=dRadio
+Module67=dRichText
+Module68=dIcon
+Module69=dUploader
+Module7=modCenter
+Module70=dText
+Module71=dTextArea
+Module72=dSearch
+Module73=dSpacer
+Module74=dButton
+Module75=dCalendar
+Module76=dToolBar
+Module77=dColorPicker
+Module78=dSelect
+Module79=dCombo
+Module8=pgTest
+Module80=dDataTable
+Module81=dRichSelect
+Module82=dRow
+Module83=dPager
+Module84=dCheckBox
+Module85=dCounter
+Module86=dLabel
+Module87=dSegmented
+Module88=dSlider
+Module89=dSwitch
+Module9=pgFormValidation
+Module90=dTabBar
+Module91=dToggle
+Module92=dSuggest
+Module93=dColumn
+Module94=dDesignerProperty
+Module95=dTable
+Module96=dWixSomething
+Module97=dGeoChart
+Module98=dImage
+Module99=dPopUp
 NumberOfFiles=186
 NumberOfLibraries=5
-NumberOfModules=112
+NumberOfModules=113
 Version=7.8
 @EndOfDesignText@
  #Region Project Attributes 
@@ -507,7 +508,9 @@ Sub Process_Globals
 End Sub
 
 Sub AppStart (Form1 As Form, Args() As String)
-	Publish = "C:\xampp\htdocs"
+	BP.Initialize
+	BP.RedirectOutput(File.DirApp,"log.txt")
+	
 	Publish = "C:\laragon\www"
 	Dim Version As String = DateTime.now
 	Dim appFile As String = $"app${Version}.js"$
@@ -518,12 +521,11 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'BANano.Header.addcssfile("all.min.css")
 	BANano.Header.AddCSSFile("materialdesignicons.min.css")
 	'
-	BANano.Header.AddCSSFile("contrast.min.css")
+	'BANano.Header.AddCSSFile("contrast.min.css")
 	'*themes
-	'BANano.Header.AddCSSFile("material.min.css")
+	BANano.Header.AddCSSFile("material.min.css")
 	'BANano.Header.AddCSSFile("flat.min.css")
 	'BANano.Header.AddCSSFile("compact.min.css")
-	'BANano.Header.AddCSSFile("contrast.min.css")
 	'** themes
 	BANano.Header.AddJavascriptFile("webix.min.js")
 	BANano.Header.AddCSSFile("hint.css")
@@ -552,8 +554,9 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.PHPAddHeader("Access-Control-Allow-Origin: *")
 	'
 	BANano.Build(Publish)
+	BP.OpenLog(File.DirApp, "log.txt")
+	
 	'post processor
-	BP.Initialize
 	BP.PublishPath = Publish
 	BP.ShortName = AppName
 	BP.AssetsPath = BANano.ASSETS_FOLDER
@@ -573,7 +576,7 @@ End Sub
 
 
 Sub BANano_Ready()
-	modSideBar.Version = "2.30"
+	modSideBar.Version = "2.32"
 	dbName = $"${AppName}.db"$
 	Dim sqlite As BANanoSQLite
 	sqlite.Initialize
