@@ -17,13 +17,7 @@ Sub Init(pgContainer As String)
 	'create page
 	pg.Initialize("wp", pgContainer).SetResponsive("master")
 	pg.SetLocale("en-US")
-	
-	'set the date format
-	pg.SetDateFormat("%Y-%m-%d")
-	pg.SetParseFormat("%Y-%m-%d")
-	pg.UpdateLocale
-	
-	
+
 	'add toolbar
 	Dim tblBar As WixToolBar
 	tblBar.Initialize("tblBar")
@@ -38,12 +32,14 @@ Sub Init(pgContainer As String)
 	Dim df As BANanoObject = pg.NewDate(2016, 3, 16)
 	Dim dt As BANanoObject = pg.NewDateTime(2019, 10, 28, 8, 10)
 	
-	Dim thisDate As Object
-	Dim ds As BANanoObject = BANano.CallBack(Me, "onDateSelect", Array(thisDate))
-	Dim ds1 As BANanoObject = BANano.CallBack(Me, "onDateSelect1", Array(thisDate))
+	'Dim thisDate As Object
+	'Dim ds As BANanoObject = BANano.CallBack(Me, "onDateSelect", Array(thisDate))
+	'Dim ds1 As BANanoObject = BANano.CallBack(Me, "onDateSelect1", Array(thisDate))
 	
 	Dim dp1 As WixCalendar
-	dp1.Initialize("dp1").SetTimePicker(True).SetSelect(True).OnDateSelect(ds1).SetWeekHeader(True).SetDate(df)
+	dp1.Initialize("dp1").SetTimePicker(True).SetWeekHeader(True).SetDate(df)
+	Dim value1 As Object
+	dp1.OnChange(Me, "dp1_change", value1)
 	dp1.SetEvents(isHoliday).AddToRows(frm.Form)
 	'
 	Dim dp2 As WixCalendar
@@ -73,21 +69,20 @@ Sub Init(pgContainer As String)
 	dp7.SetWidth(290)
 	dp7.SetIcons(True)
 	dp7.SetTimePicker(True)
-	dp7.SetMultiSelect(True)
-	dp7.OnDateSelect(ds)
-	dp7.SetSelect(True)
+	dp7.SetMultiSelect("touch")
+	Dim value2 As Object
+	dp7.OnChange(Me, "dp7_change", value2)
 	dp7.AddToRows(frm.Form)
 	'
-	Dim nt As BANanoObject = pg.newdatetime(2015,6,1,8,30)
-	Dim dp8 As WixCalendar
-	dp8.initialize("dp8").SetEvents(isHoliday)
-	dp8.SetDate(nt)
-	dp8.settimepicker(True)
-	dp8.SetMinTime("8:00")
-	dp8.SetMaxTime("18:30")
-	dp8.SetMultiSelect("touch")
-	dp8.OnDateSelect(ds)
-	'dp8.AddToColumns(frm.Form)
+'	Dim nt As BANanoObject = pg.newdatetime(2015,6,1,8,30)
+'	Dim dp8 As WixCalendar
+'	dp8.initialize("dp8").SetEvents(isHoliday)
+'	dp8.SetDate(nt)
+'	dp8.settimepicker(True)
+'	dp8.SetMinTime("8:00")
+'	dp8.SetMaxTime("18:30")
+'	dp8.SetMultiSelect("touch")
+'	'dp8.AddToColumns(frm.Form)
 	'
 	'Dim dp9 As WixCalendar
 	'dp9.initialize("dp9")
@@ -112,10 +107,28 @@ Sub Init(pgContainer As String)
     
 End Sub	
 
+Sub dp1_change(value As Object)
+	Dim ds As String = pg.GetValueDate(value)
+	Log(ds)
+End Sub
+
+Sub dp7_change(value As Object)
+	Dim dates As String = pg.GetValueDates("dp7")
+	Log(dates)
+End Sub
+
+Sub onAfterDateSelect(value As Object)
+	Dim ds As String = pg.GetValueDate(value)
+	Log(ds)
+End Sub
+
 Sub onDateSelect(thisDate As Object)
-	thisDate = pg.getvalue("dp7")
-	Log(thisDate)
-	pg.message(thisDate)
+	Dim ds As String = pg.GetValueDate(thisDate)
+	Log(ds)
+	
+	'thisDate = pg.getvalue("dp7")
+	'Log(thisDate)
+	'pg.message(thisDate)
 	'thisDate = pg.DateFormatStrBO(thisDate)
 	'pg.message(thisDate)
 End Sub

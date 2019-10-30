@@ -29,6 +29,62 @@ End Sub
 	}
 #end if
 
+#if javascript
+function formatDate(obj){
+  var formatter = webix.Date.dateToStr("%Y-%m-%d");
+      if (obj){
+  if (obj.length){ 
+      return obj.map((item) =>{return formatter(new Date(item))}).join(",");
+  }
+         return formatter(obj);
+      }
+  return "";
+};
+
+function formatDateTime(obj){
+  var formatter = webix.Date.dateToStr("%Y-%m-%d %H:%i");
+      if (obj){
+  if (obj.length){ 
+      return obj.map((item) =>{return formatter(new Date(item))}).join(",");
+  }
+         return formatter(obj);
+      }
+  return "";
+};
+#End If
+
+'return date
+Sub GetValueDate(value As Object) As Object
+	Dim dd As Object = BANano.RunJavascriptMethod("formatDate", Array(value))
+	Return dd
+End Sub
+
+'return multiple selected dates
+Sub GetValueDates(sid As String) As String
+	sid = sid.tolowercase
+	Dim ds As String = GetValue(sid)
+	If ds = "" Then Return ""
+	Dim dates As List = BANano.Split(",", ds)
+	Dim ds1 As Object = GetValueDate(dates)
+	Return ds1
+End Sub
+
+'return multiple selected date times
+Sub GetValueDateTimes(sid As String) As String
+	sid = sid.tolowercase
+	Dim ds As String = GetValue(sid)
+	If ds = "" Then Return ""
+	Dim dates As List = BANano.Split(",", ds)
+	Dim ds1 As Object = GetValueDateTime(dates)
+	Return ds1
+End Sub
+
+'return date time
+Sub GetValueDateTime(value As Object) As Object
+	Dim dd As Object = BANano.RunJavascriptMethod("formatDateTime", Array(value))
+	Return dd
+End Sub
+
 'lowercase map keys
 Sub MapKeysLowerCaseSingle(m As Map) As Map
 	Dim nm As Map = CreateMap()

@@ -1,5 +1,5 @@
 ﻿B4J=true
-Group=Default Group
+Group=Default Group\Library
 ModulesStructureVersion=1
 Type=Class
 Version=7.8
@@ -60,9 +60,9 @@ private Sub CStr(o As Object) As String
 End Sub
 
 'initialize the class and pass the PHP sub name to call
-Sub Initialize(methName As String) As BANanoMSSQL
+Sub Initialize() As BANanoMSSQL
 	recType.Initialize
-	MethodName = methName
+	MethodName = "BANanoMSSQL"
 	Return Me
 End Sub
 
@@ -267,6 +267,13 @@ Sub Read(tblName As String, primaryKey As String, primaryValue As String) As MSS
 	Dim qw As Map = CreateMap()
 	qw.Put(primaryKey, primaryValue)
 	Dim qry As MSSQLResultSet = SelectWhere(tblName, Array("*"), qw,Array(primaryKey))
+	Return qry
+End Sub
+
+Sub Delete(tblName As String, primaryKey As String, primaryValue As String) As MSSQLResultSet
+	Dim qw As Map = CreateMap()
+	qw.Put(primaryKey, primaryValue)
+	Dim qry As MSSQLResultSet = DeleteWhere(tblName, qw)
 	Return qry
 End Sub
 

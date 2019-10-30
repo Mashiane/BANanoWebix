@@ -10,8 +10,11 @@ Sub Class_Globals
 	Public Calendar As WixElement
 	Private On As Map
 	Public Parent As WixElement
-
+	Private BANano As BANano
 End Sub
+
+'https://docs.webix.com/helpers__date_formatting_methods.html
+
 
 'Initializes the calendar
 Public Sub Initialize(sid As String) As WixCalendar
@@ -67,7 +70,16 @@ Sub Pop
 	Parent.AddColumns(Item)
 End Sub
 
-Sub OnAfterDateSelect(cb As BANanoObject) As WixCalendar
+Sub OnChange(module As Object, MethodName As String, value As Object) As WixCalendar
+	MethodName = MethodName.tolowercase
+	Dim cb As BANanoObject = BANano.CallBack(module, MethodName, value)
+	On.Put("onChange", cb)
+	Return Me
+End Sub
+
+Sub OnAfterDateSelect(module As Object, methodName As String, value As Object) As WixCalendar
+	methodName = methodName.tolowercase
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, value)
 	On.Put("onAfterDateSelect",cb)
 	Return Me
 End Sub
@@ -82,7 +94,9 @@ Sub OnDateClear(cb As BANanoObject) As WixCalendar
 	Return Me
 End Sub
 
-Sub OnDateSelect(cb As BANanoObject) As WixCalendar
+Sub OnDateSelect(module As Object, methodName As String, value As Object) As WixCalendar
+	methodName = methodName.tolowercase
+	Dim cb As BANanoObject = BANano.CallBack(module, methodName, value)
 	On.Put("onDateSelect", cb)
 	Return Me
 End Sub
