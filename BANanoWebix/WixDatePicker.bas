@@ -9,7 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public DatePicker As WixElement
 	Public Parent As WixElement
-	Private BANano As BANano
+	Private BANano As BANano 'ignore
 End Sub
 
 'Initializes the date picker

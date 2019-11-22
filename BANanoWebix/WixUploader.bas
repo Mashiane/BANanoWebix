@@ -9,7 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Uploader As WixElement
 	Public Parent As WixElement
-	Private banano As BANano
+	Private banano As BANano   'ignore
 End Sub
 
 'Initializes the uploader

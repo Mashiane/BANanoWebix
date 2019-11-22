@@ -11,7 +11,7 @@ Sub Class_Globals
 	Private Options As List
 	Private Vertical As Boolean
 	Public Parent As WixElement
-	Private BANano As BANano
+	Private BANano As BANano   'ignore
 End Sub
 
 'add tp columns of parent

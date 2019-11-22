@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public DropDown As WixElement
 	Private Options As List
 	Public Parent As WixElement
-	Private BANano As BANano
+	Private BANano As BANano  'ignore
 End Sub
 
 'initialize the input box

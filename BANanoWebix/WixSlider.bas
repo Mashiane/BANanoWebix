@@ -12,7 +12,7 @@ Sub Class_Globals
 	Private Maximum As Int
 	Private Stepper As Int
 	Public Parent As WixElement
-	Private Banano As BANano
+	Private Banano As BANano   'ignore
 End Sub
 
 'initialize the input box

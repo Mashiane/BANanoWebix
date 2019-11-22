@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public RichSelect As WixElement
 	Private Options As List
 	Public Parent As WixElement
-	Private Banano As BANano
+	Private Banano As BANano   'ignore
 End Sub
 
 'initialize the input box

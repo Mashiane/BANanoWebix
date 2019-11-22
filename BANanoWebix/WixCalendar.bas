@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public Calendar As WixElement
 	Private On As Map
 	Public Parent As WixElement
-	Private BANano As BANano
+	Private BANano As BANano 'ignore
 End Sub
 
 'https://docs.webix.com/helpers__date_formatting_methods.html

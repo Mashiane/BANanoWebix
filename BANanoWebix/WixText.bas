@@ -9,7 +9,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Text As WixElement
 	Public Parent As WixElement
-	Private BAnano As BANano
+	Private BAnano As BANano   'ignore
 End Sub
 
 'Initializes the element

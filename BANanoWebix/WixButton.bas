@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public ID As String
 	Public Button As WixElement
 	Public Parent As WixElement
-	Private Banano As BANano
+	Private Banano As BANano   'ignore
 End Sub
 
 'Initializes the button

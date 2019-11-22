@@ -32,7 +32,7 @@ Sub Class_Globals
 	Public DT_ADJUST_HEADER As String = "header"
 	Public DT_ADJUST_TRUE As Boolean = True
 	Private Rules As Map
-	Private BANano As BANano
+	Private BANano As BANano   'ignore
 End Sub
 
 Sub OnAfterEditStop(module As Object, methodName As String, state As Object, editor As Object)

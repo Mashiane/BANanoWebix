@@ -12,7 +12,7 @@ Sub Class_Globals
 	Private onDblClick As BANanoObject
 	Private typeOf As Map
 	Public Parent As WixElement
-	Private BANano As BANano
+	Private BANano As BANano   'ignore
 End Sub
 
 'Initializes the data table

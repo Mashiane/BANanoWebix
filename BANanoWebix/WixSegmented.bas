@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public Segmented As WixElement
 	Private Options As List
 	Public Parent As WixElement
-	Private BAnano As BANano
+	Private BAnano As BANano  'ignore
 End Sub
 
 'initialize the input box

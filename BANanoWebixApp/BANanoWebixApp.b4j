@@ -378,123 +378,123 @@ Library2=jfx
 Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
-Module1=pgCalendar
-Module10=pgLesson8_3
-Module100=dWindow
-Module101=dVideo
-Module102=dUnitList
-Module103=dTemplate
-Module104=dSideBar
-Module105=dSideMenu
-Module106=dColorBoard
-Module107=dContext
-Module108=dContextMenu
-Module109=dDataView
-Module11=pgContext
-Module110=dGoogleMap
-Module111=dPropertySheet
-Module112=dIFrame
-Module113=dTabView
-Module12=pgLayout
-Module13=pgUnitList
-Module14=pgMenu
-Module15=modPropertyBag
+Module1=dButton
+Module10=dContextMenu
+Module100=pgSideBar
+Module101=pgSuggest
+Module102=pgTabBar
+Module103=pgTabView
+Module104=pgTemplate
+Module105=pgTest
+Module106=pgToolBar
+Module107=pgTree
+Module108=pgTreeTable
+Module109=pgUnitList
+Module11=dCounter
+Module110=pgUploader1
+Module111=pgUploader2
+Module112=pgUploader3
+Module113=pgVideo
+Module12=dDataField
+Module13=dDataTable
+Module14=dDataView
+Module15=dDatePicker
 Module16=dDBLList
-Module17=pgIndex
-Module18=modSideBar
-Module19=pgDataTable1
-Module2=pgFD
-Module20=pgTreeTable
-Module21=dDataField
-Module22=pgLesson8_4
-Module23=dDatePicker
-Module24=modToolBar
-Module25=pgCarSales
-Module26=pgComments
-Module27=pgMaster
-Module28=pgCharts
-Module29=pgDataEntry
-Module3=dConnection
-Module30=pgDataTable
-Module31=dTree
-Module32=pgDataView
-Module33=pgFlexLayout
-Module34=pgForms
-Module35=pgForms1
-Module36=pgGoogleMap
-Module37=pgGroupList
-Module38=pgLayouts
-Module39=pgList
-Module4=dField
-Module40=pgMessageBoxes
-Module41=pgMultiView
-Module42=pgMultiView2
-Module43=pgMultiView3
-Module44=pgMultiView4
-Module45=pgPropertySheet
-Module46=pgResponsive
-Module47=pgScrollView
-Module48=pgSideBar
-Module49=pgSuggest
-Module5=pgLayouts1
-Module50=pgTabBar
-Module51=pgTabView
-Module52=pgTemplate
-Module53=pgToolBar
-Module54=pgTree
-Module55=pgUploader1
-Module56=pgUploader2
-Module57=pgUploader3
-Module58=pgVideo
-Module59=dFieldSet
-Module6=pgLayouts2
-Module60=dForm
-Module61=dMenu
-Module62=dLayout
-Module63=dList
-Module64=dMultiView
-Module65=dResizer
-Module66=dRadio
-Module67=dRichText
-Module68=dIcon
-Module69=dUploader
-Module7=modCenter
-Module70=dText
-Module71=dTextArea
-Module72=dSearch
-Module73=dSpacer
-Module74=dButton
-Module75=dCalendar
-Module76=dToolBar
-Module77=dColorPicker
-Module78=dSelect
-Module79=dCombo
-Module8=pgTest
-Module80=dDataTable
-Module81=dRichSelect
-Module82=dRow
-Module83=dPager
-Module84=dCheckBox
-Module85=dCounter
-Module86=dLabel
-Module87=dSegmented
-Module88=dSlider
-Module89=dSwitch
-Module9=pgFormValidation
-Module90=dTabBar
-Module91=dToggle
-Module92=dSuggest
-Module93=dColumn
-Module94=dDesignerProperty
-Module95=dTable
-Module96=dWixSomething
-Module97=dGeoChart
-Module98=dImage
-Module99=dPopUp
+Module17=dDesignerProperty
+Module18=dField
+Module19=dFieldSet
+Module2=dCalendar
+Module20=dForm
+Module21=dGeoChart
+Module22=dGoogleMap
+Module23=dIcon
+Module24=dIFrame
+Module25=dImage
+Module26=dLabel
+Module27=dLayout
+Module28=dList
+Module29=dMenu
+Module3=dCheckBox
+Module30=dMultiView
+Module31=dPager
+Module32=dPopUp
+Module33=dPropertySheet
+Module34=dRadio
+Module35=dResizer
+Module36=dRichSelect
+Module37=dRichText
+Module38=dRow
+Module39=dSearch
+Module4=dColorBoard
+Module40=dSegmented
+Module41=dSelect
+Module42=dSideBar
+Module43=dSideMenu
+Module44=dSlider
+Module45=dSpacer
+Module46=dSuggest
+Module47=dSwitch
+Module48=dTabBar
+Module49=dTable
+Module5=dColorPicker
+Module50=dTabView
+Module51=dTemplate
+Module52=dText
+Module53=dTextArea
+Module54=dToggle
+Module55=dToolBar
+Module56=dTree
+Module57=dUnitList
+Module58=dUploader
+Module59=dVideo
+Module6=dColumn
+Module60=dWindow
+Module61=dWixSomething
+Module62=modCenter
+Module63=modPropertyBag
+Module64=modSideBar
+Module65=modToolBar
+Module66=pgCalendar
+Module67=pgCarSales
+Module68=pgCharts
+Module69=pgComments
+Module7=dCombo
+Module70=pgContext
+Module71=pgDataEntry
+Module72=pgDataTable
+Module73=pgDataTable1
+Module74=pgDataView
+Module75=pgFD
+Module76=pgFlexLayout
+Module77=pgForms
+Module78=pgForms1
+Module79=pgFormValidation
+Module8=dConnection
+Module80=pgGoogleMap
+Module81=pgGroupList
+Module82=pgIndex
+Module83=pgLayout
+Module84=pgLayouts
+Module85=pgLayouts1
+Module86=pgLayouts2
+Module87=pgLesson8_3
+Module88=pgLesson8_4
+Module89=pgList
+Module9=dContext
+Module90=pgMaster
+Module91=pgMenu
+Module92=pgMessageBoxes
+Module93=pgMultiView
+Module94=pgMultiView2
+Module95=pgMultiView3
+Module96=pgMultiView4
+Module97=pgPropertySheet
+Module98=pgResponsive
+Module99=pgScrollView
 NumberOfFiles=186
 NumberOfLibraries=5
 NumberOfModules=113
-Version=7.8
+Version=7.98
 @EndOfDesignText@
  #Region Project Attributes 
 #End Region
@@ -518,22 +518,17 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.HTML_NAME = "index.html"
 	BANano.Header.Title = AppName
 	BANano.JAVASCRIPT_NAME = appFile
-	'BANano.Header.addcssfile("all.min.css")
+	
 	BANano.Header.AddCSSFile("materialdesignicons.min.css")
-	'
-	'BANano.Header.AddCSSFile("contrast.min.css")
-	'*themes
-	BANano.Header.AddCSSFile("material.min.css")
-	'BANano.Header.AddCSSFile("flat.min.css")
-	'BANano.Header.AddCSSFile("compact.min.css")
-	'** themes
-	BANano.Header.AddJavascriptFile("webix.min.js")
+	'BANano.Header.AddCSSFile("webix.css")
+	BANano.Header.AddCSSFile("contrast.min.css")
 	BANano.Header.AddCSSFile("hint.css")
+	BANano.Header.AddJavascriptFile("webix.js")
+	BANano.Header.addjavascriptfile("contrast.skin.js")
 	BANano.Header.AddJavascriptFile("hint.js")
-	BANano.Header.AddJavascriptFile("skin.js")
+	
 	'
 	BANano.Header.AddJavascriptFile("data.js")
-	
 	BANano.Header.AddJavascriptFile("Blob.min.js")
 	BANano.Header.AddJavascriptFile("FileSaver.min.js")
 	
@@ -576,7 +571,7 @@ End Sub
 
 
 Sub BANano_Ready()
-	modSideBar.Version = "2.32"
+	modSideBar.Version = "2.33"
 	dbName = $"${AppName}.db"$
 	Dim sqlite As BANanoSQLite
 	sqlite.Initialize

@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public SideBar As WixElement
 	Public Items As List
 	Public Parent As WixElement
-	Private banano As BANano
+	Private banano As BANano   'ignore
 End Sub
 
 'Initializes the object. You can add parameters to this method if needed.

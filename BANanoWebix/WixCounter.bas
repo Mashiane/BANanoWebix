@@ -12,7 +12,7 @@ Sub Class_Globals
 	Private Maximum As Int
 	Private Stepper As Int
 	Public Parent As WixElement
-	Private BANAno As BANano
+	Private BANAno As BANano   'ignore
 End Sub
 
 'initialize the counter

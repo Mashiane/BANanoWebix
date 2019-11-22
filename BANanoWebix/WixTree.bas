@@ -11,7 +11,7 @@ Sub Class_Globals
 	Private scheme As Map
 	Private Items As List
 	Public Parent As WixElement
-	Private Banano As BANano
+	Private Banano As BANano   'ignore
 End Sub
 
 'set the parent

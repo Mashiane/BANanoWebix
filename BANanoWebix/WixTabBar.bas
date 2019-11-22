@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public TabBar As WixElement
 	Private options As List
 	Public Parent As WixElement
-	Private BANano As BANano
+	Private BANano As BANano   'ignore
 End Sub
 
 'Initializes the TabBar

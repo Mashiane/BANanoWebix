@@ -12,7 +12,7 @@ Sub Class_Globals
 	Private yCount As Int
 	Private opt As Map
 	Public Parent As WixElement
-	Private BANano As BANano
+	Private BANano As BANano   'ignore
 End Sub
 
 'initialize the input box

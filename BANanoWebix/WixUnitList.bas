@@ -10,7 +10,7 @@ Sub Class_Globals
 	Public UnitList As WixElement
 	Private typeOf As Map
 	Public Parent As WixElement
-	Private banano As BANano
+	Private banano As BANano   'ignore
 End Sub
 
 'Initializes the unit list
