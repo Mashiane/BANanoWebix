@@ -520,7 +520,6 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.JAVASCRIPT_NAME = appFile
 	
 	BANano.Header.AddCSSFile("materialdesignicons.min.css")
-	'BANano.Header.AddCSSFile("webix.css")
 	BANano.Header.AddCSSFile("contrast.min.css")
 	BANano.Header.AddCSSFile("hint.css")
 	BANano.Header.AddJavascriptFile("webix.js")
