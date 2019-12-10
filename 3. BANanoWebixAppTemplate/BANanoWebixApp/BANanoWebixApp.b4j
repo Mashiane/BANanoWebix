@@ -2,14 +2,12 @@
 Build1=Default,b4j.Mashy.BANanoWebixDemo
 File1=1.png
 File2=2.png
-File3=alasql.min.js
-File4=config.php
-File5=upload.php
+File3=config.php
+File4=upload.php
 FileGroup1=Default Group\Images
 FileGroup2=Default Group\Images
 FileGroup3=Default Group
-FileGroup4=Default Group
-FileGroup5=Default Group\PHP
+FileGroup4=Default Group\PHP
 Group=Default Group
 Library1=jcore
 Library2=jfx
@@ -17,7 +15,7 @@ Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
 Module1=pgIndex
-NumberOfFiles=5
+NumberOfFiles=4
 NumberOfLibraries=5
 NumberOfModules=1
 Version=8
@@ -27,16 +25,14 @@ Version=8
 #IgnoreWarnings:15
 Sub Process_Globals
 	Public BANano As BANano 'ignore
-	Public AppName As String = "BANanoWebixDemo"
+	Public AppName As String = "BANanoWebixApp"
 	Private Publish As String
 	Private BP As BANanoPostProcessor
-	Private db As BANanoSQL
 End Sub
 
 Sub AppStart (Form1 As Form, Args() As String)
 	Publish = "C:\xampp\htdocs"
-	Publish = "C:\laragon\www"
-	
+	Publish = "c:\laragon\www"
 	Dim version As String = DateTime.now
 	Dim appFile As String = $"app${version}.js"$
 	BANano.Initialize("BANano", AppName,1)
@@ -73,22 +69,6 @@ Sub Application_Error (Error As Exception, StackTrace As String) As Boolean
 End Sub
 
 Sub BANano_Ready()
-	db.OpenWait("db", "db")
-	'create the table
-	Dim newTable As Map = CreateMap()
-	newTable.put("field1","STRING")
-	newTable.put("field2","STRING")
-	newTable.put("field3","STRING")
-	newTable.put("id","INT")
-
-	'initialize the helper class
-	Dim alaSQL As BANanoAlaSQL
-	alaSQL.Initialize
-	'generate the create table sql
-	Dim rs As AlaSQLResultSet = alaSQL.CreateTable("table1", newTable, "id")
-	'execute the create table command
-	rs.Result = db.ExecuteWait(rs.query, rs.args)
-	
 	'build a page and render it to the body of the page
 	pgIndex.init("body")
 End Sub

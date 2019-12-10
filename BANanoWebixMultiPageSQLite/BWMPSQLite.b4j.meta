@@ -16,6 +16,6 @@ ModuleClosedNodes2=
 ModuleClosedNodes3=
 ModuleClosedNodes4=
 ModuleClosedNodes5=
-NavigationStack=modClients,printclients_click,97,0,modClients,dtclients_dblclick,104,1,modClients,CreateDataTable,481,6,Main,BANano_Ready,102,0,modClients,CreateForm,271,0,modCities,Process_Globals,6,0,modCities,ShowPage,30,0,modCities,btnsavecity_click,236,0,modCities,CreateForm,176,0,modCities,btnnewcity_click,188,1,modCities,CreateDataTable,265,0
+NavigationStack=modClients,dtclients_dblclick,104,1,modClients,CreateDataTable,481,6,Main,BANano_Ready,102,0,modClients,CreateForm,271,0,modCities,Process_Globals,6,0,modCities,ShowPage,30,0,modCities,btnsavecity_click,236,0,modCities,CreateForm,176,0,modCities,btnnewcity_click,188,1,modCities,CreateDataTable,265,0,Main,AppStart,29,3
 SelectedBuild=0
 VisibleModules=1

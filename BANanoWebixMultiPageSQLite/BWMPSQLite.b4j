@@ -3,19 +3,11 @@ Build1=Default,b4j.Mashy.BANanoWebixDemo
 File1=1.png
 File2=2.png
 File3=config.php
-File4=extras.zip
-File5=fonts.zip
-File6=skin.js
-File7=upload.php
-File8=webix.css
+File4=upload.php
 FileGroup1=Default Group\Images
 FileGroup2=Default Group\Images
 FileGroup3=Default Group
-FileGroup4=Default Group\ZIP
-FileGroup5=Default Group\ZIP
-FileGroup6=Default Group
-FileGroup7=Default Group\PHP
-FileGroup8=Default Group
+FileGroup4=Default Group\PHP
 Group=Default Group
 Library1=jcore
 Library2=jfx
@@ -23,14 +15,14 @@ Library3=banano
 Library4=bananopostprocessor
 Library5=bananowebix
 Module1=modCities
-Module2=modPositions
-Module3=pgIndex
-Module4=modClients
-Module5=modSideBar
-NumberOfFiles=8
+Module2=modClients
+Module3=modPositions
+Module4=modSideBar
+Module5=pgIndex
+NumberOfFiles=4
 NumberOfLibraries=5
 NumberOfModules=5
-Version=7.51
+Version=8
 @EndOfDesignText@
  #Region Project Attributes 
 #End Region
@@ -51,24 +43,15 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.HTML_NAME = "index.html"
 	BANano.Header.Title = AppName
 	BANano.JAVASCRIPT_NAME = appFile
-	BANano.Header.addcssfile("all.min.css")
-	BANano.Header.AddCSSFile("materialdesignicons.min.css")
-	BANano.Header.AddCSSFile("webix.css")
-	BANano.Header.AddCSSFile("hint.css")
 	'
 	'set php settings
 	BANano.PHP_NAME = "bwmp.php"
 	BANano.PHPHost = $"http://localhost/${AppName}/"$
 	BANano.PHPAddHeader("Access-Control-Allow-Origin: *")
 	'*themes
-	'BANano.Header.AddCSSFile("material.min.css")
-	'BANano.Header.AddCSSFile("flat.min.css")
-	'BANano.Header.AddCSSFile("compact.min.css")
-	'BANano.Header.AddCSSFile("contrast.min.css")
 	'** themes
-	BANano.Header.AddJavascriptFile("webix.min.js")
-	BANano.Header.AddJavascriptFile("hint.js")
-	BANano.Header.AddJavascriptFile("skin.js")
+	BANano.Header.AddCssFile("material.min.css")
+	BANano.Header.AddJavascriptFile("material.skin.js")
 		
 	'BANano.TranspilerOptions.MergeAllCSSFiles = True
 	'BANano.TranspilerOptions.MergeAllJavascriptFiles = True

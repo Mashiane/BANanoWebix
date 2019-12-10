@@ -1,23 +1,19 @@
 ﻿AppType=JavaFX
 Build1=Default,b4j.example
 File1=alasql.min.js
-File2=contrast.css
-File3=skin.js
 FileGroup1=Default Group
-FileGroup2=Default Group
-FileGroup3=Default Group
 Group=Default Group
 Library1=jcore
 Library2=jfx
 Library3=bananopostprocessor
 Library4=bananowebix
 Library5=banano
-Module1=pgindex
-Module2=pgGoDown
-NumberOfFiles=3
+Module1=pgGoDown
+Module2=pgindex
+NumberOfFiles=1
 NumberOfLibraries=5
 NumberOfModules=2
-Version=7.78
+Version=8
 @EndOfDesignText@
 #Region Project Attributes 
 	 
@@ -40,20 +36,9 @@ Sub AppStart (Form1 As Form, Args() As String)
 	BANano.HTML_NAME = "index.html"
 	BANano.Header.Title = AppName
 	BANano.JAVASCRIPT_NAME = appFile
-	BANano.Header.addcssfile("all.min.css")
-	BANano.Header.AddCSSFile("materialdesignicons.min.css")
 	'
-	BANano.Header.AddCSSFile("contrast.css")
-	'*themes
-	'BANano.Header.AddCSSFile("material.min.css")
-	'BANano.Header.AddCSSFile("flat.min.css")
-	'BANano.Header.AddCSSFile("compact.min.css")
-	'BANano.Header.AddCSSFile("contrast.min.css")
-	'** themes
-	BANano.Header.AddJavascriptFile("webix.min.js")
-	BANano.Header.AddCSSFile("hint.css")
-	BANano.Header.AddJavascriptFile("hint.js")
-	BANano.Header.AddJavascriptFile("skin.js")
+	BANano.Header.AddCSSFile("contrast.min.css")
+	BANano.Header.AddJavascriptFile("contrast.skin.js")
 	
 	'BANano.TranspilerOptions.ShowWarningDeadCode = True
 	'BANano.TranspilerOptions.RemoveDeadCode = True
@@ -98,7 +83,7 @@ Sub BANano_Ready()
 	sqlite.Initialize
 	sqlite.SetDB(dbName)
 	'build the query string structure to execute
-	Dim rs As SQLiteResultSet1 = sqlite.CreateTable("godown", mgodown, "wh_no")
+	Dim rs As SQLiteResultSet1 = sqlite.CreateTable("godown", mgodown, "wh_no","")
 	'execute the resultset structure and get the result
 	rs.Result = BANano.FromJSON(BANano.CallInlinePHPWait("BANanoSQLite1", sqlite.Build(rs)))
 	'

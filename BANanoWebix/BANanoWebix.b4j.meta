@@ -271,6 +271,6 @@ ModuleClosedNodes88=
 ModuleClosedNodes89=
 ModuleClosedNodes9=
 ModuleClosedNodes90=
-NavigationStack=WixRichSelect,Class_Globals,2,1,WixSideBar,Class_Globals,4,1,WixSlider,Class_Globals,5,1,WixSwitch,Class_Globals,5,1,WixUnitList,Class_Globals,1,1,WixUploader,Class_Globals,2,1,WixDataTable,Class_Globals,28,0,Main,Process_Globals,10,0,Main,Application_Error,29,0,Main,AppStart,18,0
+NavigationStack=WixRichSelect,Class_Globals,2,1,WixSideBar,Class_Globals,4,1,WixSlider,Class_Globals,5,1,WixSwitch,Class_Globals,5,1,WixUnitList,Class_Globals,1,1,WixUploader,Class_Globals,2,1,WixDataTable,Class_Globals,28,0,Main,Application_Error,29,0,Main,AppStart,16,0,Main,Process_Globals,9,0
 SelectedBuild=0
 VisibleModules=

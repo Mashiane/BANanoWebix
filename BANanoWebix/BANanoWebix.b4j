@@ -157,12 +157,12 @@ Module90=WixWindow
 NumberOfFiles=30
 NumberOfLibraries=3
 NumberOfModules=90
-Version=7.98
+Version=8
 @EndOfDesignText@
  #Region Project Attributes 
  	#MergeLibraries: True
 	#LibraryAuthor: Anele Mashy Mbanga
-	#LibraryVersion: 2.33
+	#LibraryVersion: 2.34
 	#LibraryName: BANanoWebix
 #End Region
 
@@ -175,7 +175,16 @@ Sub AppStart (Form1 As Form, Args() As String)
 	'initialize banano for first use
 	BANano.Initialize("BANano", "BANanoWebix",DateTime.Now)
 	BANano.TranspilerOptions.UseServiceWorker = False
-	BANano.BuildAsB4XLib("2.33")
+	
+	BANano.Header.AddCSSFile("materialdesignicons.min.css")
+	BANano.Header.AddCSSFile("hint.css")
+	BANano.Header.AddJavascriptFile("webix.js")
+	BANano.Header.AddJavascriptFile("hint.js")
+	'
+	BANano.Header.AddJavascriptFile("Blob.min.js")
+	BANano.Header.AddJavascriptFile("FileSaver.min.js")
+	'
+	BANano.BuildAsB4XLib("2.34")
 	ExitApplication
 End Sub
 
